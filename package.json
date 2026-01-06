@@ -1,6 +1,6 @@
 {
     "name": "keycloakify-starter",
-    "version": "250004.0.11",
+    "version": "250004.0.12",
     "description": "Starter for Keycloakify themes using React, Shadcn, TailwindCSS and Keycloakify",
     "type": "module",
     "repository": {

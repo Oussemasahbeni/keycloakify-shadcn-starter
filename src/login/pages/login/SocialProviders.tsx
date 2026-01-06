@@ -44,7 +44,7 @@ export function SocialProviders() {
             >
                 {kcContext.social.providers.map((...[p, , providers]) => (
                     <li key={p.alias}>
-                        <Button variant="outline" className="w-full hover:text-current">
+                        <Button variant="outline" className="w-full hover:text-current" asChild>
                             <a
                                 id={`social-${p.alias}`}
                                 className={clsx(
@@ -54,7 +54,6 @@ export function SocialProviders() {
                                     ),
                                     "flex items-center justify-center gap-3 "
                                 )}
-                                type="button"
                                 href={p.loginUrl}
                             >
                                 <div className={"h-5 w-5"}>
