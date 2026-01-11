@@ -43,7 +43,7 @@
         "cmdk": "^1.1.1",
         "i18next": "^24.2.3",
         "input-otp": "^1.4.2",
-        "keycloakify": "^11.13.6",
+        "keycloakify": "^11.13.10",
         "lucide-react": "^0.473.0",
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
