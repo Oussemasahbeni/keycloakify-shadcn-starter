@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useRef } from "react";
 import {
     useWebAuthn,
     type AuthenticateOptions,
     type WebAuthnResult
 } from "./useWebAuthn";
+
+// see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/passkeysConditionalAuth.js
 
 type ConditionalAuthOptions = AuthenticateOptions & {
     enabled?: boolean;
@@ -12,40 +14,38 @@ type ConditionalAuthOptions = AuthenticateOptions & {
 
 export function usePasskeysConditionalAuth() {
     const { authenticate } = useWebAuthn();
+    const hasRunRef = useRef(false);
 
-    const initAuthenticate = (options: ConditionalAuthOptions) => {
+    const initAuthenticate = async (options: ConditionalAuthOptions) => {
         const { enabled, onSuccess, errmsg, ...authOptions } = options;
 
-        useEffect(() => {
-            // Feature Flag Check
-            if (!enabled) return;
+        // Feature Flag Check
+        if (!enabled) return;
 
-            // Browser Availability Check (tryAutoFillUI logic)
-            const checkAvailabilityAndRun = async () => {
-                if (
-                    !window.PublicKeyCredential ||
-                    !PublicKeyCredential.isConditionalMediationAvailable
-                ) {
-                    return;
-                }
+        // Prevent duplicate runs - conditional auth should only start once
+        if (hasRunRef.current) return;
+        hasRunRef.current = true;
 
-                const isAvailable =
-                    await PublicKeyCredential.isConditionalMediationAvailable();
+        // Browser Availability Check (tryAutoFillUI logic)
+        if (
+            !window.PublicKeyCredential ||
+            !PublicKeyCredential.isConditionalMediationAvailable
+        ) {
+            return;
+        }
 
-                if (isAvailable) {
-                    // Start Listener
-                    const result = await authenticate({
-                        ...authOptions,
-                        mediation: "conditional",
-                        errmsg
-                    });
+        const isAvailable = await PublicKeyCredential.isConditionalMediationAvailable();
 
-                    if (result) onSuccess(result);
-                }
-            };
+        if (isAvailable) {
+            // Start Listener - this attaches to the input with autocomplete="username webauthn"
+            const result = await authenticate({
+                ...authOptions,
+                mediation: "conditional",
+                errmsg
+            });
 
-            checkAvailabilityAndRun();
-        }, []); // Runs once on mount
+            if (result) onSuccess(result);
+        }
     };
 
     return { initAuthenticate };

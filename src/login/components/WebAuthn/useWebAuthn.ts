@@ -1,6 +1,8 @@
 import { useCallback, useRef } from "react";
 import { base64url } from "rfc4648";
 
+// see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/webauthnAuthenticate.js
+
 /**
  * Options required to initiate the WebAuthn authentication flow.
  * These usually come directly from the Keycloak context (kcContext).
@@ -96,9 +98,14 @@ export function useWebAuthn() {
             // Prepare Configuration
             const publicKey: PublicKeyCredentialRequestOptions = {
                 challenge: new Uint8Array(base64url.parse(challenge, { loose: true })),
-                rpId: rpId,
-                userVerification: userVerification as UserVerificationRequirement
+                rpId: rpId
             };
+
+            // Only set userVerification if it's a valid value
+            if (userVerification && userVerification !== "not specified") {
+                publicKey.userVerification =
+                    userVerification as UserVerificationRequirement;
+            }
 
             if (createTimeout !== 0) publicKey.timeout = createTimeout * 1000;
 
@@ -119,7 +126,6 @@ export function useWebAuthn() {
                     mediation
                 })) as PublicKeyCredential;
 
-                
                 const response = credential.response as AuthenticatorAssertionResponse;
 
                 // Success Handling
@@ -145,6 +151,7 @@ export function useWebAuthn() {
                 };
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
+                console.log("WebAuthn error", error);
                 if (error.name === "AbortError") return null;
                 return {
                     success: false,

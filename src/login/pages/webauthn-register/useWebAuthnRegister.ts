@@ -1,7 +1,8 @@
 import { useCallback } from "react";
 import { base64url } from "rfc4648";
 
-// Types based on what Keycloak passes to the script
+// see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/webauthnRegister.js
+
 export type RegisterOptions = {
     challenge: string;
     rpId: string;

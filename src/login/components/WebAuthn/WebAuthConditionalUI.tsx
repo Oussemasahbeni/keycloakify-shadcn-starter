@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Fingerprint } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { assert } from "tsafe/assert";
 import { useI18n } from '../../i18n';
 import { useKcContext } from '../../KcContext';
@@ -39,11 +39,12 @@ export function WebAuthnConditionalUI() {
             if (signatureRef.current) signatureRef.current.value = result.signature;
             if (credentialIdRef.current) credentialIdRef.current.value = result.credentialId;
             if (userHandleRef.current) userHandleRef.current.value = result.userHandle;
+            webAuthnFormRef.current.submit();
         } else {
+            // Don't submit on error - just log it
+            console.error("WebAuthn authentication failed:", result.error);
             if (errorRef.current) errorRef.current.value = result.error;
         }
-
-        webAuthnFormRef.current.submit();
     };
 
     // Common Config
@@ -69,13 +70,16 @@ export function WebAuthnConditionalUI() {
         if (result) submitWebAuthn(result);
     };
 
-
-    initAuthenticate({
-        ...authOptions,
-        enabled: kcContext.enableWebAuthnConditionalUI,
-        errmsg: msgStr("passkey-unsupported-browser-text"),
-        onSuccess: submitWebAuthn
-    });
+    // Initialize conditional authentication after component mounts
+    useEffect(() => {
+        if (!kcContext.enableWebAuthnConditionalUI) return;
+        initAuthenticate({
+            ...authOptions,
+            enabled: true,
+            errmsg: msgStr("passkey-unsupported-browser-text"),
+            onSuccess: submitWebAuthn
+        });
+    }, []); // Run only once on mount
 
     if (!kcContext.enableWebAuthnConditionalUI) return null;
 

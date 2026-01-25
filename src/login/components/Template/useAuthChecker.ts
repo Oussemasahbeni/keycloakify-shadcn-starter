@@ -1,6 +1,8 @@
 import type { KcContext } from "@/login/KcContext";
 import { useEffect, useRef } from "react";
 
+// see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/authChecker.js
+
 const SESSION_POLLING_INTERVAL = 2000;
 const AUTH_SESSION_TIMEOUT_MILLISECS = 1000;
 
