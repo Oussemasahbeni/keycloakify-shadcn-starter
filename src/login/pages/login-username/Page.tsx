@@ -6,20 +6,17 @@ import { clsx } from "keycloakify/tools/clsx";
 import { useState } from "react";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { WebAuthnConditionalUI } from '@/login/components/WebAuthn/WebAuthConditionalUI';
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
-import { Fingerprint } from "lucide-react";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
-import { useScript } from "./useScript";
 
 export function Page() {
     const { kcContext } = useKcContext();
     assert(kcContext.pageId === "login-username.ftl");
 
-    const { kcClsx } = useKcClsx();
 
     const {
         social,
@@ -29,17 +26,12 @@ export function Page() {
         login,
         registrationDisabled,
         messagesPerField,
-        enableWebAuthnConditionalUI,
-        authenticators
     } = kcContext;
 
     const { msg, msgStr } = useI18n();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
-
-    const webAuthnButtonId = "authenticateWebAuthnButton";
-
-    useScript({ webAuthnButtonId });
+    ;
 
     return (
         <Template
@@ -123,8 +115,8 @@ export function Page() {
                                     {!realm.loginWithEmailAllowed
                                         ? msg("email")
                                         : !realm.registrationEmailAsUsername
-                                          ? msg("usernameOrEmail")
-                                          : msg("username")}
+                                            ? msg("usernameOrEmail")
+                                            : msg("username")}
                                 </FieldLabel>
                                 <Input
                                     tabIndex={2}
@@ -187,59 +179,8 @@ export function Page() {
                     </form>
                 )}
 
-                {enableWebAuthnConditionalUI && (
-                    <>
-                        <form id="webauth" action={url.loginAction} method="post">
-                            <input
-                                type="hidden"
-                                id="clientDataJSON"
-                                name="clientDataJSON"
-                            />
-                            <input
-                                type="hidden"
-                                id="authenticatorData"
-                                name="authenticatorData"
-                            />
-                            <input type="hidden" id="signature" name="signature" />
-                            <input type="hidden" id="credentialId" name="credentialId" />
-                            <input type="hidden" id="userHandle" name="userHandle" />
-                            <input type="hidden" id="error" name="error" />
-                        </form>
+                <WebAuthnConditionalUI />
 
-                        {authenticators !== undefined &&
-                            authenticators.authenticators.length !== 0 && (
-                                <>
-                                    <form
-                                        id="authn_select"
-                                        className={kcClsx("kcFormClass")}
-                                    >
-                                        {authenticators.authenticators.map(
-                                            (authenticator, i) => (
-                                                <input
-                                                    key={i}
-                                                    type="hidden"
-                                                    name="authn_use_chk"
-                                                    readOnly
-                                                    value={authenticator.credentialId}
-                                                />
-                                            )
-                                        )}
-                                    </form>
-                                </>
-                            )}
-                        <br />
-
-                        <Button
-                            id={webAuthnButtonId}
-                            type="button"
-                            className="w-full"
-                            variant="outline"
-                        >
-                            <Fingerprint className="w-4 h-4" />
-                            {msgStr("passkey-doAuthenticate")}
-                        </Button>
-                    </>
-                )}
             </div>
         </Template>
     );

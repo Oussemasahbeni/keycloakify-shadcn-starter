@@ -43,7 +43,7 @@ export function SocialProviders() {
             className={kcClsx("kcFormSocialAccountSectionClass")}
         >
             <ul
-                className={` grid gap-3  sm:grid-cols-2`}
+                className={` grid gap-3 sm:grid-cols-2`}
             >
                 {kcContext.social.providers.map((...[p, , providers]) => (
                     <li key={p.alias}>
@@ -107,7 +107,7 @@ export function SocialProviders() {
                     </li>
                 ))}
             </ul>
-            <div className="my-4 flex items-center text-sm">
+            <div className="my-6 flex items-center text-sm">
                 <div className="mt-px flex-auto border-t"></div>
                 <div className="text-muted-foreground mx-2">
                     {msg("identity-provider-login-label")}

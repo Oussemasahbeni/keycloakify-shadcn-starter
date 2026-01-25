@@ -1,3 +1,4 @@
+import { InputGroup, InputGroupAddon } from "@/components/ui/input-group";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import type {
     FormAction,
@@ -50,15 +51,18 @@ export function InputFieldByType(props: InputFieldByTypeProps) {
                 );
             }
 
-            const inputNode = <InputTag {...props} fieldIndex={undefined} />;
-
             if (attribute.name === "password" || attribute.name === "password-confirm") {
                 return (
-                    <PasswordWrapper passwordInputId={attribute.name}>
-                        {inputNode}
-                    </PasswordWrapper>
+                    <InputGroup>
+                        <InputTag {...props} fieldIndex={undefined} isInGroup={true} />
+                        <InputGroupAddon align="inline-end">
+                            <PasswordWrapper passwordInputId={attribute.name} />
+                        </InputGroupAddon>
+                    </InputGroup>
                 );
             }
+
+            const inputNode = <InputTag {...props} fieldIndex={undefined} />;
 
             return inputNode;
         }

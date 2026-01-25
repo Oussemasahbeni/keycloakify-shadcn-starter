@@ -149,19 +149,11 @@
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
     input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px var(--background) inset !important;
         -webkit-text-fill-color: var(--foreground) !important;
-        box-shadow: 0 0 0 30px var(--background) inset !important;
-    }
 
-    /* For dark mode */
-    .dark input:-webkit-autofill,
-    .dark input:-webkit-autofill:hover,
-    .dark input:-webkit-autofill:focus,
-    .dark input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px var(--background) inset !important;
-        -webkit-text-fill-color: var(--foreground) !important;
-        box-shadow: 0 0 0 30px var(--background) inset !important;
+        /* Transition the background color so slowly it effectively never changes. 
+           This preserves the transparent or semi-transparent background styles. */
+        transition: background-color 9999s ease-in-out 0s;
     }
 }
 @layer base {

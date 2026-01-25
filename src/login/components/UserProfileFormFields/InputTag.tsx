@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input";
+import { InputGroupInput } from "@/components/ui/input-group";
 import { assert } from "tsafe/assert";
 import { useI18n } from "../../i18n";
 import { AddRemoveButtonsMultiValuedAttribute } from "./AddRemoveButtonsMultiValuedAttribute";
@@ -6,21 +7,24 @@ import { FieldErrors } from "./FieldErrors";
 import type { InputFieldByTypeProps } from "./InputFieldByType";
 
 export function InputTag(
-    props: InputFieldByTypeProps & { fieldIndex: number | undefined }
+    props: InputFieldByTypeProps & { fieldIndex: number | undefined; isInGroup?: boolean }
 ) {
     const {
         attribute,
         fieldIndex,
         dispatchFormAction,
         valueOrValues,
-        displayableErrors
+        displayableErrors,
+        isInGroup = false
     } = props;
 
     const { advancedMsgStr } = useI18n();
 
+    const InputComponent = isInGroup ? InputGroupInput : Input;
+
     return (
         <>
-            <Input
+            <InputComponent
                 type={(() => {
                     const { inputType } = attribute.annotations;
 

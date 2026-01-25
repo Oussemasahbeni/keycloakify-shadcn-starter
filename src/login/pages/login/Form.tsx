@@ -2,16 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput
+} from "@/components/ui/input-group";
 import { Label } from "@/components/ui/label";
+import { PasswordWrapper } from "@/login/components/PasswordWrapper";
+import { WebAuthnConditionalUI } from '@/login/components/WebAuthn/WebAuthConditionalUI';
 import { useKcContext } from "@/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
-import { Fingerprint } from "lucide-react";
 import { useState } from "react";
 import { assert } from "tsafe/assert";
-import { PasswordWrapper } from "../../components/PasswordWrapper";
 import { useI18n } from "../../i18n";
-import { useScript } from "./useScript";
 
 export function Form() {
     const { kcContext } = useKcContext();
@@ -24,9 +28,6 @@ export function Form() {
 
     const { kcClsx } = useKcClsx();
 
-    const webAuthnButtonId = "authenticateWebAuthnButton";
-
-    useScript({ webAuthnButtonId });
 
     return (
         <>
@@ -41,7 +42,7 @@ export function Form() {
                             }}
                             action={kcContext.url.loginAction}
                             method="post"
-                            className="space-y-3"
+                            className="space-y-5"
                         >
                             {!kcContext.usernameHidden && (
                                 <Field>
@@ -91,8 +92,8 @@ export function Form() {
                                 <FieldLabel htmlFor="password">
                                     {msg("password")}
                                 </FieldLabel>
-                                <PasswordWrapper passwordInputId="password">
-                                    <Input
+                                <InputGroup>
+                                    <InputGroupInput
                                         tabIndex={3}
                                         type="password"
                                         id="password"
@@ -103,7 +104,11 @@ export function Form() {
                                             "password"
                                         )}
                                     />
-                                </PasswordWrapper>
+                                    <InputGroupAddon align="inline-end">
+                                        <PasswordWrapper passwordInputId="password" />
+                                    </InputGroupAddon>
+                                </InputGroup>
+
                                 {kcContext.messagesPerField.existsError(
                                     "username",
                                     "password"
@@ -189,52 +194,7 @@ export function Form() {
                 </div>
             </div>
 
-            {kcContext.enableWebAuthnConditionalUI && (
-                <>
-                    <form id="webauth" action={kcContext.url.loginAction} method="post">
-                        <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-                        <input
-                            type="hidden"
-                            id="authenticatorData"
-                            name="authenticatorData"
-                        />
-                        <input type="hidden" id="signature" name="signature" />
-                        <input type="hidden" id="credentialId" name="credentialId" />
-                        <input type="hidden" id="userHandle" name="userHandle" />
-                        <input type="hidden" id="error" name="error" />
-                    </form>
-
-                    {kcContext.authenticators !== undefined &&
-                        kcContext.authenticators.authenticators.length !== 0 && (
-                            <>
-                                <form id="authn_select" className={kcClsx("kcFormClass")}>
-                                    {kcContext.authenticators.authenticators.map(
-                                        (authenticator, i) => (
-                                            <input
-                                                key={i}
-                                                type="hidden"
-                                                name="authn_use_chk"
-                                                readOnly
-                                                value={authenticator.credentialId}
-                                            />
-                                        )
-                                    )}
-                                </form>
-                            </>
-                        )}
-                    <br />
-
-                    <Button
-                        id={webAuthnButtonId}
-                        type="button"
-                        className="w-full"
-                        variant="outline"
-                    >
-                        <Fingerprint className="w-4 h-4" />
-                        {msgStr("passkey-doAuthenticate")}
-                    </Button>
-                </>
-            )}
+            <WebAuthnConditionalUI />
         </>
     );
 }

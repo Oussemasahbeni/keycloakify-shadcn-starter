@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { LogoutOtherSessions } from "@/login/components/LogoutOtherSessions";
 import { PasswordWrapper } from "@/login/components/PasswordWrapper";
 import { useI18n } from "@/login/i18n";
@@ -30,8 +30,8 @@ export function Page() {
             >
                 <Field>
                     <FieldLabel htmlFor="password-new">{msg("passwordNew")}</FieldLabel>
-                    <PasswordWrapper passwordInputId="password-new">
-                        <Input
+                    <InputGroup>
+                        <InputGroupInput
                             type="password"
                             id="password-new"
                             name="password-new"
@@ -39,7 +39,10 @@ export function Page() {
                             autoComplete="new-password"
                             aria-invalid={messagesPerField.existsError("password")}
                         />
-                    </PasswordWrapper>
+                        <InputGroupAddon align="inline-end">
+                            <PasswordWrapper passwordInputId="password-new" />
+                        </InputGroupAddon>
+                    </InputGroup>
                     {messagesPerField.existsError("password") && (
                         <FieldError>
                             <span
@@ -59,8 +62,8 @@ export function Page() {
                     <FieldLabel htmlFor="password-confirm">
                         {msg("passwordConfirm")}
                     </FieldLabel>
-                    <PasswordWrapper passwordInputId="password-confirm">
-                        <Input
+                    <InputGroup>
+                        <InputGroupInput
                             type="password"
                             id="password-confirm"
                             name="password-confirm"
@@ -69,7 +72,10 @@ export function Page() {
                                 "password-confirm"
                             )}
                         />
-                    </PasswordWrapper>
+                        <InputGroupAddon align="inline-end">
+                            <PasswordWrapper passwordInputId="password-confirm" />
+                        </InputGroupAddon>
+                    </InputGroup>
                     {messagesPerField.existsError("password-confirm") && (
                         <FieldError>
                             <span

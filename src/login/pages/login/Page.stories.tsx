@@ -100,6 +100,18 @@ export const WithPresetUsername: Story = {
     }
 };
 
+
+export const WithWebauthn: Story = {
+    args: {
+        kcContext: {
+            url: {
+                loginAction: "/mock-login-action"
+            },
+            enableWebAuthnConditionalUI: true,
+        }
+    }
+};
+
 export const WithImmutablePresetUsername: Story = {
     args: {
         kcContext: {

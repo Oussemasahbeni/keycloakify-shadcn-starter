@@ -1,24 +1,43 @@
+<script>
+    (function () {
+        try {
+            var storageKey = "isDarkMode";
+            var storedTheme = localStorage.getItem(storageKey);
+            var useDark = false;
+
+            if (storedTheme === "dark") {
+                useDark = true;
+            } else if (storedTheme === "light") {
+                useDark = false;
+            } else {
+                // system or null
+                useDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            }
+
+            if (useDark) {
+                document.documentElement.classList.add("dark");
+            }
+        } catch (e) {}
+    })();
+</script>
 <style>
     body.sb-show-main.sb-main-padded {
         padding: 0;
     }
 
-    /* Following styles are just meant to avoid white flash when switching from one story to another */
-    @keyframes fadeToTransparent {
-        from {
-            background-color: #393939;
-        }
+    /* Prevent white flash in dark mode */
+    html.dark {
+        background-color: oklch(0.145 0 0);
+    }
 
-        to {
-            background-color: transparent;
-        }
+    html.dark body {
+        background-color: oklch(0.145 0 0);
     }
-    html {
-        animation: fadeToTransparent 500ms forwards ease-in;
-    }
+
     body > .sb-preparing-docs {
         visibility: hidden;
     }
+
     body > .sb-preparing-story {
         visibility: hidden;
     }
