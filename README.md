@@ -6,21 +6,21 @@ A modern, production-ready Keycloak login theme built with React, TypeScript, Ta
 
 ---
 
-## ✨ Features
+## Features
 
-- 🎨 **Modern UI** - Beautiful, responsive design using Tailwind CSS v4 and shadcn/ui components
-- 🌙 **Dark Mode** - Built-in dark/light/system theme toggle with persistent preferences
-- 🌍 **Multi-language Support** - i18n ready with English, French, and Arabic translations (RTL supported)
-- 📧 **Custom Email Templates** - Styled email templates using jsx-email for all Keycloak events
-- 🔐 **Complete Login Flow** - All 35+ Keycloak login pages fully customized
-- 🎭 **Social Login Providers** - Pre-styled icons for 16+ OAuth providers (Google, GitHub, Microsoft, etc.)
-- 📖 **Storybook Integration** - Visual testing and documentation for all components
-- ⚡ **Vite Powered** - Fast development with HMR and optimized builds
-- 🔧 **Type-Safe** - Full TypeScript support throughout the codebase
+- **Modern UI** - Beautiful, responsive design using Tailwind CSS v4 and shadcn/ui components
+- **Dark Mode** - Built-in dark/light/system theme toggle with persistent preferences
+- **Multi-language Support** - i18n ready with English, French, and Arabic translations (RTL supported)
+- **Custom Email Templates** - Styled email templates using jsx-email for all Keycloak events
+- **Complete Login Flow** - All 35+ Keycloak login pages fully customized
+- **Social Login Providers** - Pre-styled icons for 16+ OAuth providers (Google, GitHub, Microsoft, etc.)
+- **Storybook Integration** - Visual testing and documentation for all components
+- **Vite Powered** - Fast development with HMR and optimized builds
+- **Type-Safe** - Full TypeScript support throughout the codebase
 
 ---
 
-## 🚀 Quick Start with npm
+## Quick Start with npm
 
 Get started quickly by using the published npm package in your own project.
 
@@ -114,7 +114,7 @@ That's it! You now have a fully functional Keycloak login theme using the publis
 
 ---
 
-## 🛠️ Development (for contributors)
+## Development (for contributors)
 
 If you want to clone this repository and develop/customize the theme locally:
 
@@ -153,7 +153,7 @@ pnpm build-keycloak-theme
 
 ---
 
-## 🖼️ Supported Pages
+## Supported Pages
 
 This theme includes custom implementations for all Keycloak login pages:
 
@@ -207,7 +207,7 @@ The theme uses shadcn/ui components located in `src/components/ui/`:
 
 ---
 
-## 📧 Email Templates
+## Email Templates
 
 Custom email templates are built with [jsx-email](https://jsx.email/) and support multiple languages.
 
@@ -241,7 +241,7 @@ Translations are in `src/email/locales/{locale}/translation.json`:
 
 ---
 
-## 🔨 Building for Production
+## Building for Production
 
 ### Install Maven
 
@@ -268,7 +268,7 @@ The built theme will be output as a `.jar` file in the `dist_keycloak/` director
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Storybook
 
@@ -284,7 +284,7 @@ For local testing with a Keycloak instance, see the [Keycloakify documentation](
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -296,13 +296,13 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Keycloakify](https://keycloakify.dev) - For making Keycloak theming with React possible
 - [shadcn/ui](https://ui.shadcn.com) - For the beautiful UI components
@@ -311,7 +311,7 @@ This project is licensed under the MIT License.
 
 ---
 
-## 📦 Package Information
+## Package Information
 
 **npm:** [@oussemasahbeni/keycloakify-login-shadcn](https://www.npmjs.com/package/@oussemasahbeni/keycloakify-login-shadcn)  
 **GitHub:** [Oussemasahbeni/keycloakify-shadcn-starter](https://github.com/Oussemasahbeni/keycloakify-shadcn-starter)
