@@ -19,7 +19,6 @@ export function usePasskeysConditionalAuth() {
     const initAuthenticate = async (options: ConditionalAuthOptions) => {
         const { enabled, onSuccess, errmsg, ...authOptions } = options;
 
-        // Feature Flag Check
         if (!enabled) return;
 
         // Prevent duplicate runs - conditional auth should only start once

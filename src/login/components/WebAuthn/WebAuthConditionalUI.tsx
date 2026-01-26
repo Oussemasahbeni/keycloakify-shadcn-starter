@@ -41,8 +41,6 @@ export function WebAuthnConditionalUI() {
             if (userHandleRef.current) userHandleRef.current.value = result.userHandle;
             webAuthnFormRef.current.submit();
         } else {
-            // Don't submit on error - just log it
-            console.error("WebAuthn authentication failed:", result.error);
             if (errorRef.current) errorRef.current.value = result.error;
         }
     };
