@@ -60,8 +60,8 @@ importers:
         specifier: ^1.4.2
         version: 1.4.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       keycloakify:
-        specifier: ^11.14.0
-        version: 11.14.0
+        specifier: ^11.14.2
+        version: 11.14.2
       lucide-react:
         specifier: ^0.473.0
         version: 0.473.0(react@19.2.3)
@@ -77,6 +77,9 @@ importers:
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@19.2.3)
+      rfc4648:
+        specifier: ^1.5.4
+        version: 1.5.4
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -3069,8 +3072,8 @@ packages:
       react:
         optional: true
 
-  keycloakify@11.14.0:
-    resolution: {integrity: sha512-uxfHuCiuO+3wMjnWP+Ui13vPAKGa68djNny8XDUq5xu0gWUM1mxPDXpJEN/r7sP5KT/iXRxKTqrVmIEriF7LGg==}
+  keycloakify@11.14.2:
+    resolution: {integrity: sha512-hiuYdwZMnxykT3APx+5hBocmUQZ5PZbkCibAusUdfO1KbWlGs2I5a/AABKTLFyOy+t6eJeio/jCx9z1xvQbHTg==}
     hasBin: true
 
   keyv@4.5.4:
@@ -3757,6 +3760,9 @@ packages:
   reusify@1.1.0:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+
+  rfc4648@1.5.4:
+    resolution: {integrity: sha512-rRg/6Lb+IGfJqO05HZkN50UtY7K/JhxJag1kP23+zyMfrvoB0B7RWv06MbOzoc79RgCdNTiUaNsTT1AJZ7Z+cg==}
 
   rollup@4.53.3:
     resolution: {integrity: sha512-w8GmOxZfBmKknvdXU1sdM9NHcoQejwF/4mNgj2JuEEdRaHwwF12K7e9eXn1nLZ07ad+du76mkVsyeb2rKGllsA==}
@@ -7333,7 +7339,7 @@ snapshots:
       jsx-email: 2.8.3(@jsx-email/plugin-inline@1.0.1)(@jsx-email/plugin-minify@1.0.2)(@jsx-email/plugin-pretty@1.0.0)(@types/node@22.19.3)(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)(yaml@2.8.2)
       react: 19.2.3
 
-  keycloakify@11.14.0:
+  keycloakify@11.14.2:
     dependencies:
       tsafe: 1.8.12
 
@@ -8043,6 +8049,8 @@ snapshots:
       supports-preserve-symlinks-flag: 1.0.0
 
   reusify@1.1.0: {}
+
+  rfc4648@1.5.4: {}
 
   rollup@4.53.3:
     dependencies:
