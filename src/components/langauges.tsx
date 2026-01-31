@@ -16,7 +16,6 @@ export function Languages() {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button
-                        tabIndex={1}
                         variant="outline"
                         size="icon"
                         aria-label={msgStr("languages")}

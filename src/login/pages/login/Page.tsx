@@ -17,15 +17,7 @@ export function Page() {
             displayMessage={
                 !kcContext.messagesPerField.existsError("username", "password")
             }
-            headerNode={
-                <div className="text-start">
-                    <p className="text-2xl font-bold">{msg("loginAccountTitle")}</p>
-                    <p className="text-balance font-normal text-sm text-muted-foreground">
-                        {msg("enterCredentials")}
-                    </p>
-                    <hr className="mt-3" />
-                </div>
-            }
+            headerNode={msg("loginAccountTitle")}
             displayInfo={
                 kcContext.realm.password &&
                 kcContext.realm.registrationAllowed &&
