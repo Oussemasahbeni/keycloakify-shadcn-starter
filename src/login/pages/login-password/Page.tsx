@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { Label } from "@/components/ui/label";
 import { PasswordWrapper } from "@/login/components/PasswordWrapper";
 import { useI18n } from "@/login/i18n";
@@ -44,8 +44,8 @@ export function Page() {
             >
                 <Field>
                     <FieldLabel htmlFor="password">{msg("password")}</FieldLabel>
-                    <PasswordWrapper passwordInputId="password">
-                        <Input
+                    <InputGroup>
+                        <InputGroupInput
                             tabIndex={2}
                             type="password"
                             id="password"
@@ -55,7 +55,10 @@ export function Page() {
                                 "password"
                             )}
                         />
-                    </PasswordWrapper>
+                        <InputGroupAddon align="inline-end">
+                            <PasswordWrapper passwordInputId="password" />
+                        </InputGroupAddon>
+                    </InputGroup>
                     {kcContext.messagesPerField.existsError("password") && (
                         <FieldError>
                             <span

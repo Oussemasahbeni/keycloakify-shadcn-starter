@@ -11,22 +11,22 @@ const { I18nProvider, useI18n } = i18nBuilder
             loginAccountTitle: "Login to your account",
             registerTitle: "Register a new account",
             email: "Email",
-            enterCredentials: "Enter your credentials below to login",
             noAccount: "Don't have an account?",
             doRegister: "Sign up",
             "organization.selectTitle": "Choose Your Organization",
-            "organization.pickPlaceholder": "Pick an organization to continue"
+            "organization.pickPlaceholder": "Pick an organization to continue",
+            "identity-provider-login-last-used": "Last used"
         },
         ar: {
             welcomeMessage: "مرحبًا بك في Acme inc - بوابتك إلى التخطيط والتنظيم السلس.",
             loginAccountTitle: "تسجيل الدخول  إلى حسابك",
             registerTitle: "تسجيل حساب جديد",
             email: "البريد الإلكتروني",
-            enterCredentials: "أدخل بيانات الاعتماد الخاصة بك أدناه لتسجيل الدخول",
             doRegister: "إنشاء حساب",
             noAccount: "ليس لديك حساب؟",
             "organization.selectTitle": "اختر مؤسستك",
-            "organization.pickPlaceholder": "اختر مؤسسة للمتابعة"
+            "organization.pickPlaceholder": "اختر مؤسسة للمتابعة",
+            "identity-provider-login-last-used": "آخر استخدام"
         },
         fr: {
             welcomeMessage:
@@ -34,12 +34,12 @@ const { I18nProvider, useI18n } = i18nBuilder
             loginAccountTitle: "Connectez-vous à votre compte",
             registerTitle: "Créer    un nouveau compte",
             email: "E-mail",
-            enterCredentials:
-                "Entrez vos informations d'identification ci-dessous pour vous connecter",
             doRegister: "S'inscrire",
             noAccount: "Vous n'avez pas de compte?",
             "organization.selectTitle": "Choisissez Votre Organisation",
-            "organization.pickPlaceholder": "Sélectionnez une organisation pour continuer"
+            "organization.pickPlaceholder":
+                "Sélectionnez une organisation pour continuer",
+            "identity-provider-login-last-used": "Dernière utilisation"
         }
     })
     .build();

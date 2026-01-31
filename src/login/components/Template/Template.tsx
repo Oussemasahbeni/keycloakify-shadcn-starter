@@ -82,7 +82,7 @@ export function Template(props: {
             {/* Main content */}
             <div className="flex flex-col gap-4 px-0 py-0 pb-6 lg:p-6 lg:md:p-10 lg:pt-10 min-h-screen lg:min-h-0">
                 {/*  navigation */}
-                <div className="absolute top-4 right-4 lg:left-4  z-20 flex gap-2">
+                <div className="absolute top-4 start-4 z-20 flex gap-2">
                     <Button type="button" variant="outline" size="icon" asChild>
                         <a href={kcContext.client.baseUrl ?? redirectUrlOrigin}>
                             <FiHome />
@@ -98,9 +98,9 @@ export function Template(props: {
                 <div className="lg:hidden relative pt-8 px-6">
                     {/* Logo and welcome message */}
                     <div className="flex flex-col items-center justify-center gap-3 mt-4">
-                        <div className=" mb-4 flex items-center gap-3">
+                        <div className="mb-4 flex items-center gap-3">
                             <img src={companylogo} alt="Logo" />
-                            <span className=" text-xl"> {APP_NAME}</span>
+                            <span className="text-xl"> {APP_NAME}</span>
                         </div>
                     </div>
                 </div>
@@ -206,8 +206,8 @@ export function Template(props: {
                                                     </AlertDescription>
                                                 </Alert>
                                             )}
-                                        <div className="children">{children}</div>
                                         {socialProvidersNode}
+                                        <div className="children">{children}</div>
                                         {auth !== undefined &&
                                             auth.showTryAnotherWayLink && (
                                                 <form

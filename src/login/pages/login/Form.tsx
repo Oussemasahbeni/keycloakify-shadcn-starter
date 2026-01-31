@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { Label } from "@/components/ui/label";
 import { useKcContext } from "@/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
@@ -91,8 +92,8 @@ export function Form() {
                                 <FieldLabel htmlFor="password">
                                     {msg("password")}
                                 </FieldLabel>
-                                <PasswordWrapper passwordInputId="password">
-                                    <Input
+                                <InputGroup>
+                                    <InputGroupInput
                                         tabIndex={3}
                                         type="password"
                                         id="password"
@@ -103,7 +104,11 @@ export function Form() {
                                             "password"
                                         )}
                                     />
-                                </PasswordWrapper>
+                                    <InputGroupAddon align="inline-end" >
+                                        <PasswordWrapper
+                                            passwordInputId="password" tabIndex={4} />
+                                    </InputGroupAddon>
+                                </InputGroup>
                                 {kcContext.messagesPerField.existsError(
                                     "username",
                                     "password"
