@@ -1,5 +1,5 @@
 import { useKcContext } from "@/login/KcContext";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 // see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/authChecker.js
 
@@ -20,8 +20,6 @@ function getCookieByName(name: string) {
 
 export function useAuthChecker() {
     const { kcContext } = useKcContext();
-
-    const shouldPollRef = useRef(true);
 
     /**
      * Checks if the current tab's authentication session ID matches the one stored in the browser cookie.
@@ -78,12 +76,10 @@ export function useAuthChecker() {
         };
 
         const handleFormSubmit = () => {
-            shouldPollRef.current = false;
             clearTimeout(timer);
         };
 
         const handleBeforeUnload = () => {
-            shouldPollRef.current = false;
             clearTimeout(timer);
         };
 
