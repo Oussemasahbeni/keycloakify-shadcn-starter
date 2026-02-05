@@ -11,7 +11,9 @@ import { useWebAuthn, type WebAuthnResult } from './useWebAuthn';
 export function WebAuthnConditionalUI() {
 
     const { kcContext } = useKcContext();
-    assert(kcContext.pageId === "login.ftl" || kcContext.pageId === 'login-username.ftl' || kcContext.pageId === 'login-password.ftl');
+
+    assert("enableWebAuthnConditionalUI" in kcContext);
+
     const { msgStr } = useI18n();
 
     const { authenticate } = useWebAuthn();
@@ -26,8 +28,6 @@ export function WebAuthnConditionalUI() {
     const userHandleRef = useRef<HTMLInputElement>(null);
     const errorRef = useRef<HTMLInputElement>(null);
 
-
-
     // Define Submission Logic
     const submitWebAuthn = (result: WebAuthnResult) => {
         if (!webAuthnFormRef.current) return;
@@ -41,6 +41,7 @@ export function WebAuthnConditionalUI() {
             webAuthnFormRef.current.submit();
         } else {
             if (errorRef.current) errorRef.current.value = result.error;
+            webAuthnFormRef.current.submit();
         }
     };
 

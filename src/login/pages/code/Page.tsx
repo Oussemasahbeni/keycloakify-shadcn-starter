@@ -60,6 +60,7 @@ export function Page() {
                                     variant="secondary"
                                     size="icon"
                                     className="size-4"
+                                    aria-label="Copy code to clipboard"
                                 >
                                     {copied ? (
                                         <MdCheck className="text-green-500" />
@@ -86,6 +87,6 @@ export function Page() {
                     )
                 )}
             </div>
-        </Template>
+        </Template >
     );
 }
