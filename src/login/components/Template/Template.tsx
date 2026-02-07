@@ -80,7 +80,7 @@ export function Template(props: {
                 {/*  navigation */}
                 <div className="absolute top-4 start-4 z-20 flex gap-2">
                     <Button type="button" variant="outline" size="icon" asChild>
-                        <a href={kcContext.client.baseUrl ?? redirectUrlOrigin}>
+                        <a href={kcContext.client?.baseUrl ?? redirectUrlOrigin}>
                             <FiHome />
                         </a>
                     </Button>
