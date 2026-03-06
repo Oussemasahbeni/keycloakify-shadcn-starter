@@ -35,7 +35,7 @@ export function SocialProviders() {
             className={kcClsx("kcFormSocialAccountSectionClass")}
         >
             <ul
-                className={` grid gap-3 sm:grid-cols-2`}
+                className={`grid gap-3 ${kcContext.social.providers.length > 1 ? "sm:grid-cols-2" : ""}`}
             >
                 {kcContext.social.providers.map((...[p, , providers]) => (
                     <li key={p.alias}>
