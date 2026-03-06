@@ -4,7 +4,7 @@ import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
-import { useScript } from "./useScript";
+import { useLogic } from './useLogic';
 
 export function Page() {
     const { kcContext } = useKcContext();
@@ -12,9 +12,11 @@ export function Page() {
 
     const { msg, msgStr } = useI18n();
 
-    const webAuthnButtonId = "authenticateWebAuthnButton";
-
-    useScript({ webAuthnButtonId });
+    const {
+        registerFormRef,
+        onRegisterClick,
+    } = useLogic();
+    ;
 
     return (
         <Template
@@ -25,23 +27,17 @@ export function Page() {
             }
         >
             <div className="space-y-6">
-                <form id="register" action={kcContext.url.loginAction} method="post">
+                {/* HIDDEN FORM */}
+                <form
+                    id="register"
+                    action={kcContext.url.loginAction}
+                    method="post"
+                    ref={registerFormRef}
+                >
                     <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-                    <input
-                        type="hidden"
-                        id="attestationObject"
-                        name="attestationObject"
-                    />
-                    <input
-                        type="hidden"
-                        id="publicKeyCredentialId"
-                        name="publicKeyCredentialId"
-                    />
-                    <input
-                        type="hidden"
-                        id="authenticatorLabel"
-                        name="authenticatorLabel"
-                    />
+                    <input type="hidden" id="attestationObject" name="attestationObject" />
+                    <input type="hidden" id="publicKeyCredentialId" name="publicKeyCredentialId" />
+                    <input type="hidden" id="authenticatorLabel" name="authenticatorLabel" />
                     <input type="hidden" id="transports" name="transports" />
                     <input type="hidden" id="error" name="error" />
                 </form>
@@ -49,7 +45,12 @@ export function Page() {
                 <LogoutOtherSessions />
 
                 <div className="space-y-3">
-                    <Button type="button" className="w-full" id={webAuthnButtonId}>
+                    <Button
+                        type="button"
+                        className="w-full"
+                        id="authenticateWebAuthnButton"
+                        onClick={onRegisterClick}
+                    >
                         {msgStr("doRegisterSecurityKey")}
                     </Button>
 

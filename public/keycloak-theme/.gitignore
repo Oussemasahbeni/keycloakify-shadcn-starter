@@ -1,7 +1,6 @@
 # This file is managed by Keycloakify, do not edit it manually.
 
 # === Owned files start ===
-# login/js/authChecker.js
 # login/js/passkeysConditionalAuth.js
 # login/js/rfc4648.js
 # login/js/webauthnAuthenticate.js
@@ -19,6 +18,7 @@
 /login/img/keycloak-bg.png
 /login/img/keycloak-logo-text.png
 /login/img/keycloak-logo.png
+/login/js/authChecker.js
 /login/js/common.js
 /login/js/kcMultivalued.js
 /login/js/kcNumberFormat.js

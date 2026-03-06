@@ -3,29 +3,21 @@ import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { Label } from "@/components/ui/label";
 import { PasswordVisibilityButton } from "@/login/components/PasswordVisibilityButton";
+import { WebAuthnConditionalUI } from '@/login/components/WebAuthnConditionalUi';
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
-import { Fingerprint } from "lucide-react";
 import { useState } from "react";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
-import { useScript } from "./useScript";
 
 export function Page() {
     const { kcContext } = useKcContext();
     assert(kcContext.pageId === "login-password.ftl");
 
-    const { kcClsx } = useKcClsx();
-
     const { msg, msgStr } = useI18n();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
-
-    const webAuthnButtonId = "authenticateWebAuthnButton";
-
-    useScript({ webAuthnButtonId });
 
     return (
         <Template
@@ -100,52 +92,7 @@ export function Page() {
                     </Button>
                 </div>
             </form>
-            {kcContext.enableWebAuthnConditionalUI && (
-                <>
-                    <form id="webauth" action={kcContext.url.loginAction} method="post">
-                        <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-                        <input
-                            type="hidden"
-                            id="authenticatorData"
-                            name="authenticatorData"
-                        />
-                        <input type="hidden" id="signature" name="signature" />
-                        <input type="hidden" id="credentialId" name="credentialId" />
-                        <input type="hidden" id="userHandle" name="userHandle" />
-                        <input type="hidden" id="error" name="error" />
-                    </form>
-
-                    {kcContext.authenticators !== undefined &&
-                        kcContext.authenticators.authenticators.length !== 0 && (
-                            <>
-                                <form id="authn_select" className={kcClsx("kcFormClass")}>
-                                    {kcContext.authenticators.authenticators.map(
-                                        (authenticator, i) => (
-                                            <input
-                                                key={i}
-                                                type="hidden"
-                                                name="authn_use_chk"
-                                                readOnly
-                                                value={authenticator.credentialId}
-                                            />
-                                        )
-                                    )}
-                                </form>
-                            </>
-                        )}
-                    <br />
-
-                    <Button
-                        id={webAuthnButtonId}
-                        type="button"
-                        className="w-full"
-                        variant="outline"
-                    >
-                        <Fingerprint className="w-4 h-4" />
-                        {msgStr("passkey-doAuthenticate")}
-                    </Button>
-                </>
-            )}
+            {kcContext.enableWebAuthnConditionalUI && <WebAuthnConditionalUI />}
         </Template>
     );
 }

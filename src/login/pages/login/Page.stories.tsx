@@ -60,6 +60,17 @@ export const WithInvalidCredential: Story = {
     }
 };
 
+export const WithWebauthn: Story = {
+    args: {
+        kcContext: {
+            url: {
+                loginAction: "/mock-login-action"
+            },
+            enableWebAuthnConditionalUI: true,
+        }
+    }
+};
+
 export const WithoutRegistration: Story = {
     args: {
         kcContext: {
