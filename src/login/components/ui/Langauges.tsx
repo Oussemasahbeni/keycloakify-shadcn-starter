@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useI18n } from "@/login/i18n";
 import { IoCheckmark, IoLanguage } from "react-icons/io5";
-import { Button } from "./ui/button";
+import { Button } from "../../../components/ui/button";
 
 export function Languages() {
     const { msgStr, currentLanguage, enabledLanguages } = useI18n();
@@ -17,13 +17,13 @@ export function Languages() {
                 <DropdownMenuTrigger asChild>
                     <Button
                         variant="outline"
-                        size="icon"
                         aria-label={msgStr("languages")}
                         aria-haspopup="true"
                         aria-expanded="false"
                         aria-controls="language-switch1"
                     >
                         <IoLanguage />
+                        {currentLanguage.label}
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent

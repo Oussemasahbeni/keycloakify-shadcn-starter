@@ -1,4 +1,3 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
@@ -16,20 +15,15 @@ export function Page() {
             displayMessage={false}
             headerNode={msg("deleteCredentialTitle", kcContext.credentialLabel)}
         >
-            <Alert variant="warning" className=" my-3">
-                <AlertDescription>
-                    <span>
-                        {msg("deleteCredentialMessage", kcContext.credentialLabel)}
-                    </span>
-                </AlertDescription>
-            </Alert>
+
+            <p>{msg("deleteCredentialMessage", kcContext.credentialLabel)}</p>
 
             <form
                 className="form-actions"
                 action={kcContext.url.loginAction}
                 method="POST"
             >
-                <div className="flex flex-col sm:flex-row gap-3 sm:justify-between mt-6">
+                <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
                     <Button
                         variant="outline"
                         name="cancel-aia"

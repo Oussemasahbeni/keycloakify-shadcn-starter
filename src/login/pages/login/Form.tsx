@@ -37,7 +37,7 @@ export function Form() {
                             }}
                             action={kcContext.url.loginAction}
                             method="post"
-                            className="space-y-3"
+                            className="space-y-4"
                         >
                             {!kcContext.usernameHidden && (
                                 <Field>
@@ -125,7 +125,7 @@ export function Form() {
                                     )}
                             </Field>
 
-                            <div className=" space-y-1 my-3 flex justify-between text-xs  ">
+                            <div className="space-y-1 flex justify-between text-xs">
                                 {kcContext.realm.rememberMe &&
                                     !kcContext.usernameHidden && (
                                         <div className="flex items-center space-x-2 ">

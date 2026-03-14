@@ -29,19 +29,15 @@ export function Page() {
                 <UserProfileFormFields
                     onIsFormSubmittableValueChange={setIsFomSubmittable}
                 />
-                <div>
-                    <div id="kc-form-options">
-                        <div />
-                    </div>
-                    <div id="kc-form-buttons">
-                        <Button
-                            className="w-full"
-                            disabled={!isFomSubmittable}
-                            type="submit"
-                        >
-                            {msgStr("doSubmit")}
-                        </Button>
-                    </div>
+
+                <div id="kc-form-buttons">
+                    <Button
+                        className="w-full"
+                        disabled={!isFomSubmittable}
+                        type="submit"
+                    >
+                        {msgStr("doSubmit")}
+                    </Button>
                 </div>
             </form>
         </Template>

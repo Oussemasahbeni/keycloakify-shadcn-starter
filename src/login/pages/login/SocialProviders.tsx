@@ -98,7 +98,7 @@ export function SocialProviders() {
                     </li>
                 ))}
             </ul>
-            <div className="my-6 flex items-center text-sm">
+            <div className="py-4 flex items-center text-sm">
                 <div className="mt-px flex-auto border-t"></div>
                 <div className="text-muted-foreground mx-2">
                     {msg("identity-provider-login-label")}

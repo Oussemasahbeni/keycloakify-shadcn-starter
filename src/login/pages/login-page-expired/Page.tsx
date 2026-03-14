@@ -1,4 +1,3 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
 import { assert } from "tsafe/assert";
@@ -12,34 +11,30 @@ export function Page() {
 
     return (
         <Template headerNode={msg("pageExpiredTitle")}>
-            <Alert variant="warning" className="my-6">
-                <AlertDescription>
-                    <div className="space-y-3 text-sm leading-relaxed">
-                        <p>
-                            {msg("pageExpiredMsg1")}{" "}
-                            <a
-                                id="loginRestartLink"
-                                href={kcContext.url.loginRestartFlowUrl}
-                                className="text-primary dark:text-white hover:text-primary/80 underline underline-offset-2 font-medium"
-                            >
-                                {msg("doClickHere")}
-                            </a>
-                            .
-                        </p>
-                        <p>
-                            {msg("pageExpiredMsg2")}{" "}
-                            <a
-                                id="loginContinueLink"
-                                href={kcContext.url.loginAction}
-                                className="text-primary dark:text-white hover:text-primary/80 underline underline-offset-2 font-medium"
-                            >
-                                {msg("doClickHere")}
-                            </a>
-                            .
-                        </p>
-                    </div>
-                </AlertDescription>
-            </Alert>
-        </Template>
+            <div className="space-y-3 text-sm leading-relaxed">
+                <p>
+                    {msg("pageExpiredMsg1")}{" "}
+                    <a
+                        id="loginRestartLink"
+                        href={kcContext.url.loginRestartFlowUrl}
+                        className="text-primary dark:text-white hover:text-primary/80 underline underline-offset-2 font-medium"
+                    >
+                        {msg("doClickHere")}
+                    </a>
+                    .
+                </p>
+                <p>
+                    {msg("pageExpiredMsg2")}{" "}
+                    <a
+                        id="loginContinueLink"
+                        href={kcContext.url.loginAction}
+                        className="text-primary dark:text-white hover:text-primary/80 underline underline-offset-2 font-medium"
+                    >
+                        {msg("doClickHere")}
+                    </a>
+                    .
+                </p>
+            </div>
+        </Template >
     );
 }

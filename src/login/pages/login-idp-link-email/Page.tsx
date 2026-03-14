@@ -1,4 +1,3 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
 import { assert } from "tsafe/assert";
@@ -12,18 +11,15 @@ export function Page() {
 
     return (
         <Template headerNode={msg("emailLinkIdpTitle", kcContext.idpAlias)}>
-            <Alert id="instruction1" variant="info" className="my-3">
-                <AlertDescription>
+            <div className="space-y-2 text-sm text-muted-foreground">
+                <p>
                     {msg(
                         "emailLinkIdp1",
                         kcContext.idpAlias,
                         kcContext.brokerContext.username,
                         kcContext.realm.displayName
                     )}
-                </AlertDescription>
-            </Alert>
-
-            <div className="space-y-2 text-sm text-muted-foreground">
+                </p>
                 <p className="leading-relaxed">
                     {msg("emailLinkIdp2")}{" "}
                     <a

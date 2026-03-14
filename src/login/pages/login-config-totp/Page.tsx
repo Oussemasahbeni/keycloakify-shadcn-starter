@@ -110,7 +110,7 @@ export function Page() {
                                                 {kcContext.totp.policy.type === "totp"
                                                     ? kcContext.totp.policy.period
                                                     : kcContext.totp.policy
-                                                          .initialCounter}
+                                                        .initialCounter}
                                             </span>
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@ export function Page() {
 
                 <form
                     action={kcContext.url.loginAction}
-                    className="space-y-4 mt-2"
+                    className="space-y-4"
                     id="kc-totp-settings-form"
                     method="post"
                 >
@@ -225,7 +225,7 @@ export function Page() {
 
                     {kcContext.isAppInitiatedAction ? (
                         <>
-                            <div className="flex justify-between mt-4 gap-3">
+                            <div className="flex justify-between gap-3">
                                 <Button
                                     variant="secondary"
                                     value="true"

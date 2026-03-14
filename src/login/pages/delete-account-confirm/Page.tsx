@@ -13,8 +13,8 @@ export function Page() {
 
     return (
         <Template headerNode={msg("deleteAccountConfirm")}>
-            <form action={kcContext.url.loginAction} className="space-y-6" method="post">
-                <Alert variant="warning" className="my-3">
+            <form action={kcContext.url.loginAction} className="space-y-4" method="post">
+                <Alert variant="warning">
                     <AlertDescription>
                         <span>{msg("irreversibleAction")}</span>
                     </AlertDescription>
@@ -28,12 +28,12 @@ export function Page() {
                         <li>{msg("errasingData")}</li>
                     </ul>
 
-                    <p className="text-foreground font-medium mt-6">
+                    <p className="text-foreground font-medium">
                         {msg("finalDeletionConfirmation")}
                     </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 sm:justify-between mt-6">
+                <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
                     {kcContext.triggered_from_aia && (
                         <Button
                             variant="outline"

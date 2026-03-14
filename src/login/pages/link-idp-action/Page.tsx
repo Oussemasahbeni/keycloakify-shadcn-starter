@@ -19,7 +19,7 @@ export function Page() {
                 {msg("linkIdpActionMessage", kcContext.idpDisplayName)}
             </div>
             <form action={kcContext.url.loginAction} method="post">
-                <div className="flex flex-col sm:flex-row gap-3 sm:justify-between mt-6">
+                <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
                     <Button
                         name="cancel-aia"
                         variant="outline"

@@ -32,7 +32,7 @@ export function Form() {
         <form
             id="kc-register-form"
             action={kcContext.url.registrationAction}
-            className="space-y-3"
+            className="space-y-4"
             method="post"
         >
             <UserProfileFormFields

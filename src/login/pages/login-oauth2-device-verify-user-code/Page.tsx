@@ -19,7 +19,7 @@ export function Page() {
         <Template headerNode={msg("oauth2DeviceVerificationTitle")}>
             <form
                 id="kc-user-verify-device-user-code-form"
-                className="space-y-5"
+                className="space-y-4"
                 action={kcContext.url.oauth2DeviceVerificationAction}
                 method="post"
             >

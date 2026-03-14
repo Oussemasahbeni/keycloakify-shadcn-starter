@@ -56,7 +56,7 @@ export function Page() {
                 <input type="hidden" id="error" name="error" />
             </form>
 
-            <div className={kcClsx("kcFormGroupClass")} style={{ marginBottom: 0 }}>
+            <div className={kcClsx("kcFormGroupClass")}>
                 {authenticators !== undefined &&
                     Object.keys(authenticators).length !== 0 && (
                         <>
@@ -136,7 +136,7 @@ export function Page() {
                                                             undefined &&
                                                             authenticator.transports
                                                                 .displayNameProperties !==
-                                                                undefined &&
+                                                            undefined &&
                                                             authenticator.transports
                                                                 .displayNameProperties
                                                                 .length !== 0 && (
@@ -167,11 +167,11 @@ export function Page() {
                                                                                 </span>
                                                                                 {i !==
                                                                                     arr.length -
-                                                                                        1 && (
-                                                                                    <span>
-                                                                                        ,{" "}
-                                                                                    </span>
-                                                                                )}
+                                                                                    1 && (
+                                                                                        <span>
+                                                                                            ,{" "}
+                                                                                        </span>
+                                                                                    )}
                                                                             </Fragment>
                                                                         )
                                                                     )}
@@ -219,7 +219,6 @@ export function Page() {
                                 style={{ display: "none" }}
                                 onSubmit={event => {
                                     try {
-                                        // @ts-expect-error: Ok
                                         event.target.login.disabled = true;
                                     } catch {
                                         /* empty */

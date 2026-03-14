@@ -27,7 +27,7 @@ export function Page() {
                 />
             }
         >
-            <Alert variant="info" className="my-3">
+            <Alert variant="info">
                 <AlertDescription>
                     <p
                         dangerouslySetInnerHTML={{
@@ -64,7 +64,7 @@ export function Page() {
 
                 if (kcContext.pageRedirectUri) {
                     return (
-                        <Button type="button" className="mt-2 flex ms-auto">
+                        <Button type="button" className="flex ms-auto">
                             <a href={kcContext.pageRedirectUri}>
                                 {msg("backToApplication")}
                             </a>
@@ -73,7 +73,7 @@ export function Page() {
                 }
                 if (kcContext.actionUri) {
                     return (
-                        <Button type="button" className="mt-2 flex ms-auto ">
+                        <Button type="button" className="flex ms-auto">
                             <a href={kcContext.actionUri}>{msg("proceedWithAction")}</a>
                         </Button>
                     );
@@ -81,7 +81,7 @@ export function Page() {
 
                 if (kcContext.client.baseUrl) {
                     return (
-                        <Button type="button" className="mt-2 flex  ms-auto-end">
+                        <Button type="button" className="flex ms-auto">
                             <a href={kcContext.client.baseUrl}>
                                 {msg("backToApplication")}
                             </a>

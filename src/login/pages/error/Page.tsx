@@ -14,8 +14,8 @@ export function Page() {
 
     return (
         <Template displayMessage={false} headerNode={msg("errorTitle")}>
-            <div id="kc-error-message">
-                <Alert variant="error" className="my-3">
+            <div id="kc-error-message" className="space-y-4">
+                <Alert variant="error">
                     <AlertDescription>
                         <span
                             className="instruction"
@@ -29,7 +29,7 @@ export function Page() {
                 {!kcContext.skipLink &&
                     kcContext.client !== undefined &&
                     kcContext.client.baseUrl !== undefined && (
-                        <div className="mt-2 flex justify-end">
+                        <div className="flex justify-end">
                             <Button type="button">
                                 <a id="backToApplication" href={kcContext.client.baseUrl}>
                                     {msg("backToApplication")}

@@ -27,9 +27,10 @@ export function Page() {
             }
         >
             <div className="space-y-6">
-                {/* HIDDEN FORM */}
+                {/* HIDDEN FORM - hidden attr excludes it from space-y sibling margin */}
                 <form
                     id="register"
+                    hidden
                     action={kcContext.url.loginAction}
                     method="post"
                     ref={registerFormRef}

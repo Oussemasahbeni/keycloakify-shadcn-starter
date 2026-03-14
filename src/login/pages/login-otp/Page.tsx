@@ -72,7 +72,7 @@ export function Page() {
                     <Label htmlFor="otp" className="text-sm font-medium  block">
                         {msg("loginOtpOneTime")}
                     </Label>
-                    <div className="flex w-72 ">
+                    <div className="flex w-72">
                         <InputOTP
                             maxLength={6}
                             pattern={REGEXP_ONLY_DIGITS_AND_CHARS}

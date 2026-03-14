@@ -1,12 +1,10 @@
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { kcSanitize } from "keycloakify/lib/kcSanitize";
-
-
-
 import { Button } from '@/components/ui/button';
+import { Field, FieldLabel } from '@/components/ui/field';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
+import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { useState } from "react";
 import { MdCheck, MdContentCopy } from 'react-icons/md';
 import { assert } from "tsafe/assert";
@@ -41,40 +39,39 @@ export function Page() {
             <div id="kc-code">
                 {kcContext.code.success ? (
                     <>
-                        <Alert variant="success" className="my-3">
-                            <AlertDescription>
-                                <span>{msg("copyCodeInstruction")}</span>
-                            </AlertDescription>
-                        </Alert>
-
-                        <InputGroup>
-                            <InputGroupInput
-                                id="code"
-                                defaultValue={kcContext.code.code}
-                                readOnly
-                                className="font-mono"
-                            />
-                            <InputGroupAddon align="inline-end" >
-                                <Button
-                                    onClick={handleCopy}
-                                    variant="secondary"
-                                    size="icon"
-                                    className="size-4"
-                                    aria-label="Copy code to clipboard"
-                                >
-                                    {copied ? (
-                                        <MdCheck className="text-green-500" />
-                                    ) : (
-                                        <MdContentCopy />
-                                    )}
-                                </Button>
-                            </InputGroupAddon>
-                        </InputGroup>
+                        <Field>
+                            <FieldLabel htmlFor="code">
+                                {msg("copyCodeInstruction")}
+                            </FieldLabel>
+                            <InputGroup>
+                                <InputGroupInput
+                                    id="code"
+                                    defaultValue={kcContext.code.code}
+                                    readOnly
+                                    className="font-mono"
+                                />
+                                <InputGroupAddon align="inline-end" >
+                                    <Button
+                                        onClick={handleCopy}
+                                        variant="secondary"
+                                        size="icon"
+                                        className="size-4"
+                                        aria-label="Copy code to clipboard"
+                                    >
+                                        {copied ? (
+                                            <MdCheck className="text-green-500" />
+                                        ) : (
+                                            <MdContentCopy />
+                                        )}
+                                    </Button>
+                                </InputGroupAddon>
+                            </InputGroup>
+                        </Field>
 
                     </>
                 ) : (
                     kcContext.code.error && (
-                        <Alert variant="error" className="my-3">
+                        <Alert variant="error">
                             <AlertDescription>
                                 <p
                                     id="error"

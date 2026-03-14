@@ -27,7 +27,7 @@ export function Page() {
         >
             <form
                 id="kc-update-profile-form"
-                className="space-y-6"
+                className="space-y-4"
                 action={url.loginAction}
                 method="post"
             >
@@ -51,7 +51,7 @@ export function Page() {
                         {isAppInitiatedAction && (
                             <Button
                                 variant="secondary"
-                                className=" w-full mt-2 "
+                                className="w-full"
                                 type="submit"
                                 name="cancel-aia"
                                 value="true"

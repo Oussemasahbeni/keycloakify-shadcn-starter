@@ -15,7 +15,7 @@ export function Form() {
     return (
         <form
             id="kc-reset-password-form"
-            className="space-y-3"
+            className="space-y-4"
             action={kcContext.url.loginAction}
             method="post"
         >
@@ -25,8 +25,8 @@ export function Form() {
                     {!kcContext.realm.loginWithEmailAllowed
                         ? msg("username")
                         : !kcContext.realm.registrationEmailAsUsername
-                          ? msg("usernameOrEmail")
-                          : msg("email")}
+                            ? msg("usernameOrEmail")
+                            : msg("email")}
                 </FieldLabel>
                 <Input
                     type="text"
