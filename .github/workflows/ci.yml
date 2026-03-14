@@ -8,39 +8,43 @@ on:
         branches:
             - main
 
+env:
+    NODE_VERSION: "24"
+    PNPM_VERSION: "10"
+
 jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
 
             - uses: pnpm/action-setup@v4
               with:
-                  version: 10
+                  version: ${{ env.PNPM_VERSION }}
 
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v6
               with:
-                  node-version: 22
+                  node-version: ${{ env.NODE_VERSION }}
                   cache: "pnpm"
 
             - run: pnpm install --frozen-lockfile
-
             - run: pnpm build
             - run: pnpm exec keycloakify
+
     security_scan:
         name: Security Scan (Trivy)
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
 
             - name: Run Trivy vulnerability scanner
-              uses: aquasecurity/trivy-action@master
+              uses: aquasecurity/trivy-action@0.30.0
               with:
                   scan-type: "fs"
                   scan-ref: "."
                   hide-progress: false
                   format: "table"
-                  exit-code: "1" # This fails the pipeline if vulnerabilities are found
+                  exit-code: "1"
                   severity: "CRITICAL,HIGH"
                   ignore-unfixed: true
 
@@ -66,15 +70,15 @@ jobs:
         permissions:
             contents: write
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
 
             - uses: pnpm/action-setup@v4
               with:
-                  version: 10
+                  version: ${{ env.PNPM_VERSION }}
 
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v6
               with:
-                  node-version: 22
+                  node-version: ${{ env.NODE_VERSION }}
                   cache: "pnpm"
 
             - run: pnpm install --frozen-lockfile
@@ -82,7 +86,7 @@ jobs:
             - run: pnpm exec keycloakify
 
             - name: Create Release
-              uses: softprops/action-gh-release@v1
+              uses: softprops/action-gh-release@v2
               with:
                   name: Release v${{ needs.check_if_version_upgraded.outputs.to_version }}
                   tag_name: v${{ needs.check_if_version_upgraded.outputs.to_version }}
@@ -97,19 +101,18 @@ jobs:
         permissions:
             contents: write
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
 
             - uses: pnpm/action-setup@v4
               with:
-                  version: 10
+                  version: ${{ env.PNPM_VERSION }}
 
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v6
               with:
-                  node-version: 22
+                  node-version: ${{ env.NODE_VERSION }}
                   cache: "pnpm"
 
             - run: pnpm install --frozen-lockfile
-
             - run: pnpm build-storybook
 
             - name: Upload artifact
@@ -139,15 +142,15 @@ jobs:
             contents: read
             id-token: write
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
 
             - uses: pnpm/action-setup@v4
               with:
-                  version: 10
+                  version: ${{ env.PNPM_VERSION }}
 
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v6
               with:
-                  node-version: 24
+                  node-version: ${{ env.NODE_VERSION }}
                   registry-url: "https://registry.npmjs.org"
 
             - run: pnpm install --frozen-lockfile
