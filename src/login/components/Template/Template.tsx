@@ -1,16 +1,11 @@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { ModeToggle } from "@/login/components/ui/ThemeToggle";
 import { redirectUrlOrigin } from "@/login/shared/redirectUrlOrigin";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger
-} from "@radix-ui/react-tooltip";
 import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { RotateCcw } from "lucide-react";
 import type { ReactNode } from "react";
@@ -79,7 +74,7 @@ export function Template(props: {
             {/* Main content */}
             <div className="flex flex-col gap-4 px-0 py-0 pb-6 lg:p-6 lg:md:p-10 lg:pt-10 min-h-screen lg:min-h-0">
                 {/*  navigation */}
-                <div className="absolute top-4 start-4 z-20 flex gap-2">
+                <div className="absolute top-4 inset-s-4 z-20 flex gap-2">
                     <Button type="button" variant="outline" size="icon" asChild>
                         <a href={kcContext.client?.baseUrl ?? redirectUrlOrigin}>
                             <FiHome />
