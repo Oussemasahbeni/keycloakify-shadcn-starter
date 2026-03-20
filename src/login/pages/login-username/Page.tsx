@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { clsx } from "keycloakify/tools/clsx";
 import { useState } from "react";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
@@ -12,6 +11,7 @@ import { useKcContext } from "@/login/KcContext";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
+import { SocialProviders } from "../login/SocialProviders";
 
 export function Page() {
     const { kcContext } = useKcContext();
@@ -54,48 +54,7 @@ export function Page() {
                 </div>
             }
             headerNode={msg("doLogIn")}
-            socialProvidersNode={
-                <>
-                    {realm.password &&
-                        social?.providers !== undefined &&
-                        social.providers.length !== 0 && (
-                            <div id="kc-social-providers" className="space-y-4">
-                                <div className="text-center">
-                                    <h2 className="text-sm font-medium text-muted-foreground">
-                                        {msg("identity-provider-login-label")}
-                                    </h2>
-                                </div>
-                                <div
-                                    className={clsx(
-                                        "grid gap-2",
-                                        social.providers.length > 3
-                                            ? "grid-cols-2"
-                                            : "grid-cols-1"
-                                    )}
-                                >
-                                    {social.providers.map(p => (
-                                        <a
-                                            key={p.alias}
-                                            id={`social-${p.alias}`}
-                                            className="flex items-center justify-center gap-2 px-4 py-2 border rounded-md hover:bg-accent transition-colors"
-                                            href={p.loginUrl}
-                                        >
-                                            {p.iconClasses && (
-                                                <i
-                                                    className={clsx(p.iconClasses)}
-                                                    aria-hidden="true"
-                                                ></i>
-                                            )}
-                                            <span className="text-sm font-medium">
-                                                {p.displayName}
-                                            </span>
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                </>
-            }
+            socialProvidersNode={realm.password && social !== undefined && <SocialProviders />}
         >
             <div>
                 {realm.password && (
