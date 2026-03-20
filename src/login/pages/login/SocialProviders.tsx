@@ -56,8 +56,8 @@ export function SocialProviders() {
                                     )}
                                     href={p.loginUrl}
                                     onClick={() => localStorage.setItem(LAST_PROVIDER_KEY, p.alias)}                                >
-                                    <div className={"h-5 w-5"}>
-                                        {providerLogos[p.alias] ? (
+                                    {providerLogos[p.alias] ? (
+                                        <div className={"h-5 w-5"}>
                                             <img
                                                 src={providerLogos[p.alias]}
                                                 alt={`${p.displayName} logo`}
@@ -67,20 +67,20 @@ export function SocialProviders() {
                                                     (p.alias === "github" || p.alias === "x" || p.alias === "twitter") && "dark:invert"
                                                 )}
                                             />
-                                        ) : (
-                                            // Fallback to the original iconClasses if the logo is not defined
-                                            p.iconClasses && (
-                                                <i
-                                                    className={clsx(
-                                                        kcClsx("kcCommonLogoIdP"),
-                                                        p.iconClasses,
-                                                        `text-provider-${p.alias}`
-                                                    )}
-                                                    aria-hidden="true"
-                                                ></i>
-                                            )
-                                        )}
-                                    </div>
+                                        </div>
+                                    ) : (
+                                        // Fallback to the original iconClasses if the logo is not defined
+                                        p.iconClasses && (
+                                            <i
+                                                className={clsx(
+                                                    kcClsx("kcCommonLogoIdP"),
+                                                    p.iconClasses,
+                                                    `text-provider-${p.alias}`
+                                                )}
+                                                aria-hidden="true"
+                                            ></i>
+                                        )
+                                    )}
 
                                     <span
                                         dangerouslySetInnerHTML={{
