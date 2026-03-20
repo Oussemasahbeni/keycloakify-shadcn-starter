@@ -13,7 +13,7 @@ export function TemplateTopBar() {
     return (
         <div className="absolute inset-x-4 top-4 z-20 flex items-center gap-2">
             <Button type="button" variant="outline" size="icon" asChild>
-                <a href={kcContext.client?.baseUrl ?? redirectUrlOrigin}>
+                <a href={kcContext.client?.baseUrl ?? redirectUrlOrigin} aria-label="Home">
                     <FiHome />
                 </a>
             </Button>

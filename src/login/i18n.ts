@@ -259,8 +259,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             "organization.pickPlaceholder": "გასაგრძელებლად აირჩიეთ ორგანიზაცია",
             "identity-provider-login-last-used": "ბოლოს გამოყენებული",
             usernamePlaceholder: "შეიყვანეთ თქვენი მომხმარებლის სახელი",
-            usernameOrEmailPlaceholder:
-                "შეიყვანეთ თქვენი მომხმარებლის სახელი ან ელფოსტა",
+            usernameOrEmailPlaceholder: "შეიყვანეთ თქვენი მომხმარებლის სახელი ან ელფოსტა",
             emailPlaceholder: "შეიყვანეთ თქვენი ელფოსტა",
             passwordPlaceholder: "შეიყვანეთ თქვენი პაროლი",
             newPasswordPlaceholder: "შეიყვანეთ თქვენი ახალი პაროლი",
@@ -427,7 +426,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             noAccount: "Har du inget konto?",
             doRegister: "Registrera dig",
             "organization.selectTitle": "Välj din organisation",
-            "organization.pickPlaceholder": "Välj en organisation för att fortsättea",
+            "organization.pickPlaceholder": "Välj en organisation för att fortsätta",
             "identity-provider-login-last-used": "Senast använd",
             usernamePlaceholder: "Ange ditt användarnamn",
             usernameOrEmailPlaceholder: "Ange ditt användarnamn eller e-post",

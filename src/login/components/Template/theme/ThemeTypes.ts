@@ -90,7 +90,7 @@ export const radiusPresetOptions = [
 ] as const;
 
 /**
- *
+ * Supported font family options exposed through env vars and Storybook.
  */
 export const fontFamilyOptions = [
     "inter",

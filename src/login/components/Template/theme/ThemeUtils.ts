@@ -69,10 +69,17 @@ export function resolveRadiusPreset(value: string): string | undefined {
     return radiusPresets[radius];
 }
 
+/**
+ * Resolves a public font family name into the CSS custom property value used at runtime.
+ *
+ * Invalid values fall back to the default font family.
+ * @param value
+ * @returns
+ */
 export function resolveThemeFont(value: string | undefined): string {
     if (value && value in themeFontFamilies) {
         return themeFontFamilies[value as FontFamily];
     }
 
-    return themeFontFamilies.inter;
+    return themeFontFamilies.geist;
 }
