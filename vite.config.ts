@@ -26,7 +26,6 @@ export default defineConfig({
                     name: "SHADCN_THEME_LOGO_DARK_URL",
                     default: ""
                 },
-                { name: "SHADCN_THEME_APP_NAME", default: "Acme Inc." },
                 { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
                 {
                     name: "SHADCN_THEME_SIDE_IMAGE_URL",

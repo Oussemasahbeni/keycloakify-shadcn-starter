@@ -13,8 +13,6 @@ export function ImageAsideLayout(props: {
     return (
         <div className="flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
             <TemplateTopBar />
-
-            {/* <div className="relative z-10 grid w-full max-w-sm overflow-hidden rounded-3xl bg-background shadow-none md:shadow-xl  md:max-w-5xl md:grid-cols-2"> */}
             <Card className="overflow-hidden p-0 w-full max-w-sm md:max-w-4xl">
                 <CardContent className='grid p-0 md:grid-cols-2'>
                     <div className="min-w-0">{content}</div>

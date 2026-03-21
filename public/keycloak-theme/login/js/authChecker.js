@@ -3,7 +3,7 @@
  *
  * $ npx keycloakify own --path "login/js/authChecker.js" --public
  *
- * This file is provided by @keycloakify/login-ui version 250004.6.5.
+ * This file is provided by @keycloakify/login-ui version 250004.6.7.
  * It was copied into your repository by the postinstall script: `keycloakify sync-extensions`.
  */
 

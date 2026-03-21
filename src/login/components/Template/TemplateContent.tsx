@@ -16,8 +16,8 @@ import { useI18n } from "../../i18n";
 import { useKcContext } from "../../KcContext";
 import type { TemplateProps } from "./Template";
 
+
 type TemplateContentProps = TemplateProps & {
-    appName: string;
     appWhiteModeLogo: string;
     appDarkModeLogo: string;
     cardClassName?: string;
@@ -33,7 +33,6 @@ export function TemplateContent(props: TemplateContentProps) {
         socialProvidersNode = null,
         infoNode = null,
         children,
-        appName,
         appWhiteModeLogo,
         appDarkModeLogo,
         cardClassName,
@@ -41,9 +40,10 @@ export function TemplateContent(props: TemplateContentProps) {
     } = props;
 
     const { kcContext } = useKcContext();
-    const { auth, url, message, isAppInitiatedAction } = kcContext;
+    const { auth, url, message, isAppInitiatedAction, realm } = kcContext;
     const { msg, msgStr } = useI18n();
     const { kcClsx } = useKcClsx();
+
 
     const titleNode: ReactNode =
         !(
@@ -94,7 +94,16 @@ export function TemplateContent(props: TemplateContentProps) {
                     <div className="flex items-center gap-3 mb-4 ">
                         <img src={appWhiteModeLogo} alt="Logo" className='size-14 dark:hidden' />
                         <img src={appDarkModeLogo} alt="Logo" className='size-14 hidden dark:inline-block' />
-                        <span className="text-xl">{appName}</span>
+                        {realm.displayNameHtml ? (
+                            <span
+                                className="text-xl"
+                                dangerouslySetInnerHTML={{
+                                    __html: kcSanitize(realm.displayNameHtml)
+                                }}
+                            />
+                        ) : (
+                            <span className="text-xl">{realm.displayName || realm.name}</span>
+                        )}
                     </div>
                 </div>
 

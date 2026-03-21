@@ -1,4 +1,6 @@
 import { useI18n } from '@/login/i18n';
+import { useKcContext } from '@/login/KcContext';
+import { kcSanitize } from '@keycloakify/login-ui/kcSanitize';
 import type { ReactNode } from "react";
 import shape from "../../../assets/img/shape.svg";
 import { TemplateTopBar } from '../TemplateTopBar';
@@ -7,9 +9,11 @@ import { TemplateTopBar } from '../TemplateTopBar';
 export function TwoColumnLayout(props: {
     content: ReactNode;
     appLogo: string;
-    appName: string;
 }) {
-    const { content, appLogo, appName } = props;
+    const { content, appLogo } = props;
+
+    const { kcContext } = useKcContext();
+
     const { msg } = useI18n();
 
 
@@ -35,7 +39,16 @@ export function TwoColumnLayout(props: {
                     <div className="relative z-10 flex max-w-xs flex-col items-center justify-center text-center">
                         <div className="mb-4 flex items-center gap-3">
                             <img src={appLogo} alt="Logo" className='size-14' />
-                            <span className="text-xl text-white">{appName}</span>
+                            {kcContext.realm.displayNameHtml ? (
+                                <span
+                                    className="text-xl text-whit"
+                                    dangerouslySetInnerHTML={{
+                                        __html: kcSanitize(kcContext.realm.displayNameHtml)
+                                    }}
+                                />
+                            ) : (
+                                <span className="text-xl text-whit">{kcContext.realm.displayName || kcContext.realm.name}</span>
+                            )}
                         </div>
 
                         <p className="text-sm text-white/70">{msg("welcomeMessage")}</p>
