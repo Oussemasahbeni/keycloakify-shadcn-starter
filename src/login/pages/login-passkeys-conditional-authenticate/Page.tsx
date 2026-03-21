@@ -217,13 +217,14 @@ export function Page() {
                                 action={url.loginAction}
                                 method="post"
                                 style={{ display: "none" }}
-                                onSubmit={event => {
+                                onSubmit={(event) => {
                                     try {
-                                        event.target.login.disabled = true;
+                                        const form = event.currentTarget as HTMLFormElement;
+                                        const loginBtn = form.elements.namedItem("login") as HTMLButtonElement | null;
+                                        if (loginBtn) loginBtn.disabled = true;
                                     } catch {
                                         /* empty */
                                     }
-
                                     return true;
                                 }}
                             >

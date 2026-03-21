@@ -13,6 +13,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
+export const WithAttemptedUsername: Story = {
+    args: {
+        kcContext: {
+            auth: {
+                showUsername: true,
+                attemptedUsername: "MyUsername"
+            }
+        }
+    }
+};
+
 export const WithPasswordError: Story = {
     args: {
         kcContext: {

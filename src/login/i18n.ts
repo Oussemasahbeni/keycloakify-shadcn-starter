@@ -15,6 +15,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             "organization.selectTitle": "Choose Your Organization",
             "organization.pickPlaceholder": "Pick an organization to continue",
             "identity-provider-login-last-used": "Last used",
+            attemptedUsernameLoggingInAs: "Logging in as",,
             usernamePlaceholder: "Enter your username",
             usernameOrEmailPlaceholder: "Enter your username or email",
             emailPlaceholder: "Enter your email",
@@ -31,6 +32,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             "organization.selectTitle": "اختر مؤسستك",
             "organization.pickPlaceholder": "اختر مؤسسة للمتابعة",
             "identity-provider-login-last-used": "آخر استخدام",
+            attemptedUsernameLoggingInAs: "تسجيل الدخول كـ",,
             usernamePlaceholder: "أدخل اسم المستخدم",
             usernameOrEmailPlaceholder: "أدخل اسم المستخدم أو البريد الإلكتروني",
             emailPlaceholder: "أدخل بريدك الإلكتروني",
@@ -189,6 +191,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             "organization.pickPlaceholder":
                 "Sélectionnez une organisation pour continuer",
             "identity-provider-login-last-used": "Dernière utilisation",
+            attemptedUsernameLoggingInAs: "Se connecter en tant que",,
             usernamePlaceholder: "Entrez votre nom d'utilisateur",
             usernameOrEmailPlaceholder: "Entrez votre nom d'utilisateur ou votre e-mail",
             emailPlaceholder: "Entrez votre e-mail",

@@ -1,5 +1,6 @@
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useSetClassName } from "keycloakify/tools/useSetClassName";
+import { RotateCcw, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
 import companylogo from "../../assets/img/auth-logo.svg";

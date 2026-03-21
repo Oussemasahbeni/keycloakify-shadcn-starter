@@ -26,17 +26,15 @@ export function Page() {
                     </AlertDescription>
                 </Alert>
 
-                {!kcContext.skipLink &&
-                    kcContext.client !== undefined &&
-                    kcContext.client.baseUrl !== undefined && (
-                        <div className="flex justify-end">
-                            <Button type="button">
-                                <a id="backToApplication" href={kcContext.client.baseUrl}>
-                                    {msg("backToApplication")}
-                                </a>
-                            </Button>
-                        </div>
-                    )}
+                {!kcContext.skipLink && !!kcContext.client?.baseUrl && (
+                    <div className="flex justify-end">
+                        <Button type="button">
+                            <a id="backToApplication" href={kcContext.client.baseUrl}>
+                                {msg("backToApplication")}
+                            </a>
+                        </Button>
+                    </div>
+                )}
             </div>
         </Template>
     );

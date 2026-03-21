@@ -42,7 +42,7 @@
     "clsx": "^2.1.1",
     "i18next": "^24.2.3",
     "input-otp": "^1.4.2",
-    "keycloakify": "^11.15.2-rc.1",
+    "keycloakify": "^11.15.3",
     "lucide-react": "^0.473.0",
     "radix-ui": "latest",
     "react": "^19.2.3",
