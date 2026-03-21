@@ -9,12 +9,14 @@ A modern, production-ready Keycloak login theme built with React, TypeScript, Ta
 ## Features
 
 - **Modern UI** - Beautiful, responsive design using Tailwind CSS v4 and shadcn/ui components
+- **Three Layout Modes** - `two-column`, `centered-card`, and `image-aside` layouts controlled from env vars
+- **Shadcn-Inspired Theming** - Curated accent presets, base palettes, radius presets, and font presets
 - **Dark Mode** - Built-in dark/light/system theme toggle with persistent preferences
-- **Multi-language Support** - i18n ready with English, French, and Arabic translations (RTL supported)
 - **Custom Email Templates** - Styled email templates using jsx-email for all Keycloak events
 - **Complete Login Flow** - All 35+ Keycloak login pages fully customized
 - **Social Login Providers** - Pre-styled icons for 16+ OAuth providers (Google, GitHub, Microsoft, etc.)
-- **Storybook Integration** - Visual testing and documentation for all components
+- **Storybook Integration** - Visual testing with live toolbar controls for locale, layout, theme, font, radius, and placeholders
+- **RTL Support** - Layout and form behavior adapted for right-to-left locales such as Arabic
 - **Vite Powered** - Fast development with HMR and optimized builds
 - **Type-Safe** - Full TypeScript support throughout the codebase
 
@@ -75,7 +77,26 @@ export default defineConfig({
         react(),
         tailwindcss(),
         keycloakify({
-            accountThemeImplementation: "none"
+            accountThemeImplementation: "none",
+            themeName: "your-theme-name",
+            environmentVariables: [
+                {
+                    name: "SHADCN_THEME_LOGO_WHITE_URL",
+                    default: ""
+                },
+                {
+                    name: "SHADCN_THEME_LOGO_DARK_URL",
+                    default: ""
+                },
+                { name: "SHADCN_THEME_APP_NAME", default: "Acme Inc." },
+                { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
+                { name: "SHADCN_THEME_SIDE_IMAGE_URL", default: "" },
+                { name: "SHADCN_THEME_PRESET", default: "neutral" },
+                { name: "SHADCN_THEME_BASE", default: "neutral" },
+                { name: "SHADCN_THEME_RADIUS", default: "default" },
+                { name: "SHADCN_THEME_FONT", default: "geist" },
+                { name: "SHADCN_THEME_PLACEHOLDER", default: "true" }
+            ]
         })
     ],
     resolve: {
@@ -88,9 +109,23 @@ export default defineConfig({
 
 ### Step 5: Configure TypeScript paths
 
-Add the path alias to your `tsconfig.app.json`:
+Add the path alias to your `tsconfig.app.json` and `tsconfig.json`:
 
 ```json
+//tsconfig.json
+{
+    // ...
+    "compilerOptions": {
+        // ...
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    }
+}
+```
+
+```json
+// tsconfig.app.json
 {
     "compilerOptions": {
         "paths": {
@@ -100,17 +135,36 @@ Add the path alias to your `tsconfig.app.json`:
 }
 ```
 
-### Step 6: Run Storybook and build
+### Step 7: Initializing Git
+
+Using Git is a requirement. It enables Keycloakify to track the files you have customized vs the files that you're just inheriting from the keycloakify-login-shadcn NPM package.
+
+```bash
+git init .
+git add -A
+git commit -m "Initial commit"
+```
+
+### Step 8: Run Storybook and build
 
 ```bash
 # Run Storybook for component development and testing
 pnpm storybook
 
-# Build the Keycloak theme JAR file
+# Build the JAR file to import in Keycloak, see https://docs.keycloakify.dev/deploying-your-theme
 pnpm build-keycloak-theme
+
+# Test in a local Keycloak. More info: https://docs.keycloakify.dev/testing-your-theme/inside-of-keycloak
+pnpm exec keycloakify start-keycloak
 ```
 
 That's it! You now have a fully functional Keycloak login theme using the published package.
+
+### Before You Start
+
+Before customizing the theme, watch this short Keycloakify overview. It explains the core concepts you need to understand how your changes are applied in Keycloak.
+
+[Watch the Keycloakify overview video](https://www.youtube.com/watch?v=0peJITq1WXU)
 
 ---
 
@@ -153,27 +207,137 @@ pnpm build-keycloak-theme
 
 ---
 
-## Supported Pages
+## Theme Configuration
 
-This theme includes custom implementations for all Keycloak login pages:
+The login theme is primarily customized through Keycloakify environment variables. These values are available in both the built Keycloak theme and Storybook.
 
-| Authentication      | Account Management  | Security              |
-| ------------------- | ------------------- | --------------------- |
-| Login               | Register            | WebAuthn Authenticate |
-| Login with Username | Update Profile      | WebAuthn Register     |
-| Login with Password | Update Email        | Configure TOTP        |
-| Login OTP           | Delete Account      | Recovery Codes        |
-| Login with Passkeys | Logout Confirm      | Reset OTP             |
-| OAuth Grant         | Terms & Conditions  | X509 Info             |
-| Device Verification | Select Organization | Delete Credential     |
+### Environment Variables
 
----
+| Variable                      | Default                                          | Allowed values                                | Description                                                                                       |
+| ----------------------------- | ------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `SHADCN_THEME_LOGO_WHITE_URL` | `https://cdn.svglogos.dev/logos/astro-icon.svg`  | Any image URL                                 | Logo used in light mode.                                                                          |
+| `SHADCN_THEME_LOGO_DARK_URL`  | `https://cdn.svglogos.dev/logos/gitlab-icon.svg` | Any image URL                                 | Logo used in dark mode.                                                                           |
+| `SHADCN_THEME_APP_NAME`       | `"Acme Inc."`                                    | Any string                                    | Controls the app name shown in the layout branding areas.                                         |
+| `SHADCN_THEME_LAYOUT`         | `"two-column"`                                   | `two-column`, `centered-card`, `image-aside`  | Selects the outer page layout used by `Template.tsx`.                                             |
+| `SHADCN_THEME_SIDE_IMAGE_URL` | `""`                                             | Any image URL                                 | Used by the `image-aside` layout as the image panel source.                                       |
+| `SHADCN_THEME_PRESET`         | `"neutral"`                                      | See accent preset list below                  | Selects the shadcn-style accent color family used for primary actions.                            |
+| `SHADCN_THEME_BASE`           | `"neutral"`                                      | See base palette list below                   | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring. |
+| `SHADCN_THEME_RADIUS`         | `"default"`                                      | `default`, `none`, `small`, `medium`, `large` | Controls the global border radius token.                                                          |
+| `SHADCN_THEME_FONT`           | `"geist"`                                        | See font preset list below                    | Controls the main theme font family.                                                              |
+| `SHADCN_THEME_PLACEHOLDER`    | `"true"`                                         | `true`, `false`                               | Shows or hides placeholders on supported auth forms.                                              |
 
-### Branding
+`SHADCN_THEME_PLACEHOLDER` currently applies to the fixed auth forms implemented directly in this theme, such as login, login-username, login-password, reset-password, and update-password.
 
-1. **Logo**: Replace `src/login/assets/img/auth-logo.svg` with your company logo
-2. **Colors**: Modify CSS variables in `src/login/index.css`
-3. **Fonts**: Update font imports in `src/login/assets/fonts/`
+The register page is intentionally not covered by this automatic placeholder toggle. Register fields are dynamic and come from Keycloak user profile configuration, so the theme cannot safely predict which fields will exist. For register and other dynamic profile forms, placeholders should be configured in Keycloak through the user profile field annotations.
+
+### Layout Options
+
+- `two-column`
+- `centered-card`
+- `image-aside`
+
+### Accent Presets
+
+- `neutral`
+- `amber`
+- `blue`
+- `cyan`
+- `emerald`
+- `fuchsia`
+- `green`
+- `indigo`
+- `lime`
+- `orange`
+- `pink`
+- `purple`
+- `red`
+- `rose`
+- `sky`
+- `teal`
+- `violet`
+- `yellow`
+
+### Base Palettes
+
+- `neutral`
+- `stone`
+- `zinc`
+- `mauve`
+- `olive`
+- `mist`
+- `taupe`
+
+### Radius Presets
+
+- `default`
+- `none`
+- `small`
+- `medium`
+- `large`
+
+### Font Presets
+
+- `inter`
+- `geist`
+- `manrope`
+- `figtree`
+- `source-sans-3`
+- `ibm-plex-sans`
+- `lora`
+- `playfair-display`
+- `jetbrains-mono`
+
+### Example Theme Configuration
+
+```ts
+environmentVariables: [
+    {
+        name: "SHADCN_THEME_LOGO_WHITE_URL",
+        default: ""
+    },
+    {
+        name: "SHADCN_THEME_LOGO_DARK_URL",
+        default: ""
+    },
+    { name: "SHADCN_THEME_APP_NAME", default: "Acme Inc." },
+    { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
+    { name: "SHADCN_THEME_SIDE_IMAGE_URL", default: "" },
+    { name: "SHADCN_THEME_PRESET", default: "neutral" },
+    { name: "SHADCN_THEME_BASE", default: "neutral" },
+    { name: "SHADCN_THEME_RADIUS", default: "default" },
+    { name: "SHADCN_THEME_FONT", default: "geist" },
+    { name: "SHADCN_THEME_PLACEHOLDER", default: "true" }
+];
+```
+
+Example branding combinations:
+
+- `SHADCN_THEME_LAYOUT=image-aside`
+- `SHADCN_THEME_PRESET=indigo`
+- `SHADCN_THEME_BASE=stone`
+- `SHADCN_THEME_RADIUS=medium`
+- `SHADCN_THEME_FONT=manrope`
+- `SHADCN_THEME_PLACEHOLDER=true`
+
+### Storybook Controls
+
+Storybook exposes the same runtime customization model through toolbar controls so you can test combinations without creating duplicate stories.
+
+Available controls:
+
+- locale
+- layout
+- theme preset
+- base palette
+- radius preset
+- font preset
+- placeholder visibility
+
+### Branding Notes
+
+1. **Logo**: Set `SHADCN_THEME_LOGO_WHITE_URL` and `SHADCN_THEME_LOGO_DARK_URL`, or replace `src/login/assets/img/auth-logo.svg`
+2. **Colors**: Use `SHADCN_THEME_PRESET`, `SHADCN_THEME_BASE`, and `SHADCN_THEME_RADIUS`
+3. **Fonts**: Use `SHADCN_THEME_FONT`; the project now uses packaged font imports instead of manual asset-only font wiring
 
 ### Internationalization
 
@@ -204,6 +368,19 @@ The theme uses shadcn/ui components located in `src/components/ui/`:
 - `dropdown-menu.tsx` - Dropdown menus
 - `radio-group.tsx` - Radio button groups
 - `tooltip.tsx` - Tooltips
+
+---
+
+## Runtime Theme Internals
+
+The theme system is implemented under `src/login/components/Template/theme/`:
+
+- `Themes.ts` - shadcn-aligned base palettes, accent presets, radius presets, and font family mappings
+- `ThemeTypes.ts` - supported option lists and theme token types
+- `ThemeUtils.ts` - token, radius, and font resolvers
+- `useApplyThemePreset.ts` - writes the resolved theme and font values to CSS custom properties at runtime
+
+`Template.tsx` remains the top-level controller for layout selection, while the runtime theme hook applies color, radius, and font settings from `kcContext.properties`.
 
 ---
 

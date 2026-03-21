@@ -13,26 +13,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Arabic: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "ar",
-                rtl: true
-            }
-        }
-    }
-};
-export const French: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "fr",
-                rtl: false
-            }
-        }
-    }
-};
 
 export const WithInvalidCredential: Story = {
     args: {
@@ -98,7 +78,10 @@ export const WithoutPasswordReset: Story = {
 export const WithEmailAsUsername: Story = {
     args: {
         kcContext: {
-            realm: { loginWithEmailAllowed: false }
+            realm: {
+                loginWithEmailAllowed: true,
+                registrationEmailAsUsername: true
+            }
         }
     }
 };

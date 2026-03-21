@@ -79,21 +79,21 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
                                         : undefined
                             }}
                         >
-                            <FieldLabel htmlFor={attribute.name}>
+                            <FieldLabel htmlFor={attribute.name} className="gap-0.5">
                                 {advancedMsg(attribute.displayName ?? "")}
-                                {attribute.required && <> *</>}
+                                {attribute.required && <span>*</span>}
                             </FieldLabel>
                             {attribute.annotations.inputHelperTextBefore !==
                                 undefined && (
-                                <FieldDescription
-                                    id={`form-help-text-before-${attribute.name}`}
-                                    aria-live="polite"
-                                >
-                                    {advancedMsg(
-                                        attribute.annotations.inputHelperTextBefore
-                                    )}
-                                </FieldDescription>
-                            )}
+                                    <FieldDescription
+                                        id={`form-help-text-before-${attribute.name}`}
+                                        aria-live="polite"
+                                    >
+                                        {advancedMsg(
+                                            attribute.annotations.inputHelperTextBefore
+                                        )}
+                                    </FieldDescription>
+                                )}
                             <InputFieldByType
                                 attribute={attribute}
                                 valueOrValues={valueOrValues}
