@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "E-mail teszt",
+        "greeting": "Szia barátom",
+        "message": "Ez egy teszt e-mail tőle: {{realmName}}. Ha ezt az e-mailt kapta, az azt jelenti, hogy az e-mail beállításai megfelelően vannak konfigurálva."
+    },
+    "email-update-confirmation": {
+        "subject": "Új e-mail-cím igazolása",
+        "linkExpiration": "Ez a link {{expiration}} napon belül lejár.",
+        "updateEmailAddress": "{{realmName}} fiókjának frissítése a {{newEmail}} e-mail címre",
+        "clickLinkBelow": "kattintson az alábbi linkre",
+        "updateEmail": "E-mail frissítése",
+        "ignoreMessage": "Ha nem szeretné folytatni ezt a módosítást, hagyja figyelmen kívül ezt az üzenetet."
+    },
+    "email-verification": {
+        "subject": "E-mail igazolás",
+        "message": "Valaki létrehozott egy {{firstName}} fiókot ezzel az e-mail címmel. Ha Ön volt az, kattintson az alábbi linkre az e-mail címének megerősítéséhez.",
+        "verifyButton": "E-mail igazolás",
+        "linkExpiration": "Ez a link {{expiration}} napon belül lejár.",
+        "ignoreMessage": "Ha nem Ön hozta létre ezt a fiókot, hagyja figyelmen kívül ezt az üzenetet."
+    },
+    "event-login_error": {
+        "subject": "Bejelentkezési hiba",
+        "message": "Sikertelen bejelentkezési kísérletet észleltünk a fiókjába {{date}} napon, {{ipAddress}}.",
+        "contactAdmin": "Ha ez nem Ön volt, forduljon egy rendszergazdához."
+    },
+    "event-remove_credential": {
+        "subject": "Hitelesítési adatok eltávolítása",
+        "message": "A(z) {{credentialType}} hitelesítési adatot eltávolítottuk fiókjából {{date}} dátummal, {{ipAddress}}.",
+        "contactAdmin": "Ha ez nem Ön volt, forduljon egy rendszergazdához."
+    },
+    "event-remove_totp": {
+        "subject": "OTP eltávolítása",
+        "message": "A OTP eltávolításra került a fiókjából ekkor: {{date}}, {{ipAddress}}.",
+        "contactAdmin": "Ha ez nem Ön volt, forduljon egy rendszergazdához."
+    },
+    "event-update_credential": {
+        "subject": "Hitelesítési adatok frissítése",
+        "message": "Az Ön {{credentialType}} hitelesítő adatai megváltoztak {{date}} dátummal, korábbi időpontról {{ipAddress}}.",
+        "contactAdmin": "Ha ez nem Ön volt, forduljon egy rendszergazdához."
+    },
+    "event-update_password": {
+        "subject": "Frissítse a jelszót",
+        "message": "Jelszava megváltozott {{date}} dátumról {{ipAddress}}.",
+        "contactAdmin": "Ha ez nem Ön volt, forduljon egy rendszergazdához."
+    },
+    "event-update_totp": {
+        "subject": "OTP frissítése",
+        "message": "A OTP frissítve lett az Ön fiókjában {{date}} dátummal, {{ipAddress}}.",
+        "contactAdmin": "Ha ez nem Ön volt, forduljon egy rendszergazdához."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "A felhasználó letiltása állandó zárolás miatt",
+        "message": "A felhasználót végleg letiltottuk, mert többszöri sikertelen próbálkozás történt a következőn: {{date}}.",
+        "contactAdmin": "Kérjük, forduljon egy rendszergazdához."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "A felhasználó ideiglenes zárolás miatt letiltva",
+        "message": "Felhasználóját ideiglenesen letiltottuk, mert többszöri sikertelen próbálkozás történt a következőn: {{date}}.",
+        "contactAdmin": "Kérjük, forduljon egy rendszergazdához."
+    },
+    "executeActions": {
+        "subject": "Frissítse fiókját",
+        "message": "A rendszergazdája az imént kérte, hogy frissítse {{realmName}} fiókját a következő művelet(ek) végrehajtásával:",
+        "clickLink": "A folyamat elindításához kattintson az alábbi linkre.",
+        "linkExpiration": "Ez a link {{expiration}} napon belül lejár.",
+        "ignoreMessage": "Ha nem tudja, hogy rendszergazdája ezt kérte, hagyja figyelmen kívül ezt az üzenetet, és semmi sem fog változni.",
+        "updateAccountButton": "Fiók frissítése"
+    },
+    "identity-provider-link": {
+        "subject": "Kapcsolja össze a {0}-t a fiókjával",
+        "message": "Valaki össze akarja kapcsolni az Ön {{identityProviderDisplayName}} fiókját {{username}} felhasználó {{realmName}} fiókjával.",
+        "clickLink": "Ha Ön volt az, kattintson az alábbi linkre a fiókok összekapcsolásához",
+        "linkExpiration": "Ez a link {{expiration}} napon belül lejár.",
+        "ignoreMessage": "Ha nem szeretné folytatni ezt a módosítást, hagyja figyelmen kívül ezt az üzenetet.",
+        "linkAccountsButton": "Fiókok összekapcsolása",
+        "loginInfo": "Ha összekapcsolja a fiókokat, be tud majd jelentkezni a {{identityProviderDisplayName}} és {{realmName}} között."
+    },
+    "org-invite": {
+        "subject": "Meghívás a {0} szervezethez való csatlakozásra",
+        "greeting": "Szia, {{firstName}} {{lastName}}.",
+        "message": "Meghívták, hogy csatlakozzon a {{organizationName}} szervezethez. A csatlakozáshoz kattintson az alábbi linkre.",
+        "linkExpiration": "Ez a link {{expiration}} napon belül lejár.",
+        "ignoreMessage": "Ha nem szeretne csatlakozni a szervezethez, hagyja figyelmen kívül ezt az üzenetet.",
+        "joinButton": "Csatlakozzon a szervezethez"
+    },
+    "password-reset": {
+        "subject": "Jelszó visszaállítása",
+        "message": "Valaki éppen a {{realmName}}-fiókja hitelesítési adatainak módosítását kérte. Ha Ön volt az, kattintson az alábbi linkre a visszaállításhoz.",
+        "linkExpiration": "Ez a link {{expiration}} napon belül lejár.",
+        "ignoreMessage": "Ha nem szeretné visszaállítani a hitelesítő adatait, hagyja figyelmen kívül ezt az üzenetet, és semmi sem fog változni.",
+        "resetButton": "Hitelesítési adatok visszaállítása"
+    },
+    "requiredAction": {
+        "configure_totp": "OTP konfigurálása",
+        "terms_and_conditions": "Általános Szerződési Feltételek",
+        "update_password": "Jelszó frissítése",
+        "update_profile": "Profil frissítése",
+        "verify_email": "E-mail megerősítése",
+        "configure_recovery_authn_codes": "Helyreállítási kódok létrehozása",
+        "seconds": "{0,choice,0#másodpercig|1#másodperc|1<másodpercig}",
+        "minutes": "{0,choice,0#jegyzőkönyv|1#perc|1<jegyzőkönyv}",
+        "hours": "{0,choice,0#óra|1#óra|1<óra}",
+        "days": "{0,choice,0#napokon|1#nap|1<napokon}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Minden jog fenntartva"
+    }
+}

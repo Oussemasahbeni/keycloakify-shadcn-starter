@@ -1,104 +1,109 @@
 {
     "email-test": {
-        "subject": "Test de courriel",
-        "greeting": "Bonjour",
-        "passwordUpdate": "Vous avez mis à jour le mot de passe de votre compte Twitch le {{date}}. Si c'était vous, aucune autre action n'est requise.",
-        "passwordReset": "Cependant, si vous n'avez PAS effectué ce changement de mot de passe, veuillez réinitialiser immédiatement le mot de passe de votre compte.",
-        "passwordAdvice": "N'oubliez pas d'utiliser un mot de passe à la fois fort et unique pour votre compte Twitch. Pour en savoir plus sur la création d'un mot de passe fort et unique,",
-        "loginButton": "Connexion à Inspark",
-        "contactSupport": "Vous avez encore des questions ? Veuillez contacter le support {{realmName}}",
-        "thanks": "Merci,",
-        "supportTeam": "Équipe de support {{realmName}}"
+        "subject": "Test de courrier électronique",
+        "greeting": "Salut mon ami",
+        "message": "Il s'agit d'un e-mail test provenant de {{realmName}}. Si vous avez reçu cet email, cela signifie que vos paramètres de messagerie sont correctement configurés."
     },
     "email-update-confirmation": {
-        "subject": "Vérifier le nouveau courriel",
+        "subject": "Vérifier le nouvel e-mail",
         "linkExpiration": "Ce lien expirera dans {{expiration}}.",
-        "updateEmailAddress": "Pour mettre à jour votre compte {{realmName}} avec l'adresse courriel {{newEmail}}",
+        "updateEmailAddress": "Pour mettre à jour votre compte {{realmName}} avec l'adresse e-mail {{newEmail}}",
         "clickLinkBelow": "cliquez sur le lien ci-dessous",
-        "updateEmail": "Mettre à jour le courriel",
+        "updateEmail": "Mettre à jour l'e-mail",
         "ignoreMessage": "Si vous ne souhaitez pas procéder à cette modification, ignorez simplement ce message."
     },
     "email-verification": {
-        "subject": "Vérifier le courriel",
-        "message": "Quelqu'un a créé un compte {{firstName}} avec cette adresse courriel. Si c'était vous, cliquez sur le lien ci-dessous pour vérifier votre adresse courriel.",
-        "verifyButton": "Vérifier le courriel",
+        "subject": "Vérifier l'e-mail",
+        "message": "Quelqu'un a créé un compte {{firstName}} avec cette adresse e-mail. Si c'était vous, cliquez sur le lien ci-dessous pour vérifier votre adresse e-mail.",
+        "verifyButton": "Vérifier l'e-mail",
         "linkExpiration": "Ce lien expirera dans {{expiration}}.",
         "ignoreMessage": "Si vous n'avez pas créé ce compte, ignorez simplement ce message."
     },
     "event-login_error": {
         "subject": "Erreur de connexion",
-        "message": "Une tentative de connexion échouée a été détectée sur votre compte le {{date}} depuis {{ipAddress}}.",
-        "contactAdmin": "Si ce n'était pas vous, veuillez contacter un administrateur."
+        "message": "Une tentative de connexion échouée a été détectée à votre compte le {{date}} à partir du {{ipAddress}}.",
+        "contactAdmin": "Si ce n'est pas vous, veuillez contacter un administrateur."
     },
     "event-remove_credential": {
-        "subject": "Supprimer les informations d'identification",
-        "message": "Les informations d'identification {{credentialType}} ont été supprimées de votre compte le {{date}} depuis {{ipAddress}}.",
-        "contactAdmin": "Si ce n'était pas vous, veuillez contacter un administrateur."
+        "subject": "Supprimer l'identifiant",
+        "message": "L'identifiant {{credentialType}} a été supprimé de votre compte le {{date}} du {{ipAddress}}.",
+        "contactAdmin": "Si ce n'est pas vous, veuillez contacter un administrateur."
     },
     "event-remove_totp": {
         "subject": "Supprimer OTP",
-        "message": "OTP a été supprimé de votre compte le {{date}} depuis {{ipAddress}}.",
-        "contactAdmin": "Si ce n'était pas vous, veuillez contacter un administrateur."
+        "message": "OTP a été supprimé de votre compte le {{date}} à partir du {{ipAddress}}.",
+        "contactAdmin": "Si ce n'est pas vous, veuillez contacter un administrateur."
     },
     "event-update_credential": {
         "subject": "Mettre à jour les informations d'identification",
-        "message": "Vos informations d'identification {{credentialType}} ont été modifiées le {{date}} depuis {{ipAddress}}.",
-        "contactAdmin": "Si ce n'était pas vous, veuillez contacter un administrateur."
+        "message": "Votre identifiant {{credentialType}} a été modifié le {{date}} au lieu du {{ipAddress}}.",
+        "contactAdmin": "Si ce n'est pas vous, veuillez contacter un administrateur."
     },
     "event-update_password": {
         "subject": "Mettre à jour le mot de passe",
-        "message": "Votre mot de passe a été modifié le {{date}} depuis {{ipAddress}}.",
-        "contactAdmin": "Si ce n'était pas vous, veuillez contacter un administrateur."
+        "message": "Votre mot de passe a été modifié le {{date}} au lieu du {{ipAddress}}.",
+        "contactAdmin": "Si ce n'est pas vous, veuillez contacter un administrateur."
     },
     "event-update_totp": {
         "subject": "Mettre à jour OTP",
-        "message": "OTP a été mis à jour pour votre compte le {{date}} depuis {{ipAddress}}.",
-        "contactAdmin": "Si ce n'était pas vous, veuillez contacter un administrateur."
+        "message": "OTP a été mis à jour pour votre compte le {{date}} à partir du {{ipAddress}}.",
+        "contactAdmin": "Si ce n'est pas vous, veuillez contacter un administrateur."
     },
     "event-user_disabled_by_permanent_lockout": {
         "subject": "Utilisateur désactivé par verrouillage permanent",
-        "message": "Votre utilisateur a été désactivé de manière permanente en raison de plusieurs tentatives échouées le {{date}}.",
+        "message": "Votre utilisateur a été désactivé définitivement en raison de plusieurs tentatives infructueuses sur {{date}}.",
         "contactAdmin": "Veuillez contacter un administrateur."
     },
     "event-user_disabled_by_temporary_lockout": {
         "subject": "Utilisateur désactivé par verrouillage temporaire",
-        "message": "Votre utilisateur a été désactivé temporairement en raison de plusieurs tentatives échouées le {{date}}.",
+        "message": "Votre utilisateur a été temporairement désactivé en raison de plusieurs tentatives infructueuses sur {{date}}.",
         "contactAdmin": "Veuillez contacter un administrateur."
     },
     "executeActions": {
-        "subject": "Mettre à jour votre compte",
-        "message": "Votre administrateur a demandé que vous mettiez à jour votre compte {{realmName}} en effectuant les actions suivantes :",
-        "clickLink": "Cliquez sur le lien ci-dessous pour commencer ce processus.",
+        "subject": "Mettez à jour votre compte",
+        "message": "Votre administrateur vient de vous demander de mettre à jour votre compte {{realmName}} en effectuant la(les) action(s) suivante(s) :",
+        "clickLink": "Cliquez sur le lien ci-dessous pour démarrer ce processus.",
         "linkExpiration": "Ce lien expirera dans {{expiration}}.",
-        "ignoreMessage": "Si vous n'êtes pas au courant que votre administrateur a demandé cela, ignorez simplement ce message et rien ne changera.",
+        "ignoreMessage": "Si vous ne savez pas que votre administrateur l'a demandé, ignorez simplement ce message et rien ne sera modifié.",
         "updateAccountButton": "Mettre à jour le compte"
     },
     "identity-provider-link": {
-        "subject": "Lier {0} avec votre compte",
-        "message": "Quelqu'un veut lier votre compte {{identityProviderDisplayName}} avec le compte {{realmName}} de l'utilisateur {{username}}.",
+        "subject": "Associez {0} à votre compte",
+        "message": "Quelqu'un souhaite associer votre compte {{identityProviderDisplayName}} au compte {{realmName}} de l'utilisateur {{username}}.",
         "clickLink": "Si c'était vous, cliquez sur le lien ci-dessous pour lier les comptes",
         "linkExpiration": "Ce lien expirera dans {{expiration}}.",
         "ignoreMessage": "Si vous ne souhaitez pas procéder à cette modification, ignorez simplement ce message.",
         "linkAccountsButton": "Lier les comptes",
-        "loginInfo": "Si vous liez les comptes, vous pourrez vous connecter à {{identityProviderDisplayName}} via {{realmName}}."
+        "loginInfo": "Si vous associez des comptes, vous pourrez vous connecter à {{identityProviderDisplayName}} via {{realmName}}."
     },
     "org-invite": {
         "subject": "Invitation à rejoindre l'organisation {0}",
         "greeting": "Bonjour, {{firstName}} {{lastName}}.",
-        "message": "Vous avez été invité à rejoindre l'organisation {{organizationName}}. Cliquez sur le lien ci-dessous pour rejoindre.",
+        "message": "Vous avez été invité à rejoindre l'organisation {{organizationName}}. Cliquez sur le lien ci-dessous pour vous inscrire.",
         "linkExpiration": "Ce lien expirera dans {{expiration}}.",
         "ignoreMessage": "Si vous ne souhaitez pas rejoindre l'organisation, ignorez simplement ce message.",
-        "joinButton": "Rejoindre l'organisation"
+        "joinButton": "Rejoignez l'organisation"
     },
     "password-reset": {
         "subject": "Réinitialiser le mot de passe",
-        "message": "Quelqu'un a demandé à changer les informations d'identification de votre compte {{realmName}}. Si c'était vous, cliquez sur le lien ci-dessous pour les réinitialiser.",
+        "message": "Quelqu'un vient de demander la modification des identifiants de votre compte {{realmName}}. Si c'était vous, cliquez sur le lien ci-dessous pour les réinitialiser.",
         "linkExpiration": "Ce lien expirera dans {{expiration}}.",
-        "ignoreMessage": "Si vous ne souhaitez pas réinitialiser vos informations d'identification, ignorez simplement ce message et rien ne changera.",
-        "resetButton": "Réinitialiser le mot de passe"
+        "ignoreMessage": "Si vous ne souhaitez pas réinitialiser vos informations d'identification, ignorez simplement ce message et rien ne sera modifié.",
+        "resetButton": "Réinitialiser les informations d'identification"
+    },
+    "requiredAction": {
+        "configure_totp": "Configurer OTP",
+        "terms_and_conditions": "Termes et conditions",
+        "update_password": "Mettre à jour le mot de passe",
+        "update_profile": "Mettre à jour le profil",
+        "verify_email": "Vérifier l'e-mail",
+        "configure_recovery_authn_codes": "Générer des codes de récupération",
+        "seconds": "{0,choice,0#secondes|1#seconde|1<secondes}",
+        "minutes": "{0,choice,0#minutes|1#minute|1<minutes}",
+        "hours": "{0,choice,0#heures|1#heure|1<heures}",
+        "days": "{0,choice,0#jours|1#jour|1<jours}"
     },
     "footer": {
-        "allRightsReserved": "© {{currentYear}} {{realmName}}, Tous droits réservés",
-        "address": "{{realmName}}, 123 Example St., City, Country"
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, tous droits réservés"
     }
 }

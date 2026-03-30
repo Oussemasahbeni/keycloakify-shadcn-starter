@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "E-posttest",
+        "greeting": "Hej vännen",
+        "message": "Detta är ett testmeddelande från {{realmName}}. Om du har fått det här e-postmeddelandet betyder det att dina e-postinställningar är korrekt konfigurerade."
+    },
+    "email-update-confirmation": {
+        "subject": "Verifiera ny e-post",
+        "linkExpiration": "Den här länken upphör att gälla inom {{expiration}}.",
+        "updateEmailAddress": "Så här uppdaterar du ditt {{realmName}}-konto med e-postadress {{newEmail}}",
+        "clickLinkBelow": "klicka på länken nedan",
+        "updateEmail": "Uppdatera e-post",
+        "ignoreMessage": "Om du inte vill fortsätta med denna ändring, ignorera bara det här meddelandet."
+    },
+    "email-verification": {
+        "subject": "Verifiera e-post",
+        "message": "Någon har skapat ett {{firstName}}-konto med den här e-postadressen. Om det här var du, klicka på länken nedan för att verifiera din e-postadress.",
+        "verifyButton": "Verifiera e-post",
+        "linkExpiration": "Den här länken upphör att gälla inom {{expiration}}.",
+        "ignoreMessage": "Om du inte skapade det här kontot, ignorera bara det här meddelandet."
+    },
+    "event-login_error": {
+        "subject": "Inloggningsfel",
+        "message": "Ett misslyckat inloggningsförsök upptäcktes på ditt konto på {{date}} från {{ipAddress}}.",
+        "contactAdmin": "Om detta inte var du, kontakta en administratör."
+    },
+    "event-remove_credential": {
+        "subject": "Ta bort autentiseringsuppgifter",
+        "message": "Autentiseringsuppgifter {{credentialType}} togs bort från ditt konto den {{date}} från {{ipAddress}}.",
+        "contactAdmin": "Om detta inte var du, kontakta en administratör."
+    },
+    "event-remove_totp": {
+        "subject": "Ta bort OTP",
+        "message": "OTP togs bort från ditt konto den {{date}} från {{ipAddress}}.",
+        "contactAdmin": "Om detta inte var du, kontakta en administratör."
+    },
+    "event-update_credential": {
+        "subject": "Uppdatera autentiseringsuppgifter",
+        "message": "Dina {{credentialType}}-uppgifter ändrades den {{date}} från {{ipAddress}}.",
+        "contactAdmin": "Om detta inte var du, kontakta en administratör."
+    },
+    "event-update_password": {
+        "subject": "Uppdatera lösenord",
+        "message": "Ditt lösenord ändrades {{date}} från {{ipAddress}}.",
+        "contactAdmin": "Om detta inte var du, kontakta en administratör."
+    },
+    "event-update_totp": {
+        "subject": "Uppdatera OTP",
+        "message": "OTP uppdaterades för ditt konto på {{date}} från {{ipAddress}}.",
+        "contactAdmin": "Om detta inte var du, kontakta en administratör."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Användaren inaktiverad genom permanent lockout",
+        "message": "Din användare har inaktiverats permanent på grund av flera misslyckade försök på {{date}}.",
+        "contactAdmin": "Kontakta en administratör."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Användaren inaktiverad genom tillfällig lockout",
+        "message": "Din användare har inaktiverats tillfälligt på grund av flera misslyckade försök på {{date}}.",
+        "contactAdmin": "Kontakta en administratör."
+    },
+    "executeActions": {
+        "subject": "Uppdatera ditt konto",
+        "message": "Din administratör har just begärt att du uppdaterar ditt {{realmName}}-konto genom att utföra följande åtgärder:",
+        "clickLink": "Klicka på länken nedan för att starta denna process.",
+        "linkExpiration": "Den här länken upphör att gälla inom {{expiration}}.",
+        "ignoreMessage": "Om du inte är medveten om att din administratör har begärt detta, ignorera bara detta meddelande och ingenting kommer att ändras.",
+        "updateAccountButton": "Uppdatera konto"
+    },
+    "identity-provider-link": {
+        "subject": "Länka {0} till ditt konto",
+        "message": "Någon vill länka ditt {{identityProviderDisplayName}}-konto med {{realmName}}-kontot för användaren {{username}}.",
+        "clickLink": "Om det här var du klickar du på länken nedan för att länka konton",
+        "linkExpiration": "Den här länken upphör att gälla inom {{expiration}}.",
+        "ignoreMessage": "Om du inte vill fortsätta med denna ändring, ignorera bara det här meddelandet.",
+        "linkAccountsButton": "Länka konton",
+        "loginInfo": "Om du länkar konton kommer du att kunna logga in på {{identityProviderDisplayName}} till {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Inbjudan att gå med i organisationen {0}",
+        "greeting": "Hej, {{firstName}} {{lastName}}.",
+        "message": "Du blev inbjuden att gå med i organisationen {{organizationName}}. Klicka på länken nedan för att gå med.",
+        "linkExpiration": "Den här länken upphör att gälla inom {{expiration}}.",
+        "ignoreMessage": "Om du inte vill gå med i organisationen, ignorera bara det här meddelandet.",
+        "joinButton": "Gå med i organisationen"
+    },
+    "password-reset": {
+        "subject": "Återställ lösenord",
+        "message": "Någon har precis begärt att få ändra användaruppgifterna för ditt {{realmName}}-konto. Om det här var du, klicka på länken nedan för att återställa dem.",
+        "linkExpiration": "Den här länken upphör att gälla inom {{expiration}}.",
+        "ignoreMessage": "Om du inte vill återställa dina referenser, ignorera bara det här meddelandet och ingenting kommer att ändras.",
+        "resetButton": "Återställ autentiseringsuppgifter"
+    },
+    "requiredAction": {
+        "configure_totp": "Konfigurera OTP",
+        "terms_and_conditions": "Regler och villkor",
+        "update_password": "Uppdatera lösenord",
+        "update_profile": "Uppdatera profil",
+        "verify_email": "Verifiera e-post",
+        "configure_recovery_authn_codes": "Generera återställningskoder",
+        "seconds": "{0,choice,0#sekunder|1#sekund|1<sekunder}",
+        "minutes": "{0,choice,0#minuter|1#minut|1<minuter}",
+        "hours": "{0,choice,0#timmar|1#timme|1<timmar}",
+        "days": "{0,choice,0#dagar|1#dag|1<dagar}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, med ensamrätt"
+    }
+}

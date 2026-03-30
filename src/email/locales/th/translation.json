@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "การทดสอบอีเมล์",
+        "greeting": "สวัสดีเพื่อน",
+        "message": "นี่คืออีเมลทดสอบจาก {{realmName}} หากคุณได้รับอีเมลนี้ แสดงว่าการตั้งค่าอีเมลของคุณได้รับการกำหนดค่าอย่างถูกต้อง"
+    },
+    "email-update-confirmation": {
+        "subject": "ยืนยันอีเมลใหม่",
+        "linkExpiration": "ลิงก์นี้จะหมดอายุภายใน {{expiration}}",
+        "updateEmailAddress": "หากต้องการอัปเดตบัญชี {{realmName}} ของคุณด้วยที่อยู่อีเมล {{newEmail}}",
+        "clickLinkBelow": "คลิกลิงค์ด้านล่าง",
+        "updateEmail": "อัพเดทอีเมล์",
+        "ignoreMessage": "หากคุณไม่ต้องการดำเนินการแก้ไขนี้ต่อ ก็ไม่ต้องสนใจข้อความนี้"
+    },
+    "email-verification": {
+        "subject": "ยืนยันอีเมล",
+        "message": "มีคนสร้างบัญชี {{firstName}} ด้วยที่อยู่อีเมลนี้ หากเป็นคุณ ให้คลิกลิงก์ด้านล่างเพื่อยืนยันที่อยู่อีเมลของคุณ",
+        "verifyButton": "ยืนยันอีเมล",
+        "linkExpiration": "ลิงก์นี้จะหมดอายุภายใน {{expiration}}",
+        "ignoreMessage": "หากคุณไม่ได้สร้างบัญชีนี้ ก็ไม่ต้องสนใจข้อความนี้"
+    },
+    "event-login_error": {
+        "subject": "ข้อผิดพลาดในการเข้าสู่ระบบ",
+        "message": "ตรวจพบความพยายามเข้าสู่ระบบที่ล้มเหลวในบัญชีของคุณเมื่อ {{date}} จาก {{ipAddress}}",
+        "contactAdmin": "หากไม่ใช่คุณ โปรดติดต่อผู้ดูแลระบบ"
+    },
+    "event-remove_credential": {
+        "subject": "ลบข้อมูลรับรอง",
+        "message": "ข้อมูลรับรอง {{credentialType}} ถูกลบออกจากบัญชีของคุณเมื่อ {{date}} จาก {{ipAddress}}",
+        "contactAdmin": "หากไม่ใช่คุณ โปรดติดต่อผู้ดูแลระบบ"
+    },
+    "event-remove_totp": {
+        "subject": "ลบ OTP",
+        "message": "OTP ถูกลบออกจากบัญชีของคุณเมื่อ {{date}} จาก {{ipAddress}}",
+        "contactAdmin": "หากไม่ใช่คุณ โปรดติดต่อผู้ดูแลระบบ"
+    },
+    "event-update_credential": {
+        "subject": "อัปเดตข้อมูลรับรอง",
+        "message": "ข้อมูลประจำตัว {{credentialType}} ของคุณมีการเปลี่ยนแปลงเมื่อ {{date}} จาก {{ipAddress}}",
+        "contactAdmin": "หากไม่ใช่คุณ โปรดติดต่อผู้ดูแลระบบ"
+    },
+    "event-update_password": {
+        "subject": "อัปเดตรหัสผ่าน",
+        "message": "รหัสผ่านของคุณถูกเปลี่ยนเมื่อ {{date}} จาก {{ipAddress}}",
+        "contactAdmin": "หากไม่ใช่คุณ โปรดติดต่อผู้ดูแลระบบ"
+    },
+    "event-update_totp": {
+        "subject": "อัปเดต OTP",
+        "message": "OTP ได้รับการอัปเดตสำหรับบัญชีของคุณเมื่อ {{date}} จาก {{ipAddress}}",
+        "contactAdmin": "หากไม่ใช่คุณ โปรดติดต่อผู้ดูแลระบบ"
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "ผู้ใช้ถูกปิดใช้งานโดยการล็อกถาวร",
+        "message": "ผู้ใช้ของคุณถูกปิดการใช้งานอย่างถาวรเนื่องจากการพยายามล้มเหลวหลายครั้งใน {{date}}",
+        "contactAdmin": "โปรดติดต่อผู้ดูแลระบบ"
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "ผู้ใช้ถูกปิดการใช้งานโดยการล็อคชั่วคราว",
+        "message": "ผู้ใช้ของคุณถูกปิดการใช้งานชั่วคราวเนื่องจากการพยายามล้มเหลวหลายครั้งใน {{date}}",
+        "contactAdmin": "โปรดติดต่อผู้ดูแลระบบ"
+    },
+    "executeActions": {
+        "subject": "อัปเดตบัญชีของคุณ",
+        "message": "ผู้ดูแลระบบของคุณเพิ่งขอให้คุณอัปเดตบัญชี {{realmName}} ของคุณโดยดำเนินการดังต่อไปนี้:",
+        "clickLink": "คลิกที่ลิงค์ด้านล่างเพื่อเริ่มกระบวนการนี้",
+        "linkExpiration": "ลิงก์นี้จะหมดอายุภายใน {{expiration}}",
+        "ignoreMessage": "หากคุณไม่ทราบว่าผู้ดูแลระบบของคุณร้องขอสิ่งนี้ เพียงเพิกเฉยต่อข้อความนี้และจะไม่มีอะไรเปลี่ยนแปลง",
+        "updateAccountButton": "อัปเดตบัญชี"
+    },
+    "identity-provider-link": {
+        "subject": "เชื่อมโยง {0} กับบัญชีของคุณ",
+        "message": "มีคนต้องการเชื่อมโยงบัญชี {{identityProviderDisplayName}} ของคุณกับบัญชี {{realmName}} ของผู้ใช้ {{username}}",
+        "clickLink": "หากเป็นคุณ ให้คลิกลิงก์ด้านล่างเพื่อเชื่อมโยงบัญชี",
+        "linkExpiration": "ลิงก์นี้จะหมดอายุภายใน {{expiration}}",
+        "ignoreMessage": "หากคุณไม่ต้องการดำเนินการแก้ไขนี้ต่อ ก็ไม่ต้องสนใจข้อความนี้",
+        "linkAccountsButton": "เชื่อมโยงบัญชี",
+        "loginInfo": "หากคุณเชื่อมโยงบัญชี คุณจะสามารถเข้าสู่ระบบ {{identityProviderDisplayName}} ผ่าน {{realmName}} ได้"
+    },
+    "org-invite": {
+        "subject": "คำเชิญให้เข้าร่วมองค์กร {0}",
+        "greeting": "สวัสดี {{firstName}} {{lastName}}",
+        "message": "คุณได้รับเชิญให้เข้าร่วมองค์กร {{organizationName}} คลิกลิงค์ด้านล่างเพื่อเข้าร่วม",
+        "linkExpiration": "ลิงก์นี้จะหมดอายุภายใน {{expiration}}",
+        "ignoreMessage": "หากคุณไม่ต้องการเข้าร่วมองค์กร ก็ไม่ต้องสนใจข้อความนี้",
+        "joinButton": "เข้าร่วมกับองค์กร"
+    },
+    "password-reset": {
+        "subject": "รีเซ็ตรหัสผ่าน",
+        "message": "เพิ่งมีคนขอเปลี่ยนข้อมูลรับรองบัญชี {{realmName}} ของคุณ หากเป็นคุณ ให้คลิกที่ลิงก์ด้านล่างเพื่อรีเซ็ต",
+        "linkExpiration": "ลิงก์นี้จะหมดอายุภายใน {{expiration}}",
+        "ignoreMessage": "หากคุณไม่ต้องการรีเซ็ตข้อมูลรับรองของคุณ เพียงเพิกเฉยต่อข้อความนี้และจะไม่มีอะไรเปลี่ยนแปลง",
+        "resetButton": "รีเซ็ตข้อมูลรับรอง"
+    },
+    "requiredAction": {
+        "configure_totp": "กำหนดค่า OTP",
+        "terms_and_conditions": "ข้อกำหนดและเงื่อนไข",
+        "update_password": "อัปเดตรหัสผ่าน",
+        "update_profile": "อัพเดตโปรไฟล์",
+        "verify_email": "ยืนยันอีเมล",
+        "configure_recovery_authn_codes": "สร้างรหัสการกู้คืน",
+        "seconds": "{0,choice,0#วินาที|1#วินาที|1<วินาที}",
+        "minutes": "{0,choice,0#นาที|1#นาที|1<นาที}",
+        "hours": "{0,choice,0#ชั่วโมง|1#ชั่วโมง|1<ชั่วโมง}",
+        "days": "{0,choice,0#วัน|1#วัน|1<วัน}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}} สงวนลิขสิทธิ์"
+    }
+}

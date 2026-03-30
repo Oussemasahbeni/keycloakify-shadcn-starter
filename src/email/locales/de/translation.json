@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "E-Mail-Test",
+        "greeting": "Hallo Freund",
+        "message": "Dies ist eine Test-E-Mail von {{realmName}}. Wenn Sie diese E-Mail erhalten haben, bedeutet dies, dass Ihre E-Mail-Einstellungen korrekt konfiguriert sind."
+    },
+    "email-update-confirmation": {
+        "subject": "Neue E-Mail bestätigen",
+        "linkExpiration": "Dieser Link läuft innerhalb von {{expiration}} ab.",
+        "updateEmailAddress": "So aktualisieren Sie Ihr {{realmName}}-Konto mit der E-Mail-Adresse {{newEmail}}",
+        "clickLinkBelow": "Klicken Sie auf den Link unten",
+        "updateEmail": "E-Mail aktualisieren",
+        "ignoreMessage": "Wenn Sie mit dieser Änderung nicht fortfahren möchten, ignorieren Sie diese Meldung einfach."
+    },
+    "email-verification": {
+        "subject": "E-Mail bestätigen",
+        "message": "Jemand hat mit dieser E-Mail-Adresse ein {{firstName}}-Konto erstellt. Wenn Sie das waren, klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen.",
+        "verifyButton": "E-Mail bestätigen",
+        "linkExpiration": "Dieser Link läuft innerhalb von {{expiration}} ab.",
+        "ignoreMessage": "Wenn Sie dieses Konto nicht erstellt haben, ignorieren Sie diese Nachricht einfach."
+    },
+    "event-login_error": {
+        "subject": "Anmeldefehler",
+        "message": "Am {{date}} von {{ipAddress}} wurde ein fehlgeschlagener Anmeldeversuch bei Ihrem Konto festgestellt.",
+        "contactAdmin": "Wenn dies nicht Sie waren, wenden Sie sich bitte an einen Administrator."
+    },
+    "event-remove_credential": {
+        "subject": "Anmeldeinformationen entfernen",
+        "message": "Die Anmeldedaten {{credentialType}} wurden am {{date}} von {{ipAddress}} aus Ihrem Konto entfernt.",
+        "contactAdmin": "Wenn dies nicht Sie waren, wenden Sie sich bitte an einen Administrator."
+    },
+    "event-remove_totp": {
+        "subject": "OTP entfernen",
+        "message": "OTP wurde am {{date}} von {{ipAddress}} aus Ihrem Konto entfernt.",
+        "contactAdmin": "Wenn dies nicht Sie waren, wenden Sie sich bitte an einen Administrator."
+    },
+    "event-update_credential": {
+        "subject": "Anmeldeinformationen aktualisieren",
+        "message": "Ihre {{credentialType}}-Anmeldeinformationen wurden am {{date}} von {{ipAddress}} geändert.",
+        "contactAdmin": "Wenn dies nicht Sie waren, wenden Sie sich bitte an einen Administrator."
+    },
+    "event-update_password": {
+        "subject": "Passwort aktualisieren",
+        "message": "Ihr Passwort wurde am {{date}} von {{ipAddress}} geändert.",
+        "contactAdmin": "Wenn dies nicht Sie waren, wenden Sie sich bitte an einen Administrator."
+    },
+    "event-update_totp": {
+        "subject": "Aktualisieren Sie OTP",
+        "message": "OTP wurde für Ihr Konto am {{date}} von {{ipAddress}} aktualisiert.",
+        "contactAdmin": "Wenn dies nicht Sie waren, wenden Sie sich bitte an einen Administrator."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Benutzer durch permanente Sperre deaktiviert",
+        "message": "Ihr Benutzer wurde aufgrund mehrerer fehlgeschlagener Versuche am {{date}} dauerhaft deaktiviert.",
+        "contactAdmin": "Bitte wenden Sie sich an einen Administrator."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Benutzer durch vorübergehende Sperrung deaktiviert",
+        "message": "Ihr Benutzer wurde aufgrund mehrerer fehlgeschlagener Versuche am {{date}} vorübergehend deaktiviert.",
+        "contactAdmin": "Bitte wenden Sie sich an einen Administrator."
+    },
+    "executeActions": {
+        "subject": "Aktualisieren Sie Ihr Konto",
+        "message": "Ihr Administrator hat Sie gerade aufgefordert, Ihr {{realmName}}-Konto zu aktualisieren, indem Sie die folgenden Aktionen ausführen:",
+        "clickLink": "Klicken Sie auf den Link unten, um diesen Vorgang zu starten.",
+        "linkExpiration": "Dieser Link läuft innerhalb von {{expiration}} ab.",
+        "ignoreMessage": "Wenn Sie nicht wissen, dass Ihr Administrator dies angefordert hat, ignorieren Sie diese Nachricht einfach und es wird sich nichts ändern.",
+        "updateAccountButton": "Konto aktualisieren"
+    },
+    "identity-provider-link": {
+        "subject": "Verknüpfen Sie {0} mit Ihrem Konto",
+        "message": "Jemand möchte Ihr {{identityProviderDisplayName}}-Konto mit dem {{realmName}}-Konto des Benutzers {{username}} verknüpfen.",
+        "clickLink": "Wenn Sie das waren, klicken Sie auf den Link unten, um Konten zu verknüpfen",
+        "linkExpiration": "Dieser Link läuft innerhalb von {{expiration}} ab.",
+        "ignoreMessage": "Wenn Sie mit dieser Änderung nicht fortfahren möchten, ignorieren Sie diese Meldung einfach.",
+        "linkAccountsButton": "Konten verknüpfen",
+        "loginInfo": "Wenn Sie Konten verknüpfen, können Sie sich bei {{identityProviderDisplayName}} bis {{realmName}} anmelden."
+    },
+    "org-invite": {
+        "subject": "Einladung zum Beitritt zur Organisation {0}",
+        "greeting": "Hallo, {{firstName}} {{lastName}}.",
+        "message": "Sie wurden eingeladen, der Organisation {{organizationName}} beizutreten. Klicken Sie auf den Link unten, um beizutreten.",
+        "linkExpiration": "Dieser Link läuft innerhalb von {{expiration}} ab.",
+        "ignoreMessage": "Wenn Sie der Organisation nicht beitreten möchten, ignorieren Sie diese Nachricht einfach.",
+        "joinButton": "Treten Sie der Organisation bei"
+    },
+    "password-reset": {
+        "subject": "Passwort zurücksetzen",
+        "message": "Jemand hat gerade darum gebeten, die Anmeldeinformationen Ihres {{realmName}}-Kontos zu ändern. Wenn Sie es waren, klicken Sie auf den Link unten, um sie zurückzusetzen.",
+        "linkExpiration": "Dieser Link läuft innerhalb von {{expiration}} ab.",
+        "ignoreMessage": "Wenn Sie Ihre Anmeldeinformationen nicht zurücksetzen möchten, ignorieren Sie diese Nachricht einfach und es wird sich nichts ändern.",
+        "resetButton": "Anmeldeinformationen zurücksetzen"
+    },
+    "requiredAction": {
+        "configure_totp": "Konfigurieren Sie OTP",
+        "terms_and_conditions": "Geschäftsbedingungen",
+        "update_password": "Passwort aktualisieren",
+        "update_profile": "Profil aktualisieren",
+        "verify_email": "E-Mail bestätigen",
+        "configure_recovery_authn_codes": "Wiederherstellungscodes generieren",
+        "seconds": "{0,choice,0#Sekunden|1#Sekunde|1<Sekunden}",
+        "minutes": "{0,choice,0#Minuten|1#Minute|1<Minuten}",
+        "hours": "{0,choice,0#Std.|1#Stunde|1<Std.}",
+        "days": "{0,choice,0#Tage|1#Tag|1<Tage}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, alle Rechte vorbehalten"
+    }
+}

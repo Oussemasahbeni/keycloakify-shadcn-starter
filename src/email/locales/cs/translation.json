@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "Test e-mailem",
+        "greeting": "Ahoj příteli",
+        "message": "Toto je testovací e-mail od {{realmName}}. Pokud jste obdrželi tento e-mail, znamená to, že vaše nastavení e-mailu je nakonfigurováno správně."
+    },
+    "email-update-confirmation": {
+        "subject": "Ověřte nový e-mail",
+        "linkExpiration": "Platnost tohoto odkazu vyprší za {{expiration}}.",
+        "updateEmailAddress": "Aktualizace účtu {{realmName}} pomocí e-mailové adresy {{newEmail}}",
+        "clickLinkBelow": "klikněte na odkaz níže",
+        "updateEmail": "Aktualizovat e-mail",
+        "ignoreMessage": "Pokud nechcete pokračovat v této úpravě, jednoduše tuto zprávu ignorujte."
+    },
+    "email-verification": {
+        "subject": "Ověřte e-mail",
+        "message": "Někdo vytvořil účet {{firstName}} s touto e-mailovou adresou. Pokud jste to byli vy, klikněte na odkaz níže a ověřte svou e-mailovou adresu.",
+        "verifyButton": "Ověřte e-mail",
+        "linkExpiration": "Platnost tohoto odkazu vyprší za {{expiration}}.",
+        "ignoreMessage": "Pokud jste tento účet nevytvořili, tuto zprávu ignorujte."
+    },
+    "event-login_error": {
+        "subject": "Chyba přihlášení",
+        "message": "Byl zjištěn neúspěšný pokus o přihlášení k vašemu účtu dne {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Pokud jste to nebyli vy, kontaktujte prosím správce."
+    },
+    "event-remove_credential": {
+        "subject": "Odebrat pověření",
+        "message": "Pověření {{credentialType}} bylo odebráno z vašeho účtu dne {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Pokud jste to nebyli vy, kontaktujte prosím správce."
+    },
+    "event-remove_totp": {
+        "subject": "Odebrat OTP",
+        "message": "OTP byl odebrán z vašeho účtu dne {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Pokud jste to nebyli vy, kontaktujte prosím správce."
+    },
+    "event-update_credential": {
+        "subject": "Aktualizujte přihlašovací údaje",
+        "message": "Vaše pověření {{credentialType}} bylo změněno dne {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Pokud jste to nebyli vy, kontaktujte prosím správce."
+    },
+    "event-update_password": {
+        "subject": "Aktualizovat heslo",
+        "message": "Vaše heslo bylo změněno dne {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Pokud jste to nebyli vy, kontaktujte prosím správce."
+    },
+    "event-update_totp": {
+        "subject": "Aktualizovat OTP",
+        "message": "OTP byla pro váš účet aktualizována dne {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Pokud jste to nebyli vy, kontaktujte prosím správce."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Uživatel zakázán trvalým uzamčením",
+        "message": "Váš uživatel byl trvale deaktivován z důvodu několika neúspěšných pokusů na {{date}}.",
+        "contactAdmin": "Kontaktujte prosím správce."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Uživatel deaktivován dočasným uzamčením",
+        "message": "Váš uživatel byl dočasně zakázán kvůli několika neúspěšným pokusům na {{date}}.",
+        "contactAdmin": "Kontaktujte prosím správce."
+    },
+    "executeActions": {
+        "subject": "Aktualizujte svůj účet",
+        "message": "Váš administrátor vás právě požádal, abyste aktualizovali svůj účet {{realmName}} provedením následujících akcí:",
+        "clickLink": "Tento proces spustíte kliknutím na odkaz níže.",
+        "linkExpiration": "Platnost tohoto odkazu vyprší za {{expiration}}.",
+        "ignoreMessage": "Pokud si nejste vědomi toho, že to váš administrátor požadoval, jednoduše tuto zprávu ignorujte a nic se nezmění.",
+        "updateAccountButton": "Aktualizovat účet"
+    },
+    "identity-provider-link": {
+        "subject": "Propojte {0} se svým účtem",
+        "message": "Někdo chce propojit váš účet {{identityProviderDisplayName}} s účtem {{realmName}} uživatele {{username}}.",
+        "clickLink": "Pokud jste to byli vy, klikněte na odkaz níže a účty propojte",
+        "linkExpiration": "Platnost tohoto odkazu vyprší za {{expiration}}.",
+        "ignoreMessage": "Pokud nechcete pokračovat v této úpravě, jednoduše tuto zprávu ignorujte.",
+        "linkAccountsButton": "Propojit účty",
+        "loginInfo": "Pokud účty propojíte, budete se moci přihlásit k {{identityProviderDisplayName}} prostřednictvím {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Pozvánka do organizace {0}",
+        "greeting": "Dobrý den, {{firstName}} {{lastName}}.",
+        "message": "Byli jste pozváni, abyste se připojili k organizaci {{organizationName}}. Chcete-li se připojit, klikněte na odkaz níže.",
+        "linkExpiration": "Platnost tohoto odkazu vyprší za {{expiration}}.",
+        "ignoreMessage": "Pokud se nechcete připojit k organizaci, jednoduše tuto zprávu ignorujte.",
+        "joinButton": "Připojte se k organizaci"
+    },
+    "password-reset": {
+        "subject": "Obnovit heslo",
+        "message": "Někdo právě požádal o změnu přihlašovacích údajů vašeho účtu {{realmName}}. Pokud jste to byli vy, kliknutím na odkaz níže je resetujte.",
+        "linkExpiration": "Platnost tohoto odkazu vyprší za {{expiration}}.",
+        "ignoreMessage": "Pokud nechcete resetovat své přihlašovací údaje, jednoduše tuto zprávu ignorujte a nic se nezmění.",
+        "resetButton": "Obnovit přihlašovací údaje"
+    },
+    "requiredAction": {
+        "configure_totp": "Konfigurovat OTP",
+        "terms_and_conditions": "Smluvní podmínky",
+        "update_password": "Aktualizovat heslo",
+        "update_profile": "Aktualizovat profil",
+        "verify_email": "Ověřte email",
+        "configure_recovery_authn_codes": "Vygenerujte obnovovací kódy",
+        "seconds": "{0,choice,0#sekundy|1#sekunda|1<sekundy}",
+        "minutes": "{0,choice,0#zápis|1#minuta|1<zápis}",
+        "hours": "{0,choice,0#hodin|1#hodina|1<hodin}",
+        "days": "{0,choice,0#dní|1#den|1<dní}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Všechna práva vyhrazena"
+    }
+}

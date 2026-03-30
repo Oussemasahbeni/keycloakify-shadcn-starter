@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "電子郵件測試",
+        "greeting": "朋友你好",
+        "message": "這是來自 {{realmName}} 的測試電子郵件。如果您收到這封電子郵件，則表示您的電子郵件設定配置正確。"
+    },
+    "email-update-confirmation": {
+        "subject": "驗證新電子郵件",
+        "linkExpiration": "此連結將在 {{expiration}} 內過期。",
+        "updateEmailAddress": "使用電子郵件地址 {{newEmail}} 更新您的 {{realmName}} 帳戶",
+        "clickLinkBelow": "點擊下面的連結",
+        "updateEmail": "更新電子郵件",
+        "ignoreMessage": "如果您不想繼續進行此修改，請忽略此訊息。"
+    },
+    "email-verification": {
+        "subject": "驗證電子郵件",
+        "message": "有人使用此電子郵件地址建立了 {{firstName}} 帳戶。如果您是這樣，請點擊下面的連結來驗證您的電子郵件地址。",
+        "verifyButton": "驗證電子郵件",
+        "linkExpiration": "此連結將在 {{expiration}} 內過期。",
+        "ignoreMessage": "如果您沒有建立此帳戶，請忽略此訊息。"
+    },
+    "event-login_error": {
+        "subject": "登入錯誤",
+        "message": "偵測到您在 {{date}} 上從 {{ipAddress}} 登入帳戶的嘗試失敗。",
+        "contactAdmin": "如果這不是您本人所為，請聯絡管理員。"
+    },
+    "event-remove_credential": {
+        "subject": "刪除憑證",
+        "message": "憑證 {{credentialType}} 已於 {{date}} 從 {{ipAddress}} 從您的帳戶中刪除。",
+        "contactAdmin": "如果這不是您本人所為，請聯絡管理員。"
+    },
+    "event-remove_totp": {
+        "subject": "刪除 OTP",
+        "message": "OTP 已於 {{date}} 從 {{ipAddress}} 從您的帳戶中刪除。",
+        "contactAdmin": "如果這不是您本人所為，請聯絡管理員。"
+    },
+    "event-update_credential": {
+        "subject": "更新憑證",
+        "message": "您的 {{credentialType}} 憑證已於 {{date}} 從 {{ipAddress}} 變更。",
+        "contactAdmin": "如果這不是您本人所為，請聯絡管理員。"
+    },
+    "event-update_password": {
+        "subject": "更新密碼",
+        "message": "您的密碼已於 {{date}} 從 {{ipAddress}} 變更。",
+        "contactAdmin": "如果這不是您本人所為，請聯絡管理員。"
+    },
+    "event-update_totp": {
+        "subject": "更新OTP",
+        "message": "您的帳戶的 OTP 已於 {{date}} 從 {{ipAddress}} 更新。",
+        "contactAdmin": "如果這不是您本人所為，請聯絡管理員。"
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "使用者因永久鎖定而被停用",
+        "message": "由於在 {{date}} 上多次嘗試失敗，您的使用者已被永久停用。",
+        "contactAdmin": "請聯絡管理員。"
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "使用者因臨時鎖定而被停用",
+        "message": "由於在 {{date}} 上多次嘗試失敗，您的使用者已被暫時停用。",
+        "contactAdmin": "請聯絡管理員。"
+    },
+    "executeActions": {
+        "subject": "更新您的帳戶",
+        "message": "您的管理員剛剛要求您執行以下操作來更新您的 {{realmName}} 帳戶：",
+        "clickLink": "點擊下面的連結開始此過程。",
+        "linkExpiration": "此連結將在 {{expiration}} 內過期。",
+        "ignoreMessage": "如果您不知道管理員已要求此操作，請忽略此訊息，並且不會發生任何變更。",
+        "updateAccountButton": "更新帳戶"
+    },
+    "identity-provider-link": {
+        "subject": "將 {0} 與您的帳戶關聯",
+        "message": "有人想要將您的 {{identityProviderDisplayName}} 帳戶與使用者 {{username}} 的 {{realmName}} 帳戶關聯。",
+        "clickLink": "如果是您，請點擊下面的連結來連結帳戶",
+        "linkExpiration": "此連結將在 {{expiration}} 內過期。",
+        "ignoreMessage": "如果您不想繼續進行此修改，請忽略此訊息。",
+        "linkAccountsButton": "關聯帳戶",
+        "loginInfo": "如果您關聯帳戶，您將能夠透過 {{realmName}} 登入 {{identityProviderDisplayName}}。"
+    },
+    "org-invite": {
+        "subject": "邀請加入 {0} 組織",
+        "greeting": "您好，{{firstName}} {{lastName}}。",
+        "message": "您被邀請加入 {{organizationName}} 組織。點擊下面的連結即可加入。",
+        "linkExpiration": "此連結將在 {{expiration}} 內過期。",
+        "ignoreMessage": "如果您不想加入該組織，請忽略此訊息。",
+        "joinButton": "加入組織"
+    },
+    "password-reset": {
+        "subject": "重設密碼",
+        "message": "有人剛剛請求更改您的 {{realmName}} 帳戶的憑證。如果您是這樣，請點擊下面的連結來重置它們。",
+        "linkExpiration": "此連結將在 {{expiration}} 內過期。",
+        "ignoreMessage": "如果您不想重置您的憑證，只需忽略此訊息，就什麼都不會改變。",
+        "resetButton": "重置憑證"
+    },
+    "requiredAction": {
+        "configure_totp": "配置OTP",
+        "terms_and_conditions": "條款與條件",
+        "update_password": "更新密碼",
+        "update_profile": "更新個人資料",
+        "verify_email": "驗證信箱",
+        "configure_recovery_authn_codes": "產生恢復程式碼",
+        "seconds": "{0,choice,0#秒|1#秒|1<秒}",
+        "minutes": "{0,choice,0#分分鐘|1#分鐘|1<分分鐘}",
+        "hours": "{0,choice,0#小時|1#小時|1<小時}",
+        "days": "{0,choice,0#天|1#天|1<天}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}，保留所有權利"
+    }
+}

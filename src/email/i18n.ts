@@ -3,32 +3,137 @@ import type { GetMessages } from "keycloakify-emails";
 import { initReactI18next } from "react-i18next";
 
 import arTranslation from "./locales/ar/translation.json";
+import caTranslation from "./locales/ca/translation.json";
+import csTranslation from "./locales/cs/translation.json";
+import daTranslation from "./locales/da/translation.json";
+import deTranslation from "./locales/de/translation.json";
+import elTranslation from "./locales/el/translation.json";
 import enTranslation from "./locales/en/translation.json";
+import esTranslation from "./locales/es/translation.json";
+import faTranslation from "./locales/fa/translation.json";
+import fiTranslation from "./locales/fi/translation.json";
 import frTranslation from "./locales/fr/translation.json";
+import huTranslation from "./locales/hu/translation.json";
+import itTranslation from "./locales/it/translation.json";
+import jaTranslation from "./locales/ja/translation.json";
+import kaTranslation from "./locales/ka/translation.json";
+import ltTranslation from "./locales/lt/translation.json";
+import lvTranslation from "./locales/lv/translation.json";
+import nlTranslation from "./locales/nl/translation.json";
+import noTranslation from "./locales/no/translation.json";
+import plTranslation from "./locales/pl/translation.json";
+import ptTranslation from "./locales/pt/translation.json";
+import pt_BRTranslation from "./locales/pt-BR/translation.json";
+import ruTranslation from "./locales/ru/translation.json";
+import skTranslation from "./locales/sk/translation.json";
+import svTranslation from "./locales/sv/translation.json";
+import thTranslation from "./locales/th/translation.json";
+import trTranslation from "./locales/tr/translation.json";
+import ukTranslation from "./locales/uk/translation.json";
+import zh_CNTranslation from "./locales/zh-CN/translation.json";
+import zh_TWTranslation from "./locales/zh-TW/translation.json";
 
 const resources = {
+    ar: {
+        translation: arTranslation
+    },
+    ca: {
+        translation: caTranslation
+    },
+    cs: {
+        translation: csTranslation
+    },
+    da: {
+        translation: daTranslation
+    },
+    de: {
+        translation: deTranslation
+    },
+    el: {
+        translation: elTranslation
+    },
     en: {
         translation: enTranslation
+    },
+    es: {
+        translation: esTranslation
+    },
+    fa: {
+        translation: faTranslation
+    },
+    fi: {
+        translation: fiTranslation
     },
     fr: {
         translation: frTranslation
     },
-    ar: {
-        translation: arTranslation
+    hu: {
+        translation: huTranslation
+    },
+    it: {
+        translation: itTranslation
+    },
+    ja: {
+        translation: jaTranslation
+    },
+    ka: {
+        translation: kaTranslation
+    },
+    lt: {
+        translation: ltTranslation
+    },
+    lv: {
+        translation: lvTranslation
+    },
+    nl: {
+        translation: nlTranslation
+    },
+    no: {
+        translation: noTranslation
+    },
+    pl: {
+        translation: plTranslation
+    },
+    pt: {
+        translation: ptTranslation
+    },
+    "pt-BR": {
+        translation: pt_BRTranslation
+    },
+    ru: {
+        translation: ruTranslation
+    },
+    sk: {
+        translation: skTranslation
+    },
+    sv: {
+        translation: svTranslation
+    },
+    th: {
+        translation: thTranslation
+    },
+    tr: {
+        translation: trTranslation
+    },
+    uk: {
+        translation: ukTranslation
+    },
+    "zh-CN": {
+        translation: zh_CNTranslation
+    },
+    "zh-TW": {
+        translation: zh_TWTranslation
     }
 };
 
-i18n.use(initReactI18next) // passes i18n down to react-i18next
-    .init({
-        resources,
-        lng: "en", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
-        // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
-        // if you're using a language detector, do not define the lng option
-
-        interpolation: {
-            escapeValue: false // react already safes from xss
-        }
-    });
+i18n.use(initReactI18next).init({
+    resources,
+    lng: "en",
+    fallbackLng: "en",
+    interpolation: {
+        escapeValue: false
+    }
+});
 
 export default i18n;
 
@@ -37,60 +142,20 @@ export default i18n;
  * flexibility to initialize theirs own i18n solution here
  */
 export const getMessages: GetMessages = props => {
-    if (props.locale === "ar") {
-        return {
-            "requiredAction.CONFIGURE_TOTP": "تكوين OTP",
-            "requiredAction.TERMS_AND_CONDITIONS": "الشروط والأحكام",
-            "requiredAction.UPDATE_PASSWORD": "تحديث كلمة المرور",
-            "requiredAction.UPDATE_PROFILE": "تحديث الملف الشخصي",
-            "requiredAction.VERIFY_EMAIL": "تأكيد البريد الإلكتروني",
-            "requiredAction.CONFIGURE_RECOVERY_AUTHN_CODES": "توليد رموز الاسترداد",
+    const t = i18n.getFixedT(props.locale);
 
-            "linkExpirationFormatter.timePeriodUnit.seconds":
-                "{0,choice,0#ثواني|1#ثانية|1<ثواني}",
-            "linkExpirationFormatter.timePeriodUnit.minutes":
-                "{0,choice,0#دقائق|1#دقيقة|1<دقائق}",
-            "linkExpirationFormatter.timePeriodUnit.hours":
-                "{0,choice,0#ساعات|1#ساعة|1<ساعات}",
-            "linkExpirationFormatter.timePeriodUnit.days":
-                "{0,choice,0#أيام|1#يوم|1<أيام}"
-        };
-    } else if (props.locale === "fr") {
-        return {
-            "requiredAction.CONFIGURE_TOTP": "Configurer OTP",
-            "requiredAction.TERMS_AND_CONDITIONS": "Termes et conditions",
-            "requiredAction.UPDATE_PASSWORD": "Mettre à jour le mot de passe",
-            "requiredAction.UPDATE_PROFILE": "Mettre à jour le profil",
-            "requiredAction.VERIFY_EMAIL": "Vérifier l'email",
-            "requiredAction.CONFIGURE_RECOVERY_AUTHN_CODES":
-                "Générer des codes de récupération",
-
-            "linkExpirationFormatter.timePeriodUnit.seconds":
-                "{0,choice,0#secondes|1#seconde|1<secondes}",
-            "linkExpirationFormatter.timePeriodUnit.minutes":
-                "{0,choice,0#minutes|1#minute|1<minutes}",
-            "linkExpirationFormatter.timePeriodUnit.hours":
-                "{0,choice,0#heures|1#heure|1<heures}",
-            "linkExpirationFormatter.timePeriodUnit.days":
-                "{0,choice,0#jours|1#jour|1<jours}"
-        };
-    } else {
-        return {
-            "requiredAction.CONFIGURE_TOTP": "Configure OTP",
-            "requiredAction.TERMS_AND_CONDITIONS": "Terms and Conditions",
-            "requiredAction.UPDATE_PASSWORD": "Update Password",
-            "requiredAction.UPDATE_PROFILE": "Update Profile",
-            "requiredAction.VERIFY_EMAIL": "Verify Email",
-            "requiredAction.CONFIGURE_RECOVERY_AUTHN_CODES": "Generate Recovery Codes",
-
-            "linkExpirationFormatter.timePeriodUnit.seconds":
-                "{0,choice,0#seconds|1#second|1<seconds}",
-            "linkExpirationFormatter.timePeriodUnit.minutes":
-                "{0,choice,0#minutes|1#minute|1<minutes}",
-            "linkExpirationFormatter.timePeriodUnit.hours":
-                "{0,choice,0#hours|1#hour|1<hours}",
-            "linkExpirationFormatter.timePeriodUnit.days":
-                "{0,choice,0#days|1#day|1<days}"
-        };
-    }
+    return {
+        "requiredAction.CONFIGURE_TOTP": t("requiredAction.configure_totp"),
+        "requiredAction.TERMS_AND_CONDITIONS": t("requiredAction.terms_and_conditions"),
+        "requiredAction.UPDATE_PASSWORD": t("requiredAction.update_password"),
+        "requiredAction.UPDATE_PROFILE": t("requiredAction.update_profile"),
+        "requiredAction.VERIFY_EMAIL": t("requiredAction.verify_email"),
+        "requiredAction.CONFIGURE_RECOVERY_AUTHN_CODES": t(
+            "requiredAction.configure_recovery_authn_codes"
+        ),
+        "linkExpirationFormatter.timePeriodUnit.seconds": t("requiredAction.seconds"),
+        "linkExpirationFormatter.timePeriodUnit.minutes": t("requiredAction.minutes"),
+        "linkExpirationFormatter.timePeriodUnit.hours": t("requiredAction.hours"),
+        "linkExpirationFormatter.timePeriodUnit.days": t("requiredAction.days")
+    };
 };

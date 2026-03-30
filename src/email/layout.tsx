@@ -12,8 +12,8 @@ import {
 } from "jsx-email";
 import { createVariablesHelper } from "keycloakify-emails/variables";
 import type { PropsWithChildren, ReactNode } from "react";
+import { companyLogo, primaryColor } from "./constants";
 import i18n from "./i18n";
-import { primaryColor, companyLogo } from "./constants";
 
 const main = {
     backgroundColor: "#f6f9fc",
@@ -121,9 +121,7 @@ export const EmailLayout = ({
                                 {t("footer.allRightsReserved", {
                                     currentYear,
                                     realmName: exp("realmName")
-                                })}{" "}
-                                <br />
-                                {t("footer.address")}
+                                })}
                             </Text>
                         </Row>
                     </Section>

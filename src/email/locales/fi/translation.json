@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "Sähköposti testi",
+        "greeting": "Hei ystävä",
+        "message": "Tämä on testisähköposti lähettäjältä {{realmName}}. Jos sait tämän sähköpostin, se tarkoittaa, että sähköpostiasetukset on määritetty oikein."
+    },
+    "email-update-confirmation": {
+        "subject": "Vahvista uusi sähköposti",
+        "linkExpiration": "Tämä linkki vanhenee {{expiration}} kuluessa.",
+        "updateEmailAddress": "Päivittääksesi {{realmName}} -tilisi sähköpostiosoitteella {{newEmail}}",
+        "clickLinkBelow": "klikkaa alla olevaa linkkiä",
+        "updateEmail": "Päivitä sähköposti",
+        "ignoreMessage": "Jos et halua jatkaa tätä muutosta, jätä tämä viesti huomioimatta."
+    },
+    "email-verification": {
+        "subject": "Vahvista sähköposti",
+        "message": "Joku on luonut {{firstName}}-tilin tällä sähköpostiosoitteella. Jos tämä olit sinä, napsauta alla olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi.",
+        "verifyButton": "Vahvista sähköposti",
+        "linkExpiration": "Tämä linkki vanhenee {{expiration}} kuluessa.",
+        "ignoreMessage": "Jos et luonut tätä tiliä, jätä tämä viesti huomioimatta."
+    },
+    "event-login_error": {
+        "subject": "Kirjautumisvirhe",
+        "message": "Epäonnistunut kirjautumisyritys tilillesi havaittiin {{date}} alkaen {{ipAddress}}.",
+        "contactAdmin": "Jos et ollut sinä, ota yhteyttä järjestelmänvalvojaan."
+    },
+    "event-remove_credential": {
+        "subject": "Poista kirjautumistiedot",
+        "message": "Tunniste {{credentialType}} poistettiin tililtäsi {{date}} {{ipAddress}}.",
+        "contactAdmin": "Jos et ollut sinä, ota yhteyttä järjestelmänvalvojaan."
+    },
+    "event-remove_totp": {
+        "subject": "Poista OTP",
+        "message": "OTP poistettiin tililtäsi {{date}} alkaen {{ipAddress}}.",
+        "contactAdmin": "Jos et ollut sinä, ota yhteyttä järjestelmänvalvojaan."
+    },
+    "event-update_credential": {
+        "subject": "Päivitä kirjautumistiedot",
+        "message": "Tunnistetietosi {{credentialType}} muutettiin {{date}} arvosta {{ipAddress}}.",
+        "contactAdmin": "Jos et ollut sinä, ota yhteyttä järjestelmänvalvojaan."
+    },
+    "event-update_password": {
+        "subject": "Päivitä salasana",
+        "message": "Salasanasi vaihdettiin {{date}} {{ipAddress}}.",
+        "contactAdmin": "Jos et ollut sinä, ota yhteyttä järjestelmänvalvojaan."
+    },
+    "event-update_totp": {
+        "subject": "Päivitä OTP",
+        "message": "OTP päivitettiin tilillesi {{date}} alkaen {{ipAddress}}.",
+        "contactAdmin": "Jos et ollut sinä, ota yhteyttä järjestelmänvalvojaan."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Käyttäjä on poistettu käytöstä pysyvän lukituksen vuoksi",
+        "message": "Käyttäjäsi on poistettu pysyvästi käytöstä useiden epäonnistuneiden yritysten vuoksi {{date}}.",
+        "contactAdmin": "Ota yhteyttä järjestelmänvalvojaan."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Käyttäjä poistettu käytöstä tilapäisen lukituksen vuoksi",
+        "message": "Käyttäjäsi on poistettu tilapäisesti käytöstä useiden epäonnistuneiden yritysten vuoksi {{date}}.",
+        "contactAdmin": "Ota yhteyttä järjestelmänvalvojaan."
+    },
+    "executeActions": {
+        "subject": "Päivitä tilisi",
+        "message": "Järjestelmänvalvojasi on juuri pyytänyt sinua päivittämään {{realmName}} -tilisi suorittamalla seuraavat toiminnot:",
+        "clickLink": "Aloita tämä prosessi napsauttamalla alla olevaa linkkiä.",
+        "linkExpiration": "Tämä linkki vanhenee {{expiration}} kuluessa.",
+        "ignoreMessage": "Jos et tiedä, että järjestelmänvalvojasi on pyytänyt tätä, jätä tämä viesti huomioimatta, niin mitään ei muuteta.",
+        "updateAccountButton": "Päivitä tili"
+    },
+    "identity-provider-link": {
+        "subject": "Yhdistä {0} tiliisi",
+        "message": "Joku haluaa yhdistää {{identityProviderDisplayName}}-tilisi käyttäjän {{username}} {{realmName}}-tiliin.",
+        "clickLink": "Jos tämä olit sinä, linkitä tilit napsauttamalla alla olevaa linkkiä",
+        "linkExpiration": "Tämä linkki vanhenee {{expiration}} kuluessa.",
+        "ignoreMessage": "Jos et halua jatkaa tätä muutosta, jätä tämä viesti huomioimatta.",
+        "linkAccountsButton": "Linkitä tilit",
+        "loginInfo": "Jos linkität tilejä, voit kirjautua osoitteeseen {{identityProviderDisplayName}} - {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Kutsu liittyä organisaatioon {0}",
+        "greeting": "Hei, {{firstName}} {{lastName}}.",
+        "message": "Sinut kutsuttiin liittymään organisaatioon {{organizationName}}. Napsauta alla olevaa linkkiä liittyäksesi.",
+        "linkExpiration": "Tämä linkki vanhenee {{expiration}} kuluessa.",
+        "ignoreMessage": "Jos et halua liittyä organisaatioon, jätä tämä viesti huomioimatta.",
+        "joinButton": "Liity organisaatioon"
+    },
+    "password-reset": {
+        "subject": "Palauta salasana",
+        "message": "Joku pyysi juuri muuttamaan {{realmName}} -tilisi kirjautumistietoja. Jos tämä olit sinä, napsauta alla olevaa linkkiä nollataksesi ne.",
+        "linkExpiration": "Tämä linkki vanhenee {{expiration}} kuluessa.",
+        "ignoreMessage": "Jos et halua nollata tunnistetietojasi, jätä tämä viesti huomioimatta, niin mikään ei muutu.",
+        "resetButton": "Nollaa kirjautumistiedot"
+    },
+    "requiredAction": {
+        "configure_totp": "Määritä OTP",
+        "terms_and_conditions": "Ehdot",
+        "update_password": "Päivitä salasana",
+        "update_profile": "Päivitä profiili",
+        "verify_email": "Vahvista sähköposti",
+        "configure_recovery_authn_codes": "Luo palautuskoodeja",
+        "seconds": "{0,choice,0#sekuntia|1#sekunti|1<sekuntia}",
+        "minutes": "{0,choice,0#minuuttia|1#minuutti|1<minuuttia}",
+        "hours": "{0,choice,0#tuntia|1#tunti|1<tuntia}",
+        "days": "{0,choice,0#päivää|1#päivä|1<päivää}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Kaikki oikeudet pidätetään"
+    }
+}

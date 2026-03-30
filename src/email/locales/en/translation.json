@@ -1,14 +1,8 @@
 {
     "email-test": {
         "subject": "Email Test",
-        "greeting": "Hi",
-        "passwordUpdate": "You updated the password for your Twitch account on {{date}}. If this was you, then no further action is required.",
-        "passwordReset": "However if you did NOT perform this password change, please reset your account password immediately.",
-        "passwordAdvice": "Remember to use a password that is both strong and unique to your Twitch account. To learn more about how to create a strong and unique password,",
-        "loginButton": "Login to Inspark",
-        "contactSupport": "Still have questions? Please contact {{realmName}} Support",
-        "thanks": "Thanks,",
-        "supportTeam": "{{realmName}}, Support Team"
+        "greeting": "Hi friend",
+        "message": "This is a test email from {{realmName}}. If you received this email, it means that your email settings are configured correctly."
     },
     "email-update-confirmation": {
         "subject": "Verify new email",
@@ -97,8 +91,19 @@
         "ignoreMessage": "If you don't want to reset your credentials, just ignore this message and nothing will be changed.",
         "resetButton": "Reset credentials"
     },
+    "requiredAction": {
+        "configure_totp": "Configure OTP",
+        "terms_and_conditions": "Terms and Conditions",
+        "update_password": "Update Password",
+        "update_profile": "Update Profile",
+        "verify_email": "Verify Email",
+        "configure_recovery_authn_codes": "Generate Recovery Codes",
+        "seconds": "{0,choice,0#seconds|1#second|1<seconds}",
+        "minutes": "{0,choice,0#minutes|1#minute|1<minutes}",
+        "hours": "{0,choice,0#hours|1#hour|1<hours}",
+        "days": "{0,choice,0#days|1#day|1<days}"
+    },
     "footer": {
-        "allRightsReserved": "© {{currentYear}} {{realmName}}, All Rights Reserved",
-        "address": "{{realmName}}, 123 Example St., City, Country"
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, All Rights Reserved"
     }
 }
