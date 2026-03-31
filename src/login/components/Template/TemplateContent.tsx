@@ -179,19 +179,21 @@ export function TemplateContent(props: TemplateContentProps) {
                                     name="tryAnotherWay"
                                     value="on"
                                 />
-                                <a
-                                    href="#"
-                                    id="try-another-way"
-                                    onClick={event => {
-                                        document.forms[
-                                            "kc-select-try-another-way-form" as never
-                                        ].submit();
-                                        event.preventDefault();
-                                        return false;
-                                    }}
-                                >
-                                    {msg("doTryAnotherWay")}
-                                </a>
+                                <Button type="button" className='w-full' variant="outline" asChild>
+                                    <a
+                                        href="#"
+                                        id="try-another-way"
+                                        onClick={event => {
+                                            document.forms[
+                                                "kc-select-try-another-way-form" as never
+                                            ].submit();
+                                            event.preventDefault();
+                                            return false;
+                                        }}
+                                    >
+                                        {msg("doTryAnotherWay")}
+                                    </a>
+                                </Button>
                             </div>
                         </form>
                     )}
