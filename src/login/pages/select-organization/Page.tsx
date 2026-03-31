@@ -24,6 +24,8 @@ export function Page() {
     const formRef = useRef<HTMLFormElement>(null);
     const organizationInputRef = useRef<HTMLInputElement>(null);
 
+    const dir = document.dir || "ltr";
+
     const onOrganizationClick =
         (organizationAlias: string) => (event: MouseEvent<HTMLButtonElement>) => {
             event.preventDefault();
@@ -76,13 +78,14 @@ export function Page() {
                                 value={selectedOrg}
                                 onValueChange={onSelectChange}
                                 disabled={isSubmitting}
+
                             >
-                                <SelectTrigger className="w-full">
+                                <SelectTrigger className="w-full" dir={dir}>
                                     <SelectValue
                                         placeholder={msg("organization.pickPlaceholder")}
                                     />
                                 </SelectTrigger>
-                                <SelectContent>
+                                <SelectContent dir={dir}>
                                     {organizations.map(({ alias, name }) => (
                                         <SelectItem key={alias} value={alias}>
                                             <div className="flex items-center gap-2">

@@ -22,27 +22,6 @@ export const WithTryAnotherWay: Story = {
         }
     }
 };
-
-export const Arabic: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "ar",
-                rtl: true
-            }
-        }
-    }
-};
-export const French: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "fr"
-            }
-        }
-    }
-};
-
 /**
  * WithMultipleAuthenticators:
  * - Purpose: Tests when multiple WebAuthn authenticators are available for selection.
