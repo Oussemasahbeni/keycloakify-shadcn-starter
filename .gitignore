@@ -59,3 +59,5 @@ jspm_packages
 *storybook.log
 
 /.keycloakify
+
+/.temp-emails
