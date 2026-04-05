@@ -190,7 +190,7 @@ export function Page() {
                     rpId={rpId}
                     userVerification={userVerification}
                     createTimeout={createTimeout}
-                    authenticators={authenticators.authenticators}
+                    authenticators={authenticators?.authenticators}
                     loginAction={url.loginAction}
                 />
             </div>
