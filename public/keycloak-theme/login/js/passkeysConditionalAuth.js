@@ -3,33 +3,33 @@
  *
  * $ npx keycloakify own --path "login/js/passkeysConditionalAuth.js" --public
  *
- * This file is provided by @keycloakify/login-ui version 250004.6.7.
+ * This file is provided by @keycloakify/login-ui version 250004.7.0.
  * It was copied into your repository by the postinstall script: `keycloakify sync-extensions`.
  */
 
 import { base64url } from "./rfc4648.js";
-import { returnSuccess, returnFailure } from "./webauthnAuthenticate.js";
+import { returnSuccess, signal } from "./webauthnAuthenticate.js";
 
-export function initAuthenticate(input) {
+export function initAuthenticate(input, availableCallback = available => {}) {
     // Check if WebAuthn is supported by this browser
     if (!window.PublicKeyCredential) {
-        returnFailure(input.errmsg);
+        // Fail silently as WebAuthn Conditional UI is not required
         return;
     }
     if (
         input.isUserIdentified ||
         typeof PublicKeyCredential.isConditionalMediationAvailable === "undefined"
     ) {
-        document.getElementById("kc-form-passkey-button").style.display = "block";
+        availableCallback(false);
     } else {
-        tryAutoFillUI(input);
+        tryAutoFillUI(input, availableCallback);
     }
 }
 
 function doAuthenticate(input) {
     // Check if WebAuthn is supported by this browser
     if (!window.PublicKeyCredential) {
-        returnFailure(input.errmsg);
+        // Fail silently as WebAuthn Conditional UI is not required
         return;
     }
 
@@ -50,24 +50,25 @@ function doAuthenticate(input) {
 
     return navigator.credentials.get({
         publicKey: publicKey,
+        signal: signal(),
         ...input.additionalOptions
     });
 }
 
-async function tryAutoFillUI(input) {
+async function tryAutoFillUI(input, availableCallback = available => {}) {
     const isConditionalMediationAvailable =
         await PublicKeyCredential.isConditionalMediationAvailable();
     if (isConditionalMediationAvailable) {
-        document.getElementById("kc-form-login").style.display = "block";
+        availableCallback(true);
         input.additionalOptions = { mediation: "conditional" };
         try {
             const result = await doAuthenticate(input);
             returnSuccess(result);
-        } catch (error) {
-            returnFailure(error);
+        } catch {
+            // Fail silently as WebAuthn Conditional UI is not required
         }
     } else {
-        document.getElementById("kc-form-passkey-button").style.display = "block";
+        availableCallback(false);
     }
 }
 

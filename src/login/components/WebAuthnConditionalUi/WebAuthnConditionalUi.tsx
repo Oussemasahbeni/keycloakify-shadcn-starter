@@ -16,9 +16,9 @@ export function WebAuthnConditionalUI(props: UseLogicProps) {
         <>
             <form
                 id="webauth"
-                className='mt-4'
                 action={loginAction}
                 method="post"
+                hidden
                 ref={webAuthnFormRef}
             >
                 <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
@@ -32,7 +32,7 @@ export function WebAuthnConditionalUI(props: UseLogicProps) {
             <Button
                 id="authenticateWebAuthnButton"
                 type="button"
-                className="w-full"
+                className="w-full mt-4"
                 variant="outline"
                 onClick={onPasskeyDoAuthenticateClick}
             >
