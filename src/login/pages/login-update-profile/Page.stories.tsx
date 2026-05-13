@@ -13,26 +13,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Arabic: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "ar",
-                rtl: true
-            }
-        }
-    }
-};
-export const French: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "fr"
-            }
-        }
-    }
-};
-
 /**
  * WithProfileError:
  * - Purpose: Tests when an error occurs in one or more profile fields (e.g., invalid email format).

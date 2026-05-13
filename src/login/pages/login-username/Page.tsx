@@ -31,7 +31,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
-
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
 
     return (
         <Template
@@ -84,6 +84,15 @@ export function Page() {
                                     defaultValue={login.username ?? ""}
                                     name="username"
                                     autoFocus
+                                    placeholder={
+                                        showPlaceholder
+                                            ? !realm.loginWithEmailAllowed
+                                                ? msgStr("usernamePlaceholder")
+                                                : !realm.registrationEmailAsUsername
+                                                    ? msgStr("usernameOrEmailPlaceholder")
+                                                    : msgStr("emailPlaceholder")
+                                            : undefined
+                                    }
                                     className="autofill:bg-background"
                                     autoComplete={enableWebAuthnConditionalUI ? "username webauthn" : "username"}
                                     aria-invalid={messagesPerField.existsError(

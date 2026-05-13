@@ -15,26 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Arabic: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "ar",
-                rtl: true
-            }
-        }
-    }
-};
-export const French: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "fr"
-            }
-        }
-    }
-};
-
 /**
  * WithErrorMessage:
  * - Purpose: Tests when there is an error with the OAuth2 device user code entry.

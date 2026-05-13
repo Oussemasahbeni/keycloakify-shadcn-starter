@@ -13,26 +13,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Arabic: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "ar",
-                rtl: true
-            }
-        }
-    }
-};
-export const French: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "fr"
-            }
-        }
-    }
-};
-
 /**
  * WithAppInitiatedAction:
  * - Purpose: Tests when the form is displayed as part of an application-initiated action.

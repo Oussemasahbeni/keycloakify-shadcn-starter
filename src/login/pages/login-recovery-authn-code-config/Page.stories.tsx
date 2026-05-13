@@ -15,26 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Arabic: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "ar",
-                rtl: true
-            }
-        }
-    }
-};
-export const French: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "fr"
-            }
-        }
-    }
-};
-
 /**
  * WithErrorDuringCodeGeneration:
  * - Purpose: Tests when an error occurs while generating recovery authentication codes.

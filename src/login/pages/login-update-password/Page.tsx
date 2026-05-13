@@ -16,6 +16,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     const { url, messagesPerField, isAppInitiatedAction } = kcContext;
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
 
     return (
         <Template
@@ -37,6 +38,9 @@ export function Page() {
                             name="password-new"
                             autoFocus
                             autoComplete="new-password"
+                            placeholder={
+                                showPlaceholder ? msgStr("newPasswordPlaceholder") : undefined
+                            }
                             aria-invalid={messagesPerField.existsError("password")}
                         />
                         <InputGroupAddon align="inline-end">
@@ -68,6 +72,11 @@ export function Page() {
                             id="password-confirm"
                             name="password-confirm"
                             autoComplete="new-password"
+                            placeholder={
+                                showPlaceholder
+                                    ? msgStr("confirmPasswordPlaceholder")
+                                    : undefined
+                            }
                             aria-invalid={messagesPerField.existsError(
                                 "password-confirm"
                             )}

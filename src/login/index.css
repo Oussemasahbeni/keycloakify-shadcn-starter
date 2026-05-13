@@ -1,14 +1,30 @@
-@import url(./assets/fonts/inter/inter.css) layer(base);
-
 @import "tailwindcss";
 @import "tw-animate-css";
+
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/figtree";
+@import "@fontsource-variable/source-sans-3";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource-variable/lora";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/jetbrains-mono";
 
 @source "../**/*.{ts,tsx}";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-geist: Geist, sans-serif;
+    --font-inter: "Inter Variable", sans-serif;
+    --font-geist: "Geist Variable", sans-serif;
+    --font-manrope: "Manrope Variable", sans-serif;
+    --font-figtree: "Figtree Variable", sans-serif;
+    --font-source-sans-3: "Source Sans 3 Variable", sans-serif;
+    --font-ibm-plex-sans: "IBM Plex Sans Variable", sans-serif;
+    --font-lora: "Lora Variable", serif;
+    --font-playfair-display: "Playfair Display Variable", serif;
+    --font-jetbrains-mono: "JetBrains Mono Variable", monospace;
 
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -25,7 +41,6 @@
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
     --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
@@ -56,47 +71,63 @@
 }
 
 :root {
-    --radius: 0.65rem;
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
+    --theme-font: var(--keycloakify-shadcn-font, var(--font-geist));
+
+    --radius: var(--keycloakify-shadcn-radius, 0.625rem);
+    --background: var(--keycloakify-shadcn-background, oklch(1 0 0));
+    --foreground: var(--keycloakify-shadcn-foreground, oklch(0.145 0 0));
+    --card: var(--keycloakify-shadcn-card, oklch(1 0 0));
+    --card-foreground: var(--keycloakify-shadcn-card-foreground, oklch(0.145 0 0));
+    --popover: var(--keycloakify-shadcn-popover, oklch(1 0 0));
+    --popover-foreground: var(--keycloakify-shadcn-popover-foreground, oklch(0.145 0 0));
+    --primary: var(--keycloakify-shadcn-primary, oklch(0.205 0 0));
+    --primary-foreground: var(--keycloakify-shadcn-primary-foreground, oklch(0.985 0 0));
+    --secondary: var(--keycloakify-shadcn-secondary, oklch(0.97 0 0));
+    --secondary-foreground: var(
+        --keycloakify-shadcn-secondary-foreground,
+        oklch(0.205 0 0)
+    );
+    --muted: var(--keycloakify-shadcn-muted, oklch(0.97 0 0));
+    --muted-foreground: var(--keycloakify-shadcn-muted-foreground, oklch(0.556 0 0));
+    --accent: var(--keycloakify-shadcn-accent, oklch(0.97 0 0));
+    --accent-foreground: var(--keycloakify-shadcn-accent-foreground, oklch(0.205 0 0));
     --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --radius: 0.625rem;
+    --border: var(--keycloakify-shadcn-border, oklch(0.922 0 0));
+    --input: var(--keycloakify-shadcn-input, oklch(0.922 0 0));
+    --ring: var(--keycloakify-shadcn-ring, oklch(0.708 0 0));
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
+    --background: var(--keycloakify-shadcn-dark-background, oklch(0.145 0 0));
+    --foreground: var(--keycloakify-shadcn-dark-foreground, oklch(0.985 0 0));
+    --card: var(--keycloakify-shadcn-dark-card, oklch(0.205 0 0));
+    --card-foreground: var(--keycloakify-shadcn-dark-card-foreground, oklch(0.985 0 0));
+    --popover: var(--keycloakify-shadcn-dark-popover, oklch(0.205 0 0));
+    --popover-foreground: var(
+        --keycloakify-shadcn-dark-popover-foreground,
+        oklch(0.985 0 0)
+    );
+    --primary: var(--keycloakify-shadcn-dark-primary, oklch(0.922 0 0));
+    --primary-foreground: var(
+        --keycloakify-shadcn-dark-primary-foreground,
+        oklch(0.205 0 0)
+    );
+    --secondary: var(--keycloakify-shadcn-dark-secondary, oklch(0.269 0 0));
+    --secondary-foreground: var(
+        --keycloakify-shadcn-dark-secondary-foreground,
+        oklch(0.985 0 0)
+    );
+    --muted: var(--keycloakify-shadcn-dark-muted, oklch(0.269 0 0));
+    --muted-foreground: var(--keycloakify-shadcn-dark-muted-foreground, oklch(0.708 0 0));
+    --accent: var(--keycloakify-shadcn-dark-accent, oklch(0.269 0 0));
+    --accent-foreground: var(
+        --keycloakify-shadcn-dark-accent-foreground,
+        oklch(0.985 0 0)
+    );
     --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
+    --border: var(--keycloakify-shadcn-dark-border, oklch(1 0 0 / 10%));
+    --input: var(--keycloakify-shadcn-dark-input, oklch(1 0 0 / 15%));
+    --ring: var(--keycloakify-shadcn-dark-ring, oklch(0.556 0 0));
 }
 
 @layer utilities {
@@ -119,6 +150,7 @@
     }
     body {
         @apply bg-background text-foreground m-0 text-sm;
+        font-family: var(--theme-font);
     }
     button:not(:disabled),
     [role="button"]:not(:disabled) {

@@ -18,6 +18,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
 
     return (
         <Template
@@ -43,6 +44,11 @@ export function Page() {
                             id="password"
                             name="password"
                             autoComplete="current-password"
+                            placeholder={
+                                showPlaceholder
+                                    ? msgStr("passwordPlaceholder")
+                                    : undefined
+                            }
                             aria-invalid={kcContext.messagesPerField.existsError(
                                 "password"
                             )}

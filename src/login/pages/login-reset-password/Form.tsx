@@ -11,6 +11,7 @@ export function Form() {
     assert(kcContext.pageId === "login-reset-password.ftl");
 
     const { msg, msgStr } = useI18n();
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
 
     return (
         <form
@@ -34,6 +35,15 @@ export function Form() {
                     name="username"
                     autoFocus
                     defaultValue={kcContext.auth.attemptedUsername ?? ""}
+                    placeholder={
+                        showPlaceholder
+                            ? !kcContext.realm.loginWithEmailAllowed
+                                ? msgStr("usernamePlaceholder")
+                                : !kcContext.realm.registrationEmailAsUsername
+                                    ? msgStr("usernameOrEmailPlaceholder")
+                                    : msgStr("emailPlaceholder")
+                            : undefined
+                    }
                     aria-invalid={kcContext.messagesPerField.existsError("username")}
                 />
                 {kcContext.messagesPerField.existsError("username") && (

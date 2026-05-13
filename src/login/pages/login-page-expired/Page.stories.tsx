@@ -13,26 +13,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Arabic: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "ar",
-                rtl: true
-            }
-        }
-    }
-};
-export const French: Story = {
-    args: {
-        kcContext: {
-            locale: {
-                currentLanguageTag: "fr"
-            }
-        }
-    }
-};
-
 /**
  * WithErrorMessage:
  * - Purpose: Tests behavior when an error message is displayed along with the page expiration message.
