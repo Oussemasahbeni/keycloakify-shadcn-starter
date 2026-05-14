@@ -2,7 +2,13 @@
 
 A modern, production-ready Keycloak login theme built with React, TypeScript, Tailwind CSS v4, shadcn/ui, and Keycloakify v11.
 
-**npm Package:** [@oussemasahbeni/keycloakify-login-shadcn](https://www.npmjs.com/package/@oussemasahbeni/keycloakify-login-shadcn)
+
+
+[![CI](https://github.com/keycloakify/keycloakify/actions/workflows/ci.yaml/badge.svg)](https://github.com/keycloakify/keycloakify/actions/workflows/ci.yaml)
+[![npm downloads](https://img.shields.io/npm/dm/@oussemasahbeni/keycloakify-login-shadcn)](https://www.npmjs.com/package/@oussemasahbeni/keycloakify-login-shadcn)
+[![npm version](https://img.shields.io/npm/v/@oussemasahbeni/keycloakify-login-shadcn.svg)](https://www.npmjs.com/package/@oussemasahbeni/keycloakify-login-shadcn)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Oussemasahbeni/keycloakify-shadcn-starter/blob/main/LICENSE)
+
 
 ---
 
@@ -218,7 +224,6 @@ The login theme is primarily customized through Keycloakify environment variable
 | `SHADCN_THEME_LOGO_WHITE_URL` | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in light mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
 | `SHADCN_THEME_LOGO_DARK_URL`  | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in dark mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
 | `SHADCN_THEME_SIDE_IMAGE_URL` | `""` | Any image URL or `%BASE_URL%/filename` | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`. | mode.                                                                           |
-| `SHADCN_THEME_APP_NAME`       | `"Acme Inc."`                                    | Any string                                    | Controls the app name shown in the layout branding areas.                                         |
 | `SHADCN_THEME_LAYOUT`         | `"two-column"`                                   | `two-column`, `centered-card`, `image-aside`  | Selects the outer page layout used by `Template.tsx`.                                             |
 | `SHADCN_THEME_PRESET`         | `"neutral"`                                      | See accent preset list below                  | Selects the shadcn-style accent color family used for primary actions.                            |
 | `SHADCN_THEME_BASE`           | `"neutral"`                                      | See base palette list below                   | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring. |
@@ -299,7 +304,6 @@ environmentVariables: [
         name: "SHADCN_THEME_LOGO_DARK_URL",
         default: ""
     },
-    { name: "SHADCN_THEME_APP_NAME", default: "Acme Inc." },
     { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
     { name: "SHADCN_THEME_SIDE_IMAGE_URL", default: "" },
     { name: "SHADCN_THEME_PRESET", default: "neutral" },
@@ -354,35 +358,6 @@ Add or modify translations in `src/login/i18n.ts`:
     ar: { /* Arabic translations */ }
 })
 ```
-
-### UI Components
-
-The theme uses shadcn/ui components located in `src/components/ui/`:
-
-- `alert.tsx` - Alert messages
-- `button.tsx` - Buttons with variants
-- `card.tsx` - Card containers
-- `checkbox.tsx` - Checkbox inputs
-- `input.tsx` - Text inputs
-- `label.tsx` - Form labels
-- `dropdown-menu.tsx` - Dropdown menus
-- `radio-group.tsx` - Radio button groups
-- `tooltip.tsx` - Tooltips
-
----
-
-## Runtime Theme Internals
-
-The theme system is implemented under `src/login/components/Template/theme/`:
-
-- `Themes.ts` - shadcn-aligned base palettes, accent presets, radius presets, and font family mappings
-- `ThemeTypes.ts` - supported option lists and theme token types
-- `ThemeUtils.ts` - token, radius, and font resolvers
-- `useApplyThemePreset.ts` - writes the resolved theme and font values to CSS custom properties at runtime
-
-`Template.tsx` remains the top-level controller for layout selection, while the runtime theme hook applies color, radius, and font settings from `kcContext.properties`.
-
----
 
 ## Email Templates
 
@@ -475,7 +450,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](./LICENSE) © 2026 Oussema Sahbeni.
 
 ---
 
@@ -485,10 +460,3 @@ This project is licensed under the MIT License.
 - [shadcn/ui](https://ui.shadcn.com) - For the beautiful UI components
 - [Tailwind CSS](https://tailwindcss.com) - For the utility-first CSS framework
 - [jsx-email](https://jsx.email) - For React email templates
-
----
-
-## Package Information
-
-**npm:** [@oussemasahbeni/keycloakify-login-shadcn](https://www.npmjs.com/package/@oussemasahbeni/keycloakify-login-shadcn)  
-**GitHub:** [Oussemasahbeni/keycloakify-shadcn-starter](https://github.com/Oussemasahbeni/keycloakify-shadcn-starter)
