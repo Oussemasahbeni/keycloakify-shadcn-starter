@@ -45,20 +45,14 @@ export function Page() {
             formRef.current.submit();
         };
 
-    const onSelectChange = (value: string) => {
-        setSelectedOrg(value);
-        if (!organizationInputRef.current || !formRef.current) {
-            return;
-        }
-
-        organizationInputRef.current.value = value;
+    const onSelectSubmit = () => {
+        if (!organizationInputRef.current || !formRef.current || !selectedOrg) return;
+        organizationInputRef.current.value = selectedOrg;
         setIsSubmitting(true);
-
         if (typeof formRef.current.requestSubmit === "function") {
             formRef.current.requestSubmit();
             return;
         }
-
         formRef.current.submit();
     };
 
@@ -69,16 +63,15 @@ export function Page() {
         <Template headerNode={msg("organization.selectTitle")}>
             <form ref={formRef} action={kcContext.url.loginAction} method="post">
                 <div id="kc-user-organizations" className="space-y-2">
-                    <h2 className="text-md font-semibold">
+                    <h2 className="text-base font-semibold">
                         {msg("organization.select")}
                     </h2>
                     {useSelect ? (
-                        <div className="space-y-2">
+                        <div className="space-y-3">
                             <Select
                                 value={selectedOrg}
-                                onValueChange={onSelectChange}
+                                onValueChange={setSelectedOrg}
                                 disabled={isSubmitting}
-
                             >
                                 <SelectTrigger className="w-full" dir={dir}>
                                     <SelectValue
@@ -96,6 +89,14 @@ export function Page() {
                                     ))}
                                 </SelectContent>
                             </Select>
+                            <Button
+                                type="button"
+                                className="w-full"
+                                disabled={isSubmitting || !selectedOrg}
+                                onClick={onSelectSubmit}
+                            >
+                                {msg("doContinue")}
+                            </Button>
                         </div>
                     ) : (
                         <ul className="space-y-3">

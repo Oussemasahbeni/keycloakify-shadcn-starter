@@ -21,7 +21,7 @@ export function Page() {
                 <span>
                     {msg("pageExpiredMsg1")}{" "}
                     <a
-                        className="text-primary dark:text-white underline underline-offset-2"
+                        className="text-primary dark:text-foreground underline underline-offset-2"
                         id="loginRestartLink"
                         href={kcContext.url.loginRestartFlowUrl}
                     >

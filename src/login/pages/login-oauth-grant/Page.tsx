@@ -25,9 +25,9 @@ export function Page() {
                     <p className="text-lg font-medium text-center">
                         {kcContext.client.name
                             ? msg(
-                                "oauthGrantTitle",
-                                advancedMsgStr(kcContext.client.name)
-                            )
+                                  "oauthGrantTitle",
+                                  advancedMsgStr(kcContext.client.name)
+                              )
                             : msg("oauthGrantTitle", kcContext.client.clientId)}
                     </p>
                 </div>
@@ -61,44 +61,44 @@ export function Page() {
 
                     {(kcContext.client.attributes.policyUri ||
                         kcContext.client.attributes.tosUri) && (
-                            <>
-                                <div className="space-y-2">
-                                    <p className="text-xs text-muted-foreground">
-                                        {kcContext.client.name
-                                            ? msg(
-                                                "oauthGrantInformation",
-                                                advancedMsgStr(kcContext.client.name)
-                                            )
-                                            : msg(
-                                                "oauthGrantInformation",
-                                                kcContext.client.clientId
-                                            )}
-                                    </p>
-                                    <div className="flex flex-wrap gap-2 text-xs">
-                                        {kcContext.client.attributes.tosUri && (
-                                            <a
-                                                href={kcContext.client.attributes.tosUri}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-primary dark:text-white hover:text-primary/80 underline underline-offset-4"
-                                            >
-                                                {msg("oauthGrantTos")}
-                                            </a>
-                                        )}
-                                        {kcContext.client.attributes.policyUri && (
-                                            <a
-                                                href={kcContext.client.attributes.policyUri}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-primary dark:text-white hover:text-primary/80 underline underline-offset-4"
-                                            >
-                                                {msg("oauthGrantPolicy")}
-                                            </a>
-                                        )}
-                                    </div>
+                        <>
+                            <div className="space-y-2">
+                                <p className="text-xs text-muted-foreground">
+                                    {kcContext.client.name
+                                        ? msg(
+                                              "oauthGrantInformation",
+                                              advancedMsgStr(kcContext.client.name)
+                                          )
+                                        : msg(
+                                              "oauthGrantInformation",
+                                              kcContext.client.clientId
+                                          )}
+                                </p>
+                                <div className="flex flex-wrap gap-2 text-xs">
+                                    {kcContext.client.attributes.tosUri && (
+                                        <a
+                                            href={kcContext.client.attributes.tosUri}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-4"
+                                        >
+                                            {msg("oauthGrantTos")}
+                                        </a>
+                                    )}
+                                    {kcContext.client.attributes.policyUri && (
+                                        <a
+                                            href={kcContext.client.attributes.policyUri}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-4"
+                                        >
+                                            {msg("oauthGrantPolicy")}
+                                        </a>
+                                    )}
                                 </div>
-                            </>
-                        )}
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 <div>

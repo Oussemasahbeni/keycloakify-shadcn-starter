@@ -6,7 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
-import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { useState } from "react";
 import { MdOutlineDevices } from "react-icons/md";
 import { assert } from "tsafe/assert";
@@ -72,23 +72,22 @@ export function Page() {
                     <Label htmlFor="otp" className="text-sm font-medium  block">
                         {msg("loginOtpOneTime")}
                     </Label>
-                    <div className="flex w-72">
-                        <InputOTP
-                            maxLength={6}
-                            pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-                            name="otp"
-                            autoFocus
-                        >
-                            <InputOTPGroup>
-                                <InputOTPSlot index={0} className="h-12 w-12 text-lg" />
-                                <InputOTPSlot index={1} className="h-12 w-12 text-lg" />
-                                <InputOTPSlot index={2} className="h-12 w-12 text-lg" />
-                                <InputOTPSlot index={3} className="h-12 w-12 text-lg" />
-                                <InputOTPSlot index={4} className="h-12 w-12 text-lg" />
-                                <InputOTPSlot index={5} className="h-12 w-12 text-lg" />
-                            </InputOTPGroup>
-                        </InputOTP>
-                    </div>
+                    <InputOTP
+                        id="otp"
+                        maxLength={6}
+                        pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
+                        name="otp"
+                        autoFocus
+                    >
+                        <InputOTPGroup>
+                            <InputOTPSlot index={0} className="h-12 w-12 text-lg" />
+                            <InputOTPSlot index={1} className="h-12 w-12 text-lg" />
+                            <InputOTPSlot index={2} className="h-12 w-12 text-lg" />
+                            <InputOTPSlot index={3} className="h-12 w-12 text-lg" />
+                            <InputOTPSlot index={4} className="h-12 w-12 text-lg" />
+                            <InputOTPSlot index={5} className="h-12 w-12 text-lg" />
+                        </InputOTPGroup>
+                    </InputOTP>
                     {kcContext.messagesPerField.existsError("totp") && (
                         <FieldError id="input-error-otp-code">
                             <span

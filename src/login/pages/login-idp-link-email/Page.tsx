@@ -24,7 +24,7 @@ export function Page() {
                     {msg("emailLinkIdp2")}{" "}
                     <a
                         href={kcContext.url.loginAction}
-                        className="inline-flex items-center gap-1 text-primary dark:text-white underline underline-offset-2"
+                        className="inline-flex items-center gap-1 text-primary dark:text-foreground underline underline-offset-2"
                     >
                         {msg("doClickHere")}
                     </a>{" "}
@@ -35,7 +35,7 @@ export function Page() {
                     {msg("emailLinkIdp4")}{" "}
                     <a
                         href={kcContext.url.loginAction}
-                        className="inline-flex items-center gap-1 text-primary dark:text-white underline underline-offset-2"
+                        className="inline-flex items-center gap-1 text-primary dark:text-foreground underline underline-offset-2"
                     >
                         {msg("doClickHere")}
                     </a>{" "}

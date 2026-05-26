@@ -24,7 +24,6 @@ export function Page() {
                     <input type="hidden" name="session_code" value={logoutConfirm.code} />
 
                     <Button
-                        tabIndex={4}
                         className="w-full"
                         name="confirmLogout"
                         id="kc-logout"
@@ -38,7 +37,7 @@ export function Page() {
                     <div className="flex justify-end">
                         <a
                             href={client.baseUrl}
-                            className="text-sm text-primary dark:text-white hover:text-primary/80 underline underline-offset-4"
+                            className="text-sm text-primary underline underline-offset-4"
                         >
                             {msg("backToApplication")}
                         </a>

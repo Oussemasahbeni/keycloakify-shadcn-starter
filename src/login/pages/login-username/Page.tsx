@@ -8,7 +8,7 @@ import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { WebAuthnConditionalUI } from '@/login/components/WebAuthnConditionalUi';
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
-import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 import { SocialProviders } from "../login/SocialProviders";
@@ -45,7 +45,6 @@ export function Page() {
                         {msg("noAccount")}{" "}
                         <a
                             className="underline underline-offset-4 "
-                            tabIndex={8}
                             href={url.registrationUrl}
                         >
                             {msg("doRegister")}
@@ -78,7 +77,6 @@ export function Page() {
                                             : msg("username")}
                                 </FieldLabel>
                                 <Input
-                                    tabIndex={2}
                                     type="text"
                                     id="username"
                                     defaultValue={login.username ?? ""}
@@ -120,7 +118,6 @@ export function Page() {
                         {realm.rememberMe && !usernameHidden && (
                             <div className="flex items-center space-x-2">
                                 <Checkbox
-                                    tabIndex={3}
                                     id="rememberMe"
                                     name="rememberMe"
                                     value="on"
@@ -140,7 +137,6 @@ export function Page() {
                             className="w-full"
                             name="login"
                             type="submit"
-                            tabIndex={4}
                         >
                             {msgStr("doLogIn")}
                         </Button>

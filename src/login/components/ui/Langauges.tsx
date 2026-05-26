@@ -18,9 +18,6 @@ export function Languages() {
                     <Button
                         variant="outline"
                         aria-label={msgStr("languages")}
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        aria-controls="language-switch1"
                     >
                         <IoLanguage />
                         {currentLanguage.label}

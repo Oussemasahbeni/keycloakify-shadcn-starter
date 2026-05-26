@@ -30,7 +30,6 @@ export function Page() {
             </form>
 
             <Button
-                tabIndex={4}
                 onClick={() => {
                     // @ts-expect-error: Trusted Keycloak's code
                     document.getElementById("isSetRetry").value = "retry";

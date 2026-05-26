@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import { useKcContext } from "../../../KcContext";
 import { resolveRadiusPreset, resolveThemeFont, resolveThemeTokens } from "./ThemeUtils";
 
@@ -70,33 +71,37 @@ function applyThemeCssVars(params: {
 export function useApplyThemePreset() {
     const { kcContext } = useKcContext();
 
-    const root = document.documentElement;
-    const theme = resolveThemeTokens({
-        preset: kcContext.properties.SHADCN_THEME_PRESET,
-        base: kcContext.properties.SHADCN_THEME_BASE
-    });
-    const radius = resolveRadiusPreset(kcContext.properties.SHADCN_THEME_RADIUS);
+    const { SHADCN_THEME_PRESET, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT } = kcContext.properties;
 
-    applyThemeCssVars({
-        style: root.style,
-        theme: theme.light,
-        cssVars: themeCssVars.light
-    });
-    applyThemeCssVars({
-        style: root.style,
-        theme: theme.dark,
-        cssVars: themeCssVars.dark
-    });
+    useLayoutEffect(() => {
+        const root = document.documentElement;
+        const theme = resolveThemeTokens({
+            preset: SHADCN_THEME_PRESET,
+            base: SHADCN_THEME_BASE
+        });
+        const radius = resolveRadiusPreset(SHADCN_THEME_RADIUS);
 
-    document.documentElement.style.setProperty(
-        "--keycloakify-shadcn-font",
-        resolveThemeFont(kcContext.properties.SHADCN_THEME_FONT)
-    );
+        applyThemeCssVars({
+            style: root.style,
+            theme: theme.light,
+            cssVars: themeCssVars.light
+        });
+        applyThemeCssVars({
+            style: root.style,
+            theme: theme.dark,
+            cssVars: themeCssVars.dark
+        });
 
-    if (radius) {
-        root.style.setProperty("--keycloakify-shadcn-radius", radius);
-        return;
-    }
+        root.style.setProperty(
+            "--keycloakify-shadcn-font",
+            resolveThemeFont(SHADCN_THEME_FONT)
+        );
 
-    root.style.removeProperty("--keycloakify-shadcn-radius");
+        if (radius) {
+            root.style.setProperty("--keycloakify-shadcn-radius", radius);
+            return;
+        }
+
+        root.style.removeProperty("--keycloakify-shadcn-radius");
+    }, [SHADCN_THEME_PRESET, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT]);
 }

@@ -5,7 +5,7 @@ import { LogoutOtherSessions } from "@/login/components/LogoutOtherSessions";
 import { useI18n } from "@/login/i18n";
 import { useKcContext } from "@/login/KcContext";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
-import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 
@@ -25,7 +25,7 @@ export function Page() {
             <>
                 <ol
                     id="kc-totp-settings"
-                    className="list-decimal space-y-4 text-sm text-gray-700 dark:text-gray-300"
+                    className="list-decimal space-y-4 text-sm text-foreground"
                 >
                     <li className="space-y-2">
                         <p>{msg("loginTotpStep1")}</p>
@@ -35,7 +35,7 @@ export function Page() {
                         >
                             {kcContext.totp.supportedApplications.map(app => (
                                 <li
-                                    className="text-blue-600 dark:text-blue-400"
+                                    className="text-primary"
                                     key={app}
                                 >
                                     {advancedMsg(app)}
@@ -48,7 +48,7 @@ export function Page() {
                         <>
                             <li>
                                 <p className="mb-3">{msg("loginTotpManualStep2")}</p>
-                                <div className="bg-muted/30 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                                <div className="bg-muted/30 p-4 rounded-lg border border-border">
                                     <div>
                                         <span
                                             id="kc-totp-secret-key"
@@ -124,7 +124,7 @@ export function Page() {
                                 id="kc-totp-secret-qr-code"
                                 className="mt-2 dark:mt-0"
                                 src={`data:image/png;base64, ${kcContext.totp.totpSecretQrCode}`}
-                                alt="Figure: Barcode"
+                                alt="QR code for authenticator app setup — use the manual entry link below if you cannot scan"
                             />
 
                             <Button variant="outline" asChild>

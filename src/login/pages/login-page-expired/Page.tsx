@@ -17,7 +17,7 @@ export function Page() {
                     <a
                         id="loginRestartLink"
                         href={kcContext.url.loginRestartFlowUrl}
-                        className="text-primary dark:text-white hover:text-primary/80 underline underline-offset-2 font-medium"
+                        className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-2 font-medium"
                     >
                         {msg("doClickHere")}
                     </a>
@@ -28,13 +28,13 @@ export function Page() {
                     <a
                         id="loginContinueLink"
                         href={kcContext.url.loginAction}
-                        className="text-primary dark:text-white hover:text-primary/80 underline underline-offset-2 font-medium"
+                        className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-2 font-medium"
                     >
                         {msg("doClickHere")}
                     </a>
                     .
                 </p>
             </div>
-        </Template >
+        </Template>
     );
 }

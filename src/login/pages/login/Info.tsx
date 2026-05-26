@@ -17,7 +17,6 @@ export function Info() {
                     {msg("noAccount")}
                     <a
                         className="underline underline-offset-4 "
-                        tabIndex={8}
                         href={url.registrationUrl}
                     >
                         {msg("doRegister")}

@@ -58,9 +58,9 @@ export function TemplateContent(props: TemplateContentProps) {
                     <span className="text-xs font-normal text-muted-foreground">
                         {msgStr("attemptedUsernameLoggingInAs")}
                     </span>
-                    <label className="font-semibold text-lg" id="kc-attempted-username">
+                    <span className="font-semibold text-lg" id="kc-attempted-username">
                         {auth.attemptedUsername}
-                    </label>
+                    </span>
                 </div>
             </div>
 
@@ -95,14 +95,9 @@ export function TemplateContent(props: TemplateContentProps) {
                     )}
                 >
                     <div className="flex items-center gap-3 mb-4 ">
-                        <img
-                            src={logoWhiteUrl}
-                            alt="Logo"
-                            className="size-14 dark:hidden"
-                        />
+                        <img src={logoWhiteUrl} className="size-14 dark:hidden" />
                         <img
                             src={logoDarkUrl}
-                            alt="Logo"
                             className="size-14 hidden dark:inline-block"
                         />
                         {realm.displayNameHtml ? (
@@ -126,7 +121,9 @@ export function TemplateContent(props: TemplateContentProps) {
                             <div>{titleNode}</div>
                             <div>
                                 <span className="subtitle">
-                                    <span className="text-red-500">*</span>
+                                    <span className="text-red-500" aria-hidden="true">
+                                        *
+                                    </span>
                                     {msg("requiredFields")}
                                 </span>
                             </div>

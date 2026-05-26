@@ -1,4 +1,4 @@
-import { cn } from '@/components/lib/utils';
+import { cn } from "@/components/lib/utils";
 import { Button } from "@/components/ui/button";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { clsx } from "@keycloakify/login-ui/tools/clsx";
@@ -50,12 +50,15 @@ export function SocialProviders() {
                                     className={clsx(
                                         kcClsx(
                                             providers.length > 3 &&
-                                            "kcFormSocialAccountGridItem"
+                                                "kcFormSocialAccountGridItem"
                                         ),
                                         "flex items-center justify-center gap-3 "
                                     )}
                                     href={p.loginUrl}
-                                    onClick={() => localStorage.setItem(LAST_PROVIDER_KEY, p.alias)}                                >
+                                    onClick={() =>
+                                        localStorage.setItem(LAST_PROVIDER_KEY, p.alias)
+                                    }
+                                >
                                     {providerLogos[p.alias] ? (
                                         <div className={"h-5 w-5"}>
                                             <img
@@ -64,7 +67,10 @@ export function SocialProviders() {
                                                 className={cn(
                                                     "h-full w-auto",
                                                     // Invert specific icons in dark mode
-                                                    (p.alias === "github" || p.alias === "x" || p.alias === "twitter") && "dark:invert"
+                                                    (p.alias === "github" ||
+                                                        p.alias === "x" ||
+                                                        p.alias === "twitter") &&
+                                                        "dark:invert"
                                                 )}
                                             />
                                         </div>
@@ -90,7 +96,7 @@ export function SocialProviders() {
                                 </a>
                             </Button>
                             {lastProvider === p.alias && (
-                                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs px-2 py-0.5 rounded-full">
+                                <span className="absolute -top-2 -inset-e-2 bg-primary text-primary-foreground text-xs px-2 py-0.5 rounded-full">
                                     {msg("identity-provider-login-last-used")}
                                 </span>
                             )}

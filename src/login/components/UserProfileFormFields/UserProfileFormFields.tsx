@@ -81,7 +81,7 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
                         >
                             <FieldLabel htmlFor={attribute.name} className="gap-0.5">
                                 {advancedMsg(attribute.displayName ?? "")}
-                                {attribute.required && <span>*</span>}
+                                {attribute.required && <span aria-hidden="true">*</span>}
                             </FieldLabel>
                             {attribute.annotations.inputHelperTextBefore !==
                                 undefined && (

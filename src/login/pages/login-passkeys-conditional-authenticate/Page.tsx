@@ -39,7 +39,7 @@ export function Page() {
                     <div id="kc-registration">
                         <span>
                             ${msg("noAccount")}{" "}
-                            <a tabIndex={6} href={url.registrationUrl}>
+                            <a href={url.registrationUrl}>
                                 {msg("doRegister")}
                             </a>
                         </span>

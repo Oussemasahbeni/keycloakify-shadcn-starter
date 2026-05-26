@@ -15,13 +15,10 @@ export function Page() {
             displayInfo
             headerNode={msg("emailVerifyTitle")}
             infoNode={
-                <p className="instruction">
+                <p className="text-start">
                     {msg("emailVerifyInstruction2")}
                     <br />
-                    <a
-                        className="text-primary dark:text-white underline"
-                        href={url.loginAction}
-                    >
+                    <a className="text-primary underline" href={url.loginAction}>
                         {msg("doClickHere")}
                     </a>
                     &nbsp;
