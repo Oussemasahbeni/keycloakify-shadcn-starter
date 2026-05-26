@@ -10,7 +10,7 @@ on:
 
 env:
     NODE_VERSION: "24"
-    PNPM_VERSION: "10"
+    PNPM_VERSION: "11"
 
 jobs:
     test:
@@ -18,7 +18,7 @@ jobs:
         steps:
             - uses: actions/checkout@v6
 
-            - uses: pnpm/action-setup@v4
+            - uses: pnpm/action-setup@v6
               with:
                   version: ${{ env.PNPM_VERSION }}
 
@@ -72,7 +72,7 @@ jobs:
         steps:
             - uses: actions/checkout@v6
 
-            - uses: pnpm/action-setup@v4
+            - uses: pnpm/action-setup@v6
               with:
                   version: ${{ env.PNPM_VERSION }}
 
@@ -103,7 +103,7 @@ jobs:
         steps:
             - uses: actions/checkout@v6
 
-            - uses: pnpm/action-setup@v4
+            - uses: pnpm/action-setup@v6
               with:
                   version: ${{ env.PNPM_VERSION }}
 
@@ -144,7 +144,7 @@ jobs:
         steps:
             - uses: actions/checkout@v6
 
-            - uses: pnpm/action-setup@v4
+            - uses: pnpm/action-setup@v6
               with:
                   version: ${{ env.PNPM_VERSION }}
 

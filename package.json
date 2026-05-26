@@ -25,7 +25,7 @@
     },
     "license": "MIT",
     "keywords": [],
-    "packageManager": "pnpm",
+    "packageManager": "pnpm@11.0.0",
     "dependencies": {
         "@fontsource-variable/figtree": "^5.2.10",
         "@fontsource-variable/geist": "^5.2.9",
