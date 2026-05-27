@@ -69,7 +69,7 @@
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^7.1.1",
         "eslint-plugin-react-refresh": "^0.5.2",
-        "eslint-plugin-storybook": "^10.4.0",
+        "eslint-plugin-storybook": "^10.4.1",
         "globals": "^17.6.0",
         "jsx-email": "^3.2.0",
         "keycloakify-emails": "3.3.1",
