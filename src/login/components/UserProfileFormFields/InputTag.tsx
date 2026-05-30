@@ -1,7 +1,7 @@
-import { Input } from "@/components/ui/input";
-import { InputGroupInput } from '@/components/ui/input-group';
+import { Input } from "#/components/ui/input";
+import { InputGroupInput } from "#/components/ui/input-group";
+import { useI18n } from "#/login/i18n";
 import { assert } from "tsafe/assert";
-import { useI18n } from "../../i18n";
 import { AddRemoveButtonsMultiValuedAttribute } from "./AddRemoveButtonsMultiValuedAttribute";
 import { FieldErrors } from "./FieldErrors";
 import type { InputFieldByTypeProps } from "./InputFieldByType";
@@ -19,7 +19,6 @@ export function InputTag(
     } = props;
 
     const { advancedMsgStr } = useI18n();
-
 
     const InputComponent = isInGroup ? InputGroupInput : Input;
     return (

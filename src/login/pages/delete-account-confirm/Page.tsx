@@ -1,7 +1,8 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Alert, AlertDescription } from "#/components/ui/alert";
+import { Button } from "#/components/ui/button";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+import { AlertTriangle } from "lucide-react";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 
@@ -20,6 +21,7 @@ export function Page() {
                 method="post"
             >
                 <Alert variant="warning">
+                    <AlertTriangle />
                     <AlertDescription>
                         <span>{msg("irreversibleAction")}</span>
                     </AlertDescription>
@@ -56,11 +58,7 @@ export function Page() {
                         </Button>
                     )}
 
-                    <Button
-                        type="submit"
-                        variant="destructive"
-                        className="sm:flex-1 text-white"
-                    >
+                    <Button type="submit" variant="destructive" className="sm:flex-1">
                         {msgStr("doConfirmDelete")}
                     </Button>
                 </div>

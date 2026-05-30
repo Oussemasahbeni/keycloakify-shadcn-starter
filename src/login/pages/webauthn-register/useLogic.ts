@@ -1,5 +1,5 @@
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { useRef } from "react";
 import { base64url } from "rfc4648";
 import { assert } from "tsafe/assert";

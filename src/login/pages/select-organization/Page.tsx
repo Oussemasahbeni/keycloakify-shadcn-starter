@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "#/components/ui/button";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue
-} from "@/components/ui/select";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+} from "#/components/ui/select";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { Building2 } from "lucide-react";
 import { type MouseEvent, useRef, useState } from "react";
 import { assert } from "tsafe/assert";
@@ -23,8 +23,6 @@ export function Page() {
     const [selectedOrg, setSelectedOrg] = useState<string>("");
     const formRef = useRef<HTMLFormElement>(null);
     const organizationInputRef = useRef<HTMLInputElement>(null);
-
-    const dir = document.dir || "ltr";
 
     const onOrganizationClick =
         (organizationAlias: string) => (event: MouseEvent<HTMLButtonElement>) => {
@@ -70,15 +68,15 @@ export function Page() {
                         <div className="space-y-3">
                             <Select
                                 value={selectedOrg}
-                                onValueChange={setSelectedOrg}
+                                onValueChange={value => setSelectedOrg(value ?? "")}
                                 disabled={isSubmitting}
                             >
-                                <SelectTrigger className="w-full" dir={dir}>
+                                <SelectTrigger className="w-full">
                                     <SelectValue
                                         placeholder={msg("organization.pickPlaceholder")}
                                     />
                                 </SelectTrigger>
-                                <SelectContent dir={dir}>
+                                <SelectContent alignItemWithTrigger={false}>
                                     {organizations.map(({ alias, name }) => (
                                         <SelectItem key={alias} value={alias}>
                                             <div className="flex items-center gap-2">

@@ -1,11 +1,9 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "#/components/ui/button";
+import { useI18n } from "#/login/i18n";
 import { Fingerprint } from "lucide-react";
-import { useI18n } from '../../i18n';
-import { useLogic, type UseLogicProps } from './useLogic';
-
+import { useLogic, type UseLogicProps } from "./useLogic";
 
 export function WebAuthnConditionalUI(props: UseLogicProps) {
-
     const { msgStr } = useI18n();
 
     const { webAuthnFormRef, onPasskeyDoAuthenticateClick } = useLogic(props);

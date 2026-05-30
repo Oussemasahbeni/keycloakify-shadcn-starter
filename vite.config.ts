@@ -7,6 +7,7 @@ import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    resolve: { tsconfigPaths: true },
     plugins: [
         react(),
         tailwindcss(),
@@ -91,10 +92,5 @@ export default defineConfig({
                 });
             }
         })
-    ],
-    resolve: {
-        alias: {
-            "@": path.resolve(__dirname, "./src")
-        }
-    }
+    ]
 });

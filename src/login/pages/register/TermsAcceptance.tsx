@@ -1,8 +1,8 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import { FieldError } from "@/components/ui/field";
-import { Label } from "@/components/ui/label";
-import { useI18n } from "@/login/i18n";
-import type { KcContext } from "@/login/KcContext";
+import { Checkbox } from "#/components/ui/checkbox";
+import { FieldError } from "#/components/ui/field";
+import { Label } from "#/components/ui/label";
+import { useI18n } from "#/login/i18n";
+import type { KcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 
 export function TermsAcceptance(props: {

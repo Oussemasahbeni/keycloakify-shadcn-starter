@@ -1,12 +1,17 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from '@/components/ui/button';
-import { Field, FieldLabel } from '@/components/ui/field';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Alert, AlertDescription } from "#/components/ui/alert";
+import { Button } from "#/components/ui/button";
+import { Field, FieldLabel } from "#/components/ui/field";
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput
+} from "#/components/ui/input-group";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { XCircle } from "lucide-react";
 import { useState } from "react";
-import { MdCheck, MdContentCopy } from 'react-icons/md';
+import { MdCheck, MdContentCopy } from "react-icons/md";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 
@@ -50,7 +55,7 @@ export function Page() {
                                     readOnly
                                     className="font-mono"
                                 />
-                                <InputGroupAddon align="inline-end" >
+                                <InputGroupAddon align="inline-end">
                                     <Button
                                         onClick={handleCopy}
                                         variant="secondary"
@@ -67,11 +72,11 @@ export function Page() {
                                 </InputGroupAddon>
                             </InputGroup>
                         </Field>
-
                     </>
                 ) : (
                     kcContext.code.error && (
                         <Alert variant="error">
+                            <XCircle />
                             <AlertDescription>
                                 <p
                                     id="error"
@@ -84,6 +89,6 @@ export function Page() {
                     )
                 )}
             </div>
-        </Template >
+        </Template>
     );
 }

@@ -1,20 +1,33 @@
-import { cn } from "@/components/lib/utils";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "#/components/ui/alert";
+import { buttonVariants } from "#/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card";
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger
-} from "@/components/ui/tooltip";
+} from "#/components/ui/tooltip";
+import { cn } from "#/lib/utils";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
-import { RotateCcw, User } from "lucide-react";
+import {
+    CircleAlert,
+    CircleCheck,
+    Info,
+    RotateCcw,
+    TriangleAlert,
+    User
+} from "lucide-react";
 import { type ReactNode } from "react";
-import { useI18n } from "../../i18n";
-import { useKcContext } from "../../KcContext";
 import type { TemplateProps } from "./Template";
+
+const messageIcons = {
+    success: CircleCheck,
+    warning: TriangleAlert,
+    error: CircleAlert,
+    info: Info
+} as const;
 
 type TemplateContentProps = TemplateProps & {
     logoWhiteUrl: string;
@@ -41,14 +54,13 @@ export function TemplateContent(props: TemplateContentProps) {
     const { kcContext } = useKcContext();
     const { auth, url, message, isAppInitiatedAction, realm } = kcContext;
     const { msg, msgStr } = useI18n();
-    const { kcClsx } = useKcClsx();
 
     const titleNode: ReactNode = !(
         auth !== undefined &&
         auth.showUsername &&
         !auth.showResetCredentials
     ) ? (
-        <h1 className="text-xl">{headerNode}</h1>
+        <h1 className="text-lg">{headerNode}</h1>
     ) : (
         <div id="kc-username" className="flex items-center justify-between gap-2">
             <div className="flex gap-4 items-center">
@@ -66,17 +78,21 @@ export function TemplateContent(props: TemplateContentProps) {
 
             <TooltipProvider>
                 <Tooltip>
-                    <TooltipTrigger asChild>
-                        <Button variant="outline" size="icon" asChild>
+                    <TooltipTrigger
+                        render={
                             <a
                                 id="reset-login"
+                                className={buttonVariants({
+                                    variant: "outline",
+                                    size: "icon"
+                                })}
                                 href={url.loginRestartFlowUrl}
                                 aria-label={msgStr("restartLoginTooltip")}
                             >
                                 <RotateCcw className="size-4" />
                             </a>
-                        </Button>
-                    </TooltipTrigger>
+                        }
+                    />
                     <TooltipContent>
                         <p>{msg("restartLoginTooltip")}</p>
                     </TooltipContent>
@@ -120,7 +136,7 @@ export function TemplateContent(props: TemplateContentProps) {
                         <div className="flex items-center justify-between gap-2">
                             <div>{titleNode}</div>
                             <div>
-                                <span className="subtitle">
+                                <span className="text-sm">
                                     <span className="text-red-500" aria-hidden="true">
                                         *
                                     </span>
@@ -140,6 +156,10 @@ export function TemplateContent(props: TemplateContentProps) {
                         message !== undefined &&
                         (message.type !== "warning" || !isAppInitiatedAction) && (
                             <Alert variant={message.type}>
+                                {(() => {
+                                    const Icon = messageIcons[message.type];
+                                    return <Icon aria-hidden="true" />;
+                                })()}
                                 <AlertDescription>
                                     <span
                                         dangerouslySetInnerHTML={{
@@ -159,28 +179,25 @@ export function TemplateContent(props: TemplateContentProps) {
                             action={url.loginAction}
                             method="post"
                         >
-                            <div className={kcClsx("kcFormGroupClass")}>
+                            <div>
                                 <input type="hidden" name="tryAnotherWay" value="on" />
-                                <Button
-                                    type="button"
-                                    className="w-full"
-                                    variant="outline"
-                                    asChild
+                                <a
+                                    href="#"
+                                    id="try-another-way"
+                                    onClick={event => {
+                                        document.forms[
+                                            "kc-select-try-another-way-form" as never
+                                        ].submit();
+                                        event.preventDefault();
+                                        return false;
+                                    }}
+                                    className={cn(
+                                        buttonVariants({ variant: "outline" }),
+                                        "w-full"
+                                    )}
                                 >
-                                    <a
-                                        href="#"
-                                        id="try-another-way"
-                                        onClick={event => {
-                                            document.forms[
-                                                "kc-select-try-another-way-form" as never
-                                            ].submit();
-                                            event.preventDefault();
-                                            return false;
-                                        }}
-                                    >
-                                        {msg("doTryAnotherWay")}
-                                    </a>
-                                </Button>
+                                    {msg("doTryAnotherWay")}
+                                </a>
                             </div>
                         </form>
                     )}

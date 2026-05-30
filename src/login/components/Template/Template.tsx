@@ -1,17 +1,17 @@
+import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
 import defaultLogo from "../../assets/img/default-logo.svg";
-import { useI18n } from "../../i18n";
-import { useKcContext } from "../../KcContext";
 import { CenteredCardLayout } from "./layouts/CenteredCardLayout";
 import { ImageAsideLayout } from "./layouts/ImageAsideLayout";
 import { TwoColumnLayout } from "./layouts/TwoColumnLayout";
 import { TemplateContent } from "./TemplateContent";
 import { useApplyThemePreset } from "./theme/useApplyThemePreset";
 import { useInitializeTemplate } from "./useInitializeTemplate";
-import { resolveAssetUrl } from "@/login/shared/resolveAssetUrl";
 
 export type TemplateProps = {
     displayInfo?: boolean;

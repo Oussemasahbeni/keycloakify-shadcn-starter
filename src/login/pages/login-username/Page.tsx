@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "#/components/ui/button";
+import { Checkbox } from "#/components/ui/checkbox";
+import { Input } from "#/components/ui/input";
+import { Label } from "#/components/ui/label";
 import { useState } from "react";
 
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { WebAuthnConditionalUI } from '@/login/components/WebAuthnConditionalUi';
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
@@ -25,7 +25,7 @@ export function Page() {
         login,
         registrationDisabled,
         messagesPerField,
-        enableWebAuthnConditionalUI,
+        enableWebAuthnConditionalUI
     } = kcContext;
 
     const { msg, msgStr } = useI18n();
@@ -53,7 +53,9 @@ export function Page() {
                 </div>
             }
             headerNode={msg("doLogIn")}
-            socialProvidersNode={realm.password && social !== undefined && <SocialProviders />}
+            socialProvidersNode={
+                realm.password && social !== undefined && <SocialProviders />
+            }
         >
             <div>
                 {realm.password && (
@@ -73,8 +75,8 @@ export function Page() {
                                     {!realm.loginWithEmailAllowed
                                         ? msg("email")
                                         : !realm.registrationEmailAsUsername
-                                            ? msg("usernameOrEmail")
-                                            : msg("username")}
+                                          ? msg("usernameOrEmail")
+                                          : msg("username")}
                                 </FieldLabel>
                                 <Input
                                     type="text"
@@ -87,12 +89,16 @@ export function Page() {
                                             ? !realm.loginWithEmailAllowed
                                                 ? msgStr("usernamePlaceholder")
                                                 : !realm.registrationEmailAsUsername
-                                                    ? msgStr("usernameOrEmailPlaceholder")
-                                                    : msgStr("emailPlaceholder")
+                                                  ? msgStr("usernameOrEmailPlaceholder")
+                                                  : msgStr("emailPlaceholder")
                                             : undefined
                                     }
                                     className="autofill:bg-background"
-                                    autoComplete={enableWebAuthnConditionalUI ? "username webauthn" : "username"}
+                                    autoComplete={
+                                        enableWebAuthnConditionalUI
+                                            ? "username webauthn"
+                                            : "username"
+                                    }
                                     aria-invalid={messagesPerField.existsError(
                                         "username"
                                     )}
@@ -143,14 +149,17 @@ export function Page() {
                     </form>
                 )}
 
-                {kcContext.enableWebAuthnConditionalUI && <WebAuthnConditionalUI
-                    isUserIdentified={kcContext.isUserIdentified}
-                    challenge={kcContext.challenge}
-                    rpId={kcContext.rpId}
-                    userVerification={kcContext.userVerification}
-                    createTimeout={kcContext.createTimeout}
-                    authenticators={kcContext.authenticators?.authenticators}
-                    loginAction={kcContext.url.loginAction} />}
+                {kcContext.enableWebAuthnConditionalUI && (
+                    <WebAuthnConditionalUI
+                        isUserIdentified={kcContext.isUserIdentified}
+                        challenge={kcContext.challenge}
+                        rpId={kcContext.rpId}
+                        userVerification={kcContext.userVerification}
+                        createTimeout={kcContext.createTimeout}
+                        authenticators={kcContext.authenticators?.authenticators}
+                        loginAction={kcContext.url.loginAction}
+                    />
+                )}
             </div>
         </Template>
     );

@@ -138,7 +138,7 @@
     input:-webkit-autofill:active {
         -webkit-text-fill-color: var(--foreground) !important;
 
-        /* Transition the background color so slowly it effectively never changes. 
+        /* Transition the background color so slowly it effectively never changes.
            This preserves the transparent or semi-transparent background styles. */
         transition: background-color 9999s ease-in-out 0s;
     }

@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { LogoutOtherSessions } from "@/login/components/LogoutOtherSessions";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Button } from "#/components/ui/button";
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
-import { useLogic } from './useLogic';
+import { useLogic } from "./useLogic";
 
 export function Page() {
     const { kcContext } = useKcContext();
@@ -12,12 +12,7 @@ export function Page() {
 
     const { msg, msgStr } = useI18n();
 
-    const {
-        registerFormRef,
-        onRegisterClick,
-    } = useLogic();
-    ;
-
+    const { registerFormRef, onRegisterClick } = useLogic();
     return (
         <Template
             headerNode={
@@ -36,9 +31,21 @@ export function Page() {
                     ref={registerFormRef}
                 >
                     <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-                    <input type="hidden" id="attestationObject" name="attestationObject" />
-                    <input type="hidden" id="publicKeyCredentialId" name="publicKeyCredentialId" />
-                    <input type="hidden" id="authenticatorLabel" name="authenticatorLabel" />
+                    <input
+                        type="hidden"
+                        id="attestationObject"
+                        name="attestationObject"
+                    />
+                    <input
+                        type="hidden"
+                        id="publicKeyCredentialId"
+                        name="publicKeyCredentialId"
+                    />
+                    <input
+                        type="hidden"
+                        id="authenticatorLabel"
+                        name="authenticatorLabel"
+                    />
                     <input type="hidden" id="transports" name="transports" />
                     <input type="hidden" id="error" name="error" />
                 </form>

@@ -1,13 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
-import { LogoutOtherSessions } from "@/login/components/LogoutOtherSessions";
-import { PasswordVisibilityButton } from "@/login/components/PasswordVisibilityButton";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Button } from "#/components/ui/button";
+import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { InputGroup, InputGroupAddon, InputGroupInput } from '#/components/ui/input-group';
+
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
+import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton";
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
 
 export function Page() {
     const { kcContext } = useKcContext();

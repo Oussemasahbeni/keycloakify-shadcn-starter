@@ -1,7 +1,5 @@
-import { cn } from "@/components/lib/utils";
-import { useI18n } from "@/login/i18n";
+import { useI18n } from "#/login/i18n";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { assert } from "tsafe/assert";
 
 export function GroupLabel(props: {
@@ -14,8 +12,6 @@ export function GroupLabel(props: {
 
     const { advancedMsg } = useI18n();
 
-    const { kcClsx } = useKcClsx();
-
     if (attribute.group?.name !== groupNameRef.current) {
         groupNameRef.current = attribute.group?.name ?? "";
 
@@ -24,10 +20,7 @@ export function GroupLabel(props: {
 
             return (
                 <div
-                    className={cn(
-                        "space-y-4 p-4 border rounded-lg bg-card",
-                        kcClsx("kcFormGroupClass")
-                    )}
+                    className="space-y-4 p-4 border rounded-lg bg-card"
                     {...Object.fromEntries(
                         Object.entries(attribute.group.html5DataAnnotations).map(
                             ([key, value]) => [`data-${key}`, value]
@@ -42,13 +35,10 @@ export function GroupLabel(props: {
                                 : attribute.group.name;
 
                         return (
-                            <div className={cn("", kcClsx("kcContentWrapperClass"))}>
+                            <div>
                                 <h3
                                     id={`header-${attribute.group.name}`}
-                                    className={cn(
-                                        "text-lg font-semibold",
-                                        kcClsx("kcFormGroupHeader")
-                                    )}
+                                    className="text-lg font-semibold"
                                 >
                                     {groupHeaderText}
                                 </h3>
@@ -65,13 +55,10 @@ export function GroupLabel(props: {
                             );
 
                             return (
-                                <div className={cn("", kcClsx("kcLabelWrapperClass"))}>
+                                <div>
                                     <p
                                         id={`description-${attribute.group.name}`}
-                                        className={cn(
-                                            "text-sm text-muted-foreground",
-                                            kcClsx("kcLabelClass")
-                                        )}
+                                        className="text-sm text-muted-foreground"
                                     >
                                         {groupDescriptionText}
                                     </p>

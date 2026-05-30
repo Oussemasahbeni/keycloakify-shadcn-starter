@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { FieldError } from "@/components/ui/field";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Button } from "#/components/ui/button";
+import { FieldError } from "#/components/ui/field";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "#/components/ui/input-otp";
+import { Label } from "#/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { useState } from "react";

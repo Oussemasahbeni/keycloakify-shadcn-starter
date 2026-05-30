@@ -1,10 +1,12 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "#/components/ui/alert";
+import { buttonVariants } from "#/components/ui/button";
+import { cn } from "#/lib/utils";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { Info } from "lucide-react";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
-import { useI18n } from "../../i18n";
-import { useKcContext } from "../../KcContext";
 
 export function Page() {
     const { kcContext } = useKcContext();
@@ -28,6 +30,7 @@ export function Page() {
             }
         >
             <Alert variant="info">
+                <Info />
                 <AlertDescription>
                     <p
                         dangerouslySetInnerHTML={{
@@ -64,28 +67,48 @@ export function Page() {
 
                 if (kcContext.pageRedirectUri) {
                     return (
-                        <Button type="button" className="flex ms-auto">
-                            <a href={kcContext.pageRedirectUri}>
-                                {msg("backToApplication")}
-                            </a>
-                        </Button>
+                        <a
+                            href={kcContext.pageRedirectUri}
+                            className={cn(
+                                buttonVariants({
+                                    variant: "default"
+                                }),
+                                "flex ms-auto"
+                            )}
+                        >
+                            {msg("backToApplication")}
+                        </a>
                     );
                 }
                 if (kcContext.actionUri) {
                     return (
-                        <Button type="button" className="flex ms-auto">
-                            <a href={kcContext.actionUri}>{msg("proceedWithAction")}</a>
-                        </Button>
+                        <a
+                            href={kcContext.actionUri}
+                            className={cn(
+                                buttonVariants({
+                                    variant: "default"
+                                }),
+                                "flex ms-auto"
+                            )}
+                        >
+                            {msg("proceedWithAction")}
+                        </a>
                     );
                 }
 
                 if (kcContext.client.baseUrl) {
                     return (
-                        <Button type="button" className="flex ms-auto">
-                            <a href={kcContext.client.baseUrl}>
-                                {msg("backToApplication")}
-                            </a>
-                        </Button>
+                        <a
+                            href={kcContext.client.baseUrl}
+                            className={cn(
+                                buttonVariants({
+                                    variant: "link"
+                                }),
+                                "flex ms-auto"
+                            )}
+                        >
+                            {msg("backToApplication")}
+                        </a>
                     );
                 }
             })()}

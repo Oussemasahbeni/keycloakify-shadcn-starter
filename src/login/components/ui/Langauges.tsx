@@ -1,12 +1,12 @@
+import { Button } from "#/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import { useI18n } from "@/login/i18n";
+} from "#/components/ui/dropdown-menu";
+import { useI18n } from "#/login/i18n";
 import { IoCheckmark, IoLanguage } from "react-icons/io5";
-import { Button } from "../../../components/ui/button";
 
 export function Languages() {
     const { msgStr, currentLanguage, enabledLanguages } = useI18n();
@@ -14,15 +14,14 @@ export function Languages() {
     return (
         <div>
             <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button
-                        variant="outline"
-                        aria-label={msgStr("languages")}
-                    >
-                        <IoLanguage />
-                        {currentLanguage.label}
-                    </Button>
-                </DropdownMenuTrigger>
+                <DropdownMenuTrigger
+                    render={
+                        <Button variant="outline" aria-label={msgStr("languages")}>
+                            <IoLanguage />
+                            {currentLanguage.label}
+                        </Button>
+                    }
+                />
                 <DropdownMenuContent
                     id="language-switch1"
                     role="menu"
@@ -32,7 +31,7 @@ export function Languages() {
                         const isActive = languageTag === currentLanguage.languageTag;
 
                         return (
-                            <DropdownMenuItem key={languageTag} asChild>
+                            <DropdownMenuItem key={languageTag}>
                                 <a
                                     role="menuitem"
                                     id={`language-${i + 1}`}

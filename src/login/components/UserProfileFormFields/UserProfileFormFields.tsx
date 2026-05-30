@@ -1,4 +1,6 @@
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Field, FieldDescription, FieldLabel } from "#/components/ui/field";
+import { useKcContext } from "#/login/KcContext";
+import { useI18n } from "#/login/i18n";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import type { JSX } from "@keycloakify/login-ui/tools/JSX";
 import {
@@ -8,8 +10,6 @@ import {
 } from "@keycloakify/login-ui/useUserProfileForm";
 import { Fragment, useEffect } from "react";
 import { assert } from "tsafe/assert";
-import { useKcContext } from "../../KcContext";
-import { useI18n } from "../../i18n";
 import { DO_MAKE_USER_CONFIRM_PASSWORD } from "./DO_MAKE_USER_CONFIRM_PASSWORD";
 import { FieldErrors } from "./FieldErrors";
 import { GroupLabel } from "./GroupLabel";
@@ -85,15 +85,15 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
                             </FieldLabel>
                             {attribute.annotations.inputHelperTextBefore !==
                                 undefined && (
-                                    <FieldDescription
-                                        id={`form-help-text-before-${attribute.name}`}
-                                        aria-live="polite"
-                                    >
-                                        {advancedMsg(
-                                            attribute.annotations.inputHelperTextBefore
-                                        )}
-                                    </FieldDescription>
-                                )}
+                                <FieldDescription
+                                    id={`form-help-text-before-${attribute.name}`}
+                                    aria-live="polite"
+                                >
+                                    {advancedMsg(
+                                        attribute.annotations.inputHelperTextBefore
+                                    )}
+                                </FieldDescription>
+                            )}
                             <InputFieldByType
                                 attribute={attribute}
                                 valueOrValues={valueOrValues}

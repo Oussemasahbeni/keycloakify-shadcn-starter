@@ -1,11 +1,11 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { LogoutOtherSessions } from "@/login/components/LogoutOtherSessions";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
-import { Copy, Download, Printer } from "lucide-react";
+import { Alert, AlertDescription } from "#/components/ui/alert";
+import { Button } from "#/components/ui/button";
+import { Checkbox } from "#/components/ui/checkbox";
+import { Label } from "#/components/ui/label";
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+import { AlertTriangle, Copy, Download, Printer } from "lucide-react";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 import { useScript } from "./useScript";
@@ -26,6 +26,7 @@ export function Page() {
         <Template headerNode={msg("recovery-code-config-header")}>
             <div className="space-y-6">
                 <Alert variant="warning">
+                    <AlertTriangle />
                     <AlertDescription>
                         <div className="space-y-2">
                             <h4 className="font-medium">
@@ -45,7 +46,7 @@ export function Page() {
                     >
                         {recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesList.map(
                             (code, index) => (
-                                <li key={index} className="flex items-center space-x-2">
+                                <li key={index} className="flex items-center">
                                     <span className="text-muted-foreground min-w-8">
                                         {index + 1}:
                                     </span>

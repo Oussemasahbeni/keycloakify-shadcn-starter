@@ -1,5 +1,5 @@
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import type { ReactNode } from "react";
 import shape from "../../../assets/img/shape.svg";

@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "#/components/ui/card";
 import type { ReactNode } from "react";
 import placeholder from "../../../assets/img/placeholder.svg";
 import { TemplateTopBar } from "../TemplateTopBar";

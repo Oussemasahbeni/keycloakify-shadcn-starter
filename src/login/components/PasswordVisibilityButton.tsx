@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { useI18n } from "@/login/i18n";
+import { Button } from '#/components/ui/button';
+import { useI18n } from "#/login/i18n";
 import { useIsPasswordRevealed } from "keycloakify/tools/useIsPasswordRevealed";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 

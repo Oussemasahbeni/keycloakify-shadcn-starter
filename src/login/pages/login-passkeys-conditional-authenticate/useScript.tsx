@@ -3,8 +3,8 @@ import { waitForElementMountedOnDom } from "@keycloakify/login-ui/tools/waitForE
 import { useEffect } from "react";
 import { assert } from "tsafe/assert";
 
-import { useI18n } from "../../i18n";
-import { useKcContext } from "../../KcContext";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 
 export function useScript(params: { webAuthnButtonId: string }) {
     const { webAuthnButtonId } = params;

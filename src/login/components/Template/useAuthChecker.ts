@@ -1,4 +1,4 @@
-import { useKcContext } from "@/login/KcContext";
+import { useKcContext } from "#/login/KcContext";
 import { useEffect } from "react";
 
 // see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/authChecker.js

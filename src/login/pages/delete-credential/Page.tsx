@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Button } from "#/components/ui/button";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 
@@ -15,7 +15,6 @@ export function Page() {
             displayMessage={false}
             headerNode={msg("deleteCredentialTitle", kcContext.credentialLabel)}
         >
-
             <p>{msg("deleteCredentialMessage", kcContext.credentialLabel)}</p>
 
             <form
@@ -39,7 +38,7 @@ export function Page() {
                         id="kc-accept"
                         type="submit"
                         variant="destructive"
-                        className="sm:flex-1 text-white"
+                        className="sm:flex-1"
                     >
                         {msgStr("doConfirmDelete")}
                     </Button>

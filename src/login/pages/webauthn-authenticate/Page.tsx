@@ -1,7 +1,7 @@
-import { Input } from "@/components/ui/input";
-import { WebAuthnConditionalUI } from '@/login/components/WebAuthnConditionalUi';
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Input } from "#/components/ui/input";
+import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { clsx } from "keycloakify/tools/clsx";
 import { Shield } from "lucide-react";
@@ -25,7 +25,7 @@ export function Page() {
         createTimeout,
         rpId,
         challenge,
-        isUserIdentified,
+        isUserIdentified
     } = kcContext;
 
     const { msg, advancedMsg } = useI18n();
@@ -49,7 +49,6 @@ export function Page() {
             headerNode={msg("webauthn-login-title")}
         >
             <div className="space-y-4">
-
                 {authenticators && (
                     <>
                         <form id="authn_select" hidden>
@@ -118,46 +117,46 @@ export function Page() {
                                                     {authenticator.transports
                                                         .displayNameProperties
                                                         ?.length && (
-                                                            <div
-                                                                id={`kc-webauthn-authenticator-transport-${i}`}
-                                                                className="text-xs text-muted-foreground mt-1"
-                                                            >
-                                                                {authenticator.transports.displayNameProperties
-                                                                    .map(
-                                                                        (
-                                                                            displayNameProperty,
-                                                                            i,
-                                                                            arr
-                                                                        ) => ({
-                                                                            displayNameProperty,
-                                                                            hasNext:
-                                                                                i !==
-                                                                                arr.length - 1
-                                                                        })
+                                                        <div
+                                                            id={`kc-webauthn-authenticator-transport-${i}`}
+                                                            className="text-xs text-muted-foreground mt-1"
+                                                        >
+                                                            {authenticator.transports.displayNameProperties
+                                                                .map(
+                                                                    (
+                                                                        displayNameProperty,
+                                                                        i,
+                                                                        arr
+                                                                    ) => ({
+                                                                        displayNameProperty,
+                                                                        hasNext:
+                                                                            i !==
+                                                                            arr.length - 1
+                                                                    })
+                                                                )
+                                                                .map(
+                                                                    ({
+                                                                        displayNameProperty,
+                                                                        hasNext
+                                                                    }) => (
+                                                                        <Fragment
+                                                                            key={
+                                                                                displayNameProperty
+                                                                            }
+                                                                        >
+                                                                            {advancedMsg(
+                                                                                displayNameProperty
+                                                                            )}
+                                                                            {hasNext && (
+                                                                                <span>
+                                                                                    ,{" "}
+                                                                                </span>
+                                                                            )}
+                                                                        </Fragment>
                                                                     )
-                                                                    .map(
-                                                                        ({
-                                                                            displayNameProperty,
-                                                                            hasNext
-                                                                        }) => (
-                                                                            <Fragment
-                                                                                key={
-                                                                                    displayNameProperty
-                                                                                }
-                                                                            >
-                                                                                {advancedMsg(
-                                                                                    displayNameProperty
-                                                                                )}
-                                                                                {hasNext && (
-                                                                                    <span>
-                                                                                        ,{" "}
-                                                                                    </span>
-                                                                                )}
-                                                                            </Fragment>
-                                                                        )
-                                                                    )}
-                                                            </div>
-                                                        )}
+                                                                )}
+                                                        </div>
+                                                    )}
 
                                                     <div className="text-xs text-muted-foreground mt-1">
                                                         <span

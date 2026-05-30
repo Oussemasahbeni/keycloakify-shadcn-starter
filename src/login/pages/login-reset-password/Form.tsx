@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { Button, buttonVariants } from "#/components/ui/button";
+import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { Input } from "#/components/ui/input";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { assert } from "tsafe/assert";
-import { useKcContext } from "../../KcContext";
-import { useI18n } from "../../i18n";
 
 export function Form() {
     const { kcContext } = useKcContext();
@@ -26,8 +26,8 @@ export function Form() {
                     {!kcContext.realm.loginWithEmailAllowed
                         ? msg("username")
                         : !kcContext.realm.registrationEmailAsUsername
-                            ? msg("usernameOrEmail")
-                            : msg("email")}
+                          ? msg("usernameOrEmail")
+                          : msg("email")}
                 </FieldLabel>
                 <Input
                     type="text"
@@ -40,8 +40,8 @@ export function Form() {
                             ? !kcContext.realm.loginWithEmailAllowed
                                 ? msgStr("usernamePlaceholder")
                                 : !kcContext.realm.registrationEmailAsUsername
-                                    ? msgStr("usernameOrEmailPlaceholder")
-                                    : msgStr("emailPlaceholder")
+                                  ? msgStr("usernameOrEmailPlaceholder")
+                                  : msgStr("emailPlaceholder")
                             : undefined
                     }
                     aria-invalid={kcContext.messagesPerField.existsError("username")}
@@ -66,11 +66,15 @@ export function Form() {
             </Button>
 
             <div className="flex justify-end">
-                <Button variant="link" type="button" asChild>
-                    <a id="backToApplication" href={kcContext.url.loginUrl}>
-                        {msg("backToApplication")}
-                    </a>
-                </Button>
+                <a
+                    id="backToApplication"
+                    href={kcContext.url.loginUrl}
+                    className={buttonVariants({
+                        variant: "link"
+                    })}
+                >
+                    {msg("backToApplication")}
+                </a>
             </div>
         </form>
     );

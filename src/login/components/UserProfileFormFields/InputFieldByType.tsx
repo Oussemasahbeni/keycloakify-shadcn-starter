@@ -1,4 +1,4 @@
-import { InputGroup, InputGroupAddon } from '@/components/ui/input-group';
+import { InputGroup, InputGroupAddon } from '#/components/ui/input-group';
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import type {
     FormAction,

@@ -1,17 +1,20 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
-import { Label } from "@/components/ui/label";
-import { WebAuthnConditionalUI } from '@/login/components/WebAuthnConditionalUi';
-import { useKcContext } from "@/login/KcContext";
+import { Button } from "#/components/ui/button";
+import { Checkbox } from "#/components/ui/checkbox";
+import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { Input } from "#/components/ui/input";
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput
+} from "#/components/ui/input-group";
+import { Label } from "#/components/ui/label";
+import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useState } from "react";
 import { assert } from "tsafe/assert";
 import { PasswordVisibilityButton } from "../../components/PasswordVisibilityButton";
-import { useI18n } from "../../i18n";
 
 export function Form() {
     const { kcContext } = useKcContext();
@@ -23,8 +26,6 @@ export function Form() {
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
     const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
-
-    const { kcClsx } = useKcClsx();
 
     return (
         <>
@@ -47,8 +48,8 @@ export function Form() {
                                         {!kcContext.realm.loginWithEmailAllowed
                                             ? msg("username")
                                             : !kcContext.realm.registrationEmailAsUsername
-                                                ? msg("usernameOrEmail")
-                                                : msg("email")}
+                                              ? msg("usernameOrEmail")
+                                              : msg("email")}
                                     </FieldLabel>
                                     <Input
                                         type="text"
@@ -56,13 +57,23 @@ export function Form() {
                                         defaultValue={kcContext.login.username ?? ""}
                                         name="username"
                                         autoFocus
-                                        placeholder={showPlaceholder ?
-                                            !kcContext.realm.loginWithEmailAllowed
-                                                ? msgStr("usernamePlaceholder")
-                                                : !kcContext.realm.registrationEmailAsUsername
-                                                    ? msgStr("usernameOrEmailPlaceholder")
-                                                    : msgStr("emailPlaceholder") : undefined}
-                                        autoComplete={kcContext.enableWebAuthnConditionalUI ? "username webauthn" : "username"}
+                                        placeholder={
+                                            showPlaceholder
+                                                ? !kcContext.realm.loginWithEmailAllowed
+                                                    ? msgStr("usernamePlaceholder")
+                                                    : !kcContext.realm
+                                                            .registrationEmailAsUsername
+                                                      ? msgStr(
+                                                            "usernameOrEmailPlaceholder"
+                                                        )
+                                                      : msgStr("emailPlaceholder")
+                                                : undefined
+                                        }
+                                        autoComplete={
+                                            kcContext.enableWebAuthnConditionalUI
+                                                ? "username webauthn"
+                                                : "username"
+                                        }
                                         aria-invalid={kcContext.messagesPerField.existsError(
                                             "username",
                                             "password"
@@ -72,21 +83,21 @@ export function Form() {
                                         "username",
                                         "password"
                                     ) && (
-                                            <FieldError>
-                                                <span
-                                                    id="input-error-username"
-                                                    aria-live="polite"
-                                                    dangerouslySetInnerHTML={{
-                                                        __html: kcSanitize(
-                                                            kcContext.messagesPerField.getFirstError(
-                                                                "username",
-                                                                "password"
-                                                            )
+                                        <FieldError>
+                                            <span
+                                                id="input-error-username"
+                                                aria-live="polite"
+                                                dangerouslySetInnerHTML={{
+                                                    __html: kcSanitize(
+                                                        kcContext.messagesPerField.getFirstError(
+                                                            "username",
+                                                            "password"
                                                         )
-                                                    }}
-                                                />
-                                            </FieldError>
-                                        )}
+                                                    )
+                                                }}
+                                            />
+                                        </FieldError>
+                                    )}
                                 </Field>
                             )}
 
@@ -100,36 +111,39 @@ export function Form() {
                                         id="password"
                                         name="password"
                                         autoComplete="current-password"
-                                        placeholder={showPlaceholder ? msgStr("passwordPlaceholder") : undefined}
+                                        placeholder={
+                                            showPlaceholder
+                                                ? msgStr("passwordPlaceholder")
+                                                : undefined
+                                        }
                                         aria-invalid={kcContext.messagesPerField.existsError(
                                             "username",
                                             "password"
                                         )}
                                     />
-                                    <InputGroupAddon align="inline-end" >
-                                        <PasswordVisibilityButton
-                                            passwordInputId="password" />
+                                    <InputGroupAddon align="inline-end">
+                                        <PasswordVisibilityButton passwordInputId="password" />
                                     </InputGroupAddon>
                                 </InputGroup>
                                 {kcContext.messagesPerField.existsError(
                                     "username",
                                     "password"
                                 ) && (
-                                        <FieldError>
-                                            <span
-                                                id="input-error-password"
-                                                aria-live="polite"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: kcSanitize(
-                                                        kcContext.messagesPerField.getFirstError(
-                                                            "username",
-                                                            "password"
-                                                        )
+                                    <FieldError>
+                                        <span
+                                            id="input-error-password"
+                                            aria-live="polite"
+                                            dangerouslySetInnerHTML={{
+                                                __html: kcSanitize(
+                                                    kcContext.messagesPerField.getFirstError(
+                                                        "username",
+                                                        "password"
                                                     )
-                                                }}
-                                            />
-                                        </FieldError>
-                                    )}
+                                                )
+                                            }}
+                                        />
+                                    </FieldError>
+                                )}
                             </Field>
 
                             <div className="space-y-1 flex justify-between text-xs">
@@ -169,7 +183,7 @@ export function Form() {
                                 </div>
                             </div>
 
-                            <div className={kcClsx("kcFormGroupClass")}>
+                            <div>
                                 <input
                                     type="hidden"
                                     id="id-hidden-input"
@@ -193,15 +207,17 @@ export function Form() {
                 </div>
             </div>
 
-            {kcContext.enableWebAuthnConditionalUI && <WebAuthnConditionalUI
-                isUserIdentified={kcContext.isUserIdentified}
-                challenge={kcContext.challenge}
-                rpId={kcContext.rpId}
-                userVerification={kcContext.userVerification}
-                createTimeout={kcContext.createTimeout}
-                authenticators={kcContext.authenticators?.authenticators}
-                loginAction={kcContext.url.loginAction}
-            />}
+            {kcContext.enableWebAuthnConditionalUI && (
+                <WebAuthnConditionalUI
+                    isUserIdentified={kcContext.isUserIdentified}
+                    challenge={kcContext.challenge}
+                    rpId={kcContext.rpId}
+                    userVerification={kcContext.userVerification}
+                    createTimeout={kcContext.createTimeout}
+                    authenticators={kcContext.authenticators?.authenticators}
+                    loginAction={kcContext.url.loginAction}
+                />
+            )}
         </>
     );
 }

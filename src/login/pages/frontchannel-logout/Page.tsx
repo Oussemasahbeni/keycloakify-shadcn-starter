@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { buttonVariants } from "#/components/ui/button";
+import { cn } from "#/lib/utils";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { useEffect, useState } from "react";
 import { FiCheck, FiExternalLink } from "react-icons/fi";
 import { assert } from "tsafe/assert";
@@ -60,16 +61,17 @@ export function Page() {
 
             {kcContext.logout.logoutRedirectUri && (
                 <div className="flex justify-center">
-                    <Button asChild size="lg">
-                        <a
-                            id="continue"
-                            href={kcContext.logout.logoutRedirectUri}
-                            className="flex items-center gap-2"
-                        >
-                            {msg("doContinue")}
-                            <FiExternalLink className="h-4 w-4" />
-                        </a>
-                    </Button>
+                    <a
+                        id="continue"
+                        href={kcContext.logout.logoutRedirectUri}
+                        className={cn(
+                            buttonVariants({ size: "lg" }),
+                            "flex items-center gap-2"
+                        )}
+                    >
+                        {msg("doContinue")}
+                        <FiExternalLink className="h-4 w-4" />
+                    </a>
                 </div>
             )}
         </Template>

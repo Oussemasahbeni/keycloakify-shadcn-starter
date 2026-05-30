@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "#/components/ui/button";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { assert } from "tsafe/assert";
-import { useKcContext } from "../../KcContext";
 import { Template } from "../../components/Template";
-import { useI18n } from "../../i18n";
 
 export function Page() {
     const { kcContext } = useKcContext();

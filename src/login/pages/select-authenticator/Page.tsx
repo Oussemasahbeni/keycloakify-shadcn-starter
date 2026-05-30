@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Button } from "#/components/ui/button";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { ChevronRight, Fingerprint, Globe, KeyRound, Shield } from "lucide-react";
 import { FaKey } from "react-icons/fa";
 import { assert } from "tsafe/assert";
@@ -70,13 +70,15 @@ export function Page() {
                         <Button
                             key={i}
                             variant="outline"
-                            className="w-full h-auto p-4 flex items-center justify-between text-left hover:bg-accent"
+                            className="w-full h-auto p-3 flex items-center justify-between text-left hover:bg-accent"
                             type="submit"
                             name="authenticationExecution"
                             value={authenticationSelection.authExecId}
                         >
-                            <div className="flex items-center gap-3 flex-1">
-                                {getAuthenticatorIcon(authenticationSelection)}
+                            <div className="flex items-start justify-start gap-3 flex-1">
+                                <span className="mt-0.5 shrink-0">
+                                    {getAuthenticatorIcon(authenticationSelection)}
+                                </span>
 
                                 <div className="flex-1 min-w-0">
                                     <div className="font-medium text-sm">

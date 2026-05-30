@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { useI18n } from "@/login/i18n";
-import { useKcContext } from "@/login/KcContext";
+import { Button, buttonVariants } from "#/components/ui/button";
+import { cn } from "#/lib/utils";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 
@@ -37,7 +38,11 @@ export function Page() {
                     <div className="flex justify-end">
                         <a
                             href={client.baseUrl}
-                            className="text-sm text-primary underline underline-offset-4"
+                            className={cn(
+                                buttonVariants({
+                                    variant: "link"
+                                })
+                            )}
                         >
                             {msg("backToApplication")}
                         </a>

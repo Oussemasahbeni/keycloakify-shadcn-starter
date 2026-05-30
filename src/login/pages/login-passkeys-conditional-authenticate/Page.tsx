@@ -1,10 +1,10 @@
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { clsx } from "@keycloakify/login-ui/tools/clsx";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { Fragment } from "react";
 import { assert } from "tsafe/assert";
-import { useKcContext } from "../../KcContext";
 import { Template } from "../../components/Template";
-import { useI18n } from "../../i18n";
 import { useScript } from "./useScript";
 
 export function Page() {
@@ -39,9 +39,7 @@ export function Page() {
                     <div id="kc-registration">
                         <span>
                             ${msg("noAccount")}{" "}
-                            <a href={url.registrationUrl}>
-                                {msg("doRegister")}
-                            </a>
+                            <a href={url.registrationUrl}>{msg("doRegister")}</a>
                         </span>
                     </div>
                 )
@@ -136,7 +134,7 @@ export function Page() {
                                                             undefined &&
                                                             authenticator.transports
                                                                 .displayNameProperties !==
-                                                            undefined &&
+                                                                undefined &&
                                                             authenticator.transports
                                                                 .displayNameProperties
                                                                 .length !== 0 && (
@@ -167,11 +165,11 @@ export function Page() {
                                                                                 </span>
                                                                                 {i !==
                                                                                     arr.length -
-                                                                                    1 && (
-                                                                                        <span>
-                                                                                            ,{" "}
-                                                                                        </span>
-                                                                                    )}
+                                                                                        1 && (
+                                                                                    <span>
+                                                                                        ,{" "}
+                                                                                    </span>
+                                                                                )}
                                                                             </Fragment>
                                                                         )
                                                                     )}
@@ -217,10 +215,13 @@ export function Page() {
                                 action={url.loginAction}
                                 method="post"
                                 style={{ display: "none" }}
-                                onSubmit={(event) => {
+                                onSubmit={event => {
                                     try {
-                                        const form = event.currentTarget as HTMLFormElement;
-                                        const loginBtn = form.elements.namedItem("login") as HTMLButtonElement | null;
+                                        const form =
+                                            event.currentTarget as HTMLFormElement;
+                                        const loginBtn = form.elements.namedItem(
+                                            "login"
+                                        ) as HTMLButtonElement | null;
                                         if (loginBtn) loginBtn.disabled = true;
                                     } catch {
                                         /* empty */

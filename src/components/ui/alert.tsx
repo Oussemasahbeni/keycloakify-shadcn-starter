@@ -1,59 +1,39 @@
-import { cn } from "@/components/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
-import { AlertTriangle, Info, XCircle } from "lucide-react";
 import * as React from "react";
-import { MdCheckCircle } from "react-icons/md";
+
+import { cn } from "#/lib/utils.ts";
 
 const alertVariants = cva(
-    "relative w-full rounded-lg border px-5 py-4 text-sm flex items-center gap-4 transition-all",
+    "group/alert relative grid w-full gap-0.5 rounded-(--radius) border px-2.5 py-2 text-start text-sm has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pe-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4",
     {
         variants: {
             variant: {
                 info: "bg-card text-card-foreground",
-                success: "bg-emerald-50/50 border-emerald-200 text-emerald-900 dark:bg-emerald-500/5 dark:border-emerald-500/20 dark:text-emerald-400",
-                warning: "bg-amber-50/50 border-amber-200 text-amber-900 dark:bg-amber-500/5 dark:border-amber-500/20 dark:text-amber-400",
-                error: "bg-destructive/5 border-destructive/20 text-destructive",
-            },
+                success:
+                    "bg-emerald-50/50 border-emerald-200 text-emerald-900 dark:bg-emerald-500/5 dark:border-emerald-500/20 dark:text-emerald-400",
+                warning:
+                    "bg-amber-50/50 border-amber-200 text-amber-900 dark:bg-amber-500/5 dark:border-amber-500/20 dark:text-amber-400",
+                error: "bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 [&>svg]:text-current border-destructive/20"
+            }
         },
         defaultVariants: {
-            variant: "info",
-        },
+            variant: "info"
+        }
     }
 );
 
-interface AlertProps
-    extends React.ComponentProps<"div">,
-    VariantProps<typeof alertVariants> {
-    showIcon?: boolean;
-}
-
 function Alert({
     className,
-    variant = "info",
-    showIcon = true,
-    children,
+    variant,
     ...props
-}: AlertProps) {
-    const Icon = {
-        info: Info,
-        error: XCircle,
-        warning: AlertTriangle,
-        success: MdCheckCircle,
-    }[variant as string] || Info;
-
+}: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
     return (
         <div
             data-slot="alert"
             role="alert"
             className={cn(alertVariants({ variant }), className)}
             {...props}
-        >
-            {showIcon && <Icon className="size-5 shrink-0" data-slot="alert-icon" />}
-            {/* We use a div wrapper for children to ensure Title and Description stack vertically */}
-            <div className="flex flex-col gap-0.5 flex-1">
-                {children}
-            </div>
-        </div>
+        />
     );
 }
 
@@ -62,7 +42,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="alert-title"
             className={cn(
-                "font-medium leading-none tracking-tight",
+                "font-medium group-has-[>svg]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
                 className
             )}
             {...props}
@@ -70,15 +50,12 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
     );
 }
 
-function AlertDescription({
-    className,
-    ...props
-}: React.ComponentProps<"div">) {
+function AlertDescription({ className, ...props }: React.ComponentProps<"div">) {
     return (
         <div
             data-slot="alert-description"
             className={cn(
-                "text-muted-foreground text-sm [&_p]:leading-relaxed",
+                "text-sm text-balance text-muted-foreground md:text-pretty [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
                 className
             )}
             {...props}
@@ -86,4 +63,14 @@ function AlertDescription({
     );
 }
 
-export { Alert, AlertDescription, AlertTitle };
+function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
+    return (
+        <div
+            data-slot="alert-action"
+            className={cn("absolute top-2 inset-e-2", className)}
+            {...props}
+        />
+    );
+}
+
+export { Alert, AlertAction, AlertDescription, AlertTitle };

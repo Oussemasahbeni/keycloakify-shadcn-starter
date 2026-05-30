@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "#/components/ui/button";
 import { clsx } from "@keycloakify/login-ui/tools/clsx";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useLayoutEffect, useState } from "react";
 import { assert } from "tsafe/assert";
-import { useKcContext } from "../../KcContext";
 import { UserProfileFormFields } from "../../components/UserProfileFormFields";
-import { useI18n } from "../../i18n";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { TermsAcceptance } from "./TermsAcceptance";
 
 export function Form() {

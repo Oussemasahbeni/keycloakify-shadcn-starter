@@ -1,6 +1,6 @@
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { assert } from "tsafe/assert";
-import { useI18n } from "../../i18n";
-import { useKcContext } from "../../KcContext";
 
 export function Info() {
     const { kcContext } = useKcContext();

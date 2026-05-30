@@ -1,9 +1,8 @@
-import type { KcContext } from '@keycloakify/login-ui/core/KcContext/KcContext';
+import { useI18n } from "#/login/i18n";
+import type { KcContext } from "@keycloakify/login-ui/core/KcContext/KcContext";
 import { useEffect, useRef } from "react";
 import { base64url } from "rfc4648";
 import { assert } from "tsafe/assert";
-import { useI18n } from "../../i18n";
-
 
 // see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/webauthnAuthenticate.js
 
@@ -64,18 +63,17 @@ export type AuthenticateOptions = {
  */
 export type WebAuthnResult =
     | {
-        success: true;
-        clientDataJSON: string;
-        authenticatorData: string;
-        signature: string;
-        credentialId: string;
-        userHandle: string;
-    }
+          success: true;
+          clientDataJSON: string;
+          authenticatorData: string;
+          signature: string;
+          credentialId: string;
+          userHandle: string;
+      }
     | {
-        success: false;
-        error: string;
-    };
-
+          success: false;
+          error: string;
+      };
 
 let abortController: AbortController | undefined = undefined;
 
@@ -90,10 +88,16 @@ export interface UseLogicProps {
 }
 
 export function useLogic(props: UseLogicProps) {
-
     const { msgStr } = useI18n();
 
-    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators } = props;
+    const {
+        isUserIdentified,
+        challenge,
+        rpId,
+        userVerification,
+        createTimeout,
+        authenticators
+    } = props;
 
     const webAuthnFormRef = useRef<HTMLFormElement>(null);
     const submitWebAuthn = (result: WebAuthnResult) => {
@@ -125,9 +129,7 @@ export function useLogic(props: UseLogicProps) {
         userVerification: userVerification,
         rpId: rpId,
         createTimeout:
-            typeof createTimeout === "string"
-                ? Number(createTimeout)
-                : createTimeout,
+            typeof createTimeout === "string" ? Number(createTimeout) : createTimeout,
         authenticators: authenticators
     };
 
@@ -174,7 +176,6 @@ export function useLogic(props: UseLogicProps) {
         onPasskeyDoAuthenticateClick
     };
 }
-
 
 export async function authenticate(
     options: AuthenticateOptions
@@ -241,8 +242,8 @@ export async function authenticate(
             credentialId: credential.id,
             userHandle: response.userHandle
                 ? base64url.stringify(new Uint8Array(response.userHandle), {
-                    pad: false
-                })
+                      pad: false
+                  })
                 : ""
         };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,7 +1,7 @@
-import { cn } from "@/components/lib/utils";
-import { useI18n } from "@/login/i18n";
+import { useI18n } from "#/login/i18n";
 import { assert } from "tsafe/assert";
 import type { InputFieldByTypeProps } from "./InputFieldByType";
+import { cn } from "#/lib/utils";
 
 export function TextareaTag(props: InputFieldByTypeProps) {
     const { attribute, dispatchFormAction, displayableErrors, valueOrValues } = props;

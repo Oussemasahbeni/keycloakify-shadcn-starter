@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { useKcContext } from "@/login/KcContext";
+import { Button } from "#/components/ui/button";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 import { useState } from "react";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 import { UserProfileFormFields } from "../../components/UserProfileFormFields";
-import { useI18n } from "../../i18n";
 
 export function Page() {
     const { kcContext } = useKcContext();
@@ -31,11 +31,7 @@ export function Page() {
                 />
 
                 <div id="kc-form-buttons">
-                    <Button
-                        className="w-full"
-                        disabled={!isFomSubmittable}
-                        type="submit"
-                    >
+                    <Button className="w-full" disabled={!isFomSubmittable} type="submit">
                         {msgStr("doSubmit")}
                     </Button>
                 </div>
