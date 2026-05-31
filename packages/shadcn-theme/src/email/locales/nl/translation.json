@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "E-mailtest",
+        "greeting": "Hallo vriend",
+        "message": "Dit is een test-e-mail van {{realmName}}. Als u deze e-mail heeft ontvangen, betekent dit dat uw e-mailinstellingen correct zijn geconfigureerd."
+    },
+    "email-update-confirmation": {
+        "subject": "Controleer nieuwe e-mail",
+        "linkExpiration": "Deze link verloopt binnen {{expiration}}.",
+        "updateEmailAddress": "Om uw {{realmName}}-account bij te werken met e-mailadres {{newEmail}}",
+        "clickLinkBelow": "klik op de onderstaande link",
+        "updateEmail": "E-mail bijwerken",
+        "ignoreMessage": "Als u niet door wilt gaan met deze wijziging, kunt u dit bericht negeren."
+    },
+    "email-verification": {
+        "subject": "E-mail verifiëren",
+        "message": "Iemand heeft een {{firstName}} account aangemaakt met dit e-mailadres. Als u dit was, klikt u op de onderstaande link om uw e-mailadres te verifiëren.",
+        "verifyButton": "E-mail verifiëren",
+        "linkExpiration": "Deze link verloopt binnen {{expiration}}.",
+        "ignoreMessage": "Als u dit account niet heeft aangemaakt, negeert u dit bericht gewoon."
+    },
+    "event-login_error": {
+        "subject": "Inlogfout",
+        "message": "Er is op {{date}} vanaf {{ipAddress}} een mislukte inlogpoging voor uw account gedetecteerd.",
+        "contactAdmin": "Bent u dit niet, neem dan contact op met een beheerder."
+    },
+    "event-remove_credential": {
+        "subject": "Referentie verwijderen",
+        "message": "Inloggegevens {{credentialType}} zijn op {{date}} van {{ipAddress}} uit uw account verwijderd.",
+        "contactAdmin": "Bent u dit niet, neem dan contact op met een beheerder."
+    },
+    "event-remove_totp": {
+        "subject": "Verwijder OTP",
+        "message": "OTP is op {{date}} van {{ipAddress}} uit uw account verwijderd.",
+        "contactAdmin": "Bent u dit niet, neem dan contact op met een beheerder."
+    },
+    "event-update_credential": {
+        "subject": "Referentie bijwerken",
+        "message": "Uw {{credentialType}}-inloggegevens zijn gewijzigd op {{date}} van {{ipAddress}}.",
+        "contactAdmin": "Bent u dit niet, neem dan contact op met een beheerder."
+    },
+    "event-update_password": {
+        "subject": "Wachtwoord bijwerken",
+        "message": "Uw wachtwoord is gewijzigd op {{date}} van {{ipAddress}}.",
+        "contactAdmin": "Bent u dit niet, neem dan contact op met een beheerder."
+    },
+    "event-update_totp": {
+        "subject": "Update OTP",
+        "message": "OTP is bijgewerkt voor uw account op {{date}} vanaf {{ipAddress}}.",
+        "contactAdmin": "Bent u dit niet, neem dan contact op met een beheerder."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Gebruiker uitgeschakeld door permanente uitsluiting",
+        "message": "Uw gebruiker is permanent uitgeschakeld vanwege meerdere mislukte pogingen op {{date}}.",
+        "contactAdmin": "Neem contact op met een beheerder."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Gebruiker uitgeschakeld door tijdelijke uitsluiting",
+        "message": "Uw gebruiker is tijdelijk uitgeschakeld vanwege meerdere mislukte pogingen op {{date}}.",
+        "contactAdmin": "Neem contact op met een beheerder."
+    },
+    "executeActions": {
+        "subject": "Update uw account",
+        "message": "Uw beheerder heeft u zojuist verzocht uw {{realmName}}-account bij te werken door de volgende actie(s) uit te voeren:",
+        "clickLink": "Klik op onderstaande link om dit proces te starten.",
+        "linkExpiration": "Deze link verloopt binnen {{expiration}}.",
+        "ignoreMessage": "Als u niet weet dat uw beheerder hierom heeft gevraagd, negeert u dit bericht en er wordt niets gewijzigd.",
+        "updateAccountButton": "Account bijwerken"
+    },
+    "identity-provider-link": {
+        "subject": "Koppel {0} aan uw account",
+        "message": "Iemand wil uw {{identityProviderDisplayName}} account koppelen aan {{realmName}} account van gebruiker {{username}}.",
+        "clickLink": "Als u dit was, klikt u op de onderstaande link om accounts te koppelen",
+        "linkExpiration": "Deze link verloopt binnen {{expiration}}.",
+        "ignoreMessage": "Als u niet door wilt gaan met deze wijziging, kunt u dit bericht negeren.",
+        "linkAccountsButton": "Accounts koppelen",
+        "loginInfo": "Als u accounts koppelt, kunt u inloggen op {{identityProviderDisplayName}} tot en met {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Uitnodiging om lid te worden van de organisatie {0}",
+        "greeting": "Hallo, {{firstName}} {{lastName}}.",
+        "message": "Je bent uitgenodigd om lid te worden van de organisatie {{organizationName}}. Klik op onderstaande link om mee te doen.",
+        "linkExpiration": "Deze link verloopt binnen {{expiration}}.",
+        "ignoreMessage": "Als je geen lid wilt worden van de organisatie, negeer dan gewoon dit bericht.",
+        "joinButton": "Sluit je aan bij de organisatie"
+    },
+    "password-reset": {
+        "subject": "Wachtwoord opnieuw instellen",
+        "message": "Iemand heeft zojuist verzocht om de inloggegevens van uw {{realmName}}-account te wijzigen. Als jij dit was, klik dan op de onderstaande link om ze opnieuw in te stellen.",
+        "linkExpiration": "Deze link verloopt binnen {{expiration}}.",
+        "ignoreMessage": "Als u uw inloggegevens niet opnieuw wilt instellen, negeert u dit bericht en er zal niets worden gewijzigd.",
+        "resetButton": "Inloggegevens opnieuw instellen"
+    },
+    "requiredAction": {
+        "configure_totp": "Configureer OTP",
+        "terms_and_conditions": "Algemene voorwaarden",
+        "update_password": "Wachtwoord bijwerken",
+        "update_profile": "Profiel bijwerken",
+        "verify_email": "E-mail verifiëren",
+        "configure_recovery_authn_codes": "Herstelcodes genereren",
+        "seconds": "{0,choice,0#seconden|1#seconde|1<seconden}",
+        "minutes": "{0,choice,0#notulen|1#minuut|1<notulen}",
+        "hours": "{0,choice,0#uur|1#uur|1<uur}",
+        "days": "{0,choice,0#dagen|1#dag|1<dagen}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Alle rechten voorbehouden"
+    }
+}

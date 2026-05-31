@@ -1,0 +1,44 @@
+<script>
+    (function () {
+        try {
+            var storageKey = "isDarkMode";
+            var storedTheme = localStorage.getItem(storageKey);
+            var useDark = false;
+
+            if (storedTheme === "dark") {
+                useDark = true;
+            } else if (storedTheme === "light") {
+                useDark = false;
+            } else {
+                // system or null
+                useDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            }
+
+            if (useDark) {
+                document.documentElement.classList.add("dark");
+            }
+        } catch (e) {}
+    })();
+</script>
+<style>
+    body.sb-show-main.sb-main-padded {
+        padding: 0;
+    }
+
+    /* Prevent white flash in dark mode */
+    html.dark {
+        background-color: oklch(0.145 0 0);
+    }
+
+    html.dark body {
+        background-color: oklch(0.145 0 0);
+    }
+
+    body > .sb-preparing-docs {
+        visibility: hidden;
+    }
+
+    body > .sb-preparing-story {
+        visibility: hidden;
+    }
+</style>

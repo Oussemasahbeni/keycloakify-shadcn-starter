@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "Test e-mailom",
+        "greeting": "Ahoj kamarát",
+        "message": "Toto je testovací e-mail od používateľa {{realmName}}. Ak ste dostali tento e-mail, znamená to, že vaše nastavenia e-mailu sú nakonfigurované správne."
+    },
+    "email-update-confirmation": {
+        "subject": "Overte nový e-mail",
+        "linkExpiration": "Platnosť tohto odkazu vyprší do {{expiration}}.",
+        "updateEmailAddress": "Ak chcete aktualizovať svoj účet {{realmName}} pomocou e-mailovej adresy {{newEmail}}",
+        "clickLinkBelow": "kliknite na odkaz nižšie",
+        "updateEmail": "Aktualizovať e-mail",
+        "ignoreMessage": "Ak nechcete pokračovať v tejto úprave, jednoducho túto správu ignorujte."
+    },
+    "email-verification": {
+        "subject": "Overte e-mail",
+        "message": "Niekto vytvoril účet {{firstName}} s touto e-mailovou adresou. Ak ste to boli vy, kliknite na odkaz nižšie a overte svoju e-mailovú adresu.",
+        "verifyButton": "Overte e-mail",
+        "linkExpiration": "Platnosť tohto odkazu vyprší do {{expiration}}.",
+        "ignoreMessage": "Ak ste si tento účet nevytvorili, jednoducho túto správu ignorujte."
+    },
+    "event-login_error": {
+        "subject": "Chyba pri prihlasovaní",
+        "message": "Z {{date}} sa zistil neúspešný pokus o prihlásenie do vášho účtu z {{ipAddress}}.",
+        "contactAdmin": "Ak ste to neboli vy, kontaktujte správcu."
+    },
+    "event-remove_credential": {
+        "subject": "Odstráňte poverenie",
+        "message": "Poverenie {{credentialType}} bolo odstránené z vášho účtu dňa {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Ak ste to neboli vy, kontaktujte správcu."
+    },
+    "event-remove_totp": {
+        "subject": "Odstrániť OTP",
+        "message": "OTP bol odstránený z vášho účtu dňa {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Ak ste to neboli vy, kontaktujte správcu."
+    },
+    "event-update_credential": {
+        "subject": "Aktualizujte poverenia",
+        "message": "Vaše poverenia {{credentialType}} boli zmenené dňa {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Ak ste to neboli vy, kontaktujte správcu."
+    },
+    "event-update_password": {
+        "subject": "Aktualizovať heslo",
+        "message": "Vaše heslo bolo zmenené dňa {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Ak ste to neboli vy, kontaktujte správcu."
+    },
+    "event-update_totp": {
+        "subject": "Aktualizovať OTP",
+        "message": "OTP bola pre váš účet aktualizovaná dňa {{date}} od {{ipAddress}}.",
+        "contactAdmin": "Ak ste to neboli vy, kontaktujte správcu."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Používateľ je zakázaný trvalým uzamknutím",
+        "message": "Váš používateľ bol natrvalo zakázaný z dôvodu viacerých neúspešných pokusov na {{date}}.",
+        "contactAdmin": "Kontaktujte správcu."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Používateľ je zakázaný dočasným uzamknutím",
+        "message": "Váš používateľ bol dočasne zakázaný z dôvodu viacerých neúspešných pokusov na {{date}}.",
+        "contactAdmin": "Kontaktujte správcu."
+    },
+    "executeActions": {
+        "subject": "Aktualizujte svoj účet",
+        "message": "Váš správca práve požiadal, aby ste aktualizovali svoj účet {{realmName}} vykonaním nasledujúcich akcií:",
+        "clickLink": "Kliknutím na odkaz nižšie spustíte tento proces.",
+        "linkExpiration": "Platnosť tohto odkazu vyprší do {{expiration}}.",
+        "ignoreMessage": "Ak neviete, že o to požiadal váš administrátor, jednoducho túto správu ignorujte a nič sa nezmení.",
+        "updateAccountButton": "Aktualizovať účet"
+    },
+    "identity-provider-link": {
+        "subject": "Prepojte {0} so svojím účtom",
+        "message": "Niekto chce prepojiť váš účet {{identityProviderDisplayName}} s účtom {{realmName}} používateľa {{username}}.",
+        "clickLink": "Ak ste to boli vy, kliknutím na odkaz nižšie prepojte účty",
+        "linkExpiration": "Platnosť tohto odkazu vyprší do {{expiration}}.",
+        "ignoreMessage": "Ak nechcete pokračovať v tejto úprave, jednoducho túto správu ignorujte.",
+        "linkAccountsButton": "Prepojiť účty",
+        "loginInfo": "Ak prepojíte účty, budete sa môcť prihlásiť do {{identityProviderDisplayName}} cez {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Pozvánka na pripojenie k organizácii {0}",
+        "greeting": "Dobrý deň, {{firstName}} {{lastName}}.",
+        "message": "Boli ste pozvaní, aby ste sa pripojili k organizácii {{organizationName}}. Ak sa chcete pripojiť, kliknite na odkaz nižšie.",
+        "linkExpiration": "Platnosť tohto odkazu vyprší do {{expiration}}.",
+        "ignoreMessage": "Ak sa nechcete pripojiť k organizácii, jednoducho túto správu ignorujte.",
+        "joinButton": "Pripojte sa k organizácii"
+    },
+    "password-reset": {
+        "subject": "Obnoviť heslo",
+        "message": "Niekto práve požiadal o zmenu poverení vášho účtu {{realmName}}. Ak ste to boli vy, kliknite na odkaz nižšie a obnovte ich.",
+        "linkExpiration": "Platnosť tohto odkazu vyprší do {{expiration}}.",
+        "ignoreMessage": "Ak nechcete resetovať svoje poverenia, jednoducho túto správu ignorujte a nič sa nezmení.",
+        "resetButton": "Obnoviť poverenia"
+    },
+    "requiredAction": {
+        "configure_totp": "Konfigurovať OTP",
+        "terms_and_conditions": "Zmluvné podmienky",
+        "update_password": "Aktualizovať heslo",
+        "update_profile": "Aktualizovať profil",
+        "verify_email": "Overiť e-mail",
+        "configure_recovery_authn_codes": "Generovať obnovovacie kódy",
+        "seconds": "{0,choice,0#sekúnd|1#sekunda|1<sekúnd}",
+        "minutes": "{0,choice,0#minút|1#minúta|1<minút}",
+        "hours": "{0,choice,0#hodiny|1#hodina|1<hodiny}",
+        "days": "{0,choice,0#dní|1#deň|1<dní}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Všetky práva vyhradené"
+    }
+}

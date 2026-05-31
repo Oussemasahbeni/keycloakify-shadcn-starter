@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "メールテスト",
+        "greeting": "こんにちは、友人",
+        "message": "これは {{realmName}} からのテストメールです。このメールを受け取った場合は、メール設定が正しく構成されていることを意味します。"
+    },
+    "email-update-confirmation": {
+        "subject": "新しいメールを確認する",
+        "linkExpiration": "このリンクは{{expiration}}以内に期限切れになります。",
+        "updateEmailAddress": "{{realmName}} アカウントをメール アドレス {{newEmail}} で更新するには",
+        "clickLinkBelow": "下のリンクをクリックしてください",
+        "updateEmail": "更新メール",
+        "ignoreMessage": "この変更を続行したくない場合は、このメッセージを無視してください。"
+    },
+    "email-verification": {
+        "subject": "メールの確認",
+        "message": "誰かがこのメール アドレスで {{firstName}} アカウントを作成しました。これがあなたの場合は、下のリンクをクリックして電子メール アドレスを確認してください。",
+        "verifyButton": "メールの確認",
+        "linkExpiration": "このリンクは{{expiration}}以内に期限切れになります。",
+        "ignoreMessage": "このアカウントを作成していない場合は、このメッセージを無視してください。"
+    },
+    "event-login_error": {
+        "subject": "ログインエラー",
+        "message": "{{date}} に {{ipAddress}} からのアカウントへのログイン試行の失敗が検出されました。",
+        "contactAdmin": "これが自分ではない場合は、管理者に連絡してください。"
+    },
+    "event-remove_credential": {
+        "subject": "資格情報を削除する",
+        "message": "認証情報 {{credentialType}} は、{{date}} から {{ipAddress}} にアカウントから削除されました。",
+        "contactAdmin": "これが自分ではない場合は、管理者に連絡してください。"
+    },
+    "event-remove_totp": {
+        "subject": "OTP を削除",
+        "message": "OTP は、{{date}} に {{ipAddress}} からアカウントから削除されました。",
+        "contactAdmin": "これが自分ではない場合は、管理者に連絡してください。"
+    },
+    "event-update_credential": {
+        "subject": "資格情報を更新する",
+        "message": "{{credentialType}} 認証情報は {{date}} に {{ipAddress}} から変更されました。",
+        "contactAdmin": "これが自分ではない場合は、管理者に連絡してください。"
+    },
+    "event-update_password": {
+        "subject": "パスワードを更新する",
+        "message": "パスワードは {{date}} に {{ipAddress}} から変更されました。",
+        "contactAdmin": "これが自分ではない場合は、管理者に連絡してください。"
+    },
+    "event-update_totp": {
+        "subject": "OTP を更新",
+        "message": "{{ipAddress}} から {{date}} のアカウントの OTP が更新されました。",
+        "contactAdmin": "これが自分ではない場合は、管理者に連絡してください。"
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "永久ロックアウトによりユーザーが無効化されました",
+        "message": "{{date}} での試行が複数回失敗したため、ユーザーは永久に無効になりました。",
+        "contactAdmin": "管理者にお問い合わせください。"
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "一時的なロックアウトによりユーザーが無効化されました",
+        "message": "{{date}} での試行が複数回失敗したため、ユーザーは一時的に無効になっています。",
+        "contactAdmin": "管理者にお問い合わせください。"
+    },
+    "executeActions": {
+        "subject": "アカウントを更新する",
+        "message": "管理者は、次の操作を実行して {{realmName}} アカウントを更新するよう要求しました:",
+        "clickLink": "このプロセスを開始するには、下のリンクをクリックしてください。",
+        "linkExpiration": "このリンクは{{expiration}}以内に期限切れになります。",
+        "ignoreMessage": "管理者がこれを要求していることに気づいていない場合は、このメッセージを無視しても何も変更されません。",
+        "updateAccountButton": "アカウントを更新する"
+    },
+    "identity-provider-link": {
+        "subject": "{0} をアカウントにリンクします",
+        "message": "誰かがあなたの {{identityProviderDisplayName}} アカウントをユーザー {{username}} の {{realmName}} アカウントにリンクしようとしています。",
+        "clickLink": "これがあなたの場合は、下のリンクをクリックしてアカウントをリンクしてください",
+        "linkExpiration": "このリンクは{{expiration}}以内に期限切れになります。",
+        "ignoreMessage": "この変更を続行したくない場合は、このメッセージを無視してください。",
+        "linkAccountsButton": "アカウントをリンクする",
+        "loginInfo": "アカウントをリンクすると、{{identityProviderDisplayName}} から {{realmName}} までログインできるようになります。"
+    },
+    "org-invite": {
+        "subject": "{0} 組織への招待",
+        "greeting": "こんにちは、{{firstName}} {{lastName}} さん。",
+        "message": "{{organizationName}} 組織への参加に招待されました。参加するには下のリンクをクリックしてください。",
+        "linkExpiration": "このリンクは{{expiration}}以内に期限切れになります。",
+        "ignoreMessage": "組織に参加したくない場合は、このメッセージを無視してください。",
+        "joinButton": "組織に参加する"
+    },
+    "password-reset": {
+        "subject": "パスワードをリセットする",
+        "message": "誰かがあなたの {{realmName}} アカウントの資格情報の変更をリクエストしました。これがあなたの場合は、下のリンクをクリックしてリセットしてください。",
+        "linkExpiration": "このリンクは{{expiration}}以内に期限切れになります。",
+        "ignoreMessage": "資格情報をリセットしたくない場合は、このメッセージを無視してください。何も変更されません。",
+        "resetButton": "資格情報のリセット"
+    },
+    "requiredAction": {
+        "configure_totp": "OTP を構成する",
+        "terms_and_conditions": "利用規約",
+        "update_password": "パスワードを更新する",
+        "update_profile": "プロフィールを更新する",
+        "verify_email": "メールの確認",
+        "configure_recovery_authn_codes": "リカバリーコードの生成",
+        "seconds": "{0,choice,0#秒|1#秒|1<秒}",
+        "minutes": "{0,choice,0#分|1#分|1<分}",
+        "hours": "{0,choice,0#時間|1#時間|1<時間}",
+        "days": "{0,choice,0#日|1#日|1<日}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}、全著作権所有"
+    }
+}

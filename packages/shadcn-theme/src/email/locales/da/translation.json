@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "Email test",
+        "greeting": "Hej ven",
+        "message": "Dette er en test-e-mail fra {{realmName}}. Hvis du har modtaget denne e-mail, betyder det, at dine e-mail-indstillinger er konfigureret korrekt."
+    },
+    "email-update-confirmation": {
+        "subject": "Bekræft ny e-mail",
+        "linkExpiration": "Dette link udløber inden for {{expiration}}.",
+        "updateEmailAddress": "For at opdatere din {{realmName}} konto med e-mailadresse {{newEmail}}",
+        "clickLinkBelow": "klik på linket nedenfor",
+        "updateEmail": "Opdater e-mail",
+        "ignoreMessage": "Hvis du ikke ønsker at fortsætte med denne ændring, skal du bare ignorere denne besked."
+    },
+    "email-verification": {
+        "subject": "Bekræft e-mail",
+        "message": "Nogen har oprettet en {{firstName}} konto med denne e-mailadresse. Hvis det var dig, skal du klikke på linket nedenfor for at bekræfte din e-mailadresse.",
+        "verifyButton": "Bekræft e-mail",
+        "linkExpiration": "Dette link udløber inden for {{expiration}}.",
+        "ignoreMessage": "Hvis du ikke har oprettet denne konto, skal du bare ignorere denne besked."
+    },
+    "event-login_error": {
+        "subject": "Login fejl",
+        "message": "Et mislykket loginforsøg blev registreret på din konto den {{date}} fra {{ipAddress}}.",
+        "contactAdmin": "Hvis dette ikke var dig, bedes du kontakte en administrator."
+    },
+    "event-remove_credential": {
+        "subject": "Fjern legitimationsoplysninger",
+        "message": "Oplysningsoplysninger {{credentialType}} blev fjernet fra din konto den {{date}} fra {{ipAddress}}.",
+        "contactAdmin": "Hvis dette ikke var dig, bedes du kontakte en administrator."
+    },
+    "event-remove_totp": {
+        "subject": "Fjern OTP",
+        "message": "OTP blev fjernet fra din konto den {{date}} fra {{ipAddress}}.",
+        "contactAdmin": "Hvis dette ikke var dig, bedes du kontakte en administrator."
+    },
+    "event-update_credential": {
+        "subject": "Opdater legitimationsoplysninger",
+        "message": "Din {{credentialType}} legitimationsoplysninger blev ændret den {{date}} fra {{ipAddress}}.",
+        "contactAdmin": "Hvis dette ikke var dig, bedes du kontakte en administrator."
+    },
+    "event-update_password": {
+        "subject": "Opdater adgangskode",
+        "message": "Din adgangskode blev ændret den {{date}} fra {{ipAddress}}.",
+        "contactAdmin": "Hvis dette ikke var dig, bedes du kontakte en administrator."
+    },
+    "event-update_totp": {
+        "subject": "Opdater OTP",
+        "message": "OTP blev opdateret for din konto den {{date}} fra {{ipAddress}}.",
+        "contactAdmin": "Hvis dette ikke var dig, bedes du kontakte en administrator."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Bruger deaktiveret ved permanent lockout",
+        "message": "Din bruger er blevet deaktiveret permanent på grund af flere mislykkede forsøg på {{date}}.",
+        "contactAdmin": "Kontakt venligst en administrator."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Bruger deaktiveret ved midlertidig lockout",
+        "message": "Din bruger er blevet deaktiveret midlertidigt på grund af flere mislykkede forsøg på {{date}}.",
+        "contactAdmin": "Kontakt venligst en administrator."
+    },
+    "executeActions": {
+        "subject": "Opdater din konto",
+        "message": "Din administrator har lige anmodet dig om at opdatere din {{realmName}} konto ved at udføre følgende handling(er):",
+        "clickLink": "Klik på linket nedenfor for at starte denne proces.",
+        "linkExpiration": "Dette link udløber inden for {{expiration}}.",
+        "ignoreMessage": "Hvis du ikke er klar over, at din administrator har anmodet om dette, skal du bare ignorere denne besked, og intet vil blive ændret.",
+        "updateAccountButton": "Opdater konto"
+    },
+    "identity-provider-link": {
+        "subject": "Link {0} til din konto",
+        "message": "Nogen vil linke din {{identityProviderDisplayName}}-konto til {{realmName}}-kontoen for brugeren {{username}}.",
+        "clickLink": "Hvis dette var dig, skal du klikke på linket nedenfor for at linke konti",
+        "linkExpiration": "Dette link udløber inden for {{expiration}}.",
+        "ignoreMessage": "Hvis du ikke ønsker at fortsætte med denne ændring, skal du bare ignorere denne besked.",
+        "linkAccountsButton": "Link konti",
+        "loginInfo": "Hvis du linker konti, vil du være i stand til at logge ind på {{identityProviderDisplayName}} gennem {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Invitation til at deltage i organisationen {0}",
+        "greeting": "Hej {{firstName}} {{lastName}}.",
+        "message": "Du blev inviteret til at deltage i organisationen {{organizationName}}. Klik på linket nedenfor for at deltage.",
+        "linkExpiration": "Dette link udløber inden for {{expiration}}.",
+        "ignoreMessage": "Hvis du ikke ønsker at deltage i organisationen, skal du bare ignorere denne besked.",
+        "joinButton": "Meld dig ind i organisationen"
+    },
+    "password-reset": {
+        "subject": "Nulstil adgangskode",
+        "message": "Nogen har lige anmodet om at ændre din {{realmName}} kontos loginoplysninger. Hvis det var dig, skal du klikke på linket nedenfor for at nulstille dem.",
+        "linkExpiration": "Dette link udløber inden for {{expiration}}.",
+        "ignoreMessage": "Hvis du ikke ønsker at nulstille dine legitimationsoplysninger, skal du bare ignorere denne besked, og intet vil blive ændret.",
+        "resetButton": "Nulstil legitimationsoplysninger"
+    },
+    "requiredAction": {
+        "configure_totp": "Konfigurer OTP",
+        "terms_and_conditions": "Vilkår og betingelser",
+        "update_password": "Opdater adgangskode",
+        "update_profile": "Opdater profil",
+        "verify_email": "Bekræft e-mail",
+        "configure_recovery_authn_codes": "Generer gendannelseskoder",
+        "seconds": "{0,choice,0#sekunder|1#sekund|1<sekunder}",
+        "minutes": "{0,choice,0#minutter|1#minut|1<minutter}",
+        "hours": "{0,choice,0#timer|1#time|1<timer}",
+        "days": "{0,choice,0#dage|1#dag|1<dage}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Alle rettigheder forbeholdes"
+    }
+}

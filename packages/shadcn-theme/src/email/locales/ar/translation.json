@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "اختبار البريد الإلكتروني",
+        "greeting": "مرحبا صديق",
+        "message": "هذه رسالة بريد إلكتروني تجريبية من {{realmName}}. إذا تلقيت هذا البريد الإلكتروني، فهذا يعني أنه تم تكوين إعدادات البريد الإلكتروني الخاص بك بشكل صحيح."
+    },
+    "email-update-confirmation": {
+        "subject": "التحقق من البريد الإلكتروني الجديد",
+        "linkExpiration": "ستنتهي صلاحية هذا الرابط خلال {{expiration}}.",
+        "updateEmailAddress": "لتحديث حسابك {{realmName}} بعنوان البريد الإلكتروني {{newEmail}}",
+        "clickLinkBelow": "انقر على الرابط أدناه",
+        "updateEmail": "تحديث البريد الإلكتروني",
+        "ignoreMessage": "إذا كنت لا تريد متابعة هذا التعديل، فما عليك سوى تجاهل هذه الرسالة."
+    },
+    "email-verification": {
+        "subject": "التحقق من البريد الإلكتروني",
+        "message": "قام شخص ما بإنشاء حساب {{firstName}} باستخدام عنوان البريد الإلكتروني هذا. إذا كنت أنت من قام بذلك، فانقر على الرابط أدناه للتحقق من عنوان بريدك الإلكتروني.",
+        "verifyButton": "التحقق من البريد الإلكتروني",
+        "linkExpiration": "ستنتهي صلاحية هذا الرابط خلال {{expiration}}.",
+        "ignoreMessage": "إذا لم تقم بإنشاء هذا الحساب، فما عليك سوى تجاهل هذه الرسالة."
+    },
+    "event-login_error": {
+        "subject": "خطأ في تسجيل الدخول",
+        "message": "تم اكتشاف محاولة تسجيل دخول فاشلة إلى حسابك على {{date}} من {{ipAddress}}.",
+        "contactAdmin": "إذا لم تكن أنت، يرجى الاتصال بالمسؤول."
+    },
+    "event-remove_credential": {
+        "subject": "إزالة بيانات الاعتماد",
+        "message": "تمت إزالة بيانات الاعتماد {{credentialType}} من حسابك في {{date}} من {{ipAddress}}.",
+        "contactAdmin": "إذا لم تكن أنت، يرجى الاتصال بالمسؤول."
+    },
+    "event-remove_totp": {
+        "subject": "إزالة OTP",
+        "message": "تمت إزالة OTP من حسابك على {{date}} من {{ipAddress}}.",
+        "contactAdmin": "إذا لم تكن أنت، يرجى الاتصال بالمسؤول."
+    },
+    "event-update_credential": {
+        "subject": "تحديث بيانات الاعتماد",
+        "message": "تم تغيير بيانات الاعتماد الخاصة بك {{credentialType}} في {{date}} من {{ipAddress}}.",
+        "contactAdmin": "إذا لم تكن أنت، يرجى الاتصال بالمسؤول."
+    },
+    "event-update_password": {
+        "subject": "تحديث كلمة المرور",
+        "message": "تم تغيير كلمة المرور الخاصة بك في {{date}} من {{ipAddress}}.",
+        "contactAdmin": "إذا لم تكن أنت، يرجى الاتصال بالمسؤول."
+    },
+    "event-update_totp": {
+        "subject": "تحديث OTP",
+        "message": "تم تحديث OTP لحسابك على {{date}} من {{ipAddress}}.",
+        "contactAdmin": "إذا لم تكن أنت، يرجى الاتصال بالمسؤول."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "تم تعطيل المستخدم بسبب القفل الدائم",
+        "message": "لقد تم تعطيل المستخدم الخاص بك نهائيًا بسبب عدة محاولات فاشلة على {{date}}.",
+        "contactAdmin": "الرجاء الاتصال بالمسؤول."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "تم تعطيل المستخدم بسبب القفل المؤقت",
+        "message": "لقد تم تعطيل المستخدم الخاص بك مؤقتًا بسبب عدة محاولات فاشلة على {{date}}.",
+        "contactAdmin": "الرجاء الاتصال بالمسؤول."
+    },
+    "executeActions": {
+        "subject": "قم بتحديث حسابك",
+        "message": "لقد طلب مشرفك للتو تحديث حساب {{realmName}} الخاص بك عن طريق تنفيذ الإجراء (الإجراءات) التالية:",
+        "clickLink": "انقر على الرابط أدناه لبدء هذه العملية.",
+        "linkExpiration": "ستنتهي صلاحية هذا الرابط خلال {{expiration}}.",
+        "ignoreMessage": "إذا لم تكن على علم بأن المسؤول الخاص بك قد طلب ذلك، فما عليك سوى تجاهل هذه الرسالة ولن يتغير شيء.",
+        "updateAccountButton": "تحديث الحساب"
+    },
+    "identity-provider-link": {
+        "subject": "اربط {0} بحسابك",
+        "message": "يريد شخص ما ربط حسابك {{identityProviderDisplayName}} بحساب {{realmName}} للمستخدم {{username}}.",
+        "clickLink": "إذا كنت أنت من قام بذلك، فانقر على الرابط أدناه لربط الحسابات",
+        "linkExpiration": "ستنتهي صلاحية هذا الرابط خلال {{expiration}}.",
+        "ignoreMessage": "إذا كنت لا تريد متابعة هذا التعديل، فما عليك سوى تجاهل هذه الرسالة.",
+        "linkAccountsButton": "ربط الحسابات",
+        "loginInfo": "إذا قمت بربط الحسابات، فستتمكن من تسجيل الدخول إلى {{identityProviderDisplayName}} من خلال {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "دعوة للانضمام إلى منظمة {0}",
+        "greeting": "مرحبًا، {{firstName}} {{lastName}}.",
+        "message": "لقد تمت دعوتك للانضمام إلى منظمة {{organizationName}}. انقر على الرابط أدناه للانضمام.",
+        "linkExpiration": "ستنتهي صلاحية هذا الرابط خلال {{expiration}}.",
+        "ignoreMessage": "إذا كنت لا ترغب في الانضمام إلى المنظمة، فما عليك سوى تجاهل هذه الرسالة.",
+        "joinButton": "انضم إلى المنظمة"
+    },
+    "password-reset": {
+        "subject": "إعادة تعيين كلمة المرور",
+        "message": "لقد طلب شخص ما للتو تغيير بيانات اعتماد حساب {{realmName}} الخاص بك. إذا كنت أنت، فانقر على الرابط أدناه لإعادة تعيينها.",
+        "linkExpiration": "ستنتهي صلاحية هذا الرابط خلال {{expiration}}.",
+        "ignoreMessage": "إذا كنت لا ترغب في إعادة تعيين بيانات الاعتماد الخاصة بك، فما عليك سوى تجاهل هذه الرسالة ولن يتغير شيء.",
+        "resetButton": "إعادة تعيين بيانات الاعتماد"
+    },
+    "requiredAction": {
+        "configure_totp": "تكوين OTP",
+        "terms_and_conditions": "الشروط والأحكام",
+        "update_password": "تحديث كلمة المرور",
+        "update_profile": "تحديث الملف الشخصي",
+        "verify_email": "التحقق من البريد الإلكتروني",
+        "configure_recovery_authn_codes": "إنشاء رموز الاسترداد",
+        "seconds": "{0,choice,0#ثواني|1#ثانية|1<ثواني}",
+        "minutes": "{0,choice,0#دقائق|1#دقيقة|1<دقائق}",
+        "hours": "{0,choice,0#ساعات|1#ساعة|1<ساعات}",
+        "days": "{0,choice,0#أيام|1#يوم واحد|1<أيام}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}، جميع الحقوق محفوظة"
+    }
+}

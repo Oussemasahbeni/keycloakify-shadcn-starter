@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "Prova di posta elettronica",
+        "greeting": "Ciao amico",
+        "message": "Questa è un'email di prova da {{realmName}}. Se hai ricevuto questa email significa che le tue impostazioni email sono configurate correttamente."
+    },
+    "email-update-confirmation": {
+        "subject": "Verifica la nuova email",
+        "linkExpiration": "Questo collegamento scadrà entro {{expiration}}.",
+        "updateEmailAddress": "Per aggiornare il tuo account {{realmName}} con l'indirizzo email {{newEmail}}",
+        "clickLinkBelow": "clicca sul link qui sotto",
+        "updateEmail": "Aggiorna e-mail",
+        "ignoreMessage": "Se non vuoi procedere con questa modifica ignora semplicemente questo messaggio."
+    },
+    "email-verification": {
+        "subject": "Verifica l'e-mail",
+        "message": "Qualcuno ha creato un account {{firstName}} con questo indirizzo email. Se eri tu, fai clic sul collegamento sottostante per verificare il tuo indirizzo email.",
+        "verifyButton": "Verifica l'e-mail",
+        "linkExpiration": "Questo collegamento scadrà entro {{expiration}}.",
+        "ignoreMessage": "Se non hai creato tu questo account, ignora questo messaggio."
+    },
+    "event-login_error": {
+        "subject": "Errore di accesso",
+        "message": "È stato rilevato un tentativo di accesso non riuscito al tuo account il {{date}} da {{ipAddress}}.",
+        "contactAdmin": "Se non eri tu, contatta un amministratore."
+    },
+    "event-remove_credential": {
+        "subject": "Rimuovi credenziale",
+        "message": "La credenziale {{credentialType}} è stata rimossa dal tuo account il {{date}} da {{ipAddress}}.",
+        "contactAdmin": "Se non eri tu, contatta un amministratore."
+    },
+    "event-remove_totp": {
+        "subject": "Rimuovi OTP",
+        "message": "OTP è stato rimosso dal tuo account il {{date}} da {{ipAddress}}.",
+        "contactAdmin": "Se non eri tu, contatta un amministratore."
+    },
+    "event-update_credential": {
+        "subject": "Aggiorna credenziale",
+        "message": "Le tue credenziali {{credentialType}} sono state modificate il {{date}} da {{ipAddress}}.",
+        "contactAdmin": "Se non eri tu, contatta un amministratore."
+    },
+    "event-update_password": {
+        "subject": "Aggiorna password",
+        "message": "La tua password è stata modificata il {{date}} da {{ipAddress}}.",
+        "contactAdmin": "Se non eri tu, contatta un amministratore."
+    },
+    "event-update_totp": {
+        "subject": "Aggiorna OTP",
+        "message": "OTP è stato aggiornato per il tuo account il {{date}} da {{ipAddress}}.",
+        "contactAdmin": "Se non eri tu, contatta un amministratore."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Utente disabilitato per blocco permanente",
+        "message": "Il tuo utente è stato disabilitato permanentemente a causa di più tentativi falliti su {{date}}.",
+        "contactAdmin": "Contatta un amministratore."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Utente disabilitato per blocco temporaneo",
+        "message": "Il tuo utente è stato temporaneamente disabilitato a causa di più tentativi non riusciti su {{date}}.",
+        "contactAdmin": "Contatta un amministratore."
+    },
+    "executeActions": {
+        "subject": "Aggiorna il tuo account",
+        "message": "Il tuo amministratore ti ha appena richiesto di aggiornare il tuo account {{realmName}} eseguendo le seguenti azioni:",
+        "clickLink": "Fare clic sul collegamento in basso per avviare questo processo.",
+        "linkExpiration": "Questo collegamento scadrà entro {{expiration}}.",
+        "ignoreMessage": "Se non sei a conoscenza del fatto che il tuo amministratore lo ha richiesto, ignora semplicemente questo messaggio e nulla verrà modificato.",
+        "updateAccountButton": "Aggiorna conto"
+    },
+    "identity-provider-link": {
+        "subject": "Collega {0} al tuo account",
+        "message": "Qualcuno vuole collegare il tuo account {{identityProviderDisplayName}} con l'account {{realmName}} dell'utente {{username}}.",
+        "clickLink": "Se eri tu, fai clic sul collegamento sottostante per collegare gli account",
+        "linkExpiration": "Questo collegamento scadrà entro {{expiration}}.",
+        "ignoreMessage": "Se non vuoi procedere con questa modifica ignora semplicemente questo messaggio.",
+        "linkAccountsButton": "Collega account",
+        "loginInfo": "Se colleghi gli account, potrai accedere a {{identityProviderDisplayName}} tramite {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Invito a unirsi all'organizzazione {0}",
+        "greeting": "Ciao, {{firstName}} {{lastName}}.",
+        "message": "Sei stato invitato a unirti all'organizzazione {{organizationName}}. Clicca sul link qui sotto per iscriverti.",
+        "linkExpiration": "Questo collegamento scadrà entro {{expiration}}.",
+        "ignoreMessage": "Se non vuoi unirti all'organizzazione, ignora questo messaggio.",
+        "joinButton": "Unisciti all'organizzazione"
+    },
+    "password-reset": {
+        "subject": "Reimposta la password",
+        "message": "Qualcuno ha appena richiesto di modificare le credenziali del tuo account {{realmName}}. Se eri tu, fai clic sul collegamento in basso per reimpostarli.",
+        "linkExpiration": "Questo collegamento scadrà entro {{expiration}}.",
+        "ignoreMessage": "Se non desideri reimpostare le tue credenziali, ignora semplicemente questo messaggio e nulla verrà modificato.",
+        "resetButton": "Reimposta le credenziali"
+    },
+    "requiredAction": {
+        "configure_totp": "Configura OTP",
+        "terms_and_conditions": "Termini e Condizioni",
+        "update_password": "Aggiorna password",
+        "update_profile": "Aggiorna profilo",
+        "verify_email": "Verifica e-mail",
+        "configure_recovery_authn_codes": "Genera codici di ripristino",
+        "seconds": "{0,choice,0#secondi|1#secondo|1<secondi}",
+        "minutes": "{0,choice,0#minuti|1#minuto|1<minuti}",
+        "hours": "{0,choice,0#ore|1#ora|1<ore}",
+        "days": "{0,choice,0#giorni|1#giorno|1<giorni}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Tutti i diritti riservati"
+    }
+}

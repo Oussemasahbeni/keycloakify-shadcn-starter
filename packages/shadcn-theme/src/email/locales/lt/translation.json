@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "El. pašto testas",
+        "greeting": "Labas drauge",
+        "message": "Tai bandomasis el. laiškas nuo {{realmName}}. Jei gavote šį el. laišką, tai reiškia, kad jūsų el. pašto nustatymai sukonfigūruoti tinkamai."
+    },
+    "email-update-confirmation": {
+        "subject": "Patvirtinkite naują el",
+        "linkExpiration": "Ši nuoroda nustos galioti per {{expiration}}.",
+        "updateEmailAddress": "Norėdami atnaujinti savo {{realmName}} paskyrą el. pašto adresu {{newEmail}}",
+        "clickLinkBelow": "spustelėkite žemiau esančią nuorodą",
+        "updateEmail": "Atnaujinti el",
+        "ignoreMessage": "Jei nenorite tęsti šio pakeitimo, tiesiog nepaisykite šio pranešimo."
+    },
+    "email-verification": {
+        "subject": "Patvirtinkite el",
+        "message": "Kažkas sukūrė {{firstName}} paskyrą šiuo el. pašto adresu. Jei tai buvote jūs, spustelėkite toliau pateiktą nuorodą, kad patvirtintumėte savo el. pašto adresą.",
+        "verifyButton": "Patvirtinkite el",
+        "linkExpiration": "Ši nuoroda nustos galioti per {{expiration}}.",
+        "ignoreMessage": "Jei nesukūrėte šios paskyros, tiesiog nepaisykite šio pranešimo."
+    },
+    "event-login_error": {
+        "subject": "Prisijungimo klaida",
+        "message": "{{date}} nuo {{ipAddress}} buvo aptiktas nesėkmingas bandymas prisijungti prie jūsų paskyros.",
+        "contactAdmin": "Jei tai ne jūs, susisiekite su administratoriumi."
+    },
+    "event-remove_credential": {
+        "subject": "Pašalinti kredencialus",
+        "message": "Kredencialas {{credentialType}} buvo pašalintas iš jūsų paskyros {{date}} nuo {{ipAddress}}.",
+        "contactAdmin": "Jei tai ne jūs, susisiekite su administratoriumi."
+    },
+    "event-remove_totp": {
+        "subject": "Pašalinti OTP",
+        "message": "OTP buvo pašalintas iš jūsų paskyros {{date}} nuo {{ipAddress}}.",
+        "contactAdmin": "Jei tai ne jūs, susisiekite su administratoriumi."
+    },
+    "event-update_credential": {
+        "subject": "Atnaujinti kredencialus",
+        "message": "Jūsų {{credentialType}} kredencialas buvo pakeistas {{date}} iš {{ipAddress}}.",
+        "contactAdmin": "Jei tai ne jūs, susisiekite su administratoriumi."
+    },
+    "event-update_password": {
+        "subject": "Atnaujinti slaptažodį",
+        "message": "Jūsų slaptažodis buvo pakeistas {{date}} nuo {{ipAddress}}.",
+        "contactAdmin": "Jei tai ne jūs, susisiekite su administratoriumi."
+    },
+    "event-update_totp": {
+        "subject": "Atnaujinti OTP",
+        "message": "OTP buvo atnaujintas jūsų paskyroje {{date}} nuo {{ipAddress}}.",
+        "contactAdmin": "Jei tai ne jūs, susisiekite su administratoriumi."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Vartotojas išjungtas dėl nuolatinio blokavimo",
+        "message": "Jūsų naudotojas buvo visam laikui išjungtas dėl kelių nesėkmingų bandymų {{date}}.",
+        "contactAdmin": "Susisiekite su administratoriumi."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Vartotojas išjungtas dėl laikino blokavimo",
+        "message": "Jūsų naudotojas buvo laikinai išjungtas dėl kelių nesėkmingų bandymų {{date}}.",
+        "contactAdmin": "Susisiekite su administratoriumi."
+    },
+    "executeActions": {
+        "subject": "Atnaujinkite savo paskyrą",
+        "message": "Jūsų administratorius ką tik paprašė atnaujinti {{realmName}} paskyrą, atlikdamas šiuos veiksmus:",
+        "clickLink": "Norėdami pradėti šį procesą, spustelėkite toliau pateiktą nuorodą.",
+        "linkExpiration": "Ši nuoroda nustos galioti per {{expiration}}.",
+        "ignoreMessage": "Jei nežinote, kad jūsų administratorius to paprašė, tiesiog nepaisykite šio pranešimo ir niekas nepasikeis.",
+        "updateAccountButton": "Atnaujinti paskyrą"
+    },
+    "identity-provider-link": {
+        "subject": "Susiekite {0} su savo paskyra",
+        "message": "Kažkas nori susieti jūsų {{identityProviderDisplayName}} paskyrą su vartotojo {{username}} {{realmName}} paskyra.",
+        "clickLink": "Jei tai buvote jūs, spustelėkite toliau pateiktą nuorodą, kad susietumėte paskyras",
+        "linkExpiration": "Ši nuoroda nustos galioti per {{expiration}}.",
+        "ignoreMessage": "Jei nenorite tęsti šio pakeitimo, tiesiog nepaisykite šio pranešimo.",
+        "linkAccountsButton": "Susieti paskyras",
+        "loginInfo": "Jei susiesite paskyras, galėsite prisijungti prie {{identityProviderDisplayName}} iki {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Kvietimas prisijungti prie {0} organizacijos",
+        "greeting": "Sveiki, {{firstName}} {{lastName}}.",
+        "message": "Jus pakvietė prisijungti prie {{organizationName}} organizacijos. Norėdami prisijungti, spustelėkite žemiau esančią nuorodą.",
+        "linkExpiration": "Ši nuoroda nustos galioti per {{expiration}}.",
+        "ignoreMessage": "Jei nenorite prisijungti prie organizacijos, tiesiog nepaisykite šio pranešimo.",
+        "joinButton": "Prisijunkite prie organizacijos"
+    },
+    "password-reset": {
+        "subject": "Iš naujo nustatyti slaptažodį",
+        "message": "Kažkas ką tik paprašė pakeisti jūsų {{realmName}} paskyros kredencialus. Jei tai buvote jūs, spustelėkite toliau pateiktą nuorodą, kad nustatytumėte juos iš naujo.",
+        "linkExpiration": "Ši nuoroda nustos galioti per {{expiration}}.",
+        "ignoreMessage": "Jei nenorite iš naujo nustatyti kredencialų, tiesiog nepaisykite šio pranešimo ir niekas nepasikeis.",
+        "resetButton": "Iš naujo nustatyti kredencialus"
+    },
+    "requiredAction": {
+        "configure_totp": "Konfigūruoti OTP",
+        "terms_and_conditions": "Taisyklės ir sąlygos",
+        "update_password": "Atnaujinti slaptažodį",
+        "update_profile": "Atnaujinti profilį",
+        "verify_email": "Patvirtinkite el",
+        "configure_recovery_authn_codes": "Generuokite atkūrimo kodus",
+        "seconds": "{0,choice,0#sekundžių|1#sekundė|1<sekundžių}",
+        "minutes": "{0,choice,0#minučių|1#minutę|1<minučių}",
+        "hours": "{0,choice,0#valandų|1#valanda|1<valandų}",
+        "days": "{0,choice,0#dienų|1#diena|1<dienų}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Visos teisės saugomos"
+    }
+}

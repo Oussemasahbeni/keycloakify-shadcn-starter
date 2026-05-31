@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "E-posta Testi",
+        "greeting": "Merhaba arkadaşım",
+        "message": "Bu, {{realmName}} adresinden gelen bir test e-postasıdır. Bu e-postayı aldıysanız e-posta ayarlarınızın doğru yapılandırıldığı anlamına gelir."
+    },
+    "email-update-confirmation": {
+        "subject": "Yeni e-postayı doğrulayın",
+        "linkExpiration": "Bu bağlantının süresi {{expiration}} içinde dolacak.",
+        "updateEmailAddress": "{{realmName}} hesabınızı {{newEmail}} e-posta adresiyle güncellemek için",
+        "clickLinkBelow": "aşağıdaki bağlantıya tıklayın",
+        "updateEmail": "E-postayı Güncelle",
+        "ignoreMessage": "Bu değişikliğe devam etmek istemiyorsanız bu mesajı dikkate almayın."
+    },
+    "email-verification": {
+        "subject": "E-postayı doğrula",
+        "message": "Birisi bu e-posta adresiyle {{firstName}} bir hesap oluşturdu. Bu sizseniz, e-posta adresinizi doğrulamak için aşağıdaki bağlantıya tıklayın.",
+        "verifyButton": "E-postayı doğrula",
+        "linkExpiration": "Bu bağlantının süresi {{expiration}} içinde dolacak.",
+        "ignoreMessage": "Bu hesabı siz oluşturmadıysanız bu mesajı dikkate almayın."
+    },
+    "event-login_error": {
+        "subject": "Giriş hatası",
+        "message": "{{date}} tarihinde, {{ipAddress}} adresinden hesabınıza başarısız bir giriş denemesi algılandı.",
+        "contactAdmin": "Bu siz değilseniz lütfen bir yöneticiyle iletişime geçin."
+    },
+    "event-remove_credential": {
+        "subject": "Kimlik bilgisini kaldır",
+        "message": "{{credentialType}} kimlik bilgisi {{date}} tarihinde {{ipAddress}} adresinden hesabınızdan kaldırıldı.",
+        "contactAdmin": "Bu siz değilseniz lütfen bir yöneticiyle iletişime geçin."
+    },
+    "event-remove_totp": {
+        "subject": "OTP öğesini kaldır",
+        "message": "OTP, {{date}} tarihinde {{ipAddress}} adresinden hesabınızdan kaldırıldı.",
+        "contactAdmin": "Bu siz değilseniz lütfen bir yöneticiyle iletişime geçin."
+    },
+    "event-update_credential": {
+        "subject": "Kimlik bilgilerini güncelle",
+        "message": "{{credentialType}} kimlik bilgileriniz {{date}} tarihinde {{ipAddress}} iken değiştirildi.",
+        "contactAdmin": "Bu siz değilseniz lütfen bir yöneticiyle iletişime geçin."
+    },
+    "event-update_password": {
+        "subject": "Şifreyi güncelle",
+        "message": "Şifreniz {{date}} tarihinde {{ipAddress}} iken değiştirildi.",
+        "contactAdmin": "Bu siz değilseniz lütfen bir yöneticiyle iletişime geçin."
+    },
+    "event-update_totp": {
+        "subject": "OTP Güncellemesi",
+        "message": "OTP, hesabınız için {{date}} tarihinde {{ipAddress}} tarihinden itibaren güncellendi.",
+        "contactAdmin": "Bu siz değilseniz lütfen bir yöneticiyle iletişime geçin."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Kullanıcı kalıcı kilitlenme nedeniyle devre dışı bırakıldı",
+        "message": "{{date}} üzerinde birden fazla başarısız girişimde bulunulması nedeniyle kullanıcınız kalıcı olarak devre dışı bırakıldı.",
+        "contactAdmin": "Lütfen bir yöneticiyle iletişime geçin."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Kullanıcı geçici kilitlenme nedeniyle devre dışı bırakıldı",
+        "message": "{{date}} üzerinde birden fazla başarısız girişimde bulunulması nedeniyle kullanıcınız geçici olarak devre dışı bırakıldı.",
+        "contactAdmin": "Lütfen bir yöneticiyle iletişime geçin."
+    },
+    "executeActions": {
+        "subject": "Hesabınızı Güncelleyin",
+        "message": "Yöneticiniz az önce aşağıdaki işlemleri gerçekleştirerek {{realmName}} hesabınızı güncellemenizi istedi:",
+        "clickLink": "Bu işlemi başlatmak için aşağıdaki bağlantıya tıklayın.",
+        "linkExpiration": "Bu bağlantının süresi {{expiration}} içinde dolacak.",
+        "ignoreMessage": "Yöneticinizin bunu istediğinin farkında değilseniz, bu mesajı dikkate almayın; hiçbir şey değişmeyecektir.",
+        "updateAccountButton": "Hesabı Güncelle"
+    },
+    "identity-provider-link": {
+        "subject": "{0} hesabını hesabınıza bağlayın",
+        "message": "Birisi {{identityProviderDisplayName}} hesabınızı {{username}} kullanıcısının {{realmName}} hesabına bağlamak istiyor.",
+        "clickLink": "Bu sizseniz, hesapları bağlamak için aşağıdaki bağlantıya tıklayın",
+        "linkExpiration": "Bu bağlantının süresi {{expiration}} içinde dolacak.",
+        "ignoreMessage": "Bu değişikliğe devam etmek istemiyorsanız bu mesajı dikkate almayın.",
+        "linkAccountsButton": "Hesapları Bağla",
+        "loginInfo": "Hesapları bağlarsanız, {{realmName}} aracılığıyla {{identityProviderDisplayName}} hesabına giriş yapabileceksiniz."
+    },
+    "org-invite": {
+        "subject": "{0} kuruluşuna katılma daveti",
+        "greeting": "Merhaba, {{firstName}} {{lastName}}.",
+        "message": "{{organizationName}} kuruluşuna katılmaya davet edildiniz. Katılmak için aşağıdaki bağlantıya tıklayın.",
+        "linkExpiration": "Bu bağlantının süresi {{expiration}} içinde dolacak.",
+        "ignoreMessage": "Organizasyona katılmak istemiyorsanız bu mesajı dikkate almayın.",
+        "joinButton": "Organizasyona katılın"
+    },
+    "password-reset": {
+        "subject": "Şifreyi sıfırla",
+        "message": "Birisi az önce {{realmName}} hesabınızın kimlik bilgilerini değiştirme talebinde bulundu. Eğer bu sizseniz, sıfırlamak için aşağıdaki bağlantıya tıklayın.",
+        "linkExpiration": "Bu bağlantının süresi {{expiration}} içinde dolacak.",
+        "ignoreMessage": "Kimlik bilgilerinizi sıfırlamak istemiyorsanız bu mesajı dikkate almayın; hiçbir şey değişmeyecektir.",
+        "resetButton": "Kimlik bilgilerini sıfırla"
+    },
+    "requiredAction": {
+        "configure_totp": "OTP öğesini yapılandırın",
+        "terms_and_conditions": "Şartlar ve koşullar",
+        "update_password": "Şifreyi Güncelle",
+        "update_profile": "Profili Güncelle",
+        "verify_email": "E-postayı Doğrula",
+        "configure_recovery_authn_codes": "Kurtarma Kodları Oluşturun",
+        "seconds": "{0,choice,0#saniye|1#saniye|1<saniye}",
+        "minutes": "{0,choice,0#dakika|1#dakika|1<dakika}",
+        "hours": "{0,choice,0#saat|1#saat|1<saat}",
+        "days": "{0,choice,0#günler|1#gün|1<günler}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Tüm Hakları Saklıdır"
+    }
+}

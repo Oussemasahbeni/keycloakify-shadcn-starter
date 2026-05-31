@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "E-pasta pārbaude",
+        "greeting": "Sveiks draugs",
+        "message": "Šis ir testa e-pasts no {{realmName}}. Ja saņēmāt šo e-pasta ziņojumu, tas nozīmē, ka jūsu e-pasta iestatījumi ir pareizi konfigurēti."
+    },
+    "email-update-confirmation": {
+        "subject": "Apstipriniet jauno e-pastu",
+        "linkExpiration": "Šīs saites derīguma termiņš beigsies {{expiration}}.",
+        "updateEmailAddress": "Lai atjauninātu savu {{realmName}} kontu ar e-pasta adresi {{newEmail}}",
+        "clickLinkBelow": "noklikšķiniet uz saites zemāk",
+        "updateEmail": "Atjaunināt e-pastu",
+        "ignoreMessage": "Ja nevēlaties turpināt šo modifikāciju, vienkārši ignorējiet šo ziņojumu."
+    },
+    "email-verification": {
+        "subject": "Apstipriniet e-pastu",
+        "message": "Kāds ir izveidojis {{firstName}} kontu ar šo e-pasta adresi. Ja tas bijāt jūs, noklikšķiniet uz tālāk esošās saites, lai verificētu savu e-pasta adresi.",
+        "verifyButton": "Apstipriniet e-pastu",
+        "linkExpiration": "Šīs saites derīguma termiņš beigsies {{expiration}}.",
+        "ignoreMessage": "Ja neizveidojāt šo kontu, vienkārši ignorējiet šo ziņojumu."
+    },
+    "event-login_error": {
+        "subject": "Pieteikšanās kļūda",
+        "message": "Neveiksmīgs pieteikšanās mēģinājums jūsu kontā tika konstatēts {{date}} no {{ipAddress}}.",
+        "contactAdmin": "Ja tas nebijāt jūs, lūdzu, sazinieties ar administratoru."
+    },
+    "event-remove_credential": {
+        "subject": "Noņemt akreditācijas datus",
+        "message": "Akreditācijas dati {{credentialType}} tika noņemti no jūsu konta {{date}} no {{ipAddress}}.",
+        "contactAdmin": "Ja tas nebijāt jūs, lūdzu, sazinieties ar administratoru."
+    },
+    "event-remove_totp": {
+        "subject": "Noņemt OTP",
+        "message": "OTP tika noņemts no jūsu konta {{date}} no {{ipAddress}}.",
+        "contactAdmin": "Ja tas nebijāt jūs, lūdzu, sazinieties ar administratoru."
+    },
+    "event-update_credential": {
+        "subject": "Atjaunināt akreditācijas datus",
+        "message": "Jūsu {{credentialType}} akreditācijas dati tika mainīti {{date}} no {{ipAddress}}.",
+        "contactAdmin": "Ja tas nebijāt jūs, lūdzu, sazinieties ar administratoru."
+    },
+    "event-update_password": {
+        "subject": "Atjaunināt paroli",
+        "message": "Jūsu parole tika mainīta {{date}} no {{ipAddress}}.",
+        "contactAdmin": "Ja tas nebijāt jūs, lūdzu, sazinieties ar administratoru."
+    },
+    "event-update_totp": {
+        "subject": "Atjaunināt OTP",
+        "message": "OTP tika atjaunināts jūsu kontam {{date}} no {{ipAddress}}.",
+        "contactAdmin": "Ja tas nebijāt jūs, lūdzu, sazinieties ar administratoru."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Lietotājs ir atspējots pastāvīgas bloķēšanas dēļ",
+        "message": "Jūsu lietotājs ir neatgriezeniski atspējots vairāku neveiksmīgu mēģinājumu dēļ {{date}}.",
+        "contactAdmin": "Lūdzu, sazinieties ar administratoru."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Lietotājs ir atspējots pagaidu bloķēšanas dēļ",
+        "message": "Jūsu lietotājs ir īslaicīgi atspējots vairāku neveiksmīgu mēģinājumu dēļ {{date}}.",
+        "contactAdmin": "Lūdzu, sazinieties ar administratoru."
+    },
+    "executeActions": {
+        "subject": "Atjauniniet savu kontu",
+        "message": "Jūsu administrators tikko pieprasīja, lai jūs atjauninātu savu {{realmName}} kontu, veicot šādas darbības:",
+        "clickLink": "Noklikšķiniet uz tālāk esošās saites, lai sāktu šo procesu.",
+        "linkExpiration": "Šīs saites derīguma termiņš beigsies {{expiration}}.",
+        "ignoreMessage": "Ja nezināt, ka jūsu administrators to ir pieprasījis, vienkārši ignorējiet šo ziņojumu, un nekas netiks mainīts.",
+        "updateAccountButton": "Atjaunināt kontu"
+    },
+    "identity-provider-link": {
+        "subject": "Saistiet {0} ar savu kontu",
+        "message": "Kāds vēlas saistīt jūsu {{identityProviderDisplayName}} kontu ar lietotāja {{username}} {{realmName}} kontu.",
+        "clickLink": "Ja tas bijāt jūs, noklikšķiniet uz tālāk esošās saites, lai saistītu kontus",
+        "linkExpiration": "Šīs saites derīguma termiņš beigsies {{expiration}}.",
+        "ignoreMessage": "Ja nevēlaties turpināt šo modifikāciju, vienkārši ignorējiet šo ziņojumu.",
+        "linkAccountsButton": "Saistiet kontus",
+        "loginInfo": "Ja saistīsit kontus, varēsit pieteikties {{identityProviderDisplayName}} līdz {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Uzaicinājums pievienoties organizācijai {0}",
+        "greeting": "Sveiki, {{firstName}} {{lastName}}.",
+        "message": "Jūs tikāt uzaicināts pievienoties organizācijai {{organizationName}}. Noklikšķiniet uz tālāk esošās saites, lai pievienotos.",
+        "linkExpiration": "Šīs saites derīguma termiņš beigsies {{expiration}}.",
+        "ignoreMessage": "Ja nevēlaties pievienoties organizācijai, vienkārši ignorējiet šo ziņojumu.",
+        "joinButton": "Pievienojieties organizācijai"
+    },
+    "password-reset": {
+        "subject": "Atiestatīt paroli",
+        "message": "Kāds tikko pieprasīja mainīt jūsu {{realmName}} konta akreditācijas datus. Ja tas bijāt jūs, noklikšķiniet uz tālāk esošās saites, lai tos atiestatītu.",
+        "linkExpiration": "Šīs saites derīguma termiņš beigsies {{expiration}}.",
+        "ignoreMessage": "Ja nevēlaties atiestatīt savus akreditācijas datus, vienkārši ignorējiet šo ziņojumu, un nekas netiks mainīts.",
+        "resetButton": "Atiestatīt akreditācijas datus"
+    },
+    "requiredAction": {
+        "configure_totp": "Konfigurēt OTP",
+        "terms_and_conditions": "Noteikumi un nosacījumi",
+        "update_password": "Atjaunināt paroli",
+        "update_profile": "Atjaunināt profilu",
+        "verify_email": "Apstipriniet e-pastu",
+        "configure_recovery_authn_codes": "Ģenerējiet atkopšanas kodus",
+        "seconds": "{0,choice,0#sekundes|1#sekunde|1<sekundes}",
+        "minutes": "{0,choice,0#minūtes|1#minūte|1<minūtes}",
+        "hours": "{0,choice,0#stundas|1#stunda|1<stundas}",
+        "days": "{0,choice,0#dienas|1#diena|1<dienas}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Visas tiesības aizsargātas"
+    }
+}

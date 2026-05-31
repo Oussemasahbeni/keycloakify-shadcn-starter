@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "Test e-mailowy",
+        "greeting": "Cześć przyjacielu",
+        "message": "To jest testowy e-mail od {{realmName}}. Jeśli otrzymałeś tego e-maila, oznacza to, że Twoje ustawienia poczty e-mail są poprawnie skonfigurowane."
+    },
+    "email-update-confirmation": {
+        "subject": "Zweryfikuj nowy adres e-mail",
+        "linkExpiration": "Ten link wygaśnie w ciągu {{expiration}}.",
+        "updateEmailAddress": "Aby zaktualizować swoje konto {{realmName}} za pomocą adresu e-mail {{newEmail}}",
+        "clickLinkBelow": "kliknij poniższy link",
+        "updateEmail": "Zaktualizuj e-mail",
+        "ignoreMessage": "Jeśli nie chcesz kontynuować tej modyfikacji, po prostu zignoruj ​​tę wiadomość."
+    },
+    "email-verification": {
+        "subject": "Zweryfikuj adres e-mail",
+        "message": "Ktoś utworzył konto {{firstName}} z tym adresem e-mail. Jeśli to byłeś Ty, kliknij poniższy link, aby zweryfikować swój adres e-mail.",
+        "verifyButton": "Zweryfikuj adres e-mail",
+        "linkExpiration": "Ten link wygaśnie w ciągu {{expiration}}.",
+        "ignoreMessage": "Jeśli to nie Ty utworzyłeś to konto, po prostu zignoruj ​​tę wiadomość."
+    },
+    "event-login_error": {
+        "subject": "Błąd logowania",
+        "message": "Wykryto nieudaną próbę logowania na Twoje konto w dniu {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Jeśli to nie byłeś Ty, skontaktuj się z administratorem."
+    },
+    "event-remove_credential": {
+        "subject": "Usuń dane uwierzytelniające",
+        "message": "Dane uwierzytelniające {{credentialType}} zostały usunięte z Twojego konta w dniu {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Jeśli to nie byłeś Ty, skontaktuj się z administratorem."
+    },
+    "event-remove_totp": {
+        "subject": "Usuń OTP",
+        "message": "OTP został usunięty z Twojego konta {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Jeśli to nie byłeś Ty, skontaktuj się z administratorem."
+    },
+    "event-update_credential": {
+        "subject": "Zaktualizuj dane uwierzytelniające",
+        "message": "Twoje dane uwierzytelniające {{credentialType}} zostały zmienione {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Jeśli to nie byłeś Ty, skontaktuj się z administratorem."
+    },
+    "event-update_password": {
+        "subject": "Zaktualizuj hasło",
+        "message": "Twoje hasło zostało zmienione {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Jeśli to nie byłeś Ty, skontaktuj się z administratorem."
+    },
+    "event-update_totp": {
+        "subject": "Zaktualizuj OTP",
+        "message": "OTP został zaktualizowany dla Twojego konta w dniu {{date}} z {{ipAddress}}.",
+        "contactAdmin": "Jeśli to nie byłeś Ty, skontaktuj się z administratorem."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Użytkownik wyłączony przez trwałą blokadę",
+        "message": "Twój użytkownik został trwale wyłączony z powodu wielu nieudanych prób w dniu {{date}}.",
+        "contactAdmin": "Skontaktuj się z administratorem."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Użytkownik wyłączony przez tymczasową blokadę",
+        "message": "Twój użytkownik został tymczasowo wyłączony z powodu wielu nieudanych prób w dniu {{date}}.",
+        "contactAdmin": "Skontaktuj się z administratorem."
+    },
+    "executeActions": {
+        "subject": "Zaktualizuj swoje konto",
+        "message": "Twój administrator właśnie zażądał aktualizacji Twojego konta {{realmName}} poprzez wykonanie następujących działań:",
+        "clickLink": "Kliknij poniższy link, aby rozpocząć ten proces.",
+        "linkExpiration": "Ten link wygaśnie w ciągu {{expiration}}.",
+        "ignoreMessage": "Jeśli nie wiesz, że administrator o to poprosił, po prostu zignoruj ​​tę wiadomość, a nic nie ulegnie zmianie.",
+        "updateAccountButton": "Zaktualizuj konto"
+    },
+    "identity-provider-link": {
+        "subject": "Połącz {0} ze swoim kontem",
+        "message": "Ktoś chce połączyć Twoje konto {{identityProviderDisplayName}} z {{realmName}} kontem użytkownika {{username}}.",
+        "clickLink": "Jeśli to byłeś Ty, kliknij poniższy link, aby połączyć konta",
+        "linkExpiration": "Ten link wygaśnie w ciągu {{expiration}}.",
+        "ignoreMessage": "Jeśli nie chcesz kontynuować tej modyfikacji, po prostu zignoruj ​​tę wiadomość.",
+        "linkAccountsButton": "Połącz konta",
+        "loginInfo": "Jeśli połączysz konta, będziesz mógł zalogować się do {{identityProviderDisplayName}} za pośrednictwem {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Zaproszenie do przyłączenia się do organizacji {0}",
+        "greeting": "Cześć, {{firstName}} {{lastName}}.",
+        "message": "Zostałeś zaproszony do przyłączenia się do organizacji {{organizationName}}. Kliknij poniższy link, aby dołączyć.",
+        "linkExpiration": "Ten link wygaśnie w ciągu {{expiration}}.",
+        "ignoreMessage": "Jeśli nie chcesz dołączyć do organizacji, po prostu zignoruj ​​tę wiadomość.",
+        "joinButton": "Dołącz do organizacji"
+    },
+    "password-reset": {
+        "subject": "Zresetuj hasło",
+        "message": "Ktoś właśnie poprosił o zmianę danych uwierzytelniających Twojego konta {{realmName}}. Jeśli to byłeś Ty, kliknij poniższy link, aby je zresetować.",
+        "linkExpiration": "Ten link wygaśnie w ciągu {{expiration}}.",
+        "ignoreMessage": "Jeśli nie chcesz resetować swoich danych uwierzytelniających, po prostu zignoruj ​​tę wiadomość i nic nie ulegnie zmianie.",
+        "resetButton": "Zresetuj dane uwierzytelniające"
+    },
+    "requiredAction": {
+        "configure_totp": "Skonfiguruj OTP",
+        "terms_and_conditions": "Regulamin",
+        "update_password": "Zaktualizuj hasło",
+        "update_profile": "Zaktualizuj profil",
+        "verify_email": "Zweryfikuj adres e-mail",
+        "configure_recovery_authn_codes": "Wygeneruj kody odzyskiwania",
+        "seconds": "{0,choice,0#towary drugiej jakości|1#sekunda|1<towary drugiej jakości}",
+        "minutes": "{0,choice,0#protokół|1#minuta|1<protokół}",
+        "hours": "{0,choice,0#godziny|1#godzina|1<godziny}",
+        "days": "{0,choice,0#dni|1#dzień|1<dni}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Wszelkie prawa zastrzeżone"
+    }
+}

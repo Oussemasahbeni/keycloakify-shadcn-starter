@@ -1,0 +1,54 @@
+import { oidcSpa } from 'oidc-spa/react-tanstack-start'
+import { z } from 'zod'
+
+export const {
+  bootstrapOidc,
+  useOidc,
+  getOidc,
+  // NOTE: Each time you enforceLogin on a route the oidc-spa vite plugin
+  // will automatically switch this route to `ssr: false`.
+  // This ensures that everything that can be SSR'd is and the rest is delayed to the client.
+  enforceLogin,
+  oidcFnMiddleware,
+  oidcRequestMiddleware,
+} = oidcSpa
+  .withExpectedDecodedIdTokenShape({
+    decodedIdTokenSchema: z.object({
+      name: z.string(),
+      picture: z.string().optional(),
+      email: z.email().optional(),
+      preferred_username: z.string().optional(),
+      realm_access: z.object({ roles: z.array(z.string()) }).optional(),
+    }),
+  })
+  .withAccessTokenValidation({
+    type: 'RFC 9068: JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens',
+    expectedAudience: (/*{ paramsOfBootstrap, process }*/) => 'account',
+    accessTokenClaimsSchema: z.object({
+      sub: z.string(),
+      realm_access: z.object({ roles: z.array(z.string()) }).optional(),
+    }),
+  })
+  .createUtils()
+
+// Can be call anywhere, even in the body of a React component.
+// All subsequent calls will be safely ignored.
+bootstrapOidc({
+  implementation: 'real',
+  issuerUri: import.meta.env.VITE_OIDC_ISSUER_URI,
+  clientId: import.meta.env.VITE_OIDC_CLIENT_ID,
+  debugLogs: true,
+})
+
+export const fetchWithAuth: typeof fetch = async (input, init) => {
+  const oidc = await getOidc()
+
+  if (oidc.isUserLoggedIn) {
+    const accessToken = await oidc.getAccessToken()
+    const headers = new Headers(init?.headers)
+    headers.set('Authorization', `Bearer ${accessToken}`)
+    ;(init ??= {}).headers = headers
+  }
+
+  return fetch(input, init)
+}

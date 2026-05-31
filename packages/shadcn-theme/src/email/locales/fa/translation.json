@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "تست ایمیل",
+        "greeting": "سلام دوست",
+        "message": "این یک ایمیل آزمایشی از {{realmName}} است. اگر این ایمیل را دریافت کرده اید، به این معنی است که تنظیمات ایمیل شما به درستی پیکربندی شده است."
+    },
+    "email-update-confirmation": {
+        "subject": "تایید ایمیل جدید",
+        "linkExpiration": "این پیوند در مدت {{expiration}} منقضی می شود.",
+        "updateEmailAddress": "برای به روز رسانی حساب {{realmName}} خود با آدرس ایمیل {{newEmail}}",
+        "clickLinkBelow": "روی لینک زیر کلیک کنید",
+        "updateEmail": "ایمیل را به روز کنید",
+        "ignoreMessage": "اگر نمی‌خواهید با این تغییر ادامه دهید، فقط این پیام را نادیده بگیرید."
+    },
+    "email-verification": {
+        "subject": "تایید ایمیل",
+        "message": "شخصی با این آدرس ایمیل یک حساب {{firstName}} ایجاد کرده است. اگر این شما بودید، برای تأیید آدرس ایمیل خود، روی پیوند زیر کلیک کنید.",
+        "verifyButton": "تایید ایمیل",
+        "linkExpiration": "این پیوند در مدت {{expiration}} منقضی می شود.",
+        "ignoreMessage": "اگر شما این حساب را ایجاد نکرده اید، فقط این پیام را نادیده بگیرید."
+    },
+    "event-login_error": {
+        "subject": "خطای ورود",
+        "message": "تلاش ناموفق برای ورود به حساب شما در تاریخ {{date}} از {{ipAddress}} شناسایی شد.",
+        "contactAdmin": "اگر این شما نبودید، لطفا با یک مدیر تماس بگیرید."
+    },
+    "event-remove_credential": {
+        "subject": "حذف اعتبار",
+        "message": "اطلاعات کاربری {{credentialType}} در تاریخ {{date}} از {{ipAddress}} از حساب شما حذف شد.",
+        "contactAdmin": "اگر این شما نبودید، لطفا با یک مدیر تماس بگیرید."
+    },
+    "event-remove_totp": {
+        "subject": "حذف OTP",
+        "message": "OTP در تاریخ {{date}} از {{ipAddress}} از حساب شما حذف شد.",
+        "contactAdmin": "اگر این شما نبودید، لطفا با یک مدیر تماس بگیرید."
+    },
+    "event-update_credential": {
+        "subject": "به روز رسانی اعتبار",
+        "message": "اعتبار {{credentialType}} شما در تاریخ {{date}} از {{ipAddress}} تغییر کرد.",
+        "contactAdmin": "اگر این شما نبودید، لطفا با یک مدیر تماس بگیرید."
+    },
+    "event-update_password": {
+        "subject": "رمز عبور را به روز کنید",
+        "message": "رمز عبور شما در تاریخ {{date}} از {{ipAddress}} تغییر کرد.",
+        "contactAdmin": "اگر این شما نبودید، لطفا با یک مدیر تماس بگیرید."
+    },
+    "event-update_totp": {
+        "subject": "به روز رسانی OTP",
+        "message": "OTP برای حساب شما در {{date}} از {{ipAddress}} به روز شد.",
+        "contactAdmin": "اگر این شما نبودید، لطفا با یک مدیر تماس بگیرید."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "کاربر با قفل دائمی غیرفعال شد",
+        "message": "کاربر شما به دلیل چندین تلاش ناموفق در {{date}} برای همیشه غیرفعال شده است.",
+        "contactAdmin": "لطفا با یک مدیر تماس بگیرید."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "کاربر با قفل موقت غیرفعال شد",
+        "message": "کاربر شما به دلیل چندین تلاش ناموفق در {{date}} به طور موقت غیرفعال شده است.",
+        "contactAdmin": "لطفا با یک مدیر تماس بگیرید."
+    },
+    "executeActions": {
+        "subject": "اکانت خود را به روز کنید",
+        "message": "سرپرست شما به تازگی درخواست کرده است که حساب {{realmName}} خود را با انجام اقدامات زیر به روز کنید:",
+        "clickLink": "برای شروع این فرآیند روی لینک زیر کلیک کنید.",
+        "linkExpiration": "این پیوند در مدت {{expiration}} منقضی می شود.",
+        "ignoreMessage": "اگر نمی دانید که سرپرست شما این درخواست را کرده است، فقط این پیام را نادیده بگیرید و چیزی تغییر نخواهد کرد.",
+        "updateAccountButton": "به روز رسانی حساب"
+    },
+    "identity-provider-link": {
+        "subject": "{0} را با حساب خود پیوند دهید",
+        "message": "شخصی می خواهد حساب {{identityProviderDisplayName}} شما را با حساب {{realmName}} کاربر {{username}} پیوند دهد.",
+        "clickLink": "اگر این شما بودید، برای پیوند دادن حساب‌ها، روی پیوند زیر کلیک کنید",
+        "linkExpiration": "این پیوند در مدت {{expiration}} منقضی می شود.",
+        "ignoreMessage": "اگر نمی‌خواهید با این تغییر ادامه دهید، فقط این پیام را نادیده بگیرید.",
+        "linkAccountsButton": "پیوند حساب ها",
+        "loginInfo": "اگر حساب‌ها را پیوند دهید، می‌توانید از طریق {{realmName}} به {{identityProviderDisplayName}} وارد شوید."
+    },
+    "org-invite": {
+        "subject": "دعوت به عضویت در سازمان {0}",
+        "greeting": "سلام، {{firstName}} {{lastName}}.",
+        "message": "شما برای پیوستن به سازمان {{organizationName}} دعوت شده اید. برای عضویت روی لینک زیر کلیک کنید",
+        "linkExpiration": "این پیوند در مدت {{expiration}} منقضی می شود.",
+        "ignoreMessage": "اگر نمی خواهید به سازمان بپیوندید، فقط این پیام را نادیده بگیرید.",
+        "joinButton": "به سازمان بپیوندید"
+    },
+    "password-reset": {
+        "subject": "بازنشانی رمز عبور",
+        "message": "شخصی به تازگی درخواست کرده است که اعتبار حساب {{realmName}} شما را تغییر دهد. اگر این شما بودید، روی پیوند زیر کلیک کنید تا آنها را بازنشانی کنید.",
+        "linkExpiration": "این پیوند در مدت {{expiration}} منقضی می شود.",
+        "ignoreMessage": "اگر نمی خواهید اعتبارنامه خود را بازنشانی کنید، فقط این پیام را نادیده بگیرید و چیزی تغییر نخواهد کرد.",
+        "resetButton": "بازنشانی اعتبار"
+    },
+    "requiredAction": {
+        "configure_totp": "پیکربندی OTP",
+        "terms_and_conditions": "شرایط و ضوابط",
+        "update_password": "رمز عبور را به روز کنید",
+        "update_profile": "به روز رسانی نمایه",
+        "verify_email": "تایید ایمیل",
+        "configure_recovery_authn_codes": "کدهای بازیابی را ایجاد کنید",
+        "seconds": "{0,choice,0#ثانیه|1#ثانیه|1<ثانیه}",
+        "minutes": "{0,choice,0#دقیقه|1#دقیقه|1<دقیقه}",
+        "hours": "{0,choice,0#ساعت|1#ساعت|1<ساعت}",
+        "days": "{0,choice,0#روز|1#روز|1<روز}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}، کلیه حقوق محفوظ است"
+    }
+}

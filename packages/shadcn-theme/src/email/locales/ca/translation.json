@@ -1,0 +1,109 @@
+{
+    "email-test": {
+        "subject": "Prova de correu electrònic",
+        "greeting": "Hola amic",
+        "message": "Aquest és un correu electrònic de prova de {{realmName}}. Si heu rebut aquest correu electrònic, vol dir que la vostra configuració de correu electrònic està configurada correctament."
+    },
+    "email-update-confirmation": {
+        "subject": "Verifica el correu electrònic nou",
+        "linkExpiration": "Aquest enllaç caducarà d'aquí a {{expiration}}.",
+        "updateEmailAddress": "Per actualitzar el vostre compte {{realmName}} amb l'adreça electrònica {{newEmail}}",
+        "clickLinkBelow": "feu clic a l'enllaç següent",
+        "updateEmail": "Correu electrònic d'actualització",
+        "ignoreMessage": "Si no voleu continuar amb aquesta modificació, simplement ignoreu aquest missatge."
+    },
+    "email-verification": {
+        "subject": "Verifica el correu electrònic",
+        "message": "Algú ha creat un compte {{firstName}} amb aquesta adreça electrònica. Si vas ser tu, fes clic a l'enllaç següent per verificar la teva adreça de correu electrònic.",
+        "verifyButton": "Verifica el correu electrònic",
+        "linkExpiration": "Aquest enllaç caducarà d'aquí a {{expiration}}.",
+        "ignoreMessage": "Si no heu creat aquest compte, només feu cas d'aquest missatge."
+    },
+    "event-login_error": {
+        "subject": "Error d'inici de sessió",
+        "message": "S'ha detectat un intent fallit d'inici de sessió al vostre compte el {{date}} des del {{ipAddress}}.",
+        "contactAdmin": "Si no vas ser tu, contacta amb un administrador."
+    },
+    "event-remove_credential": {
+        "subject": "Elimina la credencial",
+        "message": "La credencial {{credentialType}} es va eliminar del vostre compte el {{date}} de {{ipAddress}}.",
+        "contactAdmin": "Si no vas ser tu, contacta amb un administrador."
+    },
+    "event-remove_totp": {
+        "subject": "Elimina OTP",
+        "message": "OTP es va eliminar del teu compte el {{date}} de {{ipAddress}}.",
+        "contactAdmin": "Si no vas ser tu, contacta amb un administrador."
+    },
+    "event-update_credential": {
+        "subject": "Actualitza la credencial",
+        "message": "La vostra {{credentialType}} credencial es va canviar el {{date}} de {{ipAddress}}.",
+        "contactAdmin": "Si no vas ser tu, contacta amb un administrador."
+    },
+    "event-update_password": {
+        "subject": "Actualitza la contrasenya",
+        "message": "La teva contrasenya es va canviar el {{date}} de {{ipAddress}}.",
+        "contactAdmin": "Si no vas ser tu, contacta amb un administrador."
+    },
+    "event-update_totp": {
+        "subject": "Actualització OTP",
+        "message": "OTP es va actualitzar per al vostre compte el {{date}} des de {{ipAddress}}.",
+        "contactAdmin": "Si no vas ser tu, contacta amb un administrador."
+    },
+    "event-user_disabled_by_permanent_lockout": {
+        "subject": "Usuari desactivat per bloqueig permanent",
+        "message": "El vostre usuari s'ha desactivat permanentment a causa de diversos intents fallits el {{date}}.",
+        "contactAdmin": "Poseu-vos en contacte amb un administrador."
+    },
+    "event-user_disabled_by_temporary_lockout": {
+        "subject": "Usuari desactivat per bloqueig temporal",
+        "message": "El vostre usuari s'ha desactivat temporalment a causa de diversos intents fallits a {{date}}.",
+        "contactAdmin": "Poseu-vos en contacte amb un administrador."
+    },
+    "executeActions": {
+        "subject": "Actualitza el teu compte",
+        "message": "El vostre administrador acaba de sol·licitar que actualitzeu el vostre compte {{realmName}} realitzant les accions següents:",
+        "clickLink": "Feu clic a l'enllaç següent per iniciar aquest procés.",
+        "linkExpiration": "Aquest enllaç caducarà d'aquí a {{expiration}}.",
+        "ignoreMessage": "Si no sabeu que el vostre administrador ho ha sol·licitat, simplement ignoreu aquest missatge i no es canviarà res.",
+        "updateAccountButton": "Actualitza el compte"
+    },
+    "identity-provider-link": {
+        "subject": "Enllaça {0} amb el teu compte",
+        "message": "Algú vol enllaçar el vostre compte {{identityProviderDisplayName}} amb el compte {{realmName}} de l'usuari {{username}}.",
+        "clickLink": "Si vas ser tu, fes clic a l'enllaç següent per enllaçar els comptes",
+        "linkExpiration": "Aquest enllaç caducarà d'aquí a {{expiration}}.",
+        "ignoreMessage": "Si no voleu continuar amb aquesta modificació, simplement ignoreu aquest missatge.",
+        "linkAccountsButton": "Enllaçar comptes",
+        "loginInfo": "Si enllaceu comptes, podreu iniciar sessió a {{identityProviderDisplayName}} a {{realmName}}."
+    },
+    "org-invite": {
+        "subject": "Invitació per unir-se a l'organització {0}",
+        "greeting": "Hola, {{firstName}} {{lastName}}.",
+        "message": "T'han convidat a unir-te a l'organització {{organizationName}}. Feu clic a l'enllaç següent per unir-vos.",
+        "linkExpiration": "Aquest enllaç caducarà d'aquí a {{expiration}}.",
+        "ignoreMessage": "Si no vols unir-te a l'organització, ignora aquest missatge.",
+        "joinButton": "Uneix-te a l'organització"
+    },
+    "password-reset": {
+        "subject": "Restableix la contrasenya",
+        "message": "Algú acaba de sol·licitar canviar les credencials del vostre compte {{realmName}}. Si vas ser tu, fes clic a l'enllaç següent per restablir-los.",
+        "linkExpiration": "Aquest enllaç caducarà d'aquí a {{expiration}}.",
+        "ignoreMessage": "Si no voleu restablir les vostres credencials, ignoreu aquest missatge i no es canviarà res.",
+        "resetButton": "Restableix les credencials"
+    },
+    "requiredAction": {
+        "configure_totp": "Configura OTP",
+        "terms_and_conditions": "Termes i condicions",
+        "update_password": "Actualitza la contrasenya",
+        "update_profile": "Actualitza el perfil",
+        "verify_email": "Verifica el correu electrònic",
+        "configure_recovery_authn_codes": "Generar codis de recuperació",
+        "seconds": "{0,choice,0#segons|1#segon|1<segons}",
+        "minutes": "{0,choice,0#minuts|1#minut|1<minuts}",
+        "hours": "{0,choice,0#hores|1#hora|1<hores}",
+        "days": "{0,choice,0#dies|1#dia|1<dies}"
+    },
+    "footer": {
+        "allRightsReserved": "© {{currentYear}} {{realmName}}, Tots els drets reservats"
+    }
+}
