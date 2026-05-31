@@ -1,72 +1,120 @@
-import { Button } from '#/components/ui/button'
-import { Input } from '#/components/ui/input'
-import { Label } from '#/components/ui/label'
-import { cn } from '#/lib/utils'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '#/components/ui/select';
 
-import { useEditor } from './editor-context'
-import { themeFontFamilies } from './theme/theme-presets'
-import { themeConfigToCssVars } from './theme/resolve-theme'
-import { getViewportWidth } from './viewport'
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEditor } from './editor-context';
+import { getPage, pageCatalog, type PageId } from './preview-catalog';
+import { getViewportWidth } from './viewport';
 
 /**
- * Placeholder preview surface.
- *
- * It honours the editor's `viewport` (width clamp) and `previewColorScheme`
- * (a `.dark`/`.light` class scoped to THIS container — never the document
- * root, so the app chrome keeps its own theme). When the real Keycloak pages
- * are wired in, only the inner mock is replaced (with an inline component or
- * an iframe); the width + color-scheme contract stays the same.
+ * Renders the real theme in an isolated iframe (`/preview`). The editor's
+ * `config` / `previewColorScheme` / selected page are pushed in via
+ * `postMessage`; `viewport` clamps the iframe width. The iframe is never
+ * reloaded — page switches re-render `KcPage` on the other side.
  */
 export function PreviewPane() {
-  const { viewport, previewColorScheme, config } = useEditor()
-  const width = getViewportWidth(viewport)
+    const { viewport, previewColorScheme, config } = useEditor();
+    const [pageId, setPageId] = useState<PageId>('login.ftl');
+    const [scenarioId, setScenarioId] = useState('default');
+    const iframeRef = useRef<HTMLIFrameElement>(null);
+    const width = getViewportWidth(viewport);
 
-  return (
-    <div className="flex flex-1 items-start justify-center overflow-auto bg-muted/40 p-6">
-      <div
-        // The `previewColorScheme` class activates `dark:` variants on the
-        // shadcn components inside; the inline vars override the token *values*.
-        // Both are needed — see resolve-theme.ts.
-        className={cn(
-          previewColorScheme,
-          'min-h-full w-full rounded-xl border bg-background text-foreground shadow-sm transition-[max-width] duration-300 ease-in-out',
-        )}
-        style={{
-          ...themeConfigToCssVars(config, previewColorScheme),
-          fontFamily: themeFontFamilies[config.font],
-          colorScheme: previewColorScheme,
-          maxWidth: width ? `${width}px` : '100%',
-        }}
-      >
-        <div className="flex min-h-120 items-center justify-center p-8">
-          <div className="w-full max-w-sm space-y-6 rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
-            <div className="space-y-1 text-center">
-              <h2 className="text-xl font-semibold">Sign in to your account</h2>
-              <p className="text-sm text-muted-foreground">
-                Preview of your Keycloak login theme
-              </p>
+    const scenarios = getPage(pageId)?.scenarios ?? [];
+
+    // Switching page resets to that page's first (default) scenario, since
+    // scenario ids are only unique within a page.
+    function handlePageChange(value: PageId) {
+        setPageId(value);
+        setScenarioId(getPage(value)?.scenarios[0]?.id ?? 'default');
+    }
+
+    const postState = useCallback(() => {
+        iframeRef.current?.contentWindow?.postMessage(
+            {
+                type: 'kc-preview:state',
+                // Only the scenario id crosses the boundary — the overrides hold
+                // functions (messagesPerField) that structured-clone can't carry,
+                // so the iframe re-resolves them from the same catalog module.
+                payload: { pageId, scenarioId, colorScheme: previewColorScheme, config },
+            },
+            window.location.origin,
+        );
+    }, [pageId, scenarioId, previewColorScheme, config]);
+
+    // Push state on every editor change.
+    useEffect(() => {
+        postState();
+    }, [postState]);
+
+    // Push state again when the iframe mounts and announces it's listening.
+    useEffect(() => {
+        function onMessage(event: MessageEvent) {
+            if (event.origin !== window.location.origin) {
+                return;
+            }
+            if (event.data?.type === 'kc-preview:ready') {
+                postState();
+            }
+        }
+
+        window.addEventListener('message', onMessage);
+        return () => window.removeEventListener('message', onMessage);
+    }, [postState]);
+
+    return (
+        <div className="flex min-w-0 flex-1 flex-col">
+            <div className="flex items-center gap-2 border-b p-2">
+                <Select value={pageId} onValueChange={value => handlePageChange(value as PageId)}>
+                    <SelectTrigger className="w-64">
+                        <SelectValue>
+                            {(value: PageId) => getPage(value)?.label ?? value}
+                        </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent alignItemWithTrigger={false}>
+                        {pageCatalog.map(page => (
+                            <SelectItem key={page.pageId} value={page.pageId}>
+                                {page.label}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+
+                {scenarios.length > 1 && (
+                    <Select
+                        value={scenarioId}
+                        onValueChange={value => setScenarioId(value ?? 'default')}
+                    >
+                        <SelectTrigger className="w-56">
+                            <SelectValue>
+                                {(value: string) =>
+                                    scenarios.find(scenario => scenario.id === value)?.label ?? value
+                                }
+                            </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent alignItemWithTrigger={false}>
+                            {scenarios.map(scenario => (
+                                <SelectItem key={scenario.id} value={scenario.id}>
+                                    {scenario.label}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                )}
             </div>
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="preview-username">Username or email</Label>
-                <Input id="preview-username" placeholder="you@example.com" readOnly />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="preview-password">Password</Label>
-                <Input
-                  id="preview-password"
-                  type="password"
-                  placeholder="••••••••"
-                  readOnly
+            <div className="grid min-h-0 flex-1 place-items-center overflow-auto bg-muted/30 p-4">
+                <iframe
+                    ref={iframeRef}
+                    src="/preview"
+                    title="Theme preview"
+                    className="h-full rounded-lg border bg-background shadow-sm transition-[width] duration-200"
+                    style={{ width: width ? `${width}px` : '100%' }}
                 />
-              </div>
-              <Button className="w-full" type="button">
-                Sign in
-              </Button>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  )
+    );
 }

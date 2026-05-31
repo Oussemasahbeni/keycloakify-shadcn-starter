@@ -32,9 +32,6 @@ importers:
       prettier:
         specifier: 3.8.3
         version: 3.8.3
-      typescript:
-        specifier: ^6.0.3
-        version: 6.0.3
 
   apps/editor:
     dependencies:
@@ -159,9 +156,6 @@ importers:
       jsdom:
         specifier: ^28.1.0
         version: 28.1.0(@noble/hashes@1.8.0)
-      prettier:
-        specifier: ^3.8.1
-        version: 3.8.3
       shadcn:
         specifier: ^4.8.0
         version: 4.8.3(@types/node@22.19.19)(typescript@6.0.3)
@@ -313,9 +307,6 @@ importers:
       keycloakify-emails:
         specifier: 3.3.1
         version: 3.3.1(jsx-email@3.2.0)(react@19.2.6)
-      prettier:
-        specifier: 3.8.3
-        version: 3.8.3
       storybook:
         specifier: ^10.4.0
         version: 10.4.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@testing-library/dom@10.4.1)(@types/react@19.2.15)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)

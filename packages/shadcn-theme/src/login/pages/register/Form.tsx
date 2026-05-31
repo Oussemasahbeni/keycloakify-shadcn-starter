@@ -1,16 +1,17 @@
-import { Button } from "#/components/ui/button";
-import { clsx } from "@keycloakify/login-ui/tools/clsx";
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
-import { useLayoutEffect, useState } from "react";
-import { assert } from "tsafe/assert";
-import { UserProfileFormFields } from "../../components/UserProfileFormFields";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { TermsAcceptance } from "./TermsAcceptance";
+import { Button, buttonVariants } from '#/components/ui/button';
+import { cn } from '#/lib/utils';
+import { useI18n } from '#/login/i18n';
+import { useKcContext } from '#/login/KcContext';
+import { clsx } from '@keycloakify/login-ui/tools/clsx';
+import { useKcClsx } from '@keycloakify/login-ui/useKcClsx';
+import { useLayoutEffect, useState } from 'react';
+import { assert } from 'tsafe/assert';
+import { UserProfileFormFields } from '../../components/UserProfileFormFields';
+import { TermsAcceptance } from './TermsAcceptance';
 
 export function Form() {
     const { kcContext } = useKcContext();
-    assert(kcContext.pageId === "register.ftl");
+    assert(kcContext.pageId === 'register.ftl');
     const { kcClsx } = useKcClsx();
     const { msg, msgStr } = useI18n();
 
@@ -18,13 +19,13 @@ export function Form() {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
 
     useLayoutEffect(() => {
-        (window as any)["onSubmitRecaptcha"] = () => {
+        (window as any)['onSubmitRecaptcha'] = () => {
             // @ts-expect-error
-            document.getElementById("kc-register-form").requestSubmit();
+            document.getElementById('kc-register-form').requestSubmit();
         };
 
         return () => {
-            delete (window as any)["onSubmitRecaptcha"];
+            delete (window as any)['onSubmitRecaptcha'];
         };
     }, []);
 
@@ -35,9 +36,7 @@ export function Form() {
             className="space-y-4"
             method="post"
         >
-            <UserProfileFormFields
-                onIsFormSubmittableValueChange={setIsFormSubmittable}
-            />
+            <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
             {kcContext.termsAcceptanceRequired && (
                 <TermsAcceptance
                     messagesPerField={kcContext.messagesPerField}
@@ -46,10 +45,9 @@ export function Form() {
                 />
             )}
             {kcContext.recaptchaRequired &&
-                (kcContext.recaptchaVisible ||
-                    kcContext.recaptchaAction === undefined) && (
+                (kcContext.recaptchaVisible || kcContext.recaptchaAction === undefined) && (
                     <div className="form-group">
-                        <div className={kcClsx("kcInputWrapperClass")}>
+                        <div className={kcClsx('kcInputWrapperClass')}>
                             <div
                                 className="g-recaptcha"
                                 data-size="compact"
@@ -59,27 +57,27 @@ export function Form() {
                         </div>
                     </div>
                 )}
-            <div className={kcClsx("kcFormGroupClass")}>
+            <div className={kcClsx('kcFormGroupClass')}>
                 {kcContext.recaptchaRequired &&
-                    !kcContext.recaptchaVisible &&
-                    kcContext.recaptchaAction !== undefined ? (
-                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                !kcContext.recaptchaVisible &&
+                kcContext.recaptchaAction !== undefined ? (
+                    <div id="kc-form-buttons" className={kcClsx('kcFormButtonsClass')}>
                         <button
                             className={clsx(
                                 kcClsx(
-                                    "kcButtonClass",
-                                    "kcButtonPrimaryClass",
-                                    "kcButtonBlockClass",
-                                    "kcButtonLargeClass"
+                                    'kcButtonClass',
+                                    'kcButtonPrimaryClass',
+                                    'kcButtonBlockClass',
+                                    'kcButtonLargeClass',
                                 ),
-                                "g-recaptcha"
+                                'g-recaptcha',
                             )}
                             data-sitekey={kcContext.recaptchaSiteKey}
                             data-callback="onSubmitRecaptcha"
                             data-action={kcContext.recaptchaAction}
                             type="submit"
                         >
-                            {msg("doRegister")}
+                            {msg('doRegister')}
                         </button>
                     </div>
                 ) : (
@@ -92,15 +90,18 @@ export function Form() {
                         name="register"
                         type="submit"
                     >
-                        {msgStr("doRegister")}
+                        {msgStr('doRegister')}
                     </Button>
                 )}
             </div>
 
             <div className=" flex justify-end">
-                <Button type="button" variant="ghost" asChild>
-                    <a href={kcContext.url.loginUrl}>{msg("backToLogin")}</a>
-                </Button>
+                <a
+                    className={cn(buttonVariants({ variant: 'link' }))}
+                    href={kcContext.url.loginUrl}
+                >
+                    {msg('backToLogin')}
+                </a>
             </div>
         </form>
     );

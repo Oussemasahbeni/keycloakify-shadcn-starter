@@ -30,6 +30,7 @@
     "exports": {
         "./preview": "./src/login/preview.tsx",
         "./theme-meta": "./src/login/components/Template/theme/ThemeTypes.ts",
+        "./presets": "./src/login/components/Template/theme/Presets.ts",
         "./defaults": "./src/login/components/Template/Defaults.ts",
         "./styles.css": "./src/login/index.css"
     },

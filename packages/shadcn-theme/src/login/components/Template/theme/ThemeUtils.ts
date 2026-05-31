@@ -3,7 +3,7 @@ import {
     DEFAULT_THEME_PRESET,
     DEFAULT_THEME_RADIUS
 } from "../Defaults";
-import { basePalettes, radiusPresets, themeFontFamilies, themePresets } from "./Themes";
+import { basePalettes, radiusPresets, themeFontFamilies, themePresets } from "./Presets";
 import {
     type FontFamily,
     type ModeTokens,
