@@ -4,3 +4,6 @@ node_modules/
 /public/keycloakify-dev-resources/
 /.vscode/
 /.yarn_home/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

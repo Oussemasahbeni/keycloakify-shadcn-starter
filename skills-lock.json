@@ -1,40 +1,11 @@
 {
   "version": 1,
   "skills": {
-    "audit": {
-      "source": "pbakaus/impeccable",
-      "sourceType": "github",
-      "computedHash": "85ff89a25110dd68ebb30b45c67b33b8f2d2bb123d407d957329a2931f0a6878"
-    },
-    "clarify": {
-      "source": "pbakaus/impeccable",
-      "sourceType": "github",
-      "computedHash": "d24958a9a929c93191e4959d0daa17155cc5f0119da6ed33998e36bdd48cbbde"
-    },
-    "critique": {
-      "source": "pbakaus/impeccable",
-      "sourceType": "github",
-      "computedHash": "59a710d03e1f66e962b145283c676ed411ea71aec641601abd2ed7c5b61b3879"
-    },
-    "distill": {
-      "source": "pbakaus/impeccable",
-      "sourceType": "github",
-      "computedHash": "b9fb6ad6d67d798d918e0ff339322ed7f86212d2076ce4a280088b02b7ed0f86"
-    },
-    "optimize": {
-      "source": "pbakaus/impeccable",
-      "sourceType": "github",
-      "computedHash": "36de9c64e36c778a01502ca9c98a7a6d54d4fa5215c62c01a2e93dcc5912d869"
-    },
-    "polish": {
-      "source": "pbakaus/impeccable",
-      "sourceType": "github",
-      "computedHash": "3e101ab23d322abd2de3b8a783009e034f85b46d4b86c36e58389f8670edac21"
-    },
     "shadcn": {
       "source": "shadcn/ui",
       "sourceType": "github",
-      "computedHash": "77faba608ea949351d1757e29e6cb726f6ec5937f7595be0593038a7d2d76bb9"
+      "skillPath": "skills/shadcn/SKILL.md",
+      "computedHash": "f0fdd03f4755cbb3b57e20fe6fd4a97c00d34e6780187b6559316986e8d848db"
     }
   }
 }

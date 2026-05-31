@@ -25,8 +25,7 @@ jobs:
                   cache: "pnpm"
 
             - run: pnpm install --frozen-lockfile
-            - run: pnpm build
-            - run: pnpm exec keycloakify
+            - run: pnpm theme:build-keycloak-theme
 
     security_scan:
         name: Security Scan (Trivy)
@@ -55,10 +54,27 @@ jobs:
             to_version: ${{ steps.step1.outputs.to_version }}
             is_upgraded_version: ${{ steps.step1.outputs.is_upgraded_version }}
         steps:
-            - uses: garronej/ts-ci@v2.1.0
-              id: step1
+            - uses: actions/checkout@v6
               with:
-                  action_name: is_package_json_version_upgraded
+                  fetch-depth: 2
+            - id: step1
+              shell: bash
+              run: |
+                  PKG=packages/shadcn-theme/package.json
+                  TO=$(node -p "require('./$PKG').version")
+                  if git show HEAD~1:$PKG > /tmp/old.json 2>/dev/null; then
+                    FROM=$(node -p "require('/tmp/old.json').version")
+                  else
+                    FROM="0.0.0"
+                  fi
+                  echo "from_version=$FROM" >> "$GITHUB_OUTPUT"
+                  echo "to_version=$TO"     >> "$GITHUB_OUTPUT"
+                  if [ "$TO" != "$FROM" ] && \
+                     [ "$(printf '%s\n%s\n' "$FROM" "$TO" | sort -V | tail -n1)" = "$TO" ]; then
+                    echo "is_upgraded_version=true"  >> "$GITHUB_OUTPUT"
+                  else
+                    echo "is_upgraded_version=false" >> "$GITHUB_OUTPUT"
+                  fi
 
     create_github_release:
         runs-on: ubuntu-latest
@@ -77,8 +93,7 @@ jobs:
                   cache: "pnpm"
 
             - run: pnpm install --frozen-lockfile
-            - run: pnpm build
-            - run: pnpm exec keycloakify
+            - run: pnpm theme:build-keycloak-theme
 
             - name: Create Release
               uses: softprops/action-gh-release@v2
@@ -88,7 +103,7 @@ jobs:
                   target_commitish: ${{ github.ref }}
                   generate_release_notes: true
                   draft: false
-                  files: build_keycloak/target/*.jar
+                  files: packages/shadcn-theme/dist_keycloak/*.jar
 
     gh_pages:
         runs-on: ubuntu-latest
@@ -106,12 +121,12 @@ jobs:
                   cache: "pnpm"
 
             - run: pnpm install --frozen-lockfile
-            - run: pnpm build-storybook
+            - run: pnpm theme:build-storybook
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: storybook-static
+                  path: packages/shadcn-theme/storybook-static
 
     deploy_gh_pages:
         needs: gh_pages
@@ -147,9 +162,9 @@ jobs:
             - run: pnpm install --frozen-lockfile
 
             - name: Prepare NPM Package
-              run: node scripts/prepare-publish.js
+              run: pnpm theme:prepare
 
             - name: Publish to NPM
               run: |
-                  cd keycloak-theme_to_publish
+                  cd packages/shadcn-theme/keycloak-theme_to_publish
                   npm publish --access public --provenance

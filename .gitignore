@@ -61,3 +61,14 @@ jspm_packages
 /.keycloakify
 
 /.temp-emails
+
+dist
+dist-ssr
+*.local
+.env
+.nitro
+.tanstack
+.wrangler
+.output
+.vinxi
+__unconfig*

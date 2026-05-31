@@ -1,3 +1,17 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
 allowBuilds:
-    "@parcel/watcher": false
-    esbuild: true
+  "@parcel/watcher": false
+  esbuild: true
+  msw: true
+  unrs-resolver: true
+
+catalog:
+  "@tailwindcss/vite": ^4.3.0
+  react: ^19.2.6
+  react-dom: ^19.2.6
+  tailwindcss: ^4.3.0
+  typescript: ^6.0.3
+  vite: ^8.0.14
