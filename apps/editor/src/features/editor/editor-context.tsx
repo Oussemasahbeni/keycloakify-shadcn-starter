@@ -14,6 +14,7 @@ import type {
     RadiusPreset,
     ThemePreset,
 } from '@kc-studio/shadcn-theme/theme-meta';
+import { DEFAULT_LOCALE, type Locale } from './locales';
 import type { Viewport } from './viewport';
 
 export type PreviewColorScheme = 'light' | 'dark';
@@ -39,6 +40,8 @@ export type ThemeConfig = {
     radius: RadiusPreset;
     font: FontFamily;
     layout: Layout;
+    locale: Locale;
+    showPlaceholders: boolean;
 };
 
 export const defaultThemeConfig: ThemeConfig = {
@@ -47,6 +50,8 @@ export const defaultThemeConfig: ThemeConfig = {
     radius: DEFAULT_THEME_RADIUS,
     font: DEFAULT_FONT,
     layout: DEFAULT_THEME_LAYOUT,
+    locale: DEFAULT_LOCALE,
+    showPlaceholders: true,
 };
 
 const EditorContext = createContext<EditorContextValue | null>(null);

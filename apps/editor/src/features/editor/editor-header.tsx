@@ -17,16 +17,15 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '#/components/ui/dropdown-menu';
-import { Tooltip, TooltipContent, TooltipTrigger } from '#/components/ui/tooltip';
+
 import { useOidc } from '#/oidc';
-import { BadgeCheckIcon, Download, Github, LogOut, Moon, Sun } from 'lucide-react';
+import { BadgeCheckIcon, Download, Github, LogOut } from 'lucide-react';
 
 import { ModeToggle } from '#/components/mode-toggle';
 import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar';
 import { GITHUB_URL } from '#/config/constants';
 import { createKeycloakUtils } from 'oidc-spa/keycloak';
 import { useEditor } from './editor-context';
-import { VIEWPORTS } from './viewport';
 
 function getInitials(name: string) {
     const initials = name
@@ -54,80 +53,6 @@ function formatRelativeTime(date: Date) {
         duration /= amount;
     }
     return rtf.format(Math.round(duration), 'week');
-}
-
-function ViewportToggle() {
-    const { viewport, setViewport } = useEditor();
-
-    return (
-        <div className="flex items-center gap-1 rounded-lg border bg-background p-1">
-            {VIEWPORTS.map(({ id, label, icon: Icon }) => {
-                const isActive = viewport === id;
-                return (
-                    <Tooltip key={id}>
-                        <TooltipTrigger
-                            render={
-                                <Button
-                                    variant={isActive ? 'secondary' : 'ghost'}
-                                    size="icon"
-                                    className="size-8"
-                                    aria-pressed={isActive}
-                                    onClick={() => setViewport(id)}
-                                >
-                                    <Icon className="size-4" />
-                                    <span className="sr-only">{label}</span>
-                                </Button>
-                            }
-                        />
-                        <TooltipContent>{label}</TooltipContent>
-                    </Tooltip>
-                );
-            })}
-        </div>
-    );
-}
-
-function PreviewThemeToggle() {
-    const { previewColorScheme, setPreviewColorScheme } = useEditor();
-
-    return (
-        <div className="flex items-center gap-1 rounded-lg border bg-background p-1">
-            <Tooltip>
-                <TooltipTrigger
-                    render={
-                        <Button
-                            variant={previewColorScheme === 'light' ? 'secondary' : 'ghost'}
-                            size="icon"
-                            className="size-8"
-                            aria-pressed={previewColorScheme === 'light'}
-                            onClick={() => setPreviewColorScheme('light')}
-                        >
-                            <Sun className="size-4" />
-                            <span className="sr-only">Light</span>
-                        </Button>
-                    }
-                />
-                <TooltipContent>Light</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-                <TooltipTrigger
-                    render={
-                        <Button
-                            variant={previewColorScheme === 'dark' ? 'secondary' : 'ghost'}
-                            size="icon"
-                            className="size-8"
-                            aria-pressed={previewColorScheme === 'dark'}
-                            onClick={() => setPreviewColorScheme('dark')}
-                        >
-                            <Moon className="size-4" />
-                            <span className="sr-only">Dark</span>
-                        </Button>
-                    }
-                />
-                <TooltipContent>Dark</TooltipContent>
-            </Tooltip>
-        </div>
-    );
 }
 
 function SaveStatus() {
@@ -248,10 +173,7 @@ export function EditorHeader() {
                 <span className="font-semibold">Theme Editor</span>
             </div>
 
-            <div className="flex items-center gap-4">
-                <ViewportToggle />
-                <PreviewThemeToggle />
-            </div>
+            <div className="flex items-center gap-4">Placeholder for theme title</div>
 
             <div className="flex items-center justify-end gap-2">
                 <SaveStatus />

@@ -1,4 +1,8 @@
-import type { DeepPartial, KcContext } from '@kc-studio/shadcn-theme/preview';
+import type { KcContext } from '@kc-studio/shadcn-theme/preview';
+
+type DeepPartial<T> = {
+    [P in keyof T]?: DeepPartial<T[P]>;
+};
 
 /**
  * The catalog of pages the editor can preview, and — for each page — a set of
@@ -15,10 +19,20 @@ import type { DeepPartial, KcContext } from '@kc-studio/shadcn-theme/preview';
 
 export type PageId = KcContext['pageId'];
 
+/** User-facing groups for the page picker, in display order. */
+export const pageCategories = [
+    { id: 'sign-in', label: 'Sign-in' },
+    { id: 'registration', label: 'Registration & profile' },
+    { id: 'credentials', label: 'Passwords & credentials' },
+    { id: 'idp', label: 'Identity providers' },
+    { id: 'sessions', label: 'Consent & sessions' },
+    { id: 'status', label: 'Status & errors' },
+] as const;
+
+export type PageCategory = (typeof pageCategories)[number]['id'];
+
 export type PageScenario<Id extends PageId = PageId> = {
-    /** Stable id, unique within its page. Used as the picker value. */
     id: string;
-    /** Human-readable label shown in the editor. */
     label: string;
     /**
      * Partial `kcContext`, deep-merged over the page's base mock (same contract
@@ -30,6 +44,8 @@ export type PageScenario<Id extends PageId = PageId> = {
 export type PagePreview<Id extends PageId = PageId> = {
     pageId: Id;
     label: string;
+    /** Which picker group this page belongs to. */
+    category: PageCategory;
     /** At least one scenario; the first is treated as the default. */
     scenarios: [PageScenario<Id>, ...PageScenario<Id>[]];
 };
@@ -40,8 +56,17 @@ function definePage<Id extends PageId>(page: PagePreview<Id>): PagePreview {
 }
 
 /** Convenience: a page whose only scenario is the default render. */
-function simplePage<Id extends PageId>(pageId: Id, label: string): PagePreview {
-    return definePage({ pageId, label, scenarios: [{ id: 'default', label: 'Default' }] });
+function simplePage<Id extends PageId>(
+    pageId: Id,
+    label: string,
+    category: PageCategory,
+): PagePreview {
+    return definePage({
+        pageId,
+        label,
+        category,
+        scenarios: [{ id: 'default', label: 'Default' }],
+    });
 }
 
 /** The full social-provider set used by the login stories, keyed for reuse. */
@@ -113,6 +138,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login.ftl',
         label: 'Login',
+        category: 'sign-in',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -230,6 +256,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'register.ftl',
         label: 'Register',
+        category: 'registration',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -431,6 +458,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'info.ftl',
         label: 'Info',
+        category: 'status',
         scenarios: [
             {
                 id: 'default',
@@ -471,6 +499,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'error.ftl',
         label: 'Error',
+        category: 'status',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -510,6 +539,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login-reset-password.ftl',
         label: 'Reset password',
+        category: 'credentials',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -538,6 +568,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login-verify-email.ftl',
         label: 'Verify email',
+        category: 'credentials',
         scenarios: [
             {
                 id: 'default',
@@ -591,6 +622,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'terms.ftl',
         label: 'Terms and conditions',
+        category: 'sessions',
         scenarios: [
             {
                 id: 'default',
@@ -652,7 +684,8 @@ export const pageCatalog: PagePreview[] = [
     }),
     definePage({
         pageId: 'login-oauth2-device-verify-user-code.ftl',
-        label: 'Device — verify user code',
+        label: 'Device (verify user code)',
+        category: 'sessions',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -682,6 +715,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'webauthn-error.ftl',
         label: 'WebAuthn error',
+        category: 'status',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -722,12 +756,13 @@ export const pageCatalog: PagePreview[] = [
             },
         ],
     }),
-    simplePage('login-passkeys-conditional-authenticate.ftl', 'Passkeys — conditional'),
-    simplePage('login-idp-link-confirm-override.ftl', 'IdP link — confirm override'),
-    simplePage('saml-post-form.ftl', 'SAML post form'),
+    simplePage('login-passkeys-conditional-authenticate.ftl', 'Passkeys (conditional)', 'sign-in'),
+    simplePage('login-idp-link-confirm-override.ftl', 'IdP link (confirm override)', 'idp'),
+    simplePage('saml-post-form.ftl', 'SAML post form', 'sessions'),
     definePage({
         pageId: 'login-oauth-grant.ftl',
         label: 'OAuth grant',
+        category: 'sessions',
         scenarios: [
             {
                 id: 'default',
@@ -778,6 +813,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login-otp.ftl',
         label: 'OTP',
+        category: 'sign-in',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -836,7 +872,8 @@ export const pageCatalog: PagePreview[] = [
     }),
     definePage({
         pageId: 'login-username.ftl',
-        label: 'Username',
+        label: 'Login Username',
+        category: 'sign-in',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -924,7 +961,8 @@ export const pageCatalog: PagePreview[] = [
     }),
     definePage({
         pageId: 'login-password.ftl',
-        label: 'Password',
+        label: 'Login Password',
+        category: 'sign-in',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -969,6 +1007,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'webauthn-authenticate.ftl',
         label: 'WebAuthn authenticate',
+        category: 'sign-in',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1057,6 +1096,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'webauthn-register.ftl',
         label: 'WebAuthn register',
+        category: 'credentials',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1087,6 +1127,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login-update-password.ftl',
         label: 'Update password',
+        category: 'credentials',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1115,6 +1156,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login-x509-info.ftl',
         label: 'X.509 info',
+        category: 'credentials',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1136,6 +1178,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'link-idp-action.ftl',
         label: 'Link IdP action',
+        category: 'idp',
         scenarios: [
             {
                 id: 'default',
@@ -1154,7 +1197,8 @@ export const pageCatalog: PagePreview[] = [
     }),
     definePage({
         pageId: 'login-idp-link-confirm.ftl',
-        label: 'IdP link — confirm',
+        label: 'IdP link (confirm)',
+        category: 'idp',
         scenarios: [
             {
                 id: 'default',
@@ -1177,7 +1221,8 @@ export const pageCatalog: PagePreview[] = [
     }),
     definePage({
         pageId: 'login-idp-link-email.ftl',
-        label: 'IdP link — email',
+        label: 'IdP link (email)',
+        category: 'idp',
         scenarios: [
             {
                 id: 'default',
@@ -1228,6 +1273,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login-page-expired.ftl',
         label: 'Page expired',
+        category: 'status',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1249,6 +1295,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login-config-totp.ftl',
         label: 'Configure TOTP',
+        category: 'credentials',
         scenarios: [
             { id: 'default', label: 'Default' },
             { id: 'manual-setup', label: 'Manual setup', overrides: { mode: 'manual' } },
@@ -1272,6 +1319,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'logout-confirm.ftl',
         label: 'Logout confirm',
+        category: 'sessions',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1292,6 +1340,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'login-update-profile.ftl',
         label: 'Update profile',
+        category: 'registration',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1307,7 +1356,8 @@ export const pageCatalog: PagePreview[] = [
     }),
     definePage({
         pageId: 'idp-review-user-profile.ftl',
-        label: 'IdP — review user profile',
+        label: 'IdP (review user profile)',
+        category: 'registration',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1355,6 +1405,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'update-email.ftl',
         label: 'Update email',
+        category: 'registration',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1371,6 +1422,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'select-authenticator.ftl',
         label: 'Select authenticator',
+        category: 'sign-in',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1449,6 +1501,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'delete-credential.ftl',
         label: 'Delete credential',
+        category: 'credentials',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1463,7 +1516,8 @@ export const pageCatalog: PagePreview[] = [
     }),
     definePage({
         pageId: 'code.ftl',
-        label: 'Code',
+        label: 'Device code',
+        category: 'status',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1499,6 +1553,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'delete-account-confirm.ftl',
         label: 'Delete account confirm',
+        category: 'sessions',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1516,6 +1571,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'frontchannel-logout.ftl',
         label: 'Frontchannel logout',
+        category: 'sessions',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1527,7 +1583,8 @@ export const pageCatalog: PagePreview[] = [
     }),
     definePage({
         pageId: 'login-recovery-authn-code-config.ftl',
-        label: 'Recovery codes — config',
+        label: 'Recovery codes (config)',
+        category: 'credentials',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1544,10 +1601,11 @@ export const pageCatalog: PagePreview[] = [
             },
         ],
     }),
-    simplePage('login-recovery-authn-code-input.ftl', 'Recovery codes — input'),
+    simplePage('login-recovery-authn-code-input.ftl', 'Recovery codes (input)', 'sign-in'),
     definePage({
         pageId: 'login-reset-otp.ftl',
         label: 'Reset OTP',
+        category: 'credentials',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1594,6 +1652,7 @@ export const pageCatalog: PagePreview[] = [
     definePage({
         pageId: 'select-organization.ftl',
         label: 'Select organization',
+        category: 'sessions',
         scenarios: [
             { id: 'default', label: 'Default' },
             {
@@ -1654,4 +1713,17 @@ export function getScenario(pageId: PageId, scenarioId: string): PageScenario | 
         return undefined;
     }
     return page.scenarios.find(scenario => scenario.id === scenarioId) ?? page.scenarios[0];
+}
+
+export type PageGroup = { id: PageCategory; label: string; pages: PagePreview[] };
+
+/** The catalog grouped by `category`, in `pageCategories` order; empty groups dropped. */
+export function getGroupedPages(): PageGroup[] {
+    return pageCategories
+        .map(({ id, label }) => ({
+            id,
+            label,
+            pages: pageCatalog.filter(page => page.category === id),
+        }))
+        .filter(group => group.pages.length > 0);
 }

@@ -1,4 +1,13 @@
+import { Button } from '#/components/ui/button';
+import {
+    Field,
+    FieldContent,
+    FieldDescription,
+    FieldLabel,
+    FieldTitle,
+} from '#/components/ui/field';
 import { Label } from '#/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '#/components/ui/radio-group';
 import {
     Select,
     SelectContent,
@@ -6,17 +15,21 @@ import {
     SelectTrigger,
     SelectValue,
 } from '#/components/ui/select';
-import { cn } from '#/lib/utils';
+import { Switch } from '#/components/ui/switch';
+import { Columns2, Image, Shuffle, Square, type LucideIcon } from 'lucide-react';
 
-import { basePalettes, radiusPresets, themePresets } from '@kc-studio/shadcn-theme/presets';
+import { basePalettes, themePresets } from '@kc-studio/shadcn-theme/presets';
 import {
     basePaletteOptions,
     fontFamilyOptions,
     layoutOptions,
     radiusPresetOptions,
     themePresetOptions,
+    type BasePalette,
+    type FontFamily,
     type Layout,
     type RadiusPreset,
+    type ThemePreset,
 } from '@kc-studio/shadcn-theme/theme-meta';
 import { useEditor } from './editor-context';
 
@@ -27,13 +40,8 @@ function prettify(value: string) {
         .join(' ');
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-    return (
-        <div className="space-y-2">
-            <Label>{label}</Label>
-            {children}
-        </div>
-    );
+function pickRandom<T>(options: readonly T[]): T {
+    return options[Math.floor(Math.random() * options.length)];
 }
 
 function Swatch({ color }: { color: string }) {
@@ -42,26 +50,21 @@ function Swatch({ color }: { color: string }) {
     );
 }
 
-/** Select with a color dot beside each option (and in the trigger). */
-function ColorSelectField<T extends string>({
-    label,
-    value,
-    options,
-    colorFor,
-    onChange,
-}: {
-    label: string;
-    value: T;
-    options: readonly T[];
-    colorFor: (option: T) => string;
-    onChange: (value: T) => void;
-}) {
+function BasePaletteField() {
+    const { config, previewColorScheme, updateConfig } = useEditor();
+    const colorFor = (palette: BasePalette) =>
+        basePalettes[palette][previewColorScheme].mutedForeground;
+
     return (
-        <Field label={label}>
-            <Select value={value} onValueChange={next => onChange(next as T)}>
+        <Field>
+            <FieldLabel>Base palette</FieldLabel>
+            <Select
+                value={config.basePalette}
+                onValueChange={value => updateConfig({ basePalette: value as BasePalette })}
+            >
                 <SelectTrigger className="w-full">
                     <SelectValue>
-                        {(selected: T) => (
+                        {(selected: BasePalette) => (
                             <span className="flex items-center gap-2">
                                 <Swatch color={colorFor(selected)} />
                                 {prettify(selected)}
@@ -70,7 +73,7 @@ function ColorSelectField<T extends string>({
                     </SelectValue>
                 </SelectTrigger>
                 <SelectContent alignItemWithTrigger={false}>
-                    {options.map(option => (
+                    {basePaletteOptions.map(option => (
                         <SelectItem key={option} value={option}>
                             <span className="flex items-center gap-2">
                                 <Swatch color={colorFor(option)} />
@@ -84,25 +87,86 @@ function ColorSelectField<T extends string>({
     );
 }
 
-function PlainSelectField<T extends string>({
-    label,
-    value,
-    options,
-    onChange,
-}: {
-    label: string;
-    value: T;
-    options: readonly T[];
-    onChange: (value: T) => void;
-}) {
+function AccentColorField() {
+    const { config, previewColorScheme, updateConfig } = useEditor();
+    const colorFor = (accent: ThemePreset) => themePresets[accent][previewColorScheme].primary;
+
     return (
-        <Field label={label}>
-            <Select value={value} onValueChange={next => onChange(next as T)}>
+        <Field>
+            <FieldLabel>Accent color</FieldLabel>
+            <Select
+                value={config.accent}
+                onValueChange={value => updateConfig({ accent: value as ThemePreset })}
+            >
                 <SelectTrigger className="w-full">
-                    <SelectValue>{(selected: T) => prettify(selected)}</SelectValue>
+                    <SelectValue>
+                        {(selected: ThemePreset) => (
+                            <span className="flex items-center gap-2">
+                                <Swatch color={colorFor(selected)} />
+                                {prettify(selected)}
+                            </span>
+                        )}
+                    </SelectValue>
                 </SelectTrigger>
                 <SelectContent alignItemWithTrigger={false}>
-                    {options.map(option => (
+                    {themePresetOptions.map(option => (
+                        <SelectItem key={option} value={option}>
+                            <span className="flex items-center gap-2">
+                                <Swatch color={colorFor(option)} />
+                                {prettify(option)}
+                            </span>
+                        </SelectItem>
+                    ))}
+                </SelectContent>
+            </Select>
+        </Field>
+    );
+}
+
+function RadiusField() {
+    const { config, updateConfig } = useEditor();
+
+    return (
+        <Field>
+            <FieldLabel>Radius</FieldLabel>
+            <Select
+                value={config.radius}
+                onValueChange={value => updateConfig({ radius: value as RadiusPreset })}
+            >
+                <SelectTrigger className="w-full">
+                    <SelectValue>
+                        {(selected: RadiusPreset) => (
+                            <span className="flex items-center gap-2">{prettify(selected)}</span>
+                        )}
+                    </SelectValue>
+                </SelectTrigger>
+                <SelectContent alignItemWithTrigger={false}>
+                    {radiusPresetOptions.map(option => (
+                        <SelectItem key={option} value={option}>
+                            <span className="flex items-center gap-2">{prettify(option)}</span>
+                        </SelectItem>
+                    ))}
+                </SelectContent>
+            </Select>
+        </Field>
+    );
+}
+
+function FontFamilyField() {
+    const { config, updateConfig } = useEditor();
+
+    return (
+        <Field>
+            <FieldLabel>Font family</FieldLabel>
+            <Select
+                value={config.font}
+                onValueChange={value => updateConfig({ font: value as FontFamily })}
+            >
+                <SelectTrigger className="w-full">
+                    <SelectValue>{(selected: FontFamily) => prettify(selected)}</SelectValue>
+                </SelectTrigger>
+                <SelectContent alignItemWithTrigger={false}>
+                    {fontFamilyOptions.map(option => (
                         <SelectItem key={option} value={option}>
                             {prettify(option)}
                         </SelectItem>
@@ -113,128 +177,100 @@ function PlainSelectField<T extends string>({
     );
 }
 
-/** Visual tile picker — each option renders a little showcase of itself. */
-function TileField<T extends string>({
-    label,
-    value,
-    options,
-    onChange,
-    renderVisual,
-}: {
-    label: string;
-    value: T;
-    options: readonly T[];
-    onChange: (value: T) => void;
-    renderVisual: (option: T) => React.ReactNode;
-}) {
+const layoutMeta: Record<Layout, { description: string; Icon: LucideIcon }> = {
+    'two-column': {
+        description: 'Sign-in form paired with a branded side panel.',
+        Icon: Columns2,
+    },
+    'centered-card': {
+        description: 'A single card centered on the page.',
+        Icon: Square,
+    },
+    'image-aside': {
+        description: 'Form alongside a full-height image.',
+        Icon: Image,
+    },
+};
+
+function LayoutField() {
+    const { config, updateConfig } = useEditor();
+
     return (
-        <Field label={label}>
-            <div className="grid grid-cols-3 gap-2">
-                {options.map(option => {
-                    const isActive = option === value;
+        <Field>
+            <FieldLabel>Layout</FieldLabel>
+            <RadioGroup
+                value={config.layout}
+                onValueChange={value => updateConfig({ layout: value as Layout })}
+            >
+                {layoutOptions.map(option => {
+                    const { description, Icon } = layoutMeta[option];
                     return (
-                        <button
-                            key={option}
-                            type="button"
-                            aria-pressed={isActive}
-                            onClick={() => onChange(option)}
-                            className={cn(
-                                'flex cursor-pointer flex-col items-center gap-2 rounded-lg border p-2 transition-colors hover:bg-accent',
-                                isActive ? 'border-primary ring-1 ring-primary' : 'border-input',
-                            )}
-                        >
-                            <span className="flex h-9 w-full items-center justify-center">
-                                {renderVisual(option)}
-                            </span>
-                            <span className="text-xs text-muted-foreground">
-                                {prettify(option)}
-                            </span>
-                        </button>
+                        <FieldLabel key={option} htmlFor={`layout-${option}`}>
+                            <Field orientation="horizontal">
+                                <span className="flex size-9 shrink-0 items-center justify-center rounded-md border bg-muted/50 text-muted-foreground">
+                                    <Icon className="size-4" />
+                                </span>
+                                <FieldContent>
+                                    <FieldTitle>{prettify(option)}</FieldTitle>
+                                    <FieldDescription>{description}</FieldDescription>
+                                </FieldContent>
+                                <RadioGroupItem value={option} id={`layout-${option}`} />
+                            </Field>
+                        </FieldLabel>
                     );
                 })}
-            </div>
+            </RadioGroup>
         </Field>
     );
 }
 
-function RadiusVisual({ radius }: { radius: RadiusPreset }) {
-    const value = radiusPresets[radius] ?? '0.625rem';
+function ShowPlaceholdersField() {
+    const { config, updateConfig } = useEditor();
+
     return (
-        <span
-            className="size-9 border-2 border-primary bg-primary/15"
-            style={{ borderRadius: value }}
-        />
+        <div className="flex items-center space-x-2">
+            <Switch
+                id="show-placeholders"
+                checked={config.showPlaceholders}
+                onCheckedChange={checked => updateConfig({ showPlaceholders: checked })}
+            />
+            <Label htmlFor="show-placeholders">Show placeholders</Label>
+        </div>
     );
 }
 
-function LayoutVisual({ layout }: { layout: Layout }) {
-    if (layout === 'two-column') {
-        return (
-            <span className="flex h-9 w-full gap-1">
-                <span className="flex-1 rounded-xs bg-muted-foreground/30" />
-                <span className="flex-1 rounded-xs bg-primary/40" />
-            </span>
-        );
+function ShuffleButton() {
+    const { updateConfig } = useEditor();
+
+    function shuffle() {
+        updateConfig({
+            basePalette: pickRandom(basePaletteOptions),
+            accent: pickRandom(themePresetOptions),
+            radius: pickRandom(radiusPresetOptions),
+            font: pickRandom(fontFamilyOptions),
+            layout: pickRandom(layoutOptions),
+            showPlaceholders: Math.random() < 0.5,
+        });
     }
-    if (layout === 'image-aside') {
-        return (
-            <span className="flex h-9 w-full gap-1">
-                <span className="w-1/2 rounded-xs bg-primary/40" />
-                <span className="flex w-1/2 flex-col justify-center gap-1">
-                    <span className="h-1 w-full rounded-full bg-muted-foreground/30" />
-                    <span className="h-1 w-3/4 rounded-full bg-muted-foreground/30" />
-                    <span className="mt-0.5 h-2 w-full rounded-xs bg-primary/40" />
-                </span>
-            </span>
-        );
-    }
-    // centered-card
+
     return (
-        <span className="flex h-9 w-full items-center justify-center rounded-xs bg-muted-foreground/20">
-            <span className="h-5 w-7 rounded-xs bg-primary/40" />
-        </span>
+        <Button type="button" variant="outline" className="w-full" onClick={shuffle}>
+            <Shuffle />
+            Shuffle
+        </Button>
     );
 }
 
 export function ConfigPanel() {
-    const { config, previewColorScheme, updateConfig } = useEditor();
-
     return (
         <div className="space-y-5">
-            <ColorSelectField
-                label="Base palette"
-                value={config.basePalette}
-                options={basePaletteOptions}
-                colorFor={palette => basePalettes[palette][previewColorScheme].mutedForeground}
-                onChange={basePalette => updateConfig({ basePalette })}
-            />
-            <ColorSelectField
-                label="Accent color"
-                value={config.accent}
-                options={themePresetOptions}
-                colorFor={accent => themePresets[accent][previewColorScheme].primary}
-                onChange={accent => updateConfig({ accent })}
-            />
-            <TileField
-                label="Radius"
-                value={config.radius}
-                options={radiusPresetOptions}
-                onChange={radius => updateConfig({ radius })}
-                renderVisual={radius => <RadiusVisual radius={radius} />}
-            />
-            <PlainSelectField
-                label="Font family"
-                value={config.font}
-                options={fontFamilyOptions}
-                onChange={font => updateConfig({ font })}
-            />
-            <TileField
-                label="Layout"
-                value={config.layout}
-                options={layoutOptions}
-                onChange={layout => updateConfig({ layout })}
-                renderVisual={layout => <LayoutVisual layout={layout} />}
-            />
+            <ShuffleButton />
+            <BasePaletteField />
+            <AccentColorField />
+            <RadiusField />
+            <FontFamilyField />
+            <ShowPlaceholdersField />
+            <LayoutField />
         </div>
     );
 }

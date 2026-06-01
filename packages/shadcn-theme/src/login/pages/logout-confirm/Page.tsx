@@ -1,36 +1,27 @@
-import { Button, buttonVariants } from "#/components/ui/button";
-import { cn } from "#/lib/utils";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { assert } from "tsafe/assert";
-import { Template } from "../../components/Template";
+import { Button, buttonVariants } from '#/components/ui/button';
+import { cn } from '#/lib/utils';
+import { useI18n } from '#/login/i18n';
+import { useKcContext } from '#/login/KcContext';
+import { assert } from 'tsafe/assert';
+import { Template } from '../../components/Template';
 
 export function Page() {
     const { kcContext } = useKcContext();
-    assert(kcContext.pageId === "logout-confirm.ftl");
+    assert(kcContext.pageId === 'logout-confirm.ftl');
 
     const { url, client, logoutConfirm } = kcContext;
 
     const { msg, msgStr } = useI18n();
     return (
-        <Template headerNode={msg("logoutConfirmTitle")}>
+        <Template headerNode={msg('logoutConfirmTitle')}>
             <div className="space-y-4">
-                <p className="text-foreground ">{msg("logoutConfirmHeader")}</p>
+                <p className="text-foreground ">{msg('logoutConfirmHeader')}</p>
 
-                <form
-                    className="space-y-6"
-                    action={url.logoutConfirmAction}
-                    method="POST"
-                >
+                <form className="space-y-6" action={url.logoutConfirmAction} method="POST">
                     <input type="hidden" name="session_code" value={logoutConfirm.code} />
 
-                    <Button
-                        className="w-full"
-                        name="confirmLogout"
-                        id="kc-logout"
-                        type="submit"
-                    >
-                        {msgStr("doLogout")}
+                    <Button className="w-full" name="confirmLogout" id="kc-logout" type="submit">
+                        {msgStr('doLogout')}
                     </Button>
                 </form>
 
@@ -40,11 +31,11 @@ export function Page() {
                             href={client.baseUrl}
                             className={cn(
                                 buttonVariants({
-                                    variant: "link"
-                                })
+                                    variant: 'default',
+                                }),
                             )}
                         >
-                            {msg("backToApplication")}
+                            {msg('backToApplication')}
                         </a>
                     </div>
                 )}
