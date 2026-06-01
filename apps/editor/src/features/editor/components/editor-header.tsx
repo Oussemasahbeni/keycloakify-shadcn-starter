@@ -24,36 +24,9 @@ import { BadgeCheckIcon, Download, Github, LogOut } from 'lucide-react';
 import { ModeToggle } from '#/components/mode-toggle';
 import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar';
 import { GITHUB_URL } from '#/config/constants';
+import { formatRelativeTime, getInitials } from '#/lib/utils';
 import { createKeycloakUtils } from 'oidc-spa/keycloak';
-import { useEditor } from './editor-context';
-
-function getInitials(name: string) {
-    const initials = name
-        .trim()
-        .split(/\s+/)
-        .slice(0, 2)
-        .map(part => part[0])
-        .join('');
-    return initials.toUpperCase() || '?';
-}
-
-function formatRelativeTime(date: Date) {
-    const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: 'auto' });
-    const divisions: Array<[number, Intl.RelativeTimeFormatUnit]> = [
-        [60, 'second'],
-        [60, 'minute'],
-        [24, 'hour'],
-        [7, 'day'],
-    ];
-    let duration = (date.getTime() - Date.now()) / 1000;
-    for (const [amount, unit] of divisions) {
-        if (Math.abs(duration) < amount) {
-            return rtf.format(Math.round(duration), unit);
-        }
-        duration /= amount;
-    }
-    return rtf.format(Math.round(duration), 'week');
-}
+import { useEditor } from '../state/editor-context';
 
 function SaveStatus() {
     const { saveStatus, lastSavedAt } = useEditor();

@@ -16,33 +16,26 @@ import {
     SelectValue,
 } from '#/components/ui/select';
 import { Switch } from '#/components/ui/switch';
-import { Columns2, Image, Shuffle, Square, type LucideIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import { Columns2, Image, Shuffle, Square } from 'lucide-react';
 
+import { pickRandom, prettify } from '#/lib/utils';
 import { basePalettes, themePresets } from '@kc-studio/shadcn-theme/presets';
+import type {
+    BasePalette,
+    FontFamily,
+    Layout,
+    RadiusPreset,
+    ThemePreset,
+} from '@kc-studio/shadcn-theme/theme-meta';
 import {
     basePaletteOptions,
     fontFamilyOptions,
     layoutOptions,
     radiusPresetOptions,
     themePresetOptions,
-    type BasePalette,
-    type FontFamily,
-    type Layout,
-    type RadiusPreset,
-    type ThemePreset,
 } from '@kc-studio/shadcn-theme/theme-meta';
-import { useEditor } from './editor-context';
-
-function prettify(value: string) {
-    return value
-        .split('-')
-        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-        .join(' ');
-}
-
-function pickRandom<T>(options: readonly T[]): T {
-    return options[Math.floor(Math.random() * options.length)];
-}
+import { useEditor } from '../state/editor-context';
 
 function Swatch({ color }: { color: string }) {
     return (

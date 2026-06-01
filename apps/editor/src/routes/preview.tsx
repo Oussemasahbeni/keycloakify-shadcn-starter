@@ -1,6 +1,7 @@
-import type { PreviewColorScheme, ThemeConfig } from '#/features/editor/editor-context';
-import { defaultThemeConfig } from '#/features/editor/editor-context';
-import { getScenario, type PageId } from '#/features/editor/preview-catalog';
+import type { PreviewColorScheme, ThemeConfig } from '#/features/editor/model/theme-config';
+import { defaultThemeConfig } from '#/features/editor/model/theme-config';
+import { getStory } from '#/features/editor/stories/pages';
+import type { PageId } from '#/features/editor/stories/types';
 import { KcPage, getKcContextMock } from '@kc-studio/shadcn-theme/preview';
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
@@ -15,20 +16,20 @@ export const Route = createFileRoute('/preview')({
 
 type IncomingState = {
     pageId: PageId;
-    scenarioId: string;
+    storyId: string;
     colorScheme: PreviewColorScheme;
     config: ThemeConfig;
 };
 
 function PreviewRoute() {
     const [state, setState] = useState<IncomingState>({
-        pageId: 'login.ftl' as PageId,
-        scenarioId: 'default',
+        pageId: 'login.ftl',
+        storyId: 'default',
         colorScheme: 'light',
         config: defaultThemeConfig,
     });
 
-    const { pageId, scenarioId, colorScheme, config } = state;
+    const { pageId, storyId, colorScheme, config } = state;
 
     // Receive editor state. Announce readiness so the parent (re)sends the
     // current state even if it posted before this listener was attached.
@@ -43,7 +44,7 @@ function PreviewRoute() {
         }
 
         window.addEventListener('message', onMessage);
-        window.parent?.postMessage({ type: 'kc-preview:ready' }, window.location.origin);
+        window.parent.postMessage({ type: 'kc-preview:ready' }, window.location.origin);
 
         return () => window.removeEventListener('message', onMessage);
     }, []);
@@ -67,17 +68,17 @@ function PreviewRoute() {
 
     // Re-resolve the scenario's overrides here (they hold non-cloneable
     // functions, so they can't be sent through `postMessage`)
-    const scenarioOverrides = getScenario(pageId, scenarioId)?.overrides;
+    const storyOverrides = getStory(pageId, storyId)?.overrides;
     const kcContext = getKcContextMock({
         pageId,
         overrides: {
-            ...scenarioOverrides,
+            ...storyOverrides,
             locale: {
-                ...scenarioOverrides?.locale,
+                ...storyOverrides?.locale,
                 currentLanguageTag: config.locale,
             },
             properties: {
-                ...scenarioOverrides?.properties,
+                ...storyOverrides?.properties,
                 SHADCN_THEME_LAYOUT: config.layout,
                 SHADCN_THEME_BASE: config.basePalette,
                 SHADCN_THEME_PRESET: config.accent,
@@ -88,5 +89,5 @@ function PreviewRoute() {
         },
     });
 
-    return <KcPage key={`${pageId}::${scenarioId}::${config.locale}`} kcContext={kcContext} />;
+    return <KcPage key={`${pageId}::${storyId}::${config.locale}`} kcContext={kcContext} />;
 }

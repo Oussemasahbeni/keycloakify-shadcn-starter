@@ -1,145 +1,16 @@
-import type { KcContext } from '@kc-studio/shadcn-theme/preview';
-
-type DeepPartial<T> = {
-    [P in keyof T]?: DeepPartial<T[P]>;
-};
-
-/**
- * The catalog of pages the editor can preview, and — for each page — a set of
- * "scenarios" (the equivalent of Storybook stories): named variations of the
- * same page the user can flip between to see how the theme handles error
- * states, social providers, missing realm features, RTL locales, etc.
- *
- * This file is the single source of truth for the page/scenario pickers. The
- * scenarios are ported from the theme's `Page.stories.tsx` files. `PageId` is
- * derived from the real `KcContext` union (not a hand-maintained list), so a
- * typo in any `pageId` below is a compile error, and each scenario's
- * `overrides` is typed against *that* page's context.
- */
-
-export type PageId = KcContext['pageId'];
-
-/** User-facing groups for the page picker, in display order. */
-export const pageCategories = [
-    { id: 'sign-in', label: 'Sign-in' },
-    { id: 'registration', label: 'Registration & profile' },
-    { id: 'credentials', label: 'Passwords & credentials' },
-    { id: 'idp', label: 'Identity providers' },
-    { id: 'sessions', label: 'Consent & sessions' },
-    { id: 'status', label: 'Status & errors' },
-] as const;
-
-export type PageCategory = (typeof pageCategories)[number]['id'];
-
-export type PageScenario<Id extends PageId = PageId> = {
-    id: string;
-    label: string;
-    /**
-     * Partial `kcContext`, deep-merged over the page's base mock (same contract
-     * as a story's `args.kcContext`). Typed against this page's context.
-     */
-    overrides?: DeepPartial<Extract<KcContext, { pageId: Id }>>;
-};
-
-export type PagePreview<Id extends PageId = PageId> = {
-    pageId: Id;
-    label: string;
-    /** Which picker group this page belongs to. */
-    category: PageCategory;
-    /** At least one scenario; the first is treated as the default. */
-    scenarios: [PageScenario<Id>, ...PageScenario<Id>[]];
-};
-
-/** Identity helper that pins `Id` so each page's `overrides` are page-specific. */
-function definePage<Id extends PageId>(page: PagePreview<Id>): PagePreview {
-    return page as PagePreview;
-}
-
-/** Convenience: a page whose only scenario is the default render. */
-function simplePage<Id extends PageId>(
-    pageId: Id,
-    label: string,
-    category: PageCategory,
-): PagePreview {
-    return definePage({
-        pageId,
-        label,
-        category,
-        scenarios: [{ id: 'default', label: 'Default' }],
-    });
-}
-
-/** The full social-provider set used by the login stories, keyed for reuse. */
-const sp = {
-    google: { loginUrl: 'google', alias: 'google', providerId: 'google', displayName: 'Google' },
-    microsoft: {
-        loginUrl: 'microsoft',
-        alias: 'microsoft',
-        providerId: 'microsoft',
-        displayName: 'Microsoft',
-    },
-    facebook: {
-        loginUrl: 'facebook',
-        alias: 'facebook',
-        providerId: 'facebook',
-        displayName: 'Facebook',
-    },
-    instagram: {
-        loginUrl: 'instagram',
-        alias: 'instagram',
-        providerId: 'instagram',
-        displayName: 'Instagram',
-    },
-    twitter: {
-        loginUrl: 'twitter',
-        alias: 'twitter',
-        providerId: 'twitter',
-        displayName: 'Twitter',
-    },
-    linkedin: {
-        loginUrl: 'linkedin',
-        alias: 'linkedin',
-        providerId: 'linkedin',
-        displayName: 'LinkedIn',
-    },
-    stackoverflow: {
-        loginUrl: 'stackoverflow',
-        alias: 'stackoverflow',
-        providerId: 'stackoverflow',
-        displayName: 'Stackoverflow',
-    },
-    github: { loginUrl: 'github', alias: 'github', providerId: 'github', displayName: 'Github' },
-    gitlab: { loginUrl: 'gitlab', alias: 'gitlab', providerId: 'gitlab', displayName: 'Gitlab' },
-    bitbucket: {
-        loginUrl: 'bitbucket',
-        alias: 'bitbucket',
-        providerId: 'bitbucket',
-        displayName: 'Bitbucket',
-    },
-    paypal: { loginUrl: 'paypal', alias: 'paypal', providerId: 'paypal', displayName: 'PayPal' },
-    openshift: {
-        loginUrl: 'openshift',
-        alias: 'openshift',
-        providerId: 'openshift',
-        displayName: 'OpenShift',
-    },
-};
-const allSocialProviders = Object.values(sp);
-
 /** A `messagesPerField` mock that reports an error for the given field names. */
-function fieldError(message: string, ...fields: string[]) {
-    return {
-        existsError: (...names: string[]) => names.some(name => fields.includes(name)),
-        get: (name: string) => (fields.includes(name) ? message : ''),
-    };
-}
 
-export const pageCatalog: PagePreview[] = [
+import { definePage, fieldError, simplePage } from './helpers';
+import { allSocialProviders, socialProviders } from './social-providers';
+import type { PageGroup, PageId, PagePreview, PageStory } from './types';
+import { pageCategories } from './types';
+
+export const pages: PagePreview[] = [
     definePage({
         pageId: 'login.ftl',
         label: 'Login',
         category: 'sign-in',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'invalid-credential',
@@ -221,12 +92,17 @@ export const pageCatalog: PagePreview[] = [
             {
                 id: 'one-social-provider',
                 label: 'One social provider',
-                overrides: { social: { displayInfo: true, providers: [sp.google] } },
+                overrides: { social: { displayInfo: true, providers: [socialProviders.google] } },
             },
             {
                 id: 'two-social-providers',
                 label: 'Two social providers',
-                overrides: { social: { displayInfo: true, providers: [sp.google, sp.microsoft] } },
+                overrides: {
+                    social: {
+                        displayInfo: true,
+                        providers: [socialProviders.google, socialProviders.microsoft],
+                    },
+                },
             },
             {
                 id: 'no-social-providers',
@@ -239,7 +115,12 @@ export const pageCatalog: PagePreview[] = [
                 overrides: {
                     social: {
                         displayInfo: true,
-                        providers: [sp.google, sp.microsoft, sp.facebook, sp.twitter],
+                        providers: [
+                            socialProviders.google,
+                            socialProviders.microsoft,
+                            socialProviders.facebook,
+                            socialProviders.twitter,
+                        ],
                     },
                 },
             },
@@ -247,7 +128,7 @@ export const pageCatalog: PagePreview[] = [
                 id: 'social-providers-no-remember-me',
                 label: 'Social providers, no remember me',
                 overrides: {
-                    social: { displayInfo: true, providers: [sp.google] },
+                    social: { displayInfo: true, providers: [socialProviders.google] },
                     realm: { rememberMe: false },
                 },
             },
@@ -257,7 +138,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'register.ftl',
         label: 'Register',
         category: 'registration',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'email-already-exists',
@@ -459,7 +340,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'info.ftl',
         label: 'Info',
         category: 'status',
-        scenarios: [
+        stories: [
             {
                 id: 'default',
                 label: 'Default',
@@ -500,7 +381,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'error.ftl',
         label: 'Error',
         category: 'status',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'another-message',
@@ -540,7 +421,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-reset-password.ftl',
         label: 'Reset password',
         category: 'credentials',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'email-as-username',
@@ -569,7 +450,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-verify-email.ftl',
         label: 'Verify email',
         category: 'credentials',
-        scenarios: [
+        stories: [
             {
                 id: 'default',
                 label: 'Default (warning)',
@@ -623,7 +504,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'terms.ftl',
         label: 'Terms and conditions',
         category: 'sessions',
-        scenarios: [
+        stories: [
             {
                 id: 'default',
                 label: 'English',
@@ -686,7 +567,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-oauth2-device-verify-user-code.ftl',
         label: 'Device (verify user code)',
         category: 'sessions',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'error-message',
@@ -716,7 +597,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'webauthn-error.ftl',
         label: 'WebAuthn error',
         category: 'status',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'retry-available',
@@ -763,7 +644,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-oauth-grant.ftl',
         label: 'OAuth grant',
         category: 'sessions',
-        scenarios: [
+        stories: [
             {
                 id: 'default',
                 label: 'Default',
@@ -814,7 +695,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-otp.ftl',
         label: 'OTP',
         category: 'sign-in',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'multiple-credentials',
@@ -874,7 +755,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-username.ftl',
         label: 'Login Username',
         category: 'sign-in',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'webauthn',
@@ -910,12 +791,17 @@ export const pageCatalog: PagePreview[] = [
             {
                 id: 'one-social-provider',
                 label: 'One social provider',
-                overrides: { social: { displayInfo: true, providers: [sp.google] } },
+                overrides: { social: { displayInfo: true, providers: [socialProviders.google] } },
             },
             {
                 id: 'two-social-providers',
                 label: 'Two social providers',
-                overrides: { social: { displayInfo: true, providers: [sp.google, sp.microsoft] } },
+                overrides: {
+                    social: {
+                        displayInfo: true,
+                        providers: [socialProviders.google, socialProviders.microsoft],
+                    },
+                },
             },
             {
                 id: 'no-social-providers',
@@ -928,7 +814,12 @@ export const pageCatalog: PagePreview[] = [
                 overrides: {
                     social: {
                         displayInfo: true,
-                        providers: [sp.google, sp.microsoft, sp.facebook, sp.twitter],
+                        providers: [
+                            socialProviders.google,
+                            socialProviders.microsoft,
+                            socialProviders.facebook,
+                            socialProviders.twitter,
+                        ],
                     },
                 },
             },
@@ -936,7 +827,7 @@ export const pageCatalog: PagePreview[] = [
                 id: 'social-providers-no-remember-me',
                 label: 'Social providers, no remember me',
                 overrides: {
-                    social: { displayInfo: true, providers: [sp.google] },
+                    social: { displayInfo: true, providers: [socialProviders.google] },
                     realm: { rememberMe: false },
                 },
             },
@@ -963,7 +854,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-password.ftl',
         label: 'Login Password',
         category: 'sign-in',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'attempted-username',
@@ -1008,7 +899,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'webauthn-authenticate.ftl',
         label: 'WebAuthn authenticate',
         category: 'sign-in',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'try-another-way',
@@ -1097,7 +988,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'webauthn-register.ftl',
         label: 'WebAuthn register',
         category: 'credentials',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'retry-available',
@@ -1128,7 +1019,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-update-password.ftl',
         label: 'Update password',
         category: 'credentials',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'password-error',
@@ -1157,7 +1048,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-x509-info.ftl',
         label: 'X.509 info',
         category: 'credentials',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'user-not-enabled',
@@ -1179,7 +1070,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'link-idp-action.ftl',
         label: 'Link IdP action',
         category: 'idp',
-        scenarios: [
+        stories: [
             {
                 id: 'default',
                 label: 'GitHub',
@@ -1199,7 +1090,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-idp-link-confirm.ftl',
         label: 'IdP link (confirm)',
         category: 'idp',
-        scenarios: [
+        stories: [
             {
                 id: 'default',
                 label: 'Default',
@@ -1223,7 +1114,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-idp-link-email.ftl',
         label: 'IdP link (email)',
         category: 'idp',
-        scenarios: [
+        stories: [
             {
                 id: 'default',
                 label: 'Default',
@@ -1274,7 +1165,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-page-expired.ftl',
         label: 'Page expired',
         category: 'status',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'error-message',
@@ -1296,7 +1187,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-config-totp.ftl',
         label: 'Configure TOTP',
         category: 'credentials',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             { id: 'manual-setup', label: 'Manual setup', overrides: { mode: 'manual' } },
             {
@@ -1320,7 +1211,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'logout-confirm.ftl',
         label: 'Logout confirm',
         category: 'sessions',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'custom-message',
@@ -1341,7 +1232,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-update-profile.ftl',
         label: 'Update profile',
         category: 'registration',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'profile-error',
@@ -1358,7 +1249,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'idp-review-user-profile.ftl',
         label: 'IdP (review user profile)',
         category: 'registration',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'validation-errors',
@@ -1406,7 +1297,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'update-email.ftl',
         label: 'Update email',
         category: 'registration',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'app-initiated',
@@ -1423,7 +1314,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'select-authenticator.ftl',
         label: 'Select authenticator',
         category: 'sign-in',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'different-methods',
@@ -1502,7 +1393,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'delete-credential.ftl',
         label: 'Delete credential',
         category: 'credentials',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'custom-label',
@@ -1518,7 +1409,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'code.ftl',
         label: 'Device code',
         category: 'status',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'dark-mode-forbidden',
@@ -1554,7 +1445,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'delete-account-confirm.ftl',
         label: 'Delete account confirm',
         category: 'sessions',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'aia-flow',
@@ -1572,7 +1463,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'frontchannel-logout.ftl',
         label: 'Frontchannel logout',
         category: 'sessions',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'no-redirect',
@@ -1585,7 +1476,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-recovery-authn-code-config.ftl',
         label: 'Recovery codes (config)',
         category: 'credentials',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'error',
@@ -1606,7 +1497,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'login-reset-otp.ftl',
         label: 'Reset OTP',
         category: 'credentials',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'no-credentials',
@@ -1653,7 +1544,7 @@ export const pageCatalog: PagePreview[] = [
         pageId: 'select-organization.ftl',
         label: 'Select organization',
         category: 'sessions',
-        scenarios: [
+        stories: [
             { id: 'default', label: 'Default' },
             {
                 id: 'many',
@@ -1699,31 +1590,28 @@ export const pageCatalog: PagePreview[] = [
 ];
 
 /** All page ids, in catalog order. */
-export const pageIds: PageId[] = pageCatalog.map(page => page.pageId);
+export const pageIds: PageId[] = pages.map(page => page.pageId);
 
 /** Look up a page's catalog entry. */
 export function getPage(pageId: PageId): PagePreview | undefined {
-    return pageCatalog.find(page => page.pageId === pageId);
+    return pages.find(page => page.pageId === pageId);
 }
 
 /** Resolve a scenario within a page, falling back to the page's first scenario. */
-export function getScenario(pageId: PageId, scenarioId: string): PageScenario | undefined {
+export function getStory(pageId: PageId, scenarioId: string): PageStory | undefined {
     const page = getPage(pageId);
     if (page === undefined) {
         return undefined;
     }
-    return page.scenarios.find(scenario => scenario.id === scenarioId) ?? page.scenarios[0];
+    return page.stories.find(scenario => scenario.id === scenarioId) ?? page.stories[0];
 }
 
-export type PageGroup = { id: PageCategory; label: string; pages: PagePreview[] };
-
-/** The catalog grouped by `category`, in `pageCategories` order; empty groups dropped. */
 export function getGroupedPages(): PageGroup[] {
     return pageCategories
         .map(({ id, label }) => ({
             id,
             label,
-            pages: pageCatalog.filter(page => page.category === id),
+            pages: pages.filter(page => page.category === id),
         }))
         .filter(group => group.pages.length > 0);
 }

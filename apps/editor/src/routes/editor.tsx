@@ -1,7 +1,7 @@
-import { EditorProvider } from '#/features/editor/editor-context';
-import { EditorHeader } from '#/features/editor/editor-header';
-import { EditorSidebar } from '#/features/editor/editor-sidebar';
-import { PreviewPane } from '#/features/editor/preview-pane';
+import { EditorHeader } from '#/features/editor/components/editor-header';
+import { EditorSidebar } from '#/features/editor/components/editor-sidebar';
+import { PreviewPane } from '#/features/editor/components/preview-pane';
+import { EditorProvider } from '#/features/editor/state/editor-context';
 import { enforceLogin } from '#/oidc';
 import { createFileRoute } from '@tanstack/react-router';
 

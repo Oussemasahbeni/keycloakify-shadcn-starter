@@ -9,17 +9,17 @@ import {
 } from '#/components/ui/select';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useEditor } from './editor-context';
-import { getGroupedPages, getPage, type PageId } from './preview-catalog';
-import { getViewportWidth } from './viewport';
+import { getViewportWidth, VIEWPORTS } from '../model/viewport';
+import type { PageId } from '../stories/pages';
+import { getGroupedPages, getPage } from '../stories/pages';
+import { useEditor } from '../state/editor-context';
 
 import { Tooltip, TooltipContent, TooltipTrigger } from '#/components/ui/tooltip';
 
-import { supportedLocales, type Locale } from './locales';
-import { VIEWPORTS } from './viewport';
-
 import { Button } from '#/components/ui/button';
 import { Globe, Moon, Sun } from 'lucide-react';
+import type { Locale } from '../model/locales';
+import { supportedLocales } from '../model/locales';
 
 function ViewportToggle() {
     const { viewport, setViewport } = useEditor();
@@ -129,28 +129,28 @@ function LanguageSelect() {
 export function PreviewPane() {
     const { viewport, previewColorScheme, config } = useEditor();
     const [pageId, setPageId] = useState<PageId>('login.ftl');
-    const [scenarioId, setScenarioId] = useState('default');
+    const [storyId, setStoryId] = useState('default');
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const width = getViewportWidth(viewport);
 
-    const scenarios = getPage(pageId)?.scenarios ?? [];
+    const stories = getPage(pageId)?.stories ?? [];
 
     // Switching page resets to that page's first (default) scenario, since
-    // scenario ids are only unique within a page.
+    // scenario ids are only unique within a page.µ/
     function handlePageChange(value: PageId) {
         setPageId(value);
-        setScenarioId(getPage(value)?.scenarios[0]?.id ?? 'default');
+        setStoryId(getPage(value)?.stories[0]?.id ?? 'default');
     }
 
     const postState = useCallback(() => {
         iframeRef.current?.contentWindow?.postMessage(
             {
                 type: 'kc-preview:state',
-                payload: { pageId, scenarioId, colorScheme: previewColorScheme, config },
+                payload: { pageId, scenarioId: storyId, colorScheme: previewColorScheme, config },
             },
             window.location.origin,
         );
-    }, [pageId, scenarioId, previewColorScheme, config]);
+    }, [pageId, storyId, previewColorScheme, config]);
 
     // Push state on every editor change.
     useEffect(() => {
@@ -195,21 +195,21 @@ export function PreviewPane() {
                     </SelectContent>
                 </Select>
 
-                {scenarios.length > 1 && (
+                {stories.length > 1 && (
                     <Select
-                        value={scenarioId}
-                        onValueChange={value => setScenarioId(value ?? 'default')}
+                        value={storyId}
+                        onValueChange={value => setStoryId(value ?? 'default')}
                     >
                         <SelectTrigger className="w-56">
                             <SelectValue>
                                 {(value: string) =>
-                                    scenarios.find(scenario => scenario.id === value)?.label ??
+                                    stories.find(scenario => scenario.id === value)?.label ??
                                     value
                                 }
                             </SelectValue>
                         </SelectTrigger>
                         <SelectContent alignItemWithTrigger={false} className={'max-h-100'}>
-                            {scenarios.map(scenario => (
+                            {stories.map(scenario => (
                                 <SelectItem key={scenario.id} value={scenario.id}>
                                     {scenario.label}
                                 </SelectItem>
