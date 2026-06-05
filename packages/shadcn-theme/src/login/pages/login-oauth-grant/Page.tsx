@@ -1,12 +1,12 @@
-import { Button } from "#/components/ui/button";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { assert } from "tsafe/assert";
-import { Template } from "../../components/Template";
+import { Button } from '#/components/ui/button';
+import { useI18n } from '#/login/i18n';
+import { useKcContext } from '#/login/KcContext';
+import { assert } from 'tsafe/assert';
+import { Template } from '../../components/Template';
 
 export function Page() {
     const { kcContext } = useKcContext();
-    assert(kcContext.pageId === "login-oauth-grant.ftl");
+    assert(kcContext.pageId === 'login-oauth-grant.ftl');
 
     const { msg, msgStr, advancedMsg, advancedMsgStr } = useI18n();
 
@@ -14,7 +14,7 @@ export function Page() {
         <Template
             bodyClassName="oauth"
             headerNode={
-                <div className="flex flex-col items-center space-y-3">
+                <div className="flex flex-col items-center gap-3">
                     {kcContext.client.attributes.logoUri && (
                         <img
                             src={kcContext.client.attributes.logoUri}
@@ -24,31 +24,27 @@ export function Page() {
                     )}
                     <p className="text-lg font-medium text-center">
                         {kcContext.client.name
-                            ? msg(
-                                  "oauthGrantTitle",
-                                  advancedMsgStr(kcContext.client.name)
-                              )
-                            : msg("oauthGrantTitle", kcContext.client.clientId)}
+                            ? msg('oauthGrantTitle', advancedMsgStr(kcContext.client.name))
+                            : msg('oauthGrantTitle', kcContext.client.clientId)}
                     </p>
                 </div>
             }
         >
-            <div className="space-y-6">
-                <div className="text-base">{msg("oauthGrantRequest")}</div>
-
-                <div className="space-y-4">
-                    <div className="space-y-2">
+            <div className="flex flex-col gap-4">
+                <div className="text-base">{msg('oauthGrantRequest')}</div>
+                <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-2">
                         {kcContext.oauth.clientScopesRequested.map(clientScope => (
                             <div
                                 key={clientScope.consentScreenText}
-                                className="flex items-start space-x-2"
+                                className="flex items-start gap-2"
                             >
                                 <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
                                 <span className="text-sm text-muted-foreground">
                                     {advancedMsg(clientScope.consentScreenText)}
                                     {clientScope.dynamicScopeParameter && (
                                         <>
-                                            :{" "}
+                                            :{' '}
                                             <span className="font-medium text-foreground">
                                                 {clientScope.dynamicScopeParameter}
                                             </span>
@@ -62,17 +58,14 @@ export function Page() {
                     {(kcContext.client.attributes.policyUri ||
                         kcContext.client.attributes.tosUri) && (
                         <>
-                            <div className="space-y-2">
+                            <div className="flex flex-col gap-2">
                                 <p className="text-xs text-muted-foreground">
                                     {kcContext.client.name
                                         ? msg(
-                                              "oauthGrantInformation",
-                                              advancedMsgStr(kcContext.client.name)
+                                              'oauthGrantInformation',
+                                              advancedMsgStr(kcContext.client.name),
                                           )
-                                        : msg(
-                                              "oauthGrantInformation",
-                                              kcContext.client.clientId
-                                          )}
+                                        : msg('oauthGrantInformation', kcContext.client.clientId)}
                                 </p>
                                 <div className="flex flex-wrap gap-2 text-xs">
                                     {kcContext.client.attributes.tosUri && (
@@ -82,7 +75,7 @@ export function Page() {
                                             rel="noopener noreferrer"
                                             className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-4"
                                         >
-                                            {msg("oauthGrantTos")}
+                                            {msg('oauthGrantTos')}
                                         </a>
                                     )}
                                     {kcContext.client.attributes.policyUri && (
@@ -92,7 +85,7 @@ export function Page() {
                                             rel="noopener noreferrer"
                                             className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-4"
                                         >
-                                            {msg("oauthGrantPolicy")}
+                                            {msg('oauthGrantPolicy')}
                                         </a>
                                     )}
                                 </div>
@@ -102,11 +95,7 @@ export function Page() {
                 </div>
 
                 <div>
-                    <form
-                        className="w-full"
-                        action={kcContext.url.oauthAction}
-                        method="POST"
-                    >
+                    <form className="w-full" action={kcContext.url.oauthAction} method="POST">
                         <input type="hidden" name="code" value={kcContext.oauth.code} />
                         <div className="flex flex-col sm:flex-row gap-3 w-full">
                             <Button
@@ -116,15 +105,10 @@ export function Page() {
                                 variant="outline"
                                 className="flex-1"
                             >
-                                {msgStr("doNo")}
+                                {msgStr('doNo')}
                             </Button>
-                            <Button
-                                type="submit"
-                                name="accept"
-                                id="kc-login"
-                                className="flex-1"
-                            >
-                                {msgStr("doYes")}
+                            <Button type="submit" name="accept" id="kc-login" className="flex-1">
+                                {msgStr('doYes')}
                             </Button>
                         </div>
                     </form>

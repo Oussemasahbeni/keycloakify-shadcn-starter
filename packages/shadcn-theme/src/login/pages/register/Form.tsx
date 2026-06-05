@@ -33,7 +33,7 @@ export function Form() {
         <form
             id="kc-register-form"
             action={kcContext.url.registrationAction}
-            className="space-y-4"
+            className="flex flex-col gap-4"
             method="post"
         >
             <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />

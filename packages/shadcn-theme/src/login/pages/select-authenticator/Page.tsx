@@ -58,11 +58,11 @@ export function Page() {
         <Template displayInfo={false} headerNode={msg('loginChooseAuthenticator')}>
             <form
                 id="kc-select-credential-form"
-                className="space-y-3"
+                className="flex flex-col gap-3"
                 action={url.loginAction}
                 method="post"
             >
-                <div className="space-y-2">
+                <div className="flex flex-col gap-2">
                     {auth.authenticationSelections.map((authenticationSelection, i) => (
                         <Button
                             key={i}

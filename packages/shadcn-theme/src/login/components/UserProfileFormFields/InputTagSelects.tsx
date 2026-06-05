@@ -1,10 +1,10 @@
-import { Checkbox } from "#/components/ui/checkbox";
-import { Label } from "#/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
-import { cn } from "#/lib/utils";
-import { assert } from "tsafe/assert";
-import type { InputFieldByTypeProps } from "./InputFieldByType";
-import { InputLabel } from "./InputLabel";
+import { Checkbox } from '#/components/ui/checkbox';
+import { Label } from '#/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '#/components/ui/radio-group';
+import { cn } from '#/lib/utils';
+import { assert } from 'tsafe/assert';
+import type { InputFieldByTypeProps } from './InputFieldByType';
+import { InputLabel } from './InputLabel';
 
 export function InputTagSelects(props: InputFieldByTypeProps) {
     const { attribute, dispatchFormAction, valueOrValues } = props;
@@ -12,11 +12,9 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
     const isRadio = (() => {
         const { inputType } = attribute.annotations;
 
-        assert(
-            inputType === "select-radiobuttons" || inputType === "multiselect-checkboxes"
-        );
+        assert(inputType === 'select-radiobuttons' || inputType === 'multiselect-checkboxes');
 
-        return inputType === "select-radiobuttons";
+        return inputType === 'select-radiobuttons';
     })();
 
     const options = (() => {
@@ -27,9 +25,9 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                 break walk;
             }
 
-            const validator = (
-                attribute.validators as Record<string, { options?: string[] }>
-            )[inputOptionsFromValidation];
+            const validator = (attribute.validators as Record<string, { options?: string[] }>)[
+                inputOptionsFromValidation
+            ];
 
             if (validator === undefined) {
                 break walk;
@@ -48,36 +46,36 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
     if (isRadio) {
         return (
             <RadioGroup
-                value={typeof valueOrValues === "string" ? valueOrValues : ""}
+                value={typeof valueOrValues === 'string' ? valueOrValues : ''}
                 onValueChange={value =>
                     dispatchFormAction({
-                        action: "update",
+                        action: 'update',
                         name: attribute.name,
-                        valueOrValues: value
+                        valueOrValues: value,
                     })
                 }
                 disabled={attribute.readOnly}
-                className="space-y-2"
+                className="flex flex-col gap-2"
             >
                 {options.map(option => (
-                    <div key={option} className="flex items-center space-x-2">
+                    <div key={option} className="flex items-center gap-2">
                         <RadioGroupItem
                             value={option}
                             id={`${attribute.name}-${option}`}
                             aria-invalid={props.displayableErrors.length !== 0}
                             onBlur={() =>
                                 dispatchFormAction({
-                                    action: "focus lost",
+                                    action: 'focus lost',
                                     name: attribute.name,
-                                    fieldIndex: undefined
+                                    fieldIndex: undefined,
                                 })
                             }
                         />
                         <Label
                             htmlFor={`${attribute.name}-${option}`}
                             className={cn(
-                                "text-sm font-normal",
-                                attribute.readOnly && "opacity-50 cursor-not-allowed"
+                                'text-sm font-normal',
+                                attribute.readOnly && 'opacity-50 cursor-not-allowed',
                             )}
                         >
                             <InputLabel attribute={attribute} option={option} />
@@ -89,9 +87,9 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
     }
 
     return (
-        <div className="space-y-2">
+        <div className="flex flex-col gap-2">
             {options.map(option => (
-                <div key={option} className="flex items-center space-x-2">
+                <div key={option} className="flex items-center gap-2">
                     <Checkbox
                         id={`${attribute.name}-${option}`}
                         checked={
@@ -102,7 +100,7 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                         disabled={attribute.readOnly}
                         onCheckedChange={checked =>
                             dispatchFormAction({
-                                action: "update",
+                                action: 'update',
                                 name: attribute.name,
                                 valueOrValues: (() => {
                                     const isChecked = checked === true;
@@ -113,32 +111,29 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                                         if (isChecked) {
                                             newValues.push(option);
                                         } else {
-                                            newValues.splice(
-                                                newValues.indexOf(option),
-                                                1
-                                            );
+                                            newValues.splice(newValues.indexOf(option), 1);
                                         }
 
                                         return newValues;
                                     }
 
-                                    return isChecked ? option : "";
-                                })()
+                                    return isChecked ? option : '';
+                                })(),
                             })
                         }
                         onBlur={() =>
                             dispatchFormAction({
-                                action: "focus lost",
+                                action: 'focus lost',
                                 name: attribute.name,
-                                fieldIndex: undefined
+                                fieldIndex: undefined,
                             })
                         }
                     />
                     <Label
                         htmlFor={`${attribute.name}-${option}`}
                         className={cn(
-                            "text-sm font-normal",
-                            attribute.readOnly && "opacity-50 cursor-not-allowed"
+                            'text-sm font-normal',
+                            attribute.readOnly && 'opacity-50 cursor-not-allowed',
                         )}
                     >
                         <InputLabel attribute={attribute} option={option} />

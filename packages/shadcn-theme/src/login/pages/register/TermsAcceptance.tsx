@@ -1,12 +1,12 @@
-import { Checkbox } from "#/components/ui/checkbox";
-import { FieldError } from "#/components/ui/field";
-import { Label } from "#/components/ui/label";
-import { useI18n } from "#/login/i18n";
-import type { KcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { Checkbox } from '#/components/ui/checkbox';
+import { FieldError } from '#/components/ui/field';
+import { Label } from '#/components/ui/label';
+import { useI18n } from '#/login/i18n';
+import type { KcContext } from '#/login/KcContext';
+import { kcSanitize } from '@keycloakify/login-ui/kcSanitize';
 
 export function TermsAcceptance(props: {
-    messagesPerField: Pick<KcContext["messagesPerField"], "existsError" | "get">;
+    messagesPerField: Pick<KcContext['messagesPerField'], 'existsError' | 'get'>;
     areTermsAccepted: boolean;
     onAreTermsAcceptedValueChange: (areTermsAccepted: boolean) => void;
 }) {
@@ -15,36 +15,31 @@ export function TermsAcceptance(props: {
     const { msg } = useI18n();
 
     return (
-        <div className="space-y-4">
-            <div className="p-4 bg-muted/50 rounded-lg space-y-2">
-                <h3 className="font-medium text-sm">{msg("termsTitle")}</h3>
-                <div className="text-sm text-muted-foreground">{msg("termsText")}</div>
+        <div className="flex flex-col gap-4">
+            <div className="p-4 bg-muted/50 rounded-lg flex flex-col gap-2">
+                <h3 className="font-medium text-sm">{msg('termsTitle')}</h3>
+                <div className="text-sm text-muted-foreground">{msg('termsText')}</div>
             </div>
 
-            <div className="space-y-2">
-                <div className="flex items-center space-x-2">
+            <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
                     <Checkbox
                         id="termsAccepted"
                         name="termsAccepted"
                         checked={areTermsAccepted}
-                        onCheckedChange={checked =>
-                            onAreTermsAcceptedValueChange(!!checked)
-                        }
-                        aria-invalid={messagesPerField.existsError("termsAccepted")}
+                        onCheckedChange={checked => onAreTermsAcceptedValueChange(!!checked)}
+                        aria-invalid={messagesPerField.existsError('termsAccepted')}
                     />
-                    <Label
-                        htmlFor="termsAccepted"
-                        className="text-sm font-medium cursor-pointer"
-                    >
-                        {msg("acceptTerms")}
+                    <Label htmlFor="termsAccepted" className="text-sm font-medium cursor-pointer">
+                        {msg('acceptTerms')}
                     </Label>
                 </div>
 
-                {messagesPerField.existsError("termsAccepted") && (
+                {messagesPerField.existsError('termsAccepted') && (
                     <FieldError id="input-error-terms-accepted">
                         <span
                             dangerouslySetInnerHTML={{
-                                __html: kcSanitize(messagesPerField.get("termsAccepted"))
+                                __html: kcSanitize(messagesPerField.get('termsAccepted')),
                             }}
                         />
                     </FieldError>

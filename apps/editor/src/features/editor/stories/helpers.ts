@@ -5,7 +5,6 @@ export function definePage<TId extends PageId>(page: PagePreview<TId>): PagePrev
     return page;
 }
 
-/** Convenience: a page whose only scenario is the default render. */
 export function simplePage<TId extends PageId>(
     pageId: TId,
     label: string,

@@ -25,7 +25,7 @@ export function Page() {
         >
             <form
                 id="kc-update-email-form"
-                className="space-y-6"
+                className="flex flex-col gap-6"
                 action={url.loginAction}
                 method="post"
             >
@@ -35,7 +35,7 @@ export function Page() {
 
                 <LogoutOtherSessions />
 
-                <div className="space-y-3">
+                <div className="flex flex-col gap-3">
                     <Button
                         disabled={!isFormSubmittable}
                         className="w-full"

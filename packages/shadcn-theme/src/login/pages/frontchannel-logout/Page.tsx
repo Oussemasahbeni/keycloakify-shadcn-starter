@@ -34,8 +34,8 @@ export function Page() {
             <p>{msg("frontchannel-logout.message")}</p>
 
             {kcContext.logout.clients.length > 0 && (
-                <div className="space-y-3">
-                    <div className="space-y-2">
+                <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-2">
                         {kcContext.logout.clients.map((client, index) => (
                             <div
                                 key={client.name || index}

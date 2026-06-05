@@ -1,21 +1,21 @@
-import { Button } from "#/components/ui/button";
-import { Checkbox } from "#/components/ui/checkbox";
-import { Input } from "#/components/ui/input";
-import { Label } from "#/components/ui/label";
-import { useState } from "react";
+import { Button } from '#/components/ui/button';
+import { Checkbox } from '#/components/ui/checkbox';
+import { Input } from '#/components/ui/input';
+import { Label } from '#/components/ui/label';
+import { useState } from 'react';
 
-import { Field, FieldError, FieldLabel } from "#/components/ui/field";
-import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { assert } from "tsafe/assert";
-import { Template } from "../../components/Template";
-import { SocialProviders } from "../login/SocialProviders";
+import { Field, FieldError, FieldLabel } from '#/components/ui/field';
+import { WebAuthnConditionalUI } from '#/login/components/WebAuthnConditionalUi';
+import { useI18n } from '#/login/i18n';
+import { useKcContext } from '#/login/KcContext';
+import { kcSanitize } from '@keycloakify/login-ui/kcSanitize';
+import { assert } from 'tsafe/assert';
+import { Template } from '../../components/Template';
+import { SocialProviders } from '../login/SocialProviders';
 
 export function Page() {
     const { kcContext } = useKcContext();
-    assert(kcContext.pageId === "login-username.ftl");
+    assert(kcContext.pageId === 'login-username.ftl');
 
     const {
         social,
@@ -25,43 +25,36 @@ export function Page() {
         login,
         registrationDisabled,
         messagesPerField,
-        enableWebAuthnConditionalUI
+        enableWebAuthnConditionalUI,
     } = kcContext;
 
     const { msg, msgStr } = useI18n();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === 'true';
 
     return (
         <Template
-            displayMessage={!messagesPerField.existsError("username")}
-            displayInfo={
-                realm.password && realm.registrationAllowed && !registrationDisabled
-            }
+            displayMessage={!messagesPerField.existsError('username')}
+            displayInfo={realm.password && realm.registrationAllowed && !registrationDisabled}
             infoNode={
                 <div id="kc-registration" className="text-center text-sm">
                     <span>
-                        {msg("noAccount")}{" "}
-                        <a
-                            className="underline underline-offset-4 "
-                            href={url.registrationUrl}
-                        >
-                            {msg("doRegister")}
+                        {msg('noAccount')}{' '}
+                        <a className="underline underline-offset-4 " href={url.registrationUrl}>
+                            {msg('doRegister')}
                         </a>
                     </span>
                 </div>
             }
-            headerNode={msg("doLogIn")}
-            socialProvidersNode={
-                realm.password && social !== undefined && <SocialProviders />
-            }
+            headerNode={msg('doLogIn')}
+            socialProvidersNode={realm.password && social !== undefined && <SocialProviders />}
         >
             <div>
                 {realm.password && (
                     <form
                         id="kc-form-login"
-                        className="space-y-4"
+                        className="flex flex-col gap-4"
                         onSubmit={() => {
                             setIsLoginButtonDisabled(true);
                             return true;
@@ -73,47 +66,43 @@ export function Page() {
                             <Field>
                                 <FieldLabel htmlFor="username">
                                     {!realm.loginWithEmailAllowed
-                                        ? msg("email")
+                                        ? msg('email')
                                         : !realm.registrationEmailAsUsername
-                                          ? msg("usernameOrEmail")
-                                          : msg("username")}
+                                          ? msg('usernameOrEmail')
+                                          : msg('username')}
                                 </FieldLabel>
                                 <Input
                                     type="text"
                                     id="username"
-                                    defaultValue={login.username ?? ""}
+                                    defaultValue={login.username ?? ''}
                                     name="username"
                                     autoFocus
                                     placeholder={
                                         showPlaceholder
                                             ? !realm.loginWithEmailAllowed
-                                                ? msgStr("usernamePlaceholder")
+                                                ? msgStr('usernamePlaceholder')
                                                 : !realm.registrationEmailAsUsername
-                                                  ? msgStr("usernameOrEmailPlaceholder")
-                                                  : msgStr("emailPlaceholder")
+                                                  ? msgStr('usernameOrEmailPlaceholder')
+                                                  : msgStr('emailPlaceholder')
                                             : undefined
                                     }
                                     className="autofill:bg-background"
                                     autoComplete={
                                         enableWebAuthnConditionalUI
-                                            ? "username webauthn"
-                                            : "username"
+                                            ? 'username webauthn'
+                                            : 'username'
                                     }
-                                    aria-invalid={messagesPerField.existsError(
-                                        "username"
-                                    )}
+                                    aria-invalid={messagesPerField.existsError('username')}
                                 />
-                                {messagesPerField.existsError("username") && (
+                                {messagesPerField.existsError('username') && (
                                     <FieldError>
                                         <span
                                             id="input-error"
                                             aria-live="polite"
                                             dangerouslySetInnerHTML={{
                                                 __html: kcSanitize(
-                                                    messagesPerField.getFirstError(
-                                                        "username"
-                                                    )
-                                                )
+                                                    messagesPerField.getFirstError('username'),
+                                                ),
                                             }}
                                         />
                                     </FieldError>
@@ -122,7 +111,7 @@ export function Page() {
                         )}
 
                         {realm.rememberMe && !usernameHidden && (
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center gap-2">
                                 <Checkbox
                                     id="rememberMe"
                                     name="rememberMe"
@@ -133,7 +122,7 @@ export function Page() {
                                     htmlFor="rememberMe"
                                     className="text-sm font-medium cursor-pointer"
                                 >
-                                    {msg("rememberMe")}
+                                    {msg('rememberMe')}
                                 </Label>
                             </div>
                         )}
@@ -144,7 +133,7 @@ export function Page() {
                             name="login"
                             type="submit"
                         >
-                            {msgStr("doLogIn")}
+                            {msgStr('doLogIn')}
                         </Button>
                     </form>
                 )}

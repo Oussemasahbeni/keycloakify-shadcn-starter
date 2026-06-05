@@ -14,7 +14,7 @@ export function Page() {
 
     return (
         <Template displayMessage={false} headerNode={msg("termsTitle")}>
-            <div className="space-y-6">
+            <div className="flex flex-col gap-6">
                 <div
                     id="kc-terms-text"
                     className="p-4 bg-muted/50 rounded-lg max-h-64 overflow-y-auto text-sm leading-relaxed"
@@ -22,7 +22,7 @@ export function Page() {
                     {msg("termsText")}
                 </div>
 
-                <form className="space-y-4" action={url.loginAction} method="POST">
+                <form className="flex flex-col gap-4" action={url.loginAction} method="POST">
                     <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
                         <Button
                             variant="outline"

@@ -48,7 +48,7 @@ export function Page() {
             }
             headerNode={msg("webauthn-login-title")}
         >
-            <div className="space-y-4">
+            <div className="flex flex-col gap-4">
                 {authenticators && (
                     <>
                         <form id="authn_select" hidden>
@@ -63,14 +63,14 @@ export function Page() {
                         </form>
 
                         {shouldDisplayAuthenticators && (
-                            <div className="space-y-4">
+                            <div className="flex flex-col gap-4">
                                 {authenticators.authenticators.length > 1 && (
                                     <h3 className="text-sm font-medium text-center">
                                         {msg("webauthn-available-authenticators")}
                                     </h3>
                                 )}
 
-                                <div className="space-y-2">
+                                <div className="flex flex-col gap-2">
                                     {authenticators.authenticators.map(
                                         (authenticator, i) => (
                                             <div

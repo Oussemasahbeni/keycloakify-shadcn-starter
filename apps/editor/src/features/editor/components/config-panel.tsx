@@ -221,7 +221,7 @@ function ShowPlaceholdersField() {
     const { config, updateConfig } = useEditor();
 
     return (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-2">
             <Switch
                 id="show-placeholders"
                 checked={config.showPlaceholders}

@@ -23,8 +23,7 @@ export type PageStory<TId extends PageId = PageId> = {
     id: string;
     label: string;
     /**
-     * Partial `kcContext`, deep-merged over the page's base mock (same contract
-     * as a story's `args.kcContext`). Typed against this page's context.
+     * Partial `kcContext`, deep-merged over the page's base mock. Typed against this page's context.
      */
     overrides?: DeepPartial<Extract<KcContext, { pageId: TId }>>;
 };

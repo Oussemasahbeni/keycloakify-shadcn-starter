@@ -60,12 +60,12 @@ export function Page() {
     return (
         <Template headerNode={msg("organization.selectTitle")}>
             <form ref={formRef} action={kcContext.url.loginAction} method="post">
-                <div id="kc-user-organizations" className="space-y-2">
+                <div id="kc-user-organizations" className="flex flex-col gap-2">
                     <h2 className="text-base font-semibold">
                         {msg("organization.select")}
                     </h2>
                     {useSelect ? (
-                        <div className="space-y-3">
+                        <div className="flex flex-col gap-3">
                             <Select
                                 value={selectedOrg}
                                 onValueChange={value => setSelectedOrg(value ?? "")}
@@ -97,7 +97,7 @@ export function Page() {
                             </Button>
                         </div>
                     ) : (
-                        <ul className="space-y-3">
+                        <ul className="flex flex-col gap-3">
                             {organizations.map(({ alias, name }) => (
                                 <li key={alias}>
                                     <Button
