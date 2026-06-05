@@ -70,7 +70,7 @@ export function Page() {
                         <Button
                             key={i}
                             variant="outline"
-                            className="w-full h-auto p-4 flex items-center justify-between text-left hover:bg-accent"
+                            className="w-full h-auto p-4 flex items-center justify-between text-start hover:bg-accent"
                             type="submit"
                             name="authenticationExecution"
                             value={authenticationSelection.authExecId}
@@ -87,7 +87,7 @@ export function Page() {
                                     </div>
                                 </div>
                             </div>
-                            <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
+                            <ChevronRight className="size-4 rtl:rotate-180 text-muted-foreground shrink-0" />
                         </Button>
                     ))}
                 </div>

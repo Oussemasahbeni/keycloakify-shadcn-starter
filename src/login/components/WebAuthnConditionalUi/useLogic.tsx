@@ -161,7 +161,11 @@ export function useLogic(props: UseLogicProps) {
             });
 
             if (cancelled) return;
-            if (result) submitWebAuthn(result);
+            // Conditional (autofill) UI must fail silently: only submit on a
+            // successful assertion. Submitting a failure here would post the
+            // form on page load (e.g. when challenge/rpId are unset), causing
+            // an unwanted navigation.
+            if (result?.success) submitWebAuthn(result);
         })();
 
         return () => {
