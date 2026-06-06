@@ -163,7 +163,7 @@ export function useLogic(props: UseLogicProps) {
             });
 
             if (cancelled) return;
-            if (result) submitWebAuthn(result);
+          if (result?.success) submitWebAuthn(result);
         })();
 
         return () => {

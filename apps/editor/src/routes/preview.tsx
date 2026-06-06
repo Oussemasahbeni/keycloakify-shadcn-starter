@@ -6,12 +6,44 @@ import { KcPage, getKcContextMock } from '@kc-studio/shadcn-theme/preview';
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 
+type PreviewSearch = {
+    page: PageId;
+    story: string;
+    scheme: PreviewColorScheme;
+    layout: ThemeConfig['layout'];
+    base: ThemeConfig['basePalette'];
+    accent: ThemeConfig['accent'];
+    radius: ThemeConfig['radius'];
+    font: ThemeConfig['font'];
+    locale: ThemeConfig['locale'];
+    placeholders: boolean;
+};
+
 /**
  * Isolated preview document, embedded by `PreviewPane` via an iframe.
+ *
+ * When embedded, all state arrives via `postMessage` and the search params fall
+ * back to their defaults. When opened directly in a new tab (the "open in new
+ * tab" button), there is no parent to post state, so the initial state is seeded
+ * from these search params instead — which also makes the URL shareable.
  */
 export const Route = createFileRoute('/preview')({
     ssr: false,
     component: PreviewRoute,
+    validateSearch: (search: Record<string, unknown>): PreviewSearch => ({
+        page: (search.page as PageId | undefined) ?? 'login.ftl',
+        story: (search.story as string | undefined) ?? 'default',
+        scheme: search.scheme === 'dark' ? 'dark' : 'light',
+        layout: (search.layout as ThemeConfig['layout'] | undefined) ?? defaultThemeConfig.layout,
+        base:
+            (search.base as ThemeConfig['basePalette'] | undefined) ??
+            defaultThemeConfig.basePalette,
+        accent: (search.accent as ThemeConfig['accent'] | undefined) ?? defaultThemeConfig.accent,
+        radius: (search.radius as ThemeConfig['radius'] | undefined) ?? defaultThemeConfig.radius,
+        font: (search.font as ThemeConfig['font'] | undefined) ?? defaultThemeConfig.font,
+        locale: (search.locale as ThemeConfig['locale'] | undefined) ?? defaultThemeConfig.locale,
+        placeholders: search.placeholders !== 'false' && search.placeholders !== false,
+    }),
 });
 
 type IncomingState = {
@@ -22,11 +54,21 @@ type IncomingState = {
 };
 
 function PreviewRoute() {
+    const search = Route.useSearch();
     const [state, setState] = useState<IncomingState>({
-        pageId: 'login.ftl',
-        storyId: 'default',
-        colorScheme: 'light',
-        config: defaultThemeConfig,
+        pageId: search.page,
+        storyId: search.story,
+        colorScheme: search.scheme,
+        config: {
+            ...defaultThemeConfig,
+            layout: search.layout,
+            basePalette: search.base,
+            accent: search.accent,
+            radius: search.radius,
+            font: search.font,
+            locale: search.locale,
+            showPlaceholders: search.placeholders,
+        },
     });
 
     const { pageId, storyId, colorScheme, config } = state;

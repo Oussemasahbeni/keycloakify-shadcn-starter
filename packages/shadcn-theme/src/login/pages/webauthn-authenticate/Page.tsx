@@ -91,7 +91,7 @@ export function Page() {
 
                                                         if (isDefaultIcon) {
                                                             return (
-                                                                <Shield className="w-5 h-5 text-muted-foreground" />
+                                                                <Shield className="size-5 text-muted-foreground" />
                                                             );
                                                         }
 

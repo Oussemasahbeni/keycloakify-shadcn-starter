@@ -52,7 +52,7 @@ export function SocialProviders() {
                                 }
                             >
                                 {providerLogos[p.alias] ? (
-                                    <div className={"h-5 w-5"}>
+                                    <div className="size-5">
                                         <img
                                             src={providerLogos[p.alias]}
                                             alt={`${p.displayName} logo`}

@@ -40,7 +40,7 @@ export function Languages() {
                                 >
                                     {label}
                                     {isActive && (
-                                        <IoCheckmark className="h-4 w-4 opacity-50" />
+                                        <IoCheckmark className="size-4 opacity-50" />
                                     )}
                                 </a>
                             </DropdownMenuItem>

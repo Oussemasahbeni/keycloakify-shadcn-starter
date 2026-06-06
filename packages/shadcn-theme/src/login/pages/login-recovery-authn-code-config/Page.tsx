@@ -65,7 +65,7 @@ export function Page() {
                         type="button"
                         className="flex items-center gap-2"
                     >
-                        <Printer className="w-4 h-4" />
+                        <Printer className="size-4" />
                         {msg('recovery-codes-print')}
                     </Button>
                     <Button
@@ -75,7 +75,7 @@ export function Page() {
                         type="button"
                         className="flex items-center gap-2"
                     >
-                        <Download className="w-4 h-4" />
+                        <Download className="size-4" />
                         {msg('recovery-codes-download')}
                     </Button>
                     <Button
@@ -85,7 +85,7 @@ export function Page() {
                         type="button"
                         className="flex items-center gap-2"
                     >
-                        <Copy className="w-4 h-4" />
+                        <Copy className="size-4" />
                         {msg('recovery-codes-copy')}
                     </Button>
                 </div>

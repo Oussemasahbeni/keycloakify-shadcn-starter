@@ -39,7 +39,7 @@ export function Page() {
                                 key={clientScope.consentScreenText}
                                 className="flex items-start gap-2"
                             >
-                                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
+                                <div className="size-2 bg-primary rounded-full mt-2 shrink-0" />
                                 <span className="text-sm text-muted-foreground">
                                     {advancedMsg(clientScope.consentScreenText)}
                                     {clientScope.dynamicScopeParameter && (

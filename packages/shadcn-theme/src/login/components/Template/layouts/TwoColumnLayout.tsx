@@ -16,7 +16,6 @@ export function TwoColumnLayout(props: { content: ReactNode; logoUrl: string }) 
         <div className="grid min-h-svh lg:grid-cols-2 ">
             <div className="relative flex min-h-screen flex-col pb-6 lg:min-h-0 lg:p-6 lg:pt-10">
                 <TemplateTopBar />
-
                 <div className="flex flex-1 items-center justify-center lg:items-center p-6 md:p-10">
                     <main className="w-full max-w-xl">{content}</main>
                 </div>

@@ -34,7 +34,7 @@ export function WebAuthnConditionalUI(props: UseLogicProps) {
                 variant="outline"
                 onClick={onPasskeyDoAuthenticateClick}
             >
-                <Fingerprint className="w-4 h-4" />
+                <Fingerprint className="size-4" />
                 {msgStr("passkey-doAuthenticate")}
             </Button>
         </>

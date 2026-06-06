@@ -46,7 +46,7 @@ export function Page() {
                                     htmlFor={`kc-otp-credential-${index}`}
                                     className="flex items-center gap-2 cursor-pointer flex-1"
                                 >
-                                    <Smartphone className="w-5 h-5 text-muted-foreground shrink-0" />
+                                    <Smartphone className="size-5 text-muted-foreground shrink-0" />
                                     <span className="text-sm font-medium">
                                         {otpCredential.userLabel}
                                     </span>

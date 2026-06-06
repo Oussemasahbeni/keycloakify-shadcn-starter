@@ -16,7 +16,7 @@ const getAuthenticatorIcon = (authSelection: { displayName: string; iconCssClass
         iconClass.includes('webauthn') ||
         displayName.includes('passkey')
     ) {
-        return <Fingerprint className="w-5 h-5" />;
+        return <Fingerprint className="size-5" />;
     }
 
     if (
@@ -24,7 +24,7 @@ const getAuthenticatorIcon = (authSelection: { displayName: string; iconCssClass
         displayName.includes('totp') ||
         displayName.includes('authenticator')
     ) {
-        return <Shield className="w-5 h-5" />;
+        return <Shield className="size-5" />;
     }
 
     if (
@@ -33,7 +33,7 @@ const getAuthenticatorIcon = (authSelection: { displayName: string; iconCssClass
         displayName.includes('sso') ||
         iconClass.includes('identityprovider')
     ) {
-        return <Globe className="w-5 h-5" />;
+        return <Globe className="size-5" />;
     }
 
     if (
@@ -41,10 +41,10 @@ const getAuthenticatorIcon = (authSelection: { displayName: string; iconCssClass
         displayName.includes('username') ||
         iconClass.includes('password')
     ) {
-        return <KeyRound className="w-5 h-5" />;
+        return <KeyRound className="size-5" />;
     }
 
-    return <FaKey className="w-5 h-5" />;
+    return <FaKey className="size-5" />;
 };
 
 export function Page() {
@@ -86,7 +86,7 @@ export function Page() {
                                     </div>
                                 </div>
                             </div>
-                            <ChevronRight className="w-4 h-4 rtl:rotate-180 text-muted-foreground shrink-0" />
+                            <ChevronRight className="size-4 rtl:rotate-180 text-muted-foreground shrink-0" />
                         </Button>
                     ))}
                 </div>

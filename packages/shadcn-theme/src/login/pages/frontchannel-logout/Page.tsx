@@ -41,7 +41,7 @@ export function Page() {
                                 key={client.name || index}
                                 className="flex items-center gap-3 p-3 rounded-lg border bg-muted/30"
                             >
-                                <FiCheck className="h-4 w-4 text-green-600" />
+                                <FiCheck className="size-4 text-green-600" />
                                 <span className="text-sm font-medium">
                                     {client.name || `Application ${index + 1}`}
                                 </span>
@@ -70,7 +70,7 @@ export function Page() {
                         )}
                     >
                         {msg("doContinue")}
-                        <FiExternalLink className="h-4 w-4" />
+                        <FiExternalLink className="size-4" />
                     </a>
                 </div>
             )}

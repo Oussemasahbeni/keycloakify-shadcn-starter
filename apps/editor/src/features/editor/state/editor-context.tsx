@@ -12,6 +12,7 @@ type EditorContextValue = {
     togglePreviewColorScheme: () => void;
     config: ThemeConfig;
     updateConfig: (patch: Partial<ThemeConfig>) => void;
+    readonly resetConfig: () => void;
     saveStatus: SaveStatus;
     lastSavedAt: Date | null;
 };
@@ -32,6 +33,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
             setPreviewColorScheme(scheme => (scheme === 'light' ? 'dark' : 'light')),
         config,
         updateConfig: patch => setConfig(current => ({ ...current, ...patch })),
+        resetConfig: () => setConfig(defaultThemeConfig),
         // Wired in the persistence unit; inert defaults for now.
         saveStatus: 'idle',
         lastSavedAt: null,

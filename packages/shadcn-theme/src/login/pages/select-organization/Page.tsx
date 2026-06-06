@@ -80,7 +80,7 @@ export function Page() {
                                     {organizations.map(({ alias, name }) => (
                                         <SelectItem key={alias} value={alias}>
                                             <div className="flex items-center gap-2">
-                                                <Building2 className="w-4 h-4 text-muted-foreground" />
+                                                <Building2 className="size-4 text-muted-foreground" />
                                                 {name ?? alias}
                                             </div>
                                         </SelectItem>
@@ -108,7 +108,7 @@ export function Page() {
                                         disabled={isSubmitting}
                                         className="w-full h-auto p-4 flex items-center gap-3 justify-start hover:bg-accent hover:border-primary transition-colors"
                                     >
-                                        <Building2 className="w-5 h-5 text-muted-foreground shrink-0" />
+                                        <Building2 className="size-5 text-muted-foreground shrink-0" />
                                         <span className="font-medium text-sm">
                                             {name ?? alias}
                                         </span>

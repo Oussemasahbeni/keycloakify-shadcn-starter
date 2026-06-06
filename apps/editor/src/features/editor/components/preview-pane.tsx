@@ -10,16 +10,16 @@ import {
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getViewportWidth, VIEWPORTS } from '../model/viewport';
-import type { PageId } from '../stories/pages';
-import { getGroupedPages, getPage } from '../stories/pages';
 import { useEditor } from '../state/editor-context';
+import { getGroupedPages, getPage } from '../stories/pages';
 
 import { Tooltip, TooltipContent, TooltipTrigger } from '#/components/ui/tooltip';
 
 import { Button } from '#/components/ui/button';
-import { Globe, Moon, Sun } from 'lucide-react';
+import { ExternalLink, Globe, Moon, RotateCcw, Sun } from 'lucide-react';
 import type { Locale } from '../model/locales';
 import { supportedLocales } from '../model/locales';
+import type { PageId } from '../stories/types';
 
 function ViewportToggle() {
     const { viewport, setViewport } = useEditor();
@@ -120,23 +120,124 @@ function LanguageSelect() {
     );
 }
 
+type PageSelectProps = {
+    pageId: PageId;
+    storyId: string;
+    onPageChange: (pageId: PageId) => void;
+    onStoryChange: (storyId: string) => void;
+};
+
+function PageSelect({ pageId, storyId, onPageChange, onStoryChange }: PageSelectProps) {
+    const stories = getPage(pageId)?.stories ?? [];
+
+    return (
+        <>
+            <Select value={pageId} onValueChange={value => onPageChange(value as PageId)}>
+                <SelectTrigger className="w-64">
+                    <SelectValue>{(value: PageId) => getPage(value)?.label ?? value}</SelectValue>
+                </SelectTrigger>
+                <SelectContent alignItemWithTrigger={false} className={'max-h-100'}>
+                    {getGroupedPages().map(group => (
+                        <SelectGroup key={group.id}>
+                            <SelectLabel>{group.label}</SelectLabel>
+                            {group.pages.map(page => (
+                                <SelectItem key={page.pageId} value={page.pageId}>
+                                    {page.label}
+                                </SelectItem>
+                            ))}
+                        </SelectGroup>
+                    ))}
+                </SelectContent>
+            </Select>
+
+            {stories.length > 1 && (
+                <Select value={storyId} onValueChange={value => onStoryChange(value ?? 'default')}>
+                    <SelectTrigger className="w-56">
+                        <SelectValue>
+                            {(value: string) =>
+                                stories.find(scenario => scenario.id === value)?.label ?? value
+                            }
+                        </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent alignItemWithTrigger={false} className={'max-h-100'}>
+                        {stories.map(scenario => (
+                            <SelectItem key={scenario.id} value={scenario.id}>
+                                {scenario.label}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+            )}
+        </>
+    );
+}
+
+function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string }) {
+    const { config, previewColorScheme } = useEditor();
+
+    function openInNewTab() {
+        const params = new URLSearchParams({
+            page: pageId,
+            story: storyId,
+            scheme: previewColorScheme,
+            layout: config.layout,
+            base: config.basePalette,
+            accent: config.accent,
+            radius: config.radius,
+            font: config.font,
+            locale: config.locale,
+            placeholders: String(config.showPlaceholders),
+        });
+        window.open(`/preview?${params.toString()}`, '_blank', 'noopener');
+    }
+
+    return (
+        <Tooltip>
+            <TooltipTrigger
+                render={
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        className="size-8"
+                        onClick={openInNewTab}
+                    >
+                        <ExternalLink />
+                    </Button>
+                }
+            />
+            <TooltipContent>Open full page in new tab</TooltipContent>
+        </Tooltip>
+    );
+}
+
+function ResetButton() {
+    const { resetConfig } = useEditor();
+
+    return (
+        <Tooltip>
+            <TooltipTrigger
+                render={
+                    <Button variant="outline" size="icon" className="size-8" onClick={resetConfig}>
+                        <RotateCcw />
+                    </Button>
+                }
+            />
+            <TooltipContent>Reset configuration</TooltipContent>
+        </Tooltip>
+    );
+}
+
 /**
- * Renders the real theme in an isolated iframe (`/preview`). The editor's
- * `config` / `previewColorScheme` / selected page are pushed in via
- * `postMessage`; `viewport` clamps the iframe width. The iframe is never
- * reloaded — page switches re-render `KcPage` on the other side.
+ * Renders the real theme in an isolated iframe (`/preview`).
  */
 export function PreviewPane() {
     const { viewport, previewColorScheme, config } = useEditor();
-    const [pageId, setPageId] = useState<PageId>('login.ftl');
-    const [storyId, setStoryId] = useState('default');
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const width = getViewportWidth(viewport);
 
-    const stories = getPage(pageId)?.stories ?? [];
+    const [pageId, setPageId] = useState<PageId>('login.ftl');
+    const [storyId, setStoryId] = useState('default');
 
-    // Switching page resets to that page's first (default) scenario, since
-    // scenario ids are only unique within a page.µ/
     function handlePageChange(value: PageId) {
         setPageId(value);
         setStoryId(getPage(value)?.stories[0]?.id ?? 'default');
@@ -146,7 +247,7 @@ export function PreviewPane() {
         iframeRef.current?.contentWindow?.postMessage(
             {
                 type: 'kc-preview:state',
-                payload: { pageId, scenarioId: storyId, colorScheme: previewColorScheme, config },
+                payload: { pageId, storyId, colorScheme: previewColorScheme, config },
             },
             window.location.origin,
         );
@@ -174,54 +275,23 @@ export function PreviewPane() {
 
     return (
         <div className="flex min-w-0 flex-1 flex-col">
-            <div className="flex items-center gap-2 border-b p-2">
-                <Select value={pageId} onValueChange={value => handlePageChange(value as PageId)}>
-                    <SelectTrigger className="w-64">
-                        <SelectValue>
-                            {(value: PageId) => getPage(value)?.label ?? value}
-                        </SelectValue>
-                    </SelectTrigger>
-                    <SelectContent alignItemWithTrigger={false} className={'max-h-100'}>
-                        {getGroupedPages().map(group => (
-                            <SelectGroup key={group.id}>
-                                <SelectLabel>{group.label}</SelectLabel>
-                                {group.pages.map(page => (
-                                    <SelectItem key={page.pageId} value={page.pageId}>
-                                        {page.label}
-                                    </SelectItem>
-                                ))}
-                            </SelectGroup>
-                        ))}
-                    </SelectContent>
-                </Select>
+            <div className="flex items-center justify-between gap-2 border-b p-2">
+                <div className="flex items-center gap-2">
+                    <PageSelect
+                        pageId={pageId}
+                        storyId={storyId}
+                        onPageChange={handlePageChange}
+                        onStoryChange={setStoryId}
+                    />
+                    <LanguageSelect />
+                    <ViewportToggle />
+                    <PreviewThemeToggle />
+                </div>
 
-                {stories.length > 1 && (
-                    <Select
-                        value={storyId}
-                        onValueChange={value => setStoryId(value ?? 'default')}
-                    >
-                        <SelectTrigger className="w-56">
-                            <SelectValue>
-                                {(value: string) =>
-                                    stories.find(scenario => scenario.id === value)?.label ??
-                                    value
-                                }
-                            </SelectValue>
-                        </SelectTrigger>
-                        <SelectContent alignItemWithTrigger={false} className={'max-h-100'}>
-                            {stories.map(scenario => (
-                                <SelectItem key={scenario.id} value={scenario.id}>
-                                    {scenario.label}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                )}
-                <LanguageSelect />
-                <ViewportToggle />
-                <PreviewThemeToggle />
-
-                {/* TODO: add  open in isolation mode button*/}
+                <div className="flex items-center gap-2">
+                    <PreviewInNewTab pageId={pageId} storyId={storyId} />
+                    <ResetButton />
+                </div>
             </div>
             <div className="grid min-h-0 flex-1 place-items-center overflow-auto bg-muted/30 p-4">
                 <iframe
