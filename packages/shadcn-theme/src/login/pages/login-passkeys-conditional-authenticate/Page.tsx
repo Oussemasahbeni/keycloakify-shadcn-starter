@@ -126,10 +126,9 @@ export function Page() {
                                                                 (nameProperty, i, arr) => (
                                                                     <Fragment key={nameProperty}>
                                                                         <span>
-                                                                            {" "}
                                                                             {advancedMsg(
                                                                                 nameProperty,
-                                                                            )}{" "}
+                                                                            )}
                                                                         </span>
                                                                         {i !== arr.length - 1 && (
                                                                             <span>, </span>
