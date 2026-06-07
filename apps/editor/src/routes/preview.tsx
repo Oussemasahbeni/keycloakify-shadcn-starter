@@ -17,6 +17,12 @@ type PreviewSearch = {
     font: ThemeConfig['font'];
     locale: ThemeConfig['locale'];
     placeholders: boolean;
+    // Optional: omitted (undefined) when unset so the router doesn't serialize
+    // empty `logoWhite=&logoDark=&…` params into the URL.
+    logoWhite?: string;
+    logoDark?: string;
+    sideImage?: string;
+    cardBg?: string;
 };
 
 /**
@@ -43,6 +49,10 @@ export const Route = createFileRoute('/preview')({
         font: (search.font as ThemeConfig['font'] | undefined) ?? defaultThemeConfig.font,
         locale: (search.locale as ThemeConfig['locale'] | undefined) ?? defaultThemeConfig.locale,
         placeholders: search.placeholders !== 'false' && search.placeholders !== false,
+        logoWhite: (search.logoWhite as string | undefined) || undefined,
+        logoDark: (search.logoDark as string | undefined) || undefined,
+        sideImage: (search.sideImage as string | undefined) || undefined,
+        cardBg: (search.cardBg as string | undefined) || undefined,
     }),
 });
 
@@ -68,6 +78,10 @@ function PreviewRoute() {
             font: search.font,
             locale: search.locale,
             showPlaceholders: search.placeholders,
+            logoWhiteUrl: search.logoWhite ?? '',
+            logoDarkUrl: search.logoDark ?? '',
+            sideImageUrl: search.sideImage ?? '',
+            cardBackgroundUrl: search.cardBg ?? '',
         },
     });
 
@@ -127,6 +141,10 @@ function PreviewRoute() {
                 SHADCN_THEME_RADIUS: config.radius,
                 SHADCN_THEME_FONT: config.font,
                 SHADCN_THEME_PLACEHOLDER: config.showPlaceholders ? 'true' : 'false',
+                SHADCN_THEME_LOGO_WHITE_URL: config.logoWhiteUrl,
+                SHADCN_THEME_LOGO_DARK_URL: config.logoDarkUrl,
+                SHADCN_THEME_SIDE_IMAGE_URL: config.sideImageUrl,
+                SHADCN_THEME_CARD_BG_URL: config.cardBackgroundUrl,
             },
         },
     });

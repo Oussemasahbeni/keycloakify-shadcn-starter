@@ -223,8 +223,8 @@ importers:
         specifier: ^1.4.2
         version: 1.4.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       keycloakify:
-        specifier: ^11.15.3
-        version: 11.15.3
+        specifier: ^11.15.5
+        version: 11.15.5
       lucide-react:
         specifier: ^1.16.0
         version: 1.16.0(react@19.2.6)
@@ -5458,8 +5458,8 @@ packages:
       react:
         optional: true
 
-  keycloakify@11.15.3:
-    resolution: {integrity: sha512-iB8kQELuZ3eqAJsKht3974VZQWss0BydzvELS3uefNKRMZA8ZBq3hsGelL8t3Yt0zZ7wS+Ijavi5VgC9poVcvw==}
+  keycloakify@11.15.5:
+    resolution: {integrity: sha512-ESCCkebbDq4MekVZ15rj5DLKpOigkR3UIyPczgL7LVuy2OUyXTR/n1yycONg3yDJS9iAX+ltTEEkS8SOtZTq8g==}
     hasBin: true
 
   keyv@4.5.4:
@@ -12217,7 +12217,7 @@ snapshots:
       jsx-email: 3.2.0(@jsx-email/plugin-inline@1.0.1)(@jsx-email/plugin-minify@1.0.2)(@jsx-email/plugin-pretty@1.0.0)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.0)(@babel/runtime@7.29.2)(rolldown@1.0.2)(vite@8.0.14(@types/node@25.9.1)(esbuild@0.25.12)(jiti@2.7.0)(tsx@4.22.3)))(@types/node@25.9.1)(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(babel-plugin-react-compiler@1.0.0)(canispam@1.0.0)(jiti@2.7.0)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(tsx@4.22.3)(typescript@6.0.3)(use-sync-external-store@1.6.0(react@19.2.6))
       react: 19.2.6
 
-  keycloakify@11.15.3:
+  keycloakify@11.15.5:
     dependencies:
       tsafe: 1.8.12
 

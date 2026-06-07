@@ -32,7 +32,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.205 0 0)",
             border: "oklch(0.922 0 0)",
             input: "oklch(0.922 0 0)",
-            ring: "oklch(0.708 0 0)"
+            ring: "oklch(0.708 0 0)",
+            sidePanel: "oklch(0.145 0 0)",
+            sidePanelForeground: "oklch(0.985 0 0)"
         },
         dark: {
             background: "oklch(0.145 0 0)",
@@ -49,7 +51,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.985 0 0)",
             border: "oklch(1 0 0 / 10%)",
             input: "oklch(1 0 0 / 15%)",
-            ring: "oklch(0.556 0 0)"
+            ring: "oklch(0.556 0 0)",
+            sidePanel: "oklch(0.205 0 0)",
+            sidePanelForeground: "oklch(0.985 0 0)"
         }
     },
     stone: {
@@ -68,7 +72,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.216 0.006 56.043)",
             border: "oklch(0.923 0.003 48.717)",
             input: "oklch(0.923 0.003 48.717)",
-            ring: "oklch(0.709 0.01 56.259)"
+            ring: "oklch(0.709 0.01 56.259)",
+            sidePanel: "oklch(0.147 0.004 49.25)",
+            sidePanelForeground: "oklch(0.985 0.001 106.423)"
         },
         dark: {
             background: "oklch(0.147 0.004 49.25)",
@@ -85,7 +91,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.985 0.001 106.423)",
             border: "oklch(1 0 0 / 10%)",
             input: "oklch(1 0 0 / 15%)",
-            ring: "oklch(0.553 0.013 58.071)"
+            ring: "oklch(0.553 0.013 58.071)",
+            sidePanel: "oklch(0.216 0.006 56.043)",
+            sidePanelForeground: "oklch(0.985 0.001 106.423)"
         }
     },
     zinc: {
@@ -104,7 +112,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.21 0.006 285.885)",
             border: "oklch(0.92 0.004 286.32)",
             input: "oklch(0.92 0.004 286.32)",
-            ring: "oklch(0.705 0.015 286.067)"
+            ring: "oklch(0.705 0.015 286.067)",
+            sidePanel: "oklch(0.141 0.005 285.823)",
+            sidePanelForeground: "oklch(0.985 0 0)"
         },
         dark: {
             background: "oklch(0.141 0.005 285.823)",
@@ -121,7 +131,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.985 0 0)",
             border: "oklch(1 0 0 / 10%)",
             input: "oklch(1 0 0 / 15%)",
-            ring: "oklch(0.552 0.016 285.938)"
+            ring: "oklch(0.552 0.016 285.938)",
+            sidePanel: "oklch(0.21 0.006 285.885)",
+            sidePanelForeground: "oklch(0.985 0 0)"
         }
     },
     mauve: {
@@ -140,7 +152,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.212 0.019 322.12)",
             border: "oklch(0.922 0.005 325.62)",
             input: "oklch(0.922 0.005 325.62)",
-            ring: "oklch(0.711 0.019 323.02)"
+            ring: "oklch(0.711 0.019 323.02)",
+            sidePanel: "oklch(0.145 0.008 326)",
+            sidePanelForeground: "oklch(0.985 0 0)"
         },
         dark: {
             background: "oklch(0.145 0.008 326)",
@@ -157,7 +171,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.985 0 0)",
             border: "oklch(1 0 0 / 10%)",
             input: "oklch(1 0 0 / 15%)",
-            ring: "oklch(0.542 0.034 322.5)"
+            ring: "oklch(0.542 0.034 322.5)",
+            sidePanel: "oklch(0.212 0.019 322.12)",
+            sidePanelForeground: "oklch(0.985 0 0)"
         }
     },
     olive: {
@@ -176,7 +192,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.228 0.013 107.4)",
             border: "oklch(0.93 0.007 106.5)",
             input: "oklch(0.93 0.007 106.5)",
-            ring: "oklch(0.737 0.021 106.9)"
+            ring: "oklch(0.737 0.021 106.9)",
+            sidePanel: "oklch(0.153 0.006 107.1)",
+            sidePanelForeground: "oklch(0.988 0.003 106.5)"
         },
         dark: {
             background: "oklch(0.153 0.006 107.1)",
@@ -193,7 +211,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.988 0.003 106.5)",
             border: "oklch(1 0 0 / 10%)",
             input: "oklch(1 0 0 / 15%)",
-            ring: "oklch(0.58 0.031 107.3)"
+            ring: "oklch(0.58 0.031 107.3)",
+            sidePanel: "oklch(0.228 0.013 107.4)",
+            sidePanelForeground: "oklch(0.988 0.003 106.5)"
         }
     },
     mist: {
@@ -212,7 +232,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.218 0.008 223.9)",
             border: "oklch(0.925 0.005 214.3)",
             input: "oklch(0.925 0.005 214.3)",
-            ring: "oklch(0.723 0.014 214.4)"
+            ring: "oklch(0.723 0.014 214.4)",
+            sidePanel: "oklch(0.148 0.004 228.8)",
+            sidePanelForeground: "oklch(0.987 0.002 197.1)"
         },
         dark: {
             background: "oklch(0.148 0.004 228.8)",
@@ -229,7 +251,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.987 0.002 197.1)",
             border: "oklch(1 0 0 / 10%)",
             input: "oklch(1 0 0 / 15%)",
-            ring: "oklch(0.56 0.021 213.5)"
+            ring: "oklch(0.56 0.021 213.5)",
+            sidePanel: "oklch(0.218 0.008 223.9)",
+            sidePanelForeground: "oklch(0.987 0.002 197.1)"
         }
     },
     taupe: {
@@ -248,7 +272,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.214 0.009 43.1)",
             border: "oklch(0.922 0.005 34.3)",
             input: "oklch(0.922 0.005 34.3)",
-            ring: "oklch(0.714 0.014 41.2)"
+            ring: "oklch(0.714 0.014 41.2)",
+            sidePanel: "oklch(0.147 0.004 49.3)",
+            sidePanelForeground: "oklch(0.986 0.002 67.8)"
         },
         dark: {
             background: "oklch(0.147 0.004 49.3)",
@@ -265,7 +291,9 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
             accentForeground: "oklch(0.986 0.002 67.8)",
             border: "oklch(1 0 0 / 10%)",
             input: "oklch(1 0 0 / 15%)",
-            ring: "oklch(0.547 0.021 43.1)"
+            ring: "oklch(0.547 0.021 43.1)",
+            sidePanel: "oklch(0.214 0.009 43.1)",
+            sidePanelForeground: "oklch(0.986 0.002 67.8)"
         }
     }
 };

@@ -6,11 +6,11 @@ import { useSetClassName } from 'keycloakify/tools/useSetClassName';
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 import defaultLogo from '../../assets/img/default-logo.svg';
-import { CenteredCardLayout } from './layouts/CenteredCardLayout';
-import { ImageAsideLayout } from './layouts/ImageAsideLayout';
-import { TwoColumnLayout } from './layouts/TwoColumnLayout';
+import { CenteredCardLayout } from '../layouts/CenteredCardLayout';
+import { ImageAsideLayout } from '../layouts/ImageAsideLayout';
+import { TwoColumnLayout } from '../layouts/TwoColumnLayout';
 import { TemplateContent } from './TemplateContent';
-import { useApplyThemePreset } from './theme/useApplyThemePreset';
+import { useApplyThemePreset } from '../../theme/useApplyThemePreset';
 import { useInitializeTemplate } from './useInitializeTemplate';
 
 export type TemplateProps = {
@@ -38,6 +38,7 @@ export function Template(props: TemplateProps) {
     const logoDarkUrl =
         resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_DARK_URL) || defaultLogo;
     const sideImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_SIDE_IMAGE_URL);
+    const cardBgUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_CARD_BG_URL);
     const layout = kcContext.properties.SHADCN_THEME_LAYOUT;
 
     useEffect(() => {
@@ -71,6 +72,7 @@ export function Template(props: TemplateProps) {
                             // cardClassName="border-0 shadow-none  bg-card shadow-sm"
                         />
                     }
+                    backgroundUrl={cardBgUrl}
                 />
             );
         case 'image-aside':

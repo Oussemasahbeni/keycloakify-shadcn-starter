@@ -1,17 +1,21 @@
-import {
-    DEFAULT_FONT,
-    DEFAULT_THEME_BASE,
-    DEFAULT_THEME_LAYOUT,
-    DEFAULT_THEME_PRESET,
-    DEFAULT_THEME_RADIUS,
-} from '@kc-studio/shadcn-theme/defaults';
 import type {
     BasePalette,
     FontFamily,
     Layout,
     RadiusPreset,
     ThemePreset,
-} from '@kc-studio/shadcn-theme/theme-meta';
+} from '@kc-studio/shadcn-theme/theme';
+import {
+    DEFAULT_FONT,
+    DEFAULT_THEME_BASE,
+    DEFAULT_THEME_CARD_BG_URL,
+    DEFAULT_THEME_LAYOUT,
+    DEFAULT_THEME_LOGO_DARK_URL,
+    DEFAULT_THEME_LOGO_WHITE_URL,
+    DEFAULT_THEME_PRESET,
+    DEFAULT_THEME_RADIUS,
+    DEFAULT_THEME_SIDE_IMAGE_URL,
+} from '@kc-studio/shadcn-theme/theme';
 import type { Locale } from './locales';
 import { DEFAULT_LOCALE } from './locales';
 
@@ -26,6 +30,10 @@ export type ThemeConfig = {
     layout: Layout;
     locale: Locale;
     showPlaceholders: boolean;
+    logoWhiteUrl: string;
+    logoDarkUrl: string;
+    sideImageUrl: string;
+    cardBackgroundUrl: string;
 };
 
 export const defaultThemeConfig: ThemeConfig = {
@@ -36,4 +44,8 @@ export const defaultThemeConfig: ThemeConfig = {
     layout: DEFAULT_THEME_LAYOUT,
     locale: DEFAULT_LOCALE,
     showPlaceholders: true,
+    logoWhiteUrl: DEFAULT_THEME_LOGO_WHITE_URL,
+    logoDarkUrl: DEFAULT_THEME_LOGO_DARK_URL,
+    sideImageUrl: DEFAULT_THEME_SIDE_IMAGE_URL,
+    cardBackgroundUrl: DEFAULT_THEME_CARD_BG_URL,
 };

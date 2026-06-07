@@ -32,6 +32,10 @@ export default defineConfig({
                     name: "SHADCN_THEME_SIDE_IMAGE_URL",
                     default: ""
                 },
+                {
+                    name: "SHADCN_THEME_CARD_BG_URL",
+                    default: ""
+                },
                 { name: "SHADCN_THEME_PRESET", default: "neutral" },
                 { name: "SHADCN_THEME_BASE", default: "neutral" },
                 { name: "SHADCN_THEME_RADIUS", default: "default" },

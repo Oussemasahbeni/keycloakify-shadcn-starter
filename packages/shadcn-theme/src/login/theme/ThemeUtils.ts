@@ -2,7 +2,7 @@ import {
     DEFAULT_THEME_BASE,
     DEFAULT_THEME_PRESET,
     DEFAULT_THEME_RADIUS
-} from "../Defaults";
+} from "./Defaults";
 import { basePalettes, radiusPresets, themeFontFamilies, themePresets } from "./Presets";
 import {
     type FontFamily,

@@ -7,3 +7,5 @@ export const DEFAULT_FONT = 'geist';
 export const DEFAULT_THEME_PLACEHOLDER = 'true';
 export const DEFAULT_THEME_LOGO_WHITE_URL = '';
 export const DEFAULT_THEME_LOGO_DARK_URL = '';
+export const DEFAULT_THEME_SIDE_IMAGE_URL = '';
+export const DEFAULT_THEME_CARD_BG_URL = '';

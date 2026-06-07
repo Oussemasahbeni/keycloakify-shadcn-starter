@@ -62,9 +62,7 @@ pnpm -F @kc-studio/shadcn-theme exec keycloakify update-kc-gen
 | Subpath | Target | Provides |
 |---------|--------|----------|
 | `./preview` | `src/login/preview.tsx` | `KcPage`, `getKcContextMock`, `KcContext` |
-| `./theme-meta` | `src/login/components/Template/theme/ThemeTypes.ts` | Option arrays + types: `themePresetOptions`, `basePaletteOptions`, `radiusPresetOptions`, `fontFamilyOptions`, `layoutOptions` and `ThemePreset`/`BasePalette`/`RadiusPreset`/`FontFamily`/`Layout` |
-| `./presets` | `src/login/components/Template/theme/Presets.ts` | `basePalettes`, `themePresets` (OKLCH values) |
-| `./defaults` | `src/login/components/Template/Defaults.ts` | `DEFAULT_THEME_*` constants |
+| `./theme` | `src/login/theme/index.ts` | Option arrays + types: `themePresetOptions`, `basePaletteOptions`, `radiusPresetOptions`, `fontFamilyOptions`, `layoutOptions` and `ThemePreset`/`BasePalette`/`RadiusPreset`/`FontFamily`/`Layout` , `basePalettes`, `themePresets` (OKLCH values) , `DEFAULT_THEME_*` constants |
 
 ### Architecture
 

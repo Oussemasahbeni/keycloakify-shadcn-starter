@@ -17,6 +17,8 @@ export type BaseSurfaceTokens = {
     border: string;
     input: string;
     ring: string;
+    sidePanel: string;
+    sidePanelForeground: string;
 };
 
 /**

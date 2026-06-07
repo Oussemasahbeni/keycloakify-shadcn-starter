@@ -29,9 +29,7 @@
     },
     "exports": {
         "./preview": "./src/login/preview.tsx",
-        "./theme-meta": "./src/login/components/Template/theme/ThemeTypes.ts",
-        "./presets": "./src/login/components/Template/theme/Presets.ts",
-        "./defaults": "./src/login/components/Template/Defaults.ts"
+        "./theme": "./src/login/theme/index.ts"
     },
     "license": "MIT",
     "keywords": [],
@@ -53,7 +51,7 @@
         "clsx": "^2.1.1",
         "i18next": "^26.2.0",
         "input-otp": "^1.4.2",
-        "keycloakify": "^11.15.3",
+        "keycloakify": "^11.15.5",
         "lucide-react": "^1.16.0",
         "react": "catalog:",
         "react-dom": "catalog:",

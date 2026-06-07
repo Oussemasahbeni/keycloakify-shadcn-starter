@@ -1,9 +1,9 @@
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import type { ReactNode } from "react";
-import shape from "../../../assets/img/shape.svg";
-import { TemplateTopBar } from "../TemplateTopBar";
+import { useI18n } from '#/login/i18n';
+import { useKcContext } from '#/login/KcContext';
+import { kcSanitize } from '@keycloakify/login-ui/kcSanitize';
+import type { ReactNode } from 'react';
+import shape from '../../assets/img/shape.svg';
+import { TemplateTopBar } from '../Template/TemplateTopBar';
 
 export function TwoColumnLayout(props: { content: ReactNode; logoUrl: string }) {
     const { content, logoUrl } = props;
@@ -21,7 +21,7 @@ export function TwoColumnLayout(props: { content: ReactNode; logoUrl: string }) 
                 </div>
             </div>
 
-            <div className="bg-slate-950  relative hidden h-full overflow-hidden lg:block dark:bg-card">
+            <div className="bg-side-panel text-side-panel-foreground relative hidden h-full overflow-hidden lg:block">
                 <div className="flex h-full items-center justify-center pt-20">
                     <div className="absolute right-0 top-0 w-full max-w-62.5 xl:max-w-112.5">
                         <img src={shape} alt="" />
@@ -35,21 +35,19 @@ export function TwoColumnLayout(props: { content: ReactNode; logoUrl: string }) 
                             <img src={logoUrl} alt="Logo" className="size-14" />
                             {kcContext.realm.displayNameHtml ? (
                                 <span
-                                    className="text-xl text-white"
+                                    className="text-xl"
                                     dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(
-                                            kcContext.realm.displayNameHtml
-                                        )
+                                        __html: kcSanitize(kcContext.realm.displayNameHtml),
                                     }}
                                 />
                             ) : (
-                                <span className="text-xl text-white">
+                                <span className="text-xl">
                                     {kcContext.realm.displayName || kcContext.realm.name}
                                 </span>
                             )}
                         </div>
 
-                        <p className="text-sm text-white/70">{msg("welcomeMessage")}</p>
+                        <p className="text-sm opacity-70">{msg('welcomeMessage')}</p>
                     </div>
                 </div>
             </div>

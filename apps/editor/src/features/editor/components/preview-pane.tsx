@@ -188,6 +188,21 @@ function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string 
             locale: config.locale,
             placeholders: String(config.showPlaceholders),
         });
+
+        // Image URLs are optional — only include the ones that are set so the
+        // URL stays clean (the preview defaults empty params to '' anyway).
+        const imageParams = {
+            logoWhite: config.logoWhiteUrl,
+            logoDark: config.logoDarkUrl,
+            sideImage: config.sideImageUrl,
+            cardBg: config.cardBackgroundUrl,
+        };
+        for (const [key, value] of Object.entries(imageParams)) {
+            if (value) {
+                params.set(key, value);
+            }
+        }
+
         window.open(`/preview?${params.toString()}`, '_blank', 'noopener');
     }
 
@@ -195,12 +210,7 @@ function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string 
         <Tooltip>
             <TooltipTrigger
                 render={
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="size-8"
-                        onClick={openInNewTab}
-                    >
+                    <Button variant="outline" size="icon" className="size-8" onClick={openInNewTab}>
                         <ExternalLink />
                     </Button>
                 }

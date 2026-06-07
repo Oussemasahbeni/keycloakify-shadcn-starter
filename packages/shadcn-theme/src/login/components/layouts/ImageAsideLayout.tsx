@@ -1,7 +1,7 @@
-import { Card, CardContent } from "#/components/ui/card";
-import type { ReactNode } from "react";
-import placeholder from "../../../assets/img/placeholder.svg";
-import { TemplateTopBar } from "../TemplateTopBar";
+import { Card, CardContent } from '#/components/ui/card';
+import type { ReactNode } from 'react';
+import placeholder from '../../assets/img/placeholder.svg';
+import { TemplateTopBar } from '../Template/TemplateTopBar';
 
 export function ImageAsideLayout(props: { content: ReactNode; imageUrl?: string }) {
     const { content, imageUrl } = props;

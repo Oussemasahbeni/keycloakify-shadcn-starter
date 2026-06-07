@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { useKcContext } from "../../../KcContext";
+import { useKcContext } from "../KcContext";
 import { resolveRadiusPreset, resolveThemeFont, resolveThemeTokens } from "./ThemeUtils";
 
 /**
@@ -25,7 +25,9 @@ const themeCssVars = {
         accentForeground: "--keycloakify-shadcn-accent-foreground",
         border: "--keycloakify-shadcn-border",
         input: "--keycloakify-shadcn-input",
-        ring: "--keycloakify-shadcn-ring"
+        ring: "--keycloakify-shadcn-ring",
+        sidePanel: "--keycloakify-shadcn-side-panel",
+        sidePanelForeground: "--keycloakify-shadcn-side-panel-foreground"
     },
     dark: {
         background: "--keycloakify-shadcn-dark-background",
@@ -44,7 +46,9 @@ const themeCssVars = {
         accentForeground: "--keycloakify-shadcn-dark-accent-foreground",
         border: "--keycloakify-shadcn-dark-border",
         input: "--keycloakify-shadcn-dark-input",
-        ring: "--keycloakify-shadcn-dark-ring"
+        ring: "--keycloakify-shadcn-dark-ring",
+        sidePanel: "--keycloakify-shadcn-dark-side-panel",
+        sidePanelForeground: "--keycloakify-shadcn-dark-side-panel-foreground"
     }
 } as const;
 
