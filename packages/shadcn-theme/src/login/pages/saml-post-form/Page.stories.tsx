@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "saml-post-form.ftl" });
 
 const meta = {
     title: "login/saml-post-form.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -12,4 +12,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-

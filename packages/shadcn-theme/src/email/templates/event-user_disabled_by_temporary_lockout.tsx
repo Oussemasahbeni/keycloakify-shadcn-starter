@@ -11,18 +11,18 @@ type TemplateProps = Omit<GetTemplateProps, "plainText"> & { t: TFunction };
 const paragraph = {
     lineHeight: 1.5,
     fontSize: 14,
-    textAlign: "left" as const
+    textAlign: "left" as const,
 };
 
 const rtlStyle = {
     direction: "rtl" as const,
-    textAlign: "right" as const
+    textAlign: "right" as const,
 };
 
 export const previewProps: TemplateProps = {
     t: i18n.getFixedT(previewLocale),
     locale: previewLocale,
-    themeName: "vanilla"
+    themeName: "vanilla",
 };
 
 export const templateName = "User Disabled by Temporary Lockout";
@@ -39,7 +39,7 @@ export const Template = ({ locale, t }: TemplateProps) => {
         >
             <Text style={applyRTL(paragraph, isRTL, rtlStyle)}>
                 {t("event-user_disabled_by_temporary_lockout.message", {
-                    date: exp("event.date")
+                    date: exp("event.date"),
                 })}
             </Text>
             <Text style={applyRTL(paragraph, isRTL, rtlStyle)}>

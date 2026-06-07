@@ -90,14 +90,8 @@ export interface UseLogicProps {
 export function useLogic(props: UseLogicProps) {
     const { msgStr } = useI18n();
 
-    const {
-        isUserIdentified,
-        challenge,
-        rpId,
-        userVerification,
-        createTimeout,
-        authenticators
-    } = props;
+    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators } =
+        props;
 
     const webAuthnFormRef = useRef<HTMLFormElement>(null);
     const submitWebAuthn = (result: WebAuthnResult) => {
@@ -128,16 +122,15 @@ export function useLogic(props: UseLogicProps) {
         challenge: challenge,
         userVerification: userVerification,
         rpId: rpId,
-        createTimeout:
-            typeof createTimeout === "string" ? Number(createTimeout) : createTimeout,
-        authenticators: authenticators
+        createTimeout: typeof createTimeout === "string" ? Number(createTimeout) : createTimeout,
+        authenticators: authenticators,
     };
 
     const onPasskeyDoAuthenticateClick = async () => {
         const result = await authenticate({
             ...authOptions,
             mediation: "optional",
-            errmsg: msgStr("webauthn-unsupported-browser-text")
+            errmsg: msgStr("webauthn-unsupported-browser-text"),
         });
         if (result) submitWebAuthn(result);
     };
@@ -146,24 +139,20 @@ export function useLogic(props: UseLogicProps) {
         let cancelled = false;
 
         (async () => {
-            if (
-                !window.PublicKeyCredential ||
-                !PublicKeyCredential.isConditionalMediationAvailable
-            )
+            if (!window.PublicKeyCredential || !PublicKeyCredential.isConditionalMediationAvailable)
                 return;
 
-            const isAvailable =
-                await PublicKeyCredential.isConditionalMediationAvailable();
+            const isAvailable = await PublicKeyCredential.isConditionalMediationAvailable();
             if (!isAvailable) return;
 
             const result = await authenticate({
                 ...authOptions,
                 mediation: "conditional",
-                errmsg: msgStr("passkey-unsupported-browser-text")
+                errmsg: msgStr("passkey-unsupported-browser-text"),
             });
 
             if (cancelled) return;
-          if (result?.success) submitWebAuthn(result);
+            if (result?.success) submitWebAuthn(result);
         })();
 
         return () => {
@@ -173,13 +162,11 @@ export function useLogic(props: UseLogicProps) {
 
     return {
         webAuthnFormRef,
-        onPasskeyDoAuthenticateClick
+        onPasskeyDoAuthenticateClick,
     };
 }
 
-export async function authenticate(
-    options: AuthenticateOptions
-): Promise<WebAuthnResult | null> {
+export async function authenticate(options: AuthenticateOptions): Promise<WebAuthnResult | null> {
     const {
         isUserIdentified,
         challenge,
@@ -188,7 +175,7 @@ export async function authenticate(
         createTimeout,
         authenticators,
         errmsg,
-        mediation
+        mediation,
     } = options;
 
     //  Browser Support Check
@@ -199,7 +186,7 @@ export async function authenticate(
     // Prepare Configuration
     const publicKey: PublicKeyCredentialRequestOptions = {
         challenge: new Uint8Array(base64url.parse(challenge, { loose: true })),
-        rpId: rpId
+        rpId: rpId,
     };
 
     // Only set userVerification if it's a valid value
@@ -213,7 +200,7 @@ export async function authenticate(
     if (isUserIdentified && authenticators) {
         publicKey.allowCredentials = authenticators.map(auth => ({
             id: new Uint8Array(base64url.parse(auth.credentialId, { loose: true })),
-            type: "public-key"
+            type: "public-key",
         }));
     }
 
@@ -221,7 +208,7 @@ export async function authenticate(
         const credential = (await navigator.credentials.get({
             publicKey,
             signal: getWebAuthnSignal(),
-            mediation
+            mediation,
         })) as PublicKeyCredential;
 
         const response = credential.response as AuthenticatorAssertionResponse;
@@ -230,28 +217,27 @@ export async function authenticate(
         return {
             success: true,
             clientDataJSON: base64url.stringify(new Uint8Array(response.clientDataJSON), {
-                pad: false
+                pad: false,
             }),
-            authenticatorData: base64url.stringify(
-                new Uint8Array(response.authenticatorData),
-                { pad: false }
-            ),
+            authenticatorData: base64url.stringify(new Uint8Array(response.authenticatorData), {
+                pad: false,
+            }),
             signature: base64url.stringify(new Uint8Array(response.signature), {
-                pad: false
+                pad: false,
             }),
             credentialId: credential.id,
             userHandle: response.userHandle
                 ? base64url.stringify(new Uint8Array(response.userHandle), {
-                      pad: false
+                      pad: false,
                   })
-                : ""
+                : "",
         };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         if (error.name === "AbortError") return null;
         return {
             success: false,
-            error: error.message || "Unknown WebAuthn error"
+            error: error.message || "Unknown WebAuthn error",
         };
     }
 }

@@ -1,17 +1,17 @@
-import { resolveAssetUrl } from '#/lib/resolveAssetUrl';
-import { useI18n } from '#/login/i18n';
-import { useKcContext } from '#/login/KcContext';
-import { useKcClsx } from '@keycloakify/login-ui/useKcClsx';
-import { useSetClassName } from 'keycloakify/tools/useSetClassName';
-import type { ReactNode } from 'react';
-import { useEffect } from 'react';
-import defaultLogo from '../../assets/img/default-logo.svg';
-import { CenteredCardLayout } from '../layouts/CenteredCardLayout';
-import { ImageAsideLayout } from '../layouts/ImageAsideLayout';
-import { TwoColumnLayout } from '../layouts/TwoColumnLayout';
-import { TemplateContent } from './TemplateContent';
-import { useApplyThemePreset } from '../../theme/useApplyThemePreset';
-import { useInitializeTemplate } from './useInitializeTemplate';
+import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
+import { useSetClassName } from "keycloakify/tools/useSetClassName";
+import type { ReactNode } from "react";
+import { useEffect } from "react";
+import defaultLogo from "../../assets/img/default-logo.svg";
+import { useApplyThemePreset } from "../../theme/useApplyThemePreset";
+import { CenteredCardLayout } from "../layouts/CenteredCardLayout";
+import { ImageAsideLayout } from "../layouts/ImageAsideLayout";
+import { TwoColumnLayout } from "../layouts/TwoColumnLayout";
+import { TemplateContent } from "./TemplateContent";
+import { useInitializeTemplate } from "./useInitializeTemplate";
 
 export type TemplateProps = {
     displayInfo?: boolean;
@@ -44,24 +44,24 @@ export function Template(props: TemplateProps) {
     useEffect(() => {
         document.title =
             documentTitle ??
-            msgStr('loginTitle', kcContext.realm.displayName || kcContext.realm.name);
+            msgStr("loginTitle", kcContext.realm.displayName || kcContext.realm.name);
     }, []);
 
     useSetClassName({
-        qualifiedName: 'html',
-        className: kcClsx('kcHtmlClass'),
+        qualifiedName: "html",
+        className: kcClsx("kcHtmlClass"),
     });
 
     useSetClassName({
-        qualifiedName: 'body',
-        className: bodyClassName ?? kcClsx('kcBodyClass'),
+        qualifiedName: "body",
+        className: bodyClassName ?? kcClsx("kcBodyClass"),
     });
 
     useInitializeTemplate();
     useApplyThemePreset();
 
     switch (layout) {
-        case 'centered-card':
+        case "centered-card":
             return (
                 <CenteredCardLayout
                     content={
@@ -75,7 +75,7 @@ export function Template(props: TemplateProps) {
                     backgroundUrl={cardBgUrl}
                 />
             );
-        case 'image-aside':
+        case "image-aside":
             return (
                 <ImageAsideLayout
                     content={
@@ -90,7 +90,7 @@ export function Template(props: TemplateProps) {
                     imageUrl={sideImageUrl}
                 />
             );
-        case 'two-column':
+        case "two-column":
         default:
             return (
                 <TwoColumnLayout

@@ -4,7 +4,7 @@ import type {
     Layout,
     RadiusPreset,
     ThemePreset,
-} from '@kc-studio/shadcn-theme/theme';
+} from "@kc-studio/shadcn-theme/theme";
 import {
     DEFAULT_FONT,
     DEFAULT_THEME_BASE,
@@ -15,13 +15,13 @@ import {
     DEFAULT_THEME_PRESET,
     DEFAULT_THEME_RADIUS,
     DEFAULT_THEME_SIDE_IMAGE_URL,
-} from '@kc-studio/shadcn-theme/theme';
-import type { Locale } from './locales';
-import { DEFAULT_LOCALE } from './locales';
+} from "@kc-studio/shadcn-theme/theme";
+import type { Locale } from "./locales";
+import { DEFAULT_LOCALE } from "./locales";
 
-export type PreviewColorScheme = 'light' | 'dark';
+export type PreviewColorScheme = "light" | "dark";
 
-export type SaveStatus = 'idle' | 'saving' | 'saved' | 'error';
+export type SaveStatus = "idle" | "saving" | "saved" | "error";
 export type ThemeConfig = {
     basePalette: BasePalette;
     accent: ThemePreset;

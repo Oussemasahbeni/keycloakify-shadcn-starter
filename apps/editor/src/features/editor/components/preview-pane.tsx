@@ -6,20 +6,20 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-} from '#/components/ui/select';
+} from "#/components/ui/select";
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { getViewportWidth, VIEWPORTS } from '../model/viewport';
-import { useEditor } from '../state/editor-context';
-import { getGroupedPages, getPage } from '../stories/pages';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { getViewportWidth, VIEWPORTS } from "../model/viewport";
+import { useEditor } from "../state/editor-context";
+import { getGroupedPages, getPage } from "../stories/pages";
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '#/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
 
-import { Button } from '#/components/ui/button';
-import { ExternalLink, Globe, Moon, RotateCcw, Sun } from 'lucide-react';
-import type { Locale } from '../model/locales';
-import { supportedLocales } from '../model/locales';
-import type { PageId } from '../stories/types';
+import { Button } from "#/components/ui/button";
+import { ExternalLink, Globe, Moon, RotateCcw, Sun } from "lucide-react";
+import type { Locale } from "../model/locales";
+import { supportedLocales } from "../model/locales";
+import type { PageId } from "../stories/types";
 
 function ViewportToggle() {
     const { viewport, setViewport } = useEditor();
@@ -33,7 +33,7 @@ function ViewportToggle() {
                         <TooltipTrigger
                             render={
                                 <Button
-                                    variant={isActive ? 'secondary' : 'ghost'}
+                                    variant={isActive ? "secondary" : "ghost"}
                                     size="icon"
                                     className="size-8"
                                     aria-pressed={isActive}
@@ -61,11 +61,11 @@ function PreviewThemeToggle() {
                 <TooltipTrigger
                     render={
                         <Button
-                            variant={previewColorScheme === 'light' ? 'secondary' : 'ghost'}
+                            variant={previewColorScheme === "light" ? "secondary" : "ghost"}
                             size="icon"
                             className="size-8"
-                            aria-pressed={previewColorScheme === 'light'}
-                            onClick={() => setPreviewColorScheme('light')}
+                            aria-pressed={previewColorScheme === "light"}
+                            onClick={() => setPreviewColorScheme("light")}
                         >
                             <Sun className="size-4" />
                             <span className="sr-only">Light</span>
@@ -78,11 +78,11 @@ function PreviewThemeToggle() {
                 <TooltipTrigger
                     render={
                         <Button
-                            variant={previewColorScheme === 'dark' ? 'secondary' : 'ghost'}
+                            variant={previewColorScheme === "dark" ? "secondary" : "ghost"}
                             size="icon"
                             className="size-8"
-                            aria-pressed={previewColorScheme === 'dark'}
-                            onClick={() => setPreviewColorScheme('dark')}
+                            aria-pressed={previewColorScheme === "dark"}
+                            onClick={() => setPreviewColorScheme("dark")}
                         >
                             <Moon className="size-4" />
                             <span className="sr-only">Dark</span>
@@ -95,10 +95,12 @@ function PreviewThemeToggle() {
     );
 }
 
+function labelFor(locale: Locale) {
+    return supportedLocales.find(entry => entry.value === locale)?.label ?? locale;
+}
+
 function LanguageSelect() {
     const { config, updateConfig } = useEditor();
-    const labelFor = (locale: Locale) =>
-        supportedLocales.find(entry => entry.value === locale)?.label ?? locale;
 
     return (
         <Select
@@ -109,7 +111,7 @@ function LanguageSelect() {
                 <Globe className="size-4 text-muted-foreground" />
                 <SelectValue>{(selected: Locale) => labelFor(selected)}</SelectValue>
             </SelectTrigger>
-            <SelectContent alignItemWithTrigger={false} className={'max-h-100'}>
+            <SelectContent alignItemWithTrigger={false} className={"max-h-100"}>
                 {supportedLocales.map(({ value, label }) => (
                     <SelectItem key={value} value={value}>
                         {label}
@@ -136,7 +138,7 @@ function PageSelect({ pageId, storyId, onPageChange, onStoryChange }: PageSelect
                 <SelectTrigger className="w-64">
                     <SelectValue>{(value: PageId) => getPage(value)?.label ?? value}</SelectValue>
                 </SelectTrigger>
-                <SelectContent alignItemWithTrigger={false} className={'max-h-100'}>
+                <SelectContent alignItemWithTrigger={false} className={"max-h-100"}>
                     {getGroupedPages().map(group => (
                         <SelectGroup key={group.id}>
                             <SelectLabel>{group.label}</SelectLabel>
@@ -151,7 +153,7 @@ function PageSelect({ pageId, storyId, onPageChange, onStoryChange }: PageSelect
             </Select>
 
             {stories.length > 1 && (
-                <Select value={storyId} onValueChange={value => onStoryChange(value ?? 'default')}>
+                <Select value={storyId} onValueChange={value => onStoryChange(value ?? "default")}>
                     <SelectTrigger className="w-56">
                         <SelectValue>
                             {(value: string) =>
@@ -159,7 +161,7 @@ function PageSelect({ pageId, storyId, onPageChange, onStoryChange }: PageSelect
                             }
                         </SelectValue>
                     </SelectTrigger>
-                    <SelectContent alignItemWithTrigger={false} className={'max-h-100'}>
+                    <SelectContent alignItemWithTrigger={false} className={"max-h-100"}>
                         {stories.map(scenario => (
                             <SelectItem key={scenario.id} value={scenario.id}>
                                 {scenario.label}
@@ -203,7 +205,7 @@ function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string 
             }
         }
 
-        window.open(`/preview?${params.toString()}`, '_blank', 'noopener');
+        window.open(`/preview?${params.toString()}`, "_blank", "noopener");
     }
 
     return (
@@ -245,18 +247,18 @@ export function PreviewPane() {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const width = getViewportWidth(viewport);
 
-    const [pageId, setPageId] = useState<PageId>('login.ftl');
-    const [storyId, setStoryId] = useState('default');
+    const [pageId, setPageId] = useState<PageId>("login.ftl");
+    const [storyId, setStoryId] = useState("default");
 
     function handlePageChange(value: PageId) {
         setPageId(value);
-        setStoryId(getPage(value)?.stories[0]?.id ?? 'default');
+        setStoryId(getPage(value)?.stories[0]?.id ?? "default");
     }
 
     const postState = useCallback(() => {
         iframeRef.current?.contentWindow?.postMessage(
             {
-                type: 'kc-preview:state',
+                type: "kc-preview:state",
                 payload: { pageId, storyId, colorScheme: previewColorScheme, config },
             },
             window.location.origin,
@@ -274,13 +276,13 @@ export function PreviewPane() {
             if (event.origin !== window.location.origin) {
                 return;
             }
-            if (event.data.type === 'kc-preview:ready') {
+            if (event.data.type === "kc-preview:ready") {
                 postState();
             }
         }
 
-        window.addEventListener('message', onMessage);
-        return () => window.removeEventListener('message', onMessage);
+        window.addEventListener("message", onMessage);
+        return () => window.removeEventListener("message", onMessage);
     }, [postState]);
 
     return (
@@ -308,8 +310,9 @@ export function PreviewPane() {
                     ref={iframeRef}
                     src="/preview"
                     title="Theme preview"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
                     className="h-full rounded-lg border bg-background shadow-sm transition-[width] duration-250"
-                    style={{ width: width ? `${width}px` : '100%' }}
+                    style={{ width: width ? `${width}px` : "100%" }}
                 />
             </div>
         </div>

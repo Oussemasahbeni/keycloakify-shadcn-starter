@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "logout-confirm.ftl" });
 
 const meta = {
     title: "login/logout-confirm.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -23,19 +23,19 @@ export const WithCustomLogoutMessage: Story = {
     args: {
         kcContext: {
             url: {
-                logoutConfirmAction: "/mock-logout-action"
+                logoutConfirmAction: "/mock-logout-action",
             },
             client: {
-                baseUrl: "/mock-client-url"
+                baseUrl: "/mock-client-url",
             },
             logoutConfirm: {
                 code: "mock-session-code",
-                skipLink: false
+                skipLink: false,
             },
             message: {
                 summary: "Are you sure you want to log out from all sessions?",
-                type: "warning"
-            }
-        }
-    }
+                type: "warning",
+            },
+        },
+    },
 };

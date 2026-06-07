@@ -11,18 +11,18 @@ type TemplateProps = Omit<GetTemplateProps, "plainText"> & { t: TFunction };
 const paragraph = {
     lineHeight: 1.5,
     fontSize: 14,
-    textAlign: "left" as const
+    textAlign: "left" as const,
 };
 
 const rtlStyle = {
     direction: "rtl" as const,
-    textAlign: "right" as const
+    textAlign: "right" as const,
 };
 
 export const previewProps: TemplateProps = {
     t: i18n.getFixedT(previewLocale),
     locale: previewLocale,
-    themeName: "vanilla"
+    themeName: "vanilla",
 };
 
 export const templateName = "Update credential";
@@ -38,7 +38,7 @@ export const Template = ({ locale, t }: TemplateProps) => {
                 {t("event-update_credential.message", {
                     credentialType: exp('event.details.credential_type!"unknown"'),
                     date: exp("event.date"),
-                    ipAddress: exp("event.ipAddress")
+                    ipAddress: exp("event.ipAddress"),
                 })}
             </Text>
 

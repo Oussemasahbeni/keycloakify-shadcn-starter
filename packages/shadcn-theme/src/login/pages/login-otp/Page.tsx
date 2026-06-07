@@ -1,29 +1,29 @@
-import { Button } from '#/components/ui/button';
-import { Field, FieldError } from '#/components/ui/field';
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '#/components/ui/input-otp';
-import { Label } from '#/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '#/components/ui/radio-group';
-import { useI18n } from '#/login/i18n';
-import { useKcContext } from '#/login/KcContext';
-import { kcSanitize } from '@keycloakify/login-ui/kcSanitize';
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
-import { useState } from 'react';
-import { MdOutlineDevices } from 'react-icons/md';
-import { assert } from 'tsafe/assert';
-import { Template } from '../../components/Template';
+import { Button } from "#/components/ui/button";
+import { Field, FieldError } from "#/components/ui/field";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "#/components/ui/input-otp";
+import { Label } from "#/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
+import { useState } from "react";
+import { MdOutlineDevices } from "react-icons/md";
+import { assert } from "tsafe/assert";
+import { Template } from "../../components/Template";
 
 export function Page() {
     const { kcContext } = useKcContext();
 
-    assert(kcContext.pageId === 'login-otp.ftl');
+    assert(kcContext.pageId === "login-otp.ftl");
 
     const { msg, msgStr } = useI18n();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     return (
         <Template
-            displayMessage={!kcContext.messagesPerField.existsError('totp')}
-            headerNode={msg('doLogIn')}
+            displayMessage={!kcContext.messagesPerField.existsError("totp")}
+            headerNode={msg("doLogIn")}
         >
             <form
                 id="kc-otp-login-form"
@@ -66,7 +66,7 @@ export function Page() {
 
                 <Field>
                     <Label htmlFor="otp" className="text-sm font-medium  block">
-                        {msg('loginOtpOneTime')}
+                        {msg("loginOtpOneTime")}
                     </Label>
                     <InputOTP
                         id="otp"
@@ -84,11 +84,11 @@ export function Page() {
                             <InputOTPSlot index={5} className="size-12 text-lg" />
                         </InputOTPGroup>
                     </InputOTP>
-                    {kcContext.messagesPerField.existsError('totp') && (
+                    {kcContext.messagesPerField.existsError("totp") && (
                         <FieldError id="input-error-otp-code">
                             <span
                                 dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(kcContext.messagesPerField.get('totp')),
+                                    __html: kcSanitize(kcContext.messagesPerField.get("totp")),
                                 }}
                             />
                         </FieldError>
@@ -102,7 +102,7 @@ export function Page() {
                     type="submit"
                     disabled={isSubmitting}
                 >
-                    {msgStr('doLogIn')}
+                    {msgStr("doLogIn")}
                 </Button>
             </form>
         </Template>

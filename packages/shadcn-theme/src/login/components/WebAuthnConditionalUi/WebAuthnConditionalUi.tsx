@@ -12,13 +12,7 @@ export function WebAuthnConditionalUI(props: UseLogicProps) {
 
     return (
         <>
-            <form
-                id="webauth"
-                action={loginAction}
-                method="post"
-                hidden
-                ref={webAuthnFormRef}
-            >
+            <form id="webauth" action={loginAction} method="post" hidden ref={webAuthnFormRef}>
                 <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
                 <input type="hidden" id="authenticatorData" name="authenticatorData" />
                 <input type="hidden" id="signature" name="signature" />

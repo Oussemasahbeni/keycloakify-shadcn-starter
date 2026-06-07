@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "terms.ftl" });
 
 const meta = {
     title: "login/terms.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -16,11 +16,11 @@ export const Default: Story = {
         kcContext: {
             "x-keycloakify": {
                 messages: {
-                    termsText: "<p>My terms in <strong>English</strong></p>"
-                }
-            }
-        }
-    }
+                    termsText: "<p>My terms in <strong>English</strong></p>",
+                },
+            },
+        },
+    },
 };
 
 export const Arabic: Story = {
@@ -28,46 +28,46 @@ export const Arabic: Story = {
         kcContext: {
             locale: {
                 currentLanguageTag: "ar",
-                rtl: true
+                rtl: true,
             },
             "x-keycloakify": {
                 messages: {
-                    termsText: "<p>شروطي باللغة <strong>العربية</strong></p>"
-                }
-            }
-        }
-    }
+                    termsText: "<p>شروطي باللغة <strong>العربية</strong></p>",
+                },
+            },
+        },
+    },
 };
 export const French: Story = {
     args: {
         kcContext: {
             locale: {
-                currentLanguageTag: "fr"
+                currentLanguageTag: "fr",
             },
             "x-keycloakify": {
                 // cSpell: disable
                 messages: {
-                    termsText: "<p>Mes terme en <strong>Français</strong></p>"
-                }
+                    termsText: "<p>Mes terme en <strong>Français</strong></p>",
+                },
                 // cSpell: enable
-            }
-        }
-    }
+            },
+        },
+    },
 };
 
 export const Spanish: Story = {
     args: {
         kcContext: {
             locale: {
-                currentLanguageTag: "es"
+                currentLanguageTag: "es",
             },
             "x-keycloakify": {
                 messages: {
-                    termsText: "<p>Mis términos en <strong>Español</strong></p>"
-                }
-            }
-        }
-    }
+                    termsText: "<p>Mis términos en <strong>Español</strong></p>",
+                },
+            },
+        },
+    },
 };
 
 export const LongMessage: Story = {
@@ -85,9 +85,9 @@ export const LongMessage: Story = {
                         <p>Etiam et massa a sapien pharetra mollis. In lacinia quam id libero tincidunt, at egestas felis viverra.</p>
                         <p>Nunc pulvinar imperdiet facilisis. Curabitur ultricies dictum lectus, nec consectetur metus fringilla id.</p>
                         <p><strong>Please accept the terms to proceed.</strong></p>
-                    `
-                }
-            }
-        }
-    }
+                    `,
+                },
+            },
+        },
+    },
 };

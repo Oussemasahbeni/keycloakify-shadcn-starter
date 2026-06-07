@@ -47,60 +47,60 @@ export type ModeTokens<T> = {
  * Keep this list in sync with the public theming documentation.
  */
 export const themePresetOptions = [
-    'neutral',
-    'amber',
-    'blue',
-    'cyan',
-    'emerald',
-    'fuchsia',
-    'green',
-    'indigo',
-    'lime',
-    'orange',
-    'pink',
-    'purple',
-    'red',
-    'rose',
-    'sky',
-    'teal',
-    'violet',
-    'yellow',
+    "neutral",
+    "amber",
+    "blue",
+    "cyan",
+    "emerald",
+    "fuchsia",
+    "green",
+    "indigo",
+    "lime",
+    "orange",
+    "pink",
+    "purple",
+    "red",
+    "rose",
+    "sky",
+    "teal",
+    "violet",
+    "yellow",
 ] as const;
 
 /**
  * Supported neutral base palettes exposed through env vars and Storybook.
  */
 export const basePaletteOptions = [
-    'neutral',
-    'stone',
-    'zinc',
-    'mauve',
-    'olive',
-    'mist',
-    'taupe',
+    "neutral",
+    "stone",
+    "zinc",
+    "mauve",
+    "olive",
+    "mist",
+    "taupe",
 ] as const;
 
 /**
  * Supported radius presets exposed through env vars and Storybook.
  */
-export const radiusPresetOptions = ['default', 'none', 'small', 'medium', 'large'] as const;
+export const radiusPresetOptions = ["default", "none", "small", "medium", "large"] as const;
 
 /**
  * Supported font family options exposed through env vars and Storybook.
  */
 export const fontFamilyOptions = [
-    'inter',
-    'geist',
-    'manrope',
-    'figtree',
-    'source-sans-3',
-    'ibm-plex-sans',
-    'lora',
-    'playfair-display',
-    'jetbrains-mono',
+    "inter",
+    "geist",
+    "manrope",
+    "figtree",
+    "source-sans-3",
+    "ibm-plex-sans",
+    "lora",
+    "playfair-display",
+    "jetbrains-mono",
 ] as const;
 
-export const layoutOptions = ['two-column', 'centered-card', 'image-aside'] as const;
+export const layoutOptions = ["two-column", "centered-card", "image-aside"] as const;
 
 export type ThemePreset = (typeof themePresetOptions)[number];
 export type BasePalette = (typeof basePaletteOptions)[number];

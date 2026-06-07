@@ -1,9 +1,9 @@
-import { useI18n } from '#/login/i18n';
-import { useKcContext } from '#/login/KcContext';
-import { kcSanitize } from '@keycloakify/login-ui/kcSanitize';
-import type { ReactNode } from 'react';
-import shape from '../../assets/img/shape.svg';
-import { TemplateTopBar } from '../Template/TemplateTopBar';
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import type { ReactNode } from "react";
+import shape from "../../assets/img/shape.svg";
+import { TemplateTopBar } from "../Template/TemplateTopBar";
 
 export function TwoColumnLayout(props: { content: ReactNode; logoUrl: string }) {
     const { content, logoUrl } = props;
@@ -47,7 +47,7 @@ export function TwoColumnLayout(props: { content: ReactNode; logoUrl: string }) 
                             )}
                         </div>
 
-                        <p className="text-sm opacity-70">{msg('welcomeMessage')}</p>
+                        <p className="text-sm opacity-70">{msg("welcomeMessage")}</p>
                     </div>
                 </div>
             </div>

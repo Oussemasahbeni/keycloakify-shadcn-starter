@@ -13,13 +13,13 @@ shadcn mcp init   # write config for your editor
 
 Editor config files:
 
-| Editor | Config file |
-|--------|------------|
-| Claude Code | `.mcp.json` |
-| Cursor | `.cursor/mcp.json` |
-| VS Code | `.vscode/mcp.json` |
-| OpenCode | `opencode.json` |
-| Codex | `~/.codex/config.toml` (manual) |
+| Editor      | Config file                     |
+| ----------- | ------------------------------- |
+| Claude Code | `.mcp.json`                     |
+| Cursor      | `.cursor/mcp.json`              |
+| VS Code     | `.vscode/mcp.json`              |
+| OpenCode    | `opencode.json`                 |
+| Codex       | `~/.codex/config.toml` (manual) |
 
 ---
 
@@ -77,13 +77,13 @@ Registries are set in `components.json`. The `@shadcn` registry is always built-
 
 ```json
 {
-  "registries": {
-    "@acme": "https://acme.com/r/{name}.json",
-    "@private": {
-      "url": "https://private.com/r/{name}.json",
-      "headers": { "Authorization": "Bearer ${MY_TOKEN}" }
+    "registries": {
+        "@acme": "https://acme.com/r/{name}.json",
+        "@private": {
+            "url": "https://private.com/r/{name}.json",
+            "headers": { "Authorization": "Bearer ${MY_TOKEN}" }
+        }
     }
-  }
 }
 ```
 

@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "idp-review-user-profile.ftl
 
 const meta = {
     title: "login/idp-review-user-profile.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -17,15 +17,14 @@ export const WithFormValidationErrors: Story = {
     args: {
         kcContext: {
             messagesPerField: {
-                existsError: (fieldName: string) =>
-                    ["email", "firstName"].includes(fieldName),
+                existsError: (fieldName: string) => ["email", "firstName"].includes(fieldName),
                 get: (fieldName: string) => {
                     if (fieldName === "email") return "Invalid email format.";
                     if (fieldName === "firstName") return "First name is required.";
-                }
-            }
-        }
-    }
+                },
+            },
+        },
+    },
 };
 export const WithReadOnlyFields: Story = {
     args: {
@@ -33,11 +32,11 @@ export const WithReadOnlyFields: Story = {
             profile: {
                 attributesByName: {
                     email: { value: "jane.doe@example.com", readOnly: true },
-                    firstName: { value: "Jane", readOnly: false }
-                }
-            }
-        }
-    }
+                    firstName: { value: "Jane", readOnly: false },
+                },
+            },
+        },
+    },
 };
 export const WithPrefilledFormFields: Story = {
     args: {
@@ -46,9 +45,9 @@ export const WithPrefilledFormFields: Story = {
                 attributesByName: {
                     firstName: { value: "Jane" },
                     lastName: { value: "Doe" },
-                    email: { value: "jane.doe@example.com" }
-                }
-            }
-        }
-    }
+                    email: { value: "jane.doe@example.com" },
+                },
+            },
+        },
+    },
 };

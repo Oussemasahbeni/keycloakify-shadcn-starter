@@ -1,8 +1,8 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 const envSchema = z.object({
-    DATABASE_URL: z.string().url(),
-    OIDC_ISSUER_URI: z.string().url(),
+    DATABASE_URL: z.url(),
+    OIDC_ISSUER_URI: z.url(),
     OIDC_CLIENT_ID: z.string(),
 });
 

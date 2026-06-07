@@ -1,11 +1,11 @@
 import { Button } from "#/components/ui/button";
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
 import { useState } from "react";
 import { assert } from "tsafe/assert";
 import { Template } from "../../components/Template";
 import { UserProfileFormFields } from "../../components/UserProfileFormFields";
-import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
 
 export function Page() {
     const { kcContext } = useKcContext();
@@ -29,18 +29,12 @@ export function Page() {
                 action={url.loginAction}
                 method="post"
             >
-                <UserProfileFormFields
-                    onIsFormSubmittableValueChange={setIsFormSubmittable}
-                />
+                <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
 
                 <LogoutOtherSessions />
 
                 <div className="flex flex-col gap-3">
-                    <Button
-                        disabled={!isFormSubmittable}
-                        className="w-full"
-                        type="submit"
-                    >
+                    <Button disabled={!isFormSubmittable} className="w-full" type="submit">
                         {msgStr("doSubmit")}
                     </Button>
                     {isAppInitiatedAction && (

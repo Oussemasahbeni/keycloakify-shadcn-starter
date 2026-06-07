@@ -7,7 +7,7 @@ import { FieldErrors } from "./FieldErrors";
 import type { InputFieldByTypeProps } from "./InputFieldByType";
 
 export function InputTag(
-    props: InputFieldByTypeProps & { fieldIndex: number | undefined; isInGroup?: boolean }
+    props: InputFieldByTypeProps & { fieldIndex: number | undefined; isInGroup?: boolean },
 ) {
     const {
         attribute,
@@ -15,7 +15,7 @@ export function InputTag(
         dispatchFormAction,
         valueOrValues,
         displayableErrors,
-        isInGroup = false
+        isInGroup = false,
     } = props;
 
     const { advancedMsgStr } = useI18n();
@@ -73,9 +73,10 @@ export function InputTag(
                 min={attribute.annotations.inputTypeMin}
                 step={attribute.annotations.inputTypeStep}
                 {...Object.fromEntries(
-                    Object.entries(attribute.html5DataAnnotations ?? {}).map(
-                        ([key, value]) => [`data-${key}`, value]
-                    )
+                    Object.entries(attribute.html5DataAnnotations ?? {}).map(([key, value]) => [
+                        `data-${key}`,
+                        value,
+                    ]),
                 )}
                 onChange={event =>
                     dispatchFormAction({
@@ -95,14 +96,14 @@ export function InputTag(
                             }
 
                             return event.target.value;
-                        })()
+                        })(),
                     })
                 }
                 onBlur={() =>
                     dispatchFormAction({
                         action: "focus lost",
                         name: attribute.name,
-                        fieldIndex: fieldIndex
+                        fieldIndex: fieldIndex,
                     })
                 }
             />

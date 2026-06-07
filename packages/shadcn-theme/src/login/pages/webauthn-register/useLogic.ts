@@ -80,7 +80,7 @@ export function useLogic() {
                     ? Number(kcContext.createTimeout)
                     : kcContext.createTimeout,
             excludeCredentialIds: kcContext.excludeCredentialIds,
-            errmsg: msgStr("webauthn-unsupported-browser-text")
+            errmsg: msgStr("webauthn-unsupported-browser-text"),
         });
 
         if (result.success) {
@@ -98,13 +98,11 @@ export function useLogic() {
 
     return {
         registerFormRef,
-        onRegisterClick
+        onRegisterClick,
     };
 }
 
-async function webAuthnRegister(
-    options: RegisterOptions
-): Promise<WebAuthnRegisterResult> {
+async function webAuthnRegister(options: RegisterOptions): Promise<WebAuthnRegisterResult> {
     const {
         challenge,
         rpId,
@@ -118,7 +116,7 @@ async function webAuthnRegister(
         userVerificationRequirement,
         createTimeout,
         excludeCredentialIds,
-        errmsg
+        errmsg,
     } = options;
 
     if (!window.PublicKeyCredential) {
@@ -132,11 +130,11 @@ async function webAuthnRegister(
         user: {
             id: new Uint8Array(base64url.parse(userid, { loose: true })),
             name: username,
-            displayName: username
+            displayName: username,
         },
         pubKeyCredParams: [],
         timeout: createTimeout !== 0 ? createTimeout * 1000 : undefined,
-        excludeCredentials: []
+        excludeCredentials: [],
     };
 
     // Map Algorithms
@@ -146,7 +144,7 @@ async function webAuthnRegister(
         signatureAlgorithms.forEach(alg => {
             publicKey.pubKeyCredParams.push({
                 type: "public-key",
-                alg: Number(alg)
+                alg: Number(alg),
             });
         });
     }
@@ -156,8 +154,7 @@ async function webAuthnRegister(
     let isAuthSelectSpecified = false;
 
     if (authenticatorAttachment && authenticatorAttachment !== "not specified") {
-        authSelect.authenticatorAttachment =
-            authenticatorAttachment as AuthenticatorAttachment;
+        authSelect.authenticatorAttachment = authenticatorAttachment as AuthenticatorAttachment;
         isAuthSelectSpecified = true;
     }
 
@@ -167,8 +164,7 @@ async function webAuthnRegister(
     }
 
     if (userVerificationRequirement && userVerificationRequirement !== "not specified") {
-        authSelect.userVerification =
-            userVerificationRequirement as UserVerificationRequirement;
+        authSelect.userVerification = userVerificationRequirement as UserVerificationRequirement;
         isAuthSelectSpecified = true;
     }
 
@@ -177,12 +173,8 @@ async function webAuthnRegister(
     }
 
     // Attestation
-    if (
-        attestationConveyancePreference &&
-        attestationConveyancePreference !== "not specified"
-    ) {
-        publicKey.attestation =
-            attestationConveyancePreference as AttestationConveyancePreference;
+    if (attestationConveyancePreference && attestationConveyancePreference !== "not specified") {
+        publicKey.attestation = attestationConveyancePreference as AttestationConveyancePreference;
     }
 
     // Exclude Credentials (prevent registering the same key twice)
@@ -190,14 +182,14 @@ async function webAuthnRegister(
         const ids = excludeCredentialIds.split(",").filter(id => id !== "");
         publicKey.excludeCredentials = ids.map(id => ({
             type: "public-key",
-            id: new Uint8Array(base64url.parse(id, { loose: true }))
+            id: new Uint8Array(base64url.parse(id, { loose: true })),
         }));
     }
 
     try {
         // Call Browser API
         const credential = (await navigator.credentials.create({
-            publicKey
+            publicKey,
         })) as PublicKeyCredential;
 
         // Type Narrowing & Formatting
@@ -223,16 +215,15 @@ async function webAuthnRegister(
         return {
             success: true,
             clientDataJSON: base64url.stringify(new Uint8Array(response.clientDataJSON), {
-                pad: false
+                pad: false,
             }),
-            attestationObject: base64url.stringify(
-                new Uint8Array(response.attestationObject),
-                { pad: false }
-            ),
+            attestationObject: base64url.stringify(new Uint8Array(response.attestationObject), {
+                pad: false,
+            }),
             publicKeyCredentialId: base64url.stringify(new Uint8Array(credential.rawId), {
-                pad: false
+                pad: false,
             }),
-            transports
+            transports,
         };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

@@ -1,5 +1,5 @@
-import { oidcSpa } from 'oidc-spa/react-tanstack-start';
-import { z } from 'zod';
+import { oidcSpa } from "oidc-spa/react-tanstack-start";
+import { z } from "zod";
 
 export const {
     bootstrapOidc,
@@ -22,8 +22,8 @@ export const {
         }),
     })
     .withAccessTokenValidation({
-        type: 'RFC 9068: JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens',
-        expectedAudience: (/*{ paramsOfBootstrap, process }*/) => 'account',
+        type: "RFC 9068: JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens",
+        expectedAudience: (/*{ paramsOfBootstrap, process }*/) => "account",
         accessTokenClaimsSchema: z.object({
             sub: z.string(),
             realm_access: z.object({ roles: z.array(z.string()) }).optional(),
@@ -34,7 +34,7 @@ export const {
 // Can be call anywhere, even in the body of a React component.
 // All subsequent calls will be safely ignored.
 bootstrapOidc(({ process }) => ({
-    implementation: 'real',
+    implementation: "real",
     issuerUri: process.env.OIDC_ISSUER_URI,
     clientId: process.env.OIDC_CLIENT_ID,
     debugLogs: true,
@@ -46,7 +46,7 @@ export const fetchWithAuth: typeof fetch = async (input, init) => {
     if (oidc.isUserLoggedIn) {
         const accessToken = await oidc.getAccessToken();
         const headers = new Headers(init?.headers);
-        headers.set('Authorization', `Bearer ${accessToken}`);
+        headers.set("Authorization", `Bearer ${accessToken}`);
         (init ??= {}).headers = headers;
     }
 

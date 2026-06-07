@@ -1,21 +1,21 @@
-import type { KcContext } from '@kc-studio/shadcn-theme/preview';
+import type { KcContext } from "@kc-studio/shadcn-theme/preview";
 
 type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>;
 };
 
-export type PageId = KcContext['pageId'];
+export type PageId = KcContext["pageId"];
 
 export const pageCategories = [
-    { id: 'sign-in', label: 'Sign-in' },
-    { id: 'registration', label: 'Registration & profile' },
-    { id: 'credentials', label: 'Passwords & credentials' },
-    { id: 'idp', label: 'Identity providers' },
-    { id: 'sessions', label: 'Consent & sessions' },
-    { id: 'status', label: 'Status & errors' },
+    { id: "sign-in", label: "Sign-in" },
+    { id: "registration", label: "Registration & profile" },
+    { id: "credentials", label: "Passwords & credentials" },
+    { id: "idp", label: "Identity providers" },
+    { id: "sessions", label: "Consent & sessions" },
+    { id: "status", label: "Status & errors" },
 ] as const;
 
-export type PageCategory = (typeof pageCategories)[number]['id'];
+export type PageCategory = (typeof pageCategories)[number]["id"];
 
 export type PageGroup = { id: PageCategory; label: string; pages: PagePreview[] };
 

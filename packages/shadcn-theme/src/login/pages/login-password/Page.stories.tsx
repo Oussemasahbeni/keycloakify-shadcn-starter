@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "login-password.ftl" });
 
 const meta = {
     title: "login/login-password.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -18,55 +18,54 @@ export const WithAttemptedUsername: Story = {
         kcContext: {
             auth: {
                 showUsername: true,
-                attemptedUsername: "MyUsername"
-            }
-        }
-    }
+                attemptedUsername: "MyUsername",
+            },
+        },
+    },
 };
 
 export const WithPasswordError: Story = {
     args: {
         kcContext: {
             realm: {
-                resetPasswordAllowed: true
+                resetPasswordAllowed: true,
             },
             url: {
                 loginAction: "/mock-login",
-                loginResetCredentialsUrl: "/mock-reset-password"
+                loginResetCredentialsUrl: "/mock-reset-password",
             },
             messagesPerField: {
                 existsError: (field: string) => field === "password",
-                get: () => "Invalid password"
-            }
-        }
-    }
+                get: () => "Invalid password",
+            },
+        },
+    },
 };
-
 
 export const WithWebauthn: Story = {
     args: {
         kcContext: {
             url: {
-                loginAction: "/mock-login-action"
+                loginAction: "/mock-login-action",
             },
-            enableWebAuthnConditionalUI: true
-        }
-    }
+            enableWebAuthnConditionalUI: true,
+        },
+    },
 };
 
 export const WithoutResetPasswordOption: Story = {
     args: {
         kcContext: {
             realm: {
-                resetPasswordAllowed: false
+                resetPasswordAllowed: false,
             },
             url: {
                 loginAction: "/mock-login",
-                loginResetCredentialsUrl: "/mock-reset-password"
+                loginResetCredentialsUrl: "/mock-reset-password",
             },
             messagesPerField: {
-                existsError: () => false
-            }
-        }
-    }
+                existsError: () => false,
+            },
+        },
+    },
 };

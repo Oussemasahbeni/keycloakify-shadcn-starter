@@ -3,16 +3,16 @@ import { createKcPageStory, type Meta, type StoryObj } from "../../mocks/KcPageS
 // Mock kcContext to avoid the TS2304 error
 const mockKcContext = {
     url: {
-        loginAction: "/login-action"
+        loginAction: "/login-action",
     },
-    idpAlias: "mockIdpAlias"
+    idpAlias: "mockIdpAlias",
 };
 
 const { KcPageStory } = createKcPageStory({ pageId: "login-idp-link-confirm.ftl" });
 
 const meta = {
     title: "login/login-idp-link-confirm.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -27,10 +27,9 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
     args: {
-        kcContext: mockKcContext
-    }
+        kcContext: mockKcContext,
+    },
 };
-
 
 /**
  * WithFormSubmissionError:
@@ -43,12 +42,12 @@ export const WithFormSubmissionError: Story = {
         kcContext: {
             ...mockKcContext,
             url: {
-                loginAction: "/error"
+                loginAction: "/error",
             },
             message: {
                 type: "error",
-                summary: "An error occurred during form submission."
-            }
-        }
-    }
+                summary: "An error occurred during form submission.",
+            },
+        },
+    },
 };

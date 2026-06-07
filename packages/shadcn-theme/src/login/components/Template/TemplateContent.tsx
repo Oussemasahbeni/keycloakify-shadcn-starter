@@ -1,24 +1,12 @@
 import { Alert, AlertDescription } from "#/components/ui/alert";
 import { buttonVariants } from "#/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger
-} from "#/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "#/components/ui/tooltip";
 import { cn } from "#/lib/utils";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import {
-    CircleAlert,
-    CircleCheck,
-    Info,
-    RotateCcw,
-    TriangleAlert,
-    User
-} from "lucide-react";
+import { CircleAlert, CircleCheck, Info, RotateCcw, TriangleAlert, User } from "lucide-react";
 import { type ReactNode } from "react";
 import type { TemplateProps } from "./Template";
 
@@ -26,7 +14,7 @@ const messageIcons = {
     success: CircleCheck,
     warning: TriangleAlert,
     error: CircleAlert,
-    info: Info
+    info: Info,
 } as const;
 
 type TemplateContentProps = TemplateProps & {
@@ -48,7 +36,7 @@ export function TemplateContent(props: TemplateContentProps) {
         logoWhiteUrl,
         logoDarkUrl,
         cardClassName,
-        brandingVisibilityClassName
+        brandingVisibilityClassName,
     } = props;
 
     const { kcContext } = useKcContext();
@@ -84,7 +72,7 @@ export function TemplateContent(props: TemplateContentProps) {
                                 id="reset-login"
                                 className={buttonVariants({
                                     variant: "outline",
-                                    size: "icon"
+                                    size: "icon",
                                 })}
                                 href={url.loginRestartFlowUrl}
                                 aria-label={msgStr("restartLoginTooltip")}
@@ -107,26 +95,25 @@ export function TemplateContent(props: TemplateContentProps) {
                 <div
                     className={cn(
                         "flex flex-col items-center justify-center gap-3",
-                        brandingVisibilityClassName
+                        brandingVisibilityClassName,
                     )}
                 >
                     <div className="flex items-center gap-3 mb-4 ">
-                        <img src={logoWhiteUrl} className="size-14 dark:hidden" />
+                        <img src={logoWhiteUrl} alt="Logo" className="size-14 dark:hidden" />
                         <img
                             src={logoDarkUrl}
+                            alt="Logo"
                             className="size-14 hidden dark:inline-block"
                         />
                         {realm.displayNameHtml ? (
                             <span
                                 className="text-xl"
                                 dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(realm.displayNameHtml)
+                                    __html: kcSanitize(realm.displayNameHtml),
                                 }}
                             />
                         ) : (
-                            <span className="text-xl">
-                                {realm.displayName || realm.name}
-                            </span>
+                            <span className="text-xl">{realm.displayName || realm.name}</span>
                         )}
                     </div>
                 </div>
@@ -163,7 +150,7 @@ export function TemplateContent(props: TemplateContentProps) {
                                 <AlertDescription>
                                     <span
                                         dangerouslySetInnerHTML={{
-                                            __html: kcSanitize(message.summary)
+                                            __html: kcSanitize(message.summary),
                                         }}
                                     />
                                 </AlertDescription>

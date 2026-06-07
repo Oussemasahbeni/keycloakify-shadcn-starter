@@ -50,29 +50,33 @@ pnpm emails:check          # Validate email templates
 ```
 
 After adding Keycloak env vars or pages, regenerate the auto-generated file:
+
 ```bash
 pnpm -F @kc-studio/shadcn-theme exec keycloakify update-kc-gen
 ```
+
 `postinstall` automatically runs `keycloakify sync-extensions` — no manual step after `pnpm install`.
 
 ### Public exports (the contract the editor depends on)
 
 `package.json` `exports` expose a small typed surface that `apps/editor` imports. **Moving or renaming any of these files breaks the editor:**
 
-| Subpath | Target | Provides |
-|---------|--------|----------|
-| `./preview` | `src/login/preview.tsx` | `KcPage`, `getKcContextMock`, `KcContext` |
-| `./theme` | `src/login/theme/index.ts` | Option arrays + types: `themePresetOptions`, `basePaletteOptions`, `radiusPresetOptions`, `fontFamilyOptions`, `layoutOptions` and `ThemePreset`/`BasePalette`/`RadiusPreset`/`FontFamily`/`Layout` , `basePalettes`, `themePresets` (OKLCH values) , `DEFAULT_THEME_*` constants |
+| Subpath     | Target                     | Provides                                                                                                                                                                                                                                                                          |
+| ----------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `./preview` | `src/login/preview.tsx`    | `KcPage`, `getKcContextMock`, `KcContext`                                                                                                                                                                                                                                         |
+| `./theme`   | `src/login/theme/index.ts` | Option arrays + types: `themePresetOptions`, `basePaletteOptions`, `radiusPresetOptions`, `fontFamilyOptions`, `layoutOptions` and `ThemePreset`/`BasePalette`/`RadiusPreset`/`FontFamily`/`Layout` , `basePalettes`, `themePresets` (OKLCH values) , `DEFAULT_THEME_*` constants |
 
 ### Architecture
 
 **Entry points:**
+
 - `src/main.tsx` — browser dev entry (mock `kcContext`)
 - `src/main-kc.tsx` — production Keycloak entry (reads `window.kcContext`)
 - `src/main-kc.dev.tsx` — Keycloak dev entry with HMR
 - `src/kc.gen.tsx` — **auto-generated** by `keycloakify update-kc-gen` (exports `KcEnvName`, `ThemeName`, `KcPage`, `kcEnvDefaults`). Do not edit.
 
 **Login theme (`src/login/`)** — provider tree in `KcPage.tsx`:
+
 ```
 KcContextProvider → I18nProvider → KcClsxProvider (doUseDefaultCss: false) → ThemeProvider → PageIndex
 ```
@@ -95,17 +99,17 @@ KcContextProvider → I18nProvider → KcClsxProvider (doUseDefaultCss: false) �
 
 Valid values (configured in `vite.config.ts` → `environmentVariables`):
 
-| Var | Valid values |
-|-----|-------------|
-| `SHADCN_THEME_LAYOUT` | `two-column` (default) · `centered-card` · `image-aside` |
-| `SHADCN_THEME_PRESET` | `neutral` · `amber` · `blue` · `cyan` · `emerald` · `fuchsia` · `green` · `indigo` · `lime` · `orange` · `pink` · `purple` · `red` · `rose` · `sky` · `teal` · `violet` · `yellow` |
-| `SHADCN_THEME_BASE` | `neutral` · `stone` · `zinc` · `mauve` · `olive` · `mist` · `taupe` |
-| `SHADCN_THEME_RADIUS` | `default` · `none` · `small` · `medium` · `large` |
-| `SHADCN_THEME_FONT` | `inter` · `geist` (default) · `manrope` · `figtree` · `source-sans-3` · `ibm-plex-sans` · `lora` · `playfair-display` · `jetbrains-mono` |
-| `SHADCN_THEME_LOGO_WHITE_URL` | URL or `%BASE_URL%/filename` for light-mode logo |
-| `SHADCN_THEME_LOGO_DARK_URL` | URL or `%BASE_URL%/filename` for dark-mode logo |
-| `SHADCN_THEME_SIDE_IMAGE_URL` | URL or `%BASE_URL%/filename` for aside image (image-aside layout) |
-| `SHADCN_THEME_PLACEHOLDER` | `true` (default) · `false` |
+| Var                           | Valid values                                                                                                                                                                       |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SHADCN_THEME_LAYOUT`         | `two-column` (default) · `centered-card` · `image-aside`                                                                                                                           |
+| `SHADCN_THEME_PRESET`         | `neutral` · `amber` · `blue` · `cyan` · `emerald` · `fuchsia` · `green` · `indigo` · `lime` · `orange` · `pink` · `purple` · `red` · `rose` · `sky` · `teal` · `violet` · `yellow` |
+| `SHADCN_THEME_BASE`           | `neutral` · `stone` · `zinc` · `mauve` · `olive` · `mist` · `taupe`                                                                                                                |
+| `SHADCN_THEME_RADIUS`         | `default` · `none` · `small` · `medium` · `large`                                                                                                                                  |
+| `SHADCN_THEME_FONT`           | `inter` · `geist` (default) · `manrope` · `figtree` · `source-sans-3` · `ibm-plex-sans` · `lora` · `playfair-display` · `jetbrains-mono`                                           |
+| `SHADCN_THEME_LOGO_WHITE_URL` | URL or `%BASE_URL%/filename` for light-mode logo                                                                                                                                   |
+| `SHADCN_THEME_LOGO_DARK_URL`  | URL or `%BASE_URL%/filename` for dark-mode logo                                                                                                                                    |
+| `SHADCN_THEME_SIDE_IMAGE_URL` | URL or `%BASE_URL%/filename` for aside image (image-aside layout)                                                                                                                  |
+| `SHADCN_THEME_PLACEHOLDER`    | `true` (default) · `false`                                                                                                                                                         |
 
 ### Adding a new page
 
@@ -146,10 +150,10 @@ pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / 
 
 - `src/routes/` — file-based routes: `__root.tsx`, `index.tsx` (landing), `editor.tsx` (the editor, gated by `enforceLogin`), `preview.tsx` (`ssr: false`; the isolated document loaded into the preview iframe).
 - `src/features/editor/`:
-  - `components/` — `editor-header`, `editor-sidebar`, `config-panel` (the theme controls; imports option arrays from `@kc-studio/shadcn-theme/theme-meta` + swatch colors from `/presets`), `preview-pane` (the iframe host).
-  - `model/` — `theme-config.ts` (`ThemeConfig` type + `defaultThemeConfig`, built from the theme's `/defaults`), `viewport.ts`, `locales.ts`.
-  - `state/editor-context.tsx` — React context holding `viewport`, `previewColorScheme`, `config`, `saveStatus`; `useEditor()` hook.
-  - `stories/` — the **preview catalog** (the editor's analogue to Storybook): `pages.ts` defines ~40 login pages, each with named scenarios whose `overrides` are deep-merged over the base mock; helpers `definePage`/`simplePage`/`fieldError` in `helpers.ts`; `types.ts` defines `PageId = KcContext['pageId']` and category grouping.
+    - `components/` — `editor-header`, `editor-sidebar`, `config-panel` (the theme controls; imports option arrays from `@kc-studio/shadcn-theme/theme-meta` + swatch colors from `/presets`), `preview-pane` (the iframe host).
+    - `model/` — `theme-config.ts` (`ThemeConfig` type + `defaultThemeConfig`, built from the theme's `/defaults`), `viewport.ts`, `locales.ts`.
+    - `state/editor-context.tsx` — React context holding `viewport`, `previewColorScheme`, `config`, `saveStatus`; `useEditor()` hook.
+    - `stories/` — the **preview catalog** (the editor's analogue to Storybook): `pages.ts` defines ~40 login pages, each with named scenarios whose `overrides` are deep-merged over the base mock; helpers `definePage`/`simplePage`/`fieldError` in `helpers.ts`; `types.ts` defines `PageId = KcContext['pageId']` and category grouping.
 - `src/features/landing/` — marketing sections for the landing page.
 - `src/config/` — `env.ts` (zod-validated **server** env: `DATABASE_URL`, `OIDC_ISSUER_URI`, `OIDC_CLIENT_ID`), `constants.ts` (`GITHUB_URL`).
 - `src/oidc.ts` — `oidc-spa` utilities (`bootstrapOidc`, `enforceLogin`, `useOidc`, `getOidc`, `fetchWithAuth`).
@@ -158,7 +162,7 @@ pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / 
 
 ### Editor ↔ theme preview protocol
 
-The live preview renders the *real* theme in an isolated iframe and drives it with `postMessage` — understanding this flow requires reading both sides:
+The live preview renders the _real_ theme in an isolated iframe and drives it with `postMessage` — understanding this flow requires reading both sides:
 
 1. `features/editor/components/preview-pane.tsx` embeds `/preview` in an `<iframe>` (never reloaded; its width is clamped by the selected `viewport`).
 2. On every editor change it posts `{ type: 'kc-preview:state', payload: { pageId, scenarioId, colorScheme, config } }` (origin-checked).

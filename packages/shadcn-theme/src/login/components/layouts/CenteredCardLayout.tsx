@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { TemplateTopBar } from '../Template/TemplateTopBar';
+import type { ReactNode } from "react";
+import { TemplateTopBar } from "../Template/TemplateTopBar";
 
 export function CenteredCardLayout(props: { content: ReactNode; backgroundUrl?: string }) {
     const { content, backgroundUrl } = props;
@@ -10,6 +10,7 @@ export function CenteredCardLayout(props: { content: ReactNode; backgroundUrl?: 
                 <>
                     <img
                         src={backgroundUrl}
+                        alt="Background"
                         className="absolute inset-0 h-full w-full object-cover"
                     />
                     <div className="absolute inset-0 bg-background/50 dark:bg-background/80" />

@@ -5,7 +5,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "register.ftl" });
 
 const meta = {
     title: "login/register.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,7 +13,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
 
 export const WithEmailAlreadyExists: Story = {
     args: {
@@ -24,15 +23,15 @@ export const WithEmailAlreadyExists: Story = {
                         value: "johndoe",
                     },
                     email: {
-                        value: "jhon.doe@gmail.com"
+                        value: "jhon.doe@gmail.com",
                     },
                     firstName: {
-                        value: "John"
+                        value: "John",
                     },
                     lastName: {
-                        value: "Doe"
-                    }
-                }
+                        value: "Doe",
+                    },
+                },
             },
             messagesPerField: {
                 // NOTE: The other functions of messagesPerField are derived from get() and
@@ -40,10 +39,10 @@ export const WithEmailAlreadyExists: Story = {
                 existsError: (fieldName: string, ...otherFieldNames: string[]) =>
                     [fieldName, ...otherFieldNames].includes("email"),
                 get: (fieldName: string) =>
-                    fieldName === "email" ? "Email already exists." : undefined
-            }
-        }
-    }
+                    fieldName === "email" ? "Email already exists." : undefined,
+            },
+        },
+    },
 };
 
 export const WithRestrictedToMITStudents: Story = {
@@ -54,29 +53,27 @@ export const WithRestrictedToMITStudents: Story = {
                     email: {
                         validators: {
                             pattern: {
-                                pattern:
-                                    "^[^@]+@([^.]+\\.)*((mit\\.edu)|(berkeley\\.edu))$",
-                                "error-message":
-                                    "${profile.attributes.email.pattern.error}"
-                            }
+                                pattern: "^[^@]+@([^.]+\\.)*((mit\\.edu)|(berkeley\\.edu))$",
+                                "error-message": "${profile.attributes.email.pattern.error}",
+                            },
                         },
                         annotations: {
                             inputHelperTextBefore:
-                                "${profile.attributes.email.inputHelperTextBefore}"
-                        }
-                    }
-                }
+                                "${profile.attributes.email.inputHelperTextBefore}",
+                        },
+                    },
+                },
             },
             "x-keycloakify": {
                 messages: {
                     "profile.attributes.email.inputHelperTextBefore":
                         "Please use your MIT or Berkeley email.",
                     "profile.attributes.email.pattern.error":
-                        "This is not an MIT (<strong>@mit.edu</strong>) nor a Berkeley (<strong>@berkeley.edu</strong>) email."
-                }
-            }
-        }
-    }
+                        "This is not an MIT (<strong>@mit.edu</strong>) nor a Berkeley (<strong>@berkeley.edu</strong>) email.",
+                },
+            },
+        },
+    },
 };
 
 export const WithFavoritePet: Story = {
@@ -89,28 +86,27 @@ export const WithFavoritePet: Story = {
                         displayName: "${profile.attributes.favoritePet}",
                         validators: {
                             options: {
-                                options: ["cat", "dog", "fish"]
-                            }
+                                options: ["cat", "dog", "fish"],
+                            },
                         },
                         annotations: {
-                            inputOptionLabelsI18nPrefix:
-                                "profile.attributes.favoritePet.options"
+                            inputOptionLabelsI18nPrefix: "profile.attributes.favoritePet.options",
                         },
                         required: false,
-                        readOnly: false
-                    } satisfies Attribute
-                }
+                        readOnly: false,
+                    } satisfies Attribute,
+                },
             },
             "x-keycloakify": {
                 messages: {
                     "profile.attributes.favoritePet": "Favorite Pet",
                     "profile.attributes.favoritePet.options.cat": "Fluffy Cat",
                     "profile.attributes.favoritePet.options.dog": "Loyal Dog",
-                    "profile.attributes.favoritePet.options.fish": "Peaceful Fish"
-                }
-            }
-        }
-    }
+                    "profile.attributes.favoritePet.options.fish": "Peaceful Fish",
+                },
+            },
+        },
+    },
 };
 
 export const WithNewsletter: Story = {
@@ -123,37 +119,37 @@ export const WithNewsletter: Story = {
                         displayName: "Sign up to the newsletter",
                         validators: {
                             options: {
-                                options: ["yes"]
-                            }
+                                options: ["yes"],
+                            },
                         },
                         annotations: {
                             inputOptionLabels: {
-                                yes: "I want my email inbox filled with spam"
+                                yes: "I want my email inbox filled with spam",
                             },
-                            inputType: "multiselect-checkboxes"
+                            inputType: "multiselect-checkboxes",
                         },
                         required: false,
-                        readOnly: false
-                    } satisfies Attribute
-                }
-            }
-        }
-    }
+                        readOnly: false,
+                    } satisfies Attribute,
+                },
+            },
+        },
+    },
 };
 
 export const WithEmailAsUsername: Story = {
     args: {
         kcContext: {
             realm: {
-                registrationEmailAsUsername: true
+                registrationEmailAsUsername: true,
             },
             profile: {
                 attributesByName: {
-                    username: undefined
-                }
-            }
-        }
-    }
+                    username: undefined,
+                },
+            },
+        },
+    },
 };
 
 export const WithRecaptcha: Story = {
@@ -161,32 +157,32 @@ export const WithRecaptcha: Story = {
         kcContext: {
             scripts: ["https://www.google.com/recaptcha/api.js?hl=en"],
             recaptchaRequired: true,
-            recaptchaSiteKey: "6LfQHvApAAAAAE73SYTd5vS0lB1Xr7zdiQ-6iBVa"
-        }
-    }
+            recaptchaSiteKey: "6LfQHvApAAAAAE73SYTd5vS0lB1Xr7zdiQ-6iBVa",
+        },
+    },
 };
 
 export const WithRecaptchaFrench: Story = {
     args: {
         kcContext: {
             locale: {
-                currentLanguageTag: "fr"
+                currentLanguageTag: "fr",
             },
             scripts: ["https://www.google.com/recaptcha/api.js?hl=fr"],
             recaptchaRequired: true,
-            recaptchaSiteKey: "6LfQHvApAAAAAE73SYTd5vS0lB1Xr7zdiQ-6iBVa"
-        }
-    }
+            recaptchaSiteKey: "6LfQHvApAAAAAE73SYTd5vS0lB1Xr7zdiQ-6iBVa",
+        },
+    },
 };
 
 export const WithPasswordMinLength8: Story = {
     args: {
         kcContext: {
             passwordPolicies: {
-                length: 8
-            }
-        }
-    }
+                length: 8,
+            },
+        },
+    },
 };
 
 export const WithTermsAcceptance: Story = {
@@ -195,12 +191,11 @@ export const WithTermsAcceptance: Story = {
             termsAcceptanceRequired: true,
             "x-keycloakify": {
                 messages: {
-                    termsText:
-                        "<a href='https://example.com/terms'>Service Terms of Use</a>"
-                }
-            }
-        }
-    }
+                    termsText: "<a href='https://example.com/terms'>Service Terms of Use</a>",
+                },
+            },
+        },
+    },
 };
 export const WithTermsNotAccepted: Story = {
     render: args => (
@@ -211,13 +206,11 @@ export const WithTermsNotAccepted: Story = {
                 messagesPerField: {
                     existsError: (fieldName: string) => fieldName === "termsAccepted",
                     get: (fieldName: string) =>
-                        fieldName === "termsAccepted"
-                            ? "You must accept the terms."
-                            : undefined
-                }
+                        fieldName === "termsAccepted" ? "You must accept the terms." : undefined,
+                },
             }}
         />
-    )
+    ),
 };
 export const WithFieldErrors: Story = {
     args: {
@@ -225,19 +218,18 @@ export const WithFieldErrors: Story = {
             profile: {
                 attributesByName: {
                     username: { value: "" },
-                    email: { value: "invalid-email" }
-                }
+                    email: { value: "invalid-email" },
+                },
             },
             messagesPerField: {
-                existsError: (fieldName: string) =>
-                    ["username", "email"].includes(fieldName),
+                existsError: (fieldName: string) => ["username", "email"].includes(fieldName),
                 get: (fieldName: string) => {
                     if (fieldName === "username") return "Username is required.";
                     if (fieldName === "email") return "Invalid email format.";
-                }
-            }
-        }
-    }
+                },
+            },
+        },
+    },
 };
 export const WithReadOnlyFields: Story = {
     args: {
@@ -245,20 +237,20 @@ export const WithReadOnlyFields: Story = {
             profile: {
                 attributesByName: {
                     username: { value: "johndoe", readOnly: true },
-                    email: { value: "jhon.doe@gmail.com", readOnly: false }
-                }
-            }
-        }
-    }
+                    email: { value: "jhon.doe@gmail.com", readOnly: false },
+                },
+            },
+        },
+    },
 };
 export const WithAutoGeneratedUsername: Story = {
     args: {
         kcContext: {
             profile: {
                 attributesByName: {
-                    username: { value: "autogenerated_username" }
-                }
-            }
-        }
-    }
+                    username: { value: "autogenerated_username" },
+                },
+            },
+        },
+    },
 };

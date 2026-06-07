@@ -1,1 +1,1 @@
-export const GITHUB_URL = "https://github.com/Oussemasahbeni/keycloakify-shadcn-theme-editor"
+export const GITHUB_URL = "https://github.com/Oussemasahbeni/keycloakify-shadcn-theme-editor";

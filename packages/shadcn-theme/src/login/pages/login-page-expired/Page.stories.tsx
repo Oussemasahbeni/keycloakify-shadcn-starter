@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "login-page-expired.ftl" });
 
 const meta = {
     title: "login/login-page-expired.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -24,12 +24,12 @@ export const WithErrorMessage: Story = {
         kcContext: {
             url: {
                 loginRestartFlowUrl: "/mock-restart-flow",
-                loginAction: "/mock-continue-login"
+                loginAction: "/mock-continue-login",
             },
             message: {
                 type: "error",
-                summary: "An error occurred while processing your session."
-            }
-        }
-    }
+                summary: "An error occurred while processing your session.",
+            },
+        },
+    },
 };

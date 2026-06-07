@@ -15,11 +15,7 @@ export function Page() {
 
     return (
         <Template headerNode={msg("deleteAccountConfirm")}>
-            <form
-                action={kcContext.url.loginAction}
-                className="flex flex-col gap-4"
-                method="post"
-            >
+            <form action={kcContext.url.loginAction} className="flex flex-col gap-4" method="post">
                 <Alert variant="warning">
                     <AlertTriangle />
                     <AlertDescription>
@@ -43,7 +39,7 @@ export function Page() {
                 <div
                     className={[
                         "flex flex-col gap-3 sm:flex-row",
-                        isRtl ? "sm:flex-row-reverse" : ""
+                        isRtl ? "sm:flex-row-reverse" : "",
                     ].join(" ")}
                 >
                     {kcContext.triggered_from_aia && (

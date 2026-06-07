@@ -1,12 +1,12 @@
-import { AboutSection } from '#/features/landing/about-section';
-import { FaqSection } from '#/features/landing/faq-section';
-import { LandingFooter } from '#/features/landing/footer';
-import { Header } from '#/features/landing/header';
-import { HeroSection } from '#/features/landing/hero-section';
-import { StatsSection } from '#/features/landing/stats-section';
-import { createFileRoute } from '@tanstack/react-router';
+import { AboutSection } from "#/features/landing/about-section";
+import { FaqSection } from "#/features/landing/faq-section";
+import { LandingFooter } from "#/features/landing/footer";
+import { Header } from "#/features/landing/header";
+import { HeroSection } from "#/features/landing/hero-section";
+import { StatsSection } from "#/features/landing/stats-section";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
     component: Landing,
 });
 

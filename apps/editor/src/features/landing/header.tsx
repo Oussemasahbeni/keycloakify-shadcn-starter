@@ -1,32 +1,32 @@
-import { Logo } from '#/components/logo';
-import { ModeToggle } from '#/components/mode-toggle';
-import { Button, buttonVariants } from '#/components/ui/button';
+import { Logo } from "#/components/logo";
+import { ModeToggle } from "#/components/mode-toggle";
+import { Button, buttonVariants } from "#/components/ui/button";
 import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-} from '#/components/ui/navigation-menu';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '#/components/ui/sheet';
-import { cn } from '#/lib/utils';
-import { Link } from '@tanstack/react-router';
-import { Github, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+} from "#/components/ui/navigation-menu";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "#/components/ui/sheet";
+import { cn } from "#/lib/utils";
+import { Link } from "@tanstack/react-router";
+import { Github, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const NAV_ITEMS = [
-    { name: 'Home', href: '#hero' },
-    { name: 'Features', href: '#features' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Home", href: "#hero" },
+    { name: "Features", href: "#features" },
+    { name: "FAQ", href: "#faq" },
+    { name: "Contact", href: "#contact" },
 ];
 
-const GITHUB_URL = 'https://github.com/Oussemasahbeni/keycloakify-shadcn-theme-editor';
+const GITHUB_URL = "https://github.com/Oussemasahbeni/keycloakify-shadcn-theme-editor";
 
 function smoothScrollTo(targetId: string) {
-    if (targetId.startsWith('#')) {
+    if (targetId.startsWith("#")) {
         const element = document.querySelector(targetId);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     }
 }
@@ -53,8 +53,8 @@ function GithubLink({ className }: { className?: string }) {
             rel="noopener noreferrer"
             aria-label="GitHub Repository"
             className={cn(
-                buttonVariants({ variant: 'ghost', size: 'icon' }),
-                'cursor-pointer',
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "cursor-pointer",
                 className,
             )}
         >
@@ -68,7 +68,7 @@ function GetStartedButton({
     className,
     onClick,
 }: {
-    size?: 'default' | 'lg';
+    size?: "default" | "lg";
     className?: string;
     onClick?: () => void;
 }) {
@@ -89,7 +89,7 @@ function DesktopNav() {
                             className="group inline-flex h-10 w-max cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary focus:outline-none"
                             onClick={e => {
                                 e.preventDefault();
-                                if (item.href.startsWith('#')) {
+                                if (item.href.startsWith("#")) {
                                     smoothScrollTo(item.href);
                                 } else {
                                     window.location.href = item.href;
@@ -154,19 +154,16 @@ function MobileMenu() {
                         <nav className="space-y-1 p-6">
                             {NAV_ITEMS.map(item => (
                                 <div key={item.name}>
-                                    <a
-                                        href={item.href}
-                                        className="flex cursor-pointer items-center rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-                                        onClick={e => {
+                                    <button
+                                        type="button"
+                                        className="flex w-full cursor-pointer items-center rounded-lg px-4 py-3 text-left text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+                                        onClick={() => {
                                             setIsOpen(false);
-                                            if (item.href.startsWith('#')) {
-                                                e.preventDefault();
-                                                setTimeout(() => smoothScrollTo(item.href), 100);
-                                            }
+                                            setTimeout(() => smoothScrollTo(item.href), 100);
                                         }}
                                     >
                                         {item.name}
-                                    </a>
+                                    </button>
                                 </div>
                             ))}
                         </nav>

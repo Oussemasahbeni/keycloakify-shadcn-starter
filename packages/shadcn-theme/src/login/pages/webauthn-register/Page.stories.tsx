@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "webauthn-register.ftl" });
 
 const meta = {
     title: "login/webauthn-register.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -12,8 +12,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
-
 /**
  * WithRetryAvailable:
  * - Purpose: Tests when the user is allowed to retry WebAuthn registration after a failure.
@@ -24,12 +22,12 @@ export const WithRetryAvailable: Story = {
     args: {
         kcContext: {
             url: {
-                loginAction: "/mock-login-action"
+                loginAction: "/mock-login-action",
             },
             isSetRetry: true,
-            isAppInitiatedAction: false
-        }
-    }
+            isAppInitiatedAction: false,
+        },
+    },
 };
 
 /**
@@ -42,15 +40,14 @@ export const WithErrorDuringRegistration: Story = {
     args: {
         kcContext: {
             url: {
-                loginAction: "/mock-login-action"
+                loginAction: "/mock-login-action",
             },
             isSetRetry: false,
             isAppInitiatedAction: false,
             message: {
-                summary:
-                    "An error occurred during WebAuthn registration. Please try again.",
-                type: "error"
-            }
-        }
-    }
+                summary: "An error occurred during WebAuthn registration. Please try again.",
+                type: "error",
+            },
+        },
+    },
 };

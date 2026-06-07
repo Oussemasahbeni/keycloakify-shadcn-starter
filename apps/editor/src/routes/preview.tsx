@@ -1,21 +1,21 @@
-import type { PreviewColorScheme, ThemeConfig } from '#/features/editor/model/theme-config';
-import { defaultThemeConfig } from '#/features/editor/model/theme-config';
-import { getStory } from '#/features/editor/stories/pages';
-import type { PageId } from '#/features/editor/stories/types';
-import { KcPage, getKcContextMock } from '@kc-studio/shadcn-theme/preview';
-import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import type { PreviewColorScheme, ThemeConfig } from "#/features/editor/model/theme-config";
+import { defaultThemeConfig } from "#/features/editor/model/theme-config";
+import { getStory } from "#/features/editor/stories/pages";
+import type { PageId } from "#/features/editor/stories/types";
+import { KcPage, getKcContextMock } from "@kc-studio/shadcn-theme/preview";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 type PreviewSearch = {
     page: PageId;
     story: string;
     scheme: PreviewColorScheme;
-    layout: ThemeConfig['layout'];
-    base: ThemeConfig['basePalette'];
-    accent: ThemeConfig['accent'];
-    radius: ThemeConfig['radius'];
-    font: ThemeConfig['font'];
-    locale: ThemeConfig['locale'];
+    layout: ThemeConfig["layout"];
+    base: ThemeConfig["basePalette"];
+    accent: ThemeConfig["accent"];
+    radius: ThemeConfig["radius"];
+    font: ThemeConfig["font"];
+    locale: ThemeConfig["locale"];
     placeholders: boolean;
     // Optional: omitted (undefined) when unset so the router doesn't serialize
     // empty `logoWhite=&logoDark=&…` params into the URL.
@@ -33,27 +33,27 @@ type PreviewSearch = {
  * tab" button), there is no parent to post state, so the initial state is seeded
  * from these search params instead — which also makes the URL shareable.
  */
-export const Route = createFileRoute('/preview')({
-    ssr: false,
-    component: PreviewRoute,
+export const Route = createFileRoute("/preview")({
     validateSearch: (search: Record<string, unknown>): PreviewSearch => ({
-        page: (search.page as PageId | undefined) ?? 'login.ftl',
-        story: (search.story as string | undefined) ?? 'default',
-        scheme: search.scheme === 'dark' ? 'dark' : 'light',
-        layout: (search.layout as ThemeConfig['layout'] | undefined) ?? defaultThemeConfig.layout,
+        page: (search.page as PageId | undefined) ?? "login.ftl",
+        story: (search.story as string | undefined) ?? "default",
+        scheme: search.scheme === "dark" ? "dark" : "light",
+        layout: (search.layout as ThemeConfig["layout"] | undefined) ?? defaultThemeConfig.layout,
         base:
-            (search.base as ThemeConfig['basePalette'] | undefined) ??
+            (search.base as ThemeConfig["basePalette"] | undefined) ??
             defaultThemeConfig.basePalette,
-        accent: (search.accent as ThemeConfig['accent'] | undefined) ?? defaultThemeConfig.accent,
-        radius: (search.radius as ThemeConfig['radius'] | undefined) ?? defaultThemeConfig.radius,
-        font: (search.font as ThemeConfig['font'] | undefined) ?? defaultThemeConfig.font,
-        locale: (search.locale as ThemeConfig['locale'] | undefined) ?? defaultThemeConfig.locale,
-        placeholders: search.placeholders !== 'false' && search.placeholders !== false,
+        accent: (search.accent as ThemeConfig["accent"] | undefined) ?? defaultThemeConfig.accent,
+        radius: (search.radius as ThemeConfig["radius"] | undefined) ?? defaultThemeConfig.radius,
+        font: (search.font as ThemeConfig["font"] | undefined) ?? defaultThemeConfig.font,
+        locale: (search.locale as ThemeConfig["locale"] | undefined) ?? defaultThemeConfig.locale,
+        placeholders: search.placeholders !== "false" && search.placeholders !== false,
         logoWhite: (search.logoWhite as string | undefined) || undefined,
         logoDark: (search.logoDark as string | undefined) || undefined,
         sideImage: (search.sideImage as string | undefined) || undefined,
         cardBg: (search.cardBg as string | undefined) || undefined,
     }),
+    ssr: false,
+    component: PreviewRoute,
 });
 
 type IncomingState = {
@@ -78,10 +78,10 @@ function PreviewRoute() {
             font: search.font,
             locale: search.locale,
             showPlaceholders: search.placeholders,
-            logoWhiteUrl: search.logoWhite ?? '',
-            logoDarkUrl: search.logoDark ?? '',
-            sideImageUrl: search.sideImage ?? '',
-            cardBackgroundUrl: search.cardBg ?? '',
+            logoWhiteUrl: search.logoWhite ?? "",
+            logoDarkUrl: search.logoDark ?? "",
+            sideImageUrl: search.sideImage ?? "",
+            cardBackgroundUrl: search.cardBg ?? "",
         },
     });
 
@@ -94,24 +94,24 @@ function PreviewRoute() {
             if (event.origin !== window.location.origin) {
                 return;
             }
-            if (event.data.type === 'kc-preview:state') {
+            if (event.data.type === "kc-preview:state") {
                 setState(current => ({ ...current, ...event.data.payload }));
             }
         }
 
-        window.addEventListener('message', onMessage);
-        window.parent.postMessage({ type: 'kc-preview:ready' }, window.location.origin);
+        window.addEventListener("message", onMessage);
+        window.parent.postMessage({ type: "kc-preview:ready" }, window.location.origin);
 
-        return () => window.removeEventListener('message', onMessage);
+        return () => window.removeEventListener("message", onMessage);
     }, []);
 
     // Apply the editor's color scheme to the iframe document.
     useEffect(() => {
-        const isDark = colorScheme === 'dark';
+        const isDark = colorScheme === "dark";
         const root = document.documentElement;
 
-        root.classList.toggle('dark', isDark);
-        root.classList.toggle('light', !isDark);
+        root.classList.toggle("dark", isDark);
+        root.classList.toggle("light", !isDark);
         // We toggle the class for the current render AND persist the choice to the
         // theme's own `localStorage["isDarkMode"]`. The theme's ThemeProvider reads
         // that key *first* on every mount (falling back to the OS preference), and
@@ -119,7 +119,7 @@ function PreviewRoute() {
         // without persisting, switching language re-runs ThemeProvider and snaps the
         // preview back to the OS scheme. Writing the key it checks first makes the
         // remount initialize to the editor's scheme instead.
-        localStorage.setItem('isDarkMode', colorScheme);
+        localStorage.setItem("isDarkMode", colorScheme);
     }, [colorScheme]);
 
     // Re-resolve the scenario's overrides here (they hold non-cloneable
@@ -140,7 +140,7 @@ function PreviewRoute() {
                 SHADCN_THEME_PRESET: config.accent,
                 SHADCN_THEME_RADIUS: config.radius,
                 SHADCN_THEME_FONT: config.font,
-                SHADCN_THEME_PLACEHOLDER: config.showPlaceholders ? 'true' : 'false',
+                SHADCN_THEME_PLACEHOLDER: config.showPlaceholders ? "true" : "false",
                 SHADCN_THEME_LOGO_WHITE_URL: config.logoWhiteUrl,
                 SHADCN_THEME_LOGO_DARK_URL: config.logoDarkUrl,
                 SHADCN_THEME_SIDE_IMAGE_URL: config.sideImageUrl,

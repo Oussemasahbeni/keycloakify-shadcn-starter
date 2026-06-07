@@ -7,48 +7,48 @@
 
 // noinspection JSUnusedGlobalSymbols
 
-import { lazy, Suspense, type ReactNode } from 'react';
+import { lazy, Suspense, type ReactNode } from "react";
 
-export type ThemeName = 'acme-theme';
+export type ThemeName = "acme-theme";
 
-export const themeNames: ThemeName[] = ['acme-theme'];
+export const themeNames: ThemeName[] = ["acme-theme"];
 
 export type KcEnvName =
-    | 'SHADCN_THEME_LOGO_WHITE_URL'
-    | 'SHADCN_THEME_LOGO_DARK_URL'
-    | 'SHADCN_THEME_LAYOUT'
-    | 'SHADCN_THEME_SIDE_IMAGE_URL'
-    | 'SHADCN_THEME_CARD_BG_URL'
-    | 'SHADCN_THEME_PRESET'
-    | 'SHADCN_THEME_BASE'
-    | 'SHADCN_THEME_RADIUS'
-    | 'SHADCN_THEME_FONT'
-    | 'SHADCN_THEME_PLACEHOLDER';
+    | "SHADCN_THEME_LOGO_WHITE_URL"
+    | "SHADCN_THEME_LOGO_DARK_URL"
+    | "SHADCN_THEME_LAYOUT"
+    | "SHADCN_THEME_SIDE_IMAGE_URL"
+    | "SHADCN_THEME_CARD_BG_URL"
+    | "SHADCN_THEME_PRESET"
+    | "SHADCN_THEME_BASE"
+    | "SHADCN_THEME_RADIUS"
+    | "SHADCN_THEME_FONT"
+    | "SHADCN_THEME_PLACEHOLDER";
 
 export const kcEnvNames: KcEnvName[] = [
-    'SHADCN_THEME_LOGO_WHITE_URL',
-    'SHADCN_THEME_LOGO_DARK_URL',
-    'SHADCN_THEME_LAYOUT',
-    'SHADCN_THEME_SIDE_IMAGE_URL',
-    'SHADCN_THEME_CARD_BG_URL',
-    'SHADCN_THEME_PRESET',
-    'SHADCN_THEME_BASE',
-    'SHADCN_THEME_RADIUS',
-    'SHADCN_THEME_FONT',
-    'SHADCN_THEME_PLACEHOLDER',
+    "SHADCN_THEME_LOGO_WHITE_URL",
+    "SHADCN_THEME_LOGO_DARK_URL",
+    "SHADCN_THEME_LAYOUT",
+    "SHADCN_THEME_SIDE_IMAGE_URL",
+    "SHADCN_THEME_CARD_BG_URL",
+    "SHADCN_THEME_PRESET",
+    "SHADCN_THEME_BASE",
+    "SHADCN_THEME_RADIUS",
+    "SHADCN_THEME_FONT",
+    "SHADCN_THEME_PLACEHOLDER",
 ];
 
 export const kcEnvDefaults: Record<KcEnvName, string> = {
-    SHADCN_THEME_LOGO_WHITE_URL: '',
-    SHADCN_THEME_LOGO_DARK_URL: '',
-    SHADCN_THEME_LAYOUT: 'two-column',
-    SHADCN_THEME_SIDE_IMAGE_URL: '',
-    SHADCN_THEME_CARD_BG_URL: '',
-    SHADCN_THEME_PRESET: 'neutral',
-    SHADCN_THEME_BASE: 'neutral',
-    SHADCN_THEME_RADIUS: 'default',
-    SHADCN_THEME_FONT: 'geist',
-    SHADCN_THEME_PLACEHOLDER: 'true',
+    SHADCN_THEME_LOGO_WHITE_URL: "",
+    SHADCN_THEME_LOGO_DARK_URL: "",
+    SHADCN_THEME_LAYOUT: "two-column",
+    SHADCN_THEME_SIDE_IMAGE_URL: "",
+    SHADCN_THEME_CARD_BG_URL: "",
+    SHADCN_THEME_PRESET: "neutral",
+    SHADCN_THEME_BASE: "neutral",
+    SHADCN_THEME_RADIUS: "default",
+    SHADCN_THEME_FONT: "geist",
+    SHADCN_THEME_PLACEHOLDER: "true",
 };
 
 /**
@@ -56,7 +56,7 @@ export const kcEnvDefaults: Record<KcEnvName, string> = {
  * If you need to import the KcContext import it either from src/login/KcContext.ts or src/account/KcContext.ts.
  * Depending on the theme type you are working on.
  */
-export type KcContext = import('./login/KcContext').KcContext;
+export type KcContext = import("./login/KcContext").KcContext;
 
 declare global {
     interface Window {
@@ -64,7 +64,7 @@ declare global {
     }
 }
 
-export const KcLoginPage = lazy(() => import('./login/KcPage'));
+export const KcLoginPage = lazy(() => import("./login/KcPage"));
 
 export function KcPage(props: { kcContext: KcContext; fallback?: ReactNode }) {
     const { kcContext, fallback } = props;
@@ -72,7 +72,7 @@ export function KcPage(props: { kcContext: KcContext; fallback?: ReactNode }) {
         <Suspense fallback={fallback}>
             {(() => {
                 switch (kcContext.themeType) {
-                    case 'login':
+                    case "login":
                         return <KcLoginPage kcContext={kcContext} />;
                 }
             })()}
@@ -85,4 +85,4 @@ export const BASE_URL = import.meta.env.BASE_URL;
 
 // NOTE: This is only exported here because you're supposed to import type from different packages
 // Depending of if you are using Vite, Webpack, ect...
-export type { Meta, StoryObj } from '@storybook/react-vite';
+export type { Meta, StoryObj } from "@storybook/react-vite";

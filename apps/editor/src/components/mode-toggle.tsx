@@ -1,14 +1,14 @@
-import { Monitor, Moon, Sun } from 'lucide-react';
-import { useEffect } from 'react';
-import { THEMES, useTheme } from './theme-provider';
-import { Button } from './ui/button';
+import { Monitor, Moon, Sun } from "lucide-react";
+import { useEffect } from "react";
+import { THEMES, useTheme } from "./theme-provider";
+import { Button } from "./ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
     DropdownMenuTrigger,
-} from './ui/dropdown-menu';
+} from "./ui/dropdown-menu";
 
 export function ModeToggle() {
     const { setTheme, theme } = useTheme();
@@ -16,8 +16,8 @@ export function ModeToggle() {
     useEffect(() => {
         const cycleTheme = (e: KeyboardEvent) => {
             if (
-                (e.key === 'd' || e.key === 'D') &&
-                !['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName) &&
+                (e.key === "d" || e.key === "D") &&
+                !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName) &&
                 !(e.target as HTMLElement).isContentEditable
             ) {
                 const order = THEMES;
@@ -27,8 +27,8 @@ export function ModeToggle() {
                 e.preventDefault();
             }
         };
-        window.addEventListener('keydown', cycleTheme);
-        return () => window.removeEventListener('keydown', cycleTheme);
+        window.addEventListener("keydown", cycleTheme);
+        return () => window.removeEventListener("keydown", cycleTheme);
     }, [theme, setTheme]);
 
     return (

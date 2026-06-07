@@ -17,11 +17,7 @@ export function Page() {
         >
             <p>{msg("deleteCredentialMessage", kcContext.credentialLabel)}</p>
 
-            <form
-                className="form-actions"
-                action={kcContext.url.loginAction}
-                method="POST"
-            >
+            <form className="form-actions" action={kcContext.url.loginAction} method="POST">
                 <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
                     <Button
                         variant="outline"

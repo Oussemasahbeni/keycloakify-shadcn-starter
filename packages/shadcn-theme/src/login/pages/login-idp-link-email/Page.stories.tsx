@@ -3,22 +3,22 @@ import { createKcPageStory, type Meta, type StoryObj } from "../../mocks/KcPageS
 // Mock kcContext to avoid TS2304 error and to simulate the real environment
 const mockKcContext = {
     url: {
-        loginAction: "/login-action"
+        loginAction: "/login-action",
     },
     idpAlias: "mockIdpAlias",
     brokerContext: {
-        username: "mockUser"
+        username: "mockUser",
     },
     realm: {
-        displayName: "MockRealm"
-    }
+        displayName: "MockRealm",
+    },
 };
 
 const { KcPageStory } = createKcPageStory({ pageId: "login-idp-link-email.ftl" });
 
 const meta = {
     title: "login/login-idp-link-email.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -33,10 +33,9 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
     args: {
-        kcContext: mockKcContext
-    }
+        kcContext: mockKcContext,
+    },
 };
-
 
 /**
  * WithIdpAlias:
@@ -50,13 +49,13 @@ export const WithIdpAlias: Story = {
             ...mockKcContext,
             idpAlias: "Google",
             brokerContext: {
-                username: "john.doe"
+                username: "john.doe",
             },
             realm: {
-                displayName: "MyRealm"
-            }
-        }
-    }
+                displayName: "MyRealm",
+            },
+        },
+    },
 };
 
 /**
@@ -71,13 +70,13 @@ export const WithCustomRealmDisplayName: Story = {
             ...mockKcContext,
             idpAlias: "Facebook",
             brokerContext: {
-                username: "jane.doe"
+                username: "jane.doe",
             },
             realm: {
-                displayName: "CUSTOM REALM DISPLAY NAME"
-            }
-        }
-    }
+                displayName: "CUSTOM REALM DISPLAY NAME",
+            },
+        },
+    },
 };
 
 /**
@@ -91,12 +90,12 @@ export const WithFormSubmissionError: Story = {
         kcContext: {
             ...mockKcContext,
             url: {
-                loginAction: "/error"
+                loginAction: "/error",
             },
             message: {
                 type: "error",
-                summary: "An error occurred during form submission."
-            }
-        }
-    }
+                summary: "An error occurred during form submission.",
+            },
+        },
+    },
 };

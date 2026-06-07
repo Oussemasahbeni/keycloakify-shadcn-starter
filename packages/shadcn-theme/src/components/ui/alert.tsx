@@ -13,13 +13,13 @@ const alertVariants = cva(
                     "bg-emerald-50/50 border-emerald-200 text-emerald-900 dark:bg-emerald-500/5 dark:border-emerald-500/20 dark:text-emerald-400",
                 warning:
                     "bg-amber-50/50 border-amber-200 text-amber-900 dark:bg-amber-500/5 dark:border-amber-500/20 dark:text-amber-400",
-                error: "bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 [&>svg]:text-current border-destructive/20"
-            }
+                error: "bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 [&>svg]:text-current border-destructive/20",
+            },
         },
         defaultVariants: {
-            variant: "info"
-        }
-    }
+            variant: "info",
+        },
+    },
 );
 
 function Alert({
@@ -43,7 +43,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
             data-slot="alert-title"
             className={cn(
                 "font-medium group-has-[>svg]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
-                className
+                className,
             )}
             {...props}
         />
@@ -56,7 +56,7 @@ function AlertDescription({ className, ...props }: React.ComponentProps<"div">) 
             data-slot="alert-description"
             className={cn(
                 "text-sm text-balance text-muted-foreground md:text-pretty [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
-                className
+                className,
             )}
             {...props}
         />

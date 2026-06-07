@@ -4,9 +4,7 @@ import KcPage from "../KcPage";
 import { getKcContextMock } from "./getKcContextMock";
 export type { Meta, StoryObj } from "../../kc.gen";
 
-export function createKcPageStory<PageId extends KcContext["pageId"]>(params: {
-    pageId: PageId;
-}) {
+export function createKcPageStory<PageId extends KcContext["pageId"]>(params: { pageId: PageId }) {
     const { pageId } = params;
 
     function KcPageStory(props: {
@@ -16,7 +14,7 @@ export function createKcPageStory<PageId extends KcContext["pageId"]>(params: {
 
         const kcContextMock = getKcContextMock({
             pageId,
-            overrides
+            overrides,
         });
 
         return <KcPage kcContext={kcContextMock} />;

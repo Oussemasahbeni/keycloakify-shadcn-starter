@@ -14,9 +14,7 @@ export function Page() {
 
     return (
         <Template
-            displayMessage={
-                !kcContext.messagesPerField.existsError("username", "password")
-            }
+            displayMessage={!kcContext.messagesPerField.existsError("username", "password")}
             headerNode={msg("loginAccountTitle")}
             displayInfo={
                 kcContext.realm.password &&
@@ -25,8 +23,7 @@ export function Page() {
             }
             infoNode={<Info />}
             socialProvidersNode={
-                kcContext.realm.password &&
-                kcContext.social !== undefined && <SocialProviders />
+                kcContext.realm.password && kcContext.social !== undefined && <SocialProviders />
             }
         >
             <Form />

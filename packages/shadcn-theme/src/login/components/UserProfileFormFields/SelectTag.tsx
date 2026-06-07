@@ -3,7 +3,7 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue
+    SelectValue,
 } from "#/components/ui/select";
 import { assert } from "tsafe/assert";
 import type { InputFieldByTypeProps } from "./InputFieldByType";
@@ -24,9 +24,9 @@ export function SelectTag(props: InputFieldByTypeProps) {
 
             assert(typeof inputOptionsFromValidation === "string");
 
-            const validator = (
-                attribute.validators as Record<string, { options?: string[] }>
-            )[inputOptionsFromValidation];
+            const validator = (attribute.validators as Record<string, { options?: string[] }>)[
+                inputOptionsFromValidation
+            ];
 
             if (validator === undefined) {
                 break walk;
@@ -55,7 +55,7 @@ export function SelectTag(props: InputFieldByTypeProps) {
                     action: "update",
                     name: attribute.name,
                     // `value` is string[] when multiple, string | null otherwise.
-                    valueOrValues: value ?? ""
+                    valueOrValues: value ?? "",
                 })
             }
             onOpenChange={open => {
@@ -66,7 +66,7 @@ export function SelectTag(props: InputFieldByTypeProps) {
                 dispatchFormAction({
                     action: "focus lost",
                     name: attribute.name,
-                    fieldIndex: undefined
+                    fieldIndex: undefined,
                 });
             }}
         >

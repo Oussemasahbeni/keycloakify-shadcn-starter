@@ -33,12 +33,7 @@ export function Page() {
                         >
                             {msgStr("doDecline")}
                         </Button>
-                        <Button
-                            name="accept"
-                            id="kc-accept"
-                            type="submit"
-                            className="sm:flex-1"
-                        >
+                        <Button name="accept" id="kc-accept" type="submit" className="sm:flex-1">
                             {msgStr("doAccept")}
                         </Button>
                     </div>

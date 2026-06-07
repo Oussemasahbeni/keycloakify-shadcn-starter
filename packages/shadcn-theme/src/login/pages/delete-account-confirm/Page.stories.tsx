@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "delete-account-confirm.ftl"
 
 const meta = {
     title: "login/delete-account-confirm.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -17,23 +17,23 @@ export const WithAIAFlow: Story = {
     args: {
         kcContext: {
             triggered_from_aia: true,
-            url: { loginAction: "/login-action" }
-        }
-    }
+            url: { loginAction: "/login-action" },
+        },
+    },
 };
 export const WithoutAIAFlow: Story = {
     args: {
         kcContext: {
             triggered_from_aia: false,
-            url: { loginAction: "/login-action" }
-        }
-    }
+            url: { loginAction: "/login-action" },
+        },
+    },
 };
 export const WithCustomButtonStyle: Story = {
     args: {
         kcContext: {
             triggered_from_aia: true,
-            url: { loginAction: "/login-action" }
-        }
-    }
+            url: { loginAction: "/login-action" },
+        },
+    },
 };

@@ -11,7 +11,7 @@ const DEPS_TO_EXCLUDE = [
     "i18next",
     "react-i18next",
     "keycloakify",
-    "keycloakify-emails"
+    "keycloakify-emails",
 ];
 
 // directories to copy into the 'keycloak-theme' folder
@@ -20,10 +20,10 @@ const DIRS_TO_COPY = [
     { src: "src/components", dest: "keycloak-theme/components" },
     {
         src: "public/early-color-scheme.js",
-        dest: "keycloak-theme/public/early-color-scheme.js"
+        dest: "keycloak-theme/public/early-color-scheme.js",
     },
     { src: "public/keycloak-theme", dest: "keycloak-theme/public/keycloak-theme" },
-    { src: "README.md", dest: "README.md" }
+    { src: "README.md", dest: "README.md" },
 ];
 
 // Clean/Create Target Directory
@@ -45,7 +45,7 @@ const newPackageJson = {
     type: "module",
     main: "keycloak-theme/login/index.js",
     files: ["keycloak-theme"],
-    peerDependencies: {}
+    peerDependencies: {},
 };
 
 // Sort Dependencies
@@ -64,10 +64,7 @@ Object.entries(allDeps).forEach(([depName, depVersion]) => {
 });
 
 // Write package.json
-fs.writeFileSync(
-    path.join(TARGET_DIR, "package.json"),
-    JSON.stringify(newPackageJson, null, 2)
-);
+fs.writeFileSync(path.join(TARGET_DIR, "package.json"), JSON.stringify(newPackageJson, null, 2));
 console.log(`✅ Generated package.json in ${TARGET_DIR}`);
 
 // Copy Directories

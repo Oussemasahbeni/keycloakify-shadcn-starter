@@ -43,16 +43,12 @@ export function Page() {
                         name="SAMLRequest"
                         value={samlPost.SAMLRequest}
                     />
-                )}
-                {samlPost.SAMLResponse && (
-                    <input
+pe="hidden" name="SAMLResponse" value={samlPost.SAMLResponse} /                    <input
                         type="hidden"
                         name="SAMLResponse"
                         value={samlPost.SAMLResponse}
                     />
-                )}
-                {samlPost.relayState && (
-                    <input type="hidden" name="RelayState" value={samlPost.relayState} />
+="hidden" name="RelayState" value={samlPost.relayState} />
                 )}
                 <noscript>
                     <p>{msg("saml.post-form.js-disabled")}</p>

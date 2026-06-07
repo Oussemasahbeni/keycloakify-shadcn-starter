@@ -1,6 +1,6 @@
-import { useI18n } from '#/login/i18n';
-import type { Attribute } from '@keycloakify/login-ui/KcContext';
-import { assert } from 'tsafe/assert';
+import { useI18n } from "#/login/i18n";
+import type { Attribute } from "@keycloakify/login-ui/KcContext";
+import { assert } from "tsafe/assert";
 
 export function GroupLabel(props: {
     attribute: Attribute;
@@ -13,9 +13,9 @@ export function GroupLabel(props: {
     const { advancedMsg } = useI18n();
 
     if (attribute.group?.name !== groupNameRef.current) {
-        groupNameRef.current = attribute.group?.name ?? '';
+        groupNameRef.current = attribute.group?.name ?? "";
 
-        if (groupNameRef.current !== '') {
+        if (groupNameRef.current !== "") {
             assert(attribute.group !== undefined);
 
             return (
@@ -29,9 +29,9 @@ export function GroupLabel(props: {
                     )}
                 >
                     {(() => {
-                        const groupDisplayHeader = attribute.group.displayHeader ?? '';
+                        const groupDisplayHeader = attribute.group.displayHeader ?? "";
                         const groupHeaderText =
-                            groupDisplayHeader !== ''
+                            groupDisplayHeader !== ""
                                 ? advancedMsg(groupDisplayHeader)
                                 : attribute.group.name;
 
@@ -47,9 +47,9 @@ export function GroupLabel(props: {
                         );
                     })()}
                     {(() => {
-                        const groupDisplayDescription = attribute.group.displayDescription ?? '';
+                        const groupDisplayDescription = attribute.group.displayDescription ?? "";
 
-                        if (groupDisplayDescription !== '') {
+                        if (groupDisplayDescription !== "") {
                             const groupDescriptionText = advancedMsg(groupDisplayDescription);
 
                             return (

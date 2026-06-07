@@ -1,31 +1,31 @@
-import { Button, buttonVariants } from '#/components/ui/button';
-import { Field, FieldError, FieldLabel } from '#/components/ui/field';
-import { Input } from '#/components/ui/input';
-import { cn } from '#/lib/utils';
-import { LogoutOtherSessions } from '#/login/components/LogoutOtherSessions';
-import { useI18n } from '#/login/i18n';
-import { useKcContext } from '#/login/KcContext';
-import { kcSanitize } from '@keycloakify/login-ui/kcSanitize';
-import { assert } from 'tsafe/assert';
-import { Template } from '../../components/Template';
+import { Button, buttonVariants } from "#/components/ui/button";
+import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { Input } from "#/components/ui/input";
+import { cn } from "#/lib/utils";
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { assert } from "tsafe/assert";
+import { Template } from "../../components/Template";
 
 export function Page() {
     const { kcContext } = useKcContext();
-    assert(kcContext.pageId === 'login-config-totp.ftl');
+    assert(kcContext.pageId === "login-config-totp.ftl");
 
     const { msg, msgStr, advancedMsg } = useI18n();
 
     return (
         <Template
-            headerNode={msg('loginTotpTitle')}
-            displayMessage={!kcContext.messagesPerField.existsError('totp', 'userLabel')}
+            headerNode={msg("loginTotpTitle")}
+            displayMessage={!kcContext.messagesPerField.existsError("totp", "userLabel")}
         >
             <ol
                 id="kc-totp-settings"
                 className="list-decimal flex flex-col gap-4 text-sm text-foreground px-4"
             >
                 <li className="flex flex-col gap-2">
-                    <p>{msg('loginTotpStep1')}</p>
+                    <p>{msg("loginTotpStep1")}</p>
                     <ul className="list-disc list-inside ms-4" id="kc-totp-supported-apps">
                         {kcContext.totp.supportedApplications.map(app => (
                             <li className="text-primary" key={app}>
@@ -35,10 +35,10 @@ export function Page() {
                     </ul>
                 </li>
 
-                {kcContext.mode == 'manual' ? (
+                {kcContext.mode == "manual" ? (
                     <>
                         <li>
-                            <p className="mb-3">{msg('loginTotpManualStep2')}</p>
+                            <p className="mb-3">{msg("loginTotpManualStep2")}</p>
                             <div className="bg-muted/30 p-4 rounded-lg border border-border">
                                 <div>
                                     <span
@@ -53,23 +53,23 @@ export function Page() {
                                         href={kcContext.totp.qrUrl}
                                         className={cn(
                                             buttonVariants({
-                                                variant: 'outline',
+                                                variant: "outline",
                                             }),
-                                            'text-sm',
+                                            "text-sm",
                                         )}
                                     >
-                                        {msg('loginTotpScanBarcode')}
+                                        {msg("loginTotpScanBarcode")}
                                     </a>
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <p className="mb-3">{msg('loginTotpManualStep3')}</p>
+                            <p className="mb-3">{msg("loginTotpManualStep3")}</p>
                             <div className="bg-muted/30 p-4 rounded-lg border">
                                 <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
                                     <div className="flex justify-between">
                                         <span className="text-muted-foreground">
-                                            {msg('loginTotpType')}:
+                                            {msg("loginTotpType")}:
                                         </span>
                                         <span className="font-mono bg-secondary px-2 py-1 rounded text-xs">
                                             {msg(`loginTotp.${kcContext.totp.policy.type}`)}
@@ -77,7 +77,7 @@ export function Page() {
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-muted-foreground">
-                                            {msg('loginTotpAlgorithm')}:
+                                            {msg("loginTotpAlgorithm")}:
                                         </span>
                                         <span className="font-mono bg-secondary px-2 py-1 rounded text-xs">
                                             {kcContext.totp.policy.getAlgorithmKey()}
@@ -85,7 +85,7 @@ export function Page() {
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-muted-foreground">
-                                            {msg('loginTotpDigits')}:
+                                            {msg("loginTotpDigits")}:
                                         </span>
                                         <span className="font-mono bg-secondary px-2 py-1 rounded text-xs">
                                             {kcContext.totp.policy.digits}
@@ -93,13 +93,13 @@ export function Page() {
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-muted-foreground">
-                                            {kcContext.totp.policy.type === 'totp'
-                                                ? msg('loginTotpInterval')
-                                                : msg('loginTotpCounter')}
+                                            {kcContext.totp.policy.type === "totp"
+                                                ? msg("loginTotpInterval")
+                                                : msg("loginTotpCounter")}
                                             :
                                         </span>
                                         <span className="font-mono bg-secondary px-2 py-1 rounded text-xs">
-                                            {kcContext.totp.policy.type === 'totp'
+                                            {kcContext.totp.policy.type === "totp"
                                                 ? kcContext.totp.policy.period
                                                 : kcContext.totp.policy.initialCounter}
                                         </span>
@@ -110,7 +110,7 @@ export function Page() {
                     </>
                 ) : (
                     <li className="space-y-2">
-                        <p>{msg('loginTotpStep2')}</p>
+                        <p>{msg("loginTotpStep2")}</p>
                         <img
                             id="kc-totp-secret-qr-code"
                             className="mt-2 dark:mt-0"
@@ -123,17 +123,17 @@ export function Page() {
                             id="mode-manual"
                             className={cn(
                                 buttonVariants({
-                                    variant: 'outline',
+                                    variant: "outline",
                                 }),
                             )}
                         >
-                            {msg('loginTotpUnableToScan')}
+                            {msg("loginTotpUnableToScan")}
                         </a>
                     </li>
                 )}
                 <li>
-                    <p>{msg('loginTotpStep3')}</p>
-                    <p>{msg('loginTotpStep3DeviceName')}</p>
+                    <p>{msg("loginTotpStep3")}</p>
+                    <p>{msg("loginTotpStep3DeviceName")}</p>
                 </li>
             </ol>
 
@@ -146,21 +146,21 @@ export function Page() {
                 <div>
                     <Field>
                         <FieldLabel htmlFor="totp">
-                            {msg('authenticatorCode')} <span className="required">*</span>
+                            {msg("authenticatorCode")} <span className="required">*</span>
                         </FieldLabel>
                         <Input
                             type="text"
                             id="totp"
                             name="totp"
                             autoComplete="off"
-                            aria-invalid={kcContext.messagesPerField.existsError('totp')}
+                            aria-invalid={kcContext.messagesPerField.existsError("totp")}
                         />
-                        {kcContext.messagesPerField.existsError('totp') && (
+                        {kcContext.messagesPerField.existsError("totp") && (
                             <FieldError>
-                                {' '}
+                                {" "}
                                 <span
                                     dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(kcContext.messagesPerField.get('totp')),
+                                        __html: kcSanitize(kcContext.messagesPerField.get("totp")),
                                     }}
                                 />
                             </FieldError>
@@ -178,7 +178,7 @@ export function Page() {
                 <div>
                     <Field>
                         <FieldLabel htmlFor="userLabel">
-                            {msg('loginTotpDeviceName')}{' '}
+                            {msg("loginTotpDeviceName")}{" "}
                             {kcContext.totp.otpCredentials.length >= 1 && (
                                 <span className="required">*</span>
                             )}
@@ -188,15 +188,15 @@ export function Page() {
                             id="userLabel"
                             name="userLabel"
                             autoComplete="off"
-                            aria-invalid={kcContext.messagesPerField.existsError('userLabel')}
+                            aria-invalid={kcContext.messagesPerField.existsError("userLabel")}
                         />
-                        {kcContext.messagesPerField.existsError('userLabel') && (
+                        {kcContext.messagesPerField.existsError("userLabel") && (
                             <FieldError>
-                                {' '}
+                                {" "}
                                 <span
                                     dangerouslySetInnerHTML={{
                                         __html: kcSanitize(
-                                            kcContext.messagesPerField.get('userLabel'),
+                                            kcContext.messagesPerField.get("userLabel"),
                                         ),
                                     }}
                                 />
@@ -218,16 +218,16 @@ export function Page() {
                                 type="submit"
                                 className="flex-1"
                             >
-                                {msgStr('doCancel')}
+                                {msgStr("doCancel")}
                             </Button>
                             <Button id="saveTOTPBtn" type="submit" className="flex-1">
-                                {msgStr('doSubmit')}
+                                {msgStr("doSubmit")}
                             </Button>
                         </div>
                     </>
                 ) : (
                     <Button id="saveTOTPBtn" className="w-full" type="submit">
-                        {msgStr('doSubmit')}
+                        {msgStr("doSubmit")}
                     </Button>
                 )}
             </form>

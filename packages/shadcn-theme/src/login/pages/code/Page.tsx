@@ -1,11 +1,7 @@
 import { Alert, AlertDescription } from "#/components/ui/alert";
 import { Button } from "#/components/ui/button";
 import { Field, FieldLabel } from "#/components/ui/field";
-import {
-    InputGroup,
-    InputGroupAddon,
-    InputGroupInput
-} from "#/components/ui/input-group";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
@@ -45,9 +41,7 @@ export function Page() {
                 {kcContext.code.success ? (
                     <>
                         <Field>
-                            <FieldLabel htmlFor="code">
-                                {msg("copyCodeInstruction")}
-                            </FieldLabel>
+                            <FieldLabel htmlFor="code">{msg("copyCodeInstruction")}</FieldLabel>
                             <InputGroup>
                                 <InputGroupInput
                                     id="code"
@@ -81,7 +75,7 @@ export function Page() {
                                 <p
                                     id="error"
                                     dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(kcContext.code.error)
+                                        __html: kcSanitize(kcContext.code.error),
                                     }}
                                 />
                             </AlertDescription>

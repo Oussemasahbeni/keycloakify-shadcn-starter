@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "code.ftl" });
 
 const meta = {
     title: "login/code.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -12,7 +12,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
 
 /**
  * This reflects the state when "Dark Theme" is set to "Disabled" in the realm settings
@@ -25,9 +24,9 @@ export const Default: Story = {};
 export const WithDarkModeForbidden: Story = {
     args: {
         kcContext: {
-            darkMode: false
-        }
-    }
+            darkMode: false,
+        },
+    },
 };
 
 export const WithErrorCode: Story = {
@@ -35,31 +34,31 @@ export const WithErrorCode: Story = {
         kcContext: {
             code: {
                 success: false,
-                error: "Failed to generate code"
-            }
-        }
-    }
+                error: "Failed to generate code",
+            },
+        },
+    },
 };
 export const WithFrenchLanguage: Story = {
     args: {
         kcContext: {
             locale: {
-                currentLanguageTag: "fr"
+                currentLanguageTag: "fr",
             },
             code: {
                 success: true,
-                code: "XYZ789"
-            }
-        }
-    }
+                code: "XYZ789",
+            },
+        },
+    },
 };
 export const WithHtmlErrorMessage: Story = {
     args: {
         kcContext: {
             code: {
                 success: false,
-                error: "Something went wrong. <a href='https://example.com'>Try again</a>"
-            }
-        }
-    }
+                error: "Something went wrong. <a href='https://example.com'>Try again</a>",
+            },
+        },
+    },
 };

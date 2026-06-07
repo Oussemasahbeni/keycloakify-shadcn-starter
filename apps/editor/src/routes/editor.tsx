@@ -1,11 +1,11 @@
-import { EditorHeader } from '#/features/editor/components/editor-header';
-import { EditorSidebar } from '#/features/editor/components/editor-sidebar';
-import { PreviewPane } from '#/features/editor/components/preview-pane';
-import { EditorProvider } from '#/features/editor/state/editor-context';
-import { enforceLogin } from '#/oidc';
-import { createFileRoute } from '@tanstack/react-router';
+import { EditorHeader } from "#/features/editor/components/editor-header";
+import { EditorSidebar } from "#/features/editor/components/editor-sidebar";
+import { PreviewPane } from "#/features/editor/components/preview-pane";
+import { EditorProvider } from "#/features/editor/state/editor-context";
+import { enforceLogin } from "#/oidc";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/editor')({
+export const Route = createFileRoute("/editor")({
     beforeLoad: enforceLogin,
     component: EditorPage,
 });

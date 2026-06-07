@@ -3,7 +3,7 @@ import { useI18n } from "#/login/i18n";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import {
     getButtonToDisplayForMultivaluedAttributeField,
-    type FormAction
+    type FormAction,
 } from "@keycloakify/login-ui/useUserProfileForm";
 
 export function AddRemoveButtonsMultiValuedAttribute(props: {
@@ -19,7 +19,7 @@ export function AddRemoveButtonsMultiValuedAttribute(props: {
     const { hasAdd, hasRemove } = getButtonToDisplayForMultivaluedAttributeField({
         attribute,
         values,
-        fieldIndex
+        fieldIndex,
     });
 
     const idPostfix = `-${attribute.name}-${fieldIndex + 1}`;
@@ -36,7 +36,7 @@ export function AddRemoveButtonsMultiValuedAttribute(props: {
                         dispatchFormAction({
                             action: "update",
                             name: attribute.name,
-                            valueOrValues: values.filter((_, i) => i !== fieldIndex)
+                            valueOrValues: values.filter((_, i) => i !== fieldIndex),
                         })
                     }
                 >
@@ -53,7 +53,7 @@ export function AddRemoveButtonsMultiValuedAttribute(props: {
                         dispatchFormAction({
                             action: "update",
                             name: attribute.name,
-                            valueOrValues: [...values, ""]
+                            valueOrValues: [...values, ""],
                         })
                     }
                 >

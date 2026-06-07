@@ -12,18 +12,18 @@ type TemplateProps = Omit<GetTemplateProps, "plainText"> & { t: TFunction };
 const paragraph = {
     lineHeight: 1.5,
     fontSize: 14,
-    textAlign: "left" as const
+    textAlign: "left" as const,
 };
 
 const rtlStyle = {
     direction: "rtl" as const,
-    textAlign: "right" as const
+    textAlign: "right" as const,
 };
 
 export const previewProps: TemplateProps = {
     t: i18n.getFixedT(previewLocale),
     locale: previewLocale,
-    themeName: "vanilla"
+    themeName: "vanilla",
 };
 
 export const templateName = "Identity Provider Link";
@@ -39,7 +39,7 @@ export const Template = ({ locale, t }: TemplateProps) => {
                 {t("identity-provider-link.message", {
                     identityProviderDisplayName: exp("identityProviderDisplayName"),
                     realmName: exp("realmName"),
-                    username: exp("identityProviderContext.username")
+                    username: exp("identityProviderContext.username"),
                 })}
             </Text>
 
@@ -61,7 +61,7 @@ export const Template = ({ locale, t }: TemplateProps) => {
             </Button>
             <Text style={applyRTL(paragraph, isRTL, rtlStyle)}>
                 {t("identity-provider-link.linkExpiration", {
-                    expiration: exp("linkExpirationFormatter(linkExpiration)")
+                    expiration: exp("linkExpirationFormatter(linkExpiration)"),
                 })}
             </Text>
             <Text style={applyRTL(paragraph, isRTL, rtlStyle)}>
@@ -70,7 +70,7 @@ export const Template = ({ locale, t }: TemplateProps) => {
             <Text style={applyRTL(paragraph, isRTL, rtlStyle)}>
                 {t("identity-provider-link.loginInfo", {
                     identityProviderDisplayName: exp("identityProviderDisplayName"),
-                    realmName: exp("realmName")
+                    realmName: exp("realmName"),
                 })}
             </Text>
         </EmailLayout>

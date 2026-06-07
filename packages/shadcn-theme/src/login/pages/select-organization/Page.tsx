@@ -4,7 +4,7 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue
+    SelectValue,
 } from "#/components/ui/select";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
@@ -61,9 +61,7 @@ export function Page() {
         <Template headerNode={msg("organization.selectTitle")}>
             <form ref={formRef} action={kcContext.url.loginAction} method="post">
                 <div id="kc-user-organizations" className="flex flex-col gap-2">
-                    <h2 className="text-base font-semibold">
-                        {msg("organization.select")}
-                    </h2>
+                    <h2 className="text-base font-semibold">{msg("organization.select")}</h2>
                     {useSelect ? (
                         <div className="flex flex-col gap-3">
                             <Select
@@ -109,9 +107,7 @@ export function Page() {
                                         className="w-full h-auto p-4 flex items-center gap-3 justify-start hover:bg-accent hover:border-primary transition-colors"
                                     >
                                         <Building2 className="size-5 text-muted-foreground shrink-0" />
-                                        <span className="font-medium text-sm">
-                                            {name ?? alias}
-                                        </span>
+                                        <span className="font-medium text-sm">{name ?? alias}</span>
                                     </Button>
                                 </li>
                             ))}

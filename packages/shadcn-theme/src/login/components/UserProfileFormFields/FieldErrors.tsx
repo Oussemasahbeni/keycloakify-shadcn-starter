@@ -11,7 +11,7 @@ export function FieldErrors(props: {
     const { attribute, fieldIndex } = props;
 
     const displayableErrors = props.displayableErrors.filter(
-        error => error.fieldIndex === fieldIndex
+        error => error.fieldIndex === fieldIndex,
     );
 
     if (displayableErrors.length === 0) {

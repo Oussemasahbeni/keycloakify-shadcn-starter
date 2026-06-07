@@ -1,5 +1,5 @@
-import { Logo } from '#/components/logo';
-import { Button } from '#/components/ui/button';
+import { Logo } from "#/components/logo";
+import { Button } from "#/components/ui/button";
 import {
     Dialog,
     DialogContent,
@@ -7,7 +7,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '#/components/ui/dialog';
+} from "#/components/ui/dialog";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -16,29 +16,29 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from '#/components/ui/dropdown-menu';
+} from "#/components/ui/dropdown-menu";
 
-import { useOidc } from '#/oidc';
-import { BadgeCheckIcon, Download, Github, LogOut } from 'lucide-react';
+import { useOidc } from "#/oidc";
+import { BadgeCheckIcon, Download, Github, LogOut } from "lucide-react";
 
-import { ModeToggle } from '#/components/mode-toggle';
-import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar';
-import { GITHUB_URL } from '#/config/constants';
-import { formatRelativeTime, getInitials } from '#/lib/utils';
-import { createKeycloakUtils } from 'oidc-spa/keycloak';
-import { useEditor } from '../state/editor-context';
+import { ModeToggle } from "#/components/mode-toggle";
+import { Avatar, AvatarFallback, AvatarImage } from "#/components/ui/avatar";
+import { GITHUB_URL } from "#/config/constants";
+import { formatRelativeTime, getInitials } from "#/lib/utils";
+import { createKeycloakUtils } from "oidc-spa/keycloak";
+import { useEditor } from "../state/editor-context";
 
 function SaveStatus() {
     const { saveStatus, lastSavedAt } = useEditor();
 
     const label =
-        saveStatus === 'saving'
-            ? 'Saving…'
-            : saveStatus === 'error'
-              ? 'Save failed'
+        saveStatus === "saving"
+            ? "Saving…"
+            : saveStatus === "error"
+              ? "Save failed"
               : lastSavedAt
                 ? `Saved ${formatRelativeTime(lastSavedAt)}`
-                : 'Not saved yet';
+                : "Not saved yet";
 
     return <span className="hidden text-xs text-muted-foreground sm:inline">{label}</span>;
 }
@@ -69,7 +69,7 @@ function ExportButton() {
 
 function UserMenu() {
     const { decodedIdToken, issuerUri, clientId, validRedirectUri, logout } = useOidc({
-        assert: 'user logged in',
+        assert: "user logged in",
     });
     const { name, email, preferred_username, picture } = decodedIdToken;
 
@@ -127,7 +127,7 @@ function UserMenu() {
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     variant="destructive"
-                    onClick={() => logout({ redirectTo: 'home' })}
+                    onClick={() => logout({ redirectTo: "home" })}
                     className="hover:cursor-pointer flex items-center gap-2"
                 >
                     <LogOut className="size-4" />

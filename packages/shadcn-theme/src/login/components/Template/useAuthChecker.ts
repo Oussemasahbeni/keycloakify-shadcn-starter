@@ -10,9 +10,7 @@ function getCookieByName(name: string) {
     for (const cookie of document.cookie.split(";")) {
         const [key, value] = cookie.split("=").map(value => value.trim());
         if (key === name) {
-            return value.startsWith('"') && value.endsWith('"')
-                ? value.slice(1, -1)
-                : value;
+            return value.startsWith('"') && value.endsWith('"') ? value.slice(1, -1) : value;
         }
     }
     return null;
@@ -38,10 +36,7 @@ export function useAuthChecker() {
         const timer = setTimeout(() => {
             const authSessionIdHashCookie = getCookieByName("KC_AUTH_SESSION_HASH");
             // If the cookie exists, but doesn't match the ID in our current HTML/Context
-            if (
-                authSessionIdHashCookie &&
-                authSessionIdHashCookie !== authSessionIdHash
-            ) {
+            if (authSessionIdHashCookie && authSessionIdHashCookie !== authSessionIdHash) {
                 location.reload();
             }
         }, AUTH_SESSION_TIMEOUT_MS);

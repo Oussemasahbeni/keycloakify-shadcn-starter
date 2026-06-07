@@ -7,7 +7,7 @@
 ```js
 // next.config.js
 const nextConfig = {
-  experimental: { viewTransition: true },
+    experimental: { viewTransition: true },
 };
 module.exports = nextConfig;
 ```
@@ -45,7 +45,9 @@ A bare `<ViewTransition>` in layout works only if pages have **no** VTs of their
 No wrapper component needed, works in Server Components:
 
 ```tsx
-<Link href="/products/1" transitionTypes={['transition-to-detail']}>View Product</Link>
+<Link href="/products/1" transitionTypes={["transition-to-detail"]}>
+    View Product
+</Link>
 ```
 
 Replaces the manual pattern of `onNavigate` + `startTransition` + `addTransitionType` + `router.push()`. Reserve manual `startTransition` for non-link interactions (buttons, forms).
@@ -57,17 +59,17 @@ Replaces the manual pattern of `onNavigate` + `startTransition` + `addTransition
 ## Programmatic Navigation
 
 ```tsx
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { startTransition, addTransitionType } from 'react';
+import { useRouter } from "next/navigation";
+import { startTransition, addTransitionType } from "react";
 
 function handleNavigate(href: string) {
-  const router = useRouter();
-  startTransition(() => {
-    addTransitionType('nav-forward');
-    router.push(href);
-  });
+    const router = useRouter();
+    startTransition(() => {
+        addTransitionType("nav-forward");
+        router.push(href);
+    });
 }
 ```
 
@@ -78,16 +80,16 @@ function handleNavigate(href: string) {
 For search/sort/filter that re-renders on the server (via URL params), use `startTransition` + `router.replace`. VTs activate because the state update is inside `startTransition`:
 
 ```tsx
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { startTransition } from 'react';
+import { useRouter } from "next/navigation";
+import { startTransition } from "react";
 
 function handleSort(sort: string) {
-  const router = useRouter();
-  startTransition(() => {
-    router.replace(`?sort=${sort}`);
-  });
+    const router = useRouter();
+    startTransition(() => {
+        router.replace(`?sort=${sort}`);
+    });
 }
 ```
 
@@ -101,15 +103,23 @@ Directional slides + Suspense reveals coexist because they fire at different mom
 
 ```tsx
 <ViewTransition
-  enter={{ "nav-forward": "slide-from-right", default: "none" }}
-  exit={{ "nav-forward": "slide-to-left", default: "none" }}
-  default="none"
+    enter={{ "nav-forward": "slide-from-right", default: "none" }}
+    exit={{ "nav-forward": "slide-to-left", default: "none" }}
+    default="none"
 >
-  <div>
-    <Suspense fallback={<ViewTransition exit="slide-down"><Skeleton /></ViewTransition>}>
-      <ViewTransition enter="slide-up" default="none"><Content /></ViewTransition>
-    </Suspense>
-  </div>
+    <div>
+        <Suspense
+            fallback={
+                <ViewTransition exit="slide-down">
+                    <Skeleton />
+                </ViewTransition>
+            }
+        >
+            <ViewTransition enter="slide-up" default="none">
+                <Content />
+            </ViewTransition>
+        </Suspense>
+    </div>
 </ViewTransition>
 ```
 
@@ -135,18 +145,20 @@ Same rules as explicit `<Suspense>`: use simple string props (not type maps) sin
 
 ```tsx
 // List page
-{products.map((product) => (
-  <Link key={product.id} href={`/products/${product.id}`} transitionTypes={['nav-forward']}>
-    <ViewTransition name={`product-${product.id}`}>
-      <Image src={product.image} alt={product.name} width={400} height={300} />
-    </ViewTransition>
-  </Link>
-))}
+{
+    products.map(product => (
+        <Link key={product.id} href={`/products/${product.id}`} transitionTypes={["nav-forward"]}>
+            <ViewTransition name={`product-${product.id}`}>
+                <Image src={product.image} alt={product.name} width={400} height={300} />
+            </ViewTransition>
+        </Link>
+    ));
+}
 
 // Detail page — same name
 <ViewTransition name={`product-${product.id}`}>
-  <Image src={product.image} alt={product.name} width={800} height={600} />
-</ViewTransition>
+    <Image src={product.image} alt={product.name} width={800} height={600} />
+</ViewTransition>;
 ```
 
 ---
@@ -157,9 +169,9 @@ When navigating between dynamic segments of the same route (e.g., `/collection/[
 
 ```tsx
 <Suspense fallback={<Skeleton />}>
-  <ViewTransition key={slug} name={`collection-${slug}`} share="auto" default="none">
-    <Content slug={slug} />
-  </ViewTransition>
+    <ViewTransition key={slug} name={`collection-${slug}`} share="auto" default="none">
+        <Content slug={slug} />
+    </ViewTransition>
 </Suspense>
 ```
 

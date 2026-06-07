@@ -42,9 +42,9 @@ export function useScript(params: { webAuthnButtonId: string }) {
                         ...input,
                         errmsg : ${JSON.stringify(msgStr("passkey-unsupported-browser-text"))}
                     });
-                `
-            }
-        ]
+                `,
+            },
+        ],
     });
 
     useEffect(() => {
@@ -54,7 +54,7 @@ export function useScript(params: { webAuthnButtonId: string }) {
 
         (async () => {
             await waitForElementMountedOnDom({
-                elementId: webAuthnButtonId
+                elementId: webAuthnButtonId,
             });
 
             insertScriptTags();

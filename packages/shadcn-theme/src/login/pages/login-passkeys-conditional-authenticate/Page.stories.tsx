@@ -1,12 +1,12 @@
 import { createKcPageStory, type Meta, type StoryObj } from "../../mocks/KcPageStory";
 
 const { KcPageStory } = createKcPageStory({
-    pageId: "login-passkeys-conditional-authenticate.ftl"
+    pageId: "login-passkeys-conditional-authenticate.ftl",
 });
 
 const meta = {
     title: "login/login-passkeys-conditional-authenticate.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;

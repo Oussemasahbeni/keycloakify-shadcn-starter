@@ -1,10 +1,6 @@
 import { Button } from "#/components/ui/button";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
-import {
-    InputGroup,
-    InputGroupAddon,
-    InputGroupInput
-} from "#/components/ui/input-group";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
 import { Label } from "#/components/ui/label";
 
 import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton";
@@ -49,13 +45,9 @@ export function Page() {
                             name="password"
                             autoComplete="current-password"
                             placeholder={
-                                showPlaceholder
-                                    ? msgStr("passwordPlaceholder")
-                                    : undefined
+                                showPlaceholder ? msgStr("passwordPlaceholder") : undefined
                             }
-                            aria-invalid={kcContext.messagesPerField.existsError(
-                                "password"
-                            )}
+                            aria-invalid={kcContext.messagesPerField.existsError("password")}
                         />
                         <InputGroupAddon align="inline-end">
                             <PasswordVisibilityButton passwordInputId="password" />
@@ -68,10 +60,8 @@ export function Page() {
                                 aria-live="polite"
                                 dangerouslySetInnerHTML={{
                                     __html: kcSanitize(
-                                        kcContext.messagesPerField.getFirstError(
-                                            "password"
-                                        )
-                                    )
+                                        kcContext.messagesPerField.getFirstError("password"),
+                                    ),
                                 }}
                             />
                         </FieldError>

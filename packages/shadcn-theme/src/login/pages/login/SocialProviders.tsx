@@ -22,18 +22,12 @@ export function SocialProviders() {
 
     const [lastProvider] = useState(() => localStorage.getItem(LAST_PROVIDER_KEY));
 
-    if (
-        kcContext.social.providers === undefined ||
-        kcContext.social.providers.length === 0
-    ) {
+    if (kcContext.social.providers === undefined || kcContext.social.providers.length === 0) {
         return null;
     }
 
     return (
-        <div
-            id="kc-social-providers"
-            className={kcClsx("kcFormSocialAccountSectionClass")}
-        >
+        <div id="kc-social-providers" className={kcClsx("kcFormSocialAccountSectionClass")}>
             <ul
                 className={`grid gap-3 ${kcContext.social.providers.length > 1 ? "sm:grid-cols-2" : ""}`}
             >
@@ -44,12 +38,10 @@ export function SocialProviders() {
                                 id={`social-${p.alias}`}
                                 className={cn(
                                     buttonVariants({ variant: "outline" }),
-                                    "flex items-center justify-center gap-3 w-full hover:text-current"
+                                    "flex items-center justify-center gap-3 w-full hover:text-current",
                                 )}
                                 href={p.loginUrl}
-                                onClick={() =>
-                                    localStorage.setItem(LAST_PROVIDER_KEY, p.alias)
-                                }
+                                onClick={() => localStorage.setItem(LAST_PROVIDER_KEY, p.alias)}
                             >
                                 {providerLogos[p.alias] ? (
                                     <div className="size-5">
@@ -62,7 +54,7 @@ export function SocialProviders() {
                                                 (p.alias === "github" ||
                                                     p.alias === "x" ||
                                                     p.alias === "twitter") &&
-                                                    "dark:invert"
+                                                    "dark:invert",
                                             )}
                                         />
                                     </div>
@@ -73,7 +65,7 @@ export function SocialProviders() {
                                             className={clsx(
                                                 kcClsx("kcCommonLogoIdP"),
                                                 p.iconClasses,
-                                                `text-provider-${p.alias}`
+                                                `text-provider-${p.alias}`,
                                             )}
                                             aria-hidden="true"
                                         ></i>
@@ -82,7 +74,7 @@ export function SocialProviders() {
 
                                 <span
                                     dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(p.displayName)
+                                        __html: kcSanitize(p.displayName),
                                     }}
                                 ></span>
                             </a>

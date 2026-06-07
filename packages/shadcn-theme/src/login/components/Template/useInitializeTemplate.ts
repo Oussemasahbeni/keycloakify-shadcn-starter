@@ -15,9 +15,9 @@ export function useInitializeTemplate() {
                 ? []
                 : kcContext.scripts.map(src => ({
                       type: "text/javascript" as const,
-                      src
-                  })))
-        ]
+                      src,
+                  }))),
+        ],
     });
 
     useEffect(() => {

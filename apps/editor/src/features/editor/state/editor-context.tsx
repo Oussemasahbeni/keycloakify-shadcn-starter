@@ -1,8 +1,8 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, use, useState } from "react";
 
-import type { PreviewColorScheme, SaveStatus, ThemeConfig } from '../model/theme-config';
-import { defaultThemeConfig } from '../model/theme-config';
-import type { Viewport } from '../model/viewport';
+import type { PreviewColorScheme, SaveStatus, ThemeConfig } from "../model/theme-config";
+import { defaultThemeConfig } from "../model/theme-config";
+import type { Viewport } from "../model/viewport";
 
 type EditorContextValue = {
     viewport: Viewport;
@@ -20,8 +20,8 @@ type EditorContextValue = {
 const EditorContext = createContext<EditorContextValue | null>(null);
 
 export function EditorProvider({ children }: { children: React.ReactNode }) {
-    const [viewport, setViewport] = useState<Viewport>('desktop');
-    const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>('light');
+    const [viewport, setViewport] = useState<Viewport>("desktop");
+    const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>("light");
     const [config, setConfig] = useState<ThemeConfig>(defaultThemeConfig);
 
     const value: EditorContextValue = {
@@ -30,12 +30,12 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         previewColorScheme,
         setPreviewColorScheme,
         togglePreviewColorScheme: () =>
-            setPreviewColorScheme(scheme => (scheme === 'light' ? 'dark' : 'light')),
+            setPreviewColorScheme(scheme => (scheme === "light" ? "dark" : "light")),
         config,
         updateConfig: patch => setConfig(current => ({ ...current, ...patch })),
         resetConfig: () => setConfig(defaultThemeConfig),
         // Wired in the persistence unit; inert defaults for now.
-        saveStatus: 'idle',
+        saveStatus: "idle",
         lastSavedAt: null,
     };
 
@@ -43,9 +43,9 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useEditor() {
-    const context = useContext(EditorContext);
+    const context = use(EditorContext);
     if (context === null) {
-        throw new Error('useEditor must be used within an EditorProvider');
+        throw new Error("useEditor must be used within an EditorProvider");
     }
     return context;
 }

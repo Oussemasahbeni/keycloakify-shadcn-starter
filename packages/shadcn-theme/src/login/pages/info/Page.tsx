@@ -23,8 +23,8 @@ export function Page() {
                         __html: kcSanitize(
                             kcContext.messageHeader
                                 ? advancedMsgStr(kcContext.messageHeader)
-                                : kcContext.message.summary
-                        )
+                                : kcContext.message.summary,
+                        ),
                     }}
                 />
             }
@@ -43,9 +43,7 @@ export function Page() {
 
                                         html += kcContext.requiredActions
                                             .map(requiredAction =>
-                                                advancedMsgStr(
-                                                    `requiredAction.${requiredAction}`
-                                                )
+                                                advancedMsgStr(`requiredAction.${requiredAction}`),
                                             )
                                             .join(", ");
 
@@ -53,8 +51,8 @@ export function Page() {
                                     }
 
                                     return html;
-                                })()
-                            )
+                                })(),
+                            ),
                         }}
                     />
                 </AlertDescription>
@@ -71,9 +69,9 @@ export function Page() {
                             href={kcContext.pageRedirectUri}
                             className={cn(
                                 buttonVariants({
-                                    variant: "default"
+                                    variant: "default",
                                 }),
-                                "flex ms-auto"
+                                "flex ms-auto",
                             )}
                         >
                             {msg("backToApplication")}
@@ -86,9 +84,9 @@ export function Page() {
                             href={kcContext.actionUri}
                             className={cn(
                                 buttonVariants({
-                                    variant: "default"
+                                    variant: "default",
                                 }),
-                                "flex ms-auto"
+                                "flex ms-auto",
                             )}
                         >
                             {msg("proceedWithAction")}
@@ -102,9 +100,9 @@ export function Page() {
                             href={kcContext.client.baseUrl}
                             className={cn(
                                 buttonVariants({
-                                    variant: "link"
+                                    variant: "link",
                                 }),
-                                "flex ms-auto"
+                                "flex ms-auto",
                             )}
                         >
                             {msg("backToApplication")}

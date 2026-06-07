@@ -16,44 +16,40 @@ export default defineConfig({
             themeName: "acme-theme",
             keycloakVersionTargets: {
                 "22-to-25": false,
-                "all-other-versions": "acme-theme.jar"
+                "all-other-versions": "acme-theme.jar",
             },
             environmentVariables: [
                 {
                     name: "SHADCN_THEME_LOGO_WHITE_URL",
-                    default: ""
+                    default: "",
                 },
                 {
                     name: "SHADCN_THEME_LOGO_DARK_URL",
-                    default: ""
+                    default: "",
                 },
                 { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
                 {
                     name: "SHADCN_THEME_SIDE_IMAGE_URL",
-                    default: ""
+                    default: "",
                 },
                 {
                     name: "SHADCN_THEME_CARD_BG_URL",
-                    default: ""
+                    default: "",
                 },
                 { name: "SHADCN_THEME_PRESET", default: "neutral" },
                 { name: "SHADCN_THEME_BASE", default: "neutral" },
                 { name: "SHADCN_THEME_RADIUS", default: "default" },
                 { name: "SHADCN_THEME_FONT", default: "geist" },
-                { name: "SHADCN_THEME_PLACEHOLDER", default: "true" }
+                { name: "SHADCN_THEME_PLACEHOLDER", default: "true" },
             ],
             postBuild: async buildContext => {
                 await buildEmailTheme({
                     templatesSrcDirPath: path.join(
                         buildContext.themeSrcDirPath,
                         "email",
-                        "templates"
+                        "templates",
                     ),
-                    i18nSourceFile: path.join(
-                        buildContext.themeSrcDirPath,
-                        "email",
-                        "i18n.ts"
-                    ),
+                    i18nSourceFile: path.join(buildContext.themeSrcDirPath, "email", "i18n.ts"),
                     themeNames: buildContext.themeNames,
                     keycloakifyBuildDirPath: buildContext.keycloakifyBuildDirPath,
                     locales: [
@@ -86,15 +82,15 @@ export default defineConfig({
                         "tr",
                         "uk",
                         "zh-CN",
-                        "zh-TW"
+                        "zh-TW",
                     ],
                     esbuild: {
-                        jsx: "automatic"
+                        jsx: "automatic",
                     },
                     cwd: import.meta.dirname,
-                    environmentVariables: buildContext.environmentVariables
+                    environmentVariables: buildContext.environmentVariables,
                 });
-            }
-        })
-    ]
+            },
+        }),
+    ],
 });

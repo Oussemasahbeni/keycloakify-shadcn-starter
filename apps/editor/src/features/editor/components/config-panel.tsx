@@ -1,42 +1,42 @@
-import { Button } from '#/components/ui/button';
+import { Button } from "#/components/ui/button";
 import {
     Field,
     FieldContent,
     FieldDescription,
     FieldLabel,
     FieldTitle,
-} from '#/components/ui/field';
-import { Input } from '#/components/ui/input';
-import { Label } from '#/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '#/components/ui/radio-group';
+} from "#/components/ui/field";
+import { Input } from "#/components/ui/input";
+import { Label } from "#/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '#/components/ui/select';
-import { Switch } from '#/components/ui/switch';
-import type { LucideIcon } from 'lucide-react';
-import { Columns2, Image, Shuffle, Square } from 'lucide-react';
+} from "#/components/ui/select";
+import { Switch } from "#/components/ui/switch";
+import type { LucideIcon } from "lucide-react";
+import { Columns2, Image, Shuffle, Square } from "lucide-react";
 
-import { pickRandom, prettify } from '#/lib/utils';
-import { basePalettes, themePresets } from '@kc-studio/shadcn-theme/presets';
+import { pickRandom, prettify } from "#/lib/utils";
+import { basePalettes, themePresets } from "@kc-studio/shadcn-theme/theme";
 import type {
     BasePalette,
     FontFamily,
     Layout,
     RadiusPreset,
     ThemePreset,
-} from '@kc-studio/shadcn-theme/theme-meta';
+} from "@kc-studio/shadcn-theme/theme";
 import {
     basePaletteOptions,
     fontFamilyOptions,
     layoutOptions,
     radiusPresetOptions,
     themePresetOptions,
-} from '@kc-studio/shadcn-theme/theme-meta';
-import { useEditor } from '../state/editor-context';
+} from "@kc-studio/shadcn-theme/theme";
+import { useEditor } from "../state/editor-context";
 
 function Swatch({ color }: { color: string }) {
     return (
@@ -172,16 +172,16 @@ function FontFamilyField() {
 }
 
 const layoutMeta: Record<Layout, { description: string; Icon: LucideIcon }> = {
-    'two-column': {
-        description: 'Sign-in form paired with a branded side panel.',
+    "two-column": {
+        description: "Sign-in form paired with a branded side panel.",
         Icon: Columns2,
     },
-    'centered-card': {
-        description: 'A single card centered on the page.',
+    "centered-card": {
+        description: "A single card centered on the page.",
         Icon: Square,
     },
-    'image-aside': {
-        description: 'Form alongside a full-height image.',
+    "image-aside": {
+        description: "Form alongside a full-height image.",
         Icon: Image,
     },
 };
@@ -280,7 +280,7 @@ export function ImagesPanel() {
                 value={config.logoDarkUrl}
                 onChange={value => updateConfig({ logoDarkUrl: value })}
             />
-            {config.layout === 'image-aside' && (
+            {config.layout === "image-aside" && (
                 <ImageUrlField
                     label="Side image"
                     description="Full-height image beside the form."
@@ -288,7 +288,7 @@ export function ImagesPanel() {
                     onChange={value => updateConfig({ sideImageUrl: value })}
                 />
             )}
-            {config.layout === 'centered-card' && (
+            {config.layout === "centered-card" && (
                 <ImageUrlField
                     label="Card background"
                     description="Background image behind the centered card."

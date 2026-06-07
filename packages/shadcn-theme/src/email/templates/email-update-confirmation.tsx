@@ -12,18 +12,18 @@ type TemplateProps = Omit<GetTemplateProps, "plainText"> & { t: TFunction };
 const paragraph = {
     lineHeight: 1.5,
     fontSize: 14,
-    textAlign: "left" as const
+    textAlign: "left" as const,
 };
 
 const rtlStyle = {
     direction: "rtl" as const,
-    textAlign: "right" as const
+    textAlign: "right" as const,
 };
 
 export const previewProps: TemplateProps = {
     t: i18n.getFixedT(previewLocale),
     locale: previewLocale,
-    themeName: "vanilla"
+    themeName: "vanilla",
 };
 
 export const templateName = "Email Update Confirmation";
@@ -38,7 +38,7 @@ export const Template = ({ locale, t }: TemplateProps) => {
             <Text style={applyRTL(paragraph, isRTL, rtlStyle)}>
                 {t("email-update-confirmation.updateEmailAddress", {
                     realmName: exp("realmName"),
-                    newEmail: exp("newEmail")
+                    newEmail: exp("newEmail"),
                 })}
             </Text>
 
@@ -60,7 +60,7 @@ export const Template = ({ locale, t }: TemplateProps) => {
             </Button>
             <Text style={applyRTL(paragraph, isRTL, rtlStyle)}>
                 {t("email-update-confirmation.linkExpiration", {
-                    expiration: exp("linkExpirationFormatter(linkExpiration)")
+                    expiration: exp("linkExpirationFormatter(linkExpiration)"),
                 })}
             </Text>
             <Text style={applyRTL(paragraph, isRTL, rtlStyle)}>

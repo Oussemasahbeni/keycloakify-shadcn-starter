@@ -27,7 +27,7 @@ const themeCssVars = {
         input: "--keycloakify-shadcn-input",
         ring: "--keycloakify-shadcn-ring",
         sidePanel: "--keycloakify-shadcn-side-panel",
-        sidePanelForeground: "--keycloakify-shadcn-side-panel-foreground"
+        sidePanelForeground: "--keycloakify-shadcn-side-panel-foreground",
     },
     dark: {
         background: "--keycloakify-shadcn-dark-background",
@@ -48,8 +48,8 @@ const themeCssVars = {
         input: "--keycloakify-shadcn-dark-input",
         ring: "--keycloakify-shadcn-dark-ring",
         sidePanel: "--keycloakify-shadcn-dark-side-panel",
-        sidePanelForeground: "--keycloakify-shadcn-dark-side-panel-foreground"
-    }
+        sidePanelForeground: "--keycloakify-shadcn-dark-side-panel-foreground",
+    },
 } as const;
 
 type ThemeTokenKey = keyof (typeof themeCssVars)["light"];
@@ -75,31 +75,29 @@ function applyThemeCssVars(params: {
 export function useApplyThemePreset() {
     const { kcContext } = useKcContext();
 
-    const { SHADCN_THEME_PRESET, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT } = kcContext.properties;
+    const { SHADCN_THEME_PRESET, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT } =
+        kcContext.properties;
 
     useLayoutEffect(() => {
         const root = document.documentElement;
         const theme = resolveThemeTokens({
             preset: SHADCN_THEME_PRESET,
-            base: SHADCN_THEME_BASE
+            base: SHADCN_THEME_BASE,
         });
         const radius = resolveRadiusPreset(SHADCN_THEME_RADIUS);
 
         applyThemeCssVars({
             style: root.style,
             theme: theme.light,
-            cssVars: themeCssVars.light
+            cssVars: themeCssVars.light,
         });
         applyThemeCssVars({
             style: root.style,
             theme: theme.dark,
-            cssVars: themeCssVars.dark
+            cssVars: themeCssVars.dark,
         });
 
-        root.style.setProperty(
-            "--keycloakify-shadcn-font",
-            resolveThemeFont(SHADCN_THEME_FONT)
-        );
+        root.style.setProperty("--keycloakify-shadcn-font", resolveThemeFont(SHADCN_THEME_FONT));
 
         if (radius) {
             root.style.setProperty("--keycloakify-shadcn-radius", radius);

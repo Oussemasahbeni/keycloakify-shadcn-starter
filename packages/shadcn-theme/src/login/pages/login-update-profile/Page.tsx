@@ -31,9 +31,7 @@ export function Page() {
                 action={url.loginAction}
                 method="post"
             >
-                <UserProfileFormFields
-                    onIsFormSubmittableValueChange={setIsFormSubmittable}
-                />
+                <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
 
                 <div className={kcClsx("kcFormGroupClass")}>
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>

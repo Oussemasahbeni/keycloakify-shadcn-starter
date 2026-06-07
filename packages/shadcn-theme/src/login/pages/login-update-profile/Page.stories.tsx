@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "login-update-profile.ftl" }
 
 const meta = {
     title: "login/login-update-profile.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -23,13 +23,13 @@ export const WithProfileError: Story = {
     args: {
         kcContext: {
             url: {
-                loginAction: "/mock-login-action"
+                loginAction: "/mock-login-action",
             },
             messagesPerField: {
                 existsError: (field: string) => field === "email",
-                get: () => "Invalid email format"
+                get: () => "Invalid email format",
             },
-            isAppInitiatedAction: false
-        }
-    }
+            isAppInitiatedAction: false,
+        },
+    },
 };

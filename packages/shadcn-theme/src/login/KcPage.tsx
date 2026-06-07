@@ -33,7 +33,7 @@ function StyleLevelCustomization(props: { children: ReactNode }) {
         effect: () => {
             assert(loadCustomStylesheet !== undefined);
             loadCustomStylesheet();
-        }
+        },
     });
 
     return (

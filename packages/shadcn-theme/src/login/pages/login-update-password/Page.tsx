@@ -1,28 +1,28 @@
-import { Button } from '#/components/ui/button';
-import { Field, FieldError, FieldLabel } from '#/components/ui/field';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '#/components/ui/input-group';
+import { Button } from "#/components/ui/button";
+import { Field, FieldError, FieldLabel } from "#/components/ui/field";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
 
-import { LogoutOtherSessions } from '#/login/components/LogoutOtherSessions';
-import { PasswordVisibilityButton } from '#/login/components/PasswordVisibilityButton';
-import { useI18n } from '#/login/i18n';
-import { useKcContext } from '#/login/KcContext';
-import { kcSanitize } from 'keycloakify/lib/kcSanitize';
-import { assert } from 'tsafe/assert';
-import { Template } from '../../components/Template';
+import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
+import { PasswordVisibilityButton } from "#/login/components/PasswordVisibilityButton";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { assert } from "tsafe/assert";
+import { Template } from "../../components/Template";
 
 export function Page() {
     const { kcContext } = useKcContext();
-    assert(kcContext.pageId === 'login-update-password.ftl');
+    assert(kcContext.pageId === "login-update-password.ftl");
 
     const { msg, msgStr } = useI18n();
 
     const { url, messagesPerField, isAppInitiatedAction } = kcContext;
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === 'true';
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
 
     return (
         <Template
-            displayMessage={!messagesPerField.existsError('password', 'password-confirm')}
-            headerNode={msg('updatePasswordTitle')}
+            displayMessage={!messagesPerField.existsError("password", "password-confirm")}
+            headerNode={msg("updatePasswordTitle")}
         >
             <form
                 id="kc-passwd-update-form"
@@ -31,7 +31,7 @@ export function Page() {
                 method="post"
             >
                 <Field>
-                    <FieldLabel htmlFor="password-new">{msg('passwordNew')}</FieldLabel>
+                    <FieldLabel htmlFor="password-new">{msg("passwordNew")}</FieldLabel>
                     <InputGroup>
                         <InputGroupInput
                             type="password"
@@ -40,21 +40,21 @@ export function Page() {
                             autoFocus
                             autoComplete="new-password"
                             placeholder={
-                                showPlaceholder ? msgStr('newPasswordPlaceholder') : undefined
+                                showPlaceholder ? msgStr("newPasswordPlaceholder") : undefined
                             }
-                            aria-invalid={messagesPerField.existsError('password')}
+                            aria-invalid={messagesPerField.existsError("password")}
                         />
                         <InputGroupAddon align="inline-end">
                             <PasswordVisibilityButton passwordInputId="password-new" />
                         </InputGroupAddon>
                     </InputGroup>
-                    {messagesPerField.existsError('password') && (
+                    {messagesPerField.existsError("password") && (
                         <FieldError>
                             <span
                                 id="input-error"
                                 aria-live="polite"
                                 dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.getFirstError('password')),
+                                    __html: kcSanitize(messagesPerField.getFirstError("password")),
                                 }}
                             />
                         </FieldError>
@@ -62,7 +62,7 @@ export function Page() {
                 </Field>
 
                 <Field>
-                    <FieldLabel htmlFor="password-confirm">{msg('passwordConfirm')}</FieldLabel>
+                    <FieldLabel htmlFor="password-confirm">{msg("passwordConfirm")}</FieldLabel>
                     <InputGroup>
                         <InputGroupInput
                             type="password"
@@ -70,22 +70,22 @@ export function Page() {
                             name="password-confirm"
                             autoComplete="new-password"
                             placeholder={
-                                showPlaceholder ? msgStr('confirmPasswordPlaceholder') : undefined
+                                showPlaceholder ? msgStr("confirmPasswordPlaceholder") : undefined
                             }
-                            aria-invalid={messagesPerField.existsError('password-confirm')}
+                            aria-invalid={messagesPerField.existsError("password-confirm")}
                         />
                         <InputGroupAddon align="inline-end">
                             <PasswordVisibilityButton passwordInputId="password-confirm" />
                         </InputGroupAddon>
                     </InputGroup>
-                    {messagesPerField.existsError('password-confirm') && (
+                    {messagesPerField.existsError("password-confirm") && (
                         <FieldError>
                             <span
                                 id="input-error"
                                 aria-live="polite"
                                 dangerouslySetInnerHTML={{
                                     __html: kcSanitize(
-                                        messagesPerField.getFirstError('password-confirm'),
+                                        messagesPerField.getFirstError("password-confirm"),
                                     ),
                                 }}
                             />
@@ -97,7 +97,7 @@ export function Page() {
 
                 <div className="flex flex-col gap-3">
                     <Button className="w-full" type="submit">
-                        {msgStr('doSubmit')}
+                        {msgStr("doSubmit")}
                     </Button>
                     {isAppInitiatedAction && (
                         <Button
@@ -107,7 +107,7 @@ export function Page() {
                             name="cancel-aia"
                             value="true"
                         >
-                            {msg('doCancel')}
+                            {msg("doCancel")}
                         </Button>
                     )}
                 </div>

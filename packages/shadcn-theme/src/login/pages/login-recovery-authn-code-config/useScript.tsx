@@ -124,9 +124,9 @@ export function useScript(params: { olRecoveryCodesListId: string }) {
 
                     var printButton = document.getElementById("printRecoveryCodes");
                     printButton && printButton.addEventListener("click", printRecoveryCodes);
-                `
-            }
-        ]
+                `,
+            },
+        ],
     });
 
     useEffect(() => {
@@ -136,7 +136,7 @@ export function useScript(params: { olRecoveryCodesListId: string }) {
 
         (async () => {
             await waitForElementMountedOnDom({
-                elementId: olRecoveryCodesListId
+                elementId: olRecoveryCodesListId,
             });
 
             insertScriptTags();

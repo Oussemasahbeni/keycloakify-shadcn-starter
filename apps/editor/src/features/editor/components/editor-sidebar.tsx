@@ -1,6 +1,6 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '#/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "#/components/ui/tabs";
 
-import { ConfigPanel, ImagesPanel } from './config-panel';
+import { ConfigPanel, ImagesPanel } from "./config-panel";
 
 export function EditorSidebar() {
     return (

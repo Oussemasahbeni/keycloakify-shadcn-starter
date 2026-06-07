@@ -15,9 +15,7 @@ export function Page() {
             headerNode={msg("linkIdpActionTitle", kcContext.idpDisplayName)}
             displayMessage={false}
         >
-            <div id="kc-link-text">
-                {msg("linkIdpActionMessage", kcContext.idpDisplayName)}
-            </div>
+            <div id="kc-link-text">{msg("linkIdpActionMessage", kcContext.idpDisplayName)}</div>
             <form action={kcContext.url.loginAction} method="post">
                 <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
                     <Button
@@ -29,12 +27,7 @@ export function Page() {
                     >
                         {msgStr("doCancel")}
                     </Button>
-                    <Button
-                        name="continue"
-                        id="kc-continue"
-                        type="submit"
-                        className="flex-1"
-                    >
+                    <Button name="continue" id="kc-continue" type="submit" className="flex-1">
                         {msgStr("doContinue")}
                     </Button>
                 </div>

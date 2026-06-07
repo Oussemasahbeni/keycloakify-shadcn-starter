@@ -6,7 +6,7 @@ import type { JSX } from "@keycloakify/login-ui/tools/JSX";
 import {
     useUserProfileForm,
     type FormAction,
-    type FormFieldError
+    type FormFieldError,
 } from "@keycloakify/login-ui/useUserProfileForm";
 import { Fragment, useEffect } from "react";
 import { assert } from "tsafe/assert";
@@ -41,11 +41,11 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
 
     const {
         formState: { formFieldStates, isFormSubmittable },
-        dispatchFormAction
+        dispatchFormAction,
     } = useUserProfileForm({
         kcContext,
         i18n,
-        doMakeUserConfirmPassword: DO_MAKE_USER_CONFIRM_PASSWORD
+        doMakeUserConfirmPassword: DO_MAKE_USER_CONFIRM_PASSWORD,
     });
 
     useEffect(() => {
@@ -69,29 +69,24 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
                             />
                         )}
                         <Field
-                            data-invalid={
-                                displayableErrors.length > 0 ? "true" : undefined
-                            }
+                            data-invalid={displayableErrors.length > 0 ? "true" : undefined}
                             style={{
                                 display:
                                     attribute.annotations.inputType === "hidden"
                                         ? "none"
-                                        : undefined
+                                        : undefined,
                             }}
                         >
                             <FieldLabel htmlFor={attribute.name} className="gap-0.5">
                                 {advancedMsg(attribute.displayName ?? "")}
                                 {attribute.required && <span aria-hidden="true">*</span>}
                             </FieldLabel>
-                            {attribute.annotations.inputHelperTextBefore !==
-                                undefined && (
+                            {attribute.annotations.inputHelperTextBefore !== undefined && (
                                 <FieldDescription
                                     id={`form-help-text-before-${attribute.name}`}
                                     aria-live="polite"
                                 >
-                                    {advancedMsg(
-                                        attribute.annotations.inputHelperTextBefore
-                                    )}
+                                    {advancedMsg(attribute.annotations.inputHelperTextBefore)}
                                 </FieldDescription>
                             )}
                             <InputFieldByType
@@ -110,9 +105,7 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
                                     id={`form-help-text-after-${attribute.name}`}
                                     aria-live="polite"
                                 >
-                                    {advancedMsg(
-                                        attribute.annotations.inputHelperTextAfter
-                                    )}
+                                    {advancedMsg(attribute.annotations.inputHelperTextAfter)}
                                 </FieldDescription>
                             )}
                             {AfterField !== undefined && (

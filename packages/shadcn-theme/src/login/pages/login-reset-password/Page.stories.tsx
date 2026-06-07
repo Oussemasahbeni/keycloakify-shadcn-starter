@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "login-reset-password.ftl" }
 
 const meta = {
     title: "login/login-reset-password.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -18,10 +18,10 @@ export const WithEmailAsUsername: Story = {
         kcContext: {
             realm: {
                 loginWithEmailAllowed: true,
-                registrationEmailAsUsername: true
-            }
-        }
-    }
+                registrationEmailAsUsername: true,
+            },
+        },
+    },
 };
 /**
  * WithUsernameError:
@@ -35,19 +35,19 @@ export const WithUsernameError: Story = {
             realm: {
                 loginWithEmailAllowed: false,
                 registrationEmailAsUsername: false,
-                duplicateEmailsAllowed: false
+                duplicateEmailsAllowed: false,
             },
             url: {
                 loginAction: "/mock-login-action",
-                loginUrl: "/mock-login-url"
+                loginUrl: "/mock-login-url",
             },
             messagesPerField: {
                 existsError: (field: string) => field === "username",
-                get: () => "Invalid username"
+                get: () => "Invalid username",
             },
             auth: {
-                attemptedUsername: "invalid_user"
-            }
-        }
-    }
+                attemptedUsername: "invalid_user",
+            },
+        },
+    },
 };

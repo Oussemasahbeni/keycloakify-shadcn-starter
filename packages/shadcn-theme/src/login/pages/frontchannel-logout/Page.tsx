@@ -64,10 +64,7 @@ export function Page() {
                     <a
                         id="continue"
                         href={kcContext.logout.logoutRedirectUri}
-                        className={cn(
-                            buttonVariants({ size: "lg" }),
-                            "flex items-center gap-2"
-                        )}
+                        className={cn(buttonVariants({ size: "lg" }), "flex items-center gap-2")}
                     >
                         {msg("doContinue")}
                         <FiExternalLink className="size-4" />

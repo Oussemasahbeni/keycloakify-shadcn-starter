@@ -32,7 +32,7 @@ const useProviderLogos: () => Record<string, string> = () => ({
     slack: slackLogo,
     stackoverflow: stackoverflowLogo,
     twitter: xLogo,
-    x: xLogo
+    x: xLogo,
 });
 
 export default useProviderLogos;

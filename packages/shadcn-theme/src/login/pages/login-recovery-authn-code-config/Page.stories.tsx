@@ -1,12 +1,12 @@
 import { createKcPageStory, type Meta, type StoryObj } from "../../mocks/KcPageStory";
 
 const { KcPageStory } = createKcPageStory({
-    pageId: "login-recovery-authn-code-config.ftl"
+    pageId: "login-recovery-authn-code-config.ftl",
 });
 
 const meta = {
     title: "login/login-recovery-authn-code-config.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -25,13 +25,12 @@ export const WithErrorDuringCodeGeneration: Story = {
     args: {
         kcContext: {
             url: {
-                loginAction: "/mock-login-action"
+                loginAction: "/mock-login-action",
             },
             message: {
-                summary:
-                    "An error occurred during recovery code generation. Please try again.",
-                type: "error"
-            }
-        }
-    }
+                summary: "An error occurred during recovery code generation. Please try again.",
+                type: "error",
+            },
+        },
+    },
 };

@@ -3,30 +3,30 @@ import { createKcPageStory, type Meta, type StoryObj } from "../../mocks/KcPageS
 // Mock kcContext to simulate real environment
 const mockKcContext = {
     url: {
-        oauthAction: "/oauth-action"
+        oauthAction: "/oauth-action",
     },
     oauth: {
         clientScopesRequested: [
             { consentScreenText: "Scope1", dynamicScopeParameter: "dynamicScope1" },
-            { consentScreenText: "Scope2" }
+            { consentScreenText: "Scope2" },
         ],
-        code: "mockCode"
+        code: "mockCode",
     },
     client: {
         attributes: {
             policyUri: "https://twitter.com/en/tos",
-            tosUri: "https://twitter.com/en/privacy"
+            tosUri: "https://twitter.com/en/privacy",
         },
         name: "Twitter",
-        clientId: "twitter-client-id"
-    }
+        clientId: "twitter-client-id",
+    },
 };
 
 const { KcPageStory } = createKcPageStory({ pageId: "login-oauth-grant.ftl" });
 
 const meta = {
     title: "login/login-oauth-grant.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -41,10 +41,9 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
     args: {
-        kcContext: mockKcContext
-    }
+        kcContext: mockKcContext,
+    },
 };
-
 
 /**
  * WithoutScopes:
@@ -58,10 +57,10 @@ export const WithoutScopes: Story = {
             ...mockKcContext,
             oauth: {
                 ...mockKcContext.oauth,
-                clientScopesRequested: []
-            }
-        }
-    }
+                clientScopesRequested: [],
+            },
+        },
+    },
 };
 
 /**
@@ -75,12 +74,12 @@ export const WithFormSubmissionError: Story = {
         kcContext: {
             ...mockKcContext,
             url: {
-                oauthAction: "/error"
+                oauthAction: "/error",
             },
             message: {
                 type: "error",
-                summary: "An error occurred during form submission."
-            }
-        }
-    }
+                summary: "An error occurred during form submission.",
+            },
+        },
+    },
 };

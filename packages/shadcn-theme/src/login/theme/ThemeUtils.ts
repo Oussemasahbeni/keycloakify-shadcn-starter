@@ -1,8 +1,4 @@
-import {
-    DEFAULT_THEME_BASE,
-    DEFAULT_THEME_PRESET,
-    DEFAULT_THEME_RADIUS
-} from "./Defaults";
+import { DEFAULT_THEME_BASE, DEFAULT_THEME_PRESET, DEFAULT_THEME_RADIUS } from "./Defaults";
 import { basePalettes, radiusPresets, themeFontFamilies, themePresets } from "./Presets";
 import {
     type FontFamily,
@@ -10,12 +6,12 @@ import {
     type ThemeTokens,
     basePaletteOptions,
     radiusPresetOptions,
-    themePresetOptions
+    themePresetOptions,
 } from "./ThemeTypes";
 
 function isOption<TOption extends string>(
     value: string | undefined,
-    options: readonly TOption[]
+    options: readonly TOption[],
 ): value is TOption {
     return value !== undefined && (options as readonly string[]).includes(value);
 }
@@ -39,19 +35,17 @@ export function resolveThemeTokens(params: {
     const preset = isOption(params.preset, themePresetOptions)
         ? params.preset
         : DEFAULT_THEME_PRESET;
-    const base = isOption(params.base, basePaletteOptions)
-        ? params.base
-        : DEFAULT_THEME_BASE;
+    const base = isOption(params.base, basePaletteOptions) ? params.base : DEFAULT_THEME_BASE;
 
     return {
         light: {
             ...basePalettes[base].light,
-            ...themePresets[preset].light
+            ...themePresets[preset].light,
         },
         dark: {
             ...basePalettes[base].dark,
-            ...themePresets[preset].dark
-        }
+            ...themePresets[preset].dark,
+        },
     };
 }
 

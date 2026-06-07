@@ -3,7 +3,7 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuTrigger
+    DropdownMenuTrigger,
 } from "#/components/ui/dropdown-menu";
 import { useI18n } from "#/login/i18n";
 import { IoCheckmark, IoLanguage } from "react-icons/io5";
@@ -39,9 +39,7 @@ export function Languages() {
                                     className="flex w-full items-center justify-between  cursor-pointer"
                                 >
                                     {label}
-                                    {isActive && (
-                                        <IoCheckmark className="size-4 opacity-50" />
-                                    )}
+                                    {isActive && <IoCheckmark className="size-4 opacity-50" />}
                                 </a>
                             </DropdownMenuItem>
                         );

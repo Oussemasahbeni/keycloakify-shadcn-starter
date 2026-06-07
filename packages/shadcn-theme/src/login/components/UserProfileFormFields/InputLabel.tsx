@@ -12,9 +12,7 @@ export function InputLabel(props: { attribute: Attribute; option: string }) {
     }
 
     if (attribute.annotations.inputOptionLabelsI18nPrefix !== undefined) {
-        return advancedMsg(
-            `${attribute.annotations.inputOptionLabelsI18nPrefix}.${option}`
-        );
+        return advancedMsg(`${attribute.annotations.inputOptionLabelsI18nPrefix}.${option}`);
     }
 
     return <>{option}</>;

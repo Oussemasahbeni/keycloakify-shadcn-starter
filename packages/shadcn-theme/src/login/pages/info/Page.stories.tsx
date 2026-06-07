@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "info.ftl" });
 
 const meta = {
     title: "login/info.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -16,23 +16,22 @@ export const Default: Story = {
         kcContext: {
             messageHeader: "Message header",
             message: {
-                summary: "Server info message"
-            }
-        }
-    }
+                summary: "Server info message",
+            },
+        },
+    },
 };
-
 
 export const WithLinkBack: Story = {
     args: {
         kcContext: {
             messageHeader: "Message header",
             message: {
-                summary: "Server message"
+                summary: "Server message",
             },
-            actionUri: undefined
-        }
-    }
+            actionUri: undefined,
+        },
+    },
 };
 
 export const WithRequiredActions: Story = {
@@ -40,19 +39,14 @@ export const WithRequiredActions: Story = {
         kcContext: {
             messageHeader: "Message header",
             message: {
-                summary: "Required actions: "
+                summary: "Required actions: ",
             },
-            requiredActions: [
-                "CONFIGURE_TOTP",
-                "UPDATE_PROFILE",
-                "VERIFY_EMAIL",
-                "CUSTOM_ACTION"
-            ],
+            requiredActions: ["CONFIGURE_TOTP", "UPDATE_PROFILE", "VERIFY_EMAIL", "CUSTOM_ACTION"],
             "x-keycloakify": {
                 messages: {
-                    "requiredAction.CUSTOM_ACTION": "Custom action"
-                }
-            }
-        }
-    }
+                    "requiredAction.CUSTOM_ACTION": "Custom action",
+                },
+            },
+        },
+    },
 };

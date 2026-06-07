@@ -4,7 +4,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "login-verify-email.ftl" });
 
 const meta = {
     title: "login/login-verify-email.ftl",
-    component: KcPageStory
+    component: KcPageStory,
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -16,13 +16,13 @@ export const Default: Story = {
         kcContext: {
             message: {
                 summary: "You need to verify your email to activate your account.",
-                type: "warning"
+                type: "warning",
             },
             user: {
-                email: "john.doe@gmail.com"
-            }
-        }
-    }
+                email: "john.doe@gmail.com",
+            },
+        },
+    },
 };
 
 /**
@@ -36,16 +36,16 @@ export const WithSuccessMessage: Story = {
         kcContext: {
             message: {
                 summary: "Your email has been successfully verified.",
-                type: "success"
+                type: "success",
             },
             user: {
-                email: "john.doe@gmail.com"
+                email: "john.doe@gmail.com",
             },
             url: {
-                loginAction: "/mock-login-action"
-            }
-        }
-    }
+                loginAction: "/mock-login-action",
+            },
+        },
+    },
 };
 
 /**
@@ -59,16 +59,16 @@ export const WithErrorMessage: Story = {
         kcContext: {
             message: {
                 summary: "There was an error verifying your email. Please try again.",
-                type: "error"
+                type: "error",
             },
             user: {
-                email: "john.doe@gmail.com"
+                email: "john.doe@gmail.com",
             },
             url: {
-                loginAction: "/mock-login-action"
-            }
-        }
-    }
+                loginAction: "/mock-login-action",
+            },
+        },
+    },
 };
 
 /**
@@ -82,14 +82,14 @@ export const WithInfoMessage: Story = {
         kcContext: {
             message: {
                 summary: "Please verify your email to continue using our services.",
-                type: "info"
+                type: "info",
             },
             user: {
-                email: "john.doe@gmail.com"
+                email: "john.doe@gmail.com",
             },
             url: {
-                loginAction: "/mock-login-action"
-            }
-        }
-    }
+                loginAction: "/mock-login-action",
+            },
+        },
+    },
 };

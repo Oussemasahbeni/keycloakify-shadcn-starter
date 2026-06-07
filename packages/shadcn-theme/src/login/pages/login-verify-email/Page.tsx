@@ -26,9 +26,7 @@ export function Page() {
                 </p>
             }
         >
-            <p className="instruction">
-                {msg("emailVerifyInstruction1", user?.email ?? "")}
-            </p>
+            <p className="instruction">{msg("emailVerifyInstruction1", user?.email ?? "")}</p>
         </Template>
     );
 }

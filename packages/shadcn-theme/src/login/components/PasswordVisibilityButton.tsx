@@ -1,19 +1,15 @@
-import { Button } from '#/components/ui/button';
+import { Button } from "#/components/ui/button";
 import { useI18n } from "#/login/i18n";
 import { useIsPasswordRevealed } from "keycloakify/tools/useIsPasswordRevealed";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-
-export function PasswordVisibilityButton(props: {
-    passwordInputId: string;
-    tabIndex?: number;
-}) {
+export function PasswordVisibilityButton(props: { passwordInputId: string; tabIndex?: number }) {
     const { passwordInputId, tabIndex } = props;
 
     const { msgStr } = useI18n();
 
     const { isPasswordRevealed, toggleIsPasswordRevealed } = useIsPasswordRevealed({
-        passwordInputId
+        passwordInputId,
     });
 
     return (

@@ -22,8 +22,8 @@ import lvTranslation from "./locales/lv/translation.json";
 import nlTranslation from "./locales/nl/translation.json";
 import noTranslation from "./locales/no/translation.json";
 import plTranslation from "./locales/pl/translation.json";
-import ptTranslation from "./locales/pt/translation.json";
 import pt_BRTranslation from "./locales/pt-BR/translation.json";
+import ptTranslation from "./locales/pt/translation.json";
 import ruTranslation from "./locales/ru/translation.json";
 import skTranslation from "./locales/sk/translation.json";
 import svTranslation from "./locales/sv/translation.json";
@@ -35,95 +35,95 @@ import zh_TWTranslation from "./locales/zh-TW/translation.json";
 
 const resources = {
     ar: {
-        translation: arTranslation
+        translation: arTranslation,
     },
     ca: {
-        translation: caTranslation
+        translation: caTranslation,
     },
     cs: {
-        translation: csTranslation
+        translation: csTranslation,
     },
     da: {
-        translation: daTranslation
+        translation: daTranslation,
     },
     de: {
-        translation: deTranslation
+        translation: deTranslation,
     },
     el: {
-        translation: elTranslation
+        translation: elTranslation,
     },
     en: {
-        translation: enTranslation
+        translation: enTranslation,
     },
     es: {
-        translation: esTranslation
+        translation: esTranslation,
     },
     fa: {
-        translation: faTranslation
+        translation: faTranslation,
     },
     fi: {
-        translation: fiTranslation
+        translation: fiTranslation,
     },
     fr: {
-        translation: frTranslation
+        translation: frTranslation,
     },
     hu: {
-        translation: huTranslation
+        translation: huTranslation,
     },
     it: {
-        translation: itTranslation
+        translation: itTranslation,
     },
     ja: {
-        translation: jaTranslation
+        translation: jaTranslation,
     },
     ka: {
-        translation: kaTranslation
+        translation: kaTranslation,
     },
     lt: {
-        translation: ltTranslation
+        translation: ltTranslation,
     },
     lv: {
-        translation: lvTranslation
+        translation: lvTranslation,
     },
     nl: {
-        translation: nlTranslation
+        translation: nlTranslation,
     },
     no: {
-        translation: noTranslation
+        translation: noTranslation,
     },
     pl: {
-        translation: plTranslation
+        translation: plTranslation,
     },
     pt: {
-        translation: ptTranslation
+        translation: ptTranslation,
     },
     "pt-BR": {
-        translation: pt_BRTranslation
+        translation: pt_BRTranslation,
     },
     ru: {
-        translation: ruTranslation
+        translation: ruTranslation,
     },
     sk: {
-        translation: skTranslation
+        translation: skTranslation,
     },
     sv: {
-        translation: svTranslation
+        translation: svTranslation,
     },
     th: {
-        translation: thTranslation
+        translation: thTranslation,
     },
     tr: {
-        translation: trTranslation
+        translation: trTranslation,
     },
     uk: {
-        translation: ukTranslation
+        translation: ukTranslation,
     },
     "zh-CN": {
-        translation: zh_CNTranslation
+        translation: zh_CNTranslation,
     },
     "zh-TW": {
-        translation: zh_TWTranslation
-    }
+        translation: zh_TWTranslation,
+    },
 };
 
 i18n.use(initReactI18next).init({
@@ -131,8 +131,8 @@ i18n.use(initReactI18next).init({
     lng: "en",
     fallbackLng: "en",
     interpolation: {
-        escapeValue: false
-    }
+        escapeValue: false,
+    },
 });
 
 export default i18n;
@@ -151,11 +151,11 @@ export const getMessages: GetMessages = props => {
         "requiredAction.UPDATE_PROFILE": t("requiredAction.update_profile"),
         "requiredAction.VERIFY_EMAIL": t("requiredAction.verify_email"),
         "requiredAction.CONFIGURE_RECOVERY_AUTHN_CODES": t(
-            "requiredAction.configure_recovery_authn_codes"
+            "requiredAction.configure_recovery_authn_codes",
         ),
         "linkExpirationFormatter.timePeriodUnit.seconds": t("requiredAction.seconds"),
         "linkExpirationFormatter.timePeriodUnit.minutes": t("requiredAction.minutes"),
         "linkExpirationFormatter.timePeriodUnit.hours": t("requiredAction.hours"),
-        "linkExpirationFormatter.timePeriodUnit.days": t("requiredAction.days")
+        "linkExpirationFormatter.timePeriodUnit.days": t("requiredAction.days"),
     };
 };

@@ -9,5 +9,5 @@ if (!window.kcContext) {
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <KcPage kcContext={window.kcContext} />
-    </StrictMode>
+    </StrictMode>,
 );

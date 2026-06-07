@@ -26,9 +26,7 @@ export function Page() {
                 method="post"
                 className="flex flex-col gap-4"
             >
-                <UserProfileFormFields
-                    onIsFormSubmittableValueChange={setIsFomSubmittable}
-                />
+                <UserProfileFormFields onIsFormSubmittableValueChange={setIsFomSubmittable} />
 
                 <div id="kc-form-buttons">
                     <Button className="w-full" disabled={!isFomSubmittable} type="submit">
