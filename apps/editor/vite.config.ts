@@ -5,6 +5,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 
 import tailwindcss from "@tailwindcss/vite";
 import viteReact from "@vitejs/plugin-react";
+import { nitro } from "nitro/vite";
 import { oidcSpa } from "oidc-spa/vite-plugin";
 
 const config = defineConfig({
@@ -13,6 +14,7 @@ const config = defineConfig({
         devtools(),
         tailwindcss(),
         tanstackStart(),
+        nitro(),
         oidcSpa({
             browserRuntimeFreeze: {
                 enabled: true,
