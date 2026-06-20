@@ -3,10 +3,10 @@ import {
     Field,
     FieldContent,
     FieldDescription,
+    FieldError,
     FieldLabel,
     FieldTitle,
 } from "#/components/ui/field";
-import { Input } from "#/components/ui/input";
 import { Label } from "#/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
 import {
@@ -18,10 +18,9 @@ import {
 } from "#/components/ui/select";
 import { Switch } from "#/components/ui/switch";
 import type { LucideIcon } from "lucide-react";
-import { Columns2, Image, Shuffle, Square } from "lucide-react";
+import { Columns2, Image, Info, Shuffle, Square } from "lucide-react";
 
 import { pickRandom, prettify } from "#/lib/utils";
-import { basePalettes, themePresets } from "@kc-studio/shadcn-theme/theme";
 import type {
     BasePalette,
     FontFamily,
@@ -31,12 +30,18 @@ import type {
 } from "@kc-studio/shadcn-theme/theme";
 import {
     basePaletteOptions,
+    basePalettes,
     fontFamilyOptions,
     layoutOptions,
     radiusPresetOptions,
     themePresetOptions,
+    themePresets,
 } from "@kc-studio/shadcn-theme/theme";
-import { useEditor } from "../state/editor-context";
+
+import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip.tsx";
+import { getThemeNameError } from "../../model/theme-name";
+import { useEditor } from "../../state/editor-context";
 
 function Swatch({ color }: { color: string }) {
     return (
@@ -237,69 +242,6 @@ function ShowPlaceholdersField() {
     );
 }
 
-function ImageUrlField({
-    label,
-    description,
-    value,
-    onChange,
-}: {
-    label: string;
-    description?: string;
-    value: string;
-    onChange: (value: string) => void;
-}) {
-    return (
-        <Field>
-            <FieldLabel>{label}</FieldLabel>
-            <Input
-                type="url"
-                inputMode="url"
-                placeholder="https://example.com/image.png"
-                value={value}
-                onChange={event => onChange(event.target.value)}
-            />
-            {description && <FieldDescription>{description}</FieldDescription>}
-        </Field>
-    );
-}
-
-export function ImagesPanel() {
-    const { config, updateConfig } = useEditor();
-
-    return (
-        <div className="space-y-4">
-            <ImageUrlField
-                label="Light logo"
-                description="Shown on light backgrounds."
-                value={config.logoWhiteUrl}
-                onChange={value => updateConfig({ logoWhiteUrl: value })}
-            />
-            <ImageUrlField
-                label="Dark logo"
-                description="Shown on dark backgrounds."
-                value={config.logoDarkUrl}
-                onChange={value => updateConfig({ logoDarkUrl: value })}
-            />
-            {config.layout === "image-aside" && (
-                <ImageUrlField
-                    label="Side image"
-                    description="Full-height image beside the form."
-                    value={config.sideImageUrl}
-                    onChange={value => updateConfig({ sideImageUrl: value })}
-                />
-            )}
-            {config.layout === "centered-card" && (
-                <ImageUrlField
-                    label="Card background"
-                    description="Background image behind the centered card."
-                    value={config.cardBackgroundUrl}
-                    onChange={value => updateConfig({ cardBackgroundUrl: value })}
-                />
-            )}
-        </div>
-    );
-}
-
 function ShuffleButton() {
     const { updateConfig } = useEditor();
 
@@ -322,10 +264,58 @@ function ShuffleButton() {
     );
 }
 
+function ThemeNameField() {
+    const { themeName, setThemeName } = useEditor();
+    const error = getThemeNameError(themeName);
+    return (
+        <Field className="mt-2">
+            <FieldLabel>Theme name</FieldLabel>
+            <InputGroup>
+                <InputGroupInput
+                    type="text"
+                    value={themeName}
+                    aria-invalid={error ? true : undefined}
+                    onChange={e => setThemeName(e.target.value)}
+                    placeholder="my-login-theme"
+                />
+                <InputGroupAddon align="inline-end">
+                    <ThemeNameHint invalid={Boolean(error)} />
+                </InputGroupAddon>
+            </InputGroup>
+            <FieldError>{error}</FieldError>
+        </Field>
+    );
+}
+
+function ThemeNameHint({ invalid }: { invalid: boolean }) {
+    return (
+        <Tooltip>
+            <TooltipTrigger
+                render={
+                    <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon-xs"
+                        aria-label="Theme name requirements"
+                        className={invalid ? "text-destructive" : "text-muted-foreground"}
+                    >
+                        <Info />
+                    </Button>
+                }
+            />
+            <TooltipContent>
+                Used as the Keycloak theme (folder) name. Lowercase letters, digits and dashes only
+                — e.g. acme-login.
+            </TooltipContent>
+        </Tooltip>
+    );
+}
+
 export function ConfigPanel() {
     return (
         <div className="space-y-5">
             <ShuffleButton />
+            <ThemeNameField />
             <BasePaletteField />
             <AccentColorField />
             <RadiusField />

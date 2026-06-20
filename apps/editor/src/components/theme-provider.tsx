@@ -2,7 +2,6 @@ import { ScriptOnce } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "dark" | "light" | "system";
-export const THEMES = ["light", "dark", "system"] as const;
 type ThemeProviderProps = {
     children: React.ReactNode;
     defaultTheme?: Theme;

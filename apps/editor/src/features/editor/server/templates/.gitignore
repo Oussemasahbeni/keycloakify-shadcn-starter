@@ -1,0 +1,3 @@
+# Build artifact copied from packages/shadcn-theme/dist_keycloak by
+# scripts/copy-template-jar.mjs (predev/prebuild). Never commit it.
+*.jar

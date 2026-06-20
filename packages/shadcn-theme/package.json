@@ -21,6 +21,7 @@
         "build-keycloak-theme": "npm run build && keycloakify build",
         "storybook": "storybook dev -p 6006",
         "format": "prettier . --write",
+        "lint": "eslint",
         "emails:check": "email check ./src/email/templates",
         "emails:preview": "email preview ./src/email/templates"
     },
@@ -51,7 +52,7 @@
         "clsx": "^2.1.1",
         "i18next": "^26.2.0",
         "input-otp": "^1.4.2",
-        "keycloakify": "^11.15.5",
+        "keycloakify": "^11.15.9",
         "lucide-react": "^1.16.0",
         "react": "catalog:",
         "react-dom": "catalog:",

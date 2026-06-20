@@ -23,7 +23,7 @@ export const {
     })
     .withAccessTokenValidation({
         type: "RFC 9068: JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens",
-        expectedAudience: (/*{ paramsOfBootstrap, process }*/) => "account",
+        expectedAudience: () => "account",
         accessTokenClaimsSchema: z.object({
             sub: z.string(),
             realm_access: z.object({ roles: z.array(z.string()) }).optional(),

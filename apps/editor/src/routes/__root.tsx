@@ -2,6 +2,7 @@ import { AutoLogoutWarningOverlay } from "#/components/AutoLogoutWarningOverlay"
 import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
+import { Toaster } from "#/components/ui/sonner";
 import { TooltipProvider } from "#/components/ui/tooltip";
 import { useOidc } from "#/oidc";
 import { seo } from "#/utils/seo";
@@ -65,6 +66,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 <ThemeProvider defaultTheme="system" storageKey="theme">
                     <TooltipProvider> {isOidcReady && children}</TooltipProvider>
                     <AutoLogoutWarningOverlay />
+                    <Toaster />
                 </ThemeProvider>
                 <Scripts />
             </body>

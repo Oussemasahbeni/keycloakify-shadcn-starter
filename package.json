@@ -13,10 +13,15 @@
         "theme:dev": "pnpm -F @kc-studio/shadcn-theme dev",
         "theme:prepare": "pnpm -F @kc-studio/shadcn-theme prepare:publish",
         "editor:dev": "pnpm -F @kc-studio/editor dev",
+        "theme:lint": "pnpm -F @kc-studio/shadcn-theme lint",
+        "editor:lint": "pnpm -F @kc-studio/editor lint",
+        "editor:test": "pnpm -F @kc-studio/editor test",
         "format": "prettier . --write",
         "doctor": "npx react-doctor@latest --verbose"
     },
     "devDependencies": {
-        "prettier": "3.8.3"
+        "prettier": "3.8.3",
+        "prettier-plugin-organize-imports": "^4.3.0",
+        "prettier-plugin-tailwindcss": "^0.8.0"
     }
 }

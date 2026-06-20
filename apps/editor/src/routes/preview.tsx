@@ -1,5 +1,5 @@
 import type { PreviewColorScheme, ThemeConfig } from "#/features/editor/model/theme-config";
-import { defaultThemeConfig } from "#/features/editor/model/theme-config";
+import { defaultThemeConfig, themeConfigToProperties } from "#/features/editor/model/theme-config";
 import { getStory } from "#/features/editor/stories/pages";
 import type { PageId } from "#/features/editor/stories/types";
 import { KcPage, getKcContextMock } from "@kc-studio/shadcn-theme/preview";
@@ -135,16 +135,7 @@ function PreviewRoute() {
             },
             properties: {
                 ...storyOverrides?.properties,
-                SHADCN_THEME_LAYOUT: config.layout,
-                SHADCN_THEME_BASE: config.basePalette,
-                SHADCN_THEME_PRESET: config.accent,
-                SHADCN_THEME_RADIUS: config.radius,
-                SHADCN_THEME_FONT: config.font,
-                SHADCN_THEME_PLACEHOLDER: config.showPlaceholders ? "true" : "false",
-                SHADCN_THEME_LOGO_WHITE_URL: config.logoWhiteUrl,
-                SHADCN_THEME_LOGO_DARK_URL: config.logoDarkUrl,
-                SHADCN_THEME_SIDE_IMAGE_URL: config.sideImageUrl,
-                SHADCN_THEME_CARD_BG_URL: config.cardBackgroundUrl,
+                ...themeConfigToProperties(config),
             },
         },
     });

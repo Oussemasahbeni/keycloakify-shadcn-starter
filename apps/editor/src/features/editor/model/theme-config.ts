@@ -49,3 +49,26 @@ export const defaultThemeConfig: ThemeConfig = {
     sideImageUrl: DEFAULT_THEME_SIDE_IMAGE_URL,
     cardBackgroundUrl: DEFAULT_THEME_CARD_BG_URL,
 };
+
+/**
+ * Maps a {@link ThemeConfig} onto the `SHADCN_THEME_*` Keycloak theme properties.
+ *
+ * Single source of truth shared by the live preview (`routes/preview.tsx`, which
+ * feeds these into `getKcContextMock`) and the JAR export feature (which bakes
+ * them as `theme.properties` defaults). Keep both consumers reading from here so
+ * the preview and the downloaded JAR can never drift apart.
+ */
+export function themeConfigToProperties(config: ThemeConfig): Record<string, string> {
+    return {
+        SHADCN_THEME_LAYOUT: config.layout,
+        SHADCN_THEME_BASE: config.basePalette,
+        SHADCN_THEME_PRESET: config.accent,
+        SHADCN_THEME_RADIUS: config.radius,
+        SHADCN_THEME_FONT: config.font,
+        SHADCN_THEME_PLACEHOLDER: config.showPlaceholders ? "true" : "false",
+        SHADCN_THEME_LOGO_WHITE_URL: config.logoWhiteUrl,
+        SHADCN_THEME_LOGO_DARK_URL: config.logoDarkUrl,
+        SHADCN_THEME_SIDE_IMAGE_URL: config.sideImageUrl,
+        SHADCN_THEME_CARD_BG_URL: config.cardBackgroundUrl,
+    };
+}

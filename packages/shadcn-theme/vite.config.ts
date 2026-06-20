@@ -13,10 +13,10 @@ export default defineConfig({
         tailwindcss(),
         keycloakify({
             accountThemeImplementation: "none",
-            themeName: "acme-theme",
+            themeName: "shadcn-theme",
             keycloakVersionTargets: {
                 "22-to-25": false,
-                "all-other-versions": "acme-theme.jar",
+                "all-other-versions": "shadcn-theme.jar",
             },
             environmentVariables: [
                 {
