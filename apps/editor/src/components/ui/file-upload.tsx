@@ -1,0 +1,173 @@
+import { Button } from "#/components/ui/button.tsx";
+import { cn } from "#/lib/utils.ts";
+import { Upload, X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
+
+export type FileUploadProps = {
+    value: File | null;
+    onChange: (file: File | null) => void;
+    /** Forwarded to the `<input accept>` and enforced on drop (e.g. ".png,.svg,.ico" or "image/*"). */
+    accept?: string;
+    /** Built-in size check, in bytes. */
+    maxSizeBytes?: number;
+    /** Extra validation run after the built-in checks; return an error message or `null`. */
+    validate?: (file: File) => string | null;
+    /** Surface validation errors to the parent (the component also renders them itself). */
+    onError?: (message: string | null) => void;
+    disabled?: boolean;
+    /** Trigger label for the `"button"` variant. */
+    label?: React.ReactNode;
+    /** Helper text shown under the control (inside the box for the dropzone variant). */
+    hint?: React.ReactNode;
+    /** Tune the preview `<img>` (e.g. "object-cover"). Defaults to "object-contain". */
+    previewClassName?: string;
+    id?: string;
+    className?: string;
+};
+
+function formatFileSize(bytes: number): string {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function matchesAccept(file: File, accept?: string): boolean {
+    if (!accept) return true;
+    const name = file.name.toLowerCase();
+    const type = file.type.toLowerCase();
+    return accept
+        .split(",")
+        .map(token => token.trim().toLowerCase())
+        .filter(Boolean)
+        .some(token => {
+            if (token.startsWith(".")) return name.endsWith(token);
+            if (token.endsWith("/*")) return type.startsWith(token.slice(0, -1));
+            return type === token;
+        });
+}
+
+export function FileUpload({
+    value,
+    onChange,
+    accept,
+    maxSizeBytes,
+    validate,
+    onError,
+    disabled = false,
+    label = "Upload file",
+    hint,
+    previewClassName,
+    id,
+    className,
+}: FileUploadProps) {
+    const reactId = useId();
+    const inputId = id ?? reactId;
+    const inputRef = useRef<HTMLInputElement>(null);
+    const [error, setErrorState] = useState<string | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!value) {
+            setPreviewUrl(null);
+            return;
+        }
+        const url = URL.createObjectURL(value);
+        setPreviewUrl(url);
+        return () => URL.revokeObjectURL(url);
+    }, [value]);
+
+    function setError(message: string | null) {
+        setErrorState(message);
+        onError?.(message);
+    }
+
+    function selectFile(file: File | null | undefined) {
+        if (!file) return;
+        if (!matchesAccept(file, accept)) {
+            setError("Unsupported file type.");
+            return;
+        }
+        if (maxSizeBytes != null && file.size > maxSizeBytes) {
+            setError(`File is too large (max ${formatFileSize(maxSizeBytes)}).`);
+            return;
+        }
+        const customError = validate?.(file) ?? null;
+        if (customError) {
+            setError(customError);
+            return;
+        }
+        setError(null);
+        onChange(file);
+    }
+
+    function openDialog() {
+        if (!disabled) inputRef.current?.click();
+    }
+
+    function clear() {
+        onChange(null);
+        setError(null);
+        if (inputRef.current) inputRef.current.value = "";
+    }
+
+    const input = (
+        <input
+            ref={inputRef}
+            id={inputId}
+            type="file"
+            accept={accept}
+            disabled={disabled}
+            className="peer sr-only"
+            onChange={event => selectFile(event.target.files?.[0])}
+        />
+    );
+
+    return (
+        <div className={cn("flex flex-col gap-2", className)}>
+            {input}
+            {value ? (
+                <div className="flex items-center gap-3 rounded-md border p-2 transition-colors">
+                    <span className="bg-muted flex size-10 shrink-0 items-center justify-center overflow-hidden rounded border">
+                        {previewUrl && (
+                            <img
+                                src={previewUrl}
+                                alt={value.name}
+                                className={cn("size-full object-contain", previewClassName)}
+                            />
+                        )}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-medium">{value.name}</p>
+                        <p className="text-muted-foreground text-xs">
+                            {formatFileSize(value.size)}
+                        </p>
+                    </div>
+                    {!disabled && (
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon-sm"
+                            aria-label="Remove file"
+                            onClick={clear}
+                        >
+                            <X />
+                        </Button>
+                    )}
+                </div>
+            ) : (
+                <Button
+                    type="button"
+                    variant="outline"
+                    disabled={disabled}
+                    onClick={openDialog}
+                    className="w-full"
+                >
+                    <Upload />
+                    {label}
+                </Button>
+            )}
+            {hint && !error && <p className="text-muted-foreground text-xs">{hint}</p>}
+            {error && <p className="text-destructive text-xs">{error}</p>}
+        </div>
+    );
+}

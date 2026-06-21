@@ -1,13 +1,16 @@
 import type { ThemeConfig } from "#/features/editor/model/theme-config";
 import { defaultThemeConfig } from "#/features/editor/model/theme-config";
 import { strFromU8, unzipSync } from "fflate";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { customizeThemeJar } from "../jar-customizer";
-import { loadTemplateJar } from "../template-jar";
 
 const LOGIN_PROPS = "theme/shadcn-theme/login/theme.properties";
 
-const template = loadTemplateJar();
+const template = new Uint8Array(
+    readFileSync(fileURLToPath(new URL("../templates/base-theme.jar", import.meta.url))),
+);
 
 /** A config that differs from the template defaults on every baked key. */
 const customConfig: ThemeConfig = {
@@ -18,6 +21,7 @@ const customConfig: ThemeConfig = {
     radius: "large",
     font: "inter",
     showPlaceholders: false,
+    showRealmName: false,
     logoWhiteUrl: "https://cdn.example.com/logo-light.svg",
     sideImageUrl: "", // stays empty → `${env.X:}`
 };
@@ -39,6 +43,9 @@ describe("customizeThemeJar (Tier A: config baking)", () => {
         expect(props).toContain("SHADCN_THEME_RADIUS=${env.SHADCN_THEME_RADIUS:large}");
         expect(props).toContain("SHADCN_THEME_FONT=${env.SHADCN_THEME_FONT:inter}");
         expect(props).toContain("SHADCN_THEME_PLACEHOLDER=${env.SHADCN_THEME_PLACEHOLDER:false}");
+        expect(props).toContain(
+            "SHADCN_THEME_SHOW_REALM_NAME=${env.SHADCN_THEME_SHOW_REALM_NAME:false}",
+        );
         expect(props).toContain(
             "SHADCN_THEME_LOGO_WHITE_URL=${env.SHADCN_THEME_LOGO_WHITE_URL:https://cdn.example.com/logo-light.svg}",
         );

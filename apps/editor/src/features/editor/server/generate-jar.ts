@@ -33,6 +33,7 @@ const optionsSchema = z.object({
         layout: z.enum(layoutOptions),
         locale: z.enum(localeValues),
         showPlaceholders: z.boolean(),
+        showRealmName: z.boolean(),
         logoWhiteUrl: z.string(),
         logoDarkUrl: z.string(),
         sideImageUrl: z.string(),

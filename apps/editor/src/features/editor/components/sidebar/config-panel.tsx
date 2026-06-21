@@ -210,7 +210,7 @@ function LayoutField() {
                             htmlFor={`layout-${option}`}
                         >
                             <Field orientation="horizontal">
-                                <span className="flex size-9 shrink-0 items-center justify-center rounded-md border bg-muted/50 text-muted-foreground">
+                                <span className="bg-muted/50 text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-md border">
                                     <Icon className="size-4" />
                                 </span>
                                 <FieldContent>
@@ -241,6 +241,20 @@ function ShowPlaceholdersField() {
         </div>
     );
 }
+function ShowRealmNameField() {
+    const { config, updateConfig } = useEditor();
+
+    return (
+        <div className="flex items-center gap-2">
+            <Switch
+                id="show-realm-name"
+                checked={config.showRealmName}
+                onCheckedChange={checked => updateConfig({ showRealmName: checked })}
+            />
+            <Label htmlFor="show-realm-name">Show realm name</Label>
+        </div>
+    );
+}
 
 function ShuffleButton() {
     const { updateConfig } = useEditor();
@@ -253,6 +267,7 @@ function ShuffleButton() {
             font: pickRandom(fontFamilyOptions),
             layout: pickRandom(layoutOptions),
             showPlaceholders: Math.random() < 0.5,
+            showRealmName: Math.random() < 0.5,
         });
     }
 
@@ -320,6 +335,7 @@ export function ConfigPanel() {
             <AccentColorField />
             <RadiusField />
             <FontFamilyField />
+            <ShowRealmNameField />
             <ShowPlaceholdersField />
             <LayoutField />
         </div>

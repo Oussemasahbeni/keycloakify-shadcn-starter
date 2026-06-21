@@ -42,6 +42,7 @@ export default defineConfig({
                 { name: "SHADCN_THEME_RADIUS", default: "default" },
                 { name: "SHADCN_THEME_FONT", default: "geist" },
                 { name: "SHADCN_THEME_PLACEHOLDER", default: "true" },
+                { name: "SHADCN_THEME_SHOW_REALM_NAME", default: "true" },
             ],
             postBuild: async buildContext => {
                 await buildEmailTheme({

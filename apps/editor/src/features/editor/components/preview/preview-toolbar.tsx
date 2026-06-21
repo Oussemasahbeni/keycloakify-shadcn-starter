@@ -97,6 +97,7 @@ function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string 
             font: config.font,
             locale: config.locale,
             placeholders: String(config.showPlaceholders),
+            realmName: String(config.showRealmName),
         });
 
         // Image URLs are optional — only include the ones that are set so the

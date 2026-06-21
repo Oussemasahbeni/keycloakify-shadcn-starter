@@ -11,6 +11,7 @@ import {
     DEFAULT_THEME_PLACEHOLDER,
     DEFAULT_THEME_PRESET,
     DEFAULT_THEME_RADIUS,
+    DEFAULT_THEME_SHOW_REALM_NAME,
 } from "../src/login/theme/Defaults";
 import {
     basePaletteOptions,
@@ -59,6 +60,18 @@ const preview: Preview = {
                 items: [
                     { value: "true", title: "Show Placeholder" },
                     { value: "false", title: "Hide Placeholder" },
+                ],
+            },
+        },
+        showRealmName: {
+            name: "Show Realm Name",
+            description: "Show the realm name next to the logo",
+            defaultValue: "true",
+            toolbar: {
+                icon: "eye",
+                items: [
+                    { value: "true", title: "Show Realm Name" },
+                    { value: "false", title: "Hide Realm Name" },
                 ],
             },
         },
@@ -168,6 +181,9 @@ const preview: Preview = {
             const showPlaceholder = String(
                 context.globals.showPlaceholder ?? DEFAULT_THEME_PLACEHOLDER,
             );
+            const showRealmName = String(
+                context.globals.showRealmName ?? DEFAULT_THEME_SHOW_REALM_NAME,
+            );
             const font = String(context.globals.themeFont ?? DEFAULT_FONT);
             const logoWhiteUrl = String(context.args.logoWhiteUrl ?? DEFAULT_THEME_LOGO_WHITE_URL);
             const logoDarkUrl = String(context.args.logoDarkUrl ?? DEFAULT_THEME_LOGO_DARK_URL);
@@ -192,6 +208,7 @@ const preview: Preview = {
                         SHADCN_THEME_BASE: themeBase,
                         SHADCN_THEME_RADIUS: themeRadius,
                         SHADCN_THEME_PLACEHOLDER: showPlaceholder,
+                        SHADCN_THEME_SHOW_REALM_NAME: showRealmName,
                         SHADCN_THEME_FONT: font,
                     },
                 },
@@ -199,7 +216,7 @@ const preview: Preview = {
 
             return createElement(Story as never, {
                 args: storyArgs,
-                key: `${context.id}-${layout}-${locale}-${themePreset}-${themeBase}-${themeRadius}-${showPlaceholder}-${font}`,
+                key: `${context.id}-${layout}-${locale}-${themePreset}-${themeBase}-${themeRadius}-${showPlaceholder}-${showRealmName}-${font}`,
             });
         },
     ],

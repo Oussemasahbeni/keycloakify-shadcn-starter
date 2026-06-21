@@ -5,6 +5,7 @@ export const DEFAULT_THEME_LAYOUT = "two-column";
 export const DEFAULT_LOCALE = "en";
 export const DEFAULT_FONT = "geist";
 export const DEFAULT_THEME_PLACEHOLDER = "true";
+export const DEFAULT_THEME_SHOW_REALM_NAME = "true";
 export const DEFAULT_THEME_LOGO_WHITE_URL = "";
 export const DEFAULT_THEME_LOGO_DARK_URL = "";
 export const DEFAULT_THEME_SIDE_IMAGE_URL = "";

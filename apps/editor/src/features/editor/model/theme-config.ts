@@ -30,6 +30,7 @@ export type ThemeConfig = {
     layout: Layout;
     locale: Locale;
     showPlaceholders: boolean;
+    showRealmName: boolean;
     logoWhiteUrl: string;
     logoDarkUrl: string;
     sideImageUrl: string;
@@ -44,6 +45,7 @@ export const defaultThemeConfig: ThemeConfig = {
     layout: DEFAULT_THEME_LAYOUT,
     locale: DEFAULT_LOCALE,
     showPlaceholders: true,
+    showRealmName: true,
     logoWhiteUrl: DEFAULT_THEME_LOGO_WHITE_URL,
     logoDarkUrl: DEFAULT_THEME_LOGO_DARK_URL,
     sideImageUrl: DEFAULT_THEME_SIDE_IMAGE_URL,
@@ -66,6 +68,7 @@ export function themeConfigToProperties(config: ThemeConfig): Record<string, str
         SHADCN_THEME_RADIUS: config.radius,
         SHADCN_THEME_FONT: config.font,
         SHADCN_THEME_PLACEHOLDER: config.showPlaceholders ? "true" : "false",
+        SHADCN_THEME_SHOW_REALM_NAME: config.showRealmName ? "true" : "false",
         SHADCN_THEME_LOGO_WHITE_URL: config.logoWhiteUrl,
         SHADCN_THEME_LOGO_DARK_URL: config.logoDarkUrl,
         SHADCN_THEME_SIDE_IMAGE_URL: config.sideImageUrl,

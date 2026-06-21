@@ -43,6 +43,9 @@ export function TemplateContent(props: TemplateContentProps) {
     const { auth, url, message, isAppInitiatedAction, realm } = kcContext;
     const { msg, msgStr } = useI18n();
 
+    const showRealmName = kcContext.properties.SHADCN_THEME_SHOW_REALM_NAME !== "false";
+    const logoAlt = realm.displayName || realm.name || "Logo";
+
     const titleNode: ReactNode = !(
         auth !== undefined &&
         auth.showUsername &&
@@ -51,14 +54,14 @@ export function TemplateContent(props: TemplateContentProps) {
         <h1 className="text-lg">{headerNode}</h1>
     ) : (
         <div id="kc-username" className="flex items-center justify-between gap-2">
-            <div className="flex gap-4 items-center">
+            <div className="flex items-center gap-4">
                 <User className="text-muted-foreground size-6" />
 
                 <div className="flex flex-col gap-0.5">
-                    <span className="text-xs font-normal text-muted-foreground">
+                    <span className="text-muted-foreground text-xs font-normal">
                         {msgStr("attemptedUsernameLoggingInAs")}
                     </span>
-                    <span className="font-semibold text-lg" id="kc-attempted-username">
+                    <span className="text-lg font-semibold" id="kc-attempted-username">
                         {auth.attemptedUsername}
                     </span>
                 </div>
@@ -98,23 +101,28 @@ export function TemplateContent(props: TemplateContentProps) {
                         brandingVisibilityClassName,
                     )}
                 >
-                    <div className="flex items-center gap-3 mb-4 ">
-                        <img src={logoWhiteUrl} alt="Logo" className="size-14 dark:hidden" />
+                    <div className="mb-4 flex items-center gap-3">
+                        <img
+                            src={logoWhiteUrl}
+                            alt={showRealmName ? "" : logoAlt}
+                            className="h-12 w-auto object-contain dark:hidden"
+                        />
                         <img
                             src={logoDarkUrl}
-                            alt="Logo"
-                            className="size-14 hidden dark:inline-block"
+                            alt={showRealmName ? "" : logoAlt}
+                            className="hidden h-12 w-auto object-contain dark:inline-block"
                         />
-                        {realm.displayNameHtml ? (
-                            <span
-                                className="text-xl"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(realm.displayNameHtml),
-                                }}
-                            />
-                        ) : (
-                            <span className="text-xl">{realm.displayName || realm.name}</span>
-                        )}
+                        {showRealmName &&
+                            (realm.displayNameHtml ? (
+                                <span
+                                    className="text-xl"
+                                    dangerouslySetInnerHTML={{
+                                        __html: kcSanitize(realm.displayNameHtml),
+                                    }}
+                                />
+                            ) : (
+                                <span className="text-xl">{realm.displayName || realm.name}</span>
+                            ))}
                     </div>
                 </div>
 
@@ -178,10 +186,7 @@ export function TemplateContent(props: TemplateContentProps) {
                                         event.preventDefault();
                                         return false;
                                     }}
-                                    className={cn(
-                                        buttonVariants({ variant: "outline" }),
-                                        "w-full"
-                                    )}
+                                    className={cn(buttonVariants({ variant: "outline" }), "w-full")}
                                 >
                                     {msg("doTryAnotherWay")}
                                 </a>
