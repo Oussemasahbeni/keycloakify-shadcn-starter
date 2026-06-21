@@ -13,9 +13,6 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/editor")({
     beforeLoad: enforceLogin,
     component: EditorPage,
-    pendingComponent: () => (
-        <div className="flex h-full items-center justify-center">Loading preview...</div>
-    ),
 });
 
 function EditorPage() {

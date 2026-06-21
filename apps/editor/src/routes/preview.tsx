@@ -56,9 +56,6 @@ export const Route = createFileRoute("/preview")({
     }),
     ssr: false,
     component: PreviewRoute,
-    pendingComponent: () => (
-        <div className="flex h-full items-center justify-center">Loading preview...</div>
-    ),
 });
 
 type IncomingState = {
