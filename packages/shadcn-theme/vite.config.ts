@@ -2,6 +2,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { buildEmailTheme } from "keycloakify-emails";
 import { keycloakify } from "keycloakify/vite-plugin";
+import { rm } from "node:fs/promises";
 import path from "node:path";
 import { defineConfig } from "vite";
 
@@ -90,6 +91,47 @@ export default defineConfig({
                     cwd: import.meta.dirname,
                     environmentVariables: buildContext.environmentVariables,
                 });
+
+                // Slim the JAR: drop the PatternFly/jQuery base resources keycloakify
+                // injects from its own package. This theme sets `doUseDefaultCss: false`
+                // and wires every style manually, so none of it is loaded (the FTL only
+                // declares `resourcesCommonPath` as a variable, never <link>s it). Deleting
+                // here — after keycloakify staged the resources, before the JAR is packed —
+                // is the only durable removal point; deleting the `public/` mirrors doesn't
+                // work because the build re-copies them from node_modules every time.
+                // Removes ~2.5 MB (compressed): 5.6 MB → ~3.1 MB.
+                const resourcesDir = path.join(buildContext.keycloakifyBuildDirPath, "resources");
+                for (const themeName of buildContext.themeNames) {
+                    const loginResources = path.join(
+                        resourcesDir,
+                        "theme",
+                        themeName,
+                        "login",
+                        "resources",
+                    );
+                    // `dist/keycloak-theme` = leaked dev-server mirror (sync-extensions);
+                    // `resources-common` = the default PatternFly/jQuery base.
+                    await rm(path.join(loginResources, "dist", "keycloak-theme"), {
+                        recursive: true,
+                        force: true,
+                    });
+                    await rm(path.join(loginResources, "resources-common"), {
+                        recursive: true,
+                        force: true,
+                    });
+                    await rm(path.join(loginResources, "js"), {
+                        recursive: true,
+                        force: true,
+                    });
+                    await rm(path.join(loginResources, "css"), {
+                        recursive: true,
+                        force: true,
+                    });
+                    await rm(path.join(loginResources, "img"), {
+                        recursive: true,
+                        force: true,
+                    });
+                }
             },
         }),
     ],

@@ -52,15 +52,15 @@ jspm_packages
 
 /dist
 
-/dist_keycloak
-/build
-/storybook-static
+**/dist_keycloak
+**/build
+**/storybook-static
 
 *storybook.log
 
-/.keycloakify
+**/.keycloakify
 
-/.temp-emails
+**/.temp-emails
 
 dist
 dist-ssr
