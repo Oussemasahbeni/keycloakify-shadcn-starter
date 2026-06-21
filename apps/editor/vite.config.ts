@@ -14,7 +14,11 @@ const config = defineConfig({
         devtools(),
         tailwindcss(),
         tanstackStart(),
-        nitro(),
+        nitro({
+            serverAssets: [
+                { baseName: "theme-template", dir: "./src/features/editor/server/templates" },
+            ],
+        }),
         oidcSpa({
             browserRuntimeFreeze: {
                 enabled: true,

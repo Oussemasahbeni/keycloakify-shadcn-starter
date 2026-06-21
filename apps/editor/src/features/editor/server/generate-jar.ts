@@ -77,7 +77,7 @@ export const generateJar = createServerFn({ method: "POST" })
             Object.assign(assets, await generateFaviconSet(bytes));
         }
 
-        const jar = customizeThemeJar(loadTemplateJar(), {
+        const jar = customizeThemeJar(await loadTemplateJar(), {
             config,
             themeName,
             assets: Object.keys(assets).length > 0 ? assets : undefined,
