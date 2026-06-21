@@ -8,9 +8,11 @@ import {
     NavigationMenuList,
 } from "#/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "#/components/ui/sheet";
+import { DISCORD_INVITE_URL, GITHUB_URL } from "#/config/constants.ts";
 import { cn } from "#/lib/utils";
+import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
 import { Link } from "@tanstack/react-router";
-import { Github, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const NAV_ITEMS = [
@@ -19,8 +21,6 @@ const NAV_ITEMS = [
     { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#contact" },
 ];
-
-const GITHUB_URL = "https://github.com/Oussemasahbeni/keycloakify-shadcn-theme-editor";
 
 function smoothScrollTo(targetId: string) {
     if (targetId.startsWith("#")) {
@@ -33,47 +33,44 @@ function smoothScrollTo(targetId: string) {
 
 function Brand() {
     return (
-        <a
-            href="https://shadcnstore.com"
-            className="flex cursor-pointer items-center gap-2"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+        <div className="flex cursor-pointer items-center gap-2">
             <Logo size={32} />
             <span className="font-bold">Keycloak Theme Editor</span>
-        </a>
+        </div>
     );
 }
 
-function GithubLink({ className }: { className?: string }) {
+function GithubLink() {
     return (
         <a
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Repository"
-            className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "cursor-pointer",
-                className,
-            )}
+            className={cn(buttonVariants({ variant: "outline", size: "icon" }), "cursor-pointer")}
         >
-            <Github />
+            <SiGithub />
         </a>
     );
 }
 
-function GetStartedButton({
-    size,
-    className,
-    onClick,
-}: {
-    size?: "default" | "lg";
-    className?: string;
-    onClick?: () => void;
-}) {
+function DiscordLink() {
     return (
-        <Link to="/editor" onClick={onClick} className={cn(buttonVariants({ size }), className)}>
+        <a
+            href={DISCORD_INVITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Discord Server"
+            className={cn(buttonVariants({ variant: "outline", size: "icon" }), "cursor-pointer")}
+        >
+            <SiDiscord />
+        </a>
+    );
+}
+
+function GetStartedButton({ className }: { className?: string }) {
+    return (
+        <Link className={cn(buttonVariants({ variant: "default" }), className)} to="/editor">
             Get Started
         </Link>
     );
@@ -86,7 +83,7 @@ function DesktopNav() {
                 {NAV_ITEMS.map(item => (
                     <NavigationMenuItem key={item.name}>
                         <NavigationMenuLink
-                            className="group inline-flex h-10 w-max cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:text-primary focus:outline-none"
+                            className="group hover:text-primary focus:text-primary inline-flex h-10 w-max cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium transition-colors focus:outline-none"
                             onClick={e => {
                                 e.preventDefault();
                                 if (item.href.startsWith("#")) {
@@ -109,6 +106,7 @@ function DesktopActions() {
     return (
         <div className="hidden items-center gap-2 md:flex">
             <ModeToggle />
+            <DiscordLink />
             <GithubLink />
             <GetStartedButton />
         </div>
@@ -137,7 +135,8 @@ function MobileMenu() {
                             <Logo size={32} />
                             <div className="ml-auto flex items-center gap-2">
                                 <ModeToggle />
-                                <GithubLink className="size-8" />
+                                <GithubLink />
+                                <DiscordLink />
                                 <Button
                                     variant="ghost"
                                     size="icon"
@@ -156,7 +155,7 @@ function MobileMenu() {
                                 <div key={item.name}>
                                     <button
                                         type="button"
-                                        className="flex w-full cursor-pointer items-center rounded-lg px-4 py-3 text-left text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+                                        className="hover:bg-accent hover:text-accent-foreground flex w-full cursor-pointer items-center rounded-lg px-4 py-3 text-left text-base font-medium transition-colors"
                                         onClick={() => {
                                             setIsOpen(false);
                                             setTimeout(() => smoothScrollTo(item.href), 100);
@@ -170,11 +169,7 @@ function MobileMenu() {
                     </div>
 
                     <div className="border-t p-6">
-                        <GetStartedButton
-                            size="lg"
-                            className="w-full"
-                            onClick={() => setIsOpen(false)}
-                        />
+                        <GetStartedButton className="w-full" />
                     </div>
                 </div>
             </SheetContent>
@@ -184,7 +179,7 @@ function MobileMenu() {
 
 export function Header() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl supports-backdrop-filter:bg-background/60">
+        <header className="bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-xl">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                 <Brand />
                 <DesktopNav />

@@ -1,57 +1,58 @@
 import { Badge } from "#/components/ui/badge";
 import { buttonVariants } from "#/components/ui/button";
 import { Card, CardContent } from "#/components/ui/card";
+import { DISCORD_INVITE_URL, GITHUB_URL } from "#/config/constants.ts";
+import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
+import { Eye, Package, Palette } from "lucide-react";
 import { CardDecorator } from "./card-decorator";
-import { Code, Crown, Github, Layout, Palette } from "lucide-react";
 
 const values = [
     {
-        icon: Code,
-        title: "Developer First",
+        icon: Eye,
+        title: "Live Preview",
         description:
-            "Every component is built with the developer experience in mind, ensuring clean code and easy integration.",
+            "Tweak colors, fonts, radius, and layout and watch every Keycloak login page update in real time, in light and dark mode.",
     },
     {
         icon: Palette,
-        title: "Design Excellence",
+        title: "shadcn/ui + Tailwind v4",
         description:
-            "We maintain the highest design standards, following shadcn/ui principles and modern UI patterns.",
+            "Built on shadcn/ui with OKLCH color theming, base palettes, font and radius presets, so your login pages match your product.",
     },
     {
-        icon: Layout,
-        title: "Production Ready",
+        icon: Package,
+        title: "Export to Keycloak",
         description:
-            "Battle-tested components used in real applications with proven performance and reliability across different environments.",
+            "Generate a deploy-ready Keycloakify theme JAR you drop into Keycloak's providers/ directory and select in your realm.",
     },
     {
-        icon: Crown,
-        title: "Premium Quality",
+        icon: SiGithub,
+        title: "Open Source",
         description:
-            "Hand-crafted with attention to detail and performance optimization, ensuring exceptional user experience and accessibility.",
+            "MIT-licensed and built on Keycloakify, React, Tailwind and TypeScript. Use it freely and contribute on GitHub.",
     },
 ];
 
 export function AboutSection() {
     return (
-        <section id="about" className="py-24 sm:py-32">
+        <section id="features" className="py-24 sm:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-4xl text-center mb-16">
+                <div className="mx-auto mb-16 max-w-4xl text-center">
                     <Badge variant="outline" className="mb-4">
-                        About
+                        Features
                     </Badge>
-                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
-                        Built for developers, by developers
+                    <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
+                        Everything you need to theme Keycloak
                     </h2>
-                    <p className="text-lg text-muted-foreground mb-8">
-                        We're passionate about creating the best visual editor for Keycloak themes.
-                        Our mission is to accelerate development and help developers build beautiful
-                        login interfaces faster.
+                    <p className="text-muted-foreground mb-8 text-lg">
+                        Style every login and registration page from one visual editor, then export
+                        a production-ready theme. No FreeMarker, no guesswork.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-4 mb-12">
+                <div className="mb-12 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
                     {values.map(value => (
-                        <Card key={value.title} className="group shadow-xs py-2">
+                        <Card key={value.title} className="group py-2 shadow-xs">
                             <CardContent className="p-8">
                                 <div className="flex flex-col items-center text-center">
                                     <CardDecorator>
@@ -68,9 +69,9 @@ export function AboutSection() {
                 </div>
 
                 <div className="mt-16 text-center">
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div className="flex flex-col justify-center gap-4 sm:flex-row">
                         <a
-                            href="https://github.com/Oussemasahbeni/keycloakify-shadcn-theme-editor"
+                            href={GITHUB_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className={buttonVariants({
@@ -78,11 +79,11 @@ export function AboutSection() {
                                 className: "cursor-pointer",
                             })}
                         >
-                            <Github data-icon="inline-start" />
+                            <SiGithub data-icon="inline-start" />
                             Star on GitHub
                         </a>
                         <a
-                            href="https://discord.com/invite/XEQhPc9a6p"
+                            href={DISCORD_INVITE_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className={buttonVariants({
@@ -91,6 +92,7 @@ export function AboutSection() {
                                 className: "cursor-pointer",
                             })}
                         >
+                            <SiDiscord data-icon="inline-start" />
                             Join Discord Community
                         </a>
                     </div>

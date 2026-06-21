@@ -13,7 +13,17 @@ const config = defineConfig({
     plugins: [
         devtools(),
         tailwindcss(),
-        tanstackStart(),
+        tanstackStart({
+            prerender: {
+                enabled: true,
+                // The landing page links to /editor (client-only, ssr:false), so don't
+                // crawl links — only prerender the explicitly listed pages below.
+                crawlLinks: false,
+                // only the root path or the paths defined in the pages config will be prerendered
+                autoStaticPathsDiscovery: false,
+            },
+            pages: [{ path: "/", prerender: { enabled: true } }],
+        }),
         nitro({
             serverAssets: [
                 { baseName: "theme-template", dir: "./src/features/editor/server/templates" },

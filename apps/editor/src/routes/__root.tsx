@@ -4,7 +4,6 @@ import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
 import { Toaster } from "#/components/ui/sonner";
 import { TooltipProvider } from "#/components/ui/tooltip";
-import { useOidc } from "#/oidc";
 import { seo } from "#/utils/seo";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
@@ -20,8 +19,12 @@ export const Route = createRootRoute({
                 content: "width=device-width, initial-scale=1",
             },
             ...seo({
-                title: "Keycloak Theme Editor",
-                description: `A tool to edit Keycloak themes with a visual editor `,
+                title: "Keycloak Theme Editor — Visually customize Keycloak login themes",
+                description:
+                    "An open-source visual editor for Keycloak login themes. Customize colors, fonts, radius, and layout with shadcn/ui, preview every page live, and export a deploy-ready theme.",
+                keywords:
+                    "Keycloak, Keycloak theme, Keycloakify, login theme, theme editor, shadcn/ui, Tailwind CSS, OIDC, SSO",
+                image: "/editor-preview-white.png",
             }),
         ],
         links: [
@@ -46,7 +49,7 @@ export const Route = createRootRoute({
                 sizes: "16x16",
                 href: "/favicon-16x16.png",
             },
-            { rel: "manifest", href: "/site.webmanifest", color: "#fffff" },
+            { rel: "manifest", href: "/site.webmanifest" },
             { rel: "icon", href: "/favicon.ico" },
         ],
     }),
@@ -55,8 +58,6 @@ export const Route = createRootRoute({
     shellComponent: RootDocument,
 });
 function RootDocument({ children }: { children: React.ReactNode }) {
-    const { isOidcReady } = useOidc();
-
     return (
         <html lang="en">
             <head>
@@ -64,7 +65,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             </head>
             <body>
                 <ThemeProvider defaultTheme="system" storageKey="theme">
-                    <TooltipProvider> {isOidcReady && children}</TooltipProvider>
+                    <TooltipProvider>{children}</TooltipProvider>
                     <AutoLogoutWarningOverlay />
                     <Toaster />
                 </ThemeProvider>

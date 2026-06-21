@@ -6,7 +6,8 @@ import {
 } from "#/components/ui/accordion";
 import { Badge } from "#/components/ui/badge";
 import { buttonVariants } from "#/components/ui/button";
-import { CircleHelp } from "lucide-react";
+import { DISCORD_INVITE_URL } from "#/config/constants.ts";
+import { CircleCheck } from "lucide-react";
 
 type FaqItem = {
     value: string;
@@ -14,36 +15,36 @@ type FaqItem = {
     answer: string;
 };
 
-const faqItems: FaqItem[] = [
+export const faqItems: FaqItem[] = [
     {
         value: "item-1",
-        question: "How do I integrate ShadcnStore components into my project?",
-        answer: "Integration is simple! All our components are built with shadcn/ui and work with React, Next.js, and Vite. Just copy the component code, install any required dependencies, and paste it into your project. Each component comes with detailed installation instructions and examples.",
+        question: "What is the Keycloak Theme Editor?",
+        answer: "It's a visual editor for Keycloak login themes. Instead of hand-writing FreeMarker templates and CSS, you tweak colors, fonts, radius, and layout in a live editor that renders the real theme, then export a ready-to-deploy theme for your Keycloak instance.",
     },
     {
         value: "item-2",
-        question: "What's the difference between free and premium components?",
-        answer: "Free components include essential UI elements like buttons, forms, and basic layouts. Premium components offer advanced features like complex data tables, analytics dashboards, authentication flows, and complete admin templates. Premium also includes Figma files, priority support, and commercial licenses.",
+        question: "Is it free and open source?",
+        answer: "Yes. The editor and the underlying shadcn/ui Keycloak theme are open source under the MIT license. You can use them in personal and commercial projects, self-host the editor, and contribute on GitHub.",
     },
     {
         value: "item-3",
-        question: "Can I use these components in commercial projects?",
-        answer: "Yes! Free components come with an MIT license for unlimited use. Premium components include a commercial license that allows usage in client projects, SaaS applications, and commercial products without attribution requirements.",
+        question: "How do I deploy the generated theme to Keycloak?",
+        answer: "The theme builds into a Keycloakify JAR. Drop that JAR into your Keycloak server's providers/ directory, restart Keycloak, then select the theme under Realm settings → Themes → Login theme. Your customized login and registration pages go live immediately.",
     },
     {
         value: "item-4",
-        question: "Do you provide support and updates?",
-        answer: "Absolutely! We provide community support for free components through our Discord server and GitHub issues. Premium subscribers get priority email support, regular component updates, and early access to new releases. We also maintain compatibility with the latest shadcn/ui versions.",
+        question: "Can I customize colors, fonts, layouts, and radius?",
+        answer: "Yes. Choose from 18 color presets and 7 neutral base palettes, 9 font families, multiple radius presets, and 3 layouts (two-column, centered card, and image-aside). Everything is built on OKLCH color tokens so light and dark mode stay consistent.",
     },
     {
         value: "item-5",
-        question: "What frameworks and tools do you support?",
-        answer: "Our components work with React 18+, Next.js 13+, and Vite. We use TypeScript, Tailwind CSS, and follow shadcn/ui conventions. Components are tested with popular tools like React Hook Form, TanStack Query, and Zustand for state management.",
+        question: "Does it support multiple languages?",
+        answer: "The theme ships with built-in internationalization for 30 languages, including right-to-left locales. You can preview any login page in any supported language directly in the editor.",
     },
     {
         value: "item-6",
-        question: "How often do you release new components?",
-        answer: "We release new components and templates weekly. Premium subscribers get early access to new releases, while free components are updated regularly based on community feedback. You can track our roadmap and request specific components through our GitHub repository.",
+        question: "What is it built with?",
+        answer: "The editor is a TanStack Start app, and the theme is built with Keycloakify v11, React 19, TypeScript, Tailwind CSS v4, and shadcn/ui. It renders the real theme in an isolated preview, so what you see is exactly what Keycloak will serve.",
     },
 ];
 
@@ -51,20 +52,20 @@ export function FaqSection() {
     return (
         <section id="faq" className="py-24 sm:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center mb-16">
+                <div className="mx-auto mb-16 max-w-2xl text-center">
                     <Badge variant="outline" className="mb-4">
                         FAQ
                     </Badge>
-                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+                    <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
                         Frequently Asked Questions
                     </h2>
-                    <p className="text-lg text-muted-foreground">
-                        Everything you need to know about ShadcnStore components, licensing, and
-                        integration. Still have questions? We're here to help!
+                    <p className="text-muted-foreground text-lg">
+                        Everything you need to know about the Keycloak Theme Editor, deployment, and
+                        customization. Still have questions? We're here to help!
                     </p>
                 </div>
 
-                <div className="max-w-4xl mx-auto">
+                <div className="mx-auto max-w-4xl">
                     <Accordion className="space-y-5">
                         {faqItems.map(item => (
                             <AccordionItem
@@ -74,30 +75,30 @@ export function FaqSection() {
                             >
                                 <AccordionTrigger className="cursor-pointer items-center gap-4 rounded-none bg-transparent py-2 ps-3 pe-4 hover:no-underline data-[state=open]:border-b">
                                     <div className="flex items-center gap-4">
-                                        <div className="bg-primary/10 text-primary flex size-9 shrink-0 items-center justify-center rounded-full">
-                                            <CircleHelp className="size-5" />
-                                        </div>
+                                        <CircleCheck className="size-5" />
                                         <span className="text-start font-semibold">
                                             {item.question}
                                         </span>
                                     </div>
                                 </AccordionTrigger>
-                                <AccordionContent className="p-4 bg-transparent">
+                                <AccordionContent className="bg-transparent p-4">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>
                         ))}
                     </Accordion>
 
-                    <div className="text-center mt-12">
+                    <div className="mt-12 text-center">
                         <p className="text-muted-foreground mb-4">
                             Still have questions? We're here to help.
                         </p>
                         <a
-                            href="#contact"
+                            href={DISCORD_INVITE_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={buttonVariants({ className: "cursor-pointer" })}
                         >
-                            Contact Support
+                            Ask on Discord
                         </a>
                     </div>
                 </div>

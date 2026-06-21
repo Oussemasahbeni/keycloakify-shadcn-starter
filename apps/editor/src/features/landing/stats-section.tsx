@@ -1,31 +1,31 @@
 import { Card, CardContent } from "#/components/ui/card";
 import { DotPattern } from "#/components/dot-pattern";
-import { Download, Package, Star, Users } from "lucide-react";
+import { Layout, LayoutTemplate, Languages, Palette } from "lucide-react";
 
 const stats = [
     {
-        icon: Package,
-        value: "500+",
-        label: "Components",
-        description: "Ready-to-use blocks",
+        icon: LayoutTemplate,
+        value: "39",
+        label: "Login Pages",
+        description: "Every login & registration screen",
     },
     {
-        icon: Download,
-        value: "25K+",
-        label: "Downloads",
-        description: "Trusted worldwide",
+        icon: Languages,
+        value: "30",
+        label: "Languages",
+        description: "Built-in translations",
     },
     {
-        icon: Users,
-        value: "10K+",
-        label: "Developers",
-        description: "Active community",
+        icon: Palette,
+        value: "18",
+        label: "Color Presets",
+        description: "Plus 7 base palettes",
     },
     {
-        icon: Star,
-        value: "4.9",
-        label: "Rating",
-        description: "User satisfaction",
+        icon: Layout,
+        value: "3",
+        label: "Layouts",
+        description: "Two-column · centered · image-aside",
     },
 ];
 
