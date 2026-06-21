@@ -1,11 +1,13 @@
 import { AutoLogoutWarningOverlay } from "#/components/AutoLogoutWarningOverlay";
+import { LoadingScreen } from "#/components/loading-screen";
 import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
 import { Toaster } from "#/components/ui/sonner";
 import { TooltipProvider } from "#/components/ui/tooltip";
 import { seo } from "#/utils/seo";
-import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
+import { HeadContent, Scripts, createRootRoute, useRouter } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -21,7 +23,7 @@ export const Route = createRootRoute({
             ...seo({
                 title: "Keycloak Theme Editor — Visually customize Keycloak login themes",
                 description:
-                    "An open-source visual editor for Keycloak login themes. Customize colors, fonts, radius, and layout with shadcn/ui, preview every page live, and export a deploy-ready theme.",
+                    "An open-source visual editor for Keycloak login themes. Customize colors, fonts, radius, and layout with shadcn/ui, preview every login page live, and export a deploy-ready theme.",
                 keywords:
                     "Keycloak, Keycloak theme, Keycloakify, login theme, theme editor, shadcn/ui, Tailwind CSS, OIDC, SSO",
                 image: "/editor-preview-white.png",
@@ -57,7 +59,22 @@ export const Route = createRootRoute({
     notFoundComponent: () => <NotFound />,
     shellComponent: RootDocument,
 });
+
+function useHasSsrDisabledRoute() {
+    const router = useRouter();
+    return router.state.matches.some((m) => m.ssr === false);
+}
+
 function RootDocument({ children }: { children: React.ReactNode }) {
+    const [hydrated, setHydrated] = useState(false);
+    const hasSsrDisabledRoute = useHasSsrDisabledRoute();
+
+    useEffect(() => {
+        setHydrated(true);
+    }, []);
+
+    const showFallback = !hydrated && hasSsrDisabledRoute;
+
     return (
         <html lang="en">
             <head>
@@ -65,7 +82,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             </head>
             <body>
                 <ThemeProvider defaultTheme="system" storageKey="theme">
-                    <TooltipProvider>{children}</TooltipProvider>
+                    <TooltipProvider>
+                        {showFallback ? <LoadingScreen /> : children}
+                    </TooltipProvider>
                     <AutoLogoutWarningOverlay />
                     <Toaster />
                 </ThemeProvider>

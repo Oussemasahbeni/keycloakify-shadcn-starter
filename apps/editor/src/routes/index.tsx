@@ -75,9 +75,9 @@ function structuredData() {
     };
 }
 
-export function Landing() {
+function Landing() {
     return (
-        <div className="flex flex-col min-h-svh">
+        <div className="flex min-h-svh flex-col">
             <Header />
             <main className="flex-1">
                 <HeroSection />
