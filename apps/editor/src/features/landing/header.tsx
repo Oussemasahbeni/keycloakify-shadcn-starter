@@ -83,7 +83,6 @@ function DesktopNav() {
                 {NAV_ITEMS.map(item => (
                     <NavigationMenuItem key={item.name}>
                         <NavigationMenuLink
-                            className="group hover:text-primary focus:text-primary inline-flex h-10 w-max cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium transition-colors focus:outline-none"
                             onClick={e => {
                                 e.preventDefault();
                                 if (item.href.startsWith("#")) {

@@ -54,7 +54,6 @@ export const Route = createFileRoute("/preview")({
         sideImage: (search.sideImage as string | undefined) || undefined,
         cardBg: (search.cardBg as string | undefined) || undefined,
     }),
-    ssr: false,
     component: PreviewRoute,
 });
 

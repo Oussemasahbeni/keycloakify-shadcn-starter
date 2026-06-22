@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
             },
         ],
     }),
-    component: Landing,
+    component: Home,
 });
 
 function structuredData() {
@@ -75,7 +75,7 @@ function structuredData() {
     };
 }
 
-function Landing() {
+function Home() {
     return (
         <div className="flex min-h-svh flex-col">
             <Header />
