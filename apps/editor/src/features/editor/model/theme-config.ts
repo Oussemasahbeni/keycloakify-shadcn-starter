@@ -16,10 +16,21 @@ import {
     DEFAULT_THEME_RADIUS,
     DEFAULT_THEME_SIDE_IMAGE_URL,
 } from "@kc-studio/shadcn-theme/theme";
+import { Moon, Sun } from "lucide-react";
 import type { Locale } from "./locales";
 import { DEFAULT_LOCALE } from "./locales";
 
 export type PreviewColorScheme = "light" | "dark";
+
+type SchemeConfig = {
+    value: PreviewColorScheme;
+    label: string;
+    icon: typeof Sun | typeof Moon;
+};
+export const SCHEMES = [
+    { value: "light", label: "Light", icon: Sun },
+    { value: "dark", label: "Dark", icon: Moon },
+] as const satisfies ReadonlyArray<SchemeConfig>;
 
 export type SaveStatus = "idle" | "saving" | "saved" | "error";
 export type ThemeConfig = {

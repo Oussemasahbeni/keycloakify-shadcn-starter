@@ -1,7 +1,9 @@
 import { Button } from "#/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
 
-import { ExternalLink, Moon, RotateCcw, Sun } from "lucide-react";
+import { ButtonGroup } from "#/components/ui/button-group";
+import { ExternalLink, RotateCcw } from "lucide-react";
+import { SCHEMES } from "../../model/theme-config";
 import { VIEWPORTS } from "../../model/viewport";
 import { useEditor } from "../../state/editor-context";
 import type { PageId } from "../../stories/types";
@@ -12,7 +14,7 @@ function ViewportToggle() {
     const { viewport, setViewport } = useEditor();
 
     return (
-        <div className="bg-background flex items-center gap-1 rounded-lg border p-1">
+        <ButtonGroup>
             {VIEWPORTS.map(({ id, label, icon: Icon }) => {
                 const isActive = viewport === id;
                 return (
@@ -20,9 +22,8 @@ function ViewportToggle() {
                         <TooltipTrigger
                             render={
                                 <Button
-                                    variant={isActive ? "secondary" : "ghost"}
+                                    variant={isActive ? "default" : "outline"}
                                     size="icon"
-                                    className="size-8"
                                     aria-pressed={isActive}
                                     onClick={() => setViewport(id)}
                                 >
@@ -35,7 +36,7 @@ function ViewportToggle() {
                     </Tooltip>
                 );
             })}
-        </div>
+        </ButtonGroup>
     );
 }
 
@@ -43,42 +44,26 @@ function PreviewThemeToggle() {
     const { previewColorScheme, setPreviewColorScheme } = useEditor();
 
     return (
-        <div className="bg-background flex items-center gap-1 rounded-lg border p-1">
-            <Tooltip>
-                <TooltipTrigger
-                    render={
-                        <Button
-                            variant={previewColorScheme === "light" ? "secondary" : "ghost"}
-                            size="icon"
-                            className="size-8"
-                            aria-pressed={previewColorScheme === "light"}
-                            onClick={() => setPreviewColorScheme("light")}
-                        >
-                            <Sun className="size-4" />
-                            <span className="sr-only">Light</span>
-                        </Button>
-                    }
-                />
-                <TooltipContent>Light</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-                <TooltipTrigger
-                    render={
-                        <Button
-                            variant={previewColorScheme === "dark" ? "secondary" : "ghost"}
-                            size="icon"
-                            className="size-8"
-                            aria-pressed={previewColorScheme === "dark"}
-                            onClick={() => setPreviewColorScheme("dark")}
-                        >
-                            <Moon className="size-4" />
-                            <span className="sr-only">Dark</span>
-                        </Button>
-                    }
-                />
-                <TooltipContent>Dark</TooltipContent>
-            </Tooltip>
-        </div>
+        <ButtonGroup>
+            {SCHEMES.map(({ value: scheme, label, icon: Icon }) => (
+                <Tooltip>
+                    <TooltipTrigger
+                        render={
+                            <Button
+                                variant={previewColorScheme === scheme ? "default" : "outline"}
+                                size="icon"
+                                aria-pressed={previewColorScheme === scheme}
+                                onClick={() => setPreviewColorScheme(scheme)}
+                            >
+                                <Icon />
+                                <span className="sr-only">{label}</span>
+                            </Button>
+                        }
+                    />
+                    <TooltipContent>{label}</TooltipContent>
+                </Tooltip>
+            ))}
+        </ButtonGroup>
     );
 }
 
@@ -98,22 +83,11 @@ function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string 
             locale: config.locale,
             placeholders: String(config.showPlaceholders),
             realmName: String(config.showRealmName),
-        });
-
-        // Image URLs are optional — only include the ones that are set so the
-        // URL stays clean (the preview defaults empty params to '' anyway).
-        const imageParams = {
             logoWhite: config.logoWhiteUrl,
             logoDark: config.logoDarkUrl,
             sideImage: config.sideImageUrl,
             cardBg: config.cardBackgroundUrl,
-        };
-        for (const [key, value] of Object.entries(imageParams)) {
-            if (value) {
-                params.set(key, value);
-            }
-        }
-
+        });
         window.open(`/preview?${params.toString()}`, "_blank", "noopener");
     }
 
@@ -121,7 +95,7 @@ function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string 
         <Tooltip>
             <TooltipTrigger
                 render={
-                    <Button variant="outline" size="icon" className="size-8" onClick={openInNewTab}>
+                    <Button variant="outline" size="icon" onClick={openInNewTab}>
                         <ExternalLink />
                     </Button>
                 }
@@ -138,7 +112,7 @@ function ResetButton() {
         <Tooltip>
             <TooltipTrigger
                 render={
-                    <Button variant="outline" size="icon" className="size-8" onClick={resetConfig}>
+                    <Button variant="outline" size="icon" onClick={resetConfig}>
                         <RotateCcw />
                     </Button>
                 }

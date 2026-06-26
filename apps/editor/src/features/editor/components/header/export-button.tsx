@@ -4,12 +4,13 @@ import { useServerFn } from "@tanstack/react-start";
 import { Download } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { imageAssets } from "../../model/assets";
 import { getThemeNameError } from "../../model/theme-name";
 import { generateJar } from "../../server/generate-jar";
 import { useEditor } from "../../state/editor-context";
 
 export function ExportButton() {
-    const { config, themeName, favicon } = useEditor();
+    const { config, themeName, files } = useEditor();
     const [isExporting, setIsExporting] = useState(false);
     const exportJar = useServerFn(generateJar);
 
@@ -25,7 +26,13 @@ export function ExportButton() {
             const name = themeName.trim();
             const formData = new FormData();
             formData.append("options", JSON.stringify({ config, themeName: name }));
-            if (favicon) formData.append("favicon", favicon);
+
+            for (const { key } of imageAssets) {
+                const file = files[key];
+                if (file) formData.append(key, file);
+            }
+            // Favicon is upload-only and baked via its own multi-file pipeline.
+            if (files.favicon) formData.append("favicon", files.favicon);
 
             const response = await exportJar({ data: formData });
             const blob = await response.blob();

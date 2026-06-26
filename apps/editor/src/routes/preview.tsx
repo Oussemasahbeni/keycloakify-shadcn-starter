@@ -1,3 +1,8 @@
+import { useReceivePreviewState } from "#/features/editor/hooks/use-iframe-message";
+import type { PreviewFiles } from "#/features/editor/hooks/use-preview-files-channel";
+import { useReceivePreviewFiles } from "#/features/editor/hooks/use-preview-files-channel";
+import type { ImageAssetKey } from "#/features/editor/model/assets";
+import { imageAssets } from "#/features/editor/model/assets";
 import type { PreviewColorScheme, ThemeConfig } from "#/features/editor/model/theme-config";
 import { defaultThemeConfig, themeConfigToProperties } from "#/features/editor/model/theme-config";
 import { getStory } from "#/features/editor/stories/pages";
@@ -18,8 +23,6 @@ type PreviewSearch = {
     locale: ThemeConfig["locale"];
     placeholders: boolean;
     realmName: boolean;
-    // Optional: omitted (undefined) when unset so the router doesn't serialize
-    // empty `logoWhite=&logoDark=&…` params into the URL.
     logoWhite?: string;
     logoDark?: string;
     sideImage?: string;
@@ -62,6 +65,7 @@ type IncomingState = {
     storyId: string;
     colorScheme: PreviewColorScheme;
     config: ThemeConfig;
+    files?: PreviewFiles;
 };
 
 function PreviewRoute() {
@@ -87,46 +91,66 @@ function PreviewRoute() {
         },
     });
 
-    const { pageId, storyId, colorScheme, config } = state;
+    const { pageId, storyId, colorScheme, config, files } = state;
 
-    // Receive editor state. Announce readiness so the parent (re)sends the
-    // current state even if it posted before this listener was attached.
+    // Turn uploaded files into temporary object URLs the iframe can render.
+    // `postMessage` structured-clones the File on every state message (even
+    // unrelated ones like a slider move), so we key this on a content signature
+    // rather than the file reference — otherwise we'd recreate the URLs (and
+    // flicker the image) on every keystroke. URLs are owned by this document and
+    // revoked on change/unmount.
+    const [assetUrls, setAssetUrls] = useState<Partial<Record<ImageAssetKey, string>>>({});
+    const filesSignature = imageAssets
+        .map(({ key }) => {
+            const file = files?.[key];
+            return file ? `${key}:${file.name}:${file.size}:${file.lastModified}` : `${key}:`;
+        })
+        .join("|");
+
     useEffect(() => {
-        function onMessage(event: MessageEvent) {
-            if (event.origin !== window.location.origin) {
-                return;
-            }
-            if (event.data.type === "kc-preview:state") {
-                setState(current => ({ ...current, ...event.data.payload }));
-            }
+        const urls: Partial<Record<ImageAssetKey, string>> = {};
+        for (const { key } of imageAssets) {
+            const file = files?.[key];
+            if (file) urls[key] = URL.createObjectURL(file);
         }
+        setAssetUrls(urls);
+        return () => {
+            for (const url of Object.values(urls)) URL.revokeObjectURL(url);
+        };
+    }, [filesSignature]);
 
-        window.addEventListener("message", onMessage);
-        window.parent.postMessage({ type: "kc-preview:ready" }, window.location.origin);
+    useReceivePreviewState(receivedState => {
+        setState(current => ({ ...current, ...receivedState }));
+    });
 
-        return () => window.removeEventListener("message", onMessage);
-    }, []);
+    useReceivePreviewFiles(receivedFiles => {
+        setState(current => ({ ...current, files: receivedFiles }));
+    });
 
     // Apply the editor's color scheme to the iframe document.
     useEffect(() => {
-        const isDark = colorScheme === "dark";
         const root = document.documentElement;
+        colorScheme === "dark" ? root.classList.add("dark") : root.classList.remove("dark");
 
-        root.classList.toggle("dark", isDark);
-        root.classList.toggle("light", !isDark);
-        // We toggle the class for the current render AND persist the choice to the
-        // theme's own `localStorage["isDarkMode"]`. The theme's ThemeProvider reads
-        // that key *first* on every mount (falling back to the OS preference), and
-        // the `key={config.locale}` below remounts it on a language change — so
-        // without persisting, switching language re-runs ThemeProvider and snaps the
-        // preview back to the OS scheme. Writing the key it checks first makes the
-        // remount initialize to the editor's scheme instead.
         localStorage.setItem("isDarkMode", colorScheme);
     }, [colorScheme]);
 
     // Re-resolve the scenario's overrides here (they hold non-cloneable
     // functions, so they can't be sent through `postMessage`)
     const storyOverrides = getStory(pageId, storyId)?.overrides;
+
+    // Resolve theme properties from config, then let any uploaded file override
+    // its asset's URL property (file-over-URL, matching the JAR export). A plain
+    // `blob:` URL passes through the theme's `resolveAssetUrl` untouched.
+    const properties: Record<string, string> = {
+        ...storyOverrides?.properties,
+        ...themeConfigToProperties(config),
+    };
+    for (const { key, property } of imageAssets) {
+        const url = assetUrls[key];
+        if (url) properties[property] = url;
+    }
+
     const kcContext = getKcContextMock({
         pageId,
         overrides: {
@@ -135,10 +159,7 @@ function PreviewRoute() {
                 ...storyOverrides?.locale,
                 currentLanguageTag: config.locale,
             },
-            properties: {
-                ...storyOverrides?.properties,
-                ...themeConfigToProperties(config),
-            },
+            properties,
         },
     });
 

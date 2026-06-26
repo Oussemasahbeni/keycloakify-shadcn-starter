@@ -1,3 +1,5 @@
+import type { ImageAssetKey } from "#/features/editor/model/assets";
+import { getImageExtension, imageAssets, imageFileSchema } from "#/features/editor/model/assets";
 import { faviconFileSchema } from "#/features/editor/model/favicon-upload";
 import type { Locale } from "#/features/editor/model/locales";
 import { supportedLocales } from "#/features/editor/model/locales";
@@ -67,15 +69,33 @@ export const generateJar = createServerFn({ method: "POST" })
         const rawFavicon = data.get("favicon");
         const favicon = rawFavicon === null ? null : faviconFileSchema.parse(rawFavicon);
 
-        return { config, themeName, favicon };
+        // Optional uploaded images, keyed by their `imageAssets` field name.
+        const imageFiles: Partial<Record<ImageAssetKey, File>> = {};
+        for (const { key } of imageAssets) {
+            const raw = data.get(key);
+            if (raw !== null) imageFiles[key] = imageFileSchema.parse(raw);
+        }
+
+        return { config, themeName, favicon, imageFiles };
     })
     .handler(async ({ data }) => {
-        const { config, themeName, favicon } = data;
+        const { themeName, favicon, imageFiles } = data;
+        let config = data.config;
 
         const assets: Record<string, Uint8Array> = {};
         if (favicon) {
             const bytes = new Uint8Array(await favicon.arrayBuffer());
             Object.assign(assets, await generateFaviconSet(bytes));
+        }
+
+        // Uploaded images: bake the bytes into `dist/` and repoint the matching
+        // SHADCN_THEME_*_URL at the bundled file (an upload overrides any URL).
+        for (const { key, baseName } of imageAssets) {
+            const file = imageFiles[key];
+            if (!file) continue;
+            const filename = `${baseName}.${getImageExtension(file)}`;
+            assets[filename] = new Uint8Array(await file.arrayBuffer());
+            config = { ...config, [key]: `%BASE_URL%/${filename}` };
         }
 
         const jar = customizeThemeJar(await loadTemplateJar(), {

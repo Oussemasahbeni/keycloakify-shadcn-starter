@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { usePushPreviewState } from "../../hooks/use-iframe-message";
+import { usePublishPreviewFiles } from "../../hooks/use-preview-files-channel";
 import { getViewportWidth } from "../../model/viewport";
 import { useEditor } from "../../state/editor-context";
 import { getPage } from "../../stories/pages";
@@ -9,7 +11,7 @@ import { PreviewToolbar } from "./preview-toolbar";
  * Renders the real theme in an isolated iframe (`/preview`).
  */
 export function PreviewPane() {
-    const { viewport, previewColorScheme, config } = useEditor();
+    const { viewport, previewColorScheme, config, files } = useEditor();
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const width = getViewportWidth(viewport);
 
@@ -21,35 +23,8 @@ export function PreviewPane() {
         setStoryId(getPage(value)?.stories[0]?.id ?? "default");
     }
 
-    const postState = useCallback(() => {
-        iframeRef.current?.contentWindow?.postMessage(
-            {
-                type: "kc-preview:state",
-                payload: { pageId, storyId, colorScheme: previewColorScheme, config },
-            },
-            window.location.origin,
-        );
-    }, [pageId, storyId, previewColorScheme, config]);
-
-    // Push state on every editor change.
-    useEffect(() => {
-        postState();
-    }, [postState]);
-
-    // Push state again when the iframe mounts and announces it's listening.
-    useEffect(() => {
-        function onMessage(event: MessageEvent) {
-            if (event.origin !== window.location.origin) {
-                return;
-            }
-            if (event.data.type === "kc-preview:ready") {
-                postState();
-            }
-        }
-
-        window.addEventListener("message", onMessage);
-        return () => window.removeEventListener("message", onMessage);
-    }, [postState]);
+    usePushPreviewState(iframeRef, pageId, storyId, previewColorScheme, config);
+    usePublishPreviewFiles(files);
 
     return (
         <div className="flex h-full flex-col">

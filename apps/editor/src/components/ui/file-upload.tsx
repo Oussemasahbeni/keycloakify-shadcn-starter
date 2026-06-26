@@ -87,6 +87,7 @@ export function FileUpload({
             setError("Unsupported file type.");
             return;
         }
+        console.log("file.size", file.size, "maxSizeBytes", maxSizeBytes);
         if (maxSizeBytes != null && file.size > maxSizeBytes) {
             setError(`File is too large (max ${formatFileSize(maxSizeBytes)}).`);
             return;

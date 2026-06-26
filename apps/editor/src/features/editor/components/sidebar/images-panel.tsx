@@ -1,73 +1,120 @@
-import { Field, FieldLabel } from "#/components/ui/field.tsx";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "#/components/ui/card.tsx";
 import { FileUpload } from "#/components/ui/file-upload";
 import { Input } from "#/components/ui/input.tsx";
+import type { LucideIcon } from "lucide-react";
+import { Image as ImageIcon, Moon, PanelLeft, Star, Sun } from "lucide-react";
+import { MAX_IMAGE_SIZE_BYTES, getImageError, imageAssets } from "../../model/assets";
 import { getFaviconError } from "../../model/favicon-upload";
 import { useEditor } from "../../state/editor-context";
 
-function ImageUrlField({
+const ASSET_ICONS: Record<string, LucideIcon> = {
+    favicon: Star,
+    logoWhiteUrl: Sun,
+    logoDarkUrl: Moon,
+    sideImageUrl: PanelLeft,
+    cardBackgroundUrl: ImageIcon,
+};
+
+/**
+ * One image asset in its own card, settable two ways: a URL or an uploaded file.
+ * The upload wins (the server and preview both prefer the file over the URL).
+ */
+function ImageAssetField({
+    icon: Icon,
     label,
-    value,
-    onChange,
+    url,
+    onUrlChange,
+    file,
+    onFileChange,
 }: {
+    icon: LucideIcon;
     label: string;
-    value: string;
-    onChange: (value: string) => void;
+    url: string;
+    onUrlChange: (value: string) => void;
+    file: File | null;
+    onFileChange: (file: File | null) => void;
 }) {
     return (
-        <Field>
-            <FieldLabel>{label}</FieldLabel>
-            <Input
-                type="url"
-                inputMode="url"
-                placeholder="https://example.com/image.png"
-                value={value}
-                onChange={event => onChange(event.target.value)}
-            />
-        </Field>
+        <Card size="sm">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                    <Icon className="text-muted-foreground size-4" />
+                    {label}
+                </CardTitle>
+                <CardDescription>
+                    Paste an image URL or upload a file. An uploaded file overrides the URL.
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+                <Input
+                    type="url"
+                    inputMode="url"
+                    placeholder="https://example.com/image.png"
+                    value={url}
+                    onChange={event => onUrlChange(event.target.value)}
+                />
+                <div className="text-muted-foreground flex items-center gap-2 text-xs">
+                    <span className="bg-border h-px flex-1" />
+                    or
+                    <span className="bg-border h-px flex-1" />
+                </div>
+                <FileUpload
+                    label={`Upload ${label.toLowerCase()}`}
+                    value={file}
+                    onChange={onFileChange}
+                    accept=".png,.svg,.jpg,.jpeg"
+                    maxSizeBytes={MAX_IMAGE_SIZE_BYTES}
+                    validate={getImageError}
+                    hint="PNG, SVG, or JPEG (max 1 MB)."
+                />
+            </CardContent>
+        </Card>
     );
 }
 
 export function ImagesPanel() {
-    const { config, updateConfig, favicon, setFavicon } = useEditor();
+    const { config, updateConfig, files, setFiles } = useEditor();
 
     return (
         <div className="space-y-4">
-            <ImageUrlField
-                label="Light logo"
-                value={config.logoWhiteUrl}
-                onChange={value => updateConfig({ logoWhiteUrl: value })}
-            />
-            <ImageUrlField
-                label="Dark logo"
-                value={config.logoDarkUrl}
-                onChange={value => updateConfig({ logoDarkUrl: value })}
-            />
-            <Field>
-                <FieldLabel>Favicon</FieldLabel>
-                <FileUpload
-                    label="Upload favicon"
-                    value={favicon}
-                    onChange={setFavicon}
-                    accept=".png,.svg,.ico"
-                    validate={file => getFaviconError(file)}
-                    hint="PNG, SVG, or ICO (max 1 MB)."
-                />
-            </Field>
+            <Card size="sm">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <Star className="text-muted-foreground size-4" />
+                        Favicon
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <FileUpload
+                        label="Upload favicon"
+                        value={files.favicon}
+                        onChange={file => setFiles({ ...files, favicon: file })}
+                        accept=".png,.svg,.ico"
+                        validate={getFaviconError}
+                        hint="PNG, SVG, or ICO (max 1 MB)."
+                    />
+                </CardContent>
+            </Card>
 
-            {config.layout === "image-aside" && (
-                <ImageUrlField
-                    label="Side image"
-                    value={config.sideImageUrl}
-                    onChange={value => updateConfig({ sideImageUrl: value })}
-                />
-            )}
-            {config.layout === "centered-card" && (
-                <ImageUrlField
-                    label="Background image"
-                    value={config.cardBackgroundUrl}
-                    onChange={value => updateConfig({ cardBackgroundUrl: value })}
-                />
-            )}
+            {imageAssets
+                .filter(asset => !("layout" in asset) || asset.layout === config.layout)
+                .map(asset => (
+                    <ImageAssetField
+                        key={asset.key}
+                        icon={ASSET_ICONS[asset.key] ?? ImageIcon}
+                        label={asset.label}
+                        url={config[asset.key]}
+                        onUrlChange={value => updateConfig({ [asset.key]: value })}
+                        file={files[asset.key]}
+                        onFileChange={file => setFiles({ ...files, [asset.key]: file })}
+                    />
+                ))}
         </div>
     );
 }

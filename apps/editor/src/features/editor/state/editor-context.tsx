@@ -1,15 +1,18 @@
 import { createContext, use, useState } from "react";
 
+import { useTheme } from "#/components/theme-provider";
+import type { ThemeAssetKey } from "../model/assets";
 import type { PreviewColorScheme, SaveStatus, ThemeConfig } from "../model/theme-config";
 import { defaultThemeConfig } from "../model/theme-config";
 import type { Viewport } from "../model/viewport";
 
+export type { ThemeAssetKey };
+
 type EditorContextValue = {
     themeName: string;
     setThemeName: (name: string) => void;
-    /** Uploaded favicon (PNG/SVG/ICO) baked into the exported JAR; not previewed live. */
-    favicon: File | null;
-    setFavicon: (file: File | null) => void;
+    files: Record<ThemeAssetKey, File | null>;
+    setFiles: (files: Record<ThemeAssetKey, File | null>) => void;
     viewport: Viewport;
     setViewport: (viewport: Viewport) => void;
     previewColorScheme: PreviewColorScheme;
@@ -24,22 +27,33 @@ type EditorContextValue = {
 
 const EditorContext = createContext<EditorContextValue | null>(null);
 
+const emptyFiles: Record<ThemeAssetKey, File | null> = {
+    logoWhiteUrl: null,
+    logoDarkUrl: null,
+    sideImageUrl: null,
+    favicon: null,
+    cardBackgroundUrl: null,
+};
+
 export function EditorProvider({ children }: { children: React.ReactNode }) {
+    const { theme } = useTheme();
     const [viewport, setViewport] = useState<Viewport>("desktop");
     const [themeName, setThemeName] = useState<string>("shadcn-theme");
-    const [favicon, setFavicon] = useState<File | null>(null);
-    const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>("light");
+    const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>(
+        theme as PreviewColorScheme,
+    );
     const [config, setConfig] = useState<ThemeConfig>(defaultThemeConfig);
+    const [files, setFiles] = useState<Record<ThemeAssetKey, File | null>>(emptyFiles);
 
     const value: EditorContextValue = {
         themeName,
         setThemeName,
-        favicon,
-        setFavicon,
         viewport,
         setViewport,
         previewColorScheme,
         setPreviewColorScheme,
+        files,
+        setFiles,
         togglePreviewColorScheme: () =>
             setPreviewColorScheme(scheme => (scheme === "light" ? "dark" : "light")),
         config,
