@@ -19,9 +19,10 @@ export default defineConfig({
                 "22-to-25": false,
                 "all-other-versions": "shadcn-theme.jar",
             },
+            kcContextExclusionsFtl: `<@addToXKeycloakifyMessagesIfMessageKey str="welcomeMessage" />`,
             environmentVariables: [
                 {
-                    name: "SHADCN_THEME_LOGO_WHITE_URL",
+                    name: "SHADCN_THEME_LOGO_URL",
                     default: "",
                 },
                 {
@@ -30,19 +31,31 @@ export default defineConfig({
                 },
                 { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
                 {
-                    name: "SHADCN_THEME_SIDE_IMAGE_URL",
+                    name: "SHADCN_THEME_ASIDE_IMAGE_URL",
                     default: "",
                 },
                 {
-                    name: "SHADCN_THEME_CARD_BG_URL",
+                    name: "SHADCN_THEME_CARD_IMAGE_URL",
+                    default: "",
+                },
+                {
+                    name: "SHADCN_THEME_SIDE_PANEL_IMAGE_URL",
+                    default: "",
+                },
+                {
+                    name: "SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL",
                     default: "",
                 },
                 { name: "SHADCN_THEME_PRESET", default: "neutral" },
                 { name: "SHADCN_THEME_BASE", default: "neutral" },
                 { name: "SHADCN_THEME_RADIUS", default: "default" },
                 { name: "SHADCN_THEME_FONT", default: "geist" },
-                { name: "SHADCN_THEME_PLACEHOLDER", default: "true" },
+                { name: "SHADCN_THEME_SHOW_PLACEHOLDER", default: "true" },
                 { name: "SHADCN_THEME_SHOW_REALM_NAME", default: "true" },
+                {
+                    name: "SHADCN_THEME_WELCOME_MESSAGE",
+                    default: "",
+                },
             ],
             postBuild: async buildContext => {
                 await buildEmailTheme({

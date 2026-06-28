@@ -10,7 +10,7 @@ import { generateJar } from "../../server/generate-jar";
 import { useEditor } from "../../state/editor-context";
 
 export function ExportButton() {
-    const { config, themeName, files } = useEditor();
+    const { config, themeName, assets } = useEditor();
     const [isExporting, setIsExporting] = useState(false);
     const exportJar = useServerFn(generateJar);
 
@@ -28,11 +28,11 @@ export function ExportButton() {
             formData.append("options", JSON.stringify({ config, themeName: name }));
 
             for (const { key } of imageAssets) {
-                const file = files[key];
+                const file = assets[key];
                 if (file) formData.append(key, file);
             }
             // Favicon is upload-only and baked via its own multi-file pipeline.
-            if (files.favicon) formData.append("favicon", files.favicon);
+            if (assets.favicon) formData.append("favicon", assets.favicon);
 
             const response = await exportJar({ data: formData });
             const blob = await response.blob();

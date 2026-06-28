@@ -16,9 +16,11 @@ import {
     SelectTrigger,
     SelectValue,
 } from "#/components/ui/select";
+import { Separator } from "#/components/ui/separator";
 import { Switch } from "#/components/ui/switch";
 import type { LucideIcon } from "lucide-react";
 import { Columns2, Image, Info, Shuffle, Square } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { pickRandom, prettify } from "#/lib/utils";
 import type {
@@ -38,7 +40,12 @@ import {
     themePresets,
 } from "@kc-studio/shadcn-theme/theme";
 
-import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group.tsx";
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput,
+    InputGroupTextarea,
+} from "#/components/ui/input-group.tsx";
 import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip.tsx";
 import { getThemeNameError } from "../../model/theme-name";
 import { useEditor } from "../../state/editor-context";
@@ -196,7 +203,6 @@ function LayoutField() {
 
     return (
         <Field>
-            <FieldLabel>Layout</FieldLabel>
             <RadioGroup
                 value={config.layout}
                 onValueChange={value => updateConfig({ layout: value as Layout })}
@@ -325,19 +331,89 @@ function ThemeNameHint({ invalid }: { invalid: boolean }) {
         </Tooltip>
     );
 }
+function WelcomeMessageField() {
+    const { config, updateConfig } = useEditor();
 
-export function ConfigPanel() {
+    if (config.layout !== "two-column") {
+        return null;
+    }
+
     return (
-        <div className="space-y-5">
+        <Field>
+            <div className="flex items-center justify-between gap-2">
+                <FieldLabel>Welcome message</FieldLabel>
+                <Tooltip>
+                    <TooltipTrigger
+                        render={
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                size="icon-xs"
+                                aria-label="Welcome message details"
+                                className="text-muted-foreground"
+                            >
+                                <Info />
+                            </Button>
+                        }
+                    />
+                    <TooltipContent>
+                        To translate per-locale, override the "welcomeMessage" key in your realm
+                        message bundle (Keycloak admin → Realm settings → Localization). With this
+                        field and the override both empty, the theme default is used.
+                    </TooltipContent>
+                </Tooltip>
+            </div>
+            <FieldDescription>
+                Shown on the side panel. Overrides all languages, leave empty to use your realm's
+                translations.
+            </FieldDescription>
+            <InputGroup>
+                <InputGroupTextarea
+                    value={config.welcomeMessage}
+                    onChange={e => updateConfig({ welcomeMessage: e.target.value })}
+                    placeholder="Default: your realm's welcomeMessage translation"
+                />
+            </InputGroup>
+        </Field>
+    );
+}
+
+function Section({ title, children }: { title: string; children: ReactNode }) {
+    return (
+        <section className="flex flex-col gap-4">
+            <h3 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+                {title}
+            </h3>
+            {children}
+        </section>
+    );
+}
+
+export function BrandingPanel() {
+    return (
+        <div className="space-y-6">
             <ShuffleButton />
             <ThemeNameField />
-            <BasePaletteField />
-            <AccentColorField />
-            <RadiusField />
-            <FontFamilyField />
-            <ShowRealmNameField />
-            <ShowPlaceholdersField />
-            <LayoutField />
+
+            <Separator />
+
+            <Section title="Appearance">
+                <BasePaletteField />
+                <AccentColorField />
+                <RadiusField />
+                <FontFamilyField />
+            </Section>
+
+            <Separator />
+
+            <Section title="Layout">
+                <LayoutField />
+                <div className="flex gap-2">
+                    <ShowRealmNameField />
+                    <ShowPlaceholdersField />
+                </div>
+                <WelcomeMessageField />
+            </Section>
         </div>
     );
 }

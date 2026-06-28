@@ -13,11 +13,11 @@ export function CenteredCardLayout(props: { content: ReactNode; backgroundUrl?: 
                         alt="Background"
                         className="absolute inset-0 h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-background/50 dark:bg-background/80" />
+                    <div className="bg-background/50 dark:bg-background/80 absolute inset-0" />
                 </>
             )}
             <TemplateTopBar />
-            <main className="relative z-10 w-full max-w-lg">{content}</main>
+            <main className="relative z-10 w-full max-w-xl">{content}</main>
         </div>
     );
 }

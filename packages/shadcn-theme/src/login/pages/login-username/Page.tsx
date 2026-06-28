@@ -31,7 +31,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
 
     return (
         <Template

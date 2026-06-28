@@ -1,6 +1,6 @@
 import { useReceivePreviewState } from "#/features/editor/hooks/use-iframe-message";
-import type { PreviewFiles } from "#/features/editor/hooks/use-preview-files-channel";
-import { useReceivePreviewFiles } from "#/features/editor/hooks/use-preview-files-channel";
+import type { PreviewAssets } from "#/features/editor/hooks/use-preview-assets-channel";
+import { useReceivePreviewAssets } from "#/features/editor/hooks/use-preview-assets-channel";
 import type { ImageAssetKey } from "#/features/editor/model/assets";
 import { imageAssets } from "#/features/editor/model/assets";
 import type { PreviewColorScheme, ThemeConfig } from "#/features/editor/model/theme-config";
@@ -23,10 +23,12 @@ type PreviewSearch = {
     locale: ThemeConfig["locale"];
     placeholders: boolean;
     realmName: boolean;
-    logoWhite?: string;
+    logo?: string;
     logoDark?: string;
-    sideImage?: string;
-    cardBg?: string;
+    asideImage?: string;
+    cardImage?: string;
+    sidePanelImage?: string;
+    sidePanelImageDark?: string;
 };
 
 /**
@@ -52,10 +54,12 @@ export const Route = createFileRoute("/preview")({
         locale: (search.locale as ThemeConfig["locale"] | undefined) ?? defaultThemeConfig.locale,
         placeholders: search.placeholders !== "false" && search.placeholders !== false,
         realmName: search.realmName !== "false" && search.realmName !== false,
-        logoWhite: (search.logoWhite as string | undefined) || undefined,
+        logo: (search.logo as string | undefined) || undefined,
         logoDark: (search.logoDark as string | undefined) || undefined,
-        sideImage: (search.sideImage as string | undefined) || undefined,
-        cardBg: (search.cardBg as string | undefined) || undefined,
+        asideImage: (search.asideImage as string | undefined) || undefined,
+        cardImage: (search.cardImage as string | undefined) || undefined,
+        sidePanelImage: (search.sidePanelImage as string | undefined) || undefined,
+        sidePanelImageDark: (search.sidePanelImageDark as string | undefined) || undefined,
     }),
     component: PreviewRoute,
 });
@@ -65,7 +69,7 @@ type IncomingState = {
     storyId: string;
     colorScheme: PreviewColorScheme;
     config: ThemeConfig;
-    files?: PreviewFiles;
+    assets?: PreviewAssets;
 };
 
 function PreviewRoute() {
@@ -84,16 +88,18 @@ function PreviewRoute() {
             locale: search.locale,
             showPlaceholders: search.placeholders,
             showRealmName: search.realmName,
-            logoWhiteUrl: search.logoWhite ?? "",
+            logoUrl: search.logo ?? "",
             logoDarkUrl: search.logoDark ?? "",
-            sideImageUrl: search.sideImage ?? "",
-            cardBackgroundUrl: search.cardBg ?? "",
+            asideImageUrl: search.asideImage ?? "",
+            cardImageUrl: search.cardImage ?? "",
+            sidePanelImageUrl: search.sidePanelImage ?? "",
+            sidePanelImageDarkUrl: search.sidePanelImageDark ?? "",
         },
     });
 
-    const { pageId, storyId, colorScheme, config, files } = state;
+    const { pageId, storyId, colorScheme, config, assets } = state;
 
-    // Turn uploaded files into temporary object URLs the iframe can render.
+    // Turn uploaded assets into temporary object URLs the iframe can render.
     // `postMessage` structured-clones the File on every state message (even
     // unrelated ones like a slider move), so we key this on a content signature
     // rather than the file reference — otherwise we'd recreate the URLs (and
@@ -102,7 +108,7 @@ function PreviewRoute() {
     const [assetUrls, setAssetUrls] = useState<Partial<Record<ImageAssetKey, string>>>({});
     const filesSignature = imageAssets
         .map(({ key }) => {
-            const file = files?.[key];
+            const file = assets?.[key];
             return file ? `${key}:${file.name}:${file.size}:${file.lastModified}` : `${key}:`;
         })
         .join("|");
@@ -110,7 +116,7 @@ function PreviewRoute() {
     useEffect(() => {
         const urls: Partial<Record<ImageAssetKey, string>> = {};
         for (const { key } of imageAssets) {
-            const file = files?.[key];
+            const file = assets?.[key];
             if (file) urls[key] = URL.createObjectURL(file);
         }
         setAssetUrls(urls);
@@ -123,8 +129,8 @@ function PreviewRoute() {
         setState(current => ({ ...current, ...receivedState }));
     });
 
-    useReceivePreviewFiles(receivedFiles => {
-        setState(current => ({ ...current, files: receivedFiles }));
+    useReceivePreviewAssets(receivedAssets => {
+        setState(current => ({ ...current, assets: receivedAssets }));
     });
 
     // Apply the editor's color scheme to the iframe document.

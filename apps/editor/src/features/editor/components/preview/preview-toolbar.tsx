@@ -83,10 +83,12 @@ function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string 
             locale: config.locale,
             placeholders: String(config.showPlaceholders),
             realmName: String(config.showRealmName),
-            logoWhite: config.logoWhiteUrl,
+            logo: config.logoUrl,
             logoDark: config.logoDarkUrl,
-            sideImage: config.sideImageUrl,
-            cardBg: config.cardBackgroundUrl,
+            asideImage: config.asideImageUrl,
+            cardImage: config.cardImageUrl,
+            sidePanelImage: config.sidePanelImageUrl,
+            sidePanelImageDark: config.sidePanelImageDarkUrl,
         });
         window.open(`/preview?${params.toString()}`, "_blank", "noopener");
     }

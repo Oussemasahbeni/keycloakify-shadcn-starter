@@ -7,13 +7,8 @@ export function LogoutOtherSessions() {
 
     return (
         <div className="flex items-center gap-2">
-            <Checkbox
-                id="logout-sessions"
-                name="logout-sessions"
-                value="on"
-                defaultChecked={true}
-            />
-            <Label htmlFor="logout-sessions" className="text-sm font-medium cursor-pointer">
+            <Checkbox id="logout-sessions" name="logout-sessions" value="on" />
+            <Label htmlFor="logout-sessions" className="cursor-pointer text-sm font-medium">
                 {msg("logoutOtherSessions")}
             </Label>
         </div>

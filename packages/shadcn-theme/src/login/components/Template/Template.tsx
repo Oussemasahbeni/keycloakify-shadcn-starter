@@ -32,13 +32,18 @@ export function Template(props: TemplateProps) {
     const { msgStr } = useI18n();
     const { kcClsx } = useKcClsx();
 
-    const logoWhiteUrl =
-        resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_WHITE_URL) || defaultLogo;
+    const logoUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_URL) || defaultLogo;
 
     const logoDarkUrl =
         resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_DARK_URL) || defaultLogo;
-    const sideImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_SIDE_IMAGE_URL);
-    const cardBgUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_CARD_BG_URL);
+    const asideImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_ASIDE_IMAGE_URL);
+    const cardImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_CARD_IMAGE_URL);
+    const sidePanelImageUrl = resolveAssetUrl(
+        kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_URL,
+    );
+    const sidePanelImageDarkUrl = resolveAssetUrl(
+        kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL,
+    );
     const layout = kcContext.properties.SHADCN_THEME_LAYOUT;
 
     useEffect(() => {
@@ -65,29 +70,18 @@ export function Template(props: TemplateProps) {
             return (
                 <CenteredCardLayout
                     content={
-                        <TemplateContent
-                            {...props}
-                            logoWhiteUrl={logoWhiteUrl}
-                            logoDarkUrl={logoDarkUrl}
-                            // cardClassName="border-0 shadow-none  bg-card shadow-sm"
-                        />
+                        <TemplateContent {...props} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} />
                     }
-                    backgroundUrl={cardBgUrl}
+                    backgroundUrl={cardImageUrl}
                 />
             );
         case "image-aside":
             return (
                 <ImageAsideLayout
                     content={
-                        <TemplateContent
-                            {...props}
-                            logoWhiteUrl={logoWhiteUrl}
-                            logoDarkUrl={logoDarkUrl}
-                            brandingVisibilityClassName="md:hidden"
-                            // cardClassName="border-0 bg-transparent shadow-sm h-full"
-                        />
+                        <TemplateContent {...props} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} />
                     }
-                    imageUrl={sideImageUrl}
+                    imageUrl={asideImageUrl}
                 />
             );
         case "two-column":
@@ -97,12 +91,14 @@ export function Template(props: TemplateProps) {
                     content={
                         <TemplateContent
                             {...props}
-                            logoWhiteUrl={logoWhiteUrl}
+                            logoUrl={logoUrl}
                             logoDarkUrl={logoDarkUrl}
                             brandingVisibilityClassName="lg:hidden"
-                            // cardClassName="border-0 shadow-none bg-transparent md:border md:bg-card md:shadow-sm"
                         />
                     }
+                    sidePanelImageUrl={sidePanelImageUrl}
+                    sidePanelImageDarkUrl={sidePanelImageDarkUrl}
+                    // side panel is a dark surface in both modes
                     logoUrl={logoDarkUrl}
                 />
             );

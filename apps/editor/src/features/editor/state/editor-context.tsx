@@ -6,13 +6,11 @@ import type { PreviewColorScheme, SaveStatus, ThemeConfig } from "../model/theme
 import { defaultThemeConfig } from "../model/theme-config";
 import type { Viewport } from "../model/viewport";
 
-export type { ThemeAssetKey };
-
 type EditorContextValue = {
     themeName: string;
     setThemeName: (name: string) => void;
-    files: Record<ThemeAssetKey, File | null>;
-    setFiles: (files: Record<ThemeAssetKey, File | null>) => void;
+    assets: Record<ThemeAssetKey, File | null>;
+    setAssets: (assets: Record<ThemeAssetKey, File | null>) => void;
     viewport: Viewport;
     setViewport: (viewport: Viewport) => void;
     previewColorScheme: PreviewColorScheme;
@@ -27,12 +25,14 @@ type EditorContextValue = {
 
 const EditorContext = createContext<EditorContextValue | null>(null);
 
-const emptyFiles: Record<ThemeAssetKey, File | null> = {
-    logoWhiteUrl: null,
+const emptyAssets: Record<ThemeAssetKey, File | null> = {
+    logoUrl: null,
     logoDarkUrl: null,
-    sideImageUrl: null,
+    asideImageUrl: null,
     favicon: null,
-    cardBackgroundUrl: null,
+    cardImageUrl: null,
+    sidePanelImageUrl: null,
+    sidePanelImageDarkUrl: null,
 };
 
 export function EditorProvider({ children }: { children: React.ReactNode }) {
@@ -43,7 +43,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         theme as PreviewColorScheme,
     );
     const [config, setConfig] = useState<ThemeConfig>(defaultThemeConfig);
-    const [files, setFiles] = useState<Record<ThemeAssetKey, File | null>>(emptyFiles);
+    const [assets, setAssets] = useState<Record<ThemeAssetKey, File | null>>(emptyAssets);
 
     const value: EditorContextValue = {
         themeName,
@@ -52,13 +52,16 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         setViewport,
         previewColorScheme,
         setPreviewColorScheme,
-        files,
-        setFiles,
+        assets: assets,
+        setAssets: setAssets,
         togglePreviewColorScheme: () =>
             setPreviewColorScheme(scheme => (scheme === "light" ? "dark" : "light")),
         config,
         updateConfig: patch => setConfig(current => ({ ...current, ...patch })),
-        resetConfig: () => setConfig(defaultThemeConfig),
+        resetConfig: () => {
+            setConfig(defaultThemeConfig);
+            setAssets(emptyAssets);
+        },
         saveStatus: "idle",
         lastSavedAt: null,
     };

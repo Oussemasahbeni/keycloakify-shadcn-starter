@@ -11,7 +11,7 @@ export function Form() {
     assert(kcContext.pageId === "login-reset-password.ftl");
 
     const { msg, msgStr } = useI18n();
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
 
     return (
         <form

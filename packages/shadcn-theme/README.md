@@ -84,7 +84,7 @@ export default defineConfig({
             themeName: "your-theme-name",
             environmentVariables: [
                 {
-                    name: "SHADCN_THEME_LOGO_WHITE_URL",
+                    name: "SHADCN_THEME_LOGO_URL",
                     default: "",
                 },
                 {
@@ -93,12 +93,12 @@ export default defineConfig({
                 },
                 { name: "SHADCN_THEME_APP_NAME", default: "Acme Inc." },
                 { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
-                { name: "SHADCN_THEME_SIDE_IMAGE_URL", default: "" },
+                { name: "SHADCN_THEME_ASIDE_IMAGE_URL", default: "" },
                 { name: "SHADCN_THEME_PRESET", default: "neutral" },
                 { name: "SHADCN_THEME_BASE", default: "neutral" },
                 { name: "SHADCN_THEME_RADIUS", default: "default" },
                 { name: "SHADCN_THEME_FONT", default: "geist" },
-                { name: "SHADCN_THEME_PLACEHOLDER", default: "true" },
+                { name: "SHADCN_THEME_SHOW_PLACEHOLDER", default: "true" },
             ],
         }),
     ],
@@ -218,17 +218,17 @@ The login theme is primarily customized through Keycloakify environment variable
 
 | Variable                      | Default        | Allowed values                                | Description                                                                                       |
 | ----------------------------- | -------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----- |
-| `SHADCN_THEME_LOGO_WHITE_URL` | `""`           | Any image URL or `%BASE_URL%/filename`        | Logo used in light mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`.                    |
+| `SHADCN_THEME_LOGO_URL` | `""`           | Any image URL or `%BASE_URL%/filename`        | Logo used in light mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`.                    |
 | `SHADCN_THEME_LOGO_DARK_URL`  | `""`           | Any image URL or `%BASE_URL%/filename`        | Logo used in dark mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`.                     |
-| `SHADCN_THEME_SIDE_IMAGE_URL` | `""`           | Any image URL or `%BASE_URL%/filename`        | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`.                 | mode. |
+| `SHADCN_THEME_ASIDE_IMAGE_URL` | `""`           | Any image URL or `%BASE_URL%/filename`        | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`.                 | mode. |
 | `SHADCN_THEME_LAYOUT`         | `"two-column"` | `two-column`, `centered-card`, `image-aside`  | Selects the outer page layout used by `Template.tsx`.                                             |
 | `SHADCN_THEME_PRESET`         | `"neutral"`    | See accent preset list below                  | Selects the shadcn-style accent color family used for primary actions.                            |
 | `SHADCN_THEME_BASE`           | `"neutral"`    | See base palette list below                   | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring. |
 | `SHADCN_THEME_RADIUS`         | `"default"`    | `default`, `none`, `small`, `medium`, `large` | Controls the global border radius token.                                                          |
 | `SHADCN_THEME_FONT`           | `"geist"`      | See font preset list below                    | Controls the main theme font family.                                                              |
-| `SHADCN_THEME_PLACEHOLDER`    | `"true"`       | `true`, `false`                               | Shows or hides placeholders on supported auth forms.                                              |
+| `SHADCN_THEME_SHOW_PLACEHOLDER`    | `"true"`       | `true`, `false`                               | Shows or hides placeholders on supported auth forms.                                              |
 
-`SHADCN_THEME_PLACEHOLDER` currently applies to the fixed auth forms implemented directly in this theme, such as login, login-username, login-password, reset-password, and update-password.
+`SHADCN_THEME_SHOW_PLACEHOLDER` currently applies to the fixed auth forms implemented directly in this theme, such as login, login-username, login-password, reset-password, and update-password.
 
 The register page is intentionally not covered by this automatic placeholder toggle. Register fields are dynamic and come from Keycloak user profile configuration, so the theme cannot safely predict which fields will exist. For register and other dynamic profile forms, placeholders should be configured in Keycloak through the user profile field annotations.
 
@@ -294,7 +294,7 @@ The register page is intentionally not covered by this automatic placeholder tog
 ```ts
 environmentVariables: [
     {
-        name: "SHADCN_THEME_LOGO_WHITE_URL",
+        name: "SHADCN_THEME_LOGO_URL",
         default: "",
     },
     {
@@ -302,12 +302,12 @@ environmentVariables: [
         default: "",
     },
     { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
-    { name: "SHADCN_THEME_SIDE_IMAGE_URL", default: "" },
+    { name: "SHADCN_THEME_ASIDE_IMAGE_URL", default: "" },
     { name: "SHADCN_THEME_PRESET", default: "neutral" },
     { name: "SHADCN_THEME_BASE", default: "neutral" },
     { name: "SHADCN_THEME_RADIUS", default: "default" },
     { name: "SHADCN_THEME_FONT", default: "geist" },
-    { name: "SHADCN_THEME_PLACEHOLDER", default: "true" },
+    { name: "SHADCN_THEME_SHOW_PLACEHOLDER", default: "true" },
 ];
 ```
 
@@ -318,7 +318,7 @@ Example branding combinations:
 - `SHADCN_THEME_BASE=stone`
 - `SHADCN_THEME_RADIUS=medium`
 - `SHADCN_THEME_FONT=manrope`
-- `SHADCN_THEME_PLACEHOLDER=true`
+- `SHADCN_THEME_SHOW_PLACEHOLDER=true`
 
 ### Storybook Controls
 
@@ -336,7 +336,7 @@ Available controls:
 
 ### Branding Notes
 
-1. **Logo**: Set `SHADCN_THEME_LOGO_WHITE_URL` and `SHADCN_THEME_LOGO_DARK_URL`, or replace `src/login/assets/img/auth-logo.svg`
+1. **Logo**: Set `SHADCN_THEME_LOGO_URL` and `SHADCN_THEME_LOGO_DARK_URL`, or replace `src/login/assets/img/auth-logo.svg`
 2. **Colors**: Use `SHADCN_THEME_PRESET`, `SHADCN_THEME_BASE`, and `SHADCN_THEME_RADIUS`
 3. **Fonts**: Use `SHADCN_THEME_FONT`; the project now uses packaged font imports instead of manual asset-only font wiring
 

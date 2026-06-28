@@ -18,9 +18,8 @@ const messageIcons = {
 } as const;
 
 type TemplateContentProps = TemplateProps & {
-    logoWhiteUrl: string;
+    logoUrl: string;
     logoDarkUrl: string;
-    cardClassName?: string;
     brandingVisibilityClassName?: string;
 };
 
@@ -33,9 +32,8 @@ export function TemplateContent(props: TemplateContentProps) {
         socialProvidersNode = null,
         infoNode = null,
         children,
-        logoWhiteUrl,
+        logoUrl,
         logoDarkUrl,
-        cardClassName,
         brandingVisibilityClassName,
     } = props;
 
@@ -93,7 +91,7 @@ export function TemplateContent(props: TemplateContentProps) {
     );
 
     return (
-        <Card className={cardClassName}>
+        <Card>
             <CardHeader>
                 <div
                     className={cn(
@@ -103,7 +101,7 @@ export function TemplateContent(props: TemplateContentProps) {
                 >
                     <div className="mb-4 flex items-center gap-3">
                         <img
-                            src={logoWhiteUrl}
+                            src={logoUrl}
                             alt={showRealmName ? "" : logoAlt}
                             className="h-12 w-auto object-contain dark:hidden"
                         />

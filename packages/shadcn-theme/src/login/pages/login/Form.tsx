@@ -21,7 +21,7 @@ export function Form() {
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
 
     return (
         <>

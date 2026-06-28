@@ -7,14 +7,17 @@ import type {
 } from "@kc-studio/shadcn-theme/theme";
 import {
     DEFAULT_FONT,
+    DEFAULT_THEME_ASIDE_IMAGE_URL,
     DEFAULT_THEME_BASE,
-    DEFAULT_THEME_CARD_BG_URL,
+    DEFAULT_THEME_CARD_IMAGE_URL,
     DEFAULT_THEME_LAYOUT,
     DEFAULT_THEME_LOGO_DARK_URL,
-    DEFAULT_THEME_LOGO_WHITE_URL,
+    DEFAULT_THEME_LOGO_URL,
     DEFAULT_THEME_PRESET,
     DEFAULT_THEME_RADIUS,
-    DEFAULT_THEME_SIDE_IMAGE_URL,
+    DEFAULT_THEME_SIDE_PANEL_IMAGE_DARK_URL,
+    DEFAULT_THEME_SIDE_PANEL_IMAGE_URL,
+    DEFAULT_WELCOME_MESSAGE,
 } from "@kc-studio/shadcn-theme/theme";
 import { Moon, Sun } from "lucide-react";
 import type { Locale } from "./locales";
@@ -42,10 +45,13 @@ export type ThemeConfig = {
     locale: Locale;
     showPlaceholders: boolean;
     showRealmName: boolean;
-    logoWhiteUrl: string;
+    logoUrl: string;
     logoDarkUrl: string;
-    sideImageUrl: string;
-    cardBackgroundUrl: string;
+    asideImageUrl: string;
+    cardImageUrl: string;
+    sidePanelImageUrl: string;
+    sidePanelImageDarkUrl: string;
+    welcomeMessage: string;
 };
 
 export const defaultThemeConfig: ThemeConfig = {
@@ -57,10 +63,13 @@ export const defaultThemeConfig: ThemeConfig = {
     locale: DEFAULT_LOCALE,
     showPlaceholders: true,
     showRealmName: true,
-    logoWhiteUrl: DEFAULT_THEME_LOGO_WHITE_URL,
+    logoUrl: DEFAULT_THEME_LOGO_URL,
     logoDarkUrl: DEFAULT_THEME_LOGO_DARK_URL,
-    sideImageUrl: DEFAULT_THEME_SIDE_IMAGE_URL,
-    cardBackgroundUrl: DEFAULT_THEME_CARD_BG_URL,
+    asideImageUrl: DEFAULT_THEME_ASIDE_IMAGE_URL,
+    cardImageUrl: DEFAULT_THEME_CARD_IMAGE_URL,
+    sidePanelImageUrl: DEFAULT_THEME_SIDE_PANEL_IMAGE_URL,
+    sidePanelImageDarkUrl: DEFAULT_THEME_SIDE_PANEL_IMAGE_DARK_URL,
+    welcomeMessage: DEFAULT_WELCOME_MESSAGE,
 };
 
 /**
@@ -78,11 +87,14 @@ export function themeConfigToProperties(config: ThemeConfig): Record<string, str
         SHADCN_THEME_PRESET: config.accent,
         SHADCN_THEME_RADIUS: config.radius,
         SHADCN_THEME_FONT: config.font,
-        SHADCN_THEME_PLACEHOLDER: config.showPlaceholders ? "true" : "false",
+        SHADCN_THEME_SHOW_PLACEHOLDER: config.showPlaceholders ? "true" : "false",
         SHADCN_THEME_SHOW_REALM_NAME: config.showRealmName ? "true" : "false",
-        SHADCN_THEME_LOGO_WHITE_URL: config.logoWhiteUrl,
+        SHADCN_THEME_LOGO_URL: config.logoUrl,
         SHADCN_THEME_LOGO_DARK_URL: config.logoDarkUrl,
-        SHADCN_THEME_SIDE_IMAGE_URL: config.sideImageUrl,
-        SHADCN_THEME_CARD_BG_URL: config.cardBackgroundUrl,
+        SHADCN_THEME_ASIDE_IMAGE_URL: config.asideImageUrl,
+        SHADCN_THEME_CARD_IMAGE_URL: config.cardImageUrl,
+        SHADCN_THEME_SIDE_PANEL_IMAGE_URL: config.sidePanelImageUrl,
+        SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL: config.sidePanelImageDarkUrl,
+        SHADCN_THEME_WELCOME_MESSAGE: config.welcomeMessage,
     };
 }

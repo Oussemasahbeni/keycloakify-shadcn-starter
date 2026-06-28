@@ -1,7 +1,16 @@
 import { Button } from "#/components/ui/button.tsx";
 import { cn } from "#/lib/utils.ts";
-import { Upload, X } from "lucide-react";
+import { Upload, XIcon } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
+import {
+    Attachment,
+    AttachmentAction,
+    AttachmentActions,
+    AttachmentContent,
+    AttachmentDescription,
+    AttachmentMedia,
+    AttachmentTitle,
+} from "./attachment";
 
 export type FileUploadProps = {
     value: File | null;
@@ -56,7 +65,6 @@ export function FileUpload({
     disabled = false,
     label = "Upload file",
     hint,
-    previewClassName,
     id,
     className,
 }: FileUploadProps) {
@@ -127,34 +135,25 @@ export function FileUpload({
         <div className={cn("flex flex-col gap-2", className)}>
             {input}
             {value ? (
-                <div className="flex items-center gap-3 rounded-md border p-2 transition-colors">
-                    <span className="bg-muted flex size-10 shrink-0 items-center justify-center overflow-hidden rounded border">
-                        {previewUrl && (
-                            <img
-                                src={previewUrl}
-                                alt={value.name}
-                                className={cn("size-full object-contain", previewClassName)}
-                            />
-                        )}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium">{value.name}</p>
-                        <p className="text-muted-foreground text-xs">
-                            {formatFileSize(value.size)}
-                        </p>
-                    </div>
+                <Attachment className="w-full">
+                    <AttachmentMedia>
+                        {previewUrl && <img src={previewUrl} alt={value.name} />}
+                    </AttachmentMedia>
+                    <AttachmentContent>
+                        <AttachmentTitle>{value.name}</AttachmentTitle>
+                        <AttachmentDescription>{formatFileSize(value.size)}</AttachmentDescription>
+                    </AttachmentContent>
                     {!disabled && (
-                        <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon-sm"
-                            aria-label="Remove file"
-                            onClick={clear}
-                        >
-                            <X />
-                        </Button>
+                        <AttachmentActions>
+                            <AttachmentAction
+                                aria-label="Remove sales-dashboard.pdf"
+                                onClick={clear}
+                            >
+                                <XIcon />
+                            </AttachmentAction>
+                        </AttachmentActions>
                     )}
-                </div>
+                </Attachment>
             ) : (
                 <Button
                     type="button"

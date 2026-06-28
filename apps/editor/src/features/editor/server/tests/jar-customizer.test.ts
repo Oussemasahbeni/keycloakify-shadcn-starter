@@ -22,8 +22,8 @@ const customConfig: ThemeConfig = {
     font: "inter",
     showPlaceholders: false,
     showRealmName: false,
-    logoWhiteUrl: "https://cdn.example.com/logo-light.svg",
-    sideImageUrl: "", // stays empty → `${env.X:}`
+    logoUrl: "https://cdn.example.com/logo-light.svg",
+    asideImageUrl: "", // stays empty → `${env.X:}`
 };
 
 function readEntry(jar: Uint8Array, path: string): string {
@@ -42,19 +42,19 @@ describe("customizeThemeJar (Tier A: config baking)", () => {
         expect(props).toContain("SHADCN_THEME_PRESET=${env.SHADCN_THEME_PRESET:blue}");
         expect(props).toContain("SHADCN_THEME_RADIUS=${env.SHADCN_THEME_RADIUS:large}");
         expect(props).toContain("SHADCN_THEME_FONT=${env.SHADCN_THEME_FONT:inter}");
-        expect(props).toContain("SHADCN_THEME_PLACEHOLDER=${env.SHADCN_THEME_PLACEHOLDER:false}");
+        expect(props).toContain("SHADCN_THEME_SHOW_PLACEHOLDER=${env.SHADCN_THEME_SHOW_PLACEHOLDER:false}");
         expect(props).toContain(
             "SHADCN_THEME_SHOW_REALM_NAME=${env.SHADCN_THEME_SHOW_REALM_NAME:false}",
         );
         expect(props).toContain(
-            "SHADCN_THEME_LOGO_WHITE_URL=${env.SHADCN_THEME_LOGO_WHITE_URL:https://cdn.example.com/logo-light.svg}",
+            "SHADCN_THEME_LOGO_URL=${env.SHADCN_THEME_LOGO_URL:https://cdn.example.com/logo-light.svg}",
         );
     });
 
     it("keeps empty values as `${env.X:}` (drop-in identical to stock)", () => {
         const props = readEntry(result, LOGIN_PROPS);
 
-        expect(props).toContain("SHADCN_THEME_SIDE_IMAGE_URL=${env.SHADCN_THEME_SIDE_IMAGE_URL:}");
+        expect(props).toContain("SHADCN_THEME_ASIDE_IMAGE_URL=${env.SHADCN_THEME_ASIDE_IMAGE_URL:}");
     });
 
     it("leaves non-managed lines untouched", () => {

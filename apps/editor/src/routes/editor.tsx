@@ -21,11 +21,11 @@ function EditorPage() {
             <div className="flex h-svh flex-col">
                 <EditorHeader />
                 <ResizablePanelGroup>
-                    <ResizablePanel defaultSize="85%" minSize="30%">
+                    <ResizablePanel defaultSize="80%" minSize="30%">
                         <PreviewPane />
                     </ResizablePanel>
                     <ResizableHandle withHandle />
-                    <ResizablePanel defaultSize="15%" minSize="15%">
+                    <ResizablePanel defaultSize="20%" minSize="15%">
                         <EditorSidebar />
                     </ResizablePanel>
                 </ResizablePanelGroup>

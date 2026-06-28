@@ -6,8 +6,7 @@ const { I18nProvider, useI18n } = i18nBuilder
     .withThemeName<ThemeName>()
     .withCustomTranslations({
         en: {
-            welcomeMessage:
-                "Welcome to Acme inc - Your gateway to seamless planning and organization.",
+            welcomeMessage: "Your secure gateway to a seamless experience.",
             backToApplication: "Back to application",
             proceedWithAction: "Proceed with action",
             backToLogin: "Back to login",
@@ -27,7 +26,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Confirm your password",
         },
         ar: {
-            welcomeMessage: "مرحبًا بك في Acme inc - بوابتك إلى التخطيط والتنظيم السلس.",
+            welcomeMessage: "بوابتك الآمنة لتجربة سلسة.",
             backToApplication: "العودة إلى التطبيق",
             proceedWithAction: "متابعة الإجراء",
             backToLogin: "العودة إلى تسجيل الدخول",
@@ -47,8 +46,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "أكد كلمة المرور",
         },
         ca: {
-            welcomeMessage:
-                "Benvingut a Acme inc: la vostra porta d'accés a una planificació i organització perfecta.",
+            welcomeMessage: "La vostra porta d'accés segura a una experiència fluida.",
             backToApplication: "Tornar a l'aplicació",
             proceedWithAction: "Continuar amb l'acció",
             backToLogin: "Tornar a l'inici de sessió",
@@ -68,8 +66,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Confirmeu la vostra contrasenya",
         },
         cs: {
-            welcomeMessage:
-                "Vítejte v Acme inc – vaší bráně k bezproblémovému plánování a organizaci.",
+            welcomeMessage: "Vaše bezpečná brána k bezproblémovému zážitku.",
             backToApplication: "Zpět do aplikace",
             proceedWithAction: "Pokračovat v akci",
             backToLogin: "Zpět k přihlášení",
@@ -89,8 +86,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Potvrďte své heslo",
         },
         da: {
-            welcomeMessage:
-                "Velkommen til Acme inc - din gateway til problemfri planlægning og organisering.",
+            welcomeMessage: "Din sikre indgang til en problemfri oplevelse.",
             backToApplication: "Tilbage til applikationen",
             proceedWithAction: "Fortsæt med handlingen",
             backToLogin: "Tilbage til login",
@@ -110,8 +106,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Bekræft din adgangskode",
         },
         de: {
-            welcomeMessage:
-                "Willkommen bei Acme inc – Ihr Zugang zu nahtloser Planung und Organisation.",
+            welcomeMessage: "Ihr sicherer Zugang zu einem nahtlosen Erlebnis.",
             backToApplication: "Zurück zur Anwendung",
             proceedWithAction: "Mit der Aktion fortfahren",
             backToLogin: "Zurück zum Login",
@@ -131,8 +126,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Passwort bestätigen",
         },
         el: {
-            welcomeMessage:
-                "Καλώς ήρθατε στην Acme inc - Η πύλη σας για απρόσκοπτο σχεδιασμό και οργάνωση.",
+            welcomeMessage: "Η ασφαλής πύλη σας για μια απρόσκοπτη εμπειρία.",
             backToApplication: "Επιστροφή στην εφαρμογή",
             proceedWithAction: "Συνέχεια με την ενέργεια",
             backToLogin: "Επιστροφή στη σύνδεση",
@@ -152,8 +146,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Επιβεβαιώστε τον κωδικό πρόσβασής σας",
         },
         es: {
-            welcomeMessage:
-                "Bienvenido a Acme inc: su puerta de entrada a una planificación y organización perfectas.",
+            welcomeMessage: "Su puerta de acceso segura a una experiencia perfecta.",
             backToApplication: "Volver a la aplicación",
             proceedWithAction: "Continuar con la acción",
             backToLogin: "Volver al inicio de sesión",
@@ -173,8 +166,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Confirme su contraseña",
         },
         fa: {
-            welcomeMessage:
-                "به Acme inc خوش آمدید - دروازه شما برای برنامه‌ریزی و سازماندهی بدون نقص.",
+            welcomeMessage: "دروازه امن شما برای تجربه‌ای بی‌نقص.",
             backToApplication: "بازگشت به برنامه",
             proceedWithAction: "ادامه عملیات",
             backToLogin: "بازگشت به ورود",
@@ -194,8 +186,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "رمز عبور خود را تأیید کنید",
         },
         fi: {
-            welcomeMessage:
-                "Tervetuloa Acme inc:iin – porttisi saumattomaan suunnitteluun ja organisointiin.",
+            welcomeMessage: "Turvallinen porttisi saumattomaan kokemukseen.",
             backToApplication: "Takaisin sovellukseen",
             proceedWithAction: "Jatka toimintoa",
             backToLogin: "Takaisin kirjautumiseen",
@@ -215,8 +206,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Vahvista salasanasi",
         },
         fr: {
-            welcomeMessage:
-                "Bienvenue sur Acme inc - Votre passerelle vers une planification et une organisation sans faille.",
+            welcomeMessage: "Votre passerelle sécurisée vers une expérience sans faille.",
             backToApplication: "Retour à l'application",
             proceedWithAction: "Continuer l'action",
             backToLogin: "Retour à la connexion",
@@ -236,8 +226,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Confirmez votre mot de passe",
         },
         hu: {
-            welcomeMessage:
-                "Üdvözöljük az Acme inc-nél – Az Ön kapuja a zökkenőmentes tervezéshez és szervezéshez.",
+            welcomeMessage: "Az Ön biztonságos kapuja a zökkenőmentes élményhez.",
             backToApplication: "Vissza az alkalmazáshoz",
             proceedWithAction: "Folytatás a művelettel",
             backToLogin: "Vissza a bejelentkezéshez",
@@ -257,8 +246,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Erősítse meg a jelszavát",
         },
         it: {
-            welcomeMessage:
-                "Benvenuti in Acme inc - Il vostro portale per una pianificazione e un'organizzazione senza interruzioni.",
+            welcomeMessage: "Il tuo accesso sicuro a un'esperienza senza interruzioni.",
             backToApplication: "Torna all'applicazione",
             proceedWithAction: "Procedi con l'azione",
             backToLogin: "Torna al login",
@@ -278,7 +266,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Conferma la tua password",
         },
         ja: {
-            welcomeMessage: "Acme inc へようこそ - シームレスな計画と組織化へのゲートウェイ。",
+            welcomeMessage: "シームレスな体験への安全なゲートウェイ。",
             backToApplication: "アプリケーションに戻る",
             proceedWithAction: "操作を続行",
             backToLogin: "ログインに戻る",
@@ -298,8 +286,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "パスワードを確認してください",
         },
         ka: {
-            welcomeMessage:
-                "მოგესალმებით Acme inc-ში - თქვენი კარიბჭე უწყვეტი დაგეგმვისა და ორგანიზებისთვის.",
+            welcomeMessage: "თქვენი უსაფრთხო კარიბჭე უწყვეტი გამოცდილებისკენ.",
             backToApplication: "აპლიკაციაში დაბრუნება",
             proceedWithAction: "მოქმედების გაგრძელება",
             backToLogin: "შესვლაზე დაბრუნება",
@@ -319,8 +306,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "დაადასტურეთ თქვენი პაროლი",
         },
         lt: {
-            welcomeMessage:
-                "Sveiki atvykę į „Acme inc“ – jūsų vartai į sklandų planavimą ir organizavimą.",
+            welcomeMessage: "Jūsų saugus vartai į sklandžią patirtį.",
             backToApplication: "Grįžti į programą",
             proceedWithAction: "Tęsti veiksmą",
             backToLogin: "Grįžti į prisijungimą",
@@ -340,8 +326,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Patvirtinkite savo slaptažodį",
         },
         lv: {
-            welcomeMessage:
-                "Laipni lūdzam Acme inc — jūsu vārti uz nevainojamu plānošanu un organizēšanu.",
+            welcomeMessage: "Jūsu drošā vārteja uz nevainojamu pieredzi.",
             backToApplication: "Atpakaļ uz lietotni",
             proceedWithAction: "Turpināt darbību",
             backToLogin: "Atpakaļ uz pieteikšanos",
@@ -361,8 +346,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Apstipriniet savu paroli",
         },
         nl: {
-            welcomeMessage:
-                "Welkom bij Acme inc - Uw toegangspoort tot naadloze planning en organisatie.",
+            welcomeMessage: "Uw veilige toegangspoort tot een naadloze ervaring.",
             backToApplication: "Terug naar de applicatie",
             proceedWithAction: "Doorgaan met de actie",
             backToLogin: "Terug naar inloggen",
@@ -382,8 +366,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Bevestig uw wachtwoord",
         },
         no: {
-            welcomeMessage:
-                "Velkommen til Acme inc - din inngangsport til sømløs planlegging og organisering.",
+            welcomeMessage: "Din sikre inngangsport til en sømløs opplevelse.",
             backToApplication: "Tilbake til applikasjonen",
             proceedWithAction: "Fortsett med handlingen",
             backToLogin: "Tilbake til innlogging",
@@ -403,8 +386,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Bekreft passordet ditt",
         },
         pl: {
-            welcomeMessage:
-                "Witamy w Acme inc — Twojej bramie do bezproblemowego planowania i organizacji.",
+            welcomeMessage: "Twoja bezpieczna brama do bezproblemowego korzystania.",
             backToApplication: "Powrót do aplikacji",
             proceedWithAction: "Kontynuuj akcję",
             backToLogin: "Powrót do logowania",
@@ -424,8 +406,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Potwierdź swoje hasło",
         },
         pt: {
-            welcomeMessage:
-                "Bem-vindo à Acme inc - Sua porta de entrada para planejamento e organização integrados.",
+            welcomeMessage: "A sua porta de entrada segura para uma experiência perfeita.",
             backToApplication: "Voltar à aplicação",
             proceedWithAction: "Prosseguir com a ação",
             backToLogin: "Voltar para o login",
@@ -445,8 +426,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Confirme a sua palavra-passe",
         },
         "pt-BR": {
-            welcomeMessage:
-                "Bem-vindo à Acme inc - Seu portal para planejamento e organização contínuos.",
+            welcomeMessage: "Seu portal seguro para uma experiência perfeita.",
             backToApplication: "Voltar para o aplicativo",
             proceedWithAction: "Prosseguir com a ação",
             backToLogin: "Voltar para o login",
@@ -466,8 +446,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Confirme sua senha",
         },
         ru: {
-            welcomeMessage:
-                "Добро пожаловать в Acme inc — ваш путь к эффективному планированию и организации.",
+            welcomeMessage: "Ваш надёжный доступ к удобному сервису.",
             backToApplication: "Вернуться в приложение",
             proceedWithAction: "Продолжить действие",
             backToLogin: "Вернуться к входу",
@@ -487,8 +466,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Подтвердите пароль",
         },
         sk: {
-            welcomeMessage:
-                "Vitajte v Acme inc – vašej bráne k bezproblémovému plánovaniu a organizácii.",
+            welcomeMessage: "Vaša bezpečná brána k bezproblémovému zážitku.",
             backToApplication: "Späť do aplikácie",
             proceedWithAction: "Pokračovať v akcii",
             backToLogin: "Zpět k přihlášení",
@@ -508,8 +486,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Potvrďte svoje heslo",
         },
         sv: {
-            welcomeMessage:
-                "Välkommen till Acme inc - din inkörsport till sömlös planering och organisering.",
+            welcomeMessage: "Din säkra ingång till en sömlös upplevelse.",
             backToApplication: "Tillbaka till applikationen",
             proceedWithAction: "Fortsätt med åtgärden",
             backToLogin: "Tillbaka till inloggning",
@@ -529,7 +506,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Bekräfta ditt lösenord",
         },
         th: {
-            welcomeMessage: "ยินดีต้อนรับสู่ Acme inc - ประตูสู่การวางแผนและจัดระเบียบที่ราบรื่น",
+            welcomeMessage: "ประตูที่ปลอดภัยสู่ประสบการณ์ที่ราบรื่นของคุณ",
             backToApplication: "กลับไปยังแอปพลิเคชัน",
             proceedWithAction: "ดำเนินการต่อ",
             backToLogin: "กลับไปยังการเข้าสู่ระบบ",
@@ -549,8 +526,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "ยืนยันรหัสผ่านของคุณ",
         },
         tr: {
-            welcomeMessage:
-                "Acme inc'e hoş geldiniz - Kusursuz planlama ve organizasyona giden kapınız.",
+            welcomeMessage: "Kusursuz bir deneyime açılan güvenli kapınız.",
             backToApplication: "Uygulamaya geri dön",
             proceedWithAction: "İşleme devam et",
             backToLogin: "Girişe geri dön",
@@ -570,8 +546,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Şifrenizi onaylayın",
         },
         uk: {
-            welcomeMessage:
-                "Ласкаво просимо до Acme inc — вашого шлюзу до безперебійного планування та організації.",
+            welcomeMessage: "Ваш безпечний шлюз до бездоганного досвіду.",
             backToApplication: "Повернутися до застосунку",
             proceedWithAction: "Продовжити дію",
             backToLogin: "Повернутися до входу",
@@ -591,7 +566,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "Підтвердьте пароль",
         },
         "zh-CN": {
-            welcomeMessage: "欢迎来到 Acme inc - 开启无缝规划与组织的门户。",
+            welcomeMessage: "您通往无缝体验的安全门户。",
             backToApplication: "返回应用",
             proceedWithAction: "继续操作",
             backToLogin: "返回登录",
@@ -611,7 +586,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             confirmPasswordPlaceholder: "请确认密码",
         },
         "zh-TW": {
-            welcomeMessage: "歡迎來到 Acme inc - 開啟無縫規劃與組織的門戶。",
+            welcomeMessage: "您通往無縫體驗的安全門戶。",
             backToApplication: "返回應用程式",
             proceedWithAction: "繼續操作",
             backToLogin: "返回登入",

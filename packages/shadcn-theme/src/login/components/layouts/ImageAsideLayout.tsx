@@ -9,10 +9,10 @@ export function ImageAsideLayout(props: { content: ReactNode; imageUrl?: string 
     return (
         <main className="flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
             <TemplateTopBar />
-            <Card className="overflow-hidden p-0 w-full max-w-sm md:max-w-4xl">
+            <Card className="w-full max-w-xl overflow-hidden p-0 md:max-w-4xl">
                 <CardContent className="grid p-0 md:grid-cols-2">
                     <div className="min-w-0">{content}</div>
-                    <div className="relative hidden md:block h-full min-h-80 bg-muted">
+                    <div className="bg-muted relative hidden h-full min-h-80 md:block">
                         <img
                             src={imageUrl || placeholder}
                             alt="Authentication visual"

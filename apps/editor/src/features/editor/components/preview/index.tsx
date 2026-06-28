@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { usePushPreviewState } from "../../hooks/use-iframe-message";
-import { usePublishPreviewFiles } from "../../hooks/use-preview-files-channel";
+import { usePublishPreviewAssets } from "../../hooks/use-preview-assets-channel";
 import { getViewportWidth } from "../../model/viewport";
 import { useEditor } from "../../state/editor-context";
 import { getPage } from "../../stories/pages";
@@ -11,7 +11,7 @@ import { PreviewToolbar } from "./preview-toolbar";
  * Renders the real theme in an isolated iframe (`/preview`).
  */
 export function PreviewPane() {
-    const { viewport, previewColorScheme, config, files } = useEditor();
+    const { viewport, previewColorScheme, config, assets } = useEditor();
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const width = getViewportWidth(viewport);
 
@@ -24,7 +24,7 @@ export function PreviewPane() {
     }
 
     usePushPreviewState(iframeRef, pageId, storyId, previewColorScheme, config);
-    usePublishPreviewFiles(files);
+    usePublishPreviewAssets(assets);
 
     return (
         <div className="flex h-full flex-col">

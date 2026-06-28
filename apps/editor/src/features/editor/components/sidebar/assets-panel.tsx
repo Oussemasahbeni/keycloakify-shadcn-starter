@@ -1,24 +1,21 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "#/components/ui/card.tsx";
+import { Button } from "#/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card.tsx";
 import { FileUpload } from "#/components/ui/file-upload";
-import { Input } from "#/components/ui/input.tsx";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
 import type { LucideIcon } from "lucide-react";
-import { Image as ImageIcon, Moon, PanelLeft, Star, Sun } from "lucide-react";
+import { Image as ImageIcon, Moon, PanelLeft, Star, Sun, X } from "lucide-react";
 import { MAX_IMAGE_SIZE_BYTES, getImageError, imageAssets } from "../../model/assets";
 import { getFaviconError } from "../../model/favicon-upload";
 import { useEditor } from "../../state/editor-context";
 
 const ASSET_ICONS: Record<string, LucideIcon> = {
     favicon: Star,
-    logoWhiteUrl: Sun,
+    logoUrl: Sun,
     logoDarkUrl: Moon,
-    sideImageUrl: PanelLeft,
-    cardBackgroundUrl: ImageIcon,
+    asideImageUrl: PanelLeft,
+    cardImageUrl: ImageIcon,
+    sidePanelImageUrl: PanelLeft,
+    sidePanelImageDarkUrl: Moon,
 };
 
 /**
@@ -47,18 +44,24 @@ function ImageAssetField({
                     <Icon className="text-muted-foreground size-4" />
                     {label}
                 </CardTitle>
-                <CardDescription>
-                    Paste an image URL or upload a file. An uploaded file overrides the URL.
-                </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-                <Input
-                    type="url"
-                    inputMode="url"
-                    placeholder="https://example.com/image.png"
-                    value={url}
-                    onChange={event => onUrlChange(event.target.value)}
-                />
+                <InputGroup>
+                    <InputGroupInput
+                        type="url"
+                        inputMode="url"
+                        placeholder="https://example.com/image.png"
+                        value={url}
+                        onChange={event => onUrlChange(event.target.value)}
+                    />
+                    {url && (
+                        <InputGroupAddon align="inline-end">
+                            <Button variant="ghost" size="icon" onClick={() => onUrlChange("")}>
+                                <X />
+                            </Button>
+                        </InputGroupAddon>
+                    )}
+                </InputGroup>
                 <div className="text-muted-foreground flex items-center gap-2 text-xs">
                     <span className="bg-border h-px flex-1" />
                     or
@@ -78,8 +81,8 @@ function ImageAssetField({
     );
 }
 
-export function ImagesPanel() {
-    const { config, updateConfig, files, setFiles } = useEditor();
+export function AssetsPanel() {
+    const { config, updateConfig, assets, setAssets } = useEditor();
 
     return (
         <div className="space-y-4">
@@ -93,8 +96,8 @@ export function ImagesPanel() {
                 <CardContent>
                     <FileUpload
                         label="Upload favicon"
-                        value={files.favicon}
-                        onChange={file => setFiles({ ...files, favicon: file })}
+                        value={assets.favicon}
+                        onChange={file => setAssets({ ...assets, favicon: file })}
                         accept=".png,.svg,.ico"
                         validate={getFaviconError}
                         hint="PNG, SVG, or ICO (max 1 MB)."
@@ -111,8 +114,8 @@ export function ImagesPanel() {
                         label={asset.label}
                         url={config[asset.key]}
                         onUrlChange={value => updateConfig({ [asset.key]: value })}
-                        file={files[asset.key]}
-                        onFileChange={file => setFiles({ ...files, [asset.key]: file })}
+                        file={assets[asset.key]}
+                        onFileChange={file => setAssets({ ...assets, [asset.key]: file })}
                     />
                 ))}
         </div>

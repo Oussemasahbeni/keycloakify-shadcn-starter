@@ -17,7 +17,7 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     const { url, messagesPerField, isAppInitiatedAction } = kcContext;
-    const showPlaceholder = kcContext.properties.SHADCN_THEME_PLACEHOLDER === "true";
+    const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
 
     return (
         <Template

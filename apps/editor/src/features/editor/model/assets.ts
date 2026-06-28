@@ -44,7 +44,7 @@ export function getImageExtension(file: File): string {
 }
 
 type ImageAssetDescriptor = {
-    /** Doubles as the `files` store key AND the multipart field name on export. */
+    /** Doubles as the `assets` store key AND the multipart field name on export. */
     key: string;
     /** The `SHADCN_THEME_*` property (used by the live-preview object-URL override). */
     property: string;
@@ -66,9 +66,9 @@ type ImageAssetDescriptor = {
  */
 export const imageAssets = [
     {
-        key: "logoWhiteUrl",
-        property: "SHADCN_THEME_LOGO_WHITE_URL",
-        baseName: "logo-white",
+        key: "logoUrl",
+        property: "SHADCN_THEME_LOGO_URL",
+        baseName: "logo",
         label: "Light logo",
     },
     {
@@ -78,18 +78,32 @@ export const imageAssets = [
         label: "Dark logo",
     },
     {
-        key: "sideImageUrl",
-        property: "SHADCN_THEME_SIDE_IMAGE_URL",
-        baseName: "side-image",
-        label: "Side image",
+        key: "asideImageUrl",
+        property: "SHADCN_THEME_ASIDE_IMAGE_URL",
+        baseName: "aside-image",
+        label: "Aside image",
         layout: "image-aside",
     },
     {
-        key: "cardBackgroundUrl",
-        property: "SHADCN_THEME_CARD_BG_URL",
+        key: "cardImageUrl",
+        property: "SHADCN_THEME_CARD_IMAGE_URL",
         baseName: "card-background",
         label: "Card background",
         layout: "centered-card",
+    },
+    {
+        key: "sidePanelImageUrl",
+        property: "SHADCN_THEME_SIDE_PANEL_IMAGE_URL",
+        baseName: "side-panel-image",
+        label: "Side panel light image",
+        layout: "two-column",
+    },
+    {
+        key: "sidePanelImageDarkUrl",
+        property: "SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL",
+        baseName: "side-panel-image-dark",
+        label: "Side panel dark image",
+        layout: "two-column",
     },
 ] as const satisfies readonly ImageAssetDescriptor[];
 
