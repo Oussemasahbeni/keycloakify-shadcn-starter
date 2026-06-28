@@ -3,6 +3,7 @@ import type {
     FontFamily,
     Layout,
     RadiusPreset,
+    SidePanelPosition,
     ThemePreset,
 } from "@kc-studio/shadcn-theme/theme";
 import {
@@ -17,6 +18,7 @@ import {
     DEFAULT_THEME_RADIUS,
     DEFAULT_THEME_SIDE_PANEL_IMAGE_DARK_URL,
     DEFAULT_THEME_SIDE_PANEL_IMAGE_URL,
+    DEFAULT_THEME_SIDE_PANEL_POSITION,
     DEFAULT_WELCOME_MESSAGE,
 } from "@kc-studio/shadcn-theme/theme";
 import { Moon, Sun } from "lucide-react";
@@ -43,7 +45,7 @@ export type ThemeConfig = {
     font: FontFamily;
     layout: Layout;
     locale: Locale;
-    showPlaceholders: boolean;
+    showPlaceholder: boolean;
     showRealmName: boolean;
     logoUrl: string;
     logoDarkUrl: string;
@@ -51,6 +53,7 @@ export type ThemeConfig = {
     cardImageUrl: string;
     sidePanelImageUrl: string;
     sidePanelImageDarkUrl: string;
+    sidePanelPosition: SidePanelPosition;
     welcomeMessage: string;
 };
 
@@ -61,7 +64,7 @@ export const defaultThemeConfig: ThemeConfig = {
     font: DEFAULT_FONT,
     layout: DEFAULT_THEME_LAYOUT,
     locale: DEFAULT_LOCALE,
-    showPlaceholders: true,
+    showPlaceholder: true,
     showRealmName: true,
     logoUrl: DEFAULT_THEME_LOGO_URL,
     logoDarkUrl: DEFAULT_THEME_LOGO_DARK_URL,
@@ -69,6 +72,7 @@ export const defaultThemeConfig: ThemeConfig = {
     cardImageUrl: DEFAULT_THEME_CARD_IMAGE_URL,
     sidePanelImageUrl: DEFAULT_THEME_SIDE_PANEL_IMAGE_URL,
     sidePanelImageDarkUrl: DEFAULT_THEME_SIDE_PANEL_IMAGE_DARK_URL,
+    sidePanelPosition: DEFAULT_THEME_SIDE_PANEL_POSITION,
     welcomeMessage: DEFAULT_WELCOME_MESSAGE,
 };
 
@@ -87,7 +91,7 @@ export function themeConfigToProperties(config: ThemeConfig): Record<string, str
         SHADCN_THEME_PRESET: config.accent,
         SHADCN_THEME_RADIUS: config.radius,
         SHADCN_THEME_FONT: config.font,
-        SHADCN_THEME_SHOW_PLACEHOLDER: config.showPlaceholders ? "true" : "false",
+        SHADCN_THEME_SHOW_PLACEHOLDER: config.showPlaceholder ? "true" : "false",
         SHADCN_THEME_SHOW_REALM_NAME: config.showRealmName ? "true" : "false",
         SHADCN_THEME_LOGO_URL: config.logoUrl,
         SHADCN_THEME_LOGO_DARK_URL: config.logoDarkUrl,
@@ -95,6 +99,7 @@ export function themeConfigToProperties(config: ThemeConfig): Record<string, str
         SHADCN_THEME_CARD_IMAGE_URL: config.cardImageUrl,
         SHADCN_THEME_SIDE_PANEL_IMAGE_URL: config.sidePanelImageUrl,
         SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL: config.sidePanelImageDarkUrl,
+        SHADCN_THEME_SIDE_PANEL_POSITION: config.sidePanelPosition,
         SHADCN_THEME_WELCOME_MESSAGE: config.welcomeMessage,
     };
 }

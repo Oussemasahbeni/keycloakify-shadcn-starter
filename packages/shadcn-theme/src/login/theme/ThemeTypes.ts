@@ -102,9 +102,16 @@ export const fontFamilyOptions = [
 
 export const layoutOptions = ["two-column", "centered-card", "image-aside"] as const;
 
+/**
+ * Which side of the two-column layout the branded side panel sits on.
+ * Only meaningful for the `two-column` layout.
+ */
+export const sidePanelPositionOptions = ["right", "left"] as const;
+
 export type ThemePreset = (typeof themePresetOptions)[number];
 export type BasePalette = (typeof basePaletteOptions)[number];
 export type RadiusPreset = (typeof radiusPresetOptions)[number];
 export type FontFamily = (typeof fontFamilyOptions)[number];
 
 export type Layout = (typeof layoutOptions)[number];
+export type SidePanelPosition = (typeof sidePanelPositionOptions)[number];

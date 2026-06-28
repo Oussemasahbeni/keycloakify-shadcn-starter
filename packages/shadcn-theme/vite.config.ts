@@ -53,6 +53,10 @@ export default defineConfig({
                 { name: "SHADCN_THEME_SHOW_PLACEHOLDER", default: "true" },
                 { name: "SHADCN_THEME_SHOW_REALM_NAME", default: "true" },
                 {
+                    name: "SHADCN_THEME_SIDE_PANEL_POSITION",
+                    default: "right",
+                },
+                {
                     name: "SHADCN_THEME_WELCOME_MESSAGE",
                     default: "",
                 },

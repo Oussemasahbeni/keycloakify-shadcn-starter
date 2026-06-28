@@ -108,4 +108,5 @@ export const imageAssets = [
 ] as const satisfies readonly ImageAssetDescriptor[];
 
 export type ImageAssetKey = (typeof imageAssets)[number]["key"];
+export type ImageAssetProperty = (typeof imageAssets)[number]["property"];
 export type ThemeAssetKey = ImageAssetKey | "favicon";

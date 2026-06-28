@@ -1,5 +1,6 @@
-import { useI18n } from "#/login/i18n";
+import { cn } from "#/lib/utils";
 import { useKcContext } from "#/login/KcContext";
+import type { SidePanelPosition } from "#/login/theme";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import type { ReactNode } from "react";
 import shape from "../../assets/img/shape.svg";
@@ -10,29 +11,52 @@ export function TwoColumnLayout(props: {
     logoUrl: string;
     sidePanelImageUrl?: string;
     sidePanelImageDarkUrl?: string;
+    sidePanelPosition?: SidePanelPosition;
+    showRealmName: boolean;
+    logoAlt: string;
+    welcomeMessage: string;
 }) {
-    const { content, logoUrl, sidePanelImageUrl, sidePanelImageDarkUrl } = props;
+    const {
+        content,
+        logoUrl,
+        sidePanelImageUrl,
+        sidePanelImageDarkUrl,
+        sidePanelPosition = "right",
+        showRealmName,
+        logoAlt,
+        welcomeMessage,
+    } = props;
+
+    // The form is the first grid column (left) by default. When the side panel is
+    // placed on the left, swap the column order at `lg+` (below `lg` the panel is
+    // hidden and the grid is single-column, so order is irrelevant).
+    const isLeft = sidePanelPosition === "left";
+    const formOrderClassName = isLeft ? "lg:order-last" : undefined;
+    const panelOrderClassName = isLeft ? "lg:order-first" : undefined;
 
     const { kcContext } = useKcContext();
 
-    const { msg } = useI18n();
-
-    const showRealmName = kcContext.properties.SHADCN_THEME_SHOW_REALM_NAME !== "false";
-    const logoAlt = kcContext.realm.displayName || kcContext.realm.name || "Logo";
-    const welcomeMessage =
-        kcContext.properties.SHADCN_THEME_WELCOME_MESSAGE.trim() || msg("welcomeMessage");
-
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
-            <div className="relative flex min-h-screen flex-col lg:min-h-0 lg:p-6 lg:pt-10">
-                <TemplateTopBar />
+            <div
+                className={cn(
+                    "relative flex min-h-screen flex-col lg:min-h-0 lg:p-6 lg:pt-10",
+                    formOrderClassName,
+                )}
+            >
+                <TemplateTopBar align={isLeft ? "end" : "start"} />
                 <div className="flex flex-1 items-center justify-center p-6 md:p-10 lg:items-center">
                     <main className="w-full max-w-xl">{content}</main>
                 </div>
             </div>
 
             {sidePanelImageUrl || sidePanelImageDarkUrl ? (
-                <div className="relative hidden h-full overflow-hidden lg:block">
+                <div
+                    className={cn(
+                        "relative hidden h-full overflow-hidden lg:block",
+                        panelOrderClassName,
+                    )}
+                >
                     <img
                         src={sidePanelImageUrl || sidePanelImageDarkUrl}
                         alt=""
@@ -46,7 +70,12 @@ export function TwoColumnLayout(props: {
                     />
                 </div>
             ) : (
-                <div className="bg-side-panel text-side-panel-foreground relative hidden h-full overflow-hidden lg:block">
+                <div
+                    className={cn(
+                        "bg-side-panel text-side-panel-foreground relative hidden h-full overflow-hidden lg:block",
+                        panelOrderClassName,
+                    )}
+                >
                     <div className="flex h-full items-center justify-center pt-20">
                         <div className="absolute top-0 right-0 w-full max-w-62.5 xl:max-w-112.5">
                             <img src={shape} alt="" />

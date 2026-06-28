@@ -7,12 +7,17 @@ import { FiHome } from "react-icons/fi";
 import { Languages } from "../ui/Langauges";
 import { ModeToggle } from "../ui/ThemeToggle";
 
-export function TemplateTopBar() {
+export function TemplateTopBar({ align = "start" }: { align?: "start" | "end" }) {
     const { kcContext } = useKcContext();
     const { enabledLanguages } = useI18n();
 
     return (
-        <div className="absolute inset-x-4 top-4 z-20 flex items-center gap-2">
+        <div
+            className={cn(
+                "absolute inset-x-4 top-4 z-20 flex items-center gap-2",
+                align === "end" && "justify-end",
+            )}
+        >
             <a
                 href={kcContext.client?.baseUrl ?? redirectUrlOrigin}
                 aria-label="Home"

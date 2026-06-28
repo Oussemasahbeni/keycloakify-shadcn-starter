@@ -33,12 +33,14 @@ export const {
 
 // Can be call anywhere, even in the body of a React component.
 // All subsequent calls will be safely ignored.
-bootstrapOidc(({ process }) => ({
-    implementation: "real",
-    issuerUri: process.env.OIDC_ISSUER_URI,
-    clientId: process.env.OIDC_CLIENT_ID,
-    debugLogs: import.meta.env.DEV || process.env.NODE_ENV === "development",
-}));
+if (typeof window === "undefined" || window.location.pathname !== "/preview") {
+    bootstrapOidc(({ process }) => ({
+        implementation: "real",
+        issuerUri: process.env.OIDC_ISSUER_URI,
+        clientId: process.env.OIDC_CLIENT_ID,
+        debugLogs: import.meta.env.DEV || process.env.NODE_ENV === "development",
+    }));
+}
 
 export const fetchWithAuth: typeof fetch = async (input, init) => {
     const oidc = await getOidc();

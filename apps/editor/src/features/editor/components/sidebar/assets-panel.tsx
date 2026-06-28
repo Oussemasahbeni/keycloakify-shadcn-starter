@@ -4,11 +4,12 @@ import { FileUpload } from "#/components/ui/file-upload";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group";
 import type { LucideIcon } from "lucide-react";
 import { Image as ImageIcon, Moon, PanelLeft, Star, Sun, X } from "lucide-react";
+import type { ThemeAssetKey } from "../../model/assets";
 import { MAX_IMAGE_SIZE_BYTES, getImageError, imageAssets } from "../../model/assets";
 import { getFaviconError } from "../../model/favicon-upload";
 import { useEditor } from "../../state/editor-context";
 
-const ASSET_ICONS: Record<string, LucideIcon> = {
+const ASSET_ICONS: Record<ThemeAssetKey, LucideIcon> = {
     favicon: Star,
     logoUrl: Sun,
     logoDarkUrl: Moon,
@@ -110,7 +111,7 @@ export function AssetsPanel() {
                 .map(asset => (
                     <ImageAssetField
                         key={asset.key}
-                        icon={ASSET_ICONS[asset.key] ?? ImageIcon}
+                        icon={ASSET_ICONS[asset.key]}
                         label={asset.label}
                         url={config[asset.key]}
                         onUrlChange={value => updateConfig({ [asset.key]: value })}

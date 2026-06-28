@@ -12,4 +12,5 @@ export const DEFAULT_THEME_ASIDE_IMAGE_URL = "";
 export const DEFAULT_THEME_CARD_IMAGE_URL = "";
 export const DEFAULT_THEME_SIDE_PANEL_IMAGE_URL = "";
 export const DEFAULT_THEME_SIDE_PANEL_IMAGE_DARK_URL = "";
+export const DEFAULT_THEME_SIDE_PANEL_POSITION = "right";
 export const DEFAULT_WELCOME_MESSAGE = "";

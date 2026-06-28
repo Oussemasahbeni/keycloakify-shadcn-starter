@@ -44,7 +44,14 @@ export function Template(props: TemplateProps) {
     const sidePanelImageDarkUrl = resolveAssetUrl(
         kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL,
     );
+    const sidePanelPosition =
+        kcContext.properties.SHADCN_THEME_SIDE_PANEL_POSITION === "left" ? "left" : "right";
     const layout = kcContext.properties.SHADCN_THEME_LAYOUT;
+
+    const showRealmName = kcContext.properties.SHADCN_THEME_SHOW_REALM_NAME !== "false";
+    const logoAlt = kcContext.realm.displayName || kcContext.realm.name || "Logo";
+    const welcomeMessage =
+        kcContext.properties.SHADCN_THEME_WELCOME_MESSAGE.trim() || msgStr("welcomeMessage");
 
     useEffect(() => {
         document.title =
@@ -98,6 +105,10 @@ export function Template(props: TemplateProps) {
                     }
                     sidePanelImageUrl={sidePanelImageUrl}
                     sidePanelImageDarkUrl={sidePanelImageDarkUrl}
+                    sidePanelPosition={sidePanelPosition}
+                    showRealmName={showRealmName}
+                    welcomeMessage={welcomeMessage}
+                    logoAlt={logoAlt}
                     // side panel is a dark surface in both modes
                     logoUrl={logoDarkUrl}
                 />

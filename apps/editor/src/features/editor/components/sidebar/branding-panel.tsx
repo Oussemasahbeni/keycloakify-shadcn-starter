@@ -19,7 +19,7 @@ import {
 import { Separator } from "#/components/ui/separator";
 import { Switch } from "#/components/ui/switch";
 import type { LucideIcon } from "lucide-react";
-import { Columns2, Image, Info, Shuffle, Square } from "lucide-react";
+import { Columns2, Image, Info, PanelLeft, PanelRight, Shuffle, Square } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { pickRandom, prettify } from "#/lib/utils";
@@ -28,6 +28,7 @@ import type {
     FontFamily,
     Layout,
     RadiusPreset,
+    SidePanelPosition,
     ThemePreset,
 } from "@kc-studio/shadcn-theme/theme";
 import {
@@ -36,6 +37,7 @@ import {
     fontFamilyOptions,
     layoutOptions,
     radiusPresetOptions,
+    sidePanelPositionOptions,
     themePresetOptions,
     themePresets,
 } from "@kc-studio/shadcn-theme/theme";
@@ -233,6 +235,52 @@ function LayoutField() {
     );
 }
 
+const sidePanelPositionMeta: Record<SidePanelPosition, { label: string; Icon: LucideIcon }> = {
+    left: { label: "Left", Icon: PanelLeft },
+    right: { label: "Right", Icon: PanelRight },
+};
+
+function SidePanelPositionField() {
+    const { config, updateConfig } = useEditor();
+
+    if (config.layout !== "two-column") {
+        return null;
+    }
+
+    return (
+        <Field>
+            <FieldLabel>Side panel position</FieldLabel>
+            <RadioGroup
+                className="grid grid-cols-2 gap-2"
+                value={config.sidePanelPosition}
+                onValueChange={value => updateConfig({ sidePanelPosition: value })}
+            >
+                {sidePanelPositionOptions.map(option => {
+                    const { label, Icon } = sidePanelPositionMeta[option];
+                    return (
+                        <FieldLabel
+                            className="hover:cursor-pointer"
+                            key={option}
+                            htmlFor={`side-panel-position-${option}`}
+                        >
+                            <Field orientation="horizontal">
+                                <Icon className="size-4" />
+                                <FieldContent>
+                                    <FieldTitle>{label}</FieldTitle>
+                                </FieldContent>
+                                <RadioGroupItem
+                                    value={option}
+                                    id={`side-panel-position-${option}`}
+                                />
+                            </Field>
+                        </FieldLabel>
+                    );
+                })}
+            </RadioGroup>
+        </Field>
+    );
+}
+
 function ShowPlaceholdersField() {
     const { config, updateConfig } = useEditor();
 
@@ -240,8 +288,8 @@ function ShowPlaceholdersField() {
         <div className="flex items-center gap-2">
             <Switch
                 id="show-placeholders"
-                checked={config.showPlaceholders}
-                onCheckedChange={checked => updateConfig({ showPlaceholders: checked })}
+                checked={config.showPlaceholder}
+                onCheckedChange={checked => updateConfig({ showPlaceholder: checked })}
             />
             <Label htmlFor="show-placeholders">Show placeholders</Label>
         </div>
@@ -272,7 +320,7 @@ function ShuffleButton() {
             radius: pickRandom(radiusPresetOptions),
             font: pickRandom(fontFamilyOptions),
             layout: pickRandom(layoutOptions),
-            showPlaceholders: Math.random() < 0.5,
+            showPlaceholder: Math.random() < 0.5,
             showRealmName: Math.random() < 0.5,
         });
     }
@@ -408,6 +456,7 @@ export function BrandingPanel() {
 
             <Section title="Layout">
                 <LayoutField />
+                <SidePanelPositionField />
                 <div className="flex gap-2">
                     <ShowRealmNameField />
                     <ShowPlaceholdersField />

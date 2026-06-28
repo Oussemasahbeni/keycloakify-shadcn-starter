@@ -1,3 +1,4 @@
+import { Spinner } from "#/components/ui/spinner";
 import { useReceivePreviewState } from "#/features/editor/hooks/use-iframe-message";
 import type { PreviewAssets } from "#/features/editor/hooks/use-preview-assets-channel";
 import { useReceivePreviewAssets } from "#/features/editor/hooks/use-preview-assets-channel";
@@ -21,7 +22,8 @@ type PreviewSearch = {
     radius: ThemeConfig["radius"];
     font: ThemeConfig["font"];
     locale: ThemeConfig["locale"];
-    placeholders: boolean;
+    sidePanelPosition: ThemeConfig["sidePanelPosition"];
+    showPlaceholder: boolean;
     realmName: boolean;
     logo?: string;
     logoDark?: string;
@@ -52,7 +54,8 @@ export const Route = createFileRoute("/preview")({
         radius: (search.radius as ThemeConfig["radius"] | undefined) ?? defaultThemeConfig.radius,
         font: (search.font as ThemeConfig["font"] | undefined) ?? defaultThemeConfig.font,
         locale: (search.locale as ThemeConfig["locale"] | undefined) ?? defaultThemeConfig.locale,
-        placeholders: search.placeholders !== "false" && search.placeholders !== false,
+        sidePanelPosition: search.sidePanelPosition === "left" ? "left" : "right",
+        showPlaceholder: search.showPlaceholder !== "false" && search.showPlaceholder !== false,
         realmName: search.realmName !== "false" && search.realmName !== false,
         logo: (search.logo as string | undefined) || undefined,
         logoDark: (search.logoDark as string | undefined) || undefined,
@@ -61,7 +64,14 @@ export const Route = createFileRoute("/preview")({
         sidePanelImage: (search.sidePanelImage as string | undefined) || undefined,
         sidePanelImageDark: (search.sidePanelImageDark as string | undefined) || undefined,
     }),
+    ssr: false,
     component: PreviewRoute,
+    pendingComponent: () => (
+        <div className="text-muted-foreground flex h-svh items-center justify-center gap-2 text-sm">
+            <Spinner className="size-4" />
+            <span>Loading preview…</span>
+        </div>
+    ),
 });
 
 type IncomingState = {
@@ -86,7 +96,8 @@ function PreviewRoute() {
             radius: search.radius,
             font: search.font,
             locale: search.locale,
-            showPlaceholders: search.placeholders,
+            sidePanelPosition: search.sidePanelPosition,
+            showPlaceholder: search.showPlaceholder,
             showRealmName: search.realmName,
             logoUrl: search.logo ?? "",
             logoDarkUrl: search.logoDark ?? "",
@@ -99,19 +110,7 @@ function PreviewRoute() {
 
     const { pageId, storyId, colorScheme, config, assets } = state;
 
-    // Turn uploaded assets into temporary object URLs the iframe can render.
-    // `postMessage` structured-clones the File on every state message (even
-    // unrelated ones like a slider move), so we key this on a content signature
-    // rather than the file reference — otherwise we'd recreate the URLs (and
-    // flicker the image) on every keystroke. URLs are owned by this document and
-    // revoked on change/unmount.
     const [assetUrls, setAssetUrls] = useState<Partial<Record<ImageAssetKey, string>>>({});
-    const filesSignature = imageAssets
-        .map(({ key }) => {
-            const file = assets?.[key];
-            return file ? `${key}:${file.name}:${file.size}:${file.lastModified}` : `${key}:`;
-        })
-        .join("|");
 
     useEffect(() => {
         const urls: Partial<Record<ImageAssetKey, string>> = {};
@@ -123,7 +122,7 @@ function PreviewRoute() {
         return () => {
             for (const url of Object.values(urls)) URL.revokeObjectURL(url);
         };
-    }, [filesSignature]);
+    }, [assets]);
 
     useReceivePreviewState(receivedState => {
         setState(current => ({ ...current, ...receivedState }));
@@ -145,16 +144,10 @@ function PreviewRoute() {
     // functions, so they can't be sent through `postMessage`)
     const storyOverrides = getStory(pageId, storyId)?.overrides;
 
-    // Resolve theme properties from config, then let any uploaded file override
-    // its asset's URL property (file-over-URL, matching the JAR export). A plain
-    // `blob:` URL passes through the theme's `resolveAssetUrl` untouched.
-    const properties: Record<string, string> = {
-        ...storyOverrides?.properties,
-        ...themeConfigToProperties(config),
-    };
+    const uploadedAssetProperties: Record<string, string> = {};
     for (const { key, property } of imageAssets) {
         const url = assetUrls[key];
-        if (url) properties[property] = url;
+        if (url) uploadedAssetProperties[property] = url;
     }
 
     const kcContext = getKcContextMock({
@@ -165,7 +158,11 @@ function PreviewRoute() {
                 ...storyOverrides?.locale,
                 currentLanguageTag: config.locale,
             },
-            properties,
+            properties: {
+                ...storyOverrides?.properties,
+                ...themeConfigToProperties(config),
+                ...uploadedAssetProperties,
+            },
         },
     });
 
