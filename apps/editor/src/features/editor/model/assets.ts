@@ -10,7 +10,7 @@ const IMAGE_MIME_TYPES = ["image/png", "image/svg+xml", "image/jpeg"];
  * Validates an uploaded image (client form + server `generateJar` validator both
  * use this — keep it pure, no React). Mirrors `favicon-upload.ts`'s schema.
  */
-export const imageFileSchema = z
+export const assetSchema = z
     .instanceof(File, { error: "Image must be a file." })
     .refine(
         file =>
@@ -21,7 +21,7 @@ export const imageFileSchema = z
     .refine(file => file.size <= MAX_IMAGE_SIZE_BYTES, "File is too large (max 1 MB).");
 
 export function getImageError(file: File): string | null {
-    const result = imageFileSchema.safeParse(file);
+    const result = assetSchema.safeParse(file);
     return result.success ? null : (result.error.issues[0]?.message ?? "Invalid file.");
 }
 
@@ -43,7 +43,7 @@ export function getImageExtension(file: File): string {
     return EXTENSION_BY_MIME[file.type] ?? "png";
 }
 
-type ImageAssetDescriptor = {
+type Assets = {
     /** Doubles as the `assets` store key AND the multipart field name on export. */
     key: string;
     /** The `SHADCN_THEME_*` property (used by the live-preview object-URL override). */
@@ -64,7 +64,7 @@ type ImageAssetDescriptor = {
  * Favicon is intentionally absent: it's upload-only and has its own multi-file
  * `generateFaviconSet` pipeline.
  */
-export const imageAssets = [
+export const assetDefinitions = [
     {
         key: "logoUrl",
         property: "SHADCN_THEME_LOGO_URL",
@@ -105,8 +105,8 @@ export const imageAssets = [
         label: "Side panel dark image",
         layout: "two-column",
     },
-] as const satisfies readonly ImageAssetDescriptor[];
+] as const satisfies readonly Assets[];
 
-export type ImageAssetKey = (typeof imageAssets)[number]["key"];
-export type ImageAssetProperty = (typeof imageAssets)[number]["property"];
-export type ThemeAssetKey = ImageAssetKey | "favicon";
+export type AssetKey = (typeof assetDefinitions)[number]["key"];
+export type AssetProperty = (typeof assetDefinitions)[number]["property"];
+export type ThemeAssetKey = AssetKey | "favicon";

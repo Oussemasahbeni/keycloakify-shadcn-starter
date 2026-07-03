@@ -23,9 +23,6 @@ function isIco(bytes: Uint8Array): boolean {
  *   crisply at each size because it is vector) and bundled into one
  *   multi-resolution `.ico` by `png-to-ico`. `fit: "contain"` letterboxes
  *   non-square sources onto a transparent square so nothing is cropped.
- *
- * (A scalable `icon.svg` companion may be added later; for now the universal
- * `.ico` is the whole favicon story.)
  */
 export async function generateFaviconSet(source: Uint8Array): Promise<Record<string, Uint8Array>> {
     if (isIco(source)) {

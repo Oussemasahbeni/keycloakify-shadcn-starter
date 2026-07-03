@@ -1,14 +1,14 @@
-import type { ImageAssetKey } from "#/features/editor/model/assets";
-import { getImageExtension, imageAssets, imageFileSchema } from "#/features/editor/model/assets";
+import type { AssetKey } from "#/features/editor/model/assets";
+import { assetDefinitions, assetSchema, getImageExtension } from "#/features/editor/model/assets";
 import { faviconFileSchema } from "#/features/editor/model/favicon-upload";
-import type { Locale } from "#/features/editor/model/locales";
-import { supportedLocales } from "#/features/editor/model/locales";
 import { themeNameSchema } from "#/features/editor/model/theme-name";
+import { oidcFnMiddleware } from "#/oidc";
 import {
     basePaletteOptions,
     fontFamilyOptions,
     layoutOptions,
     radiusPresetOptions,
+    sidePanelPositionOptions,
     themePresetOptions,
 } from "@kc-studio/shadcn-theme/theme";
 import { createServerFn } from "@tanstack/react-start";
@@ -16,9 +16,6 @@ import { z } from "zod";
 import { generateFaviconSet } from "./favicon";
 import { customizeThemeJar } from "./jar-customizer";
 import { loadTemplateJar } from "./template-jar";
-
-/** Locale tags the theme supports, as a tuple for `z.enum`. */
-const localeValues = supportedLocales.map(l => l.value) as [Locale, ...Locale[]];
 
 /**
  * Validates the JSON `options` field. The enum fields mirror the theme's own
@@ -33,8 +30,7 @@ const optionsSchema = z.object({
         radius: z.enum(radiusPresetOptions),
         font: z.enum(fontFamilyOptions),
         layout: z.enum(layoutOptions),
-        locale: z.enum(localeValues),
-        showPlaceholders: z.boolean(),
+        showPlaceholder: z.boolean(),
         showRealmName: z.boolean(),
         logoUrl: z.string(),
         logoDarkUrl: z.string(),
@@ -42,6 +38,8 @@ const optionsSchema = z.object({
         cardImageUrl: z.string(),
         sidePanelImageUrl: z.string(),
         sidePanelImageDarkUrl: z.string(),
+        welcomeMessage: z.string(),
+        sidePanelPosition: z.enum(sidePanelPositionOptions),
     }),
     themeName: themeNameSchema.optional(),
 });
@@ -57,6 +55,7 @@ const optionsSchema = z.object({
  * content type so the browser saves it.
  */
 export const generateJar = createServerFn({ method: "POST" })
+    .middleware([oidcFnMiddleware({ assert: "user logged in" })])
     .inputValidator(data => {
         if (!(data instanceof FormData)) {
             throw new Error("Expected multipart/form-data.");
@@ -71,39 +70,38 @@ export const generateJar = createServerFn({ method: "POST" })
         const rawFavicon = data.get("favicon");
         const favicon = rawFavicon === null ? null : faviconFileSchema.parse(rawFavicon);
 
-        // Optional uploaded images, keyed by their `imageAssets` field name.
-        const imageFiles: Partial<Record<ImageAssetKey, File>> = {};
-        for (const { key } of imageAssets) {
+        const assets: Partial<Record<AssetKey, File>> = {};
+        for (const { key } of assetDefinitions) {
             const raw = data.get(key);
-            if (raw !== null) imageFiles[key] = imageFileSchema.parse(raw);
+            if (raw !== null) assets[key] = assetSchema.parse(raw);
         }
 
-        return { config, themeName, favicon, imageFiles };
+        return { config, themeName, favicon, assets };
     })
     .handler(async ({ data }) => {
-        const { themeName, favicon, imageFiles } = data;
+        const { themeName, favicon, assets } = data;
         let config = data.config;
 
-        const assets: Record<string, Uint8Array> = {};
+        const assetsRecord: Record<string, Uint8Array> = {};
         if (favicon) {
             const bytes = new Uint8Array(await favicon.arrayBuffer());
-            Object.assign(assets, await generateFaviconSet(bytes));
+            Object.assign(assetsRecord, await generateFaviconSet(bytes));
         }
 
         // Uploaded images: bake the bytes into `dist/` and repoint the matching
         // SHADCN_THEME_*_URL at the bundled file (an upload overrides any URL).
-        for (const { key, baseName } of imageAssets) {
-            const file = imageFiles[key];
+        for (const { key, baseName } of assetDefinitions) {
+            const file = assets[key];
             if (!file) continue;
             const filename = `${baseName}.${getImageExtension(file)}`;
-            assets[filename] = new Uint8Array(await file.arrayBuffer());
+            assetsRecord[filename] = new Uint8Array(await file.arrayBuffer());
             config = { ...config, [key]: `%BASE_URL%/${filename}` };
         }
 
         const jar = customizeThemeJar(await loadTemplateJar(), {
             config,
             themeName,
-            assets: Object.keys(assets).length > 0 ? assets : undefined,
+            assets: Object.keys(assetsRecord).length > 0 ? assetsRecord : undefined,
         });
 
         const filename = `${themeName?.trim() || "shadcn-theme"}.jar`;

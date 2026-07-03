@@ -44,7 +44,7 @@ export type ThemeConfig = {
     radius: RadiusPreset;
     font: FontFamily;
     layout: Layout;
-    locale: Locale;
+    locale?: Locale | undefined;
     showPlaceholder: boolean;
     showRealmName: boolean;
     logoUrl: string;

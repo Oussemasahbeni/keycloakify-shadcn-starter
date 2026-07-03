@@ -60,6 +60,9 @@ export default defineConfig({
                     name: "SHADCN_THEME_WELCOME_MESSAGE",
                     default: "",
                 },
+                { name: "SHADCN_EMAIL_PRIMARY_COLOR", default: "#6366f1" },
+                { name: "SHADCN_EMAIL_BUTTON_TEXT_COLOR", default: "#ffffff" },
+                { name: "SHADCN_EMAIL_LOGO_URL", default: "" },
             ],
             postBuild: async buildContext => {
                 await buildEmailTheme({
@@ -94,6 +97,7 @@ export default defineConfig({
                         "pl",
                         "pt",
                         "pt-BR",
+                        "ro",
                         "ru",
                         "sk",
                         "sv",

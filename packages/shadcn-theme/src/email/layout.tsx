@@ -1,8 +1,9 @@
 import { Body, Column, Container, Head, Html, Img, Preview, Row, Section, Text } from "jsx-email";
 import { createVariablesHelper } from "keycloakify-emails/variables";
 import type { PropsWithChildren, ReactNode } from "react";
-import { companyLogo, primaryColor } from "./constants";
 import i18n from "./i18n";
+import { isRtlLocale } from "./rtl";
+import type { EmailTheme } from "./theme/theme";
 
 const main = {
     backgroundColor: "#f6f9fc",
@@ -35,10 +36,6 @@ const logoImage = {
     maxWidth: "100%",
 };
 
-const sectionsBorders = {
-    width: "100%",
-    display: "flex",
-};
 const sectionsBordersBottom = {
     width: "100%",
     display: "flex",
@@ -48,11 +45,6 @@ const sectionsBordersBottom = {
 const sectionBorder = {
     borderBottom: "1px solid rgb(238,238,238)",
     width: "249px",
-};
-
-const sectionCenter = {
-    borderBottom: `1px solid ${primaryColor}`,
-    width: "102px",
 };
 
 const footer = {
@@ -68,31 +60,29 @@ export const EmailLayout = ({
     locale,
     children,
     preview,
-}: PropsWithChildren<{ preview: ReactNode; locale: string }>) => {
+    theme,
+}: PropsWithChildren<{ preview: ReactNode; locale: string; theme: EmailTheme }>) => {
     const t = i18n.getFixedT(locale);
 
+    const sectionCenter = {
+        borderBottom: `1px solid ${theme.primaryColor}`,
+        width: "102px",
+    };
+
     return (
-        <Html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+        <Html lang={locale} dir={isRtlLocale(locale) ? "rtl" : "ltr"}>
             <Head />
             <Preview>{preview}</Preview>
             <Body style={main}>
                 <Container style={container}>
                     <Section style={logo}>
                         <Img
-                            src={companyLogo}
+                            src={theme.logoUrl}
                             width={200}
                             height={50}
-                            alt="Company Name"
+                            alt={exp("realmName")}
                             style={logoImage}
                         />
-                    </Section>
-
-                    <Section style={sectionsBorders}>
-                        <Row>
-                            <Column style={sectionBorder} />
-                            <Column style={sectionCenter} />
-                            <Column style={sectionBorder} />
-                        </Row>
                     </Section>
 
                     <Section style={content}>{children}</Section>

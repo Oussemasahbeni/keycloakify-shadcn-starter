@@ -5,7 +5,7 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/in
 import type { LucideIcon } from "lucide-react";
 import { Image as ImageIcon, Moon, PanelLeft, Star, Sun, X } from "lucide-react";
 import type { ThemeAssetKey } from "../../model/assets";
-import { MAX_IMAGE_SIZE_BYTES, getImageError, imageAssets } from "../../model/assets";
+import { MAX_IMAGE_SIZE_BYTES, assetDefinitions, getImageError } from "../../model/assets";
 import { getFaviconError } from "../../model/favicon-upload";
 import { useEditor } from "../../state/editor-context";
 
@@ -106,7 +106,7 @@ export function AssetsPanel() {
                 </CardContent>
             </Card>
 
-            {imageAssets
+            {assetDefinitions
                 .filter(asset => !("layout" in asset) || asset.layout === config.layout)
                 .map(asset => (
                     <ImageAssetField

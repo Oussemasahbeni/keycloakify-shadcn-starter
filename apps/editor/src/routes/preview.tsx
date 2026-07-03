@@ -2,8 +2,7 @@ import { Spinner } from "#/components/ui/spinner";
 import { useReceivePreviewState } from "#/features/editor/hooks/use-iframe-message";
 import type { PreviewAssets } from "#/features/editor/hooks/use-preview-assets-channel";
 import { useReceivePreviewAssets } from "#/features/editor/hooks/use-preview-assets-channel";
-import type { ImageAssetKey } from "#/features/editor/model/assets";
-import { imageAssets } from "#/features/editor/model/assets";
+import { assetDefinitions, type AssetKey } from "#/features/editor/model/assets";
 import type { PreviewColorScheme, ThemeConfig } from "#/features/editor/model/theme-config";
 import { defaultThemeConfig, themeConfigToProperties } from "#/features/editor/model/theme-config";
 import { getStory } from "#/features/editor/stories/pages";
@@ -110,11 +109,11 @@ function PreviewRoute() {
 
     const { pageId, storyId, colorScheme, config, assets } = state;
 
-    const [assetUrls, setAssetUrls] = useState<Partial<Record<ImageAssetKey, string>>>({});
+    const [assetUrls, setAssetUrls] = useState<Partial<Record<AssetKey, string>>>({});
 
     useEffect(() => {
-        const urls: Partial<Record<ImageAssetKey, string>> = {};
-        for (const { key } of imageAssets) {
+        const urls: Partial<Record<AssetKey, string>> = {};
+        for (const { key } of assetDefinitions) {
             const file = assets?.[key];
             if (file) urls[key] = URL.createObjectURL(file);
         }
@@ -145,7 +144,7 @@ function PreviewRoute() {
     const storyOverrides = getStory(pageId, storyId)?.overrides;
 
     const uploadedAssetProperties: Record<string, string> = {};
-    for (const { key, property } of imageAssets) {
+    for (const { key, property } of assetDefinitions) {
         const url = assetUrls[key];
         if (url) uploadedAssetProperties[property] = url;
     }

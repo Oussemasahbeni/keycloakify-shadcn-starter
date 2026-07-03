@@ -4,7 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { Download } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { imageAssets } from "../../model/assets";
+import { assetDefinitions } from "../../model/assets";
 import { getThemeNameError } from "../../model/theme-name";
 import { generateJar } from "../../server/generate-jar";
 import { useEditor } from "../../state/editor-context";
@@ -27,7 +27,7 @@ export function ExportButton() {
             const formData = new FormData();
             formData.append("options", JSON.stringify({ config, themeName: name }));
 
-            for (const { key } of imageAssets) {
+            for (const { key } of assetDefinitions) {
                 const file = assets[key];
                 if (file) formData.append(key, file);
             }

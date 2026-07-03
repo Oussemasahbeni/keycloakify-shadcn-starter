@@ -42,7 +42,7 @@ export type JarCustomization = {
      * Internal Keycloak theme name (what the admin sees and selects). Lowercase
      * letters, digits and dashes. Defaults to the base name (no rename).
      */
-    themeName?: string;
+    themeName: string | undefined;
     /**
      * Files to write into `login/resources/dist/`, keyed by filename. Overwrites
      * the entry when the name already exists (e.g. a generated favicon set; see

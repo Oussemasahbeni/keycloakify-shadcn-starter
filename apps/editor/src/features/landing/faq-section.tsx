@@ -7,7 +7,6 @@ import {
 import { Badge } from "#/components/ui/badge";
 import { buttonVariants } from "#/components/ui/button";
 import { DISCORD_INVITE_URL } from "#/config/constants.ts";
-import { CircleCheck } from "lucide-react";
 
 type FaqItem = {
     value: string;
@@ -75,7 +74,6 @@ export function FaqSection() {
                             >
                                 <AccordionTrigger className="cursor-pointer items-center gap-4 rounded-none bg-transparent py-2 ps-3 pe-4 hover:no-underline data-[state=open]:border-b">
                                     <div className="flex items-center gap-4">
-                                        <CircleCheck className="size-5" />
                                         <span className="text-start font-semibold">
                                             {item.question}
                                         </span>
