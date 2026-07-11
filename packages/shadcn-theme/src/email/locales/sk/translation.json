@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Všetky práva vyhradené"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Ponuka overiteľného poverenia",
+        "preview": "Získajte svoje overiteľné poverenie",
+        "message": "Váš administrátor vás práve informoval, že vo svojom účte {{realmName}} si môžete do svojej digitálnej peňaženky vyžiadať overiteľné poverenie {{credentialScopeDisplayName}}. Kliknutím na odkaz nižšie spustíte tento proces.",
+        "claimLink": "Odkaz na vyžiadanie {{credentialScopeDisplayName}}",
+        "linkExpiration": "Platnosť tohto odkazu vyprší do {{expiration}}.",
+        "expiredMessage": "Ak platnosť odkazu už vypršala, možno si svoje {{credentialScopeDisplayName}} budete môcť vyžiadať iným spôsobom (napríklad pomocou konzoly účtu {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Upozornenie o účte",
+        "preview": "Upozornenie o účte",
+        "greeting": "Vážený/á {{name}},",
+        "timeRemaining": "Zostávajúci čas: {{days}} dní",
+        "contactAdmin": "Ak máte otázky, obráťte sa na svojho administrátora {{realmName}}.",
+        "regards": "S pozdravom,",
+        "signature": "Správa {{realmName}}"
     }
 }

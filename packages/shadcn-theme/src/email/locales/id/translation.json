@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Semua Hak Dilindungi"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Penawaran Kredensial yang Dapat Diverifikasi",
+        "preview": "Klaim kredensial Anda yang dapat diverifikasi",
+        "message": "Administrator Anda baru saja memberi tahu bahwa di akun {{realmName}} Anda, Anda dapat mengklaim kredensial yang dapat diverifikasi {{credentialScopeDisplayName}} ke dompet digital Anda. Klik tautan di bawah ini untuk memulai proses ini.",
+        "claimLink": "Tautan untuk mengklaim {{credentialScopeDisplayName}}",
+        "linkExpiration": "Tautan ini akan kedaluwarsa dalam {{expiration}}.",
+        "expiredMessage": "Jika tautan sudah kedaluwarsa, Anda mungkin masih dapat mengklaim {{credentialScopeDisplayName}} Anda dengan cara lain (misalnya, menggunakan konsol akun {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Notifikasi Akun",
+        "preview": "Notifikasi akun",
+        "greeting": "Yth. {{name}},",
+        "timeRemaining": "Sisa waktu: {{days}} hari",
+        "contactAdmin": "Jika Anda memiliki pertanyaan, silakan hubungi administrator {{realmName}} Anda.",
+        "regards": "Hormat kami,",
+        "signature": "Administrasi {{realmName}}"
     }
 }

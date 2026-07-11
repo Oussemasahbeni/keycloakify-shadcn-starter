@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Tutti i diritti riservati"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Offerta di credenziale verificabile",
+        "preview": "Richiedi la tua credenziale verificabile",
+        "message": "Il tuo amministratore ti ha appena informato che nel tuo account {{realmName}} puoi richiedere la credenziale verificabile {{credentialScopeDisplayName}} nel tuo portafoglio digitale. Fai clic sul link qui sotto per avviare questo processo.",
+        "claimLink": "Link per richiedere {{credentialScopeDisplayName}}",
+        "linkExpiration": "Questo collegamento scadrà entro {{expiration}}.",
+        "expiredMessage": "Se il link è già scaduto, potresti comunque essere in grado di richiedere la tua {{credentialScopeDisplayName}} in altro modo (ad esempio utilizzando la console dell'account {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Notifica dell'account",
+        "preview": "Notifica dell'account",
+        "greeting": "Gentile {{name}},",
+        "timeRemaining": "Tempo rimanente: {{days}} giorno/i",
+        "contactAdmin": "In caso di domande, contatta l'amministratore di {{realmName}}.",
+        "regards": "Cordiali saluti,",
+        "signature": "Amministrazione di {{realmName}}"
     }
 }

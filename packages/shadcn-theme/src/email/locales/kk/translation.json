@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Барлық құқықтар қорғалған"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Тексерілетін тіркелгі деректерінің ұсынысы",
+        "preview": "Тексерілетін тіркелгі деректеріңізді алыңыз",
+        "message": "Әкімшіңіз сізге {{realmName}} тіркелгіңізде цифрлық әмиеніңізге {{credentialScopeDisplayName}} тексерілетін тіркелгі деректерін ала алатыныңызды хабарлады. Осы процесті бастау үшін төмендегі сілтемені басыңыз.",
+        "claimLink": "{{credentialScopeDisplayName}} алуға арналған сілтеме",
+        "linkExpiration": "Бұл сілтеме {{expiration}} ішінде жарамды.",
+        "expiredMessage": "Егер сілтеменің мерзімі бітіп қалса, {{credentialScopeDisplayName}} деректеріңізді басқа жолмен (мысалы, {{realmName}} тіркелгі консолін пайдаланып) ала алуыңыз мүмкін."
+    },
+    "workflow-notification": {
+        "subject": "Тіркелгі туралы хабарландыру",
+        "preview": "Тіркелгі туралы хабарландыру",
+        "greeting": "Құрметті {{name}},",
+        "timeRemaining": "Қалған уақыт: {{days}} күн",
+        "contactAdmin": "Сұрақтарыңыз болса, {{realmName}} әкімшісіне хабарласыңыз.",
+        "regards": "Ізгі тілекпен,",
+        "signature": "{{realmName}} әкімшілігі"
     }
 }

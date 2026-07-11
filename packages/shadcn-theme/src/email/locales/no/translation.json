@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Alle rettigheter forbeholdt"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Tilbud om verifiserbar legitimasjon",
+        "preview": "Gjør krav på din verifiserbare legitimasjon",
+        "message": "Administratoren din har nettopp informert deg om at du i {{realmName}}-kontoen din kan gjøre krav på den verifiserbare legitimasjonen {{credentialScopeDisplayName}} til den digitale lommeboken din. Klikk på lenken nedenfor for å starte denne prosessen.",
+        "claimLink": "Lenke for å gjøre krav på {{credentialScopeDisplayName}}",
+        "linkExpiration": "Denne koblingen utløper innen {{expiration}}.",
+        "expiredMessage": "Hvis lenken allerede er utløpt, kan du kanskje fortsatt gjøre krav på {{credentialScopeDisplayName}} på en annen måte (for eksempel ved å bruke {{realmName}}-kontokonsollen)."
+    },
+    "workflow-notification": {
+        "subject": "Kontovarsel",
+        "preview": "Kontovarsel",
+        "greeting": "Kjære {{name}},",
+        "timeRemaining": "Gjenstående tid: {{days}} dag(er)",
+        "contactAdmin": "Hvis du har spørsmål, vennligst kontakt {{realmName}}-administratoren din.",
+        "regards": "Med vennlig hilsen,",
+        "signature": "{{realmName}} Administrasjon"
     }
 }

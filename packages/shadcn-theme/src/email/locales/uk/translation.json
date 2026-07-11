@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, усі права захищено"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Пропозиція перевірюваних облікових даних",
+        "preview": "Отримайте свої перевірювані облікові дані",
+        "message": "Ваш адміністратор щойно повідомив, що у вашому обліковому записі {{realmName}} ви можете отримати перевірювані облікові дані {{credentialScopeDisplayName}} до свого цифрового гаманця. Натисніть на посилання нижче, щоб розпочати цей процес.",
+        "claimLink": "Посилання для отримання {{credentialScopeDisplayName}}",
+        "linkExpiration": "Термін дії цього посилання закінчиться протягом {{expiration}}.",
+        "expiredMessage": "Якщо термін дії посилання вже минув, ви, можливо, все одно зможете отримати свої {{credentialScopeDisplayName}} іншим способом (наприклад, за допомогою консолі облікового запису {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Сповіщення про обліковий запис",
+        "preview": "Сповіщення про обліковий запис",
+        "greeting": "Шановний(а) {{name}},",
+        "timeRemaining": "Залишилося часу: {{days}} дн.",
+        "contactAdmin": "Якщо у вас є запитання, зверніться до адміністратора {{realmName}}.",
+        "regards": "З повагою,",
+        "signature": "Адміністрація {{realmName}}"
     }
 }

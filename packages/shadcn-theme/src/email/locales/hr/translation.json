@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Sva prava pridržana"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Ponuda provjerljive vjerodajnice",
+        "preview": "Zatražite svoju provjerljivu vjerodajnicu",
+        "message": "Vaš vas je administrator upravo obavijestio da u svom računu {{realmName}} možete zatražiti provjerljivu vjerodajnicu {{credentialScopeDisplayName}} u svoj digitalni novčanik. Kliknite na poveznicu u nastavku da biste započeli ovaj postupak.",
+        "claimLink": "Poveznica za traženje {{credentialScopeDisplayName}}",
+        "linkExpiration": "Ova veza istječe za {{expiration}}.",
+        "expiredMessage": "Ako je poveznica već istekla, možda ćete i dalje moći zatražiti svoj {{credentialScopeDisplayName}} na neki drugi način (na primjer, pomoću konzole računa {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Obavijest o računu",
+        "preview": "Obavijest o računu",
+        "greeting": "Poštovani/a {{name}},",
+        "timeRemaining": "Preostalo vrijeme: {{days}} dan(a)",
+        "contactAdmin": "Ako imate pitanja, obratite se svom administratoru {{realmName}}.",
+        "regards": "Srdačan pozdrav,",
+        "signature": "Administracija {{realmName}}"
     }
 }

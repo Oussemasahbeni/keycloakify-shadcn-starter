@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Minden jog fenntartva"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Ellenőrizhető hitelesítő adat ajánlata",
+        "preview": "Igényelje ellenőrizhető hitelesítő adatát",
+        "message": "A rendszergazdája most értesítette Önt, hogy {{realmName}} fiókjában igényelheti a(z) {{credentialScopeDisplayName}} ellenőrizhető hitelesítő adatot a digitális tárcájába. A folyamat elindításához kattintson az alábbi hivatkozásra.",
+        "claimLink": "Hivatkozás a(z) {{credentialScopeDisplayName}} igényléséhez",
+        "linkExpiration": "Ez a link {{expiration}} napon belül lejár.",
+        "expiredMessage": "Ha a hivatkozás már lejárt, előfordulhat, hogy még mindig igényelheti a(z) {{credentialScopeDisplayName}} adatot más módon (például a(z) {{realmName}} fiókkonzol használatával)."
+    },
+    "workflow-notification": {
+        "subject": "Fiókértesítés",
+        "preview": "Fiókértesítés",
+        "greeting": "Kedves {{name}}!",
+        "timeRemaining": "Hátralévő idő: {{days}} nap",
+        "contactAdmin": "Ha kérdése van, forduljon a(z) {{realmName}} rendszergazdájához.",
+        "regards": "Üdvözlettel,",
+        "signature": "{{realmName}} adminisztráció"
     }
 }

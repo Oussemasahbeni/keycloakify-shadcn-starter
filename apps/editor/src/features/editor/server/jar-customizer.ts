@@ -1,5 +1,7 @@
-import type { ThemeConfig } from "#/features/editor/model/theme-config";
-import { themeConfigToProperties } from "#/features/editor/model/theme-config";
+import type { EmailThemeConfig } from "#/features/editor/email/model/theme-config";
+import { emailConfigToProperties } from "#/features/editor/email/model/theme-config";
+import type { LoginThemeConfig } from "#/features/editor/login/model/theme-config";
+import { themeConfigToProperties } from "#/features/editor/login/model/theme-config";
 import type { Zippable } from "fflate";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
 
@@ -37,7 +39,14 @@ const PRECOMPRESSED = /\.(woff2?|ttf|otf|eot|png|jpe?g|gif|webp|avif|ico|jar|zip
  */
 export type JarCustomization = {
     /** The user's theme choices, baked as `theme.properties` defaults. */
-    config: ThemeConfig;
+    config: LoginThemeConfig;
+    /**
+     * Email theme choices, baked as `SHADCN_EMAIL_*` `theme.properties` defaults
+     * (in both the login and email property files). Optional: when omitted, the
+     * email accent inherits the login accent, so passing `config` alone still
+     * yields correlated emails.
+     */
+    email?: EmailThemeConfig;
     /**
      * Internal Keycloak theme name (what the admin sees and selects). Lowercase
      * letters, digits and dashes. Defaults to the base name (no rename).
@@ -72,7 +81,15 @@ export function customizeThemeJar(
     options: JarCustomization,
 ): Uint8Array {
     const entries = unzipSync(templateBytes);
-    const properties = themeConfigToProperties(options.config);
+    const emailConfig: EmailThemeConfig = options.email ?? {
+        primaryPreset: undefined,
+        logoUrl: undefined,
+        locale: undefined,
+    };
+    const properties = {
+        ...themeConfigToProperties(options.config),
+        ...emailConfigToProperties(emailConfig, options.config.accent),
+    };
     const themeName = resolveThemeName(options.themeName);
     const rename = themeName !== BASE_THEME_NAME;
 

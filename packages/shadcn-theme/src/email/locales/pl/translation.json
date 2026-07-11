@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Wszelkie prawa zastrzeżone"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Oferta weryfikowalnych poświadczeń",
+        "preview": "Odbierz swoje weryfikowalne poświadczenie",
+        "message": "Twój administrator właśnie poinformował Cię, że na koncie {{realmName}} możesz odebrać weryfikowalne poświadczenie {{credentialScopeDisplayName}} do swojego portfela cyfrowego. Kliknij poniższy link, aby rozpocząć ten proces.",
+        "claimLink": "Link do odebrania {{credentialScopeDisplayName}}",
+        "linkExpiration": "Ten link wygaśnie w ciągu {{expiration}}.",
+        "expiredMessage": "Jeśli link już wygasł, nadal możesz odebrać swoje {{credentialScopeDisplayName}} w inny sposób (na przykład korzystając z konsoli konta {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Powiadomienie o koncie",
+        "preview": "Powiadomienie o koncie",
+        "greeting": "Szanowny/a {{name}},",
+        "timeRemaining": "Pozostały czas: {{days}} dni",
+        "contactAdmin": "W razie pytań skontaktuj się z administratorem {{realmName}}.",
+        "regards": "Z poważaniem,",
+        "signature": "Administracja {{realmName}}"
     }
 }

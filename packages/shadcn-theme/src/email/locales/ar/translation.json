@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}، جميع الحقوق محفوظة"
+    },
+    "verifiable-credential-offer": {
+        "subject": "عرض بيانات اعتماد قابلة للتحقق",
+        "preview": "احصل على بيانات الاعتماد القابلة للتحقق الخاصة بك",
+        "message": "أبلغك مسؤولك للتو أنه يمكنك في حساب {{realmName}} الخاص بك المطالبة ببيانات الاعتماد القابلة للتحقق {{credentialScopeDisplayName}} في محفظتك الرقمية. انقر على الرابط أدناه لبدء هذه العملية.",
+        "claimLink": "رابط للمطالبة بـ {{credentialScopeDisplayName}}",
+        "linkExpiration": "ستنتهي صلاحية هذا الرابط خلال {{expiration}}.",
+        "expiredMessage": "إذا كان الرابط قد انتهت صلاحيته بالفعل، فقد تظل قادرًا على المطالبة بـ {{credentialScopeDisplayName}} بوسيلة أخرى (على سبيل المثال، باستخدام وحدة تحكم حساب {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "إشعار الحساب",
+        "preview": "إشعار الحساب",
+        "greeting": "عزيزي {{name}}،",
+        "timeRemaining": "الوقت المتبقي: {{days}} يوم/أيام",
+        "contactAdmin": "إذا كانت لديك أي أسئلة، فيرجى الاتصال بمسؤول {{realmName}} الخاص بك.",
+        "regards": "مع أطيب التحيات،",
+        "signature": "إدارة {{realmName}}"
     }
 }

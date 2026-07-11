@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, все права защищены."
+    },
+    "verifiable-credential-offer": {
+        "subject": "Предложение проверяемых учётных данных",
+        "preview": "Получите свои проверяемые учётные данные",
+        "message": "Ваш администратор только что сообщил, что в вашей учётной записи {{realmName}} вы можете получить проверяемые учётные данные {{credentialScopeDisplayName}} в свой цифровой кошелёк. Нажмите на ссылку ниже, чтобы начать этот процесс.",
+        "claimLink": "Ссылка для получения {{credentialScopeDisplayName}}",
+        "linkExpiration": "Срок действия этой ссылки истекает в течение {{expiration}}.",
+        "expiredMessage": "Если срок действия ссылки уже истёк, вы, возможно, всё ещё сможете получить свои {{credentialScopeDisplayName}} другим способом (например, с помощью консоли учётной записи {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Уведомление об учётной записи",
+        "preview": "Уведомление об учётной записи",
+        "greeting": "Уважаемый(ая) {{name}},",
+        "timeRemaining": "Оставшееся время: {{days}} дн.",
+        "contactAdmin": "Если у вас есть вопросы, обратитесь к администратору {{realmName}}.",
+        "regards": "С уважением,",
+        "signature": "Администрация {{realmName}}"
     }
 }

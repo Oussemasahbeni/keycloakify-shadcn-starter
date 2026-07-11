@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Բոլոր իրավունքները պաշտպանված են"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Ստուգելի հավատարմագրի առաջարկ",
+        "preview": "Ստացեք ձեր ստուգելի հավատարմագիրը",
+        "message": "Ձեր ադմինիստրատորը հենց նոր տեղեկացրեց ձեզ, որ ձեր {{realmName}} հաշվում կարող եք ստանալ {{credentialScopeDisplayName}} ստուգելի հավատարմագիրը ձեր թվային դրամապանակում։ Այս գործընթացը սկսելու համար սեղմեք ստորև նշված հղումը։",
+        "claimLink": "{{credentialScopeDisplayName}} ստանալու հղում",
+        "linkExpiration": "Այս հղումը կսպառվի {{expiration}}-ում:",
+        "expiredMessage": "Եթե հղման ժամկետն արդեն լրացել է, դուք դեռ կարող եք ստանալ ձեր {{credentialScopeDisplayName}}-ը այլ եղանակով (օրինակ՝ օգտագործելով {{realmName}} հաշվի կառավահանակը)։"
+    },
+    "workflow-notification": {
+        "subject": "Հաշվի ծանուցում",
+        "preview": "Հաշվի ծանուցում",
+        "greeting": "Հարգելի {{name}},",
+        "timeRemaining": "Մնացած ժամանակը՝ {{days}} օր",
+        "contactAdmin": "Եթե հարցեր ունեք, խնդրում ենք կապվել ձեր {{realmName}} ադմինիստրատորի հետ։",
+        "regards": "Հարգանքով՝",
+        "signature": "{{realmName}} վարչակազմ"
     }
 }

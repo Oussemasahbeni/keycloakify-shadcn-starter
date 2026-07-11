@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}، کلیه حقوق محفوظ است"
+    },
+    "verifiable-credential-offer": {
+        "subject": "پیشنهاد گواهی قابل تأیید",
+        "preview": "گواهی قابل تأیید خود را دریافت کنید",
+        "message": "مدیر شما همین الان به شما اطلاع داد که در حساب {{realmName}} خود می‌توانید گواهی قابل تأیید {{credentialScopeDisplayName}} را به کیف پول دیجیتال خود اضافه کنید. برای شروع این فرآیند روی پیوند زیر کلیک کنید.",
+        "claimLink": "پیوند دریافت {{credentialScopeDisplayName}}",
+        "linkExpiration": "این پیوند در مدت {{expiration}} منقضی می شود.",
+        "expiredMessage": "اگر پیوند قبلاً منقضی شده باشد، ممکن است همچنان بتوانید {{credentialScopeDisplayName}} خود را از راه دیگری دریافت کنید (برای مثال، با استفاده از کنسول حساب {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "اعلان حساب",
+        "preview": "اعلان حساب",
+        "greeting": "{{name}} عزیز،",
+        "timeRemaining": "زمان باقی‌مانده: {{days}} روز",
+        "contactAdmin": "اگر سؤالی دارید، لطفاً با مدیر {{realmName}} خود تماس بگیرید.",
+        "regards": "با احترام،",
+        "signature": "مدیریت {{realmName}}"
     }
 }

@@ -1,7 +1,7 @@
-import type { AssetKey } from "#/features/editor/model/assets";
-import { assetDefinitions, assetSchema, getImageExtension } from "#/features/editor/model/assets";
-import { faviconFileSchema } from "#/features/editor/model/favicon-upload";
-import { themeNameSchema } from "#/features/editor/model/theme-name";
+import type { AssetKey } from "#/features/editor/login/model/assets.ts";
+import { assetDefinitions, assetSchema, getImageExtension } from "#/features/editor/login/model/assets.ts";
+import { faviconFileSchema } from "#/features/editor/login/model/favicon-upload";
+import { themeNameSchema } from "#/features/editor/login/model/theme-name";
 import { oidcFnMiddleware } from "#/oidc";
 import {
     basePaletteOptions,
@@ -24,6 +24,16 @@ import { loadTemplateJar } from "./template-jar";
  * it maps to `${env.X:}`, identical to the stock template).
  */
 const optionsSchema = z.object({
+    /**
+     * Email theme choices. Optional and all-partial: an omitted `primaryPreset`
+     * inherits the login accent, keeping emails correlated with the login theme.
+     */
+    email: z
+        .object({
+            primaryPreset: z.enum(themePresetOptions).optional(),
+            logoUrl: z.string().optional(),
+        })
+        .optional(),
     config: z.object({
         basePalette: z.enum(basePaletteOptions),
         accent: z.enum(themePresetOptions),
@@ -65,7 +75,7 @@ export const generateJar = createServerFn({ method: "POST" })
         if (typeof rawOptions !== "string") {
             throw new Error("Missing `options` field.");
         }
-        const { config, themeName } = optionsSchema.parse(JSON.parse(rawOptions));
+        const { config, email, themeName } = optionsSchema.parse(JSON.parse(rawOptions));
 
         const rawFavicon = data.get("favicon");
         const favicon = rawFavicon === null ? null : faviconFileSchema.parse(rawFavicon);
@@ -76,10 +86,10 @@ export const generateJar = createServerFn({ method: "POST" })
             if (raw !== null) assets[key] = assetSchema.parse(raw);
         }
 
-        return { config, themeName, favicon, assets };
+        return { config, email, themeName, favicon, assets };
     })
     .handler(async ({ data }) => {
-        const { themeName, favicon, assets } = data;
+        const { email, themeName, favicon, assets } = data;
         let config = data.config;
 
         const assetsRecord: Record<string, Uint8Array> = {};
@@ -100,6 +110,11 @@ export const generateJar = createServerFn({ method: "POST" })
 
         const jar = customizeThemeJar(await loadTemplateJar(), {
             config,
+            email: {
+                primaryPreset: email?.primaryPreset,
+                logoUrl: email?.logoUrl,
+                locale: undefined,
+            },
             themeName,
             assets: Object.keys(assetsRecord).length > 0 ? assetsRecord : undefined,
         });

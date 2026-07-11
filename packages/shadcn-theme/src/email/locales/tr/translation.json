@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Tüm Hakları Saklıdır"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Doğrulanabilir Kimlik Bilgisi Teklifi",
+        "preview": "Doğrulanabilir kimlik bilginizi talep edin",
+        "message": "Yöneticiniz, {{realmName}} hesabınızda dijital cüzdanınıza {{credentialScopeDisplayName}} doğrulanabilir kimlik bilgisini talep edebileceğinizi bildirdi. Bu işlemi başlatmak için aşağıdaki bağlantıya tıklayın.",
+        "claimLink": "{{credentialScopeDisplayName}} talep etmek için bağlantı",
+        "linkExpiration": "Bu bağlantının süresi {{expiration}} içinde dolacak.",
+        "expiredMessage": "Bağlantının süresi zaten dolmuşsa, {{credentialScopeDisplayName}} kimlik bilginizi başka bir yolla (örneğin {{realmName}} hesap konsolunu kullanarak) yine de talep edebilirsiniz."
+    },
+    "workflow-notification": {
+        "subject": "Hesap Bildirimi",
+        "preview": "Hesap bildirimi",
+        "greeting": "Sayın {{name}},",
+        "timeRemaining": "Kalan süre: {{days}} gün",
+        "contactAdmin": "Sorularınız varsa lütfen {{realmName}} yöneticinizle iletişime geçin.",
+        "regards": "Saygılarımızla,",
+        "signature": "{{realmName}} Yönetimi"
     }
 }

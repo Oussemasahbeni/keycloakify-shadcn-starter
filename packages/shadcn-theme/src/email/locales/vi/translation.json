@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Mọi quyền được bảo lưu"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Đề nghị thông tin xác thực có thể kiểm chứng",
+        "preview": "Nhận thông tin xác thực có thể kiểm chứng của bạn",
+        "message": "Quản trị viên của bạn vừa thông báo rằng trong tài khoản {{realmName}} của bạn, bạn có thể nhận thông tin xác thực có thể kiểm chứng {{credentialScopeDisplayName}} vào ví kỹ thuật số của mình. Nhấp vào liên kết bên dưới để bắt đầu quy trình này.",
+        "claimLink": "Liên kết để nhận {{credentialScopeDisplayName}}",
+        "linkExpiration": "Liên kết này sẽ hết hạn trong {{expiration}}.",
+        "expiredMessage": "Nếu liên kết đã hết hạn, bạn vẫn có thể nhận {{credentialScopeDisplayName}} của mình bằng cách khác (ví dụ: sử dụng bảng điều khiển tài khoản {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Thông báo tài khoản",
+        "preview": "Thông báo tài khoản",
+        "greeting": "Kính gửi {{name}},",
+        "timeRemaining": "Thời gian còn lại: {{days}} ngày",
+        "contactAdmin": "Nếu bạn có thắc mắc, vui lòng liên hệ với quản trị viên {{realmName}} của bạn.",
+        "regards": "Trân trọng,",
+        "signature": "Ban quản trị {{realmName}}"
     }
 }

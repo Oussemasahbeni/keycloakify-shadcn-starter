@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, med ensamrätt"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Erbjudande om verifierbar behörighet",
+        "preview": "Gör anspråk på din verifierbara behörighet",
+        "message": "Din administratör har just informerat dig om att du i ditt {{realmName}}-konto kan göra anspråk på den verifierbara behörigheten {{credentialScopeDisplayName}} till din digitala plånbok. Klicka på länken nedan för att starta denna process.",
+        "claimLink": "Länk för att göra anspråk på {{credentialScopeDisplayName}}",
+        "linkExpiration": "Den här länken upphör att gälla inom {{expiration}}.",
+        "expiredMessage": "Om länken redan har upphört att gälla kan du kanske ändå göra anspråk på din {{credentialScopeDisplayName}} på annat sätt (till exempel genom att använda {{realmName}}-kontokonsolen)."
+    },
+    "workflow-notification": {
+        "subject": "Kontomeddelande",
+        "preview": "Kontomeddelande",
+        "greeting": "Bäste {{name}},",
+        "timeRemaining": "Återstående tid: {{days}} dag(ar)",
+        "contactAdmin": "Om du har frågor, kontakta din {{realmName}}-administratör.",
+        "regards": "Med vänliga hälsningar,",
+        "signature": "{{realmName}} Administration"
     }
 }

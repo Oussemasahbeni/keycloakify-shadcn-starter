@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, ყველა უფლება დაცულია"
+    },
+    "verifiable-credential-offer": {
+        "subject": "დამოწმებადი სერტიფიკატის შეთავაზება",
+        "preview": "მიიღეთ თქვენი დამოწმებადი სერტიფიკატი",
+        "message": "თქვენმა ადმინისტრატორმა ახლახან შეგატყობინათ, რომ თქვენს {{realmName}} ანგარიშში შეგიძლიათ მიიღოთ დამოწმებადი სერტიფიკატი {{credentialScopeDisplayName}} თქვენს ციფრულ საფულეში. ამ პროცესის დასაწყებად დააჭირეთ ქვემოთ მოცემულ ბმულს.",
+        "claimLink": "ბმული {{credentialScopeDisplayName}}-ის მისაღებად",
+        "linkExpiration": "ამ ბმულს ვადა ამოიწურება {{expiration}}-ში.",
+        "expiredMessage": "თუ ბმულს ვადა უკვე გაუვიდა, შესაძლოა მაინც შეძლოთ თქვენი {{credentialScopeDisplayName}}-ის მიღება სხვა გზით (მაგალითად, {{realmName}} ანგარიშის კონსოლის გამოყენებით)."
+    },
+    "workflow-notification": {
+        "subject": "ანგარიშის შეტყობინება",
+        "preview": "ანგარიშის შეტყობინება",
+        "greeting": "ძვირფასო {{name}},",
+        "timeRemaining": "დარჩენილი დრო: {{days}} დღე",
+        "contactAdmin": "თუ კითხვები გაქვთ, გთხოვთ, დაუკავშირდეთ თქვენს {{realmName}} ადმინისტრატორს.",
+        "regards": "პატივისცემით,",
+        "signature": "{{realmName}} ადმინისტრაცია"
     }
 }

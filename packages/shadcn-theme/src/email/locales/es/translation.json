@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Todos los derechos reservados"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Oferta de credencial verificable",
+        "preview": "Reclama tu credencial verificable",
+        "message": "Su administrador acaba de informarle de que en su cuenta {{realmName}} puede reclamar la credencial verificable {{credentialScopeDisplayName}} en su monedero digital. Haga clic en el enlace de abajo para iniciar este proceso.",
+        "claimLink": "Enlace para reclamar {{credentialScopeDisplayName}}",
+        "linkExpiration": "Este enlace caducará dentro de {{expiration}}.",
+        "expiredMessage": "Si el enlace ya ha caducado, es posible que aún pueda reclamar su {{credentialScopeDisplayName}} por otros medios (por ejemplo, utilizando la consola de la cuenta {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Notificación de la cuenta",
+        "preview": "Notificación de la cuenta",
+        "greeting": "Estimado/a {{name}}:",
+        "timeRemaining": "Tiempo restante: {{days}} día(s)",
+        "contactAdmin": "Si tiene preguntas, póngase en contacto con el administrador de {{realmName}}.",
+        "regards": "Atentamente,",
+        "signature": "Administración de {{realmName}}"
     }
 }

@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, All Rights Reserved"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Verifiable Credential Offer",
+        "preview": "Claim your verifiable credential",
+        "message": "Your administrator has just informed you that in your {{realmName}} account you can claim the verifiable credential {{credentialScopeDisplayName}} to your digital wallet. Click on the link below to start this process.",
+        "claimLink": "Link to claim {{credentialScopeDisplayName}}",
+        "linkExpiration": "This link will expire within {{expiration}}.",
+        "expiredMessage": "If the link has already expired, you might still be able to claim your {{credentialScopeDisplayName}} by some other means (for example, by using the {{realmName}} account console)."
+    },
+    "workflow-notification": {
+        "subject": "Account Notification",
+        "preview": "Account notification",
+        "greeting": "Dear {{name}},",
+        "timeRemaining": "Time remaining: {{days}} day(s)",
+        "contactAdmin": "If you have questions, please contact your {{realmName}} administrator.",
+        "regards": "Best regards,",
+        "signature": "{{realmName}} Administration"
     }
 }

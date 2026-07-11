@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Eskubide guztiak erreserbatuta"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Egiaztagarri den kredentzialaren eskaintza",
+        "preview": "Eskatu zure egiaztagarri den kredentziala",
+        "message": "Administratzaileak jakinarazi berri dizu {{realmName}} kontuan {{credentialScopeDisplayName}} egiaztagarri den kredentziala eska dezakezula zure zorro digitalean. Egin klik beheko estekan prozesu hau hasteko.",
+        "claimLink": "{{credentialScopeDisplayName}} eskatzeko esteka",
+        "linkExpiration": "Esteka hau {{expiration}}-an iraungiko da.",
+        "expiredMessage": "Esteka jada iraungi bada, agian zure {{credentialScopeDisplayName}} beste bide batzuen bidez eska dezakezu oraindik (adibidez, {{realmName}} kontuaren kontsola erabiliz)."
+    },
+    "workflow-notification": {
+        "subject": "Kontuaren jakinarazpena",
+        "preview": "Kontuaren jakinarazpena",
+        "greeting": "{{name}} agurgarria,",
+        "timeRemaining": "Geratzen den denbora: {{days}} egun",
+        "contactAdmin": "Galderarik baduzu, jarri harremanetan zure {{realmName}} administratzailearekin.",
+        "regards": "Agur bero bat,",
+        "signature": "{{realmName}} administrazioa"
     }
 }

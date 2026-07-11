@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Kaikki oikeudet pidätetään"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Todennettavan valtuustiedon tarjous",
+        "preview": "Lunasta todennettava valtuustietosi",
+        "message": "Järjestelmänvalvojasi ilmoitti juuri, että voit {{realmName}}-tililläsi lunastaa todennettavan valtuustiedon {{credentialScopeDisplayName}} digitaaliseen lompakkoosi. Aloita tämä prosessi napsauttamalla alla olevaa linkkiä.",
+        "claimLink": "Linkki kohteen {{credentialScopeDisplayName}} lunastamiseen",
+        "linkExpiration": "Tämä linkki vanhenee {{expiration}} kuluessa.",
+        "expiredMessage": "Jos linkki on jo vanhentunut, saatat silti voida lunastaa {{credentialScopeDisplayName}} jollain muulla tavalla (esimerkiksi käyttämällä {{realmName}}-tilikonsolia)."
+    },
+    "workflow-notification": {
+        "subject": "Tili- ilmoitus",
+        "preview": "Tili-ilmoitus",
+        "greeting": "Hyvä {{name}},",
+        "timeRemaining": "Aikaa jäljellä: {{days}} päivää",
+        "contactAdmin": "Jos sinulla on kysyttävää, ota yhteyttä {{realmName}}-järjestelmänvalvojaasi.",
+        "regards": "Ystävällisin terveisin,",
+        "signature": "{{realmName}}-ylläpito"
     }
 }

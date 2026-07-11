@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Toate drepturile rezervate"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Ofertă de acreditare verificabilă",
+        "preview": "Revendicați acreditarea dvs. verificabilă",
+        "message": "Administratorul dvs. tocmai v-a informat că, în contul dvs. {{realmName}}, puteți revendica acreditarea verificabilă {{credentialScopeDisplayName}} în portofelul dvs. digital. Faceți clic pe linkul de mai jos pentru a începe acest proces.",
+        "claimLink": "Link pentru a revendica {{credentialScopeDisplayName}}",
+        "linkExpiration": "Acest link va expira în {{expiration}}.",
+        "expiredMessage": "Dacă linkul a expirat deja, este posibil să puteți totuși revendica {{credentialScopeDisplayName}} prin alte mijloace (de exemplu, utilizând consola contului {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Notificare privind contul",
+        "preview": "Notificare privind contul",
+        "greeting": "Stimate/Stimată {{name}},",
+        "timeRemaining": "Timp rămas: {{days}} zi(le)",
+        "contactAdmin": "Dacă aveți întrebări, contactați administratorul {{realmName}}.",
+        "regards": "Cu stimă,",
+        "signature": "Administrația {{realmName}}"
     }
 }

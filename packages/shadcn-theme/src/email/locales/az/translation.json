@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Bütün hüquqlar qorunur"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Yoxlanıla bilən Kredensial Təklifi",
+        "preview": "Yoxlanıla bilən kredensialınızı əldə edin",
+        "message": "Administratorunuz sizə {{realmName}} hesabınızda {{credentialScopeDisplayName}} yoxlanıla bilən kredensialını rəqəmsal cüzdanınıza əldə edə biləcəyinizi bildirdi. Bu prosesi başlatmaq üçün aşağıdakı linkə klikləyin.",
+        "claimLink": "{{credentialScopeDisplayName}} əldə etmək üçün link",
+        "linkExpiration": "Bu link {{expiration}} müddətində qüvvədə olacaq.",
+        "expiredMessage": "Əgər linkin vaxtı artıq keçibsə, {{credentialScopeDisplayName}} kredensialınızı başqa yollarla (məsələn, {{realmName}} hesab konsolundan istifadə edərək) əldə edə bilərsiniz."
+    },
+    "workflow-notification": {
+        "subject": "Hesab Bildirişi",
+        "preview": "Hesab bildirişi",
+        "greeting": "Hörmətli {{name}},",
+        "timeRemaining": "Qalan vaxt: {{days}} gün",
+        "contactAdmin": "Suallarınız varsa, {{realmName}} administratorunuzla əlaqə saxlayın.",
+        "regards": "Hörmətlə,",
+        "signature": "{{realmName}} Administrasiyası"
     }
 }

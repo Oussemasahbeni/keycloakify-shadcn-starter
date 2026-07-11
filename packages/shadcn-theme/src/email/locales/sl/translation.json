@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Vse pravice pridržane"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Ponudba preverljivih poverilnic",
+        "preview": "Prevzemite svoje preverljive poverilnice",
+        "message": "Vaš skrbnik vas je pravkar obvestil, da lahko v svojem računu {{realmName}} v svojo digitalno denarnico prevzamete preverljivo poverilnico {{credentialScopeDisplayName}}. Za začetek tega postopka kliknite spodnjo povezavo.",
+        "claimLink": "Povezava za prevzem {{credentialScopeDisplayName}}",
+        "linkExpiration": "Ta povezava poteče čez {{expiration}}.",
+        "expiredMessage": "Če je povezava že potekla, boste morda še vedno lahko prevzeli svojo {{credentialScopeDisplayName}} na drug način (na primer z uporabo konzole računa {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Obvestilo o računu",
+        "preview": "Obvestilo o računu",
+        "greeting": "Spoštovani {{name}},",
+        "timeRemaining": "Preostali čas: {{days}} dni",
+        "contactAdmin": "Če imate vprašanja, se obrnite na svojega skrbnika {{realmName}}.",
+        "regards": "Lep pozdrav,",
+        "signature": "Uprava {{realmName}}"
     }
 }

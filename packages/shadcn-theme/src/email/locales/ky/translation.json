@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Бардык укуктар корголгон"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Текшерилүүчү эсептик дайындардын сунушу",
+        "preview": "Текшерилүүчү эсептик дайындарыңызды алыңыз",
+        "message": "Администраторуңуз сизге {{realmName}} эсебиңизде санариптик капчыгыңызга {{credentialScopeDisplayName}} текшерилүүчү эсептик дайындарын ала аларыңызды билдирди. Бул процессти баштоо үчүн төмөндөгү шилтемени басыңыз.",
+        "claimLink": "{{credentialScopeDisplayName}} алуу үчүн шилтеме",
+        "linkExpiration": "Бул шилтеме {{expiration}} ичинде жарактуу.",
+        "expiredMessage": "Эгерде шилтеменин мөөнөтү өтүп кеткен болсо, сиз {{credentialScopeDisplayName}} дайындарыңызды башка жол менен (мисалы, {{realmName}} эсеп консолун колдонуп) ала аласыз."
+    },
+    "workflow-notification": {
+        "subject": "Эсеп жөнүндө билдирүү",
+        "preview": "Эсеп жөнүндө билдирүү",
+        "greeting": "Урматтуу {{name}},",
+        "timeRemaining": "Калган убакыт: {{days}} күн",
+        "contactAdmin": "Суроолоруңуз болсо, {{realmName}} администраторуңузга кайрылыңыз.",
+        "regards": "Урматтоо менен,",
+        "signature": "{{realmName}} администрациясы"
     }
 }

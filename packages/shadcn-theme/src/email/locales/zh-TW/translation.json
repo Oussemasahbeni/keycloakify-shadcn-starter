@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}，保留所有權利"
+    },
+    "verifiable-credential-offer": {
+        "subject": "可驗證憑證提供",
+        "preview": "領取您的可驗證憑證",
+        "message": "您的管理員剛剛通知您，在您的 {{realmName}} 帳戶中，您可以將可驗證憑證 {{credentialScopeDisplayName}} 領取到您的數位錢包。點擊下方連結開始此流程。",
+        "claimLink": "領取 {{credentialScopeDisplayName}} 的連結",
+        "linkExpiration": "此連結將在 {{expiration}} 內過期。",
+        "expiredMessage": "如果連結已過期，您仍可以透過其他方式領取您的 {{credentialScopeDisplayName}}（例如，使用 {{realmName}} 帳戶主控台）。"
+    },
+    "workflow-notification": {
+        "subject": "帳戶通知",
+        "preview": "帳戶通知",
+        "greeting": "親愛的 {{name}}：",
+        "timeRemaining": "剩餘時間：{{days}} 天",
+        "contactAdmin": "如有疑問，請聯絡您的 {{realmName}} 管理員。",
+        "regards": "此致敬禮，",
+        "signature": "{{realmName}} 管理團隊"
     }
 }

@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}，保留所有权利"
+    },
+    "verifiable-credential-offer": {
+        "subject": "可验证凭证提供",
+        "preview": "领取您的可验证凭证",
+        "message": "您的管理员刚刚通知您，在您的 {{realmName}} 账户中，您可以将可验证凭证 {{credentialScopeDisplayName}} 领取到您的数字钱包。点击下方链接开始此流程。",
+        "claimLink": "领取 {{credentialScopeDisplayName}} 的链接",
+        "linkExpiration": "此链接将在 {{expiration}} 内过期。",
+        "expiredMessage": "如果链接已过期，您仍可以通过其他方式领取您的 {{credentialScopeDisplayName}}（例如，使用 {{realmName}} 账户控制台）。"
+    },
+    "workflow-notification": {
+        "subject": "账户通知",
+        "preview": "账户通知",
+        "greeting": "尊敬的 {{name}}：",
+        "timeRemaining": "剩余时间：{{days}} 天",
+        "contactAdmin": "如有疑问，请联系您的 {{realmName}} 管理员。",
+        "regards": "此致敬礼，",
+        "signature": "{{realmName}} 管理团队"
     }
 }

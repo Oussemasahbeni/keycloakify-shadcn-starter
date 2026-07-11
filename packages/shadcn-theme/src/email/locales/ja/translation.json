@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}、全著作権所有"
+    },
+    "verifiable-credential-offer": {
+        "subject": "検証可能なクレデンシャルの提供",
+        "preview": "検証可能なクレデンシャルを取得する",
+        "message": "管理者から、{{realmName}} アカウントでデジタルウォレットに検証可能なクレデンシャル {{credentialScopeDisplayName}} を取得できることが通知されました。この手続きを開始するには、以下のリンクをクリックしてください。",
+        "claimLink": "{{credentialScopeDisplayName}} を取得するためのリンク",
+        "linkExpiration": "このリンクは{{expiration}}以内に期限切れになります。",
+        "expiredMessage": "リンクの有効期限がすでに切れている場合でも、別の方法（たとえば {{realmName}} アカウントコンソールを使用する方法）で {{credentialScopeDisplayName}} を取得できる場合があります。"
+    },
+    "workflow-notification": {
+        "subject": "アカウント通知",
+        "preview": "アカウント通知",
+        "greeting": "{{name}} 様",
+        "timeRemaining": "残り時間: {{days}} 日",
+        "contactAdmin": "ご不明な点がございましたら、{{realmName}} の管理者にお問い合わせください。",
+        "regards": "よろしくお願いいたします。",
+        "signature": "{{realmName}} 管理者"
     }
 }

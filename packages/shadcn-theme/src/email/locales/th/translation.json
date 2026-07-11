@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}} สงวนลิขสิทธิ์"
+    },
+    "verifiable-credential-offer": {
+        "subject": "ข้อเสนอข้อมูลรับรองที่ตรวจสอบได้",
+        "preview": "รับข้อมูลรับรองที่ตรวจสอบได้ของคุณ",
+        "message": "ผู้ดูแลระบบของคุณเพิ่งแจ้งว่าในบัญชี {{realmName}} ของคุณ คุณสามารถรับข้อมูลรับรองที่ตรวจสอบได้ {{credentialScopeDisplayName}} ไปยังกระเป๋าเงินดิจิทัลของคุณได้ คลิกลิงก์ด้านล่างเพื่อเริ่มกระบวนการนี้",
+        "claimLink": "ลิงก์เพื่อรับ {{credentialScopeDisplayName}}",
+        "linkExpiration": "ลิงก์นี้จะหมดอายุภายใน {{expiration}}",
+        "expiredMessage": "หากลิงก์หมดอายุแล้ว คุณอาจยังสามารถรับ {{credentialScopeDisplayName}} ของคุณด้วยวิธีอื่นได้ (เช่น การใช้คอนโซลบัญชี {{realmName}})"
+    },
+    "workflow-notification": {
+        "subject": "การแจ้งเตือนบัญชี",
+        "preview": "การแจ้งเตือนบัญชี",
+        "greeting": "เรียน {{name}},",
+        "timeRemaining": "เวลาที่เหลือ: {{days}} วัน",
+        "contactAdmin": "หากคุณมีคำถาม โปรดติดต่อผู้ดูแลระบบ {{realmName}} ของคุณ",
+        "regards": "ด้วยความนับถือ,",
+        "signature": "ฝ่ายบริหาร {{realmName}}"
     }
 }

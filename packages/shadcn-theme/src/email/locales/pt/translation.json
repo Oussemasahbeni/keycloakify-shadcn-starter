@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Todos os direitos reservados"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Oferta de credencial verificável",
+        "preview": "Reivindique a sua credencial verificável",
+        "message": "O seu administrador acabou de o informar de que, na sua conta {{realmName}}, pode reivindicar a credencial verificável {{credentialScopeDisplayName}} para a sua carteira digital. Clique na ligação abaixo para iniciar este processo.",
+        "claimLink": "Ligação para reivindicar {{credentialScopeDisplayName}}",
+        "linkExpiration": "Este link expirará em {{expiration}}.",
+        "expiredMessage": "Se a ligação já tiver expirado, poderá ainda conseguir reivindicar a sua {{credentialScopeDisplayName}} por outro meio (por exemplo, utilizando a consola da conta {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Notificação da conta",
+        "preview": "Notificação da conta",
+        "greeting": "Caro/a {{name}},",
+        "timeRemaining": "Tempo restante: {{days}} dia(s)",
+        "contactAdmin": "Se tiver questões, contacte o administrador de {{realmName}}.",
+        "regards": "Com os melhores cumprimentos,",
+        "signature": "Administração de {{realmName}}"
     }
 }

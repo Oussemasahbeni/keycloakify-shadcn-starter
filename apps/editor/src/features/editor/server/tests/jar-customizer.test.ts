@@ -1,5 +1,5 @@
-import type { ThemeConfig } from "#/features/editor/model/theme-config";
-import { defaultThemeConfig } from "#/features/editor/model/theme-config";
+import type { LoginThemeConfig } from "#/features/editor/login/model/theme-config";
+import { defaultLoginThemeConfig } from "#/features/editor/login/model/theme-config";
 import { strFromU8, unzipSync } from "fflate";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -13,14 +13,14 @@ const template = new Uint8Array(
 );
 
 /** A config that differs from the template defaults on every baked key. */
-const customConfig: ThemeConfig = {
-    ...defaultThemeConfig,
+const customConfig: LoginThemeConfig = {
+    ...defaultLoginThemeConfig,
     layout: "centered-card",
     basePalette: "stone",
     accent: "blue",
     radius: "large",
     font: "inter",
-    showPlaceholders: false,
+    showPlaceholder: false,
     showRealmName: false,
     logoUrl: "https://cdn.example.com/logo-light.svg",
     asideImageUrl: "", // stays empty → `${env.X:}`
@@ -31,7 +31,7 @@ function readEntry(jar: Uint8Array, path: string): string {
 }
 
 // Re-zipping a 6 MB JAR isn't free, so customize once and share across assertions.
-const result = customizeThemeJar(template, { config: customConfig });
+const result = customizeThemeJar(template, { config: customConfig, themeName: "acme-login" });
 
 describe("customizeThemeJar (Tier A: config baking)", () => {
     it("bakes the config as theme.properties defaults, preserving the ${env:...} form", () => {
@@ -42,7 +42,9 @@ describe("customizeThemeJar (Tier A: config baking)", () => {
         expect(props).toContain("SHADCN_THEME_PRESET=${env.SHADCN_THEME_PRESET:blue}");
         expect(props).toContain("SHADCN_THEME_RADIUS=${env.SHADCN_THEME_RADIUS:large}");
         expect(props).toContain("SHADCN_THEME_FONT=${env.SHADCN_THEME_FONT:inter}");
-        expect(props).toContain("SHADCN_THEME_SHOW_PLACEHOLDER=${env.SHADCN_THEME_SHOW_PLACEHOLDER:false}");
+        expect(props).toContain(
+            "SHADCN_THEME_SHOW_PLACEHOLDER=${env.SHADCN_THEME_SHOW_PLACEHOLDER:false}",
+        );
         expect(props).toContain(
             "SHADCN_THEME_SHOW_REALM_NAME=${env.SHADCN_THEME_SHOW_REALM_NAME:false}",
         );
@@ -54,7 +56,9 @@ describe("customizeThemeJar (Tier A: config baking)", () => {
     it("keeps empty values as `${env.X:}` (drop-in identical to stock)", () => {
         const props = readEntry(result, LOGIN_PROPS);
 
-        expect(props).toContain("SHADCN_THEME_ASIDE_IMAGE_URL=${env.SHADCN_THEME_ASIDE_IMAGE_URL:}");
+        expect(props).toContain(
+            "SHADCN_THEME_ASIDE_IMAGE_URL=${env.SHADCN_THEME_ASIDE_IMAGE_URL:}",
+        );
     });
 
     it("leaves non-managed lines untouched", () => {
@@ -91,7 +95,7 @@ describe("customizeThemeJar (Tier A: config baking)", () => {
 
 describe("customizeThemeJar (Tier B: theme rename)", () => {
     const renamed = customizeThemeJar(template, {
-        config: defaultThemeConfig,
+        config: defaultLoginThemeConfig,
         themeName: "acme-login",
     });
     const paths = Object.keys(unzipSync(renamed));
@@ -123,7 +127,7 @@ describe("customizeThemeJar (Tier B: theme rename)", () => {
 
     it("does not rename when themeName is omitted or blank", () => {
         const untouched = customizeThemeJar(template, {
-            config: defaultThemeConfig,
+            config: defaultLoginThemeConfig,
             themeName: "  ",
         });
         expect(
@@ -133,7 +137,10 @@ describe("customizeThemeJar (Tier B: theme rename)", () => {
 
     it("rejects an invalid theme name", () => {
         expect(() =>
-            customizeThemeJar(template, { config: defaultThemeConfig, themeName: "Bad Name!" }),
+            customizeThemeJar(template, {
+                config: defaultLoginThemeConfig,
+                themeName: "Bad Name!",
+            }),
         ).toThrow(/invalid theme name/i);
     });
 });
@@ -145,7 +152,8 @@ describe("customizeThemeJar (Tier C: asset injection)", () => {
     it("overwrites an existing dist file (e.g. favicon.ico) with the uploaded bytes", () => {
         const favicon = newBytes(64);
         const jar = customizeThemeJar(template, {
-            config: defaultThemeConfig,
+            themeName: "acme-login",
+            config: defaultLoginThemeConfig,
             assets: { "favicon.ico": favicon },
         });
         const entry = unzipSync(jar)[`${DIST}favicon.ico`];
@@ -155,7 +163,8 @@ describe("customizeThemeJar (Tier C: asset injection)", () => {
     it("adds a new dist file when the filename does not exist (e.g. a logo)", () => {
         const logo = newBytes(32);
         const jar = customizeThemeJar(template, {
-            config: defaultThemeConfig,
+            themeName: "acme-login",
+            config: defaultLoginThemeConfig,
             assets: { "logo-white.svg": logo },
         });
         const entry = unzipSync(jar)[`${DIST}logo-white.svg`];
@@ -164,7 +173,7 @@ describe("customizeThemeJar (Tier C: asset injection)", () => {
 
     it("writes assets into the renamed theme dir", () => {
         const jar = customizeThemeJar(template, {
-            config: defaultThemeConfig,
+            config: defaultLoginThemeConfig,
             themeName: "acme-login",
             assets: { "favicon.ico": newBytes(16) },
         });
@@ -176,7 +185,8 @@ describe("customizeThemeJar (Tier C: asset injection)", () => {
     it("rejects asset filenames that try to escape the dist folder", () => {
         expect(() =>
             customizeThemeJar(template, {
-                config: defaultThemeConfig,
+                themeName: "acme-login",
+                config: defaultLoginThemeConfig,
                 assets: { "../../evil.sh": newBytes(4) },
             }),
         ).toThrow(/invalid asset filename/i);

@@ -1,12 +1,18 @@
 import { Spinner } from "#/components/ui/spinner";
-import { useReceivePreviewState } from "#/features/editor/hooks/use-iframe-message";
-import type { PreviewAssets } from "#/features/editor/hooks/use-preview-assets-channel";
-import { useReceivePreviewAssets } from "#/features/editor/hooks/use-preview-assets-channel";
-import { assetDefinitions, type AssetKey } from "#/features/editor/model/assets";
-import type { PreviewColorScheme, ThemeConfig } from "#/features/editor/model/theme-config";
-import { defaultThemeConfig, themeConfigToProperties } from "#/features/editor/model/theme-config";
-import { getStory } from "#/features/editor/stories/pages";
-import type { PageId } from "#/features/editor/stories/types";
+import { useReceivePreviewState } from "#/features/editor/login/hooks/use-iframe-message";
+import type { PreviewAssets } from "#/features/editor/login/hooks/use-preview-assets-channel";
+import { useReceivePreviewAssets } from "#/features/editor/login/hooks/use-preview-assets-channel";
+
+import type { AssetKey } from "#/features/editor/login/model/assets.ts";
+import { assetDefinitions } from "#/features/editor/login/model/assets.ts";
+import type { PreviewColorScheme, LoginThemeConfig } from "#/features/editor/login/model/theme-config";
+import {
+    defaultLoginThemeConfig,
+    themeConfigToProperties,
+} from "#/features/editor/login/model/theme-config";
+import { getStory } from "#/features/editor/login/stories/pages";
+import type { PageId } from "#/features/editor/login/stories/types";
+
 import { KcPage, getKcContextMock } from "@kc-studio/shadcn-theme/preview";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
@@ -15,13 +21,13 @@ type PreviewSearch = {
     page: PageId;
     story: string;
     scheme: PreviewColorScheme;
-    layout: ThemeConfig["layout"];
-    base: ThemeConfig["basePalette"];
-    accent: ThemeConfig["accent"];
-    radius: ThemeConfig["radius"];
-    font: ThemeConfig["font"];
-    locale: ThemeConfig["locale"];
-    sidePanelPosition: ThemeConfig["sidePanelPosition"];
+    layout: LoginThemeConfig["layout"];
+    base: LoginThemeConfig["basePalette"];
+    accent: LoginThemeConfig["accent"];
+    radius: LoginThemeConfig["radius"];
+    font: LoginThemeConfig["font"];
+    locale: LoginThemeConfig["locale"];
+    sidePanelPosition: LoginThemeConfig["sidePanelPosition"];
     showPlaceholder: boolean;
     realmName: boolean;
     logo?: string;
@@ -45,14 +51,14 @@ export const Route = createFileRoute("/preview")({
         page: (search.page as PageId | undefined) ?? "login.ftl",
         story: (search.story as string | undefined) ?? "default",
         scheme: search.scheme === "dark" ? "dark" : "light",
-        layout: (search.layout as ThemeConfig["layout"] | undefined) ?? defaultThemeConfig.layout,
+        layout: (search.layout as LoginThemeConfig["layout"] | undefined) ?? defaultLoginThemeConfig.layout,
         base:
-            (search.base as ThemeConfig["basePalette"] | undefined) ??
-            defaultThemeConfig.basePalette,
-        accent: (search.accent as ThemeConfig["accent"] | undefined) ?? defaultThemeConfig.accent,
-        radius: (search.radius as ThemeConfig["radius"] | undefined) ?? defaultThemeConfig.radius,
-        font: (search.font as ThemeConfig["font"] | undefined) ?? defaultThemeConfig.font,
-        locale: (search.locale as ThemeConfig["locale"] | undefined) ?? defaultThemeConfig.locale,
+            (search.base as LoginThemeConfig["basePalette"] | undefined) ??
+            defaultLoginThemeConfig.basePalette,
+        accent: (search.accent as LoginThemeConfig["accent"] | undefined) ?? defaultLoginThemeConfig.accent,
+        radius: (search.radius as LoginThemeConfig["radius"] | undefined) ?? defaultLoginThemeConfig.radius,
+        font: (search.font as LoginThemeConfig["font"] | undefined) ?? defaultLoginThemeConfig.font,
+        locale: (search.locale as LoginThemeConfig["locale"] | undefined) ?? defaultLoginThemeConfig.locale,
         sidePanelPosition: search.sidePanelPosition === "left" ? "left" : "right",
         showPlaceholder: search.showPlaceholder !== "false" && search.showPlaceholder !== false,
         realmName: search.realmName !== "false" && search.realmName !== false,
@@ -77,7 +83,7 @@ type IncomingState = {
     pageId: PageId;
     storyId: string;
     colorScheme: PreviewColorScheme;
-    config: ThemeConfig;
+    config: LoginThemeConfig;
     assets?: PreviewAssets;
 };
 
@@ -88,7 +94,7 @@ function PreviewRoute() {
         storyId: search.story,
         colorScheme: search.scheme,
         config: {
-            ...defaultThemeConfig,
+            ...defaultLoginThemeConfig,
             layout: search.layout,
             basePalette: search.base,
             accent: search.accent,

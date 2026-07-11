@@ -1,27 +1,40 @@
 import { createContext, use, useState } from "react";
 
 import { useTheme } from "#/components/theme-provider";
-import type { ThemeAssetKey } from "../model/assets";
-import type { PreviewColorScheme, SaveStatus, ThemeConfig } from "../model/theme-config";
-import { defaultThemeConfig } from "../model/theme-config";
-import type { Viewport } from "../model/viewport";
+import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
+import { emailTemplates } from "@kc-studio/shadcn-theme/email";
+import type { EmailThemeConfig } from "../email/model/theme-config";
+import { defaultEmailThemeConfig } from "../email/model/theme-config";
+import type { ThemeAssetKey } from "../login/model/assets";
+import type { LoginThemeConfig, PreviewColorScheme } from "../login/model/theme-config";
+import { defaultLoginThemeConfig } from "../login/model/theme-config";
+import type { Viewport } from "../login/model/viewport";
+import type { Surface } from "../shared/components/surface-switch";
 
-type EditorContextValue = {
+interface EditorContextValue {
     themeName: string;
     setThemeName: (name: string) => void;
-    assets: Record<ThemeAssetKey, File | null>;
-    setAssets: (assets: Record<ThemeAssetKey, File | null>) => void;
-    viewport: Viewport;
-    setViewport: (viewport: Viewport) => void;
-    previewColorScheme: PreviewColorScheme;
-    setPreviewColorScheme: (scheme: PreviewColorScheme) => void;
-    togglePreviewColorScheme: () => void;
-    config: ThemeConfig;
-    updateConfig: (patch: Partial<ThemeConfig>) => void;
+    activeSurface: Surface;
+    setActiveSurface: (s: Surface) => void;
     readonly resetConfig: () => void;
-    saveStatus: SaveStatus;
-    lastSavedAt: Date | null;
-};
+    login: {
+        config: LoginThemeConfig;
+        updateConfig: (patch: Partial<LoginThemeConfig>) => void;
+        previewColorScheme: PreviewColorScheme;
+        setPreviewColorScheme: (scheme: PreviewColorScheme) => void;
+        togglePreviewColorScheme: () => void;
+        viewport: Viewport;
+        setViewport: (viewport: Viewport) => void;
+        assets: Record<ThemeAssetKey, File | null>;
+        setAssets: (assets: Record<ThemeAssetKey, File | null>) => void;
+    };
+    email: {
+        config: EmailThemeConfig;
+        updateConfig: (patch: Partial<EmailThemeConfig>) => void;
+        template: EmailTemplate;
+        setTemplate: (template: EmailTemplate) => void;
+    };
+}
 
 const EditorContext = createContext<EditorContextValue | null>(null);
 
@@ -39,31 +52,41 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     const { theme } = useTheme();
     const [viewport, setViewport] = useState<Viewport>("desktop");
     const [themeName, setThemeName] = useState<string>("shadcn-theme");
-    const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>(
-        theme as PreviewColorScheme,
-    );
-    const [config, setConfig] = useState<ThemeConfig>(defaultThemeConfig);
+    const [activeSurface, setActiveSurface] = useState<Surface>("login");
+    const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>(theme as PreviewColorScheme);
+    const [loginThemeConfig, setLoginThemeConfig] = useState<LoginThemeConfig>(defaultLoginThemeConfig);
+    const [emailThemeConfig, setEmailThemeConfig] = useState<EmailThemeConfig>(defaultEmailThemeConfig);
+    const [emailTemplate, setEmailTemplate] = useState<EmailTemplate>(emailTemplates[0]);
     const [assets, setAssets] = useState<Record<ThemeAssetKey, File | null>>(emptyAssets);
 
     const value: EditorContextValue = {
         themeName,
         setThemeName,
-        viewport,
-        setViewport,
-        previewColorScheme,
-        setPreviewColorScheme,
-        assets: assets,
-        setAssets: setAssets,
-        togglePreviewColorScheme: () =>
-            setPreviewColorScheme(scheme => (scheme === "light" ? "dark" : "light")),
-        config,
-        updateConfig: patch => setConfig(current => ({ ...current, ...patch })),
+        activeSurface,
+        setActiveSurface,
         resetConfig: () => {
-            setConfig(defaultThemeConfig);
+            setLoginThemeConfig(defaultLoginThemeConfig);
+            setEmailThemeConfig(defaultEmailThemeConfig);
             setAssets(emptyAssets);
         },
-        saveStatus: "idle",
-        lastSavedAt: null,
+
+        login: {
+            viewport,
+            setViewport,
+            previewColorScheme,
+            setPreviewColorScheme,
+            config: loginThemeConfig,
+            updateConfig: patch => setLoginThemeConfig(current => ({ ...current, ...patch })),
+            togglePreviewColorScheme: () => setPreviewColorScheme(scheme => (scheme === "light" ? "dark" : "light")),
+            assets: assets,
+            setAssets: setAssets,
+        },
+        email: {
+            config: emailThemeConfig,
+            updateConfig: patch => setEmailThemeConfig(current => ({ ...current, ...patch })),
+            template: emailTemplate,
+            setTemplate: setEmailTemplate,
+        },
     };
 
     return <EditorContext value={value}>{children}</EditorContext>;

@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, tous droits réservés"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Offre d'identifiant vérifiable",
+        "preview": "Réclamez votre identifiant vérifiable",
+        "message": "Votre administrateur vient de vous informer que, dans votre compte {{realmName}}, vous pouvez réclamer l'identifiant vérifiable {{credentialScopeDisplayName}} dans votre portefeuille numérique. Cliquez sur le lien ci-dessous pour démarrer ce processus.",
+        "claimLink": "Lien pour réclamer {{credentialScopeDisplayName}}",
+        "linkExpiration": "Ce lien expirera dans {{expiration}}.",
+        "expiredMessage": "Si le lien a déjà expiré, vous pourrez peut-être toujours réclamer votre {{credentialScopeDisplayName}} par un autre moyen (par exemple en utilisant la console du compte {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Notification du compte",
+        "preview": "Notification du compte",
+        "greeting": "Cher/Chère {{name}},",
+        "timeRemaining": "Temps restant : {{days}} jour(s)",
+        "contactAdmin": "Si vous avez des questions, veuillez contacter votre administrateur {{realmName}}.",
+        "regards": "Cordialement,",
+        "signature": "Administration de {{realmName}}"
     }
 }

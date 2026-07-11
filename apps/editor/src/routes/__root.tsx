@@ -5,8 +5,11 @@ import { ThemeProvider } from "#/components/theme-provider";
 import { Toaster } from "#/components/ui/sonner";
 import { TooltipProvider } from "#/components/ui/tooltip";
 import { seo } from "#/utils/seo";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
+
+const queryClient = new QueryClient();
 
 export const Route = createRootRoute({
     head: () => ({
@@ -80,7 +83,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                     children
                 ) : (
                     <ThemeProvider defaultTheme="system" storageKey="theme">
-                        <TooltipProvider>{children}</TooltipProvider>
+                        <TooltipProvider>
+                            <QueryClientProvider client={queryClient}>
+                                {children}
+                            </QueryClientProvider>
+                        </TooltipProvider>
                         <AutoLogoutWarningOverlay />
                         <Toaster />
                     </ThemeProvider>

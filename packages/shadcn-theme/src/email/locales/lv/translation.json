@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Visas tiesības aizsargātas"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Pārbaudāma akreditācijas datu piedāvājums",
+        "preview": "Pieprasiet savus pārbaudāmos akreditācijas datus",
+        "message": "Jūsu administrators tikko informēja, ka savā {{realmName}} kontā jūs varat pieprasīt pārbaudāmos akreditācijas datus {{credentialScopeDisplayName}} savā digitālajā makā. Noklikšķiniet uz zemāk esošās saites, lai sāktu šo procesu.",
+        "claimLink": "Saite, lai pieprasītu {{credentialScopeDisplayName}}",
+        "linkExpiration": "Šīs saites derīguma termiņš beigsies {{expiration}}.",
+        "expiredMessage": "Ja saites derīguma termiņš jau ir beidzies, iespējams, joprojām varēsiet pieprasīt savus {{credentialScopeDisplayName}} kādā citā veidā (piemēram, izmantojot {{realmName}} konta konsoli)."
+    },
+    "workflow-notification": {
+        "subject": "Konta paziņojums",
+        "preview": "Konta paziņojums",
+        "greeting": "Cienījamais/-ā {{name}},",
+        "timeRemaining": "Atlikušais laiks: {{days}} diena(s)",
+        "contactAdmin": "Ja jums ir jautājumi, lūdzu, sazinieties ar savu {{realmName}} administratoru.",
+        "regards": "Ar cieņu,",
+        "signature": "{{realmName}} administrācija"
     }
 }

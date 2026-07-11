@@ -32,7 +32,7 @@ export const Template = ({ locale, t, theme }: TemplateProps) => {
                 align={isRTL ? "right" : "left"}
                 height={40}
                 backgroundColor={theme.primaryColor}
-                textColor={theme.buttonTextColor}
+                textColor={theme.foregroundColor}
                 borderRadius={3}
                 href={exp("link")}
             >

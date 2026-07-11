@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Alle rechten voorbehouden"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Aanbod verifieerbare referentie",
+        "preview": "Claim uw verifieerbare referentie",
+        "message": "Uw beheerder heeft u zojuist geïnformeerd dat u in uw {{realmName}}-account de verifieerbare referentie {{credentialScopeDisplayName}} kunt claimen voor uw digitale portemonnee. Klik op de onderstaande link om dit proces te starten.",
+        "claimLink": "Link om {{credentialScopeDisplayName}} te claimen",
+        "linkExpiration": "Deze link verloopt binnen {{expiration}}.",
+        "expiredMessage": "Als de link al is verlopen, kunt u uw {{credentialScopeDisplayName}} mogelijk nog op een andere manier claimen (bijvoorbeeld via de {{realmName}}-accountconsole)."
+    },
+    "workflow-notification": {
+        "subject": "Accountmelding",
+        "preview": "Accountmelding",
+        "greeting": "Beste {{name}},",
+        "timeRemaining": "Resterende tijd: {{days}} dag(en)",
+        "contactAdmin": "Als u vragen heeft, neem dan contact op met uw {{realmName}}-beheerder.",
+        "regards": "Met vriendelijke groet,",
+        "signature": "{{realmName}}-beheer"
     }
 }

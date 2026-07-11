@@ -65,6 +65,9 @@ importers:
       '@tanstack/react-form':
         specifier: latest
         version: 1.33.0(@tanstack/react-start@1.168.17(crossws@0.4.6(srvx@0.11.16))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.1.0(@types/node@22.19.19)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@tanstack/react-query':
+        specifier: latest
+        version: 5.101.2(react@19.2.6)
       '@tanstack/react-router':
         specifier: latest
         version: 1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -73,7 +76,7 @@ importers:
         version: 1.167.0(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/router-core@1.171.8)(csstype@3.2.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/react-router-ssr-query':
         specifier: latest
-        version: 1.167.1(@tanstack/query-core@5.100.14)(@tanstack/react-query@5.100.14(react@19.2.6))(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/router-core@1.171.8)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        version: 1.167.1(@tanstack/query-core@5.101.2)(@tanstack/react-query@5.101.2(react@19.2.6))(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/router-core@1.171.8)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/react-start':
         specifier: latest
         version: 1.168.17(crossws@0.4.6(srvx@0.11.16))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.1.0(@types/node@22.19.19)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3))
@@ -150,6 +153,9 @@ importers:
       '@tanstack/eslint-config':
         specifier: latest
         version: 0.4.0(@typescript-eslint/utils@8.59.4(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3)
+      '@tanstack/eslint-plugin-query':
+        specifier: ^5.101.2
+        version: 5.101.2(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3)
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1
@@ -240,6 +246,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      culori:
+        specifier: ^4.0.2
+        version: 4.0.2
       i18next:
         specifier: ^26.2.0
         version: 26.2.0(typescript@6.0.3)
@@ -286,6 +295,9 @@ importers:
       '@storybook/react-vite':
         specifier: ^10.4.0
         version: 10.4.0(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(esbuild@0.25.12)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(storybook@10.4.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@testing-library/dom@10.4.1)(@types/react@19.2.15)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(typescript@6.0.3)(vite@8.1.0(@types/node@25.9.1)(esbuild@0.25.12)(jiti@2.7.0)(tsx@4.22.3))
+      '@types/culori':
+        specifier: ^4.0.1
+        version: 4.0.1
       '@types/node':
         specifier: ^25.9.1
         version: 25.9.1
@@ -329,8 +341,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(@jsx-email/plugin-inline@1.0.1)(@jsx-email/plugin-minify@1.0.2)(@jsx-email/plugin-pretty@1.0.0)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.2)(rolldown@1.1.3)(vite@8.1.0(@types/node@25.9.1)(esbuild@0.25.12)(jiti@2.7.0)(tsx@4.22.3)))(@types/node@25.9.1)(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(babel-plugin-react-compiler@1.0.0)(canispam@1.0.0)(jiti@2.7.0)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(tsx@4.22.3)(typescript@6.0.3)(use-sync-external-store@1.6.0(react@19.2.6))
       keycloakify-emails:
-        specifier: 3.3.1
-        version: 3.3.1(jsx-email@3.2.0)(react@19.2.6)
+        specifier: 3.4.0
+        version: 3.4.0(jsx-email@3.2.0)(react@19.2.6)
       storybook:
         specifier: ^10.4.0
         version: 10.4.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@testing-library/dom@10.4.1)(@types/react@19.2.15)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -3419,6 +3431,15 @@ packages:
     peerDependencies:
       eslint: ^9.0.0 || ^10.0.0
 
+  '@tanstack/eslint-plugin-query@5.101.2':
+    resolution: {integrity: sha512-cPE99s3XZwlObfn8lCezT4j4JLj2CVzpIEywx0H4hzfPsX/o9QhdwaOwcDXxrQAqx2ds7TbvTinxhB8B/ywb6w==}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+      typescript: ^5.4.0 || ^6.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   '@tanstack/form-core@1.33.0':
     resolution: {integrity: sha512-AV4Pw9Dk4orFsuPBcDssfWMJFs+yMYBae7zZ4oTqrCf4ftNGQKxvrQRZeqKHG6A4TkiLeSvf2kzIjcVkrW7E6w==}
 
@@ -3430,8 +3451,8 @@ packages:
     resolution: {integrity: sha512-y/xtNPNt/YeyoVxE/JCx+T7yjEzpezmbb+toK8DDD1P4m7Kzs5YR956+7OKexG3f8aXgC3rLZl7b1V+yNUSy5w==}
     engines: {node: '>=18'}
 
-  '@tanstack/query-core@5.100.14':
-    resolution: {integrity: sha512-5X41dGpxgeaHISCRW2oYwcSycZeULZzAunaudXT9ov1KOTj9xwt0CH6hbwqP1/z74ZWF7rYFnDpyYH07XFcZew==}
+  '@tanstack/query-core@5.101.2':
+    resolution: {integrity: sha512-hH5MLoJhF7KaIGd7q3xTXGXvslI+GYlM1Z/35aSHHWaCJWB7XvTSHYuV3eM7tw+aE0mT/xMro4M4Q9rCGHT0lw==}
 
   '@tanstack/react-devtools@0.10.5':
     resolution: {integrity: sha512-orVsRJ7oAXFb7oyafQCgx9YuK44jpILh5T/ddYuxAsolNfN5DZBr5/NLrWErD7HCGIzvYzg1TZI4sPxmiKvtvA==}
@@ -3451,8 +3472,8 @@ packages:
       '@tanstack/react-start':
         optional: true
 
-  '@tanstack/react-query@5.100.14':
-    resolution: {integrity: sha512-oOr6aRdSFEwWhzxEkD/9ZcItM3+LjBSkeVmadWKwUssAHTsqd/7bOjWrX4AbvEkoEhgAxzN0Xk6H/aYzXiYBAw==}
+  '@tanstack/react-query@5.101.2':
+    resolution: {integrity: sha512-seDkr6kzGzX1okaaTtZPtgA688CDPlXUz1C6xSg0ESqn04Vuc8tlrYms1s3de+znBqhPVxFRfpAfUf+6XvfPWg==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -3704,6 +3725,9 @@ packages:
 
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
+
+  '@types/culori@4.0.1':
+    resolution: {integrity: sha512-43M51r/22CjhbOXyGT361GZ9vncSVQ39u62x5eJdBQFviI8zWp2X5jzqg7k4M6PVgDQAClpy2bUe2dtwEgEDVQ==}
 
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
@@ -4474,6 +4498,10 @@ packages:
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+
+  culori@4.0.2:
+    resolution: {integrity: sha512-1+BhOB8ahCn4O0cep0Sh2l9KCOfOdY+BXJnKMHFFzDEouSr/el18QwXEMRlOj9UY5nCeA8UN3a/82rUWRBeyBw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -5822,8 +5850,8 @@ packages:
       react: 19.2.5
       react-dom: 19.2.5
 
-  keycloakify-emails@3.3.1:
-    resolution: {integrity: sha512-ShuiXT7oHMOgsiTT4KqIA0wwLHfAq83fo3eReUdExuG6pJTUrlf3ApqCLCw8o05h12pqQGNDBp/zDUQjVBd47Q==}
+  keycloakify-emails@3.4.0:
+    resolution: {integrity: sha512-VURNC0YwuZIMNqgGxC1koa8h6Xkd2GguNVjhqueRgsBjVx4DNVjTCGbUAhkIPb3iQcnLFeUaF8+abuzdGx0nQg==}
     peerDependencies:
       jsx-email: ^2.5.3
       react: ^18.0.0 || ^19.0.0
@@ -10284,6 +10312,15 @@ snapshots:
       - supports-color
       - typescript
 
+  '@tanstack/eslint-plugin-query@5.101.2(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3)':
+    dependencies:
+      '@typescript-eslint/utils': 8.59.4(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3)
+      eslint: 10.4.0(jiti@2.7.0)
+    optionalDependencies:
+      typescript: 6.0.3
+    transitivePeerDependencies:
+      - supports-color
+
   '@tanstack/form-core@1.33.0':
     dependencies:
       '@tanstack/devtools-event-client': 0.4.3
@@ -10294,7 +10331,7 @@ snapshots:
 
   '@tanstack/pacer-lite@0.1.1': {}
 
-  '@tanstack/query-core@5.100.14': {}
+  '@tanstack/query-core@5.101.2': {}
 
   '@tanstack/react-devtools@0.10.5(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(csstype@3.2.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.13)':
     dependencies:
@@ -10319,9 +10356,9 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  '@tanstack/react-query@5.100.14(react@19.2.6)':
+  '@tanstack/react-query@5.101.2(react@19.2.6)':
     dependencies:
-      '@tanstack/query-core': 5.100.14
+      '@tanstack/query-core': 5.101.2
       react: 19.2.6
 
   '@tanstack/react-router-devtools@1.167.0(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/router-core@1.171.8)(csstype@3.2.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
@@ -10335,12 +10372,12 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-router-ssr-query@1.167.1(@tanstack/query-core@5.100.14)(@tanstack/react-query@5.100.14(react@19.2.6))(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/router-core@1.171.8)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@tanstack/react-router-ssr-query@1.167.1(@tanstack/query-core@5.101.2)(@tanstack/react-query@5.101.2(react@19.2.6))(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/router-core@1.171.8)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@tanstack/query-core': 5.100.14
-      '@tanstack/react-query': 5.100.14(react@19.2.6)
+      '@tanstack/query-core': 5.101.2
+      '@tanstack/react-query': 5.101.2(react@19.2.6)
       '@tanstack/react-router': 1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@tanstack/router-ssr-query-core': 1.169.1(@tanstack/query-core@5.100.14)(@tanstack/router-core@1.171.8)
+      '@tanstack/router-ssr-query-core': 1.169.1(@tanstack/query-core@5.101.2)(@tanstack/router-core@1.171.8)
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
     transitivePeerDependencies:
@@ -10483,9 +10520,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/router-ssr-query-core@1.169.1(@tanstack/query-core@5.100.14)(@tanstack/router-core@1.171.8)':
+  '@tanstack/router-ssr-query-core@1.169.1(@tanstack/query-core@5.101.2)(@tanstack/router-core@1.171.8)':
     dependencies:
-      '@tanstack/query-core': 5.100.14
+      '@tanstack/query-core': 5.101.2
       '@tanstack/router-core': 1.171.8
 
   '@tanstack/router-utils@1.162.1':
@@ -10655,6 +10692,8 @@ snapshots:
     dependencies:
       '@types/deep-eql': 4.0.2
       assertion-error: 2.0.1
+
+  '@types/culori@4.0.1': {}
 
   '@types/deep-eql@4.0.2': {}
 
@@ -11437,6 +11476,8 @@ snapshots:
       lru-cache: 11.5.0
 
   csstype@3.2.3: {}
+
+  culori@4.0.2: {}
 
   data-uri-to-buffer@4.0.1: {}
 
@@ -13029,7 +13070,7 @@ snapshots:
       - use-sync-external-store
       - yaml
 
-  keycloakify-emails@3.3.1(jsx-email@3.2.0)(react@19.2.6):
+  keycloakify-emails@3.4.0(jsx-email@3.2.0)(react@19.2.6):
     dependencies:
       esbuild: 0.24.2
       properties-parser: 0.6.0

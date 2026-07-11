@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Tots els drets reservats"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Oferta de credencial verificable",
+        "preview": "Reclama la teva credencial verificable",
+        "message": "El vostre administrador acaba d'informar-vos que al vostre compte {{realmName}} podeu reclamar la credencial verificable {{credentialScopeDisplayName}} al vostre moneder digital. Feu clic a l'enllaç de sota per iniciar aquest procés.",
+        "claimLink": "Enllaç per reclamar {{credentialScopeDisplayName}}",
+        "linkExpiration": "Aquest enllaç caducarà d'aquí a {{expiration}}.",
+        "expiredMessage": "Si l'enllaç ja ha caducat, encara podeu reclamar la vostra {{credentialScopeDisplayName}} per altres mitjans (per exemple, utilitzant la consola del compte {{realmName}})."
+    },
+    "workflow-notification": {
+        "subject": "Notificació del compte",
+        "preview": "Notificació del compte",
+        "greeting": "Benvolgut/da {{name}},",
+        "timeRemaining": "Temps restant: {{days}} dia/dies",
+        "contactAdmin": "Si teniu preguntes, poseu-vos en contacte amb l'administrador de {{realmName}}.",
+        "regards": "Salutacions cordials,",
+        "signature": "Administració de {{realmName}}"
     }
 }

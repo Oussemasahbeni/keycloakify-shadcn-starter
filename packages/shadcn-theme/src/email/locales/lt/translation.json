@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, Visos teisės saugomos"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Patikrinamo kredencialo pasiūlymas",
+        "preview": "Atsiimkite savo patikrinamą kredencialą",
+        "message": "Jūsų administratorius ką tik informavo, kad savo {{realmName}} paskyroje galite atsiimti patikrinamą kredencialą {{credentialScopeDisplayName}} į savo skaitmeninę piniginę. Norėdami pradėti šį procesą, spustelėkite toliau esančią nuorodą.",
+        "claimLink": "Nuoroda atsiimti {{credentialScopeDisplayName}}",
+        "linkExpiration": "Ši nuoroda nustos galioti per {{expiration}}.",
+        "expiredMessage": "Jei nuorodos galiojimas jau baigėsi, galbūt vis dar galėsite atsiimti savo {{credentialScopeDisplayName}} kitu būdu (pavyzdžiui, naudodami {{realmName}} paskyros konsolę)."
+    },
+    "workflow-notification": {
+        "subject": "Paskyros pranešimas",
+        "preview": "Paskyros pranešimas",
+        "greeting": "Gerb. {{name}},",
+        "timeRemaining": "Likęs laikas: {{days}} d.",
+        "contactAdmin": "Jei turite klausimų, kreipkitės į savo {{realmName}} administratorių.",
+        "regards": "Pagarbiai,",
+        "signature": "{{realmName}} administracija"
     }
 }

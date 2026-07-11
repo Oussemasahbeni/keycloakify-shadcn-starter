@@ -1,9 +1,10 @@
 import { Body, Column, Container, Head, Html, Img, Preview, Row, Section, Text } from "jsx-email";
+import { If } from "keycloakify-emails/jsx-email";
 import { createVariablesHelper } from "keycloakify-emails/variables";
 import type { PropsWithChildren, ReactNode } from "react";
 import i18n from "./i18n";
 import { isRtlLocale } from "./rtl";
-import type { EmailTheme } from "./theme/theme";
+import { EMAIL_ENV, type EmailTheme } from "./theme/theme";
 
 const main = {
     backgroundColor: "#f6f9fc",
@@ -69,21 +70,39 @@ export const EmailLayout = ({
         width: "102px",
     };
 
+    const baseUrl = import.meta.isJsxEmailPreview
+      ? "/assets"
+      : "${url.resourcesUrl}";
+    // `theme.logoUrl` is a real URL in the preview but a FreeMarker token
+    // (always truthy) in the built template. Render the same markup either way,
+    // but gate it differently: a runtime `<#if …?has_content>` in the template
+    // so an unset property emits no `<img>`, and a plain JS check in the preview.
+    const logoSection = (
+        <Section style={logo}>
+            <Img
+                src={theme.logoUrl ||`${baseUrl}/logo.png`}
+                width={200}
+                height={50}
+                alt={exp("realmName")}
+                style={logoImage}
+            />
+        </Section>
+    );
+    const logoNode = theme.ftl ? (
+        <If condition={`(properties.${EMAIL_ENV.logoUrl.name}!'')?has_content`}>
+            {logoSection}
+        </If>
+    ) : theme.logoUrl ? (
+        logoSection
+    ) : null;
+
     return (
         <Html lang={locale} dir={isRtlLocale(locale) ? "rtl" : "ltr"}>
             <Head />
             <Preview>{preview}</Preview>
             <Body style={main}>
                 <Container style={container}>
-                    <Section style={logo}>
-                        <Img
-                            src={theme.logoUrl}
-                            width={200}
-                            height={50}
-                            alt={exp("realmName")}
-                            style={logoImage}
-                        />
-                    </Section>
+                    {logoNode}
 
                     <Section style={content}>{children}</Section>
 

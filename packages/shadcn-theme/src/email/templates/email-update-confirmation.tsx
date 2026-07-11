@@ -38,8 +38,8 @@ export const Template = ({ locale, t, theme }: TemplateProps) => {
                 width={200}
                 height={40}
                 backgroundColor={theme.primaryColor}
+                textColor={theme.foregroundColor}
                 borderRadius={3}
-                textColor={theme.buttonTextColor}
                 align={isRTL ? "right" : "left"}
                 href={exp("link")}
             >

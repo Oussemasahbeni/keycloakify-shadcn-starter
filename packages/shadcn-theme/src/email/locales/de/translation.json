@@ -105,5 +105,22 @@
     },
     "footer": {
         "allRightsReserved": "© {{currentYear}} {{realmName}}, alle Rechte vorbehalten"
+    },
+    "verifiable-credential-offer": {
+        "subject": "Angebot für überprüfbaren Berechtigungsnachweis",
+        "preview": "Fordern Sie Ihren überprüfbaren Berechtigungsnachweis an",
+        "message": "Ihr Administrator hat Sie soeben darüber informiert, dass Sie in Ihrem {{realmName}}-Konto den überprüfbaren Berechtigungsnachweis {{credentialScopeDisplayName}} für Ihre digitale Brieftasche anfordern können. Klicken Sie auf den untenstehenden Link, um diesen Vorgang zu starten.",
+        "claimLink": "Link zum Anfordern von {{credentialScopeDisplayName}}",
+        "linkExpiration": "Dieser Link läuft innerhalb von {{expiration}} ab.",
+        "expiredMessage": "Falls der Link bereits abgelaufen ist, können Sie Ihren {{credentialScopeDisplayName}} möglicherweise auf andere Weise anfordern (zum Beispiel über die {{realmName}}-Kontokonsole)."
+    },
+    "workflow-notification": {
+        "subject": "Kontobenachrichtigung",
+        "preview": "Kontobenachrichtigung",
+        "greeting": "Sehr geehrte(r) {{name}},",
+        "timeRemaining": "Verbleibende Zeit: {{days}} Tag(e)",
+        "contactAdmin": "Wenn Sie Fragen haben, wenden Sie sich bitte an Ihren {{realmName}}-Administrator.",
+        "regards": "Mit freundlichen Grüßen,",
+        "signature": "{{realmName}}-Administration"
     }
 }
