@@ -25,7 +25,7 @@ export const Template = ({ locale, t, theme }: TemplateProps) => {
 
     return (
         <EmailLayout preview={"Here is a preview"} locale={locale} theme={theme}>
-            <Text>{t("email-test.message")}</Text>
+            <Text>{t("email-test.message", { realmName: exp("realmName") })}</Text>
             <Button
                 width={200}
                 height={40}
