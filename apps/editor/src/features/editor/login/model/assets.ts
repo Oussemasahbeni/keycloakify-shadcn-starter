@@ -1,10 +1,8 @@
 import { z } from "zod";
 import type { LoginThemeConfig } from "./theme-config";
+import { MAX_IMAGE_SIZE_BYTES, LOGIN_IMAGE_EXTENSIONS, LOGIN_IMAGE_MIME_TYPES } from "../../shared/files";
 
-export const MAX_IMAGE_SIZE_BYTES = 1024 * 1024; // 1 MB
 
-const IMAGE_EXTENSIONS = [".png", ".svg", ".jpg", ".jpeg"];
-const IMAGE_MIME_TYPES = ["image/png", "image/svg+xml", "image/jpeg"];
 
 /**
  * Validates an uploaded image (client form + server `generateJar` validator both
@@ -14,8 +12,8 @@ export const assetSchema = z
     .instanceof(File, { error: "Image must be a file." })
     .refine(
         file =>
-            IMAGE_EXTENSIONS.some(ext => file.name.toLowerCase().endsWith(ext)) ||
-            IMAGE_MIME_TYPES.includes(file.type),
+            LOGIN_IMAGE_EXTENSIONS.some(ext => file.name.toLowerCase().endsWith(ext)) ||
+            LOGIN_IMAGE_MIME_TYPES.includes(file.type),
         "Use a PNG, SVG, or JPEG file.",
     )
     .refine(file => file.size <= MAX_IMAGE_SIZE_BYTES, "File is too large (max 1 MB).");
@@ -25,23 +23,6 @@ export function getImageError(file: File): string | null {
     return result.success ? null : (result.error.issues[0]?.message ?? "Invalid file.");
 }
 
-const EXTENSION_BY_MIME: Record<string, string> = {
-    "image/png": "png",
-    "image/svg+xml": "svg",
-    "image/jpeg": "jpg",
-};
-
-/**
- * Safe lowercase extension for the baked asset filename, from the upload's name
- * (preferred) or MIME type. Defaults to `png`. The result feeds a `<baseName>.<ext>`
- * filename that must satisfy the JAR's `ASSET_NAME_PATTERN`.
- */
-export function getImageExtension(file: File): string {
-    const fromName = /\.([a-z0-9]+)$/.exec(file.name.toLowerCase())?.[1];
-    if (fromName === "jpeg") return "jpg";
-    if (fromName && ["png", "svg", "jpg"].includes(fromName)) return fromName;
-    return EXTENSION_BY_MIME[file.type] ?? "png";
-}
 
 interface Assets {
     /** Doubles as the `assets` store key AND the multipart field name on export. */
@@ -106,6 +87,17 @@ export const assetDefinitions = [
         layout: "two-column",
     },
 ] as const satisfies readonly Assets[];
+
+
+export const emptyAssets: Record<ThemeAssetKey, File | null> = {
+    logoUrl: null,
+    logoDarkUrl: null,
+    asideImageUrl: null,
+    favicon: null,
+    cardImageUrl: null,
+    sidePanelImageUrl: null,
+    sidePanelImageDarkUrl: null,
+};
 
 export type AssetKey = (typeof assetDefinitions)[number]["key"];
 export type AssetProperty = (typeof assetDefinitions)[number]["property"];

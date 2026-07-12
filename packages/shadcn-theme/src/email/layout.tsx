@@ -1,15 +1,14 @@
-import { Body, Column, Container, Head, Html, Img, Preview, Row, Section, Text } from "jsx-email";
-import { If } from "keycloakify-emails/jsx-email";
+import { Body, Column, Container, Head, Html, Preview, Row, Section, Text } from "jsx-email";
 import { createVariablesHelper } from "keycloakify-emails/variables";
 import type { PropsWithChildren, ReactNode } from "react";
+import { EmailLogo } from "./email-logo";
 import i18n from "./i18n";
 import { isRtlLocale } from "./rtl";
-import { EMAIL_ENV, type EmailTheme } from "./theme/theme";
+import { type EmailTheme } from "./theme/theme";
 
 const main = {
     backgroundColor: "#f6f9fc",
-    fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+    fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 };
 
 const container = {
@@ -20,21 +19,6 @@ const container = {
 
 const content = {
     padding: "5px 30px 10px 30px",
-};
-
-const logo = {
-    display: "flex",
-    justifyContent: "center",
-    alingItems: "center",
-    padding: 30,
-};
-
-const logoImage = {
-    display: "block",
-    border: "0",
-    outline: "none",
-    textDecoration: "none",
-    maxWidth: "100%",
 };
 
 const sectionsBordersBottom = {
@@ -70,39 +54,13 @@ export const EmailLayout = ({
         width: "102px",
     };
 
-    const baseUrl = import.meta.isJsxEmailPreview
-      ? "/assets"
-      : "${url.resourcesUrl}";
-    // `theme.logoUrl` is a real URL in the preview but a FreeMarker token
-    // (always truthy) in the built template. Render the same markup either way,
-    // but gate it differently: a runtime `<#if …?has_content>` in the template
-    // so an unset property emits no `<img>`, and a plain JS check in the preview.
-    const logoSection = (
-        <Section style={logo}>
-            <Img
-                src={theme.logoUrl ||`${baseUrl}/logo.png`}
-                width={200}
-                height={50}
-                alt={exp("realmName")}
-                style={logoImage}
-            />
-        </Section>
-    );
-    const logoNode = theme.ftl ? (
-        <If condition={`(properties.${EMAIL_ENV.logoUrl.name}!'')?has_content`}>
-            {logoSection}
-        </If>
-    ) : theme.logoUrl ? (
-        logoSection
-    ) : null;
-
     return (
         <Html lang={locale} dir={isRtlLocale(locale) ? "rtl" : "ltr"}>
             <Head />
             <Preview>{preview}</Preview>
             <Body style={main}>
                 <Container style={container}>
-                    {logoNode}
+                    <EmailLogo theme={theme} />
 
                     <Section style={content}>{children}</Section>
 

@@ -14,7 +14,7 @@ export function ExportButton() {
     const {
         themeName,
         login: { config, assets },
-        email: { config: emailConfig },
+        email: { config: emailConfig, logoFile: emailLogoFile },
     } = useEditor();
     const exportJar = useServerFn(generateJar);
 
@@ -35,6 +35,8 @@ export function ExportButton() {
             // Favicon is upload-only and baked via its own multi-file pipeline.
             if (assets.favicon) formData.append("favicon", assets.favicon);
 
+            if (emailLogoFile) formData.append("emailLogoFile", emailLogoFile);
+
             const response = await exportJar({ data: formData });
             return { blob: await response.blob(), name };
         },
@@ -51,6 +53,7 @@ export function ExportButton() {
         },
         onError: error => toast.error(error instanceof Error ? error.message : "Export failed."),
     });
+
     function handleExport() {
         const nameError = getThemeNameError(themeName);
         if (nameError) return toast.error(`Invalid theme name: ${nameError}`);

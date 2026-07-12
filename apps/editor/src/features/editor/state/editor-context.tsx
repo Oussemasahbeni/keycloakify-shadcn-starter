@@ -6,6 +6,7 @@ import { emailTemplates } from "@kc-studio/shadcn-theme/email";
 import type { EmailThemeConfig } from "../email/model/theme-config";
 import { defaultEmailThemeConfig } from "../email/model/theme-config";
 import type { ThemeAssetKey } from "../login/model/assets";
+import { emptyAssets } from "../login/model/assets";
 import type { LoginThemeConfig, PreviewColorScheme } from "../login/model/theme-config";
 import { defaultLoginThemeConfig } from "../login/model/theme-config";
 import type { Viewport } from "../login/model/viewport";
@@ -33,20 +34,12 @@ interface EditorContextValue {
         updateConfig: (patch: Partial<EmailThemeConfig>) => void;
         template: EmailTemplate;
         setTemplate: (template: EmailTemplate) => void;
+        emailLogoFile: File | null;
+        setEmailLogoFile: (file: File | null) => void;
     };
 }
 
 const EditorContext = createContext<EditorContextValue | null>(null);
-
-const emptyAssets: Record<ThemeAssetKey, File | null> = {
-    logoUrl: null,
-    logoDarkUrl: null,
-    asideImageUrl: null,
-    favicon: null,
-    cardImageUrl: null,
-    sidePanelImageUrl: null,
-    sidePanelImageDarkUrl: null,
-};
 
 export function EditorProvider({ children }: { children: React.ReactNode }) {
     const { theme } = useTheme();
@@ -58,6 +51,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     const [emailThemeConfig, setEmailThemeConfig] = useState<EmailThemeConfig>(defaultEmailThemeConfig);
     const [emailTemplate, setEmailTemplate] = useState<EmailTemplate>(emailTemplates[0]);
     const [assets, setAssets] = useState<Record<ThemeAssetKey, File | null>>(emptyAssets);
+    const [emailLogoFile, setEmailLogoFile] = useState<File | null>(null);
 
     const value: EditorContextValue = {
         themeName,
@@ -68,8 +62,8 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
             setLoginThemeConfig(defaultLoginThemeConfig);
             setEmailThemeConfig(defaultEmailThemeConfig);
             setAssets(emptyAssets);
+            setEmailLogoFile(null);
         },
-
         login: {
             viewport,
             setViewport,
@@ -86,6 +80,8 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
             updateConfig: patch => setEmailThemeConfig(current => ({ ...current, ...patch })),
             template: emailTemplate,
             setTemplate: setEmailTemplate,
+            emailLogoFile,
+            setEmailLogoFile,
         },
     };
 

@@ -73,7 +73,7 @@ const MOCK_VARS: Record<string, string> = {
     firstName: "Jane",
     lastName: "Doe",
     "organization.name": "Acme Inc.",
-    "credentialScopeDisplayName": "Digital Badge",
+    credentialScopeDisplayName: "Digital Badge",
 };
 
 function fillMocks(html: string): string {
@@ -85,7 +85,7 @@ function fillMocks(html: string): string {
 
 interface EmailThemeOptions {
     primaryColor: ThemePreset;
-    logoUrl: string | undefined;
+    logoUrl?: string | undefined;
 }
 
 export async function renderEmailPreview(opts: {
@@ -100,11 +100,8 @@ export async function renderEmailPreview(opts: {
     }
     const t = i18n.getFixedT(opts.locale);
     const theme = resolveEmailTheme(opts.theme.primaryColor, opts.theme.logoUrl);
-    const html = await render(
-        <Template locale={opts.locale} t={t} theme={theme} themeName="vanilla" />,
-        {
-            plainText: opts.plainText ? opts.plainText : false,
-        },
-    );
+    const html = await render(<Template locale={opts.locale} t={t} theme={theme} themeName="vanilla" />, {
+        plainText: opts.plainText ? opts.plainText : false,
+    });
     return fillMocks(html);
 }

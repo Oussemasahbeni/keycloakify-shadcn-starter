@@ -66,12 +66,8 @@ export default defineConfig({
             ],
             postBuild: async buildContext => {
                 await buildEmailTheme({
-                    templatesSrcDirPath: path.join(
-                        buildContext.themeSrcDirPath,
-                        "email",
-                        "templates",
-                  ),
-                   assetsDirPath: import.meta.dirname + "/emails/templates/assets",
+                    templatesSrcDirPath: path.join(buildContext.themeSrcDirPath, "email", "templates"),
+                    assetsDirPath: path.join(buildContext.themeSrcDirPath, "email", "templates", "assets"),
                     i18nSourceFile: path.join(buildContext.themeSrcDirPath, "email", "i18n.ts"),
                     themeNames: buildContext.themeNames,
                     keycloakifyBuildDirPath: buildContext.keycloakifyBuildDirPath,
@@ -125,13 +121,7 @@ export default defineConfig({
                 // Removes ~2.5 MB (compressed): 5.6 MB → ~3.1 MB.
                 const resourcesDir = path.join(buildContext.keycloakifyBuildDirPath, "resources");
                 for (const themeName of buildContext.themeNames) {
-                    const loginResources = path.join(
-                        resourcesDir,
-                        "theme",
-                        themeName,
-                        "login",
-                        "resources",
-                    );
+                    const loginResources = path.join(resourcesDir, "theme", themeName, "login", "resources");
                     // `dist/keycloak-theme` = leaked dev-server mirror (sync-extensions);
                     // `resources-common` = the default PatternFly/jQuery base.
                     await rm(path.join(loginResources, "dist", "keycloak-theme"), {

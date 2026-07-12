@@ -31,10 +31,7 @@ export async function generateFaviconSet(source: Uint8Array): Promise<Record<str
 
     const pngs = await Promise.all(
         ICO_SIZES.map(size =>
-            sharp(source)
-                .resize(size, size, { fit: "contain", background: TRANSPARENT })
-                .png()
-                .toBuffer(),
+            sharp(source).resize(size, size, { fit: "contain", background: TRANSPARENT }).png().toBuffer(),
         ),
     );
 

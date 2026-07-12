@@ -1,10 +1,11 @@
-import { getImageError, MAX_IMAGE_SIZE_BYTES } from "#/features/editor/login/model/assets.ts";
+import { getImageError } from "#/features/editor/login/model/assets.ts";
 import type { LucideIcon } from "lucide-react";
 import { X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { FileUpload } from "./ui/file-upload";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
+import { MAX_IMAGE_SIZE_BYTES } from '#/features/editor/shared/files.ts';
 
 /**
  * One image asset in its own card, settable two ways: a URL or an uploaded file.
@@ -12,6 +13,7 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
  */
 export function ImageAssetField({
     icon: Icon,
+    hint="PNG, SVG, or JPEG (max 1 MB).",
     accept = ".png,.svg,.jpg,.jpeg",
     label,
     url,
@@ -20,6 +22,7 @@ export function ImageAssetField({
     onFileChange,
 }: {
     icon: LucideIcon;
+    hint?: string;
     accept?: string;
     label: string;
     url: string;
@@ -64,7 +67,7 @@ export function ImageAssetField({
                     accept={accept}
                     maxSizeBytes={MAX_IMAGE_SIZE_BYTES}
                     validate={getImageError}
-                    hint="PNG, SVG, or JPEG (max 1 MB)."
+                    hint={hint}
                 />
             </CardContent>
         </Card>

@@ -1,5 +1,5 @@
 import type { AssetKey } from "#/features/editor/login/model/assets.ts";
-import { assetDefinitions, assetSchema, getImageExtension } from "#/features/editor/login/model/assets.ts";
+import { assetDefinitions, assetSchema } from "#/features/editor/login/model/assets.ts";
 import { faviconFileSchema } from "#/features/editor/login/model/favicon-upload";
 import { themeNameSchema } from "#/features/editor/login/model/theme-name";
 import { oidcFnMiddleware } from "#/oidc";
@@ -13,6 +13,8 @@ import {
 } from "@kc-studio/shadcn-theme/theme";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { emailLogoSchema } from "../email/model/assets";
+import { getImageExtension } from "../shared/files";
 import { generateFaviconSet } from "./favicon";
 import { customizeThemeJar } from "./jar-customizer";
 import { loadTemplateJar } from "./template-jar";
@@ -66,7 +68,7 @@ const optionsSchema = z.object({
  */
 export const generateJar = createServerFn({ method: "POST" })
     .middleware([oidcFnMiddleware({ assert: "user logged in" })])
-    .inputValidator(data => {
+    .validator(data => {
         if (!(data instanceof FormData)) {
             throw new Error("Expected multipart/form-data.");
         }
@@ -86,10 +88,13 @@ export const generateJar = createServerFn({ method: "POST" })
             if (raw !== null) assets[key] = assetSchema.parse(raw);
         }
 
-        return { config, email, themeName, favicon, assets };
+        const rawEmailLogo = data.get("emailLogoFile");
+        const emailLogoFile = rawEmailLogo === null ? null : emailLogoSchema.parse(rawEmailLogo);
+
+        return { config, email, themeName, favicon, assets, emailLogoFile };
     })
     .handler(async ({ data }) => {
-        const { email, themeName, favicon, assets } = data;
+        const { email, themeName, favicon, assets, emailLogoFile } = data;
         let config = data.config;
 
         const assetsRecord: Record<string, Uint8Array> = {};
@@ -108,15 +113,23 @@ export const generateJar = createServerFn({ method: "POST" })
             config = { ...config, [key]: `%BASE_URL%/${filename}` };
         }
 
+        const emailAssets: Record<string, Uint8Array> = {};
+        let emailLogoUrl = email?.logoUrl;
+        if (emailLogoFile) {
+            const filename = `logo.${getImageExtension(emailLogoFile)}`;
+            emailAssets[filename] = new Uint8Array(await emailLogoFile.arrayBuffer());
+            emailLogoUrl = filename;
+        }
+
         const jar = customizeThemeJar(await loadTemplateJar(), {
             config,
             email: {
                 primaryPreset: email?.primaryPreset,
-                logoUrl: email?.logoUrl,
-                locale: undefined,
+                logoUrl: emailLogoUrl,
             },
             themeName,
             assets: Object.keys(assetsRecord).length > 0 ? assetsRecord : undefined,
+            emailAssets: Object.keys(emailAssets).length > 0 ? emailAssets : undefined,
         });
 
         const filename = `${themeName?.trim() || "shadcn-theme"}.jar`;

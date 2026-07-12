@@ -18,6 +18,9 @@ const THEME_DIR_PREFIX = `theme/${BASE_THEME_NAME}/`;
 /** Where the login theme serves its static assets (favicons, logos, fonts). */
 const LOGIN_DIST_SUBPATH = "login/resources/dist/";
 
+/** Where the email theme serves its static assets (logos, fonts). */
+const EMAIL_DIST_SUBPATH = "email/resources/";
+
 /** Asset filenames must be plain names within `dist/` — no path traversal. */
 const ASSET_NAME_PATTERN = /^[a-zA-Z0-9._-]+$/;
 
@@ -59,6 +62,13 @@ export type JarCustomization = {
      * dir is resolved after any rename, so callers pass plain filenames.
      */
     assets?: Record<string, Uint8Array>;
+    /**
+     * Optional email logo upload. If present, the file is written into the email
+     * theme's `resources` dir and `SHADCN_EMAIL_LOGO_URL` is pointed at the bare
+     * filename (→ the theme's self-hosted branch). If absent, the logo URL is
+     * taken from the typed `email.logoUrl` (or undefined, which yields no logo).
+     */
+    emailAssets?: Record<string, Uint8Array>;
 };
 
 /**
@@ -76,10 +86,7 @@ export type JarCustomization = {
  *   `theme/<base>/...` path prefix, the `keycloak-themes.json` manifest, and the
  *   quoted theme-name token in `.ftl`/`.js`/`.json` entries are all renamed.
  */
-export function customizeThemeJar(
-    templateBytes: Uint8Array,
-    options: JarCustomization,
-): Uint8Array {
+export function customizeThemeJar(templateBytes: Uint8Array, options: JarCustomization): Uint8Array {
     const entries = unzipSync(templateBytes);
     const emailConfig: EmailThemeConfig = options.email ?? {
         primaryPreset: undefined,
@@ -111,17 +118,26 @@ export function customizeThemeJar(
         out[outPath] = [bytes, { level: PRECOMPRESSED.test(outPath) ? 0 : 6 }];
     }
 
-    // Write uploaded/generated assets into the (possibly renamed) dist folder.
-    // Overwrites an existing entry (favicon) or adds a new one (logo/side/card).
-    for (const [name, bytes] of Object.entries(options.assets ?? {})) {
-        if (!ASSET_NAME_PATTERN.test(name)) {
-            throw new Error(`Invalid asset filename "${name}".`);
-        }
-        const path = `theme/${themeName}/${LOGIN_DIST_SUBPATH}${name}`;
-        out[path] = [bytes, { level: PRECOMPRESSED.test(name) ? 0 : 6 }];
+    if (options.assets) {
+        writeAssets(out, themeName, LOGIN_DIST_SUBPATH, options.assets);
+    }
+    if (options.emailAssets) {
+        writeAssets(out, themeName, EMAIL_DIST_SUBPATH, options.emailAssets);
     }
 
     return zipSync(out);
+}
+
+// Write uploaded/generated assets into the (possibly renamed) dist folder.
+// Overwrites an existing entry (favicon) or adds a new one (logo/side/card).s
+function writeAssets(out: Zippable, themeName: string, distSubpath: string, assets: Record<string, Uint8Array>): void {
+    for (const [name, bytes] of Object.entries(assets)) {
+        if (!ASSET_NAME_PATTERN.test(name)) {
+            throw new Error(`Invalid asset filename "${name}".`);
+        }
+        const path = `theme/${themeName}/${distSubpath}${name}`;
+        out[path] = [bytes, { level: PRECOMPRESSED.test(name) ? 0 : 6 }];
+    }
 }
 
 /** Validates a requested theme name, falling back to the base name when blank. */
@@ -167,17 +183,12 @@ function renameThemeNameTokens(bytes: Uint8Array, themeName: string): Uint8Array
  * are left byte-for-byte unchanged. An empty value yields `KEY=${env.KEY:}`,
  * identical to the stock template.
  */
-function rewritePropertyDefaults(
-    bytes: Uint8Array,
-    properties: Record<string, string>,
-): Uint8Array {
+function rewritePropertyDefaults(bytes: Uint8Array, properties: Record<string, string>): Uint8Array {
     let text = strFromU8(bytes);
 
     for (const [key, value] of Object.entries(properties)) {
         // Match `KEY=${env.KEY:<anything but '}'>}` and swap only the default.
-        const pattern = new RegExp(
-            `(${escapeRegExp(key)}=\\$\\{env\\.${escapeRegExp(key)}:)[^}]*\\}`,
-        );
+        const pattern = new RegExp(`(${escapeRegExp(key)}=\\$\\{env\\.${escapeRegExp(key)}:)[^}]*\\}`);
         // Use a replacer function so `$` / special chars in the value are literal.
         text = text.replace(pattern, (_match, prefix: string) => `${prefix}${value}}`);
     }

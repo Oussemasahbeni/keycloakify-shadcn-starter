@@ -3,7 +3,7 @@ import { emailTemplateIds } from "@kc-studio/shadcn-theme/email";
 import { renderEmailPreview } from "@kc-studio/shadcn-theme/email-preview";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { supportedLocaleValues } from "../../shared/locales";
+import { supportedLocaleValues } from "../shared/locales";
 
 const schema = z.object({
     templateId: z.enum(emailTemplateIds),
@@ -17,7 +17,7 @@ const schema = z.object({
 
 export const renderEmailPreviewFn = createServerFn({ method: "POST" })
     .middleware([oidcFnMiddleware({ assert: "user logged in" })])
-    .inputValidator(schema)
+    .validator(schema)
     .handler(async ({ data }) => {
         return renderEmailPreview({
             templateId: data.templateId,

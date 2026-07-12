@@ -1,13 +1,13 @@
-import { Field, FieldDescription, FieldLabel } from "#/components/ui/field";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "#/components/ui/input-group.tsx";
+import { ImageAssetField } from "#/components/image-asset-field.tsx";
+import { Field, FieldLabel } from "#/components/ui/field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { Separator } from "#/components/ui/separator";
 import { useEditor } from "#/features/editor/state/editor-context.tsx";
-import { Image } from "lucide-react";
 
 import { prettify } from "#/lib/utils";
 import type { ThemePreset } from "@kc-studio/shadcn-theme/theme";
 import { themePresetOptions, themePresets } from "@kc-studio/shadcn-theme/theme";
+import { Mail } from "lucide-react";
 
 function Swatch({ color }: { color: string }) {
     return <span className="size-4 shrink-0 rounded-full border" style={{ backgroundColor: color }} />;
@@ -67,26 +67,20 @@ function PrimaryColorField() {
     );
 }
 
-function LogoUrlField() {
-    const { config, updateConfig } = useEditor().email;
+function EmailLogoUrlField() {
+    const { config, updateConfig, emailLogoFile, setEmailLogoFile } = useEditor().email;
 
     return (
-        <Field>
-            <FieldLabel>Logo URL</FieldLabel>
-            <InputGroup>
-                <InputGroupAddon align="inline-start">
-                    <Image className="size-4" />
-                </InputGroupAddon>
-                <InputGroupInput
-                    type="url"
-                    inputMode="url"
-                    value={config.logoUrl ?? ""}
-                    onChange={e => updateConfig({ logoUrl: e.target.value })}
-                    placeholder="https://cdn.example.com/logo.png"
-                />
-            </InputGroup>
-            <FieldDescription>Shown at the top of every email. Leave empty to omit the logo.</FieldDescription>
-        </Field>
+        <ImageAssetField
+            accept=".png,.jpg,.jpeg"
+            hint="PNG or JPEG (max 1 MB)."
+            icon={Mail}
+            label="Email logo"
+            url={config.logoUrl ?? ""}
+            onUrlChange={value => updateConfig({ logoUrl: value })}
+            file={emailLogoFile}
+            onFileChange={file => setEmailLogoFile(file)}
+        />
     );
 }
 
@@ -95,7 +89,7 @@ export function EmailThemeSidebar() {
         <div className="flex flex-col gap-4 p-4">
             <Separator />
             <PrimaryColorField />
-            <LogoUrlField />
+            <EmailLogoUrlField />
         </div>
     );
 }
