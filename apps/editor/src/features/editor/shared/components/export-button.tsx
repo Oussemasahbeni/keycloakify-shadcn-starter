@@ -14,7 +14,7 @@ export function ExportButton() {
     const {
         themeName,
         login: { config, assets },
-        email: { config: emailConfig, logoFile: emailLogoFile },
+        email: { config: emailConfig, emailLogoFile },
     } = useEditor();
     const exportJar = useServerFn(generateJar);
 

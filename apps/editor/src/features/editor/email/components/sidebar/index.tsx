@@ -1,4 +1,5 @@
 import { ImageAssetField } from "#/components/image-asset-field.tsx";
+import { getEmailLogoError } from "#/features/editor/email/model/assets";
 import { Field, FieldLabel } from "#/components/ui/field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { Separator } from "#/components/ui/separator";
@@ -74,6 +75,7 @@ function EmailLogoUrlField() {
         <ImageAssetField
             accept=".png,.jpg,.jpeg"
             hint="PNG or JPEG (max 1 MB)."
+            validate={getEmailLogoError}
             icon={Mail}
             label="Email logo"
             url={config.logoUrl ?? ""}

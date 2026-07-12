@@ -1,9 +1,9 @@
 import { keepPreviousData, queryOptions, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
+import { renderEmailPreviewFn } from "../../../server/email-render-preview";
 import { DEFAULT_LOCALE } from "../../../shared/locales";
 import { useEditor } from "../../../state/editor-context";
-import { renderEmailPreviewFn } from "../../../server/email-render-preview";
 import { EmailPreviewToolbar } from "./preview-toolbar";
 
 export function EmailPreviewIframe() {
@@ -30,13 +30,19 @@ export function EmailPreviewIframe() {
     }, [logoFile]);
 
     const logoUrl = logoFile ? logoDataUrl : email.config.logoUrl;
+    // Key on the file's identity, not the ~1.3 MB data URL (which react-query would
+    // hash on every render). `enabled` waits for the async read before the first fetch.
+    const logoKey = logoFile
+        ? `file:${logoFile.name}:${logoFile.size}:${logoFile.lastModified}`
+        : (email.config.logoUrl ?? "");
 
     const emailPreviewOptions = queryOptions({
-        queryKey: ["email-preview", renderPreview, templateId, locale, primaryColor, logoUrl],
+        queryKey: ["email-preview", renderPreview, templateId, locale, primaryColor, logoKey, logoUrl],
         queryFn: () =>
             renderPreview({
                 data: { templateId, locale, theme: { primaryColor, logoUrl } },
             }),
+        enabled: !logoFile || logoDataUrl != null,
         placeholderData: keepPreviousData,
     });
     const { data: html } = useQuery(emailPreviewOptions);

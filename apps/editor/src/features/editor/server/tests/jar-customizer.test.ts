@@ -31,7 +31,7 @@ function readEntry(jar: Uint8Array, path: string): string {
 }
 
 // Re-zipping a 6 MB JAR isn't free, so customize once and share across assertions.
-const result = customizeThemeJar(template, { config: customConfig, themeName: "acme-login" });
+const result = customizeThemeJar(template, { config: customConfig, themeName: undefined });
 
 describe("customizeThemeJar (Tier A: config baking)", () => {
     it("bakes the config as theme.properties defaults, preserving the ${env:...} form", () => {
@@ -152,7 +152,7 @@ describe("customizeThemeJar (Tier C: asset injection)", () => {
     it("overwrites an existing dist file (e.g. favicon.ico) with the uploaded bytes", () => {
         const favicon = newBytes(64);
         const jar = customizeThemeJar(template, {
-            themeName: "acme-login",
+            themeName: undefined,
             config: defaultLoginThemeConfig,
             assets: { "favicon.ico": favicon },
         });
@@ -163,7 +163,7 @@ describe("customizeThemeJar (Tier C: asset injection)", () => {
     it("adds a new dist file when the filename does not exist (e.g. a logo)", () => {
         const logo = newBytes(32);
         const jar = customizeThemeJar(template, {
-            themeName: "acme-login",
+            themeName: undefined,
             config: defaultLoginThemeConfig,
             assets: { "logo-white.svg": logo },
         });
@@ -188,6 +188,32 @@ describe("customizeThemeJar (Tier C: asset injection)", () => {
                 themeName: "acme-login",
                 config: defaultLoginThemeConfig,
                 assets: { "../../evil.sh": newBytes(4) },
+            }),
+        ).toThrow(/invalid asset filename/i);
+    });
+});
+
+describe("customizeThemeJar (Tier D: email asset injection)", () => {
+    const EMAIL_RESOURCES = "theme/acme-login/email/resources/";
+    const newBytes = (n: number) => new Uint8Array(n).fill(9);
+
+    it("writes an uploaded email logo into the email resources dir of the renamed theme", () => {
+        const logo = newBytes(48);
+        const jar = customizeThemeJar(template, {
+            config: defaultLoginThemeConfig,
+            themeName: "acme-login",
+            emailAssets: { "logo.png": logo },
+        });
+        const entry = unzipSync(jar)[`${EMAIL_RESOURCES}logo.png`];
+        expect(Buffer.from(entry).equals(Buffer.from(logo))).toBe(true);
+    });
+
+    it("rejects an email asset filename that tries to escape the resources folder", () => {
+        expect(() =>
+            customizeThemeJar(template, {
+                config: defaultLoginThemeConfig,
+                themeName: "acme-login",
+                emailAssets: { "../../evil.sh": newBytes(4) },
             }),
         ).toThrow(/invalid asset filename/i);
     });

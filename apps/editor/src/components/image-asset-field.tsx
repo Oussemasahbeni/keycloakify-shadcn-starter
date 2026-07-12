@@ -13,8 +13,9 @@ import { MAX_IMAGE_SIZE_BYTES } from '#/features/editor/shared/files.ts';
  */
 export function ImageAssetField({
     icon: Icon,
-    hint="PNG, SVG, or JPEG (max 1 MB).",
+    hint = "PNG, SVG, or JPEG (max 1 MB).",
     accept = ".png,.svg,.jpg,.jpeg",
+    validate = getImageError,
     label,
     url,
     onUrlChange,
@@ -24,6 +25,8 @@ export function ImageAssetField({
     icon: LucideIcon;
     hint?: string;
     accept?: string;
+    /** Client-side file validation. Defaults to the login image rules (allows SVG). */
+    validate?: (file: File) => string | null;
     label: string;
     url: string;
     onUrlChange: (value: string) => void;
@@ -66,7 +69,7 @@ export function ImageAssetField({
                     onChange={onFileChange}
                     accept={accept}
                     maxSizeBytes={MAX_IMAGE_SIZE_BYTES}
-                    validate={getImageError}
+                    validate={validate}
                     hint={hint}
                 />
             </CardContent>

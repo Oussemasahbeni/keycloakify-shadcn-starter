@@ -128,8 +128,8 @@ export function customizeThemeJar(templateBytes: Uint8Array, options: JarCustomi
     return zipSync(out);
 }
 
-// Write uploaded/generated assets into the (possibly renamed) dist folder.
-// Overwrites an existing entry (favicon) or adds a new one (logo/side/card).s
+// Write uploaded/generated assets into the given subpath of the (possibly renamed)
+// theme dir. Overwrites an existing entry (favicon) or adds a new one (logo/side/card).
 function writeAssets(out: Zippable, themeName: string, distSubpath: string, assets: Record<string, Uint8Array>): void {
     for (const [name, bytes] of Object.entries(assets)) {
         if (!ASSET_NAME_PATTERN.test(name)) {
