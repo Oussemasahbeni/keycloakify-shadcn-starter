@@ -84,12 +84,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 ) : (
                     <ThemeProvider defaultTheme="system" storageKey="theme">
                         <TooltipProvider>
-                            <QueryClientProvider client={queryClient}>
-                                {children}
-                            </QueryClientProvider>
+                            <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
                         </TooltipProvider>
                         <AutoLogoutWarningOverlay />
-                        <Toaster />
+                        <Toaster closeButton={true} position="top-right" richColors />
                     </ThemeProvider>
                 )}
                 <Scripts />

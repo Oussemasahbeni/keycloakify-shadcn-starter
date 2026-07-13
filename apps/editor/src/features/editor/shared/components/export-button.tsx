@@ -26,7 +26,7 @@ export function ExportButton() {
                 primaryPreset: emailConfig.primaryPreset,
                 logoUrl: emailConfig.logoUrl,
             };
-            formData.append("options", JSON.stringify({ config, email, themeName: name }));
+            formData.append("options", JSON.stringify({ login: config, email, themeName: name }));
 
             for (const { key } of assetDefinitions) {
                 const file = assets[key];

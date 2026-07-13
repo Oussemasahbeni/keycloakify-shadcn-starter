@@ -5,7 +5,7 @@ import {
 } from "#/components/ui/resizable.tsx";
 import { EmailPreviewIframe } from "#/features/editor/email/components/preview/preview-iframe.tsx";
 import { EmailThemeSidebar } from "#/features/editor/email/components/sidebar";
-import { LoginPreviewIframe } from "#/features/editor/login/components/preview/preveiw-iframe";
+import { LoginPreviewIframe } from "#/features/editor/login/components/preview/preview-iframe.tsx";
 import { LoginThemeSidebar } from "#/features/editor/login/components/sidebar";
 import { EditorHeader } from "#/features/editor/shared/components";
 import { EditorProvider, useEditor } from "#/features/editor/state/editor-context";

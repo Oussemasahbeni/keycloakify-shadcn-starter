@@ -4,6 +4,8 @@ import type { LoginThemeConfig } from "#/features/editor/login/model/theme-confi
 import { themeConfigToProperties } from "#/features/editor/login/model/theme-config";
 import type { Zippable } from "fflate";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
+import { MANIFEST_PATH } from "../shared/theme-manifest";
+import { escapeRegExp } from '#/lib/utils.ts';
 
 /**
  * The theme name baked into the base template JAR (`packages/shadcn-theme`
@@ -42,7 +44,7 @@ const PRECOMPRESSED = /\.(woff2?|ttf|otf|eot|png|jpe?g|gif|webp|avif|ico|jar|zip
  */
 export type JarCustomization = {
     /** The user's theme choices, baked as `theme.properties` defaults. */
-    config: LoginThemeConfig;
+    login: LoginThemeConfig;
     /**
      * Email theme choices, baked as `SHADCN_EMAIL_*` `theme.properties` defaults
      * (in both the login and email property files). Optional: when omitted, the
@@ -88,14 +90,9 @@ export type JarCustomization = {
  */
 export function customizeThemeJar(templateBytes: Uint8Array, options: JarCustomization): Uint8Array {
     const entries = unzipSync(templateBytes);
-    const emailConfig: EmailThemeConfig = options.email ?? {
-        primaryPreset: undefined,
-        logoUrl: undefined,
-        locale: undefined,
-    };
     const properties = {
-        ...themeConfigToProperties(options.config),
-        ...emailConfigToProperties(emailConfig, options.config.accent),
+        ...themeConfigToProperties(options.login),
+        ...emailConfigToProperties(options.email, options.login.accent),
     };
     const themeName = resolveThemeName(options.themeName);
     const rename = themeName !== BASE_THEME_NAME;
@@ -125,7 +122,16 @@ export function customizeThemeJar(templateBytes: Uint8Array, options: JarCustomi
         writeAssets(out, themeName, EMAIL_DIST_SUBPATH, options.emailAssets);
     }
 
+    writeManifest(out, options);
+
     return zipSync(out);
+}
+
+function writeManifest(out: Zippable, config: JarCustomization): void {
+    out[MANIFEST_PATH] = [
+        strToU8(JSON.stringify({ version: process.env.EDITOR_VERSION, login: config.login, email: config.email, themeName: config.themeName })),
+        { level: 6 },
+    ];
 }
 
 // Write uploaded/generated assets into the given subpath of the (possibly renamed)
@@ -196,6 +202,3 @@ function rewritePropertyDefaults(bytes: Uint8Array, properties: Record<string, s
     return strToU8(text);
 }
 
-function escapeRegExp(value: string): string {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}

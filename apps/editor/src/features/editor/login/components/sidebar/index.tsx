@@ -7,7 +7,7 @@ import { BrandingPanel } from "./branding-panel";
 export function LoginThemeSidebar() {
     return (
         <aside className="bg-background flex shrink-0 flex-col border-l">
-            <Tabs defaultValue="config" className="flex h-full min-h-0 flex-col gap-0">
+            <Tabs defaultValue="branding" className="flex h-full min-h-0 flex-col gap-0">
                 <div className="border-b p-2">
                     <TabsList className="grid w-full grid-cols-2">
                         <TabsTrigger value="branding">

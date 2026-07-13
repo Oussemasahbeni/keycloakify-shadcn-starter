@@ -4,16 +4,10 @@ import type { Locale } from "../../shared/locales";
 
 export interface EmailThemeConfig {
     /** Accent preset for emails. `undefined` = inherit the login accent. */
-    primaryPreset: ThemePreset | undefined;
-    logoUrl: string | undefined;
+    primaryPreset?: ThemePreset;
+    logoUrl?: string;
     locale?: Locale;
 }
-
-export const defaultEmailThemeConfig: EmailThemeConfig = {
-    primaryPreset: undefined,
-    logoUrl: undefined,
-    locale: undefined,
-};
 
 /** Effective email accent — the override if set, otherwise the login accent. */
 export function resolveEmailPreset(config: EmailThemeConfig, loginAccent: ThemePreset): ThemePreset {
@@ -30,7 +24,11 @@ export function resolveEmailPreset(config: EmailThemeConfig, loginAccent: ThemeP
  * login accent (keeping emails correlated with the login theme) unless the user
  * overrides it in the email panel.
  */
-export function emailConfigToProperties(config: EmailThemeConfig, loginAccent: ThemePreset): Record<string, string> {
+export function emailConfigToProperties(
+    config: EmailThemeConfig | undefined,
+    loginAccent: ThemePreset,
+): Record<string, string> {
+    if (!config) return {};
     const theme = resolveEmailTheme(resolveEmailPreset(config, loginAccent), config.logoUrl);
     return {
         SHADCN_EMAIL_PRIMARY_COLOR: theme.primaryColor,

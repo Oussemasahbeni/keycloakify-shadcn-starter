@@ -47,3 +47,9 @@ export function formatRelativeTime(date: Date) {
     }
     return relativeTimeFormatter.format(Math.round(duration), "week");
 }
+
+
+
+export function escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}

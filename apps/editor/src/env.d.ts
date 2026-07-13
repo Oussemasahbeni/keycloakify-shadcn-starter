@@ -14,6 +14,7 @@ declare global {
             readonly DATABASE_URL: string;
             readonly OIDC_ISSUER_URI: string;
             readonly OIDC_CLIENT_ID: string;
+            readonly EDITOR_VERSION: string;
         }
     }
 }

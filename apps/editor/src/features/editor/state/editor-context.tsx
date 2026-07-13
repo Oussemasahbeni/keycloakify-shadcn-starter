@@ -4,13 +4,13 @@ import { useTheme } from "#/components/theme-provider";
 import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
 import { emailTemplates } from "@kc-studio/shadcn-theme/email";
 import type { EmailThemeConfig } from "../email/model/theme-config";
-import { defaultEmailThemeConfig } from "../email/model/theme-config";
 import type { ThemeAssetKey } from "../login/model/assets";
 import { emptyAssets } from "../login/model/assets";
 import type { LoginThemeConfig, PreviewColorScheme } from "../login/model/theme-config";
 import { defaultLoginThemeConfig } from "../login/model/theme-config";
 import type { Viewport } from "../login/model/viewport";
 import type { Surface } from "../shared/components/surface-switch";
+import type { ParsedTheme } from "../shared/parse-theme-jar";
 
 interface EditorContextValue {
     themeName: string;
@@ -18,6 +18,7 @@ interface EditorContextValue {
     activeSurface: Surface;
     setActiveSurface: (s: Surface) => void;
     readonly resetConfig: () => void;
+    readonly importTheme: (state: ParsedTheme) => void;
     login: {
         config: LoginThemeConfig;
         updateConfig: (patch: Partial<LoginThemeConfig>) => void;
@@ -48,7 +49,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     const [activeSurface, setActiveSurface] = useState<Surface>("login");
     const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>(theme as PreviewColorScheme);
     const [loginThemeConfig, setLoginThemeConfig] = useState<LoginThemeConfig>(defaultLoginThemeConfig);
-    const [emailThemeConfig, setEmailThemeConfig] = useState<EmailThemeConfig>(defaultEmailThemeConfig);
+    const [emailThemeConfig, setEmailThemeConfig] = useState<EmailThemeConfig>({});
     const [emailTemplate, setEmailTemplate] = useState<EmailTemplate>(emailTemplates[0]);
     const [assets, setAssets] = useState<Record<ThemeAssetKey, File | null>>(emptyAssets);
     const [emailLogoFile, setEmailLogoFile] = useState<File | null>(null);
@@ -60,9 +61,16 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
         setActiveSurface,
         resetConfig: () => {
             setLoginThemeConfig(defaultLoginThemeConfig);
-            setEmailThemeConfig(defaultEmailThemeConfig);
+            setEmailThemeConfig({});
             setAssets(emptyAssets);
             setEmailLogoFile(null);
+        },
+        importTheme: state => {
+            setThemeName(state.themeName);
+            setLoginThemeConfig(current => ({ ...state.login, locale: current.locale }));
+            setAssets(state.assets);
+            setEmailThemeConfig(state.email);
+            setEmailLogoFile(state.emailLogoFile);
         },
         login: {
             viewport,
