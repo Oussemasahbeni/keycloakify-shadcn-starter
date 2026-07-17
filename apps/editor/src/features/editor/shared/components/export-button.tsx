@@ -3,8 +3,8 @@ import { Spinner } from "#/components/ui/spinner.tsx";
 import { useServerFn } from "@tanstack/react-start";
 import { Download } from "lucide-react";
 import { toast } from "sonner";
-import { assetDefinitions } from "../../login/model/assets";
-import { getThemeNameError } from "../../login/model/theme-name";
+import { assetDefinitions } from "../model/assets";
+import { getThemeNameError } from "../validation/theme-name";
 import { generateJar } from "../../server/generate-jar";
 import { useEditor } from "../../state/editor-context";
 
@@ -22,11 +22,8 @@ export function ExportButton() {
         mutationFn: async () => {
             const name = themeName.trim();
             const formData = new FormData();
-            const email = {
-                primaryPreset: emailConfig.primaryPreset,
-                logoUrl: emailConfig.logoUrl,
-            };
-            formData.append("options", JSON.stringify({ login: config, email, themeName: name }));
+
+            formData.append("options", JSON.stringify({ login: config, email: emailConfig, themeName: name }));
 
             for (const { key } of assetDefinitions) {
                 const file = assets[key];

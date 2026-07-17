@@ -1,21 +1,8 @@
 import { Button } from "#/components/ui/button";
-import {
-    Field,
-    FieldContent,
-    FieldDescription,
-    FieldError,
-    FieldLabel,
-    FieldTitle,
-} from "#/components/ui/field";
+import { Field, FieldContent, FieldDescription, FieldError, FieldLabel, FieldTitle } from "#/components/ui/field";
 import { Label } from "#/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "#/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { Separator } from "#/components/ui/separator";
 import { Switch } from "#/components/ui/switch";
 import type { LucideIcon } from "lucide-react";
@@ -29,7 +16,7 @@ import type {
     Layout,
     RadiusPreset,
     SidePanelPosition,
-    ThemePreset,
+    PrimaryPreset,
 } from "@kc-studio/shadcn-theme/theme";
 import {
     basePaletteOptions,
@@ -38,38 +25,24 @@ import {
     layoutOptions,
     radiusPresetOptions,
     sidePanelPositionOptions,
-    themePresetOptions,
-    themePresets,
+    primaryPresetOptions,
+    primaryPresets,
 } from "@kc-studio/shadcn-theme/theme";
 
-import {
-    InputGroup,
-    InputGroupAddon,
-    InputGroupInput,
-    InputGroupTextarea,
-} from "#/components/ui/input-group.tsx";
+import { Swatch } from "#/components/swatch.tsx";
+import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupTextarea } from "#/components/ui/input-group.tsx";
 import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip.tsx";
-import { getThemeNameError } from "../../model/theme-name";
-import { useEditor } from "../../../state/editor-context";
-
-function Swatch({ color }: { color: string }) {
-    return (
-        <span className="size-4 shrink-0 rounded-full border" style={{ backgroundColor: color }} />
-    );
-}
+import { getThemeNameError } from "#/features/editor/shared/validation/theme-name.ts";
+import { useEditor } from "#/features/editor/state/editor-context";
 
 function BasePaletteField() {
     const { config, previewColorScheme, updateConfig } = useEditor().login;
-    const colorFor = (palette: BasePalette) =>
-        basePalettes[palette][previewColorScheme].mutedForeground;
+    const colorFor = (palette: BasePalette) => basePalettes[palette][previewColorScheme].mutedForeground;
 
     return (
         <Field>
             <FieldLabel>Base palette</FieldLabel>
-            <Select
-                value={config.basePalette}
-                onValueChange={value => updateConfig({ basePalette: value as BasePalette })}
-            >
+            <Select value={config.base} onValueChange={value => updateConfig({ base: value as BasePalette })}>
                 <SelectTrigger className="w-full">
                     <SelectValue>
                         {(selected: BasePalette) => (
@@ -95,20 +68,17 @@ function BasePaletteField() {
     );
 }
 
-function AccentColorField() {
+function PrimaryColorField() {
     const { config, previewColorScheme, updateConfig } = useEditor().login;
-    const colorFor = (accent: ThemePreset) => themePresets[accent][previewColorScheme].primary;
+    const colorFor = (preset: PrimaryPreset) => primaryPresets[preset][previewColorScheme].primary;
 
     return (
         <Field>
-            <FieldLabel>Accent color</FieldLabel>
-            <Select
-                value={config.accent}
-                onValueChange={value => updateConfig({ accent: value as ThemePreset })}
-            >
+            <FieldLabel>Primary color</FieldLabel>
+            <Select value={config.primary} onValueChange={value => updateConfig({ primary: value as PrimaryPreset })}>
                 <SelectTrigger className="w-full">
                     <SelectValue>
-                        {(selected: ThemePreset) => (
+                        {(selected: PrimaryPreset) => (
                             <span className="flex items-center gap-2">
                                 <Swatch color={colorFor(selected)} />
                                 {prettify(selected)}
@@ -117,7 +87,7 @@ function AccentColorField() {
                     </SelectValue>
                 </SelectTrigger>
                 <SelectContent alignItemWithTrigger={false}>
-                    {themePresetOptions.map(option => (
+                    {primaryPresetOptions.map(option => (
                         <SelectItem key={option} value={option}>
                             <span className="flex items-center gap-2">
                                 <Swatch color={colorFor(option)} />
@@ -137,10 +107,7 @@ function RadiusField() {
     return (
         <Field>
             <FieldLabel>Radius</FieldLabel>
-            <Select
-                value={config.radius}
-                onValueChange={value => updateConfig({ radius: value as RadiusPreset })}
-            >
+            <Select value={config.radius} onValueChange={value => updateConfig({ radius: value as RadiusPreset })}>
                 <SelectTrigger className="w-full">
                     <SelectValue>
                         {(selected: RadiusPreset) => (
@@ -166,10 +133,7 @@ function FontFamilyField() {
     return (
         <Field>
             <FieldLabel>Font family</FieldLabel>
-            <Select
-                value={config.font}
-                onValueChange={value => updateConfig({ font: value as FontFamily })}
-            >
+            <Select value={config.font} onValueChange={value => updateConfig({ font: value as FontFamily })}>
                 <SelectTrigger className="w-full">
                     <SelectValue>{(selected: FontFamily) => prettify(selected)}</SelectValue>
                 </SelectTrigger>
@@ -205,18 +169,11 @@ function LayoutField() {
 
     return (
         <Field>
-            <RadioGroup
-                value={config.layout}
-                onValueChange={value => updateConfig({ layout: value as Layout })}
-            >
+            <RadioGroup value={config.layout} onValueChange={value => updateConfig({ layout: value as Layout })}>
                 {layoutOptions.map(option => {
                     const { description, Icon } = layoutMeta[option];
                     return (
-                        <FieldLabel
-                            className="hover:cursor-pointer"
-                            key={option}
-                            htmlFor={`layout-${option}`}
-                        >
+                        <FieldLabel className="hover:cursor-pointer" key={option} htmlFor={`layout-${option}`}>
                             <Field orientation="horizontal">
                                 <span className="bg-muted/50 text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-md border">
                                     <Icon className="size-4" />
@@ -268,10 +225,7 @@ function SidePanelPositionField() {
                                 <FieldContent>
                                     <FieldTitle>{label}</FieldTitle>
                                 </FieldContent>
-                                <RadioGroupItem
-                                    value={option}
-                                    id={`side-panel-position-${option}`}
-                                />
+                                <RadioGroupItem value={option} id={`side-panel-position-${option}`} />
                             </Field>
                         </FieldLabel>
                     );
@@ -315,8 +269,8 @@ function ShuffleButton() {
 
     function shuffle() {
         updateConfig({
-            basePalette: pickRandom(basePaletteOptions),
-            accent: pickRandom(themePresetOptions),
+            base: pickRandom(basePaletteOptions),
+            primary: pickRandom(primaryPresetOptions),
             radius: pickRandom(radiusPresetOptions),
             font: pickRandom(fontFamilyOptions),
             layout: pickRandom(layoutOptions),
@@ -373,8 +327,7 @@ function ThemeNameHint({ invalid }: { invalid: boolean }) {
                 }
             />
             <TooltipContent>
-                Used as the Keycloak theme (folder) name. Lowercase letters, digits and dashes only
-                — e.g. acme-login.
+                Used as the Keycloak theme (folder) name. Lowercase letters, digits and dashes only — e.g. acme-login.
             </TooltipContent>
         </Tooltip>
     );
@@ -405,15 +358,14 @@ function WelcomeMessageField() {
                         }
                     />
                     <TooltipContent>
-                        To translate per-locale, override the "welcomeMessage" key in your realm
-                        message bundle (Keycloak admin → Realm settings → Localization). With this
-                        field and the override both empty, the theme default is used.
+                        To translate per-locale, override the "welcomeMessage" key in your realm message bundle
+                        (Keycloak admin → Realm settings → Localization). With this field and the override both empty,
+                        the theme default is used.
                     </TooltipContent>
                 </Tooltip>
             </div>
             <FieldDescription>
-                Shown on the side panel. Overrides all languages, leave empty to use your realm's
-                translations.
+                Shown on the side panel. Overrides all languages, leave empty to use your realm's translations.
             </FieldDescription>
             <InputGroup>
                 <InputGroupTextarea
@@ -429,9 +381,7 @@ function WelcomeMessageField() {
 function Section({ title, children }: { title: string; children: ReactNode }) {
     return (
         <section className="flex flex-col gap-4">
-            <h3 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-                {title}
-            </h3>
+            <h3 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">{title}</h3>
             {children}
         </section>
     );
@@ -447,7 +397,7 @@ export function BrandingPanel() {
 
             <Section title="Appearance">
                 <BasePaletteField />
-                <AccentColorField />
+                <PrimaryColorField />
                 <RadiusField />
                 <FontFamilyField />
             </Section>

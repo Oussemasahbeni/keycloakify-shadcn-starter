@@ -1,27 +1,18 @@
 import { Button } from "#/components/ui/button";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "#/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
 
-import type {  EmailTemplate } from "@kc-studio/shadcn-theme/email";
+import { LanguageSelect } from "#/features/editor/shared/components/language-select";
+import { useEditor } from "#/features/editor/state/editor-context";
+import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
 import { emailTemplates } from "@kc-studio/shadcn-theme/email";
 import { Mail, RotateCcw } from "lucide-react";
-import { LanguageSelect } from "../../../shared/components/language-select";
-import { useEditor } from "../../../state/editor-context";
 
 function TemplateSelect() {
     const { template, setTemplate } = useEditor().email;
 
     return (
-        <Select
-            value={template}
-            onValueChange={value => setTemplate(value as EmailTemplate)}
-        >
+        <Select value={template} onValueChange={value => setTemplate(value as EmailTemplate)}>
             <SelectTrigger className="w-84">
                 <Mail className="text-muted-foreground size-4" />
                 <SelectValue>{(selected: EmailTemplate) => selected.label}</SelectValue>

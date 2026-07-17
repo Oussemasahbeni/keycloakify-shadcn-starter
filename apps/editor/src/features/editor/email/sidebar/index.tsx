@@ -1,47 +1,44 @@
 import { ImageAssetField } from "#/components/image-asset-field.tsx";
-import { getEmailLogoError } from "#/features/editor/email/model/assets";
 import { Field, FieldLabel } from "#/components/ui/field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { Separator } from "#/components/ui/separator";
 import { useEditor } from "#/features/editor/state/editor-context.tsx";
 
+import { Swatch } from "#/components/swatch.tsx";
 import { prettify } from "#/lib/utils";
-import type { ThemePreset } from "@kc-studio/shadcn-theme/theme";
-import { themePresetOptions, themePresets } from "@kc-studio/shadcn-theme/theme";
+import type { PrimaryPreset } from "@kc-studio/shadcn-theme/theme";
+import { primaryPresetOptions, primaryPresets } from "@kc-studio/shadcn-theme/theme";
 import { Mail } from "lucide-react";
+import { getEmailLogoError } from "../../shared/validation/email-logo";
 
-function Swatch({ color }: { color: string }) {
-    return <span className="size-4 shrink-0 rounded-full border" style={{ backgroundColor: color }} />;
-}
-
-// Sentinel Select value for "inherit the login accent" (config.primaryPreset
+// Sentinel Select value for "inherit the login primary" (config.primary
 // is `undefined` in that case, which a controlled Select can't represent).
 const INHERIT = "__inherit__";
 
 function PrimaryColorField() {
     const { email, login } = useEditor();
     const { config, updateConfig } = email;
-    const colorFor = (accent: ThemePreset) => themePresets[accent].light.primary;
+    const colorFor = (preset: PrimaryPreset) => primaryPresets[preset].light.primary;
 
     return (
         <Field>
-            <FieldLabel>Accent color</FieldLabel>
+            <FieldLabel>Primary color</FieldLabel>
             <Select
-                value={config.primaryPreset ?? INHERIT}
+                value={config.primary ?? INHERIT}
                 onValueChange={value =>
                     updateConfig({
-                        primaryPreset: value === INHERIT ? undefined : (value as ThemePreset),
+                        primary: value === INHERIT ? undefined : (value as PrimaryPreset),
                     })
                 }
             >
                 <SelectTrigger className="w-full">
                     <SelectValue>
-                        {(selected: ThemePreset | typeof INHERIT) => {
-                            const accent = selected === INHERIT ? login.config.accent : selected;
+                        {(selected: PrimaryPreset | typeof INHERIT) => {
+                            const primary = selected === INHERIT ? login.config.primary : selected;
                             return (
                                 <span className="flex items-center gap-2">
-                                    <Swatch color={colorFor(accent)} />
-                                    {selected === INHERIT ? `Match login (${prettify(accent)})` : prettify(accent)}
+                                    <Swatch color={colorFor(primary)} />
+                                    {selected === INHERIT ? `Match login (${prettify(primary)})` : prettify(primary)}
                                 </span>
                             );
                         }}
@@ -50,11 +47,11 @@ function PrimaryColorField() {
                 <SelectContent alignItemWithTrigger={false}>
                     <SelectItem value={INHERIT}>
                         <span className="flex items-center gap-2">
-                            <Swatch color={colorFor(login.config.accent)} />
-                            Match login ({prettify(login.config.accent)})
+                            <Swatch color={colorFor(login.config.primary)} />
+                            Match login ({prettify(login.config.primary)})
                         </span>
                     </SelectItem>
-                    {themePresetOptions.map(option => (
+                    {primaryPresetOptions.map(option => (
                         <SelectItem key={option} value={option}>
                             <span className="flex items-center gap-2">
                                 <Swatch color={colorFor(option)} />

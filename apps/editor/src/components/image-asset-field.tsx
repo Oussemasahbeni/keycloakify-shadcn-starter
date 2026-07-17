@@ -1,11 +1,11 @@
-import { getImageError } from "#/features/editor/login/model/assets.ts";
+import { MAX_IMAGE_SIZE_BYTES } from "#/features/editor/shared/files.ts";
+import { getImageError } from "#/features/editor/shared/validation/image.ts";
 import type { LucideIcon } from "lucide-react";
 import { X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { FileUpload } from "./ui/file-upload";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
-import { MAX_IMAGE_SIZE_BYTES } from '#/features/editor/shared/files.ts';
 
 /**
  * One image asset in its own card, settable two ways: a URL or an uploaded file.

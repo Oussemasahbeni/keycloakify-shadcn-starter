@@ -22,9 +22,9 @@ export type BaseSurfaceTokens = {
 };
 
 /**
- * Brand and action tokens owned by the selected accent preset.
+ * Brand and action tokens owned by the selected primary preset.
  */
-export type AccentTokens = {
+export type PrimaryTokens = {
     primary: string;
     primaryForeground: string;
 };
@@ -32,7 +32,7 @@ export type AccentTokens = {
 /**
  * Fully resolved semantic theme tokens consumed by the runtime CSS variable layer.
  */
-export type ThemeTokens = BaseSurfaceTokens & AccentTokens;
+export type ThemeTokens = BaseSurfaceTokens & PrimaryTokens;
 
 /**
  * Light and dark variants for the same token family.
@@ -46,7 +46,7 @@ export type ModeTokens<T> = {
  * Supported accent presets exposed through env vars and Storybook.
  * Keep this list in sync with the public theming documentation.
  */
-export const themePresetOptions = [
+export const primaryPresetOptions = [
     "neutral",
     "amber",
     "blue",
@@ -108,7 +108,7 @@ export const layoutOptions = ["two-column", "centered-card", "image-aside"] as c
  */
 export const sidePanelPositionOptions = ["right", "left"] as const;
 
-export type ThemePreset = (typeof themePresetOptions)[number];
+export type PrimaryPreset = (typeof primaryPresetOptions)[number];
 export type BasePalette = (typeof basePaletteOptions)[number];
 export type RadiusPreset = (typeof radiusPresetOptions)[number];
 export type FontFamily = (typeof fontFamilyOptions)[number];

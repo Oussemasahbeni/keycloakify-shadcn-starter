@@ -1,10 +1,10 @@
 import type {
-    AccentTokens,
+    PrimaryTokens,
     BasePalette,
     BaseSurfaceTokens,
     ModeTokens,
     RadiusPreset,
-    ThemePreset,
+    PrimaryPreset,
 } from "./ThemeTypes";
 
 /**
@@ -305,7 +305,7 @@ export const basePalettes: Record<BasePalette, ModeTokens<BaseSurfaceTokens>> = 
  * the primary tokens here because the rest of the neutral system is already
  * handled by the selected base palette.
  */
-export const themePresets: Record<ThemePreset, ModeTokens<AccentTokens>> = {
+export const primaryPresets: Record<PrimaryPreset, ModeTokens<PrimaryTokens>> = {
     neutral: {
         light: {
             primary: "oklch(0.205 0 0)",

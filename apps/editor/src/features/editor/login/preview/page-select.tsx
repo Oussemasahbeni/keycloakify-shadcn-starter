@@ -8,8 +8,8 @@ import {
     SelectValue,
 } from "#/components/ui/select";
 
-import { getGroupedPages, getPage } from "../../stories/pages";
-import type { PageId } from "../../stories/types";
+import { getGroupedPages, getPage } from "#/features/editor/login/stories/pages";
+import type { PageId } from "#/features/editor/login/stories/types";
 
 type PageSelectProps = {
     pageId: PageId;
@@ -45,9 +45,7 @@ export function PageSelect({ pageId, storyId, onPageChange, onStoryChange }: Pag
                 <Select value={storyId} onValueChange={value => onStoryChange(value ?? "default")}>
                     <SelectTrigger className="w-56">
                         <SelectValue>
-                            {(value: string) =>
-                                stories.find(scenario => scenario.id === value)?.label ?? value
-                            }
+                            {(value: string) => stories.find(scenario => scenario.id === value)?.label ?? value}
                         </SelectValue>
                     </SelectTrigger>
                     <SelectContent alignItemWithTrigger={false} className="max-h-100">

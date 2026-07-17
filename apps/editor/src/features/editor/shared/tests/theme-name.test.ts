@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getThemeNameError } from "../theme-name";
+import { getThemeNameError } from "../validation/theme-name";
 
 describe("getThemeNameError", () => {
     it("accepts a valid slug", () => {

@@ -1,15 +1,15 @@
-import type { AssetKey } from "#/features/editor/login/model/assets.ts";
-import { assetDefinitions, assetSchema } from "#/features/editor/login/model/assets.ts";
-import { faviconFileSchema } from "#/features/editor/login/model/favicon-upload";
+import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
+import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
+import { faviconFileSchema } from "#/features/editor/shared/validation/favicon.ts";
 import { oidcFnMiddleware } from "#/oidc";
 import { createServerFn } from "@tanstack/react-start";
-import { emailLogoSchema } from "../email/model/assets";
 import { getImageExtension } from "../shared/files";
+import { themeConfigSchema } from "../shared/model/theme-config";
+import { emailLogoSchema } from "../shared/validation/email-logo";
+import { assetSchema } from "../shared/validation/image";
 import { generateFaviconSet } from "./favicon";
 import { customizeThemeJar } from "./jar-customizer";
 import { loadTemplateJar } from "./template-jar";
-
-import { themeManifestSchema } from "#/features/editor/shared/theme-manifest";
 
 /**
  * Builds a themed Keycloak JAR from the editor's current config and streams it
@@ -32,7 +32,7 @@ export const generateJar = createServerFn({ method: "POST" })
         if (typeof rawOptions !== "string") {
             throw new Error("Missing `options` field.");
         }
-        const { login, email, themeName } = themeManifestSchema.parse(JSON.parse(rawOptions));
+        const { login, email, themeName } = themeConfigSchema.omit({ __version: true }).parse(JSON.parse(rawOptions));
 
         const rawFavicon = data.get("favicon");
         const favicon = rawFavicon === null ? null : faviconFileSchema.parse(rawFavicon);
@@ -69,7 +69,7 @@ export const generateJar = createServerFn({ method: "POST" })
         }
 
         const emailAssets: Record<string, Uint8Array> = {};
-        let emailLogoUrl = email?.logoUrl;
+        let emailLogoUrl = email.logoUrl;
         if (emailLogoFile) {
             const filename = `logo.${getImageExtension(emailLogoFile)}`;
             emailAssets[filename] = new Uint8Array(await emailLogoFile.arrayBuffer());
@@ -90,7 +90,7 @@ export const generateJar = createServerFn({ method: "POST" })
 
         const jar = customizeThemeJar(templateJar, options);
 
-        const filename = `${themeName?.trim() || "shadcn-theme"}.jar`;
+        const filename = `${themeName.trim()}.jar`;
         return new Response(Buffer.from(jar), {
             headers: {
                 "Content-Type": "application/java-archive",

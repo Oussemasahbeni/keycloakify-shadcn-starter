@@ -1,9 +1,9 @@
-import type { ThemePreset } from "#/login/theme";
-import { themePresets } from "#/login/theme";
+import type { PrimaryPreset } from "#/login/theme";
+import { primaryPresets } from "#/login/theme";
 import { formatHex, parse } from "culori";
 import type { EmailTheme } from "./theme";
 
-export function resolveEmailTheme(preset: ThemePreset, logoUrl: string | undefined): EmailTheme {
+export function resolveEmailTheme(preset: PrimaryPreset, logoUrl: string | undefined): EmailTheme {
     const colors = resolveColors(preset);
     return {
         ...colors,
@@ -11,14 +11,14 @@ export function resolveEmailTheme(preset: ThemePreset, logoUrl: string | undefin
     };
 }
 
-export function resolveColors(preset: ThemePreset): {
+export function resolveColors(preset: PrimaryPreset): {
     primaryColor: string;
     foregroundColor: string;
 } {
-    const themePreset = themePresets[preset];
+    const primaryPreset = primaryPresets[preset];
 
     return {
-        primaryColor: formatHex(parse(themePreset.light.primary))!,
-        foregroundColor: formatHex(parse(themePreset.light.primaryForeground))!,
+        primaryColor: formatHex(parse(primaryPreset.light.primary))!,
+        foregroundColor: formatHex(parse(primaryPreset.light.primaryForeground))!,
     };
 }

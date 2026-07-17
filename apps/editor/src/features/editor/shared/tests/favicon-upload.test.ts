@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MAX_FAVICON_BYTES, getFaviconError } from "../favicon-upload";
+import { MAX_FAVICON_BYTES, getFaviconError } from "../validation/favicon";
 
 const file = (name: string, type: string, size = 10) =>
     new File([new Uint8Array(size)], name, { type });

@@ -46,7 +46,7 @@ export default defineConfig({
                     name: "SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL",
                     default: "",
                 },
-                { name: "SHADCN_THEME_PRESET", default: "neutral" },
+                { name: "SHADCN_THEME_PRIMARY", default: "neutral" },
                 { name: "SHADCN_THEME_BASE", default: "neutral" },
                 { name: "SHADCN_THEME_RADIUS", default: "default" },
                 { name: "SHADCN_THEME_FONT", default: "geist" },

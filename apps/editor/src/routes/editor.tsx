@@ -1,13 +1,9 @@
-import {
-    ResizableHandle,
-    ResizablePanel,
-    ResizablePanelGroup,
-} from "#/components/ui/resizable.tsx";
-import { EmailPreviewIframe } from "#/features/editor/email/components/preview/preview-iframe.tsx";
-import { EmailThemeSidebar } from "#/features/editor/email/components/sidebar";
-import { LoginPreviewIframe } from "#/features/editor/login/components/preview/preview-iframe.tsx";
-import { LoginThemeSidebar } from "#/features/editor/login/components/sidebar";
-import { EditorHeader } from "#/features/editor/shared/components";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable.tsx";
+import { EmailPreviewIframe } from "#/features/editor/email/preview/preview-iframe.tsx";
+import { EmailThemeSidebar } from "#/features/editor/email/sidebar";
+import { LoginPreviewIframe } from "#/features/editor/login/preview/preview-iframe.tsx";
+import { LoginThemeSidebar } from "#/features/editor/login/sidebar";
+import { EditorHeader } from "#/features/editor/shared/components/editor-header.tsx";
 import { EditorProvider, useEditor } from "#/features/editor/state/editor-context";
 import { enforceLogin } from "#/oidc";
 import { createFileRoute } from "@tanstack/react-router";

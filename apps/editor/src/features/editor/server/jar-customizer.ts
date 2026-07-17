@@ -1,11 +1,9 @@
-import type { EmailThemeConfig } from "#/features/editor/email/model/theme-config";
-import { emailConfigToProperties } from "#/features/editor/email/model/theme-config";
-import type { LoginThemeConfig } from "#/features/editor/login/model/theme-config";
-import { themeConfigToProperties } from "#/features/editor/login/model/theme-config";
+import { escapeRegExp } from "#/lib/utils.ts";
 import type { Zippable } from "fflate";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
-import { MANIFEST_PATH } from "../shared/theme-manifest";
-import { escapeRegExp } from '#/lib/utils.ts';
+import { BASE_THEME_NAME, MANIFEST_PATH } from "../shared/constants";
+import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
+import { emailConfigToProperties, themeConfigToProperties } from "../shared/model/theme-config";
 
 /**
  * The theme name baked into the base template JAR (`packages/shadcn-theme`
@@ -14,7 +12,6 @@ import { escapeRegExp } from '#/lib/utils.ts';
  * quoted token in the `.ftl` templates and the `kc.gen-*.js` bundle. A custom
  * download renames all of these to the user's chosen name.
  */
-const BASE_THEME_NAME = "shadcn-theme";
 const THEME_DIR_PREFIX = `theme/${BASE_THEME_NAME}/`;
 
 /** Where the login theme serves its static assets (favicons, logos, fonts). */
@@ -47,11 +44,11 @@ export type JarCustomization = {
     login: LoginThemeConfig;
     /**
      * Email theme choices, baked as `SHADCN_EMAIL_*` `theme.properties` defaults
-     * (in both the login and email property files). Optional: when omitted, the
-     * email accent inherits the login accent, so passing `config` alone still
-     * yields correlated emails.
+     * (in both the login and email property files) and into the embedded manifest
+     * (where import requires them). An empty `{}` inherits the login primary with
+     * no custom logo, so emails stay correlated with the login theme.
      */
-    email?: EmailThemeConfig;
+    email: EmailThemeConfig;
     /**
      * Internal Keycloak theme name (what the admin sees and selects). Lowercase
      * letters, digits and dashes. Defaults to the base name (no rename).
@@ -92,7 +89,7 @@ export function customizeThemeJar(templateBytes: Uint8Array, options: JarCustomi
     const entries = unzipSync(templateBytes);
     const properties = {
         ...themeConfigToProperties(options.login),
-        ...emailConfigToProperties(options.email, options.login.accent),
+        ...emailConfigToProperties(options.email, options.login.primary),
     };
     const themeName = resolveThemeName(options.themeName);
     const rename = themeName !== BASE_THEME_NAME;
@@ -129,7 +126,14 @@ export function customizeThemeJar(templateBytes: Uint8Array, options: JarCustomi
 
 function writeManifest(out: Zippable, config: JarCustomization): void {
     out[MANIFEST_PATH] = [
-        strToU8(JSON.stringify({ version: process.env.EDITOR_VERSION, login: config.login, email: config.email, themeName: config.themeName })),
+        strToU8(
+            JSON.stringify({
+                __version: 1,
+                login: config.login,
+                email: config.email,
+                themeName: config.themeName,
+            }),
+        ),
         { level: 6 },
     ];
 }
@@ -201,4 +205,3 @@ function rewritePropertyDefaults(bytes: Uint8Array, properties: Record<string, s
 
     return strToU8(text);
 }
-

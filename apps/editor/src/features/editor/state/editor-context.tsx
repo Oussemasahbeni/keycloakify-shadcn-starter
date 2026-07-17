@@ -3,13 +3,15 @@ import { createContext, use, useState } from "react";
 import { useTheme } from "#/components/theme-provider";
 import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
 import { emailTemplates } from "@kc-studio/shadcn-theme/email";
-import type { EmailThemeConfig } from "../email/model/theme-config";
-import type { ThemeAssetKey } from "../login/model/assets";
-import { emptyAssets } from "../login/model/assets";
-import type { LoginThemeConfig, PreviewColorScheme } from "../login/model/theme-config";
-import { defaultLoginThemeConfig } from "../login/model/theme-config";
-import type { Viewport } from "../login/model/viewport";
-import type { Surface } from "../shared/components/surface-switch";
+import type { ThemeAssetKey } from "../shared/model/assets";
+import { emptyAssets } from "../shared/model/assets";
+
+import { BASE_THEME_NAME } from "../shared/constants";
+import type { PreviewColorScheme } from "../shared/model/preview-color-scheme";
+import type { Surface } from "../shared/model/surface";
+import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
+import { defaultLoginThemeConfig } from "../shared/model/theme-config";
+import type { Viewport } from "../shared/model/viewport";
 import type { ParsedTheme } from "../shared/parse-theme-jar";
 
 interface EditorContextValue {
@@ -45,7 +47,7 @@ const EditorContext = createContext<EditorContextValue | null>(null);
 export function EditorProvider({ children }: { children: React.ReactNode }) {
     const { theme } = useTheme();
     const [viewport, setViewport] = useState<Viewport>("desktop");
-    const [themeName, setThemeName] = useState<string>("shadcn-theme");
+    const [themeName, setThemeName] = useState<string>(BASE_THEME_NAME);
     const [activeSurface, setActiveSurface] = useState<Surface>("login");
     const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>(theme as PreviewColorScheme);
     const [loginThemeConfig, setLoginThemeConfig] = useState<LoginThemeConfig>(defaultLoginThemeConfig);

@@ -3,7 +3,7 @@ import { emailTemplateIds } from "@kc-studio/shadcn-theme/email";
 import { renderEmailPreview } from "@kc-studio/shadcn-theme/email-preview";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { supportedLocaleValues } from "../shared/locales";
+import { supportedLocaleValues } from "../shared/model/locales";
 
 const schema = z.object({
     templateId: z.enum(emailTemplateIds),

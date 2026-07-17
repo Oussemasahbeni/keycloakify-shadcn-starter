@@ -30,29 +30,19 @@ function applyTheme(theme: Theme) {
     root.classList.remove("light", "dark");
 
     const resolved =
-        theme === "system"
-            ? window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light"
-            : theme;
+        theme === "system" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : theme;
 
     root.classList.add(resolved);
     root.style.colorScheme = resolved;
 }
 
-export function ThemeProvider({
-    children,
-    defaultTheme = "system",
-    storageKey = "theme",
-}: ThemeProviderProps) {
+export function ThemeProvider({ children, defaultTheme = "system", storageKey = "theme" }: ThemeProviderProps) {
     const [theme, setThemeState] = useState<Theme>(defaultTheme);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         const stored = localStorage.getItem(storageKey);
-        setThemeState(
-            stored === "light" || stored === "dark" || stored === "system" ? stored : defaultTheme,
-        );
+        setThemeState(stored === "light" || stored === "dark" || stored === "system" ? stored : defaultTheme);
         setMounted(true);
     }, [defaultTheme, storageKey]);
 
@@ -85,6 +75,7 @@ export function ThemeProvider({
 
 export function useTheme() {
     const context = useContext(ThemeProviderContext);
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (context === undefined) throw new Error("useTheme must be used within a ThemeProvider");
     return context;
 }

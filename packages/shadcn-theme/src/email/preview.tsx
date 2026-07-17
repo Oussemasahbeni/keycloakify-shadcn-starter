@@ -1,4 +1,4 @@
-import type { ThemePreset } from "#/login/theme";
+import type { PrimaryPreset } from "#/login/theme";
 import type { TFunction } from "i18next";
 import { render } from "jsx-email";
 import type { ComponentType } from "react";
@@ -84,7 +84,7 @@ function fillMocks(html: string): string {
 }
 
 interface EmailThemeOptions {
-    primaryColor: ThemePreset;
+    primaryColor: PrimaryPreset;
     logoUrl?: string | undefined;
 }
 

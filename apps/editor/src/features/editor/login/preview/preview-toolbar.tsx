@@ -2,13 +2,13 @@ import { Button } from "#/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
 
 import { ButtonGroup } from "#/components/ui/button-group";
+import { VIEWPORTS } from "#/features/editor/shared/model/viewport.ts";
+import type { PageId } from "#/features/editor/login/stories/types";
+import { LanguageSelect } from "#/features/editor/shared/components/language-select";
+import { useEditor } from "#/features/editor/state/editor-context";
 import { ExternalLink, RotateCcw } from "lucide-react";
-import { useEditor } from "../../../state/editor-context";
-import { SCHEMES } from "../../model/theme-config";
-import { VIEWPORTS } from "../../model/viewport";
-import type { PageId } from "../../stories/types";
-import { LanguageSelect } from "../../../shared/components/language-select";
 import { PageSelect } from "./page-select";
+import { SCHEMES } from '../../shared/model/preview-color-scheme';
 
 function ViewportToggle() {
     const { viewport, setViewport } = useEditor().login;
@@ -67,38 +67,12 @@ function PreviewThemeToggle() {
     );
 }
 
-function PreviewInNewTab({ pageId, storyId }: { pageId: PageId; storyId: string }) {
-    const { config, previewColorScheme } = useEditor().login;
-
-    function openInNewTab() {
-        const params = new URLSearchParams({
-            page: pageId,
-            story: storyId,
-            scheme: previewColorScheme,
-            layout: config.layout,
-            base: config.basePalette,
-            accent: config.accent,
-            radius: config.radius,
-            font: config.font,
-            sidePanelPosition: config.sidePanelPosition,
-            showPlaceholder: String(config.showPlaceholder),
-            realmName: String(config.showRealmName),
-            logo: config.logoUrl,
-            logoDark: config.logoDarkUrl,
-            asideImage: config.asideImageUrl,
-            cardImage: config.cardImageUrl,
-            sidePanelImage: config.sidePanelImageUrl,
-            sidePanelImageDark: config.sidePanelImageDarkUrl,
-        });
-        if (config.locale) params.set("locale", config.locale);
-        window.open(`/preview?${params.toString()}`, "_blank", "noopener");
-    }
-
+function PreviewInNewTab() {
     return (
         <Tooltip>
             <TooltipTrigger
                 render={
-                    <Button variant="outline" size="icon" onClick={openInNewTab}>
+                    <Button variant="outline" size="icon" onClick={() => window.open("/preview", "_blank", "noopener")}>
                         <ExternalLink />
                     </Button>
                 }
@@ -132,12 +106,7 @@ type PreviewToolbarProps = {
     onStoryChange: (storyId: string) => void;
 };
 
-export function LoginPreviewToolbar({
-    pageId,
-    storyId,
-    onPageChange,
-    onStoryChange,
-}: PreviewToolbarProps) {
+export function LoginPreviewToolbar({ pageId, storyId, onPageChange, onStoryChange }: PreviewToolbarProps) {
     return (
         <div className="flex items-center justify-between gap-2 border-b p-2">
             <div className="flex items-center gap-2">
@@ -153,7 +122,7 @@ export function LoginPreviewToolbar({
             </div>
 
             <div className="flex items-center gap-2">
-                <PreviewInNewTab pageId={pageId} storyId={storyId} />
+                <PreviewInNewTab />
                 <ResetButton />
             </div>
         </div>

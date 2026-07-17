@@ -1,9 +1,9 @@
+import { renderEmailPreviewFn } from "#/features/editor/server/email-render-preview";
+import { DEFAULT_LOCALE } from "#/features/editor/shared/model/locales.ts";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
 import { keepPreviousData, queryOptions, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
-import { renderEmailPreviewFn } from "../../../server/email-render-preview";
-import { DEFAULT_LOCALE } from "../../../shared/locales";
-import { useEditor } from "../../../state/editor-context";
 import { EmailPreviewToolbar } from "./preview-toolbar";
 
 export function EmailPreviewIframe() {
@@ -12,7 +12,7 @@ export function EmailPreviewIframe() {
     const templateId = email.template.id;
     const locale = email.config.locale ?? DEFAULT_LOCALE;
 
-    const primaryColor = email.config.primaryPreset ?? login.config.accent;
+    const primaryColor = email.config.primary ?? login.config.primary;
     const logoFile = email.emailLogoFile;
 
     // An uploaded logo can't be sent as a File to the render server, so inline it as

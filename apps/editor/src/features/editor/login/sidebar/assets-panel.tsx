@@ -1,12 +1,12 @@
 import { ImageAssetField } from "#/components/image-asset-field";
 import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card.tsx";
 import { FileUpload } from "#/components/ui/file-upload";
+import type { ThemeAssetKey } from "#/features/editor/shared/model/assets.ts";
+import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
+import { getFaviconError } from "#/features/editor/shared/validation/favicon.ts";
+import { useEditor } from "#/features/editor/state/editor-context";
 import type { LucideIcon } from "lucide-react";
 import { Image as ImageIcon, Moon, PanelLeft, Star, Sun } from "lucide-react";
-import { useEditor } from "../../../state/editor-context";
-import type { ThemeAssetKey } from "../../model/assets";
-import { assetDefinitions } from "../../model/assets";
-import { getFaviconError } from "../../model/favicon-upload";
 
 const ASSET_ICONS: Record<ThemeAssetKey, LucideIcon> = {
     favicon: Star,

@@ -94,7 +94,7 @@ export default defineConfig({
                 { name: "SHADCN_THEME_APP_NAME", default: "Acme Inc." },
                 { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
                 { name: "SHADCN_THEME_ASIDE_IMAGE_URL", default: "" },
-                { name: "SHADCN_THEME_PRESET", default: "neutral" },
+                { name: "SHADCN_THEME_PRIMARY", default: "neutral" },
                 { name: "SHADCN_THEME_BASE", default: "neutral" },
                 { name: "SHADCN_THEME_RADIUS", default: "default" },
                 { name: "SHADCN_THEME_FONT", default: "geist" },
@@ -222,7 +222,7 @@ The login theme is primarily customized through Keycloakify environment variable
 | `SHADCN_THEME_LOGO_DARK_URL`  | `""`           | Any image URL or `%BASE_URL%/filename`        | Logo used in dark mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`.                     |
 | `SHADCN_THEME_ASIDE_IMAGE_URL` | `""`           | Any image URL or `%BASE_URL%/filename`        | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`.                 | mode. |
 | `SHADCN_THEME_LAYOUT`         | `"two-column"` | `two-column`, `centered-card`, `image-aside`  | Selects the outer page layout used by `Template.tsx`.                                             |
-| `SHADCN_THEME_PRESET`         | `"neutral"`    | See accent preset list below                  | Selects the shadcn-style accent color family used for primary actions.                            |
+| `SHADCN_THEME_PRIMARY`         | `"neutral"`    | See accent preset list below                  | Selects the shadcn-style accent color family used for primary actions.                            |
 | `SHADCN_THEME_BASE`           | `"neutral"`    | See base palette list below                   | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring. |
 | `SHADCN_THEME_RADIUS`         | `"default"`    | `default`, `none`, `small`, `medium`, `large` | Controls the global border radius token.                                                          |
 | `SHADCN_THEME_FONT`           | `"geist"`      | See font preset list below                    | Controls the main theme font family.                                                              |
@@ -303,7 +303,7 @@ environmentVariables: [
     },
     { name: "SHADCN_THEME_LAYOUT", default: "two-column" },
     { name: "SHADCN_THEME_ASIDE_IMAGE_URL", default: "" },
-    { name: "SHADCN_THEME_PRESET", default: "neutral" },
+    { name: "SHADCN_THEME_PRIMARY", default: "neutral" },
     { name: "SHADCN_THEME_BASE", default: "neutral" },
     { name: "SHADCN_THEME_RADIUS", default: "default" },
     { name: "SHADCN_THEME_FONT", default: "geist" },
@@ -314,7 +314,7 @@ environmentVariables: [
 Example branding combinations:
 
 - `SHADCN_THEME_LAYOUT=image-aside`
-- `SHADCN_THEME_PRESET=indigo`
+- `SHADCN_THEME_PRIMARY=indigo`
 - `SHADCN_THEME_BASE=stone`
 - `SHADCN_THEME_RADIUS=medium`
 - `SHADCN_THEME_FONT=manrope`
@@ -337,7 +337,7 @@ Available controls:
 ### Branding Notes
 
 1. **Logo**: Set `SHADCN_THEME_LOGO_URL` and `SHADCN_THEME_LOGO_DARK_URL`, or replace `src/login/assets/img/auth-logo.svg`
-2. **Colors**: Use `SHADCN_THEME_PRESET`, `SHADCN_THEME_BASE`, and `SHADCN_THEME_RADIUS`
+2. **Colors**: Use `SHADCN_THEME_PRIMARY`, `SHADCN_THEME_BASE`, and `SHADCN_THEME_RADIUS`
 3. **Fonts**: Use `SHADCN_THEME_FONT`; the project now uses packaged font imports instead of manual asset-only font wiring
 
 ### Internationalization

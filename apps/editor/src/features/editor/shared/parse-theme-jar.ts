@@ -1,11 +1,11 @@
-import type { EmailThemeConfig } from "#/features/editor/email/model/theme-config";
-import type { ThemeAssetKey } from "#/features/editor/login/model/assets";
-import { assetDefinitions, emptyAssets } from "#/features/editor/login/model/assets";
-import type { LoginThemeConfig } from "#/features/editor/login/model/theme-config";
-import { defaultLoginThemeConfig } from "#/features/editor/login/model/theme-config";
-import { MANIFEST_PATH, themeManifestSchema } from "#/features/editor/shared/theme-manifest";
+import type { ThemeAssetKey } from "#/features/editor/shared/model/assets.ts";
+import { assetDefinitions, emptyAssets } from "#/features/editor/shared/model/assets.ts";
+
 import { strFromU8, unzipSync } from "fflate";
+import { MANIFEST_PATH } from "./constants";
 import { isValidJarSignature, mimeFromFilename } from "./files";
+import type { EmailThemeConfig, LoginThemeConfig } from "./model/theme-config";
+import { defaultLoginThemeConfig, themeConfigSchema } from "./model/theme-config";
 
 /** The editor state reconstructed from an imported JAR, ready for hydration. */
 export type ParsedTheme = {
@@ -55,13 +55,14 @@ export function parseThemeJar(bytes: Uint8Array): ParsedTheme {
     if (!rawManifest) {
         throw new Error("This .jar wasn't exported by the editor (no theme manifest found).");
     }
-    const manifest = themeManifestSchema.parse(JSON.parse(strFromU8(rawManifest)));
+    const manifest = themeConfigSchema.parse(JSON.parse(strFromU8(rawManifest)));
 
-    const themeName = manifest.themeName?.trim() || "shadcn-theme";
+    const themeName = manifest.themeName.trim();
     const loginDist = `theme/${themeName}/login/resources/dist/`;
     const emailResources = `theme/${themeName}/email/resources/`;
 
-    const login: LoginThemeConfig = { ...manifest.login };
+    const login = { ...manifest.login };
+    const email = { ...manifest.email };
     const assets: Record<ThemeAssetKey, File | null> = { ...emptyAssets };
 
     // Bundled login images → editable Files; external URLs stay as URLs.
@@ -80,7 +81,6 @@ export function parseThemeJar(bytes: Uint8Array): ParsedTheme {
     if (faviconBytes) assets.favicon = toFile(faviconBytes, "favicon.ico");
 
     // Email logo: a bare bundled filename → File; an external URL stays a URL.
-    const email: EmailThemeConfig = { ...manifest.email };
     let emailLogoFile: File | null = null;
     const emailLogo = email.logoUrl;
     if (emailLogo && !/^(https?:|data:|%BASE_URL%)/.test(emailLogo)) {

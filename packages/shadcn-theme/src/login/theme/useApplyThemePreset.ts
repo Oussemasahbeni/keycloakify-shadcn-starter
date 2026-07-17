@@ -75,13 +75,13 @@ function applyThemeCssVars(params: {
 export function useApplyThemePreset() {
     const { kcContext } = useKcContext();
 
-    const { SHADCN_THEME_PRESET, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT } =
+    const { SHADCN_THEME_PRIMARY, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT } =
         kcContext.properties;
 
     useLayoutEffect(() => {
         const root = document.documentElement;
         const theme = resolveThemeTokens({
-            preset: SHADCN_THEME_PRESET,
+            preset: SHADCN_THEME_PRIMARY,
             base: SHADCN_THEME_BASE,
         });
         const radius = resolveRadiusPreset(SHADCN_THEME_RADIUS);
@@ -105,5 +105,5 @@ export function useApplyThemePreset() {
         }
 
         root.style.removeProperty("--keycloakify-shadcn-radius");
-    }, [SHADCN_THEME_PRESET, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT]);
+    }, [SHADCN_THEME_PRIMARY, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT]);
 }

@@ -1,10 +1,9 @@
-import { useRef, useState } from "react";
-import { useEditor } from "../../../state/editor-context";
-import { usePushPreviewState } from "../../hooks/use-iframe-message";
-import { usePublishPreviewAssets } from "../../hooks/use-preview-assets-channel";
-import { getViewportWidth } from "../../model/viewport";
-import { getPage } from "../../stories/pages";
-import type { PageId } from "../../stories/types";
+import { getViewportWidth } from "#/features/editor/shared/model/viewport.ts";
+import { getPage } from "#/features/editor/login/stories/pages";
+import type { PageId } from "#/features/editor/login/stories/types";
+import { useEditor } from "#/features/editor/state/editor-context";
+import { useState } from "react";
+import { usePublishPreview } from "../hooks/use-preview-channel";
 import { LoginPreviewToolbar } from "./preview-toolbar";
 
 /**
@@ -12,7 +11,6 @@ import { LoginPreviewToolbar } from "./preview-toolbar";
  */
 export function LoginPreviewIframe() {
     const { viewport, previewColorScheme, config, assets } = useEditor().login;
-    const iframeRef = useRef<HTMLIFrameElement>(null);
     const width = getViewportWidth(viewport);
 
     const [pageId, setPageId] = useState<PageId>("login.ftl");
@@ -22,9 +20,7 @@ export function LoginPreviewIframe() {
         setPageId(value);
         setStoryId(getPage(value)?.stories[0]?.id ?? "default");
     }
-
-    usePushPreviewState(iframeRef, pageId, storyId, previewColorScheme, config);
-    usePublishPreviewAssets(assets);
+    usePublishPreview(pageId, storyId, previewColorScheme, config, assets);
 
     return (
         <div className="flex h-full flex-col">
@@ -36,7 +32,6 @@ export function LoginPreviewIframe() {
             />
             <div className="bg-muted/30 grid flex-1 place-items-center overflow-auto p-4">
                 <iframe
-                    ref={iframeRef}
                     src="/preview"
                     title="Theme preview"
                     sandbox="allow-scripts allow-same-origin allow-forms"

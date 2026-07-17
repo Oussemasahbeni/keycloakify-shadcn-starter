@@ -1,18 +1,15 @@
 import { DEFAULT_THEME_BASE, DEFAULT_THEME_PRESET, DEFAULT_THEME_RADIUS } from "./Defaults";
-import { basePalettes, radiusPresets, themeFontFamilies, themePresets } from "./Presets";
+import { basePalettes, radiusPresets, themeFontFamilies, primaryPresets } from "./Presets";
 import {
     type FontFamily,
     type ModeTokens,
     type ThemeTokens,
     basePaletteOptions,
     radiusPresetOptions,
-    themePresetOptions,
+    primaryPresetOptions,
 } from "./ThemeTypes";
 
-function isOption<TOption extends string>(
-    value: string | undefined,
-    options: readonly TOption[],
-): value is TOption {
+function isOption<TOption extends string>(value: string | undefined, options: readonly TOption[]): value is TOption {
     return value !== undefined && (options as readonly string[]).includes(value);
 }
 
@@ -22,29 +19,24 @@ function isOption<TOption extends string>(
  * Resolution flow:
  * 1. Validate the incoming `preset` and `base` values.
  * 2. Fall back to the configured defaults when a value is missing or invalid.
- * 3. Merge the selected base palette with the selected accent preset for both light and dark modes.
+ * 3. Merge the selected base palette with the selected primary preset for both light and dark modes.
  *
  * @param params.base Neutral surface family requested by the caller.
- * @param params.preset Accent preset requested by the caller.
+ * @param params.preset Primary preset requested by the caller.
  * @returns A fully resolved light/dark token map ready to be written to CSS variables.
  */
-export function resolveThemeTokens(params: {
-    preset: string;
-    base: string;
-}): ModeTokens<ThemeTokens> {
-    const preset = isOption(params.preset, themePresetOptions)
-        ? params.preset
-        : DEFAULT_THEME_PRESET;
+export function resolveThemeTokens(params: { preset: string; base: string }): ModeTokens<ThemeTokens> {
+    const preset = isOption(params.preset, primaryPresetOptions) ? params.preset : DEFAULT_THEME_PRESET;
     const base = isOption(params.base, basePaletteOptions) ? params.base : DEFAULT_THEME_BASE;
 
     return {
         light: {
             ...basePalettes[base].light,
-            ...themePresets[preset].light,
+            ...primaryPresets[preset].light,
         },
         dark: {
             ...basePalettes[base].dark,
-            ...themePresets[preset].dark,
+            ...primaryPresets[preset].dark,
         },
     };
 }
