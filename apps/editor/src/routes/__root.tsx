@@ -2,9 +2,9 @@ import { AutoLogoutWarningOverlay } from "#/components/AutoLogoutWarningOverlay"
 import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
-import { Toaster } from "#/components/ui/sonner";
 import { TooltipProvider } from "#/components/ui/tooltip";
 import { seo } from "#/utils/seo";
+import { Toaster } from "@/components/ui/toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
@@ -87,7 +87,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
                         </TooltipProvider>
                         <AutoLogoutWarningOverlay />
-                        <Toaster closeButton={true} position="top-right" richColors />
+                        <Toaster />
                     </ThemeProvider>
                 )}
                 <Scripts />

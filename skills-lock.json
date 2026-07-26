@@ -1,29 +1,29 @@
 {
-    "version": 1,
-    "skills": {
-        "shadcn": {
-            "source": "shadcn/ui",
-            "sourceType": "github",
-            "skillPath": "skills/shadcn/SKILL.md",
-            "computedHash": "f0fdd03f4755cbb3b57e20fe6fd4a97c00d34e6780187b6559316986e8d848db"
-        },
-        "vercel-react-view-transitions": {
-            "source": "vercel-labs/agent-skills",
-            "sourceType": "github",
-            "skillPath": "skills/react-view-transitions/SKILL.md",
-            "computedHash": "c8952fc9127fa0564d0cb71dccb4215a5608ac933b5831104f09173a97a46f85"
-        },
-        "web-design-guidelines": {
-            "source": "vercel-labs/agent-skills",
-            "sourceType": "github",
-            "skillPath": "skills/web-design-guidelines/SKILL.md",
-            "computedHash": "f3bc47f890f42a44db1007ab390709ec368e4b8c089baee6b0007182236ac474"
-        },
-        "writing-guidelines": {
-            "source": "vercel-labs/agent-skills",
-            "sourceType": "github",
-            "skillPath": "skills/writing-guidelines/SKILL.md",
-            "computedHash": "25aa3a33a97bddbcb1847ce4a6169106ec25e5b19b15b99c66e75ab383866ef2"
-        }
+  "version": 1,
+  "skills": {
+    "shadcn": {
+      "source": "shadcn/ui",
+      "sourceType": "github",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "computedHash": "f99ef49d9909d380ca683ceb8dc8c25775c20ee38140112c394e037d8c11ee18"
+    },
+    "vercel-react-view-transitions": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/react-view-transitions/SKILL.md",
+      "computedHash": "c8952fc9127fa0564d0cb71dccb4215a5608ac933b5831104f09173a97a46f85"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "f3bc47f890f42a44db1007ab390709ec368e4b8c089baee6b0007182236ac474"
+    },
+    "writing-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/writing-guidelines/SKILL.md",
+      "computedHash": "25aa3a33a97bddbcb1847ce4a6169106ec25e5b19b15b99c66e75ab383866ef2"
     }
+  }
 }

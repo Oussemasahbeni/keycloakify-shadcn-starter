@@ -52,7 +52,12 @@ export function ImageAssetField({
                     />
                     {url && (
                         <InputGroupAddon align="inline-end">
-                            <Button variant="ghost" size="icon" onClick={() => onUrlChange("")}>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                aria-label={`Clear ${label.toLowerCase()} URL`}
+                                onClick={() => onUrlChange("")}
+                            >
                                 <X />
                             </Button>
                         </InputGroupAddon>

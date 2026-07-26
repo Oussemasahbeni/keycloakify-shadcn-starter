@@ -5,7 +5,7 @@
 - Items always inside their Group component
 - Callouts use Alert
 - Empty states use Empty component
-- Toast notifications use sonner
+- Toast notifications follow the project base
 - Choosing between overlay components
 - Dialog, Sheet, and Drawer always need a Title
 - Card structure
@@ -26,8 +26,8 @@ Never render items directly inside the content container.
 
 ```tsx
 <SelectContent>
-    <SelectItem value="apple">Apple</SelectItem>
-    <SelectItem value="banana">Banana</SelectItem>
+  <SelectItem value="apple">Apple</SelectItem>
+  <SelectItem value="banana">Banana</SelectItem>
 </SelectContent>
 ```
 
@@ -35,22 +35,28 @@ Never render items directly inside the content container.
 
 ```tsx
 <SelectContent>
-    <SelectGroup>
-        <SelectItem value="apple">Apple</SelectItem>
-        <SelectItem value="banana">Banana</SelectItem>
-    </SelectGroup>
+  <SelectGroup>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+  </SelectGroup>
 </SelectContent>
 ```
 
 This applies to all group-based components:
 
-| Item                                                       | Group               |
-| ---------------------------------------------------------- | ------------------- |
-| `SelectItem`, `SelectLabel`                                | `SelectGroup`       |
+| Item | Group |
+|------|-------|
+| `SelectItem`, `SelectLabel` | `SelectGroup` |
 | `DropdownMenuItem`, `DropdownMenuLabel`, `DropdownMenuSub` | `DropdownMenuGroup` |
-| `MenubarItem`                                              | `MenubarGroup`      |
-| `ContextMenuItem`                                          | `ContextMenuGroup`  |
-| `CommandItem`                                              | `CommandGroup`      |
+| `MenubarItem` | `MenubarGroup` |
+| `ContextMenuItem` | `ContextMenuGroup` |
+| `CommandItem` | `CommandGroup` |
+| `MessageScrollerItem` | `MessageScrollerContent` |
+| `Message` (consecutive, same sender) | `MessageGroup` |
+| `Bubble` (stacked) | `BubbleGroup` |
+| `Attachment` (in a row) | `AttachmentGroup` |
+
+Chat components nest in a fixed order (`MessageScrollerProvider` → `MessageScroller` → `MessageScrollerViewport` → `MessageScrollerContent` → `MessageScrollerItem`). See [chat.md](./chat.md).
 
 ---
 
@@ -58,8 +64,8 @@ This applies to all group-based components:
 
 ```tsx
 <Alert>
-    <AlertTitle>Warning</AlertTitle>
-    <AlertDescription>Something needs attention.</AlertDescription>
+  <AlertTitle>Warning</AlertTitle>
+  <AlertDescription>Something needs attention.</AlertDescription>
 </Alert>
 ```
 
@@ -69,45 +75,55 @@ This applies to all group-based components:
 
 ```tsx
 <Empty>
-    <EmptyHeader>
-        <EmptyMedia variant="icon">
-            <FolderIcon />
-        </EmptyMedia>
-        <EmptyTitle>No projects yet</EmptyTitle>
-        <EmptyDescription>Get started by creating a new project.</EmptyDescription>
-    </EmptyHeader>
-    <EmptyContent>
-        <Button>Create Project</Button>
-    </EmptyContent>
+  <EmptyHeader>
+    <EmptyMedia variant="icon"><FolderIcon /></EmptyMedia>
+    <EmptyTitle>No projects yet</EmptyTitle>
+    <EmptyDescription>Get started by creating a new project.</EmptyDescription>
+  </EmptyHeader>
+  <EmptyContent>
+    <Button>Create Project</Button>
+  </EmptyContent>
 </Empty>
 ```
 
 ---
 
-## Toast notifications use sonner
+## Toast notifications follow the project base
+
+For Base UI projects, use the `toast` component:
 
 ```tsx
-import { toast } from "sonner";
+import { toast } from "@/components/ui/toast"
 
-toast.success("Changes saved.");
-toast.error("Something went wrong.");
+toast.add({
+  title: "Changes saved.",
+})
+```
+
+For Radix and React Aria projects, use Sonner:
+
+```tsx
+import { toast } from "sonner"
+
+toast.success("Changes saved.")
+toast.error("Something went wrong.")
 toast("File deleted.", {
-    action: { label: "Undo", onClick: () => undoDelete() },
-});
+  action: { label: "Undo", onClick: () => undoDelete() },
+})
 ```
 
 ---
 
 ## Choosing between overlay components
 
-| Use case                           | Component     |
-| ---------------------------------- | ------------- |
-| Focused task that requires input   | `Dialog`      |
-| Destructive action confirmation    | `AlertDialog` |
-| Side panel with details or filters | `Sheet`       |
-| Mobile-first bottom panel          | `Drawer`      |
-| Quick info on hover                | `HoverCard`   |
-| Small contextual content on click  | `Popover`     |
+| Use case | Component |
+|----------|-----------|
+| Focused task that requires input | `Dialog` |
+| Destructive action confirmation | `AlertDialog` |
+| Side panel with details or filters | `Sheet` |
+| Mobile-first bottom panel | `Drawer` |
+| Quick info on hover | `HoverCard` |
+| Small contextual content on click | `Popover` |
 
 ---
 
@@ -117,11 +133,11 @@ toast("File deleted.", {
 
 ```tsx
 <DialogContent>
-    <DialogHeader>
-        <DialogTitle>Edit Profile</DialogTitle>
-        <DialogDescription>Update your profile.</DialogDescription>
-    </DialogHeader>
-    ...
+  <DialogHeader>
+    <DialogTitle>Edit Profile</DialogTitle>
+    <DialogDescription>Update your profile.</DialogDescription>
+  </DialogHeader>
+  ...
 </DialogContent>
 ```
 
@@ -133,14 +149,14 @@ Use full composition — don't dump everything into `CardContent`:
 
 ```tsx
 <Card>
-    <CardHeader>
-        <CardTitle>Team Members</CardTitle>
-        <CardDescription>Manage your team.</CardDescription>
-    </CardHeader>
-    <CardContent>...</CardContent>
-    <CardFooter>
-        <Button>Invite</Button>
-    </CardFooter>
+  <CardHeader>
+    <CardTitle>Team Members</CardTitle>
+    <CardDescription>Manage your team.</CardDescription>
+  </CardHeader>
+  <CardContent>...</CardContent>
+  <CardFooter>
+    <Button>Invite</Button>
+  </CardFooter>
 </Card>
 ```
 
@@ -152,8 +168,8 @@ Compose with `Spinner` + `data-icon` + `disabled`:
 
 ```tsx
 <Button disabled>
-    <Spinner data-icon="inline-start" />
-    Saving...
+  <Spinner data-icon="inline-start" />
+  Saving...
 </Button>
 ```
 
@@ -165,11 +181,11 @@ Never render `TabsTrigger` directly inside `Tabs` — always wrap in `TabsList`:
 
 ```tsx
 <Tabs defaultValue="account">
-    <TabsList>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-    </TabsList>
-    <TabsContent value="account">...</TabsContent>
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">...</TabsContent>
 </Tabs>
 ```
 
@@ -181,8 +197,8 @@ Always include `AvatarFallback` for when the image fails to load:
 
 ```tsx
 <Avatar>
-    <AvatarImage src="/avatar.png" alt="User" />
-    <AvatarFallback>JD</AvatarFallback>
+  <AvatarImage src="/avatar.png" alt="User" />
+  <AvatarFallback>JD</AvatarFallback>
 </Avatar>
 ```
 
@@ -190,8 +206,8 @@ Always include `AvatarFallback` for when the image fails to load:
 
 ## Use existing components instead of custom markup
 
-| Instead of                                         | Use                                  |
-| -------------------------------------------------- | ------------------------------------ |
-| `<hr>` or `<div className="border-t">`             | `<Separator />`                      |
+| Instead of | Use |
+|---|---|
+| `<hr>` or `<div className="border-t">` | `<Separator />` |
 | `<div className="animate-pulse">` with styled divs | `<Skeleton className="h-4 w-3/4" />` |
-| `<span className="rounded-full bg-green-100 ...">` | `<Badge variant="secondary">`        |
+| `<span className="rounded-full bg-green-100 ...">` | `<Badge variant="secondary">` |

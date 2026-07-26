@@ -2,7 +2,7 @@ import { Button } from "#/components/ui/button.tsx";
 import { Spinner } from "#/components/ui/spinner.tsx";
 import { useServerFn } from "@tanstack/react-start";
 import { Download } from "lucide-react";
-import { toast } from "sonner";
+import { toast } from "@/components/ui/toast"
 import { assetDefinitions } from "../model/assets";
 import { getThemeNameError } from "../validation/theme-name";
 import { generateJar } from "../../server/generate-jar";
@@ -46,14 +46,23 @@ export function ExportButton() {
             anchor.click();
             anchor.remove();
             URL.revokeObjectURL(url);
-            toast.success(`Downloaded ${name}.jar`);
+            toast.add({
+                description:`Downloaded ${name}.jar`,
+                type: "success",
+            });
         },
-        onError: error => toast.error(error instanceof Error ? error.message : "Export failed."),
+        onError: error => toast.add({
+            description: error instanceof Error ? error.message : "Export failed.",
+            type: "error"
+        }),
     });
 
     function handleExport() {
         const nameError = getThemeNameError(themeName);
-        if (nameError) return toast.error(`Invalid theme name: ${nameError}`);
+        if (nameError) return toast.add({
+            description: `Invalid theme name: ${nameError}`,
+            type: "error"
+        });
         exportTheme();
     }
 

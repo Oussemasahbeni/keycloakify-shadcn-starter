@@ -2,7 +2,7 @@ import { Button } from "#/components/ui/button.tsx";
 import { Spinner } from "#/components/ui/spinner.tsx";
 import { Upload } from "lucide-react";
 import { useRef, useState } from "react";
-import { toast } from "sonner";
+import { toast } from "@/components/ui/toast"
 import { useEditor } from "../../state/editor-context";
 import { parseThemeJar } from "../parse-theme-jar";
 
@@ -23,9 +23,15 @@ export function ImportButton() {
         try {
             const bytes = new Uint8Array(await file.arrayBuffer());
             importTheme(parseThemeJar(bytes));
-            toast.success(`Imported ${file.name}`);
+            toast.add({
+                description: `Imported ${file.name}`,
+                type: "success"
+            });
         } catch (error) {
-            toast.error(error instanceof Error ? error.message : "Import failed.");
+            toast.add({
+                description: error instanceof Error ? error.message : "Import failed.",
+                type: "error"
+            });
         } finally {
             setIsImporting(false);
         }
