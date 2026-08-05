@@ -9,26 +9,15 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "#/components/ui/dropdown-menu";
-import { GITHUB_URL } from "#/config/constants";
 import { getInitials } from "#/lib/utils";
-import { createKeycloakUtils } from "oidc-spa/keycloak";
-
 import { useOidc } from "#/oidc";
 import { BadgeCheckIcon, LogOut } from "lucide-react";
-import { SiGithub } from "@icons-pack/react-simple-icons";
 
 export function UserMenu() {
-    const { decodedIdToken, issuerUri, clientId, validRedirectUri, logout } = useOidc({
+    const { user, logout } = useOidc({
         assert: "user logged in",
     });
-    const { name, email, preferred_username, picture } = decodedIdToken;
 
-    const keycloakUtils = createKeycloakUtils({ issuerUri });
-
-    const accountLinkUrl = keycloakUtils.getAccountUrl({
-        clientId,
-        validRedirectUri,
-    });
 
     return (
         <DropdownMenu>
@@ -36,8 +25,8 @@ export function UserMenu() {
                 render={
                     <Button variant="ghost" size="icon" className="rounded-full">
                         <Avatar>
-                            {picture ? <AvatarImage src={picture} alt={name} /> : null}
-                            <AvatarFallback>{getInitials(name)}</AvatarFallback>
+                            <AvatarImage src={user.profileImageUrl} alt={user.name} />
+                            <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                         </Avatar>
                         <span className="sr-only">Open user menu</span>
                     </Button>
@@ -46,14 +35,14 @@ export function UserMenu() {
             <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuGroup>
                     <DropdownMenuLabel className="flex flex-col gap-0.5">
-                        <span className="truncate text-sm font-medium">{name}</span>
+                        <span className="truncate text-sm font-medium">{user.name}</span>
                         <span className="truncate text-xs font-normal text-muted-foreground">
-                            {email ?? preferred_username}
+                            {user.email}
                         </span>
                     </DropdownMenuLabel>
                     <DropdownMenuItem>
                         <a
-                            href={accountLinkUrl}
+                            href={user.accountConsoleUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 w-full"
@@ -64,17 +53,6 @@ export function UserMenu() {
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                    <a
-                        href={GITHUB_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 w-full"
-                    >
-                        <SiGithub />
-                        GitHub
-                    </a>
-                </DropdownMenuItem>
                 <DropdownMenuItem
                     variant="destructive"
                     onClick={() => logout({ redirectTo: "home" })}

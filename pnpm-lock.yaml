@@ -136,8 +136,8 @@ importers:
         specifier: 3.0.260610-beta
         version: 3.0.260610-beta(chokidar@5.0.0)(dotenv@17.4.2)(drizzle-orm@0.45.2(@neondatabase/serverless@1.1.0))(jiti@2.7.0)(lru-cache@11.5.0)(vite@8.1.0(@types/node@22.19.19)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3))
       oidc-spa:
-        specifier: ^10.2.8
-        version: 10.2.8(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/react-start@1.168.27(crossws@0.4.6(srvx@0.11.16))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.1.0(@types/node@22.19.19)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3)))(@types/react@19.2.15)(react@19.2.6)
+        specifier: 10.3.0-rc.4
+        version: 10.3.0-rc.4(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/react-start@1.168.27(crossws@0.4.6(srvx@0.11.16))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.1.0(@types/node@22.19.19)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3)))(@types/react@19.2.15)(react@19.2.6)
       png-to-ico:
         specifier: ^3.0.1
         version: 3.0.1
@@ -6214,8 +6214,8 @@ packages:
   ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
 
-  oidc-spa@10.2.8:
-    resolution: {integrity: sha512-ktLo/n2blNmMJgBI+2+40FCiHQJQqvZXnTt6cp9wqiknfnKIZlMkW8GRUm6uhWaPp95XDquE1Cxl7c2I/JzW0Q==}
+  oidc-spa@10.3.0-rc.4:
+    resolution: {integrity: sha512-3Fr6okMs+IpqUHc2y9Zw0vHkc+ts5DwAidvmdiSk3mm+22xk4tBEwiwrTLPwnD7SHn9O/VHQaPrXUCrr4piixg==}
     peerDependencies:
       '@angular/common': '*'
       '@angular/core': '*'
@@ -13265,7 +13265,7 @@ snapshots:
 
   ohash@2.0.11: {}
 
-  oidc-spa@10.2.8(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/react-start@1.168.27(crossws@0.4.6(srvx@0.11.16))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.1.0(@types/node@22.19.19)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3)))(@types/react@19.2.15)(react@19.2.6):
+  oidc-spa@10.3.0-rc.4(@tanstack/react-router@1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/react-start@1.168.27(crossws@0.4.6(srvx@0.11.16))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.1.0(@types/node@22.19.19)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3)))(@types/react@19.2.15)(react@19.2.6):
     optionalDependencies:
       '@tanstack/react-router': 1.170.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/react-start': 1.168.27(crossws@0.4.6(srvx@0.11.16))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.1.0(@types/node@22.19.19)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.3))

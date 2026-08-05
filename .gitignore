@@ -72,3 +72,5 @@ dist-ssr
 .output
 .vinxi
 __unconfig*
+
+/tanstack-start
