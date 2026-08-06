@@ -1,4 +1,3 @@
-import { AutoLogoutWarningOverlay } from "#/components/AutoLogoutWarningOverlay";
 import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
@@ -86,7 +85,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                         <TooltipProvider>
                             <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
                         </TooltipProvider>
-                        <AutoLogoutWarningOverlay />
                         <Toaster />
                     </ThemeProvider>
                 )}

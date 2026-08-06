@@ -1,4 +1,3 @@
-import { oidcFnMiddleware } from "#/oidc";
 import { emailTemplateIds } from "@kc-studio/shadcn-theme/email";
 import { renderEmailPreview } from "@kc-studio/shadcn-theme/email-preview";
 import { createServerFn } from "@tanstack/react-start";
@@ -16,7 +15,6 @@ const schema = z.object({
 });
 
 export const renderEmailPreviewFn = createServerFn({ method: "POST" })
-    .middleware([oidcFnMiddleware({ assert: "user logged in" })])
     .validator(schema)
     .handler(async ({ data }) => {
         return renderEmailPreview({
