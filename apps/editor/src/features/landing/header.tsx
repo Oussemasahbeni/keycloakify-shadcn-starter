@@ -70,7 +70,7 @@ function DiscordLink() {
 
 function GetStartedButton({ className }: { className?: string }) {
     return (
-        <Link className={cn(buttonVariants({ variant: "default" }), className)} to="/editor">
+        <Link className={cn(buttonVariants({ variant: "default" }), className)} to="/editor/login">
             Get Started
         </Link>
     );

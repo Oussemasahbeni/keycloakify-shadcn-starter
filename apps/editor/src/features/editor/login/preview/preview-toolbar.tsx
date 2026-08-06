@@ -116,7 +116,7 @@ export function LoginPreviewToolbar({ pageId, storyId, onPageChange, onStoryChan
                     onPageChange={onPageChange}
                     onStoryChange={onStoryChange}
                 />
-                <LanguageSelect />
+                <LanguageSelect surface="login" />
                 <ViewportToggle />
                 <PreviewThemeToggle />
             </div>

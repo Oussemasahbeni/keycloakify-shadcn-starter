@@ -3,12 +3,12 @@ import { createContext, use, useState } from "react";
 import { useTheme } from "#/components/theme-provider";
 import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
 import { emailTemplates } from "@kc-studio/shadcn-theme/email";
+import type { Layout } from "react-resizable-panels";
 import type { ThemeAssetKey } from "../shared/model/assets";
 import { emptyAssets } from "../shared/model/assets";
 
 import { BASE_THEME_NAME } from "../shared/constants";
 import type { PreviewColorScheme } from "../shared/model/preview-color-scheme";
-import type { Surface } from "../shared/model/surface";
 import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
 import { defaultLoginThemeConfig } from "../shared/model/theme-config";
 import type { Viewport } from "../shared/model/viewport";
@@ -17,8 +17,8 @@ import type { ParsedTheme } from "../shared/parse-theme-jar";
 interface EditorContextValue {
     themeName: string;
     setThemeName: (name: string) => void;
-    activeSurface: Surface;
-    setActiveSurface: (s: Surface) => void;
+    panelLayout: Layout | undefined;
+    setPanelLayout: (layout: Layout) => void;
     readonly resetConfig: () => void;
     readonly importTheme: (state: ParsedTheme) => void;
     login: {
@@ -48,7 +48,7 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     const { theme } = useTheme();
     const [viewport, setViewport] = useState<Viewport>("desktop");
     const [themeName, setThemeName] = useState<string>(BASE_THEME_NAME);
-    const [activeSurface, setActiveSurface] = useState<Surface>("login");
+    const [panelLayout, setPanelLayout] = useState<Layout>();
     const [previewColorScheme, setPreviewColorScheme] = useState<PreviewColorScheme>(theme as PreviewColorScheme);
     const [loginThemeConfig, setLoginThemeConfig] = useState<LoginThemeConfig>(defaultLoginThemeConfig);
     const [emailThemeConfig, setEmailThemeConfig] = useState<EmailThemeConfig>({});
@@ -59,8 +59,8 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     const value: EditorContextValue = {
         themeName,
         setThemeName,
-        activeSurface,
-        setActiveSurface,
+        panelLayout,
+        setPanelLayout,
         resetConfig: () => {
             setLoginThemeConfig(defaultLoginThemeConfig);
             setEmailThemeConfig({});

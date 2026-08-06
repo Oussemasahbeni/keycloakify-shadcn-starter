@@ -44,5 +44,5 @@ bootstrapOidc(({ process }) => ({
     implementation: "real",
     issuerUri: process.env.OIDC_ISSUER_URI,
     clientId: process.env.OIDC_CLIENT_ID,
-    debugLogs: import.meta.env.DEV || process.env.NODE_ENV === "development",
+    debugLogs: import.meta.env.DEV || process.env.NODE_ENV === "development"
 }));
