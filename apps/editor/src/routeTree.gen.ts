@@ -12,6 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PreviewRouteImport } from './routes/preview'
 import { Route as EditorRouteImport } from './routes/editor'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EditorIndexRouteImport } from './routes/editor.index'
+import { Route as EditorLoginRouteImport } from './routes/editor.login'
+import { Route as EditorEmailRouteImport } from './routes/editor.email'
 
 const PreviewRoute = PreviewRouteImport.update({
   id: '/preview',
@@ -28,34 +31,70 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EditorIndexRoute = EditorIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => EditorRoute,
+} as any)
+const EditorLoginRoute = EditorLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => EditorRoute,
+} as any)
+const EditorEmailRoute = EditorEmailRouteImport.update({
+  id: '/email',
+  path: '/email',
+  getParentRoute: () => EditorRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/editor': typeof EditorRoute
+  '/editor': typeof EditorRouteWithChildren
   '/preview': typeof PreviewRoute
+  '/editor/email': typeof EditorEmailRoute
+  '/editor/login': typeof EditorLoginRoute
+  '/editor/': typeof EditorIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/editor': typeof EditorRoute
   '/preview': typeof PreviewRoute
+  '/editor/email': typeof EditorEmailRoute
+  '/editor/login': typeof EditorLoginRoute
+  '/editor': typeof EditorIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/editor': typeof EditorRoute
+  '/editor': typeof EditorRouteWithChildren
   '/preview': typeof PreviewRoute
+  '/editor/email': typeof EditorEmailRoute
+  '/editor/login': typeof EditorLoginRoute
+  '/editor/': typeof EditorIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/editor' | '/preview'
+  fullPaths:
+    | '/'
+    | '/editor'
+    | '/preview'
+    | '/editor/email'
+    | '/editor/login'
+    | '/editor/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/editor' | '/preview'
-  id: '__root__' | '/' | '/editor' | '/preview'
+  to: '/' | '/preview' | '/editor/email' | '/editor/login' | '/editor'
+  id:
+    | '__root__'
+    | '/'
+    | '/editor'
+    | '/preview'
+    | '/editor/email'
+    | '/editor/login'
+    | '/editor/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  EditorRoute: typeof EditorRoute
+  EditorRoute: typeof EditorRouteWithChildren
   PreviewRoute: typeof PreviewRoute
 }
 
@@ -82,12 +121,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/editor/': {
+      id: '/editor/'
+      path: '/'
+      fullPath: '/editor/'
+      preLoaderRoute: typeof EditorIndexRouteImport
+      parentRoute: typeof EditorRoute
+    }
+    '/editor/login': {
+      id: '/editor/login'
+      path: '/login'
+      fullPath: '/editor/login'
+      preLoaderRoute: typeof EditorLoginRouteImport
+      parentRoute: typeof EditorRoute
+    }
+    '/editor/email': {
+      id: '/editor/email'
+      path: '/email'
+      fullPath: '/editor/email'
+      preLoaderRoute: typeof EditorEmailRouteImport
+      parentRoute: typeof EditorRoute
+    }
   }
 }
 
+interface EditorRouteChildren {
+  EditorEmailRoute: typeof EditorEmailRoute
+  EditorLoginRoute: typeof EditorLoginRoute
+  EditorIndexRoute: typeof EditorIndexRoute
+}
+
+const EditorRouteChildren: EditorRouteChildren = {
+  EditorEmailRoute: EditorEmailRoute,
+  EditorLoginRoute: EditorLoginRoute,
+  EditorIndexRoute: EditorIndexRoute,
+}
+
+const EditorRouteWithChildren =
+  EditorRoute._addFileChildren(EditorRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  EditorRoute: EditorRoute,
+  EditorRoute: EditorRouteWithChildren,
   PreviewRoute: PreviewRoute,
 }
 export const routeTree = rootRouteImport
