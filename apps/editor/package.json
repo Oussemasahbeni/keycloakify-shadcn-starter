@@ -7,7 +7,7 @@
     },
     "scripts": {
         "copy-template-jar": "node scripts/copy-template-jar.mjs",
-        "predev": "node scripts/copy-template-jar.mjs",
+        "predev": "([ ! -f .env ] && cp .env.sample .env || true) && node scripts/copy-template-jar.mjs",
         "dev": "vite dev --port 3000",
         "prebuild": "node scripts/copy-template-jar.mjs",
         "build": "vite build",
@@ -45,7 +45,7 @@
         "fflate": "^0.8.3",
         "lucide-react": "^0.577.0",
         "nitro": "3.0.260610-beta",
-        "oidc-spa": "^10.2.8",
+        "oidc-spa": "10.3.0-rc.4",
         "png-to-ico": "^3.0.1",
         "react": "catalog:",
         "react-dom": "catalog:",

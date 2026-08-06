@@ -1,56 +1,48 @@
+import { createKeycloakUtils } from "oidc-spa/keycloak";
 import { oidcSpa } from "oidc-spa/react-tanstack-start";
 import { z } from "zod";
+import profileImageUrlFallback from "./profileImageFallback.svg";
 
-export const {
-    bootstrapOidc,
-    useOidc,
-    getOidc,
-    // NOTE: Each time you enforceLogin on a route the oidc-spa vite plugin
-    // will automatically switch this route to `ssr: false`.
-    // This ensures that everything that can be SSR'd is and the rest is delayed to the client.
-    enforceLogin,
-    oidcFnMiddleware,
-    oidcRequestMiddleware,
-} = oidcSpa
-    .withExpectedDecodedIdTokenShape({
-        decodedIdTokenSchema: z.object({
-            name: z.string(),
-            picture: z.string().optional(),
-            email: z.email().optional(),
-            preferred_username: z.string().optional(),
-            realm_access: z.object({ roles: z.array(z.string()) }).optional(),
-        }),
+export type User = {
+    name: string;
+    email: string;
+    profileImageUrl: string;
+    accountConsoleUrl: string;
+};
+
+export const { bootstrapOidc, useOidc, enforceLogin, oidcFnMiddleware } = oidcSpa
+    .withUser<User>({
+        createUser: async ({ decodedIdToken, issuerUri, clientId, validRedirectUri }) => {
+            const { name, email, picture } = z
+                .object({
+                    name: z.string(),
+                    email: z.string(),
+                    picture: z.string().optional(),
+                })
+                .parse(decodedIdToken);
+
+            const user: User = {
+                name,
+                email,
+                profileImageUrl: picture ?? profileImageUrlFallback,
+                accountConsoleUrl: createKeycloakUtils({ issuerUri }).getAccountUrl({
+                    clientId,
+                    validRedirectUri,
+                }),
+            };
+
+            return user;
+        },
     })
     .withAccessTokenValidation({
         type: "RFC 9068: JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens",
-        expectedAudience: () => "account",
-        accessTokenClaimsSchema: z.object({
-            sub: z.string(),
-            realm_access: z.object({ roles: z.array(z.string()) }).optional(),
-        }),
+        expectedAudience: ({ process }) => process.env.OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE,
     })
     .createUtils();
 
-// Can be call anywhere, even in the body of a React component.
-// All subsequent calls will be safely ignored.
-if (typeof window === "undefined" || window.location.pathname !== "/preview") {
-    bootstrapOidc(({ process }) => ({
-        implementation: "real",
-        issuerUri: process.env.OIDC_ISSUER_URI,
-        clientId: process.env.OIDC_CLIENT_ID,
-        debugLogs: import.meta.env.DEV || process.env.NODE_ENV === "development",
-    }));
-}
-
-export const fetchWithAuth: typeof fetch = async (input, init) => {
-    const oidc = await getOidc();
-
-    if (oidc.isUserLoggedIn) {
-        const accessToken = await oidc.getAccessToken();
-        const headers = new Headers(init?.headers);
-        headers.set("Authorization", `Bearer ${accessToken}`);
-        (init ??= {}).headers = headers;
-    }
-
-    return fetch(input, init);
-};
+bootstrapOidc(({ process }) => ({
+    implementation: "real",
+    issuerUri: process.env.OIDC_ISSUER_URI,
+    clientId: process.env.OIDC_CLIENT_ID,
+    debugLogs: import.meta.env.DEV || process.env.NODE_ENV === "development",
+}));
