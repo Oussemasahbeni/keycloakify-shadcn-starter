@@ -2,13 +2,14 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: "Geist", "Inter Variable", sans-serif;
-    --font-mono: "Geist Mono", ui-monospace, monospace;
+    --font-sans: "Geist Variable", "Geist", "Inter Variable", sans-serif;
+    --font-mono: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
     --font-serif-display: "Instrument Serif", Georgia, serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
@@ -48,6 +49,30 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ---------------------------------------------------------------------------
+ * Landing page: the schematic frame
+ *
+ * The landing page's whole identity is that every band is a ruled, bounded
+ * document with notched corners — a blueprint rather than a stack of cards.
+ * It is six declarations and zero assets.
+ * ------------------------------------------------------------------------- */
+
+@utility wrapper {
+    position: relative;
+    margin-inline: auto;
+    /* clip, not hidden — `hidden` would break `position: sticky` on the header */
+    overflow-x: clip;
+    border-color: var(--color-border);
+
+    @media (width >= 48rem) {
+        max-width: calc(100vw - 2rem);
+        border-inline-width: 1px;
+    }
+    @media (width >= 90rem) {
+        max-width: 90rem;
+    }
 }
 
 :root,
@@ -131,6 +156,6 @@
         cursor: pointer;
     }
     html {
-        @apply font-sans;
+        @apply scroll-smooth font-sans;
     }
 }

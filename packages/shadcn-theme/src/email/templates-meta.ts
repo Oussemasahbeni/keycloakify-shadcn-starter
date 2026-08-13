@@ -9,7 +9,7 @@ import type { KcEmailVars } from "keycloakify-emails/variables";
 
 export type EmailTemplateId = KcEmailVars["emailId"] extends `${infer Id}.ftl` ? Id : never;
 
- export interface EmailTemplate {
+ export type EmailTemplate = {
     id: EmailTemplateId;
     label: string;
 }

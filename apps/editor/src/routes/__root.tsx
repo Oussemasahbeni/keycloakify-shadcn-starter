@@ -2,7 +2,7 @@ import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
 import { TooltipProvider } from "#/components/ui/tooltip";
-import { seo } from "#/utils/seo";
+import { seo } from "#/lib/seo.ts";
 import { Toaster } from "@/components/ui/toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
@@ -23,7 +23,7 @@ export const Route = createRootRoute({
             ...seo({
                 title: "Keycloak Theme Editor — Visually customize Keycloak login themes",
                 description:
-                    "An open-source visual editor for Keycloak login themes. Customize colors, fonts, radius, and layout with shadcn/ui, preview every login page live, and export a deploy-ready theme.",
+                    "A visual editor for Keycloak login themes. Customize colors, fonts, radius, and layout, preview every login page live, and export a deploy-ready theme.",
                 keywords:
                     "Keycloak, Keycloak theme, Keycloakify, login theme, theme editor, shadcn/ui, Tailwind CSS, OIDC, SSO",
                 image: "/editor-preview-white.png",

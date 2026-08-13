@@ -5,11 +5,9 @@ import { LoginPreviewIframe } from "#/features/editor/login/preview/preview-ifra
 import { LoginThemeSidebar } from "#/features/editor/login/sidebar";
 import { EditorHeader } from "#/features/editor/shared/components/editor-header.tsx";
 import { EditorProvider, useEditor } from "#/features/editor/state/editor-context";
-import { enforceLogin } from "#/oidc";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/editor")({
-    beforeLoad: enforceLogin,
     component: EditorPage,
 });
 

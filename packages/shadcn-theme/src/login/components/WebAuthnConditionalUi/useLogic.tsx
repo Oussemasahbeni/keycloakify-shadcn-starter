@@ -77,7 +77,7 @@ export type WebAuthnResult =
 
 let abortController: AbortController | undefined = undefined;
 
-export interface UseLogicProps {
+export type UseLogicProps = {
     isUserIdentified: "true" | "false";
     challenge: string;
     rpId: string;

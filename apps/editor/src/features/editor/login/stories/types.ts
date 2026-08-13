@@ -17,13 +17,13 @@ export const pageCategories = [
 
 export type PageCategory = (typeof pageCategories)[number]["id"];
 
-export interface PageGroup {
+export type PageGroup = {
     id: PageCategory;
     label: string;
     pages: PagePreview[];
 }
 
-export interface PageStory<TId extends PageId = PageId> {
+export type PageStory<TId extends PageId = PageId> = {
     id: string;
     label: string;
     /**
@@ -32,7 +32,7 @@ export interface PageStory<TId extends PageId = PageId> {
     overrides?: DeepPartial<Extract<KcContext, { pageId: TId }>>;
 }
 
-export interface PagePreview<TId extends PageId = PageId> {
+export type PagePreview<TId extends PageId = PageId> = {
     pageId: TId;
     label: string;
     category: PageCategory;

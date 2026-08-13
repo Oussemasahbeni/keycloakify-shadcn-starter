@@ -3,7 +3,7 @@ import { Monitor, Smartphone, Tablet } from "lucide-react";
 
 export type Viewport = "desktop" | "tablet" | "mobile";
 
-interface ViewportConfig {
+type ViewportConfig = {
     id: Viewport;
     label: string;
     icon: LucideIcon;

@@ -14,7 +14,7 @@ import { defaultLoginThemeConfig } from "../shared/model/theme-config";
 import type { Viewport } from "../shared/model/viewport";
 import type { ParsedTheme } from "../shared/parse-theme-jar";
 
-interface EditorContextValue {
+type EditorContextValue = {
     themeName: string;
     setThemeName: (name: string) => void;
     activeSurface: Surface;

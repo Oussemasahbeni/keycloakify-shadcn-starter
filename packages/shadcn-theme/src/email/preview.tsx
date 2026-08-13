@@ -83,7 +83,7 @@ function fillMocks(html: string): string {
     });
 }
 
-interface EmailThemeOptions {
+type EmailThemeOptions = {
     primaryColor: PrimaryPreset;
     logoUrl?: string | undefined;
 }

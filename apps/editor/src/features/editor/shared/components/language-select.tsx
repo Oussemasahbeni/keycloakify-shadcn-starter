@@ -7,8 +7,8 @@ import {
 } from "#/components/ui/select";
 
 import { Globe } from "lucide-react";
-import type { Locale } from "../model/locales";
-import { DEFAULT_LOCALE, supportedLocales } from "../model/locales";
+import type { Locale } from "../../../../lib/locales";
+import { DEFAULT_LOCALE, supportedLocales } from "../../../../lib/locales";
 import { useEditor } from "../../state/editor-context";
 
 function labelFor(locale: Locale) {

@@ -45,8 +45,9 @@ export const supportedLocales = [
     { value: "zh-TW", label: "Chinese (Traditional) (中文繁體)" },
 ] as const;
 
-export const supportedLocaleValues = supportedLocales.map(l => l.value);
+export const LOCALES = supportedLocales.map(l => l.value);
 
 export type Locale = (typeof supportedLocales)[number]["value"];
 
 export const DEFAULT_LOCALE: Locale = "en";
+export const LOCALE_COUNT = supportedLocales.length;

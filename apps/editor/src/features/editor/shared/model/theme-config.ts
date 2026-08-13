@@ -3,9 +3,9 @@ import type {
     BasePalette,
     FontFamily,
     Layout,
+    PrimaryPreset,
     RadiusPreset,
     SidePanelPosition,
-    PrimaryPreset,
 } from "@kc-studio/shadcn-theme/theme";
 import {
     basePaletteOptions,
@@ -26,13 +26,13 @@ import {
     EMAIL_PROPERTY_KEYS,
     fontFamilyOptions,
     layoutOptions,
+    primaryPresetOptions,
     radiusPresetOptions,
     sidePanelPositionOptions,
     THEME_PROPERTY_KEYS,
-    primaryPresetOptions,
 } from "@kc-studio/shadcn-theme/theme";
-import type { Locale } from "./locales";
-import { supportedLocaleValues } from "./locales";
+import type { Locale } from "../../../../lib/locales";
+import { LOCALES } from "../../../../lib/locales";
 
 import type { Equals } from "tsafe";
 import { assert as assertType } from "tsafe";
@@ -77,7 +77,7 @@ export const loginThemeConfigSchema = (() => {
         radius: z.enum(radiusPresetOptions),
         font: z.enum(fontFamilyOptions),
         layout: z.enum(layoutOptions),
-        locale: z.enum(supportedLocaleValues).optional(),
+        locale: z.enum(LOCALES).optional(),
         showPlaceholder: z.boolean(),
         showRealmName: z.boolean(),
         logoUrl: z.string(),
@@ -97,7 +97,7 @@ export const emailThemeConfigSchema = (() => {
     const schema = z.object({
         primary: z.enum(primaryPresetOptions).optional(),
         logoUrl: z.string().optional(),
-        locale: z.enum(supportedLocaleValues).optional(),
+        locale: z.enum(LOCALES).optional(),
     });
     assertType<Equals<z.infer<typeof schema>, EmailThemeConfig>>();
     return schema;

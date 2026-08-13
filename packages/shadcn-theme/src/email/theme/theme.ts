@@ -15,7 +15,7 @@ export const EMAIL_ENV = {
     logoUrl: { name: "SHADCN_EMAIL_LOGO_URL", default: "" },
 } as const;
 
-export interface EmailTheme {
+export type EmailTheme = {
     primaryColor: string;
     foregroundColor: string;
     logoUrl: string | undefined;
