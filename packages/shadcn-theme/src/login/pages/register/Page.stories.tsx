@@ -38,8 +38,7 @@ export const WithEmailAlreadyExists: Story = {
                 // existsError() so they are the only ones that need to mock.
                 existsError: (fieldName: string, ...otherFieldNames: string[]) =>
                     [fieldName, ...otherFieldNames].includes("email"),
-                get: (fieldName: string) =>
-                    fieldName === "email" ? "Email already exists." : undefined,
+                get: (fieldName: string) => (fieldName === "email" ? "Email already exists." : undefined),
             },
         },
     },
@@ -58,16 +57,14 @@ export const WithRestrictedToMITStudents: Story = {
                             },
                         },
                         annotations: {
-                            inputHelperTextBefore:
-                                "${profile.attributes.email.inputHelperTextBefore}",
+                            inputHelperTextBefore: "${profile.attributes.email.inputHelperTextBefore}",
                         },
                     },
                 },
             },
             "x-keycloakify": {
                 messages: {
-                    "profile.attributes.email.inputHelperTextBefore":
-                        "Please use your MIT or Berkeley email.",
+                    "profile.attributes.email.inputHelperTextBefore": "Please use your MIT or Berkeley email.",
                     "profile.attributes.email.pattern.error":
                         "This is not an MIT (<strong>@mit.edu</strong>) nor a Berkeley (<strong>@berkeley.edu</strong>) email.",
                 },

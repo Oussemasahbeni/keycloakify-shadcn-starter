@@ -26,30 +26,17 @@ export function Page() {
                 <div className="flex flex-col gap-4">
                     <p className="text-foreground">{msg("deletingImplies")}</p>
 
-                    <ul className="list-inside list-disc ps-4 text-muted-foreground">
+                    <ul className="text-muted-foreground list-inside list-disc ps-4">
                         <li>{msg("loggingOutImmediately")}</li>
                         <li>{msg("errasingData")}</li>
                     </ul>
 
-                    <p className="text-foreground font-medium">
-                        {msg("finalDeletionConfirmation")}
-                    </p>
+                    <p className="text-foreground font-medium">{msg("finalDeletionConfirmation")}</p>
                 </div>
 
-                <div
-                    className={[
-                        "flex flex-col gap-3 sm:flex-row",
-                        isRtl ? "sm:flex-row-reverse" : "",
-                    ].join(" ")}
-                >
+                <div className={["flex flex-col gap-3 sm:flex-row", isRtl ? "sm:flex-row-reverse" : ""].join(" ")}>
                     {kcContext.triggered_from_aia && (
-                        <Button
-                            variant="outline"
-                            type="submit"
-                            name="cancel-aia"
-                            value="true"
-                            className="sm:flex-1"
-                        >
+                        <Button variant="outline" type="submit" name="cancel-aia" value="true" className="sm:flex-1">
                             {msgStr("doCancel")}
                         </Button>
                     )}

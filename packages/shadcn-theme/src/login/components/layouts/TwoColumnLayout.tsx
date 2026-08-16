@@ -38,12 +38,7 @@ export function TwoColumnLayout(props: {
 
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
-            <div
-                className={cn(
-                    "relative flex min-h-screen flex-col lg:min-h-0 lg:p-6 lg:pt-10",
-                    formOrderClassName,
-                )}
-            >
+            <div className={cn("relative flex min-h-screen flex-col lg:min-h-0 lg:p-6 lg:pt-10", formOrderClassName)}>
                 <TemplateTopBar align={isLeft ? "end" : "start"} />
                 <div className="flex flex-1 items-center justify-center p-6 md:p-10 lg:items-center">
                     <main className="w-full max-w-xl">{content}</main>
@@ -51,12 +46,7 @@ export function TwoColumnLayout(props: {
             </div>
 
             {sidePanelImageUrl || sidePanelImageDarkUrl ? (
-                <div
-                    className={cn(
-                        "relative hidden h-full overflow-hidden lg:block",
-                        panelOrderClassName,
-                    )}
-                >
+                <div className={cn("relative hidden h-full overflow-hidden lg:block", panelOrderClassName)}>
                     <img
                         src={sidePanelImageUrl || sidePanelImageDarkUrl}
                         alt=""

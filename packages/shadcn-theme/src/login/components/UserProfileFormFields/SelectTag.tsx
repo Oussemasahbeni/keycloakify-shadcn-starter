@@ -1,10 +1,4 @@
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "#/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { assert } from "tsafe/assert";
 import type { InputFieldByTypeProps } from "./InputFieldByType";
 import { InputLabel } from "./InputLabel";
@@ -70,11 +64,7 @@ export function SelectTag(props: InputFieldByTypeProps) {
                 });
             }}
         >
-            <SelectTrigger
-                id={attribute.name}
-                aria-invalid={displayableErrors.length !== 0}
-                className="w-full"
-            >
+            <SelectTrigger id={attribute.name} aria-invalid={displayableErrors.length !== 0} className="w-full">
                 <SelectValue>
                     {(value: string | string[] | null) => {
                         if (Array.isArray(value)) {
@@ -84,11 +74,7 @@ export function SelectTag(props: InputFieldByTypeProps) {
 
                             return value
                                 .map<React.ReactNode>(option => (
-                                    <InputLabel
-                                        key={option}
-                                        attribute={attribute}
-                                        option={option}
-                                    />
+                                    <InputLabel key={option} attribute={attribute} option={option} />
                                 ))
                                 .reduce((prev, curr) => [prev, ", ", curr]);
                         }

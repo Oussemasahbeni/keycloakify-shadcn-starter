@@ -76,9 +76,7 @@ export function useLogic() {
             requireResidentKey: kcContext.requireResidentKey,
             userVerificationRequirement: kcContext.userVerificationRequirement,
             createTimeout:
-                typeof kcContext.createTimeout === "string"
-                    ? Number(kcContext.createTimeout)
-                    : kcContext.createTimeout,
+                typeof kcContext.createTimeout === "string" ? Number(kcContext.createTimeout) : kcContext.createTimeout,
             excludeCredentialIds: kcContext.excludeCredentialIds,
             errmsg: msgStr("webauthn-unsupported-browser-text"),
         });

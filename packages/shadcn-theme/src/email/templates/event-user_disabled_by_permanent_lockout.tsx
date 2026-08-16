@@ -21,11 +21,7 @@ const { exp } = createVariablesHelper("event-user_disabled_by_permanent_lockout.
 
 export const Template = ({ locale, t, theme }: TemplateProps) => {
     return (
-        <EmailLayout
-            preview={t("event-user_disabled_by_permanent_lockout.subject")}
-            locale={locale}
-            theme={theme}
-        >
+        <EmailLayout preview={t("event-user_disabled_by_permanent_lockout.subject")} locale={locale} theme={theme}>
             <Text>
                 {t("event-user_disabled_by_permanent_lockout.message", {
                     date: exp("event.date"),

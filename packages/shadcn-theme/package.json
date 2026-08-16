@@ -20,7 +20,8 @@
         "build-storybook": "storybook build",
         "build-keycloak-theme": "npm run build && keycloakify build",
         "storybook": "storybook dev -p 6006",
-        "format": "prettier . --write",
+        "fmt": "oxfmt",
+        "fmt:check": "oxfmt --check",
         "lint": "eslint",
         "emails:check": "email check ./src/email/templates",
         "emails:preview": "email preview ./src/email/templates"
@@ -86,6 +87,7 @@
         "globals": "^17.6.0",
         "jsx-email": "^3.2.1",
         "keycloakify-emails": "3.4.0",
+        "oxfmt": "^0.63.0",
         "storybook": "^10.4.0",
         "typescript": "catalog:",
         "typescript-eslint": "^8.59.4",

@@ -31,11 +31,7 @@ export function Page() {
 
     return (
         <Template
-            headerNode={
-                kcContext.code.success
-                    ? msg("codeSuccessTitle")
-                    : msg("codeErrorTitle", kcContext.code.error)
-            }
+            headerNode={kcContext.code.success ? msg("codeSuccessTitle") : msg("codeErrorTitle", kcContext.code.error)}
         >
             <div id="kc-code">
                 {kcContext.code.success ? (
@@ -57,11 +53,7 @@ export function Page() {
                                         className="size-4"
                                         aria-label="Copy code to clipboard"
                                     >
-                                        {copied ? (
-                                            <MdCheck className="text-green-500" />
-                                        ) : (
-                                            <MdContentCopy />
-                                        )}
+                                        {copied ? <MdCheck className="text-green-500" /> : <MdContentCopy />}
                                     </Button>
                                 </InputGroupAddon>
                             </InputGroup>

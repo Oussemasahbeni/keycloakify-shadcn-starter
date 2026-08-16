@@ -6,17 +6,8 @@ import { AddRemoveButtonsMultiValuedAttribute } from "./AddRemoveButtonsMultiVal
 import { FieldErrors } from "./FieldErrors";
 import type { InputFieldByTypeProps } from "./InputFieldByType";
 
-export function InputTag(
-    props: InputFieldByTypeProps & { fieldIndex: number | undefined; isInGroup?: boolean },
-) {
-    const {
-        attribute,
-        fieldIndex,
-        dispatchFormAction,
-        valueOrValues,
-        displayableErrors,
-        isInGroup = false,
-    } = props;
+export function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefined; isInGroup?: boolean }) {
+    const { attribute, fieldIndex, dispatchFormAction, valueOrValues, displayableErrors, isInGroup = false } = props;
 
     const { advancedMsgStr } = useI18n();
 
@@ -73,10 +64,7 @@ export function InputTag(
                 min={attribute.annotations.inputTypeMin}
                 step={attribute.annotations.inputTypeStep}
                 {...Object.fromEntries(
-                    Object.entries(attribute.html5DataAnnotations ?? {}).map(([key, value]) => [
-                        `data-${key}`,
-                        value,
-                    ]),
+                    Object.entries(attribute.html5DataAnnotations ?? {}).map(([key, value]) => [`data-${key}`, value]),
                 )}
                 onChange={event =>
                     dispatchFormAction({

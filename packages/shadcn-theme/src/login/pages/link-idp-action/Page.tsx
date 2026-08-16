@@ -11,20 +11,11 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     return (
-        <Template
-            headerNode={msg("linkIdpActionTitle", kcContext.idpDisplayName)}
-            displayMessage={false}
-        >
+        <Template headerNode={msg("linkIdpActionTitle", kcContext.idpDisplayName)} displayMessage={false}>
             <div id="kc-link-text">{msg("linkIdpActionMessage", kcContext.idpDisplayName)}</div>
             <form action={kcContext.url.loginAction} method="post">
-                <div className="flex flex-col sm:flex-row gap-3 sm:justify-between">
-                    <Button
-                        name="cancel-aia"
-                        variant="outline"
-                        className="flex-1"
-                        id="kc-cancel"
-                        type="submit"
-                    >
+                <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
+                    <Button name="cancel-aia" variant="outline" className="flex-1" id="kc-cancel" type="submit">
                         {msgStr("doCancel")}
                     </Button>
                     <Button name="continue" id="kc-continue" type="submit" className="flex-1">

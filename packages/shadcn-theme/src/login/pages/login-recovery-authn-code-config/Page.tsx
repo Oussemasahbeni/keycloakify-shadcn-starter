@@ -29,35 +29,26 @@ export function Page() {
                     <AlertTriangle />
                     <AlertDescription>
                         <div className="flex flex-col gap-2">
-                            <h4 className="font-medium">
-                                {msg("recovery-code-config-warning-title")}
-                            </h4>
+                            <h4 className="font-medium">{msg("recovery-code-config-warning-title")}</h4>
                             <p className="text-sm">{msg("recovery-code-config-warning-message")}</p>
                         </div>
                     </AlertDescription>
                 </Alert>
 
                 <div className="bg-muted/50 rounded-lg p-4">
-                    <ol
-                        id={olRecoveryCodesListId}
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-sm"
-                    >
-                        {recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesList.map(
-                            (code, index) => (
-                                <li key={code} className="flex items-center">
-                                    <span className="text-muted-foreground min-w-8">
-                                        {index + 1}:
-                                    </span>
-                                    <span className="font-medium">
-                                        {code.slice(0, 4)}-{code.slice(4, 8)}-{code.slice(8)}
-                                    </span>
-                                </li>
-                            ),
-                        )}
+                    <ol id={olRecoveryCodesListId} className="grid grid-cols-1 gap-2 font-mono text-sm sm:grid-cols-2">
+                        {recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesList.map((code, index) => (
+                            <li key={code} className="flex items-center">
+                                <span className="text-muted-foreground min-w-8">{index + 1}:</span>
+                                <span className="font-medium">
+                                    {code.slice(0, 4)}-{code.slice(4, 8)}-{code.slice(8)}
+                                </span>
+                            </li>
+                        ))}
                     </ol>
                 </div>
 
-                <div className="flex flex-wrap  gap-2">
+                <div className="flex flex-wrap gap-2">
                     <Button
                         id="printRecoveryCodes"
                         variant="outline"
@@ -103,10 +94,7 @@ export function Page() {
                             }
                         }}
                     />
-                    <Label
-                        htmlFor="kcRecoveryCodesConfirmationCheck"
-                        className="text-sm font-medium cursor-pointer"
-                    >
+                    <Label htmlFor="kcRecoveryCodesConfirmationCheck" className="cursor-pointer text-sm font-medium">
                         {msg("recovery-codes-confirmation-message")}
                     </Label>
                 </div>
@@ -122,11 +110,7 @@ export function Page() {
                         name="generatedRecoveryAuthnCodes"
                         value={recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesAsString}
                     />
-                    <input
-                        type="hidden"
-                        name="generatedAt"
-                        value={recoveryAuthnCodesConfigBean.generatedAt}
-                    />
+                    <input type="hidden" name="generatedAt" value={recoveryAuthnCodesConfigBean.generatedAt} />
                     <input
                         type="hidden"
                         id="userLabel"
@@ -137,13 +121,8 @@ export function Page() {
                     <LogoutOtherSessions />
 
                     {isAppInitiatedAction ? (
-                        <div className="flex flex-col sm:flex-row gap-3">
-                            <Button
-                                type="submit"
-                                id="saveRecoveryAuthnCodesBtn"
-                                disabled
-                                className="sm:flex-1"
-                            >
+                        <div className="flex flex-col gap-3 sm:flex-row">
+                            <Button type="submit" id="saveRecoveryAuthnCodesBtn" disabled className="sm:flex-1">
                                 {msgStr("recovery-codes-action-complete")}
                             </Button>
                             <Button
@@ -158,12 +137,7 @@ export function Page() {
                             </Button>
                         </div>
                     ) : (
-                        <Button
-                            type="submit"
-                            className="w-full"
-                            id="saveRecoveryAuthnCodesBtn"
-                            disabled
-                        >
+                        <Button type="submit" className="w-full" id="saveRecoveryAuthnCodesBtn" disabled>
                             {msgStr("recovery-codes-action-complete")}
                         </Button>
                     )}

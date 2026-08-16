@@ -24,9 +24,7 @@ export function Page() {
                 method="post"
             >
                 <Field>
-                    <FieldLabel htmlFor="device-user-code">
-                        {msg("verifyOAuth2DeviceUserCode")}
-                    </FieldLabel>
+                    <FieldLabel htmlFor="device-user-code">{msg("verifyOAuth2DeviceUserCode")}</FieldLabel>
                     <Input
                         id="device-user-code"
                         name="device_user_code"

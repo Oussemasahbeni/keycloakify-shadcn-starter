@@ -16,9 +16,9 @@ export function TermsAcceptance(props: {
 
     return (
         <div className="flex flex-col gap-4">
-            <div className="p-4 bg-muted/50 rounded-lg flex flex-col gap-2">
-                <h3 className="font-medium text-sm">{msg("termsTitle")}</h3>
-                <div className="text-sm text-muted-foreground">{msg("termsText")}</div>
+            <div className="bg-muted/50 flex flex-col gap-2 rounded-lg p-4">
+                <h3 className="text-sm font-medium">{msg("termsTitle")}</h3>
+                <div className="text-muted-foreground text-sm">{msg("termsText")}</div>
             </div>
 
             <div className="flex flex-col gap-2">
@@ -30,7 +30,7 @@ export function TermsAcceptance(props: {
                         onCheckedChange={checked => onAreTermsAcceptedValueChange(!!checked)}
                         aria-invalid={messagesPerField.existsError("termsAccepted")}
                     />
-                    <Label htmlFor="termsAccepted" className="text-sm font-medium cursor-pointer">
+                    <Label htmlFor="termsAccepted" className="cursor-pointer text-sm font-medium">
                         {msg("acceptTerms")}
                     </Label>
                 </div>

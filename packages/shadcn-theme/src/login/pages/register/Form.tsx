@@ -44,19 +44,18 @@ export function Form() {
                     onAreTermsAcceptedValueChange={setAreTermsAccepted}
                 />
             )}
-            {kcContext.recaptchaRequired &&
-                (kcContext.recaptchaVisible || kcContext.recaptchaAction === undefined) && (
-                    <div className="form-group">
-                        <div className={kcClsx("kcInputWrapperClass")}>
-                            <div
-                                className="g-recaptcha"
-                                data-size="compact"
-                                data-sitekey={kcContext.recaptchaSiteKey}
-                                data-action={kcContext.recaptchaAction}
-                            ></div>
-                        </div>
+            {kcContext.recaptchaRequired && (kcContext.recaptchaVisible || kcContext.recaptchaAction === undefined) && (
+                <div className="form-group">
+                    <div className={kcClsx("kcInputWrapperClass")}>
+                        <div
+                            className="g-recaptcha"
+                            data-size="compact"
+                            data-sitekey={kcContext.recaptchaSiteKey}
+                            data-action={kcContext.recaptchaAction}
+                        ></div>
                     </div>
-                )}
+                </div>
+            )}
             <div className={kcClsx("kcFormGroupClass")}>
                 {kcContext.recaptchaRequired &&
                 !kcContext.recaptchaVisible &&
@@ -82,11 +81,8 @@ export function Form() {
                     </div>
                 ) : (
                     <Button
-                        disabled={
-                            !isFormSubmittable ||
-                            (kcContext.termsAcceptanceRequired && !areTermsAccepted)
-                        }
-                        className="w-full mt-2"
+                        disabled={!isFormSubmittable || (kcContext.termsAcceptanceRequired && !areTermsAccepted)}
+                        className="mt-2 w-full"
                         name="register"
                         type="submit"
                     >
@@ -95,11 +91,8 @@ export function Form() {
                 )}
             </div>
 
-            <div className=" flex justify-end">
-                <a
-                    className={cn(buttonVariants({ variant: "link" }))}
-                    href={kcContext.url.loginUrl}
-                >
+            <div className="flex justify-end">
+                <a className={cn(buttonVariants({ variant: "link" }))} href={kcContext.url.loginUrl}>
                     {msg("backToLogin")}
                 </a>
             </div>

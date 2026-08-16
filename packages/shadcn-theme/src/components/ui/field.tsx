@@ -27,10 +27,7 @@ function FieldLegend({
         <legend
             data-slot="field-legend"
             data-variant={variant}
-            className={cn(
-                "mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base",
-                className,
-            )}
+            className={cn("mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base", className)}
             {...props}
         />
     );
@@ -84,10 +81,7 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
     return (
         <div
             data-slot="field-content"
-            className={cn(
-                "group/field-content flex flex-1 flex-col gap-0.5 leading-snug",
-                className,
-            )}
+            className={cn("group/field-content flex flex-1 flex-col gap-0.5 leading-snug", className)}
             {...props}
         />
     );
@@ -146,16 +140,13 @@ function FieldSeparator({
         <div
             data-slot="field-separator"
             data-content={!!children}
-            className={cn(
-                "relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2",
-                className,
-            )}
+            className={cn("relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2", className)}
             {...props}
         >
             <Separator className="absolute inset-0 top-1/2" />
             {children && (
                 <span
-                    className="relative mx-auto block w-fit bg-background px-2 text-muted-foreground"
+                    className="bg-background text-muted-foreground relative mx-auto block w-fit px-2"
                     data-slot="field-separator-content"
                 >
                     {children}
@@ -190,9 +181,7 @@ function FieldError({
 
         return (
             <ul className="ms-4 flex list-disc flex-col gap-1">
-                {uniqueErrors.map(
-                    error => error?.message && <li key={error.message}>{error.message}</li>,
-                )}
+                {uniqueErrors.map(error => error?.message && <li key={error.message}>{error.message}</li>)}
             </ul>
         );
     }, [children, errors]);

@@ -22,10 +22,7 @@ export function Page() {
     const showPlaceholder = kcContext.properties.SHADCN_THEME_SHOW_PLACEHOLDER === "true";
 
     return (
-        <Template
-            headerNode={msg("doLogIn")}
-            displayMessage={!kcContext.messagesPerField.existsError("password")}
-        >
+        <Template headerNode={msg("doLogIn")} displayMessage={!kcContext.messagesPerField.existsError("password")}>
             <form
                 id="kc-form-login"
                 onSubmit={() => {
@@ -44,9 +41,7 @@ export function Page() {
                             id="password"
                             name="password"
                             autoComplete="current-password"
-                            placeholder={
-                                showPlaceholder ? msgStr("passwordPlaceholder") : undefined
-                            }
+                            placeholder={showPlaceholder ? msgStr("passwordPlaceholder") : undefined}
                             aria-invalid={kcContext.messagesPerField.existsError("password")}
                         />
                         <InputGroupAddon align="inline-end">
@@ -59,9 +54,7 @@ export function Page() {
                                 id="input-error"
                                 aria-live="polite"
                                 dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(
-                                        kcContext.messagesPerField.getFirstError("password"),
-                                    ),
+                                    __html: kcSanitize(kcContext.messagesPerField.getFirstError("password")),
                                 }}
                             />
                         </FieldError>
@@ -70,23 +63,16 @@ export function Page() {
 
                 <div className="flex justify-end">
                     {kcContext.realm.resetPasswordAllowed && (
-                        <span className=" underline-offset-4 hover:underline">
+                        <span className="underline-offset-4 hover:underline">
                             <a href={kcContext.url.loginResetCredentialsUrl}>
-                                <Label className="text-sm font-medium cursor-pointer">
-                                    {msg("doForgotPassword")}
-                                </Label>
+                                <Label className="cursor-pointer text-sm font-medium">{msg("doForgotPassword")}</Label>
                             </a>
                         </span>
                     )}
                 </div>
 
-                <div className="flex justify-end ">
-                    <Button
-                        disabled={isLoginButtonDisabled}
-                        className="w-full"
-                        name="login"
-                        type="submit"
-                    >
+                <div className="flex justify-end">
+                    <Button disabled={isLoginButtonDisabled} className="w-full" name="login" type="submit">
                         {msgStr("doLogIn")}
                     </Button>
                 </div>

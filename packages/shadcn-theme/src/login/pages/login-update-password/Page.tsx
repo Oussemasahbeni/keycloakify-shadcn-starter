@@ -24,12 +24,7 @@ export function Page() {
             displayMessage={!messagesPerField.existsError("password", "password-confirm")}
             headerNode={msg("updatePasswordTitle")}
         >
-            <form
-                id="kc-passwd-update-form"
-                className="flex flex-col gap-6"
-                action={url.loginAction}
-                method="post"
-            >
+            <form id="kc-passwd-update-form" className="flex flex-col gap-6" action={url.loginAction} method="post">
                 <Field>
                     <FieldLabel htmlFor="password-new">{msg("passwordNew")}</FieldLabel>
                     <InputGroup>
@@ -39,9 +34,7 @@ export function Page() {
                             name="password-new"
                             autoFocus
                             autoComplete="new-password"
-                            placeholder={
-                                showPlaceholder ? msgStr("newPasswordPlaceholder") : undefined
-                            }
+                            placeholder={showPlaceholder ? msgStr("newPasswordPlaceholder") : undefined}
                             aria-invalid={messagesPerField.existsError("password")}
                         />
                         <InputGroupAddon align="inline-end">
@@ -69,9 +62,7 @@ export function Page() {
                             id="password-confirm"
                             name="password-confirm"
                             autoComplete="new-password"
-                            placeholder={
-                                showPlaceholder ? msgStr("confirmPasswordPlaceholder") : undefined
-                            }
+                            placeholder={showPlaceholder ? msgStr("confirmPasswordPlaceholder") : undefined}
                             aria-invalid={messagesPerField.existsError("password-confirm")}
                         />
                         <InputGroupAddon align="inline-end">
@@ -84,9 +75,7 @@ export function Page() {
                                 id="input-error"
                                 aria-live="polite"
                                 dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(
-                                        messagesPerField.getFirstError("password-confirm"),
-                                    ),
+                                    __html: kcSanitize(messagesPerField.getFirstError("password-confirm")),
                                 }}
                             />
                         </FieldError>
@@ -100,13 +89,7 @@ export function Page() {
                         {msgStr("doSubmit")}
                     </Button>
                     {isAppInitiatedAction && (
-                        <Button
-                            variant="outline"
-                            className="w-full"
-                            type="submit"
-                            name="cancel-aia"
-                            value="true"
-                        >
+                        <Button variant="outline" className="w-full" type="submit" name="cancel-aia" value="true">
                             {msg("doCancel")}
                         </Button>
                     )}

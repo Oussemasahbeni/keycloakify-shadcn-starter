@@ -24,7 +24,7 @@ export function WebAuthnConditionalUI(props: UseLogicProps) {
             <Button
                 id="authenticateWebAuthnButton"
                 type="button"
-                className="w-full mt-4"
+                className="mt-4 w-full"
                 variant="outline"
                 onClick={onPasskeyDoAuthenticateClick}
             >

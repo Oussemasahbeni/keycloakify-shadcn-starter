@@ -20,13 +20,10 @@ export function Page() {
             headerNode={msg("loginTotpTitle")}
             displayMessage={!kcContext.messagesPerField.existsError("totp", "userLabel")}
         >
-            <ol
-                id="kc-totp-settings"
-                className="list-decimal flex flex-col gap-4 text-sm text-foreground px-4"
-            >
+            <ol id="kc-totp-settings" className="text-foreground flex list-decimal flex-col gap-4 px-4 text-sm">
                 <li className="flex flex-col gap-2">
                     <p>{msg("loginTotpStep1")}</p>
-                    <ul className="list-disc list-inside ms-4" id="kc-totp-supported-apps">
+                    <ul className="ms-4 list-inside list-disc" id="kc-totp-supported-apps">
                         {kcContext.totp.supportedApplications.map(app => (
                             <li className="text-primary" key={app}>
                                 {advancedMsg(app)}
@@ -39,11 +36,11 @@ export function Page() {
                     <>
                         <li>
                             <p className="mb-3">{msg("loginTotpManualStep2")}</p>
-                            <div className="bg-muted/30 p-4 rounded-lg border border-border">
+                            <div className="bg-muted/30 border-border rounded-lg border p-4">
                                 <div>
                                     <span
                                         id="kc-totp-secret-key"
-                                        className="font-mono text-lg bg-secondary px-3 py-2 rounded border break-all"
+                                        className="bg-secondary rounded border px-3 py-2 font-mono text-lg break-all"
                                     >
                                         {kcContext.totp.totpSecretEncoded}
                                     </span>
@@ -65,29 +62,23 @@ export function Page() {
                         </li>
                         <li>
                             <p className="mb-3">{msg("loginTotpManualStep3")}</p>
-                            <div className="bg-muted/30 p-4 rounded-lg border">
+                            <div className="bg-muted/30 rounded-lg border p-4">
                                 <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
                                     <div className="flex justify-between">
-                                        <span className="text-muted-foreground">
-                                            {msg("loginTotpType")}:
-                                        </span>
-                                        <span className="font-mono bg-secondary px-2 py-1 rounded text-xs">
+                                        <span className="text-muted-foreground">{msg("loginTotpType")}:</span>
+                                        <span className="bg-secondary rounded px-2 py-1 font-mono text-xs">
                                             {msg(`loginTotp.${kcContext.totp.policy.type}`)}
                                         </span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-muted-foreground">
-                                            {msg("loginTotpAlgorithm")}:
-                                        </span>
-                                        <span className="font-mono bg-secondary px-2 py-1 rounded text-xs">
+                                        <span className="text-muted-foreground">{msg("loginTotpAlgorithm")}:</span>
+                                        <span className="bg-secondary rounded px-2 py-1 font-mono text-xs">
                                             {kcContext.totp.policy.getAlgorithmKey()}
                                         </span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-muted-foreground">
-                                            {msg("loginTotpDigits")}:
-                                        </span>
-                                        <span className="font-mono bg-secondary px-2 py-1 rounded text-xs">
+                                        <span className="text-muted-foreground">{msg("loginTotpDigits")}:</span>
+                                        <span className="bg-secondary rounded px-2 py-1 font-mono text-xs">
                                             {kcContext.totp.policy.digits}
                                         </span>
                                     </div>
@@ -98,7 +89,7 @@ export function Page() {
                                                 : msg("loginTotpCounter")}
                                             :
                                         </span>
-                                        <span className="font-mono bg-secondary px-2 py-1 rounded text-xs">
+                                        <span className="bg-secondary rounded px-2 py-1 font-mono text-xs">
                                             {kcContext.totp.policy.type === "totp"
                                                 ? kcContext.totp.policy.period
                                                 : kcContext.totp.policy.initialCounter}
@@ -166,12 +157,7 @@ export function Page() {
                             </FieldError>
                         )}
                     </Field>
-                    <input
-                        type="hidden"
-                        id="totpSecret"
-                        name="totpSecret"
-                        value={kcContext.totp.totpSecret}
-                    />
+                    <input type="hidden" id="totpSecret" name="totpSecret" value={kcContext.totp.totpSecret} />
                     {kcContext.mode && <input type="hidden" id="mode" value={kcContext.mode} />}
                 </div>
 
@@ -179,9 +165,7 @@ export function Page() {
                     <Field>
                         <FieldLabel htmlFor="userLabel">
                             {msg("loginTotpDeviceName")}{" "}
-                            {kcContext.totp.otpCredentials.length >= 1 && (
-                                <span className="required">*</span>
-                            )}
+                            {kcContext.totp.otpCredentials.length >= 1 && <span className="required">*</span>}
                         </FieldLabel>
                         <Input
                             type="text"
@@ -195,9 +179,7 @@ export function Page() {
                                 {" "}
                                 <span
                                     dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(
-                                            kcContext.messagesPerField.get("userLabel"),
-                                        ),
+                                        __html: kcSanitize(kcContext.messagesPerField.get("userLabel")),
                                     }}
                                 />
                             </FieldError>

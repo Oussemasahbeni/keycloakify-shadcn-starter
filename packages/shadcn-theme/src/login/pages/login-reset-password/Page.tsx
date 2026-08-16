@@ -15,9 +15,7 @@ export function Page() {
             displayInfo
             displayMessage={!kcContext.messagesPerField.existsError("username")}
             infoNode={
-                kcContext.realm.duplicateEmailsAllowed
-                    ? msg("emailInstructionUsername")
-                    : msg("emailInstruction")
+                kcContext.realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")
             }
             headerNode={msg("emailForgotTitle")}
         >

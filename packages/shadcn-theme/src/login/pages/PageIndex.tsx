@@ -1,44 +1,45 @@
 import { Suspense, lazy } from "react";
+
 import { useKcContext } from "../KcContext";
 
-const Page_login = lazy(() => import("./login"));
-const Page_register = lazy(() => import("./register"));
-const Page_info = lazy(() => import("./info"));
-const Page_error = lazy(() => import("./error"));
-const Page_login_reset_password = lazy(() => import("./login-reset-password"));
-const Page_login_verify_email = lazy(() => import("./login-verify-email"));
-const Page_terms = lazy(() => import("./terms"));
-const Page_login_oauth2_device_verify_user_code = lazy(() => import("./login-oauth2-device-verify-user-code"));
-const Page_login_oauth_grant = lazy(() => import("./login-oauth-grant"));
-const Page_login_otp = lazy(() => import("./login-otp"));
-const Page_login_password = lazy(() => import("./login-password"));
-const Page_login_username = lazy(() => import("./login-username"));
-const Page_webauthn_authenticate = lazy(() => import("./webauthn-authenticate"));
-const Page_webauthn_register = lazy(() => import("./webauthn-register"));
-const Page_login_update_password = lazy(() => import("./login-update-password"));
-const Page_link_idp_action = lazy(() => import("./link-idp-action"));
-const Page_login_update_profile = lazy(() => import("./login-update-profile"));
-const Page_login_idp_link_confirm = lazy(() => import("./login-idp-link-confirm"));
-const Page_login_page_expired = lazy(() => import("./login-page-expired"));
-const Page_login_idp_link_email = lazy(() => import("./login-idp-link-email"));
-const Page_login_config_totp = lazy(() => import("./login-config-totp"));
-const Page_logout_confirm = lazy(() => import("./logout-confirm"));
-const Page_idp_review_user_profile = lazy(() => import("./idp-review-user-profile"));
-const Page_update_email = lazy(() => import("./update-email"));
-const Page_select_authenticator = lazy(() => import("./select-authenticator"));
-const Page_saml_post_form = lazy(() => import("./saml-post-form"));
-const Page_delete_credential = lazy(() => import("./delete-credential"));
-const Page_code = lazy(() => import("./code"));
-const Page_delete_account_confirm = lazy(() => import("./delete-account-confirm"));
-const Page_frontchannel_logout = lazy(() => import("./frontchannel-logout"));
-const Page_login_recovery_authn_code_config = lazy(() => import("./login-recovery-authn-code-config"));
-const Page_login_recovery_authn_code_input = lazy(() => import("./login-recovery-authn-code-input"));
-const Page_login_reset_otp = lazy(() => import("./login-reset-otp"));
-const Page_login_x509_info = lazy(() => import("./login-x509-info"));
-const Page_webauthn_error = lazy(() => import("./webauthn-error"));
-const Page_login_passkeys_conditional_authenticate = lazy(() => import("./login-passkeys-conditional-authenticate"));
-const Page_login_idp_link_confirm_override = lazy(() => import("./login-idp-link-confirm-override"));
-const Page_select_organization = lazy(() => import("./select-organization"));
+const PageLogin = lazy(() => import("./login"));
+const PageRegister = lazy(() => import("./register"));
+const PageInfo = lazy(() => import("./info"));
+const PageError = lazy(() => import("./error"));
+const PageLoginResetPassword = lazy(() => import("./login-reset-password"));
+const PageLoginVerifyEmail = lazy(() => import("./login-verify-email"));
+const PageTerms = lazy(() => import("./terms"));
+const PageLoginOauth2DeviceVerifyUserCode = lazy(() => import("./login-oauth2-device-verify-user-code"));
+const PageLoginOauthGrant = lazy(() => import("./login-oauth-grant"));
+const PageLoginOtp = lazy(() => import("./login-otp"));
+const PageLoginPassword = lazy(() => import("./login-password"));
+const PageLoginUsername = lazy(() => import("./login-username"));
+const PageWebauthnAuthenticate = lazy(() => import("./webauthn-authenticate"));
+const PageWebauthnRegister = lazy(() => import("./webauthn-register"));
+const PageLoginUpdatePassword = lazy(() => import("./login-update-password"));
+const PageLinkIdpAction = lazy(() => import("./link-idp-action"));
+const PageLoginUpdateProfile = lazy(() => import("./login-update-profile"));
+const PageLoginIdpLinkConfirm = lazy(() => import("./login-idp-link-confirm"));
+const PageLoginPageExpired = lazy(() => import("./login-page-expired"));
+const PageLoginIdpLinkEmail = lazy(() => import("./login-idp-link-email"));
+const PageLoginConfigTotp = lazy(() => import("./login-config-totp"));
+const PageLogoutConfirm = lazy(() => import("./logout-confirm"));
+const PageIdpReviewUserProfile = lazy(() => import("./idp-review-user-profile"));
+const PageUpdateEmail = lazy(() => import("./update-email"));
+const PageSelectAuthenticator = lazy(() => import("./select-authenticator"));
+const PageSamlPostForm = lazy(() => import("./saml-post-form"));
+const PageDeleteCredential = lazy(() => import("./delete-credential"));
+const PageCode = lazy(() => import("./code"));
+const PageDeleteAccountConfirm = lazy(() => import("./delete-account-confirm"));
+const PageFrontchannelLogout = lazy(() => import("./frontchannel-logout"));
+const PageLoginRecoveryAuthnCodeConfig = lazy(() => import("./login-recovery-authn-code-config"));
+const PageLoginRecoveryAuthnCodeInput = lazy(() => import("./login-recovery-authn-code-input"));
+const PageLoginResetOtp = lazy(() => import("./login-reset-otp"));
+const PageLoginX509Info = lazy(() => import("./login-x509-info"));
+const PageWebauthnError = lazy(() => import("./webauthn-error"));
+const PageLoginPasskeysConditionalAuthenticate = lazy(() => import("./login-passkeys-conditional-authenticate"));
+const PageLoginIdpLinkConfirmOverride = lazy(() => import("./login-idp-link-confirm-override"));
+const PageSelectOrganization = lazy(() => import("./select-organization"));
 
 export function PageIndex() {
     const { kcContext } = useKcContext();
@@ -48,81 +49,81 @@ export function PageIndex() {
             {(() => {
                 switch (kcContext.pageId) {
                     case "login.ftl":
-                        return <Page_login />;
+                        return <PageLogin />;
                     case "register.ftl":
-                        return <Page_register />;
+                        return <PageRegister />;
                     case "info.ftl":
-                        return <Page_info />;
+                        return <PageInfo />;
                     case "error.ftl":
-                        return <Page_error />;
+                        return <PageError />;
                     case "login-reset-password.ftl":
-                        return <Page_login_reset_password />;
+                        return <PageLoginResetPassword />;
                     case "login-verify-email.ftl":
-                        return <Page_login_verify_email />;
+                        return <PageLoginVerifyEmail />;
                     case "terms.ftl":
-                        return <Page_terms />;
+                        return <PageTerms />;
                     case "login-oauth2-device-verify-user-code.ftl":
-                        return <Page_login_oauth2_device_verify_user_code />;
+                        return <PageLoginOauth2DeviceVerifyUserCode />;
                     case "login-oauth-grant.ftl":
-                        return <Page_login_oauth_grant />;
+                        return <PageLoginOauthGrant />;
                     case "login-otp.ftl":
-                        return <Page_login_otp />;
+                        return <PageLoginOtp />;
                     case "login-username.ftl":
-                        return <Page_login_username />;
+                        return <PageLoginUsername />;
                     case "login-password.ftl":
-                        return <Page_login_password />;
+                        return <PageLoginPassword />;
                     case "webauthn-authenticate.ftl":
-                        return <Page_webauthn_authenticate />;
+                        return <PageWebauthnAuthenticate />;
                     case "webauthn-register.ftl":
-                        return <Page_webauthn_register />;
+                        return <PageWebauthnRegister />;
                     case "login-update-password.ftl":
-                        return <Page_login_update_password />;
+                        return <PageLoginUpdatePassword />;
                     case "link-idp-action.ftl":
-                        return <Page_link_idp_action />;
+                        return <PageLinkIdpAction />;
                     case "login-update-profile.ftl":
-                        return <Page_login_update_profile />;
+                        return <PageLoginUpdateProfile />;
                     case "login-idp-link-confirm.ftl":
-                        return <Page_login_idp_link_confirm />;
+                        return <PageLoginIdpLinkConfirm />;
                     case "login-idp-link-email.ftl":
-                        return <Page_login_idp_link_email />;
+                        return <PageLoginIdpLinkEmail />;
                     case "login-page-expired.ftl":
-                        return <Page_login_page_expired />;
+                        return <PageLoginPageExpired />;
                     case "login-config-totp.ftl":
-                        return <Page_login_config_totp />;
+                        return <PageLoginConfigTotp />;
                     case "logout-confirm.ftl":
-                        return <Page_logout_confirm />;
+                        return <PageLogoutConfirm />;
                     case "idp-review-user-profile.ftl":
-                        return <Page_idp_review_user_profile />;
+                        return <PageIdpReviewUserProfile />;
                     case "update-email.ftl":
-                        return <Page_update_email />;
+                        return <PageUpdateEmail />;
                     case "select-authenticator.ftl":
-                        return <Page_select_authenticator />;
+                        return <PageSelectAuthenticator />;
                     case "saml-post-form.ftl":
-                        return <Page_saml_post_form />;
+                        return <PageSamlPostForm />;
                     case "delete-credential.ftl":
-                        return <Page_delete_credential />;
+                        return <PageDeleteCredential />;
                     case "code.ftl":
-                        return <Page_code />;
+                        return <PageCode />;
                     case "delete-account-confirm.ftl":
-                        return <Page_delete_account_confirm />;
+                        return <PageDeleteAccountConfirm />;
                     case "frontchannel-logout.ftl":
-                        return <Page_frontchannel_logout />;
+                        return <PageFrontchannelLogout />;
                     case "login-recovery-authn-code-config.ftl":
-                        return <Page_login_recovery_authn_code_config />;
+                        return <PageLoginRecoveryAuthnCodeConfig />;
                     case "login-recovery-authn-code-input.ftl":
-                        return <Page_login_recovery_authn_code_input />;
+                        return <PageLoginRecoveryAuthnCodeInput />;
                     case "login-reset-otp.ftl":
-                        return <Page_login_reset_otp />;
+                        return <PageLoginResetOtp />;
                     case "login-x509-info.ftl":
-                        return <Page_login_x509_info />;
+                        return <PageLoginX509Info />;
                     case "webauthn-error.ftl":
-                        return <Page_webauthn_error />;
+                        return <PageWebauthnError />;
                     case "login-passkeys-conditional-authenticate.ftl":
-                        return <Page_login_passkeys_conditional_authenticate />;
+                        return <PageLoginPasskeysConditionalAuthenticate />;
                     case "login-idp-link-confirm-override.ftl":
-                        return <Page_login_idp_link_confirm_override />;
+                        return <PageLoginIdpLinkConfirmOverride />;
                     case "select-organization.ftl":
-                        return <Page_select_organization />;
+                        return <PageSelectOrganization />;
                 }
             })()}
         </Suspense>

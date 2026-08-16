@@ -18,12 +18,8 @@
         "editor:build": "pnpm -F @kc-studio/editor build",
         "editor:lint": "pnpm -F @kc-studio/editor lint",
         "editor:test": "pnpm -F @kc-studio/editor test",
-        "format": "prettier . --write",
+        "fmt": "oxfmt",
+        "fmt:check": "oxfmt --check",
         "doctor": "npx react-doctor@latest --verbose"
-    },
-    "devDependencies": {
-        "prettier": "3.8.3",
-        "prettier-plugin-organize-imports": "^4.3.0",
-        "prettier-plugin-tailwindcss": "^0.8.0"
     }
 }

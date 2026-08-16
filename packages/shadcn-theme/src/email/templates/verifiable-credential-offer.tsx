@@ -22,47 +22,43 @@ export const templateName = "Verifiable Credential Offer";
 const { exp } = createVariablesHelper("verifiable-credential-offer.ftl");
 
 export const Template = ({ locale, t, theme }: TemplateProps) => {
-  const isRTL = isRtlLocale(locale);
-  return (
-    <EmailLayout
-      preview={t("verifiable-credential-offer.preview")}
-      locale={locale}
-      theme={theme}
-    >
-      <Text>
-        <p>
-          {t("verifiable-credential-offer.message", {
-            realmName: exp("realmName"),
-            credentialScopeDisplayName: exp("credentialScopeDisplayName"),
-          })}
-        </p>
-        <Button
-          width={350}
-          align={isRTL ? "right" : "left"}
-          height={40}
-          backgroundColor={theme.primaryColor}
-          textColor={theme.foregroundColor}
-          borderRadius={3}
-          href={exp("link")}
-        >
-          {t("verifiable-credential-offer.claimLink", {
-            credentialScopeDisplayName: exp("credentialScopeDisplayName"),
-          })}
-        </Button>
-        <p>
-          {t("verifiable-credential-offer.linkExpiration", {
-            expiration: exp("linkExpirationFormatter(linkExpiration)"),
-          })}
-        </p>
-        <p>
-          {t("verifiable-credential-offer.expiredMessage", {
-            realmName: exp("realmName"),
-            credentialScopeDisplayName: exp("credentialScopeDisplayName"),
-          })}
-        </p>
-      </Text>
-    </EmailLayout>
-  );
+    const isRTL = isRtlLocale(locale);
+    return (
+        <EmailLayout preview={t("verifiable-credential-offer.preview")} locale={locale} theme={theme}>
+            <Text>
+                <p>
+                    {t("verifiable-credential-offer.message", {
+                        realmName: exp("realmName"),
+                        credentialScopeDisplayName: exp("credentialScopeDisplayName"),
+                    })}
+                </p>
+                <Button
+                    width={350}
+                    align={isRTL ? "right" : "left"}
+                    height={40}
+                    backgroundColor={theme.primaryColor}
+                    textColor={theme.foregroundColor}
+                    borderRadius={3}
+                    href={exp("link")}
+                >
+                    {t("verifiable-credential-offer.claimLink", {
+                        credentialScopeDisplayName: exp("credentialScopeDisplayName"),
+                    })}
+                </Button>
+                <p>
+                    {t("verifiable-credential-offer.linkExpiration", {
+                        expiration: exp("linkExpirationFormatter(linkExpiration)"),
+                    })}
+                </p>
+                <p>
+                    {t("verifiable-credential-offer.expiredMessage", {
+                        realmName: exp("realmName"),
+                        credentialScopeDisplayName: exp("credentialScopeDisplayName"),
+                    })}
+                </p>
+            </Text>
+        </EmailLayout>
+    );
 };
 
 export const getTemplate: GetTemplate = async props => {
@@ -71,7 +67,6 @@ export const getTemplate: GetTemplate = async props => {
         plainText: props.plainText,
     });
 };
-
 
 export const getSubject: GetSubject = async props => {
     const t = i18n.getFixedT(props.locale);

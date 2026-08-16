@@ -75,8 +75,7 @@ function applyThemeCssVars(params: {
 export function useApplyThemePreset() {
     const { kcContext } = useKcContext();
 
-    const { SHADCN_THEME_PRIMARY, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT } =
-        kcContext.properties;
+    const { SHADCN_THEME_PRIMARY, SHADCN_THEME_BASE, SHADCN_THEME_RADIUS, SHADCN_THEME_FONT } = kcContext.properties;
 
     useLayoutEffect(() => {
         const root = document.documentElement;

@@ -23,8 +23,7 @@ function DropdownMenuContent({
     sideOffset = 4,
     className,
     ...props
-}: MenuPrimitive.Popup.Props &
-    Pick<MenuPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">) {
+}: MenuPrimitive.Popup.Props & Pick<MenuPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">) {
     return (
         <MenuPrimitive.Portal>
             <MenuPrimitive.Positioner
@@ -62,10 +61,7 @@ function DropdownMenuLabel({
         <MenuPrimitive.GroupLabel
             data-slot="dropdown-menu-label"
             data-inset={inset}
-            className={cn(
-                "px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:ps-7",
-                className,
-            )}
+            className={cn("px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:ps-7", className)}
             {...props}
         />
     );
@@ -117,7 +113,7 @@ function DropdownMenuSubTrigger({
             {...props}
         >
             {children}
-            <ChevronRightIcon className="rtl:rotate-180 ms-auto" />
+            <ChevronRightIcon className="ms-auto rtl:rotate-180" />
         </MenuPrimitive.SubmenuTrigger>
     );
 }

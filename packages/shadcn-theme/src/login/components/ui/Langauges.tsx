@@ -22,11 +22,7 @@ export function Languages() {
                         </Button>
                     }
                 />
-                <DropdownMenuContent
-                    id="language-switch1"
-                    role="menu"
-                    className="max-h-72 overflow-y-auto"
-                >
+                <DropdownMenuContent id="language-switch1" role="menu" className="max-h-72 overflow-y-auto">
                     {enabledLanguages.map(({ languageTag, label, href }, i) => {
                         const isActive = languageTag === currentLanguage.languageTag;
 
@@ -36,7 +32,7 @@ export function Languages() {
                                     role="menuitem"
                                     id={`language-${i + 1}`}
                                     href={href}
-                                    className="flex w-full items-center justify-between  cursor-pointer"
+                                    className="flex w-full cursor-pointer items-center justify-between"
                                 >
                                     {label}
                                     {isActive && <IoCheckmark className="size-4 opacity-50" />}

@@ -15,13 +15,9 @@ export function Page() {
     return (
         <Template headerNode={msg("logoutConfirmTitle")}>
             <div className="flex flex-col gap-4">
-                <p className="text-foreground ">{msg("logoutConfirmHeader")}</p>
+                <p className="text-foreground">{msg("logoutConfirmHeader")}</p>
 
-                <form
-                    className="flex flex-col gap-6"
-                    action={url.logoutConfirmAction}
-                    method="POST"
-                >
+                <form className="flex flex-col gap-6" action={url.logoutConfirmAction} method="POST">
                     <input type="hidden" name="session_code" value={logoutConfirm.code} />
 
                     <Button className="w-full" name="confirmLogout" id="kc-logout" type="submit">

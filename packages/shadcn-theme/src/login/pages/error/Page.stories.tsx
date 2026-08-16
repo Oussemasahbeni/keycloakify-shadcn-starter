@@ -25,8 +25,7 @@ export const WithHtmlErrorMessage: Story = {
     args: {
         kcContext: {
             message: {
-                summary:
-                    "<strong>Error:</strong> Something went wrong. <a href='https://example.com'>Go back</a>",
+                summary: "<strong>Error:</strong> Something went wrong. <a href='https://example.com'>Go back</a>",
             },
         },
     },

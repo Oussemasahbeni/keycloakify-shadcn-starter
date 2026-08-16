@@ -41,7 +41,7 @@ export function Page() {
                 <div id="kc-registration" className="text-center text-sm">
                     <span>
                         {msg("noAccount")}{" "}
-                        <a className="underline underline-offset-4 " href={url.registrationUrl}>
+                        <a className="underline underline-offset-4" href={url.registrationUrl}>
                             {msg("doRegister")}
                         </a>
                     </span>
@@ -87,11 +87,7 @@ export function Page() {
                                             : undefined
                                     }
                                     className="autofill:bg-background"
-                                    autoComplete={
-                                        enableWebAuthnConditionalUI
-                                            ? "username webauthn"
-                                            : "username"
-                                    }
+                                    autoComplete={enableWebAuthnConditionalUI ? "username webauthn" : "username"}
                                     aria-invalid={messagesPerField.existsError("username")}
                                 />
                                 {messagesPerField.existsError("username") && (
@@ -100,9 +96,7 @@ export function Page() {
                                             id="input-error"
                                             aria-live="polite"
                                             dangerouslySetInnerHTML={{
-                                                __html: kcSanitize(
-                                                    messagesPerField.getFirstError("username"),
-                                                ),
+                                                __html: kcSanitize(messagesPerField.getFirstError("username")),
                                             }}
                                         />
                                     </FieldError>
@@ -118,21 +112,13 @@ export function Page() {
                                     value="on"
                                     defaultChecked={!!login.rememberMe}
                                 />
-                                <Label
-                                    htmlFor="rememberMe"
-                                    className="text-sm font-medium cursor-pointer"
-                                >
+                                <Label htmlFor="rememberMe" className="cursor-pointer text-sm font-medium">
                                     {msg("rememberMe")}
                                 </Label>
                             </div>
                         )}
 
-                        <Button
-                            disabled={isLoginButtonDisabled}
-                            className="w-full"
-                            name="login"
-                            type="submit"
-                        >
+                        <Button disabled={isLoginButtonDisabled} className="w-full" name="login" type="submit">
                             {msgStr("doLogIn")}
                         </Button>
                     </form>

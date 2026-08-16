@@ -34,29 +34,20 @@ export function Template(props: TemplateProps) {
 
     const logoUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_URL) || defaultLogo;
 
-    const logoDarkUrl =
-        resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_DARK_URL) || defaultLogo;
+    const logoDarkUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_DARK_URL) || defaultLogo;
     const asideImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_ASIDE_IMAGE_URL);
     const cardImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_CARD_IMAGE_URL);
-    const sidePanelImageUrl = resolveAssetUrl(
-        kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_URL,
-    );
-    const sidePanelImageDarkUrl = resolveAssetUrl(
-        kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL,
-    );
-    const sidePanelPosition =
-        kcContext.properties.SHADCN_THEME_SIDE_PANEL_POSITION === "left" ? "left" : "right";
+    const sidePanelImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_URL);
+    const sidePanelImageDarkUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL);
+    const sidePanelPosition = kcContext.properties.SHADCN_THEME_SIDE_PANEL_POSITION === "left" ? "left" : "right";
     const layout = kcContext.properties.SHADCN_THEME_LAYOUT;
 
     const showRealmName = kcContext.properties.SHADCN_THEME_SHOW_REALM_NAME !== "false";
     const logoAlt = kcContext.realm.displayName || kcContext.realm.name || "Logo";
-    const welcomeMessage =
-        kcContext.properties.SHADCN_THEME_WELCOME_MESSAGE.trim() || msgStr("welcomeMessage");
+    const welcomeMessage = kcContext.properties.SHADCN_THEME_WELCOME_MESSAGE.trim() || msgStr("welcomeMessage");
 
     useEffect(() => {
-        document.title =
-            documentTitle ??
-            msgStr("loginTitle", kcContext.realm.displayName || kcContext.realm.name);
+        document.title = documentTitle ?? msgStr("loginTitle", kcContext.realm.displayName || kcContext.realm.name);
     }, []);
 
     useSetClassName({
@@ -76,18 +67,14 @@ export function Template(props: TemplateProps) {
         case "centered-card":
             return (
                 <CenteredCardLayout
-                    content={
-                        <TemplateContent {...props} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} />
-                    }
+                    content={<TemplateContent {...props} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} />}
                     backgroundUrl={cardImageUrl}
                 />
             );
         case "image-aside":
             return (
                 <ImageAsideLayout
-                    content={
-                        <TemplateContent {...props} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} />
-                    }
+                    content={<TemplateContent {...props} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} />}
                     imageUrl={asideImageUrl}
                 />
             );

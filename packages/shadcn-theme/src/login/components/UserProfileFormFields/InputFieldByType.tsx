@@ -21,14 +21,7 @@ export function InputFieldByType(props: InputFieldByTypeProps) {
         // NOTE: Unfortunately, keycloak won't let you define input type="hidden" in the Admin Console.
         // sometimes in the future it might.
         case "hidden":
-            return (
-                <input
-                    type="hidden"
-                    id={attribute.name}
-                    name={attribute.name}
-                    value={valueOrValues as string}
-                />
-            );
+            return <input type="hidden" id={attribute.name} name={attribute.name} value={valueOrValues as string} />;
         case "textarea":
             return <TextareaTag {...props} />;
         case "select":

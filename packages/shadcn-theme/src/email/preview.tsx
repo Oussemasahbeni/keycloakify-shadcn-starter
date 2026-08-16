@@ -85,8 +85,8 @@ function fillMocks(html: string): string {
 
 type EmailThemeOptions = {
     primaryColor: PrimaryPreset;
-    logoUrl?: string | undefined;
-}
+    logoUrl?: string
+};
 
 export async function renderEmailPreview(opts: {
     templateId: EmailTemplateId;

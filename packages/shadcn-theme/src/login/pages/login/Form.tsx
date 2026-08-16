@@ -63,19 +63,11 @@ export function Form() {
                                                 : undefined
                                         }
                                         autoComplete={
-                                            kcContext.enableWebAuthnConditionalUI
-                                                ? "username webauthn"
-                                                : "username"
+                                            kcContext.enableWebAuthnConditionalUI ? "username webauthn" : "username"
                                         }
-                                        aria-invalid={kcContext.messagesPerField.existsError(
-                                            "username",
-                                            "password",
-                                        )}
+                                        aria-invalid={kcContext.messagesPerField.existsError("username", "password")}
                                     />
-                                    {kcContext.messagesPerField.existsError(
-                                        "username",
-                                        "password",
-                                    ) && (
+                                    {kcContext.messagesPerField.existsError("username", "password") && (
                                         <FieldError>
                                             <span
                                                 id="input-error-username"
@@ -102,15 +94,8 @@ export function Form() {
                                         id="password"
                                         name="password"
                                         autoComplete="current-password"
-                                        placeholder={
-                                            showPlaceholder
-                                                ? msgStr("passwordPlaceholder")
-                                                : undefined
-                                        }
-                                        aria-invalid={kcContext.messagesPerField.existsError(
-                                            "username",
-                                            "password",
-                                        )}
+                                        placeholder={showPlaceholder ? msgStr("passwordPlaceholder") : undefined}
+                                        aria-invalid={kcContext.messagesPerField.existsError("username", "password")}
                                     />
                                     <InputGroupAddon align="inline-end">
                                         <PasswordVisibilityButton passwordInputId="password" />
@@ -123,10 +108,7 @@ export function Form() {
                                             aria-live="polite"
                                             dangerouslySetInnerHTML={{
                                                 __html: kcSanitize(
-                                                    kcContext.messagesPerField.getFirstError(
-                                                        "username",
-                                                        "password",
-                                                    ),
+                                                    kcContext.messagesPerField.getFirstError("username", "password"),
                                                 ),
                                             }}
                                         />
@@ -136,26 +118,23 @@ export function Form() {
 
                             <div className="flex justify-between text-xs">
                                 {kcContext.realm.rememberMe && !kcContext.usernameHidden && (
-                                    <div className="flex items-center gap-2 ">
+                                    <div className="flex items-center gap-2">
                                         <Checkbox
                                             id="rememberMe"
                                             name="rememberMe"
                                             defaultChecked={!!kcContext.login.rememberMe}
                                         />
 
-                                        <Label
-                                            htmlFor="rememberMe"
-                                            className="text-sm font-medium cursor-pointer"
-                                        >
+                                        <Label htmlFor="rememberMe" className="cursor-pointer text-sm font-medium">
                                             {msg("rememberMe")}
                                         </Label>
                                     </div>
                                 )}
-                                <div className="link-style ">
+                                <div className="link-style">
                                     {kcContext.realm.resetPasswordAllowed && (
-                                        <span className=" underline-offset-4 hover:underline">
+                                        <span className="underline-offset-4 hover:underline">
                                             <a href={kcContext.url.loginResetCredentialsUrl}>
-                                                <Label className="text-sm font-medium cursor-pointer">
+                                                <Label className="cursor-pointer text-sm font-medium">
                                                     {msg("doForgotPassword")}
                                                 </Label>
                                             </a>

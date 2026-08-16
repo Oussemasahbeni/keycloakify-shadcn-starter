@@ -23,12 +23,7 @@ export function Page() {
             displayRequiredFields
             headerNode={msg("updateEmailTitle")}
         >
-            <form
-                id="kc-update-email-form"
-                className="flex flex-col gap-6"
-                action={url.loginAction}
-                method="post"
-            >
+            <form id="kc-update-email-form" className="flex flex-col gap-6" action={url.loginAction} method="post">
                 <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
 
                 <LogoutOtherSessions />
@@ -38,13 +33,7 @@ export function Page() {
                         {msgStr("doSubmit")}
                     </Button>
                     {isAppInitiatedAction && (
-                        <Button
-                            variant="outline"
-                            className="w-full"
-                            type="submit"
-                            name="cancel-aia"
-                            value="true"
-                        >
+                        <Button variant="outline" className="w-full" type="submit" name="cancel-aia" value="true">
                             {msg("doCancel")}
                         </Button>
                     )}

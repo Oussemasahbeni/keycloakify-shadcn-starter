@@ -24,13 +24,7 @@ export function Page() {
                     >
                         {msg("confirmLinkIdpReviewProfile")}
                     </Button>
-                    <Button
-                        type="submit"
-                        className="w-full"
-                        name="submitAction"
-                        id="linkAccount"
-                        value="linkAccount"
-                    >
+                    <Button type="submit" className="w-full" name="submitAction" id="linkAccount" value="linkAccount">
                         {msg("confirmLinkIdpContinue", kcContext.idpAlias)}
                     </Button>
                 </div>

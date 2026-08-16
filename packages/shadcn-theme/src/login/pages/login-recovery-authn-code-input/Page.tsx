@@ -27,10 +27,7 @@ export function Page() {
             >
                 <Field>
                     <FieldLabel htmlFor="recoveryCodeInput">
-                        {msg(
-                            "auth-recovery-code-prompt",
-                            `${recoveryAuthnCodesInputBean.codeNumber}`,
-                        )}
+                        {msg("auth-recovery-code-prompt", `${recoveryAuthnCodesInputBean.codeNumber}`)}
                     </FieldLabel>
                     <Input
                         tabIndex={0}
@@ -48,9 +45,7 @@ export function Page() {
                                 id="input-error"
                                 aria-live="polite"
                                 dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(
-                                        messagesPerField.getFirstError("recoveryCodeInput"),
-                                    ),
+                                    __html: kcSanitize(messagesPerField.getFirstError("recoveryCodeInput")),
                                 }}
                             />
                         </FieldError>

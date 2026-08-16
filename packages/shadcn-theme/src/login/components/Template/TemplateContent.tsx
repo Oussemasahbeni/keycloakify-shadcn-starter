@@ -44,11 +44,7 @@ export function TemplateContent(props: TemplateContentProps) {
     const showRealmName = kcContext.properties.SHADCN_THEME_SHOW_REALM_NAME !== "false";
     const logoAlt = realm.displayName || realm.name || "Logo";
 
-    const titleNode: ReactNode = !(
-        auth !== undefined &&
-        auth.showUsername &&
-        !auth.showResetCredentials
-    ) ? (
+    const titleNode: ReactNode = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
         <h1 className="text-lg">{headerNode}</h1>
     ) : (
         <div id="kc-username" className="flex items-center justify-between gap-2">
@@ -93,12 +89,7 @@ export function TemplateContent(props: TemplateContentProps) {
     return (
         <Card>
             <CardHeader>
-                <div
-                    className={cn(
-                        "flex flex-col items-center justify-center gap-3",
-                        brandingVisibilityClassName,
-                    )}
-                >
+                <div className={cn("flex flex-col items-center justify-center gap-3", brandingVisibilityClassName)}>
                     <div className="mb-4 flex items-center gap-3">
                         <img
                             src={logoUrl}
@@ -167,20 +158,14 @@ export function TemplateContent(props: TemplateContentProps) {
                     {children}
 
                     {auth !== undefined && auth.showTryAnotherWayLink && (
-                        <form
-                            id="kc-select-try-another-way-form"
-                            action={url.loginAction}
-                            method="post"
-                        >
+                        <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
                             <div>
                                 <input type="hidden" name="tryAnotherWay" value="on" />
                                 <a
                                     href="#"
                                     id="try-another-way"
                                     onClick={event => {
-                                        document.forms[
-                                            "kc-select-try-another-way-form" as never
-                                        ].submit();
+                                        document.forms["kc-select-try-another-way-form" as never].submit();
                                         event.preventDefault();
                                         return false;
                                     }}

@@ -8,11 +8,7 @@ export function CenteredCardLayout(props: { content: ReactNode; backgroundUrl?: 
         <div className="relative flex min-h-svh w-full items-center justify-center p-6 md:p-10">
             {backgroundUrl && (
                 <>
-                    <img
-                        src={backgroundUrl}
-                        alt="Background"
-                        className="absolute inset-0 h-full w-full object-cover"
-                    />
+                    <img src={backgroundUrl} alt="Background" className="absolute inset-0 h-full w-full object-cover" />
                     <div className="bg-background/50 dark:bg-background/80 absolute inset-0" />
                 </>
             )}

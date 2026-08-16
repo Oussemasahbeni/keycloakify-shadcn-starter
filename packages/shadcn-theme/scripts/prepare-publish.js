@@ -5,14 +5,7 @@ const TARGET_DIR = "keycloak-theme_to_publish";
 const NPM_PACKAGE_NAME = "@oussemasahbeni/keycloakify-login-shadcn";
 
 // dependencies to REMOVE entirely from the published package
-const DEPS_TO_EXCLUDE = [
-    "react",
-    "react-dom",
-    "i18next",
-    "react-i18next",
-    "keycloakify",
-    "keycloakify-emails",
-];
+const DEPS_TO_EXCLUDE = ["react", "react-dom", "i18next", "react-i18next", "keycloakify", "keycloakify-emails"];
 
 // directories to copy into the 'keycloak-theme' folder
 const DIRS_TO_COPY = [

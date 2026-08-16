@@ -190,9 +190,7 @@ export const getMessages: GetMessages = props => {
         "requiredAction.UPDATE_PASSWORD": t("requiredAction.update_password"),
         "requiredAction.UPDATE_PROFILE": t("requiredAction.update_profile"),
         "requiredAction.VERIFY_EMAIL": t("requiredAction.verify_email"),
-        "requiredAction.CONFIGURE_RECOVERY_AUTHN_CODES": t(
-            "requiredAction.configure_recovery_authn_codes",
-        ),
+        "requiredAction.CONFIGURE_RECOVERY_AUTHN_CODES": t("requiredAction.configure_recovery_authn_codes"),
         "linkExpirationFormatter.timePeriodUnit.seconds": t("requiredAction.seconds"),
         "linkExpirationFormatter.timePeriodUnit.minutes": t("requiredAction.minutes"),
         "linkExpirationFormatter.timePeriodUnit.hours": t("requiredAction.hours"),

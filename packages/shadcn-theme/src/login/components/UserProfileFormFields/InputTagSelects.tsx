@@ -73,10 +73,7 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                         />
                         <Label
                             htmlFor={`${attribute.name}-${option}`}
-                            className={cn(
-                                "text-sm font-normal",
-                                attribute.readOnly && "opacity-50 cursor-not-allowed",
-                            )}
+                            className={cn("text-sm font-normal", attribute.readOnly && "opacity-50 cursor-not-allowed")}
                         >
                             <InputLabel attribute={attribute} option={option} />
                         </Label>
@@ -93,9 +90,7 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                     <Checkbox
                         id={`${attribute.name}-${option}`}
                         checked={
-                            valueOrValues instanceof Array
-                                ? valueOrValues.includes(option)
-                                : valueOrValues === option
+                            valueOrValues instanceof Array ? valueOrValues.includes(option) : valueOrValues === option
                         }
                         disabled={attribute.readOnly}
                         onCheckedChange={checked =>
@@ -131,10 +126,7 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                     />
                     <Label
                         htmlFor={`${attribute.name}-${option}`}
-                        className={cn(
-                            "text-sm font-normal",
-                            attribute.readOnly && "opacity-50 cursor-not-allowed",
-                        )}
+                        className={cn("text-sm font-normal", attribute.readOnly && "opacity-50 cursor-not-allowed")}
                     >
                         <InputLabel attribute={attribute} option={option} />
                     </Label>

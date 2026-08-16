@@ -1,11 +1,5 @@
 import { Button } from "#/components/ui/button";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "#/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
 import { Building2 } from "lucide-react";
@@ -24,24 +18,23 @@ export function Page() {
     const formRef = useRef<HTMLFormElement>(null);
     const organizationInputRef = useRef<HTMLInputElement>(null);
 
-    const onOrganizationClick =
-        (organizationAlias: string) => (event: MouseEvent<HTMLButtonElement>) => {
-            event.preventDefault();
+    const onOrganizationClick = (organizationAlias: string) => (event: MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
 
-            if (!organizationInputRef.current || !formRef.current) {
-                return;
-            }
+        if (!organizationInputRef.current || !formRef.current) {
+            return;
+        }
 
-            organizationInputRef.current.value = organizationAlias;
-            setIsSubmitting(true);
+        organizationInputRef.current.value = organizationAlias;
+        setIsSubmitting(true);
 
-            if (typeof formRef.current.requestSubmit === "function") {
-                formRef.current.requestSubmit();
-                return;
-            }
+        if (typeof formRef.current.requestSubmit === "function") {
+            formRef.current.requestSubmit();
+            return;
+        }
 
-            formRef.current.submit();
-        };
+        formRef.current.submit();
+    };
 
     const onSelectSubmit = () => {
         if (!organizationInputRef.current || !formRef.current || !selectedOrg) return;
@@ -70,15 +63,13 @@ export function Page() {
                                 disabled={isSubmitting}
                             >
                                 <SelectTrigger className="w-full">
-                                    <SelectValue
-                                        placeholder={msg("organization.pickPlaceholder")}
-                                    />
+                                    <SelectValue placeholder={msg("organization.pickPlaceholder")} />
                                 </SelectTrigger>
                                 <SelectContent alignItemWithTrigger={false}>
                                     {organizations.map(({ alias, name }) => (
                                         <SelectItem key={alias} value={alias}>
                                             <div className="flex items-center gap-2">
-                                                <Building2 className="size-4 text-muted-foreground" />
+                                                <Building2 className="text-muted-foreground size-4" />
                                                 {name ?? alias}
                                             </div>
                                         </SelectItem>
@@ -104,10 +95,10 @@ export function Page() {
                                         variant="outline"
                                         onClick={onOrganizationClick(alias)}
                                         disabled={isSubmitting}
-                                        className="w-full h-auto p-4 flex items-center gap-3 justify-start hover:bg-accent hover:border-primary transition-colors"
+                                        className="hover:bg-accent hover:border-primary flex h-auto w-full items-center justify-start gap-3 p-4 transition-colors"
                                     >
-                                        <Building2 className="size-5 text-muted-foreground shrink-0" />
-                                        <span className="font-medium text-sm">{name ?? alias}</span>
+                                        <Building2 className="text-muted-foreground size-5 shrink-0" />
+                                        <span className="text-sm font-medium">{name ?? alias}</span>
                                     </Button>
                                 </li>
                             ))}

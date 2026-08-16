@@ -22,7 +22,7 @@ export function Page() {
                             className="h-12 w-auto object-contain"
                         />
                     )}
-                    <p className="text-lg font-medium text-center">
+                    <p className="text-center text-lg font-medium">
                         {kcContext.client.name
                             ? msg("oauthGrantTitle", advancedMsgStr(kcContext.client.name))
                             : msg("oauthGrantTitle", kcContext.client.clientId)}
@@ -35,17 +35,14 @@ export function Page() {
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
                         {kcContext.oauth.clientScopesRequested.map(clientScope => (
-                            <div
-                                key={clientScope.consentScreenText}
-                                className="flex items-start gap-2"
-                            >
-                                <div className="size-2 bg-primary rounded-full mt-2 shrink-0" />
-                                <span className="text-sm text-muted-foreground">
+                            <div key={clientScope.consentScreenText} className="flex items-start gap-2">
+                                <div className="bg-primary mt-2 size-2 shrink-0 rounded-full" />
+                                <span className="text-muted-foreground text-sm">
                                     {advancedMsg(clientScope.consentScreenText)}
                                     {clientScope.dynamicScopeParameter && (
                                         <>
                                             :{" "}
-                                            <span className="font-medium text-foreground">
+                                            <span className="text-foreground font-medium">
                                                 {clientScope.dynamicScopeParameter}
                                             </span>
                                         </>
@@ -55,16 +52,12 @@ export function Page() {
                         ))}
                     </div>
 
-                    {(kcContext.client.attributes.policyUri ||
-                        kcContext.client.attributes.tosUri) && (
+                    {(kcContext.client.attributes.policyUri || kcContext.client.attributes.tosUri) && (
                         <>
                             <div className="flex flex-col gap-2">
-                                <p className="text-xs text-muted-foreground">
+                                <p className="text-muted-foreground text-xs">
                                     {kcContext.client.name
-                                        ? msg(
-                                              "oauthGrantInformation",
-                                              advancedMsgStr(kcContext.client.name),
-                                          )
+                                        ? msg("oauthGrantInformation", advancedMsgStr(kcContext.client.name))
                                         : msg("oauthGrantInformation", kcContext.client.clientId)}
                                 </p>
                                 <div className="flex flex-wrap gap-2 text-xs">
@@ -97,14 +90,8 @@ export function Page() {
                 <div>
                     <form className="w-full" action={kcContext.url.oauthAction} method="POST">
                         <input type="hidden" name="code" value={kcContext.oauth.code} />
-                        <div className="flex flex-col sm:flex-row gap-3 w-full">
-                            <Button
-                                type="submit"
-                                name="cancel"
-                                id="kc-cancel"
-                                variant="outline"
-                                className="flex-1"
-                            >
+                        <div className="flex w-full flex-col gap-3 sm:flex-row">
+                            <Button type="submit" name="cancel" id="kc-cancel" variant="outline" className="flex-1">
                                 {msgStr("doNo")}
                             </Button>
                             <Button type="submit" name="accept" id="kc-login" className="flex-1">

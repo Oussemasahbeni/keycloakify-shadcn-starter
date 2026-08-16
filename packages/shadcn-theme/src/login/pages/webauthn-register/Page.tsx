@@ -22,13 +22,7 @@ export function Page() {
             }
         >
             <div className="flex flex-col gap-6">
-                <form
-                    id="register"
-                    hidden
-                    action={kcContext.url.loginAction}
-                    method="post"
-                    ref={registerFormRef}
-                >
+                <form id="register" hidden action={kcContext.url.loginAction} method="post" ref={registerFormRef}>
                     <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
                     <input type="hidden" id="attestationObject" name="attestationObject" />
                     <input type="hidden" id="publicKeyCredentialId" name="publicKeyCredentialId" />
@@ -40,21 +34,12 @@ export function Page() {
                 <LogoutOtherSessions />
 
                 <div className="flex flex-col gap-6">
-                    <Button
-                        type="button"
-                        className="w-full"
-                        id="authenticateWebAuthnButton"
-                        onClick={onRegisterClick}
-                    >
+                    <Button type="button" className="w-full" id="authenticateWebAuthnButton" onClick={onRegisterClick}>
                         {msgStr("doRegisterSecurityKey")}
                     </Button>
 
                     {!kcContext.isSetRetry && kcContext.isAppInitiatedAction && (
-                        <form
-                            action={kcContext.url.loginAction}
-                            id="kc-webauthn-settings-form"
-                            method="post"
-                        >
+                        <form action={kcContext.url.loginAction} id="kc-webauthn-settings-form" method="post">
                             <Button
                                 type="submit"
                                 variant="outline"

@@ -25,12 +25,7 @@ export function Page() {
             headerNode={msg("loginProfileTitle")}
             displayMessage={messagesPerField.exists("global")}
         >
-            <form
-                id="kc-update-profile-form"
-                className="flex flex-col gap-4"
-                action={url.loginAction}
-                method="post"
-            >
+            <form id="kc-update-profile-form" className="flex flex-col gap-4" action={url.loginAction} method="post">
                 <UserProfileFormFields onIsFormSubmittableValueChange={setIsFormSubmittable} />
 
                 <div className={kcClsx("kcFormGroupClass")}>
@@ -47,13 +42,7 @@ export function Page() {
                             {msgStr("doSubmit")}
                         </Button>
                         {isAppInitiatedAction && (
-                            <Button
-                                variant="secondary"
-                                className="w-full"
-                                type="submit"
-                                name="cancel-aia"
-                                value="true"
-                            >
+                            <Button variant="secondary" className="w-full" type="submit" name="cancel-aia" value="true">
                                 {msg("doCancel")}
                             </Button>
                         )}

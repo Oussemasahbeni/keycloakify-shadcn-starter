@@ -19,17 +19,9 @@ export function Page() {
     const { msg, msgStr } = useI18n();
 
     return (
-        <Template
-            displayMessage={!messagesPerField.existsError("totp")}
-            headerNode={msg("doLogIn")}
-        >
-            <form
-                id="kc-otp-reset-form"
-                className={kcClsx("kcFormClass")}
-                action={url.loginAction}
-                method="post"
-            >
-                <div className="flex flex-col gap-4 w-full">
+        <Template displayMessage={!messagesPerField.existsError("totp")} headerNode={msg("doLogIn")}>
+            <form id="kc-otp-reset-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
+                <div className="flex w-full flex-col gap-4">
                     <p id="kc-otp-reset-form-description">{msg("otp-reset-description")}</p>
 
                     <RadioGroup
@@ -38,34 +30,22 @@ export function Page() {
                         className="flex flex-col gap-2"
                     >
                         {configuredOtpCredentials.userOtpCredentials.map((otpCredential, index) => (
-                            <div
-                                key={otpCredential.id}
-                                className="flex items-center gap-3 p-3 border rounded-lg"
-                            >
+                            <div key={otpCredential.id} className="flex items-center gap-3 rounded-lg border p-3">
                                 <Label
                                     htmlFor={`kc-otp-credential-${index}`}
-                                    className="flex items-center gap-2 cursor-pointer flex-1"
+                                    className="flex flex-1 cursor-pointer items-center gap-2"
                                 >
-                                    <Smartphone className="size-5 text-muted-foreground shrink-0" />
-                                    <span className="text-sm font-medium">
-                                        {otpCredential.userLabel}
-                                    </span>
+                                    <Smartphone className="text-muted-foreground size-5 shrink-0" />
+                                    <span className="text-sm font-medium">{otpCredential.userLabel}</span>
                                 </Label>
-                                <RadioGroupItem
-                                    value={otpCredential.id}
-                                    id={`kc-otp-credential-${index}`}
-                                />
+                                <RadioGroupItem value={otpCredential.id} id={`kc-otp-credential-${index}`} />
                             </div>
                         ))}
                     </RadioGroup>
 
                     <div className={kcClsx("kcFormGroupClass")}>
                         <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                            <Button
-                                id="kc-otp-reset-form-submit"
-                                className={"w-full"}
-                                type="submit"
-                            >
+                            <Button id="kc-otp-reset-form-submit" className={"w-full"} type="submit">
                                 {msgStr("doSubmit")}
                             </Button>
                         </div>

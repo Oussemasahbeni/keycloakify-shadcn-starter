@@ -17,14 +17,10 @@ export function Page() {
             displayMessage={!kcContext.messagesPerField.existsError("username", "password")}
             headerNode={msg("loginAccountTitle")}
             displayInfo={
-                kcContext.realm.password &&
-                kcContext.realm.registrationAllowed &&
-                !kcContext.registrationDisabled
+                kcContext.realm.password && kcContext.realm.registrationAllowed && !kcContext.registrationDisabled
             }
             infoNode={<Info />}
-            socialProvidersNode={
-                kcContext.realm.password && kcContext.social !== undefined && <SocialProviders />
-            }
+            socialProvidersNode={kcContext.realm.password && kcContext.social !== undefined && <SocialProviders />}
         >
             <Form />
         </Template>

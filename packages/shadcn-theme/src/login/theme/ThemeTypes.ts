@@ -70,15 +70,7 @@ export const primaryPresetOptions = [
 /**
  * Supported neutral base palettes exposed through env vars and Storybook.
  */
-export const basePaletteOptions = [
-    "neutral",
-    "stone",
-    "zinc",
-    "mauve",
-    "olive",
-    "mist",
-    "taupe",
-] as const;
+export const basePaletteOptions = ["neutral", "stone", "zinc", "mauve", "olive", "mist", "taupe"] as const;
 
 /**
  * Supported radius presets exposed through env vars and Storybook.

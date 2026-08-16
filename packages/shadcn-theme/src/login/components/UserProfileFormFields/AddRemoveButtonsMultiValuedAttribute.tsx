@@ -25,7 +25,7 @@ export function AddRemoveButtonsMultiValuedAttribute(props: {
     const idPostfix = `-${attribute.name}-${fieldIndex + 1}`;
 
     return (
-        <div className="flex items-center gap-2 mt-2">
+        <div className="mt-2 flex items-center gap-2">
             {hasRemove && (
                 <Button
                     id={`kc-remove${idPostfix}`}

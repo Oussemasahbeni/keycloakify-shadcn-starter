@@ -85,13 +85,12 @@ export type UseLogicProps = {
     createTimeout: string | number;
     authenticators: KcContext.WebauthnAuthenticate.WebauthnAuthenticator[] | undefined;
     loginAction: string;
-}
+};
 
 export function useLogic(props: UseLogicProps) {
     const { msgStr } = useI18n();
 
-    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators } =
-        props;
+    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators } = props;
 
     const webAuthnFormRef = useRef<HTMLFormElement>(null);
     const submitWebAuthn = (result: WebAuthnResult) => {
@@ -139,8 +138,7 @@ export function useLogic(props: UseLogicProps) {
         let cancelled = false;
 
         (async () => {
-            if (!window.PublicKeyCredential || !PublicKeyCredential.isConditionalMediationAvailable)
-                return;
+            if (!window.PublicKeyCredential || !PublicKeyCredential.isConditionalMediationAvailable) return;
 
             const isAvailable = await PublicKeyCredential.isConditionalMediationAvailable();
             if (!isAvailable) return;
@@ -167,16 +165,8 @@ export function useLogic(props: UseLogicProps) {
 }
 
 export async function authenticate(options: AuthenticateOptions): Promise<WebAuthnResult | null> {
-    const {
-        isUserIdentified,
-        challenge,
-        rpId,
-        userVerification,
-        createTimeout,
-        authenticators,
-        errmsg,
-        mediation,
-    } = options;
+    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators, errmsg, mediation } =
+        options;
 
     //  Browser Support Check
     if (!window.PublicKeyCredential) {

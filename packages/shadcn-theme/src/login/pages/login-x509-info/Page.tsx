@@ -15,39 +15,26 @@ export function Page() {
 
     return (
         <Template headerNode={msg("doLogIn")}>
-            <form
-                id="kc-x509-login-info"
-                className="flex flex-col gap-6"
-                action={url.loginAction}
-                method="post"
-            >
+            <form id="kc-x509-login-info" className="flex flex-col gap-6" action={url.loginAction} method="post">
                 <div className="flex flex-col gap-2">
                     <Label className="text-sm font-medium">{msg("clientCertificate")}</Label>
-                    <div className="p-3 bg-muted/50 rounded-lg">
-                        <p className="text-sm font-mono break-all">
-                            {x509.formData.subjectDN || msg("noCertificate")}
-                        </p>
+                    <div className="bg-muted/50 rounded-lg p-3">
+                        <p className="font-mono text-sm break-all">{x509.formData.subjectDN || msg("noCertificate")}</p>
                     </div>
                 </div>
 
                 {x509.formData.isUserEnabled && (
                     <div className="flex flex-col gap-2">
                         <Label className="text-sm font-medium">{msg("doX509Login")}</Label>
-                        <div className="p-3 bg-muted/50 rounded-lg">
+                        <div className="bg-muted/50 rounded-lg p-3">
                             <p className="text-sm font-medium">{x509.formData.username}</p>
                         </div>
                     </div>
                 )}
 
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row">
                     {x509.formData.isUserEnabled && (
-                        <Button
-                            variant="outline"
-                            name="cancel"
-                            id="kc-cancel"
-                            type="submit"
-                            className="sm:flex-1"
-                        >
+                        <Button variant="outline" name="cancel" id="kc-cancel" type="submit" className="sm:flex-1">
                             {msgStr("doIgnore")}
                         </Button>
                     )}

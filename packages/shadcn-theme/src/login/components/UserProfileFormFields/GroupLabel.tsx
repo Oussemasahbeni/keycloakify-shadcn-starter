@@ -20,7 +20,7 @@ export function GroupLabel(props: {
 
             return (
                 <div
-                    className="flex flex-col gap-4 p-4 border rounded-lg bg-card"
+                    className="bg-card flex flex-col gap-4 rounded-lg border p-4"
                     {...Object.fromEntries(
                         Object.entries(attribute.group.html5DataAnnotations).map(([key, value]) => [
                             `data-${key}`,
@@ -31,16 +31,11 @@ export function GroupLabel(props: {
                     {(() => {
                         const groupDisplayHeader = attribute.group.displayHeader ?? "";
                         const groupHeaderText =
-                            groupDisplayHeader !== ""
-                                ? advancedMsg(groupDisplayHeader)
-                                : attribute.group.name;
+                            groupDisplayHeader !== "" ? advancedMsg(groupDisplayHeader) : attribute.group.name;
 
                         return (
                             <div>
-                                <h3
-                                    id={`header-${attribute.group.name}`}
-                                    className="text-lg font-semibold"
-                                >
+                                <h3 id={`header-${attribute.group.name}`} className="text-lg font-semibold">
                                     {groupHeaderText}
                                 </h3>
                             </div>
@@ -56,7 +51,7 @@ export function GroupLabel(props: {
                                 <div>
                                     <p
                                         id={`description-${attribute.group.name}`}
-                                        className="text-sm text-muted-foreground"
+                                        className="text-muted-foreground text-sm"
                                     >
                                         {groupDescriptionText}
                                     </p>

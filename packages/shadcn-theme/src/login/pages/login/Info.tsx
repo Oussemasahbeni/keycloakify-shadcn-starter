@@ -15,7 +15,7 @@ export function Info() {
             <div id="kc-registration">
                 <span className="flex items-center justify-center gap-2">
                     {msg("noAccount")}
-                    <a className="underline underline-offset-4 " href={url.registrationUrl}>
+                    <a className="underline underline-offset-4" href={url.registrationUrl}>
                         {msg("doRegister")}
                     </a>
                 </span>

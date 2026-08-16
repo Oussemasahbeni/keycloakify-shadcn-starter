@@ -52,9 +52,7 @@ export function Form() {
                             id="input-error"
                             aria-live="polite"
                             dangerouslySetInnerHTML={{
-                                __html: kcSanitize(
-                                    kcContext.messagesPerField.getFirstError("username"),
-                                ),
+                                __html: kcSanitize(kcContext.messagesPerField.getFirstError("username")),
                             }}
                         />
                     </FieldError>

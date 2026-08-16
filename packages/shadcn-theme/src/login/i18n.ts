@@ -424,8 +424,7 @@ const { I18nProvider, useI18n } = i18nBuilder
             "identity-provider-login-last-used": "Соңғы",
             attemptedUsernameLoggingInAs: "Ретінде кіру",
             usernamePlaceholder: "Пайдаланушы атыңызды енгізіңіз",
-            usernameOrEmailPlaceholder:
-                "Пайдаланушы атыңызды немесе электрондық поштаңызды енгізіңіз",
+            usernameOrEmailPlaceholder: "Пайдаланушы атыңызды немесе электрондық поштаңызды енгізіңіз",
             emailPlaceholder: "Электрондық поштаңызды енгізіңіз",
             passwordPlaceholder: "Құпия сөзіңізді енгізіңіз",
             newPasswordPlaceholder: "Жаңа құпия сөзіңізді енгізіңіз",

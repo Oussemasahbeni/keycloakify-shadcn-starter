@@ -28,9 +28,7 @@ export function SocialProviders() {
 
     return (
         <div id="kc-social-providers" className={kcClsx("kcFormSocialAccountSectionClass")}>
-            <ul
-                className={`grid gap-3 ${kcContext.social.providers.length > 1 ? "sm:grid-cols-2" : ""}`}
-            >
+            <ul className={`grid gap-3 ${kcContext.social.providers.length > 1 ? "sm:grid-cols-2" : ""}`}>
                 {kcContext.social.providers.map((...[p]) => (
                     <li key={p.alias}>
                         <div className="relative">
@@ -51,9 +49,7 @@ export function SocialProviders() {
                                             className={cn(
                                                 "h-full w-auto",
                                                 // Invert specific icons in dark mode
-                                                (p.alias === "github" ||
-                                                    p.alias === "x" ||
-                                                    p.alias === "twitter") &&
+                                                (p.alias === "github" || p.alias === "x" || p.alias === "twitter") &&
                                                     "dark:invert",
                                             )}
                                         />
@@ -79,7 +75,7 @@ export function SocialProviders() {
                                 ></span>
                             </a>
                             {lastProvider === p.alias && (
-                                <span className="absolute -top-2 -inset-e-2 bg-primary text-primary-foreground text-xs px-2 py-0.5 rounded-full">
+                                <span className="bg-primary text-primary-foreground absolute -inset-e-2 -top-2 rounded-full px-2 py-0.5 text-xs">
                                     {msg("identity-provider-login-last-used")}
                                 </span>
                             )}
@@ -87,11 +83,9 @@ export function SocialProviders() {
                     </li>
                 ))}
             </ul>
-            <div className="py-4 flex items-center text-sm">
+            <div className="flex items-center py-4 text-sm">
                 <div className="mt-px flex-auto border-t"></div>
-                <div className="text-muted-foreground mx-2">
-                    {msg("identity-provider-login-label")}
-                </div>
+                <div className="text-muted-foreground mx-2">{msg("identity-provider-login-label")}</div>
                 <div className="mt-px flex-auto border-t"></div>
             </div>
         </div>

@@ -26,7 +26,7 @@ export type EmailTheme = {
      * components (e.g. the logo gate in `EmailLayout`) branch on the target.
      */
     ftl?: boolean;
-}
+};
 
 const colors = resolveColors(DEFAULT_THEME_PRESET);
 
@@ -46,12 +46,8 @@ export const defaultEmailTheme: EmailTheme = {
  * `${properties.SHADCN_EMAIL_PRIMARY_COLOR!'#171717'}`.
  */
 export const ftlEmailTheme = (exp: (name: `properties.${string}`) => string): EmailTheme => ({
-    primaryColor: exp(
-        `properties.${EMAIL_ENV.primaryColor.name}!'${EMAIL_ENV.primaryColor.default}'`,
-    ),
-    foregroundColor: exp(
-        `properties.${EMAIL_ENV.foregroundColor.name}!'${EMAIL_ENV.foregroundColor.default}'`,
-    ),
+    primaryColor: exp(`properties.${EMAIL_ENV.primaryColor.name}!'${EMAIL_ENV.primaryColor.default}'`),
+    foregroundColor: exp(`properties.${EMAIL_ENV.foregroundColor.name}!'${EMAIL_ENV.foregroundColor.default}'`),
     logoUrl: exp(`properties.${EMAIL_ENV.logoUrl.name}!'${EMAIL_ENV.logoUrl.default}'`),
     ftl: true,
 });

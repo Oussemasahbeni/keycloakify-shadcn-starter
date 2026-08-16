@@ -42,9 +42,7 @@ export function Page() {
                                         html += "<b>";
 
                                         html += kcContext.requiredActions
-                                            .map(requiredAction =>
-                                                advancedMsgStr(`requiredAction.${requiredAction}`),
-                                            )
+                                            .map(requiredAction => advancedMsgStr(`requiredAction.${requiredAction}`))
                                             .join(", ");
 
                                         html += "</b>";

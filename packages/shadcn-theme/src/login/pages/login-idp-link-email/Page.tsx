@@ -11,7 +11,7 @@ export function Page() {
 
     return (
         <Template headerNode={msg("emailLinkIdpTitle", kcContext.idpAlias)}>
-            <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+            <div className="text-muted-foreground flex flex-col gap-2 text-sm">
                 <p>
                     {msg(
                         "emailLinkIdp1",
@@ -24,7 +24,7 @@ export function Page() {
                     {msg("emailLinkIdp2")}{" "}
                     <a
                         href={kcContext.url.loginAction}
-                        className="inline-flex items-center gap-1 text-primary dark:text-foreground underline underline-offset-2"
+                        className="text-primary dark:text-foreground inline-flex items-center gap-1 underline underline-offset-2"
                     >
                         {msg("doClickHere")}
                     </a>{" "}
@@ -35,7 +35,7 @@ export function Page() {
                     {msg("emailLinkIdp4")}{" "}
                     <a
                         href={kcContext.url.loginAction}
-                        className="inline-flex items-center gap-1 text-primary dark:text-foreground underline underline-offset-2"
+                        className="text-primary dark:text-foreground inline-flex items-center gap-1 underline underline-offset-2"
                     >
                         {msg("doClickHere")}
                     </a>{" "}

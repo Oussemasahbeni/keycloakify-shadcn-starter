@@ -21,10 +21,7 @@ export function Page() {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     return (
-        <Template
-            displayMessage={!kcContext.messagesPerField.existsError("totp")}
-            headerNode={msg("doLogIn")}
-        >
+        <Template displayMessage={!kcContext.messagesPerField.existsError("totp")} headerNode={msg("doLogIn")}>
             <form
                 id="kc-otp-login-form"
                 className="flex flex-col gap-6"
@@ -42,22 +39,14 @@ export function Page() {
                         className="flex flex-col gap-3"
                     >
                         {kcContext.otpLogin.userOtpCredentials.map((otpCredential, index) => (
-                            <div
-                                key={otpCredential.id}
-                                className="flex items-center gap-3 p-3 border rounded-lg"
-                            >
-                                <RadioGroupItem
-                                    value={otpCredential.id}
-                                    id={`kc-otp-credential-${index}`}
-                                />
+                            <div key={otpCredential.id} className="flex items-center gap-3 rounded-lg border p-3">
+                                <RadioGroupItem value={otpCredential.id} id={`kc-otp-credential-${index}`} />
                                 <Label
                                     htmlFor={`kc-otp-credential-${index}`}
-                                    className="flex items-center gap-2 cursor-pointer flex-1"
+                                    className="flex flex-1 cursor-pointer items-center gap-2"
                                 >
                                     <MdOutlineDevices />
-                                    <span className="text-sm font-medium">
-                                        {otpCredential.userLabel}
-                                    </span>
+                                    <span className="text-sm font-medium">{otpCredential.userLabel}</span>
                                 </Label>
                             </div>
                         ))}
@@ -65,16 +54,10 @@ export function Page() {
                 )}
 
                 <Field>
-                    <Label htmlFor="otp" className="text-sm font-medium  block">
+                    <Label htmlFor="otp" className="block text-sm font-medium">
                         {msg("loginOtpOneTime")}
                     </Label>
-                    <InputOTP
-                        id="otp"
-                        maxLength={6}
-                        pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-                        name="otp"
-                        autoFocus
-                    >
+                    <InputOTP id="otp" maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS} name="otp" autoFocus>
                         <InputOTPGroup>
                             <InputOTPSlot index={0} className="size-12 text-lg" />
                             <InputOTPSlot index={1} className="size-12 text-lg" />
@@ -95,13 +78,7 @@ export function Page() {
                     )}
                 </Field>
 
-                <Button
-                    className="w-full"
-                    name="login"
-                    id="kc-login"
-                    type="submit"
-                    disabled={isSubmitting}
-                >
+                <Button className="w-full" name="login" id="kc-login" type="submit" disabled={isSubmitting}>
                     {msgStr("doLogIn")}
                 </Button>
             </form>

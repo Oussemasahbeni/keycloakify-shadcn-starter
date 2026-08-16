@@ -65,7 +65,7 @@ export function Page() {
                         {shouldDisplayAuthenticators && (
                             <div className="flex flex-col gap-4">
                                 {authenticators.authenticators.length > 1 && (
-                                    <h3 className="text-sm font-medium text-center">
+                                    <h3 className="text-center text-sm font-medium">
                                         {msg("webauthn-available-authenticators")}
                                     </h3>
                                 )}
@@ -75,72 +75,51 @@ export function Page() {
                                         <div
                                             key={authenticator.credentialId}
                                             id={`kc-webauthn-authenticator-item-${i}`}
-                                            className="flex items-center gap-3 p-3 border rounded-lg bg-muted/50"
+                                            className="bg-muted/50 flex items-center gap-3 rounded-lg border p-3"
                                         >
                                             <div className="shrink-0">
                                                 {(() => {
-                                                    const className = kcClsx(
-                                                        authenticator.transports.iconClass as any,
-                                                    );
+                                                    const className = kcClsx(authenticator.transports.iconClass as any);
                                                     const isDefaultIcon =
-                                                        className ===
-                                                        authenticator.transports.iconClass;
+                                                        className === authenticator.transports.iconClass;
 
                                                     if (isDefaultIcon) {
-                                                        return (
-                                                            <Shield className="size-5 text-muted-foreground" />
-                                                        );
+                                                        return <Shield className="text-muted-foreground size-5" />;
                                                     }
 
-                                                    return (
-                                                        <i
-                                                            className={clsx(
-                                                                className,
-                                                                "text-muted-foreground",
-                                                            )}
-                                                        />
-                                                    );
+                                                    return <i className={clsx(className, "text-muted-foreground")} />;
                                                 })()}
                                             </div>
 
-                                            <div className="flex-1 min-w-0">
+                                            <div className="min-w-0 flex-1">
                                                 <div
                                                     id={`kc-webauthn-authenticator-label-${i}`}
-                                                    className="font-medium text-sm"
+                                                    className="text-sm font-medium"
                                                 >
                                                     {advancedMsg(authenticator.label)}
                                                 </div>
 
-                                                {authenticator.transports.displayNameProperties
-                                                    ?.length && (
+                                                {authenticator.transports.displayNameProperties?.length && (
                                                     <div
                                                         id={`kc-webauthn-authenticator-transport-${i}`}
-                                                        className="text-xs text-muted-foreground mt-1"
+                                                        className="text-muted-foreground mt-1 text-xs"
                                                     >
                                                         {authenticator.transports.displayNameProperties.map(
                                                             (displayNameProperty, i, arr) => (
                                                                 <Fragment key={displayNameProperty}>
-                                                                    {advancedMsg(
-                                                                        displayNameProperty,
-                                                                    )}
-                                                                    {i !== arr.length - 1 && (
-                                                                        <span>, </span>
-                                                                    )}
+                                                                    {advancedMsg(displayNameProperty)}
+                                                                    {i !== arr.length - 1 && <span>, </span>}
                                                                 </Fragment>
                                                             ),
                                                         )}
                                                     </div>
                                                 )}
 
-                                                <div className="text-xs text-muted-foreground mt-1">
-                                                    <span
-                                                        id={`kc-webauthn-authenticator-createdlabel-${i}`}
-                                                    >
+                                                <div className="text-muted-foreground mt-1 text-xs">
+                                                    <span id={`kc-webauthn-authenticator-createdlabel-${i}`}>
                                                         {msg("webauthn-createdAt-label")}
                                                     </span>{" "}
-                                                    <span
-                                                        id={`kc-webauthn-authenticator-created-${i}`}
-                                                    >
+                                                    <span id={`kc-webauthn-authenticator-created-${i}`}>
                                                         {authenticator.createdAt}
                                                     </span>
                                                 </div>

@@ -12,12 +12,7 @@ export function TemplateTopBar({ align = "start" }: { align?: "start" | "end" })
     const { enabledLanguages } = useI18n();
 
     return (
-        <div
-            className={cn(
-                "absolute inset-x-4 top-4 z-20 flex items-center gap-2",
-                align === "end" && "justify-end",
-            )}
-        >
+        <div className={cn("absolute inset-x-4 top-4 z-20 flex items-center gap-2", align === "end" && "justify-end")}>
             <a
                 href={kcContext.client?.baseUrl ?? redirectUrlOrigin}
                 aria-label="Home"
