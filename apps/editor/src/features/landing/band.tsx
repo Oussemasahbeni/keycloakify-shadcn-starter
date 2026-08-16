@@ -1,5 +1,6 @@
-import { cn } from "#/lib/utils";
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
+
+import { cn } from "#/lib/utils";
 
 /**
  * One ruled band of the landing page.
@@ -28,12 +29,7 @@ export function Band({
 } & ComponentPropsWithoutRef<"section">) {
     return (
         <As
-            className={cn(
-                "wrapper",
-                topRule && "border-t",
-                ticks && "md:tick-left md:tick-right",
-                className,
-            )}
+            className={cn("wrapper", topRule && "border-t", ticks && "md:tick-left md:tick-right", className)}
             {...rest}
         >
             {children}
@@ -64,7 +60,7 @@ export function SectionHeader({
         >
             {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
             <h2 className="max-w-2xl text-3xl font-medium tracking-tight text-balance sm:text-5xl">{title}</h2>
-            {lede && <p className="text-muted-foreground max-w-md text-balance sm:text-pretty">{lede}</p>}
+            {lede && <p className="max-w-md text-balance text-muted-foreground sm:text-pretty">{lede}</p>}
         </Band>
     );
 }
@@ -72,6 +68,13 @@ export function SectionHeader({
 /** Mono metadata label. The page's second typographic voice. */
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
     return (
-        <span className={cn("text-muted-foreground font-mono text-xs leading-none font-medium tracking-widest uppercase", className)}>{children}</span>
+        <span
+            className={cn(
+                "font-mono text-xs leading-none font-medium tracking-widest text-muted-foreground uppercase",
+                className,
+            )}
+        >
+            {children}
+        </span>
     );
 }

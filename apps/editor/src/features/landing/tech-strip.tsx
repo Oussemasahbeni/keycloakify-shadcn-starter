@@ -1,6 +1,8 @@
+import { SiKeycloak, SiReact, SiShadcnui, SiTailwindcss, SiTypescript, SiVite } from "@icons-pack/react-simple-icons";
+
 import { KEYCLOAKIFY_URL, SHADCN_URL, TAILWIND_URL } from "#/config/constants.ts";
 import { cn } from "#/lib/utils";
-import { SiKeycloak, SiReact, SiShadcnui, SiTailwindcss, SiTypescript, SiVite } from "@icons-pack/react-simple-icons";
+
 import { Band, Eyebrow } from "./band";
 
 const STACK = [
@@ -39,9 +41,9 @@ export function TechStrip() {
                             href={url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group hover:bg-muted/40 flex h-full flex-col items-center gap-2 px-4 py-6 transition-colors duration-200"
+                            className="group flex h-full flex-col items-center gap-2 px-4 py-6 transition-colors duration-200 hover:bg-muted/40"
                         >
-                            <Icon className="text-muted-foreground group-hover:text-foreground size-5 transition-colors duration-200" />
+                            <Icon className="size-5 text-muted-foreground transition-colors duration-200 group-hover:text-foreground" />
                             <span className="text-sm font-medium">{name}</span>
                         </a>
                     </li>

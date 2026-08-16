@@ -1,7 +1,8 @@
+import { strFromU8, unzipSync } from "fflate";
+
 import type { ThemeAssetKey } from "#/features/editor/shared/model/assets.ts";
 import { assetDefinitions, emptyAssets } from "#/features/editor/shared/model/assets.ts";
 
-import { strFromU8, unzipSync } from "fflate";
 import { MANIFEST_PATH } from "./constants";
 import { isValidJarSignature, mimeFromFilename } from "./files";
 import type { EmailThemeConfig, LoginThemeConfig } from "./model/theme-config";

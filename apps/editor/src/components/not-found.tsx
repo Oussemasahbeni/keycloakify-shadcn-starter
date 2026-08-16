@@ -1,14 +1,15 @@
-import { Button, buttonVariants } from "#/components/ui/button";
 import { Link } from "@tanstack/react-router";
+
+import { Button, buttonVariants } from "#/components/ui/button";
 
 export function NotFound() {
     return (
         <main className="relative flex h-screen items-center justify-center overflow-hidden">
             <div className="max-w-md space-y-6 px-4 text-center">
                 <div className="space-y-2">
-                    <h1 className="text-primary text-9xl font-bold">404</h1>
+                    <h1 className="text-9xl font-bold text-primary">404</h1>
                     <h2 className="text-3xl font-semibold tracking-tight">Page Not Found</h2>
-                    <p className="text-muted-foreground text-lg">
+                    <p className="text-lg text-muted-foreground">
                         Sorry, the page you are looking for doesn't exist or has been moved.
                     </p>
                 </div>

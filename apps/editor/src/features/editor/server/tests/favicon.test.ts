@@ -1,5 +1,6 @@
 import sharp from "sharp";
 import { describe, expect, it } from "vitest";
+
 import { generateFaviconSet } from "../favicon";
 
 /** The 4-byte ICO signature: `00 00 01 00`. */

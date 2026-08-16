@@ -2,6 +2,7 @@ import { emailTemplateIds } from "@kc-studio/shadcn-theme/email";
 import { renderEmailPreview } from "@kc-studio/shadcn-theme/email-preview";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+
 import { LOCALES } from "../../../lib/locales";
 
 const schema = z.object({

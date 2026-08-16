@@ -1,4 +1,5 @@
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+
 import { LoadingScreen } from "./components/loading-screen";
 import { NotFound } from "./components/not-found";
 import { routeTree } from "./routeTree.gen";

@@ -1,7 +1,9 @@
-import { MAX_IMAGE_SIZE_BYTES } from "#/features/editor/shared/files.ts";
-import { getImageError } from "#/features/editor/shared/validation/image.ts";
 import type { LucideIcon } from "lucide-react";
 import { X } from "lucide-react";
+
+import { MAX_IMAGE_SIZE_BYTES } from "#/features/editor/shared/files.ts";
+import { getImageError } from "#/features/editor/shared/validation/image.ts";
+
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { FileUpload } from "./ui/file-upload";
@@ -37,7 +39,7 @@ export function ImageAssetField({
         <Card size="sm">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                    <Icon className="text-muted-foreground size-4" />
+                    <Icon className="size-4 text-muted-foreground" />
                     {label}
                 </CardTitle>
             </CardHeader>
@@ -63,10 +65,10 @@ export function ImageAssetField({
                         </InputGroupAddon>
                     )}
                 </InputGroup>
-                <div className="text-muted-foreground flex items-center gap-2 text-xs">
-                    <span className="bg-border h-px flex-1" />
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="h-px flex-1 bg-border" />
                     or
-                    <span className="bg-border h-px flex-1" />
+                    <span className="h-px flex-1 bg-border" />
                 </div>
                 <FileUpload
                     label={`Upload ${label.toLowerCase()}`}

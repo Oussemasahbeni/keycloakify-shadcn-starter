@@ -1,5 +1,6 @@
 import { LOCALE_COUNT } from "#/lib/locales.ts";
 import { cn } from "#/lib/utils";
+
 import { Band, Eyebrow } from "./band";
 import { OPTION_COUNTS } from "./product-facts";
 

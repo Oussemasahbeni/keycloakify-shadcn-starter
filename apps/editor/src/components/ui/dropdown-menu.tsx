@@ -1,8 +1,8 @@
-import * as React from "react";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
+import { ChevronRightIcon, CheckIcon } from "lucide-react";
+import * as React from "react";
 
 import { cn } from "#/lib/utils.ts";
-import { ChevronRightIcon, CheckIcon } from "lucide-react";
 
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
     return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
@@ -23,8 +23,7 @@ function DropdownMenuContent({
     sideOffset = 4,
     className,
     ...props
-}: MenuPrimitive.Popup.Props &
-    Pick<MenuPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">) {
+}: MenuPrimitive.Popup.Props & Pick<MenuPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">) {
     return (
         <MenuPrimitive.Portal>
             <MenuPrimitive.Positioner
@@ -62,10 +61,7 @@ function DropdownMenuLabel({
         <MenuPrimitive.GroupLabel
             data-slot="dropdown-menu-label"
             data-inset={inset}
-            className={cn(
-                "px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:ps-7",
-                className,
-            )}
+            className={cn("px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:ps-7", className)}
             {...props}
         />
     );
@@ -117,7 +113,7 @@ function DropdownMenuSubTrigger({
             {...props}
         >
             {children}
-            <ChevronRightIcon className="rtl:rotate-180 ms-auto" />
+            <ChevronRightIcon className="ms-auto rtl:rotate-180" />
         </MenuPrimitive.SubmenuTrigger>
     );
 }
@@ -160,7 +156,7 @@ function DropdownMenuCheckboxItem({
             data-slot="dropdown-menu-checkbox-item"
             data-inset={inset}
             className={cn(
-                "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pe-8 ps-1.5 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+                "relative flex cursor-default items-center gap-1.5 rounded-md py-1 ps-1.5 pe-8 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
                 className,
             )}
             checked={checked}
@@ -196,7 +192,7 @@ function DropdownMenuRadioItem({
             data-slot="dropdown-menu-radio-item"
             data-inset={inset}
             className={cn(
-                "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pe-8 ps-1.5 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+                "relative flex cursor-default items-center gap-1.5 rounded-md py-1 ps-1.5 pe-8 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
                 className,
             )}
             {...props}

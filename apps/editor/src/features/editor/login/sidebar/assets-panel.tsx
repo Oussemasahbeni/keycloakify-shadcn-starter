@@ -1,3 +1,6 @@
+import type { LucideIcon } from "lucide-react";
+import { Image as ImageIcon, Moon, PanelLeft, Star, Sun } from "lucide-react";
+
 import { ImageAssetField } from "#/components/image-asset-field";
 import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card.tsx";
 import { FileUpload } from "#/components/ui/file-upload";
@@ -5,8 +8,6 @@ import type { ThemeAssetKey } from "#/features/editor/shared/model/assets.ts";
 import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
 import { getFaviconError } from "#/features/editor/shared/validation/favicon.ts";
 import { useEditor } from "#/features/editor/state/editor-context";
-import type { LucideIcon } from "lucide-react";
-import { Image as ImageIcon, Moon, PanelLeft, Star, Sun } from "lucide-react";
 
 const ASSET_ICONS: Record<ThemeAssetKey, LucideIcon> = {
     favicon: Star,
@@ -26,7 +27,7 @@ export function AssetsPanel() {
             <Card size="sm">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                        <Star className="text-muted-foreground size-4" />
+                        <Star className="size-4 text-muted-foreground" />
                         Favicon
                     </CardTitle>
                 </CardHeader>

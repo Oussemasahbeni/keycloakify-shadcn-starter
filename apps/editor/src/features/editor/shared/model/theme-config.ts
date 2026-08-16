@@ -1,3 +1,5 @@
+import type { Locale } from "#/lib/locales.ts";
+import { LOCALES } from "#/lib/locales.ts";
 import { resolveEmailTheme } from "@kc-studio/shadcn-theme/email";
 import type {
     BasePalette,
@@ -31,9 +33,6 @@ import {
     sidePanelPositionOptions,
     THEME_PROPERTY_KEYS,
 } from "@kc-studio/shadcn-theme/theme";
-import type { Locale } from "../../../../lib/locales";
-import { LOCALES } from "../../../../lib/locales";
-
 import type { Equals } from "tsafe";
 import { assert as assertType } from "tsafe";
 import { z } from "zod";

@@ -1,15 +1,3 @@
-import { Button } from "#/components/ui/button";
-import { Field, FieldContent, FieldDescription, FieldError, FieldLabel, FieldTitle } from "#/components/ui/field";
-import { Label } from "#/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
-import { Separator } from "#/components/ui/separator";
-import { Switch } from "#/components/ui/switch";
-import type { LucideIcon } from "lucide-react";
-import { Columns2, Image, Info, PanelLeft, PanelRight, Shuffle, Square } from "lucide-react";
-import type { ReactNode } from "react";
-
-import { pickRandom, prettify } from "#/lib/utils";
 import type {
     BasePalette,
     FontFamily,
@@ -28,12 +16,23 @@ import {
     primaryPresetOptions,
     primaryPresets,
 } from "@kc-studio/shadcn-theme/theme";
+import type { LucideIcon } from "lucide-react";
+import { Columns2, Image, Info, PanelLeft, PanelRight, Shuffle, Square } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { Swatch } from "#/components/swatch.tsx";
+import { Button } from "#/components/ui/button";
+import { Field, FieldContent, FieldDescription, FieldError, FieldLabel, FieldTitle } from "#/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupTextarea } from "#/components/ui/input-group.tsx";
+import { Label } from "#/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
+import { Separator } from "#/components/ui/separator";
+import { Switch } from "#/components/ui/switch";
 import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip.tsx";
 import { getThemeNameError } from "#/features/editor/shared/validation/theme-name.ts";
 import { useEditor } from "#/features/editor/state/editor-context";
+import { pickRandom, prettify } from "#/lib/utils";
 
 function BasePaletteField() {
     const { config, previewColorScheme, updateConfig } = useEditor().login;
@@ -175,7 +174,7 @@ function LayoutField() {
                     return (
                         <FieldLabel className="hover:cursor-pointer" key={option} htmlFor={`layout-${option}`}>
                             <Field orientation="horizontal">
-                                <span className="bg-muted/50 text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-md border">
+                                <span className="flex size-9 shrink-0 items-center justify-center rounded-md border bg-muted/50 text-muted-foreground">
                                     <Icon className="size-4" />
                                 </span>
                                 <FieldContent>
@@ -381,7 +380,7 @@ function WelcomeMessageField() {
 function Section({ title, children }: { title: string; children: ReactNode }) {
     return (
         <section className="flex flex-col gap-4">
-            <h3 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">{title}</h3>
+            <h3 className="text-xs font-medium tracking-wide text-muted-foreground uppercase">{title}</h3>
             {children}
         </section>
     );

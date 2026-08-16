@@ -17,11 +17,7 @@ export const pages: PagePreview[] = [
                 label: "Invalid credentials",
                 overrides: {
                     login: { username: "johndoe" },
-                    messagesPerField: fieldError(
-                        "Invalid username or password.",
-                        "username",
-                        "password",
-                    ),
+                    messagesPerField: fieldError("Invalid username or password.", "username", "password"),
                 },
             },
             {
@@ -164,23 +160,19 @@ export const pages: PagePreview[] = [
                             email: {
                                 validators: {
                                     pattern: {
-                                        pattern:
-                                            "^[^@]+@([^.]+\\.)*((mit\\.edu)|(berkeley\\.edu))$",
-                                        "error-message":
-                                            "${profile.attributes.email.pattern.error}",
+                                        pattern: "^[^@]+@([^.]+\\.)*((mit\\.edu)|(berkeley\\.edu))$",
+                                        "error-message": "${profile.attributes.email.pattern.error}",
                                     },
                                 },
                                 annotations: {
-                                    inputHelperTextBefore:
-                                        "${profile.attributes.email.inputHelperTextBefore}",
+                                    inputHelperTextBefore: "${profile.attributes.email.inputHelperTextBefore}",
                                 },
                             },
                         },
                     },
                     "x-keycloakify": {
                         messages: {
-                            "profile.attributes.email.inputHelperTextBefore":
-                                "Please use your MIT or Berkeley email.",
+                            "profile.attributes.email.inputHelperTextBefore": "Please use your MIT or Berkeley email.",
                             "profile.attributes.email.pattern.error":
                                 "This is not an MIT (<strong>@mit.edu</strong>) nor a Berkeley (<strong>@berkeley.edu</strong>) email.",
                         },
@@ -198,8 +190,7 @@ export const pages: PagePreview[] = [
                                 displayName: "${profile.attributes.favoritePet}",
                                 validators: { options: { options: ["cat", "dog", "fish"] } },
                                 annotations: {
-                                    inputOptionLabelsI18nPrefix:
-                                        "profile.attributes.favoritePet.options",
+                                    inputOptionLabelsI18nPrefix: "profile.attributes.favoritePet.options",
                                 },
                                 required: false,
                                 readOnly: false,
@@ -278,8 +269,7 @@ export const pages: PagePreview[] = [
                     termsAcceptanceRequired: true,
                     "x-keycloakify": {
                         messages: {
-                            termsText:
-                                "<a href='https://example.com/terms'>Service Terms of Use</a>",
+                            termsText: "<a href='https://example.com/terms'>Service Terms of Use</a>",
                         },
                     },
                 },
@@ -303,8 +293,7 @@ export const pages: PagePreview[] = [
                         },
                     },
                     messagesPerField: {
-                        existsError: (...names: string[]) =>
-                            names.some(name => ["username", "email"].includes(name)),
+                        existsError: (...names: string[]) => names.some(name => ["username", "email"].includes(name)),
                         get: (name: string) => {
                             if (name === "username") return "Username is required.";
                             if (name === "email") return "Invalid email format.";
@@ -364,12 +353,7 @@ export const pages: PagePreview[] = [
                 overrides: {
                     messageHeader: "Message header",
                     message: { summary: "Required actions: " },
-                    requiredActions: [
-                        "CONFIGURE_TOTP",
-                        "UPDATE_PROFILE",
-                        "VERIFY_EMAIL",
-                        "CUSTOM_ACTION",
-                    ],
+                    requiredActions: ["CONFIGURE_TOTP", "UPDATE_PROFILE", "VERIFY_EMAIL", "CUSTOM_ACTION"],
                     "x-keycloakify": {
                         messages: { "requiredAction.CUSTOM_ACTION": "Custom action" },
                     },
@@ -1007,8 +991,7 @@ export const pages: PagePreview[] = [
                     isSetRetry: false,
                     isAppInitiatedAction: false,
                     message: {
-                        summary:
-                            "An error occurred during WebAuthn registration. Please try again.",
+                        summary: "An error occurred during WebAuthn registration. Please try again.",
                         type: "error",
                     },
                 },
@@ -1026,10 +1009,7 @@ export const pages: PagePreview[] = [
                 label: "Password error",
                 overrides: {
                     url: { loginAction: "/mock-login-action" },
-                    messagesPerField: fieldError(
-                        "Password must be at least 8 characters long.",
-                        "password",
-                    ),
+                    messagesPerField: fieldError("Password must be at least 8 characters long.", "password"),
                     isAppInitiatedAction: false,
                 },
             },
@@ -1256,8 +1236,7 @@ export const pages: PagePreview[] = [
                 label: "With validation errors",
                 overrides: {
                     messagesPerField: {
-                        existsError: (...names: string[]) =>
-                            names.some(name => ["email", "firstName"].includes(name)),
+                        existsError: (...names: string[]) => names.some(name => ["email", "firstName"].includes(name)),
                         get: (name: string) => {
                             if (name === "email") return "Invalid email format.";
                             if (name === "firstName") return "First name is required.";
@@ -1369,12 +1348,9 @@ export const pages: PagePreview[] = [
                             "home-idp-discovery-display-name": "Home identity provider",
                             "home-idp-discovery-help-text":
                                 "Sign in via your home identity provider which will be automatically determined based on your provided email address.",
-                            "identity-provider-redirctor-display-name":
-                                "Identity Provider Redirector",
-                            "identity-provider-redirctor-help-text":
-                                "Sign in via your identity provider.",
-                            "auth-username-password-help-text":
-                                "Sign in via your username and password.",
+                            "identity-provider-redirctor-display-name": "Identity Provider Redirector",
+                            "identity-provider-redirctor-help-text": "Sign in via your identity provider.",
+                            "auth-username-password-help-text": "Sign in via your username and password.",
                         },
                     },
                 },
@@ -1484,8 +1460,7 @@ export const pages: PagePreview[] = [
                 overrides: {
                     url: { loginAction: "/mock-login-action" },
                     message: {
-                        summary:
-                            "An error occurred during recovery code generation. Please try again.",
+                        summary: "An error occurred during recovery code generation. Please try again.",
                         type: "error",
                     },
                 },

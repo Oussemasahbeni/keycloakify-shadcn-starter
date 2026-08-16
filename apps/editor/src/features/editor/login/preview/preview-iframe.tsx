@@ -1,8 +1,10 @@
-import { getViewportWidth } from "#/features/editor/shared/model/viewport.ts";
+import { useState } from "react";
+
 import { getPage } from "#/features/editor/login/stories/pages";
 import type { PageId } from "#/features/editor/login/stories/types";
+import { getViewportWidth } from "#/features/editor/shared/model/viewport.ts";
 import { useEditor } from "#/features/editor/state/editor-context";
-import { useState } from "react";
+
 import { usePublishPreview } from "../hooks/use-preview-channel";
 import { LoginPreviewToolbar } from "./preview-toolbar";
 
@@ -30,12 +32,12 @@ export function LoginPreviewIframe() {
                 onPageChange={handlePageChange}
                 onStoryChange={setStoryId}
             />
-            <div className="bg-muted/30 grid flex-1 place-items-center overflow-auto p-4">
+            <div className="grid flex-1 place-items-center overflow-auto bg-muted/30 p-4">
                 <iframe
                     src="/preview"
                     title="Theme preview"
                     sandbox="allow-scripts allow-same-origin allow-forms"
-                    className="bg-background h-full rounded-lg border shadow-sm transition-[width] duration-250"
+                    className="h-full rounded-lg border bg-background shadow-sm transition-[width] duration-250"
                     style={{ width: width ? `${width}px` : "100%" }}
                 />
             </div>

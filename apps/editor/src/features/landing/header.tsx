@@ -1,14 +1,16 @@
+import { SiDiscord } from "@icons-pack/react-simple-icons";
+import { Link } from "@tanstack/react-router";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+
 import { Logo } from "#/components/logo";
 import { ModeToggle } from "#/components/mode-toggle";
 import { Button, buttonVariants } from "#/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "#/components/ui/sheet";
 import { DISCORD_INVITE_URL } from "#/config/constants.ts";
 import { cn } from "#/lib/utils";
+
 import { IconLink } from "./icon-link";
-import { SiDiscord } from "@icons-pack/react-simple-icons";
-import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
 
 const NAV_ITEMS = [
     { name: "Compare", href: "#compare" },
@@ -41,7 +43,7 @@ function DesktopNav() {
                 <a
                     key={item.name}
                     href={item.href}
-                    className="text-muted-foreground hover:text-foreground hover:bg-muted/60 rounded-md px-3 py-1.5 text-sm transition-colors duration-200 ease-out"
+                    className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors duration-200 ease-out hover:bg-muted/60 hover:text-foreground"
                 >
                     {item.name}
                 </a>
@@ -88,7 +90,7 @@ function MobileMenu() {
                             key={item.name}
                             href={item.href}
                             onClick={() => setIsOpen(false)}
-                            className="hover:bg-accent hover:text-accent-foreground flex w-full items-center rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 ease-out"
+                            className="flex w-full items-center rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 ease-out hover:bg-accent hover:text-accent-foreground"
                         >
                             {item.name}
                         </a>
@@ -107,7 +109,7 @@ function MobileMenu() {
 
 export function Header() {
     return (
-        <header className="bg-background sticky top-0 z-50">
+        <header className="sticky top-0 z-50 bg-background">
             <div className="wrapper flex items-center justify-between border-b px-5 py-4 sm:px-6">
                 <Brand />
                 <DesktopNav />
@@ -123,7 +125,7 @@ export function Header() {
                 <MobileMenu />
             </div>
             {/* Draws the corner notches beneath the header's rule. */}
-            <div className="wrapper md:tick-left md:tick-right h-0" aria-hidden />
+            <div className="md:tick-left md:tick-right wrapper h-0" aria-hidden />
         </header>
     );
 }

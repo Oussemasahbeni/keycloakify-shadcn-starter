@@ -9,9 +9,7 @@ const MIME_TYPES = ["image/png", "image/svg+xml", "image/x-icon", "image/vnd.mic
 export const faviconFileSchema = z
     .instanceof(File, { error: "Favicon must be a file." })
     .refine(
-        file =>
-            EXTENSIONS.some(ext => file.name.toLowerCase().endsWith(ext)) ||
-            MIME_TYPES.includes(file.type),
+        file => EXTENSIONS.some(ext => file.name.toLowerCase().endsWith(ext)) || MIME_TYPES.includes(file.type),
         "Use a PNG, SVG, or ICO file.",
     )
     .refine(file => file.size <= MAX_FAVICON_BYTES, "File is too large (max 1 MB).");

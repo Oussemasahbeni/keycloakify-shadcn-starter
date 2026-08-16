@@ -26,7 +26,7 @@ export function ProblemSection() {
                     <div className="flex h-full flex-col gap-3 p-6 sm:p-8">
                         <Eyebrow>{step.label}</Eyebrow>
                         <h3 className="text-xl leading-snug font-medium tracking-tight text-balance">{step.title}</h3>
-                        <p className="text-muted-foreground text-sm text-pretty">{step.body}</p>
+                        <p className="text-sm text-pretty text-muted-foreground">{step.body}</p>
                     </div>
                 </div>
             ))}

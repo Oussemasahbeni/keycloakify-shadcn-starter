@@ -1,5 +1,6 @@
 import { LOCALE_COUNT, LOCALES } from "#/lib/locales";
 import { cn } from "#/lib/utils";
+
 import { Band, Eyebrow } from "./band";
 import { Screenshot } from "./screenshot";
 
@@ -13,7 +14,7 @@ import { Screenshot } from "./screenshot";
  */
 export function FeaturePanels() {
     return (
-        <Band className="divide-border grid divide-y lg:grid-cols-2 lg:divide-x">
+        <Band className="grid divide-y divide-border lg:grid-cols-2 lg:divide-x">
             <Panel
                 eyebrow="Live preview"
                 title="See the real page, not an approximation"
@@ -45,7 +46,7 @@ export function FeaturePanels() {
                     {LOCALES.map(locale => (
                         <span
                             key={locale}
-                            className="border-border/60 text-muted-foreground hover:text-foreground hover:bg-muted/50 -ms-px -mt-px border-s border-t px-2 py-2 text-center font-mono text-[0.6875rem] transition-colors duration-200"
+                            className="-ms-px -mt-px border-s border-t border-border/60 px-2 py-2 text-center font-mono text-[0.6875rem] text-muted-foreground transition-colors duration-200 hover:bg-muted/50 hover:text-foreground"
                         >
                             {locale}
                         </span>
@@ -76,7 +77,7 @@ export function FeaturePanels() {
                 body="Export bundles your login and email themes into a Keycloak provider JAR. Drop it in providers/, restart, pick the theme. Nothing to build, nothing to wire up."
                 className="lg:border-b-0"
             >
-                <div className="border-border bg-muted/40 w-full max-w-sm space-y-1 rounded-lg border p-4 font-mono text-xs">
+                <div className="w-full max-w-sm space-y-1 rounded-lg border border-border bg-muted/40 p-4 font-mono text-xs">
                     <div className="text-muted-foreground">
                         <span className="select-none">$ </span>
                         cp my-theme.jar keycloak/providers/
@@ -85,7 +86,7 @@ export function FeaturePanels() {
                         <span className="select-none">$ </span>
                         ./kc.sh start-dev
                     </div>
-                    <div className="text-primary pt-1">✓ theme available in the admin console</div>
+                    <div className="pt-1 text-primary">✓ theme available in the admin console</div>
                 </div>
             </Panel>
         </Band>
@@ -110,7 +111,7 @@ function Panel({
             <div className="flex flex-col gap-3 p-5 pb-0 sm:p-10 sm:pb-0">
                 <Eyebrow>{eyebrow}</Eyebrow>
                 <h3 className="text-xl leading-snug font-medium tracking-tight text-balance">{title}</h3>
-                <p className="text-muted-foreground max-w-120 text-sm text-pretty">{body}</p>
+                <p className="max-w-120 text-sm text-pretty text-muted-foreground">{body}</p>
             </div>
             <div className="flex flex-1 items-center justify-center p-5 pt-0 sm:p-10 sm:pt-0">{children}</div>
         </div>

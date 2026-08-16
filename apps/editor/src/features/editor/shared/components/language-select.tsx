@@ -1,12 +1,7 @@
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "#/components/ui/select";
-
 import { Globe } from "lucide-react";
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
+
 import type { Locale } from "../../../../lib/locales";
 import { DEFAULT_LOCALE, supportedLocales } from "../../../../lib/locales";
 import { useEditor } from "../../state/editor-context";
@@ -25,7 +20,7 @@ export function LanguageSelect() {
             onValueChange={value => updateConfig({ locale: value as Locale })}
         >
             <SelectTrigger className="w-64">
-                <Globe className="text-muted-foreground size-4" />
+                <Globe className="size-4 text-muted-foreground" />
                 <SelectValue>{(selected: Locale) => labelFor(selected)}</SelectValue>
             </SelectTrigger>
             <SelectContent alignItemWithTrigger={false} className="max-h-100">

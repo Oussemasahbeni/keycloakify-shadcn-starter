@@ -1,13 +1,16 @@
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+import { strFromU8, unzipSync } from "fflate";
+import { describe, expect, it } from "vitest";
+
 import type { LoginThemeConfig } from "#/features/editor/shared/model/theme-config";
 import {
     defaultLoginThemeConfig,
     emailConfigToProperties,
     themeConfigToProperties,
 } from "#/features/editor/shared/model/theme-config";
-import { strFromU8, unzipSync } from "fflate";
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { describe, expect, it } from "vitest";
+
 import { MANIFEST_PATH } from "../../shared/constants";
 import { customizeThemeJar } from "../jar-customizer";
 

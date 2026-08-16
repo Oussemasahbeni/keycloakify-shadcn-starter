@@ -11,7 +11,7 @@ const FRAME = { width: 1991, height: 1271 } as const;
  */
 export function CompareSection() {
     return (
-        <Band className="divide-border grid divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
+        <Band className="grid divide-y divide-border md:grid-cols-2 md:divide-x md:divide-y-0">
             <figure className="flex flex-col gap-4 p-5 sm:p-8">
                 <figcaption>
                     <Eyebrow>Before — stock Keycloak</Eyebrow>

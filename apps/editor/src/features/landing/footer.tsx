@@ -1,7 +1,9 @@
-import { Logo } from "#/components/logo";
-import { DISCORD_INVITE_URL, KEYCLOAKIFY_URL, SHADCN_URL, TAILWIND_URL } from "#/config/constants.ts";
 import { SiDiscord } from "@icons-pack/react-simple-icons";
 import { Link } from "@tanstack/react-router";
+
+import { Logo } from "#/components/logo";
+import { DISCORD_INVITE_URL, KEYCLOAKIFY_URL, SHADCN_URL, TAILWIND_URL } from "#/config/constants.ts";
+
 import { Band, Eyebrow } from "./band";
 import { IconLink } from "./icon-link";
 
@@ -67,7 +69,7 @@ export function LandingFooter() {
                         <Logo size={28} />
                         <span className="font-medium tracking-tight">Keycloak Theme Editor</span>
                     </Link>
-                    <p className="text-muted-foreground text-sm text-pretty">
+                    <p className="text-sm text-pretty text-muted-foreground">
                         A visual editor for Keycloak login themes. Customize colors, type and layout, preview every page
                         live, and export a deploy-ready theme.
                     </p>
@@ -92,7 +94,7 @@ export function LandingFooter() {
                 ))}
             </Band>
 
-            <Band ticks={false} className="text-muted-foreground px-5 py-5 text-center text-xs sm:px-10">
+            <Band ticks={false} className="px-5 py-5 text-center text-xs text-muted-foreground sm:px-10">
                 © {currentYear} Keycloak Theme Editor. All rights reserved.
             </Band>
         </footer>

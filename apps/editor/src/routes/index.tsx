@@ -1,18 +1,19 @@
+import { createFileRoute } from "@tanstack/react-router";
+
 import { SITE_URL } from "#/config/constants.ts";
 import { SectionHeader } from "#/features/landing/band";
+import { CompareSection } from "#/features/landing/compare-section";
 import { CtaSection } from "#/features/landing/cta-section";
 import { FaqSection, faqItems } from "#/features/landing/faq-section";
 import { FeaturePanels } from "#/features/landing/feature-panels";
 import { LandingFooter } from "#/features/landing/footer";
 import { Header } from "#/features/landing/header";
 import { HeroSection } from "#/features/landing/hero-section";
-import { CompareSection } from "#/features/landing/compare-section";
 import { ProblemSection } from "#/features/landing/problem-section";
 import { StatsSection } from "#/features/landing/stats-section";
 import { TechStrip } from "#/features/landing/tech-strip";
 import { ThemeGallery } from "#/features/landing/theme-gallery";
 import { seo } from "#/lib/seo.ts";
-import { createFileRoute } from "@tanstack/react-router";
 
 const TITLE = "Keycloak Theme Editor — Visually customize Keycloak login themes";
 const DESCRIPTION =

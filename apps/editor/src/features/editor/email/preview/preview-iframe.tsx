@@ -1,9 +1,11 @@
-import { renderEmailPreviewFn } from "#/features/editor/server/email-render-preview";
-import { DEFAULT_LOCALE } from "#/lib/locales.ts";
-import { useEditor } from "#/features/editor/state/editor-context.tsx";
 import { keepPreviousData, queryOptions, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
+
+import { renderEmailPreviewFn } from "#/features/editor/server/email-render-preview";
+import { useEditor } from "#/features/editor/state/editor-context.tsx";
+import { DEFAULT_LOCALE } from "#/lib/locales.ts";
+
 import { EmailPreviewToolbar } from "./preview-toolbar";
 
 export function EmailPreviewIframe() {
@@ -50,7 +52,7 @@ export function EmailPreviewIframe() {
     return (
         <div className="flex h-full flex-col">
             <EmailPreviewToolbar />
-            <div className="bg-muted/30 h-full overflow-auto p-4">
+            <div className="h-full overflow-auto bg-muted/30 p-4">
                 <iframe
                     title="Email preview"
                     sandbox="allow-same-origin allow-scripts"

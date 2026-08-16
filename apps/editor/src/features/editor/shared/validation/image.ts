@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import { LOGIN_IMAGE_EXTENSIONS, LOGIN_IMAGE_MIME_TYPES, MAX_IMAGE_SIZE_BYTES } from "../files";
 
 /**

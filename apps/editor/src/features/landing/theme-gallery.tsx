@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
+
 import { Button } from "#/components/ui/button.tsx";
 import type { CarouselApi } from "#/components/ui/carousel";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "#/components/ui/carousel";
-import { useEffect, useState } from "react";
+
 import { Band } from "./band";
 import { Screenshot } from "./screenshot";
 

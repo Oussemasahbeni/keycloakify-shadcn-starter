@@ -1,8 +1,10 @@
-import { Button } from "#/components/ui/button.tsx";
-import { Spinner } from "#/components/ui/spinner.tsx";
 import { Upload } from "lucide-react";
 import { useRef, useState } from "react";
-import { toast } from "@/components/ui/toast"
+
+import { Button } from "#/components/ui/button.tsx";
+import { Spinner } from "#/components/ui/spinner.tsx";
+import { toast } from "@/components/ui/toast";
+
 import { useEditor } from "../../state/editor-context";
 import { parseThemeJar } from "../parse-theme-jar";
 
@@ -25,12 +27,12 @@ export function ImportButton() {
             importTheme(parseThemeJar(bytes));
             toast.add({
                 description: `Imported ${file.name}`,
-                type: "success"
+                type: "success",
             });
         } catch (error) {
             toast.add({
                 description: error instanceof Error ? error.message : "Import failed.",
-                type: "error"
+                type: "error",
             });
         } finally {
             setIsImporting(false);

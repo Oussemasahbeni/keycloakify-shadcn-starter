@@ -1,0 +1,14 @@
+{
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+    "printWidth": 120,
+    "tabWidth": 4,
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "sortImports": true,
+    "sortTailwindcss": {
+        "stylesheet": "./src/styles.css",
+        "functions": ["clsx", "cn", "cva"],
+        "preserveWhitespace": true
+    },
+    "ignorePatterns": []
+}

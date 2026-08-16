@@ -1,3 +1,5 @@
+import { BadgeCheckIcon, LogOut } from "lucide-react";
+
 import { Avatar, AvatarFallback, AvatarImage } from "#/components/ui/avatar";
 import { Button } from "#/components/ui/button";
 import {
@@ -11,13 +13,11 @@ import {
 } from "#/components/ui/dropdown-menu";
 import { getInitials } from "#/lib/utils";
 import { useOidc } from "#/oidc";
-import { BadgeCheckIcon, LogOut } from "lucide-react";
 
 export function UserMenu() {
     const { user, logout } = useOidc({
         assert: "user logged in",
     });
-
 
     return (
         <DropdownMenu>
@@ -36,16 +36,14 @@ export function UserMenu() {
                 <DropdownMenuGroup>
                     <DropdownMenuLabel className="flex flex-col gap-0.5">
                         <span className="truncate text-sm font-medium">{user.name}</span>
-                        <span className="truncate text-xs font-normal text-muted-foreground">
-                            {user.email}
-                        </span>
+                        <span className="truncate text-xs font-normal text-muted-foreground">{user.email}</span>
                     </DropdownMenuLabel>
                     <DropdownMenuItem>
                         <a
                             href={user.accountConsoleUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 w-full"
+                            className="flex w-full items-center gap-2"
                         >
                             <BadgeCheckIcon />
                             Account
@@ -56,7 +54,7 @@ export function UserMenu() {
                 <DropdownMenuItem
                     variant="destructive"
                     onClick={() => logout({ redirectTo: "home" })}
-                    className="hover:cursor-pointer flex items-center gap-2"
+                    className="flex items-center gap-2 hover:cursor-pointer"
                 >
                     <LogOut className="size-4" />
                     Log out

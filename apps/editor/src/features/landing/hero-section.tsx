@@ -1,6 +1,8 @@
+import { Link } from "@tanstack/react-router";
+
 import { buttonVariants } from "#/components/ui/button";
 import { cn } from "#/lib/utils";
-import { Link } from "@tanstack/react-router";
+
 import { Band, Eyebrow } from "./band";
 
 export function HeroSection() {
@@ -13,7 +15,7 @@ export function HeroSection() {
                     Design Keycloak login pages like they belong to your app.
                 </h1>
 
-                <p className="text-muted-foreground max-w-136 text-pretty sm:text-lg">
+                <p className="max-w-136 text-pretty text-muted-foreground sm:text-lg">
                     Turn Keycloak&apos;s dated default screens into a modern sign-in experience — every login page and
                     every email — without writing a single line of code. Export a deploy-ready{" "}
                     <code className="font-mono">.jar</code> when you&apos;re done.

@@ -1,12 +1,12 @@
+import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
+import { emailTemplates } from "@kc-studio/shadcn-theme/email";
 import { createContext, use, useState } from "react";
 
 import { useTheme } from "#/components/theme-provider";
-import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
-import { emailTemplates } from "@kc-studio/shadcn-theme/email";
-import type { ThemeAssetKey } from "../shared/model/assets";
-import { emptyAssets } from "../shared/model/assets";
 
 import { BASE_THEME_NAME } from "../shared/constants";
+import type { ThemeAssetKey } from "../shared/model/assets";
+import { emptyAssets } from "../shared/model/assets";
 import type { PreviewColorScheme } from "../shared/model/preview-color-scheme";
 import type { Surface } from "../shared/model/surface";
 import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
@@ -40,7 +40,7 @@ type EditorContextValue = {
         emailLogoFile: File | null;
         setEmailLogoFile: (file: File | null) => void;
     };
-}
+};
 
 const EditorContext = createContext<EditorContextValue | null>(null);
 

@@ -21,7 +21,7 @@ export type PageGroup = {
     id: PageCategory;
     label: string;
     pages: PagePreview[];
-}
+};
 
 export type PageStory<TId extends PageId = PageId> = {
     id: string;
@@ -30,7 +30,7 @@ export type PageStory<TId extends PageId = PageId> = {
      * Partial `kcContext`, deep-merged over the page's base mock. Typed against this page's context.
      */
     overrides?: DeepPartial<Extract<KcContext, { pageId: TId }>>;
-}
+};
 
 export type PagePreview<TId extends PageId = PageId> = {
     pageId: TId;
@@ -38,4 +38,4 @@ export type PagePreview<TId extends PageId = PageId> = {
     category: PageCategory;
     /** At least one scenario; the first is treated as the default. */
     stories: [PageStory<TId>, ...PageStory<TId>[]];
-}
+};

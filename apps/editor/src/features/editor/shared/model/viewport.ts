@@ -9,7 +9,7 @@ type ViewportConfig = {
     icon: LucideIcon;
     /** Max width of the preview in px. `null` = fill available space. */
     width: number | null;
-}
+};
 
 export const VIEWPORTS = [
     { id: "desktop", label: "Desktop", icon: Monitor, width: null },

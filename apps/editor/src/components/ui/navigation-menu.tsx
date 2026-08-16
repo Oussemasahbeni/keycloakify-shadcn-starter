@@ -1,8 +1,8 @@
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import { cva } from "class-variance-authority";
+import { ChevronDownIcon } from "lucide-react";
 
 import { cn } from "#/lib/utils.ts";
-import { ChevronDownIcon } from "lucide-react";
 
 function NavigationMenu({
     align = "start",
@@ -25,26 +25,17 @@ function NavigationMenu({
     );
 }
 
-function NavigationMenuList({
-    className,
-    ...props
-}: React.ComponentPropsWithRef<typeof NavigationMenuPrimitive.List>) {
+function NavigationMenuList({ className, ...props }: React.ComponentPropsWithRef<typeof NavigationMenuPrimitive.List>) {
     return (
         <NavigationMenuPrimitive.List
             data-slot="navigation-menu-list"
-            className={cn(
-                "group flex flex-1 list-none items-center justify-center gap-0",
-                className,
-            )}
+            className={cn("group flex flex-1 list-none items-center justify-center gap-0", className)}
             {...props}
         />
     );
 }
 
-function NavigationMenuItem({
-    className,
-    ...props
-}: React.ComponentPropsWithRef<typeof NavigationMenuPrimitive.Item>) {
+function NavigationMenuItem({ className, ...props }: React.ComponentPropsWithRef<typeof NavigationMenuPrimitive.Item>) {
     return (
         <NavigationMenuPrimitive.Item
             data-slot="navigation-menu-item"
@@ -58,11 +49,7 @@ const navigationMenuTriggerStyle = cva(
     "group/navigation-menu-trigger inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-popup-open:bg-muted/50 data-popup-open:hover:bg-muted data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted",
 );
 
-function NavigationMenuTrigger({
-    className,
-    children,
-    ...props
-}: NavigationMenuPrimitive.Trigger.Props) {
+function NavigationMenuTrigger({ className, children, ...props }: NavigationMenuPrimitive.Trigger.Props) {
     return (
         <NavigationMenuPrimitive.Trigger
             data-slot="navigation-menu-trigger"
@@ -107,7 +94,7 @@ function NavigationMenuPositioner({
                 align={align}
                 alignOffset={alignOffset}
                 className={cn(
-                    "isolate z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-[0.35s] ease-[cubic-bezier(0.22,1,0.36,1)] data-instant:transition-none data-[side=bottom]:before:top-[-10px] data-[side=bottom]:before:end-0 data-[side=bottom]:before:start-0",
+                    "isolate z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-[0.35s] ease-[cubic-bezier(0.22,1,0.36,1)] data-instant:transition-none data-[side=bottom]:before:start-0 data-[side=bottom]:before:end-0 data-[side=bottom]:before:top-[-10px]",
                     className,
                 )}
                 {...props}

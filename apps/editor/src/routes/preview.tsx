@@ -1,15 +1,14 @@
-import { Spinner } from "#/components/ui/spinner";
-import type { PreviewAssets, PreviewState } from "#/features/editor/login/hooks/use-preview-channel.ts";
-import { useReceivePreview } from "#/features/editor/login/hooks/use-preview-channel.ts";
-
-import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
-import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
-import { getStory } from "#/features/editor/login/stories/pages";
-
 import { KcPage, getKcContextMock } from "@kc-studio/shadcn-theme/preview";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { defaultLoginThemeConfig, themeConfigToProperties } from '#/features/editor/shared/model/theme-config.ts';
+
+import { Spinner } from "#/components/ui/spinner";
+import type { PreviewAssets, PreviewState } from "#/features/editor/login/hooks/use-preview-channel.ts";
+import { useReceivePreview } from "#/features/editor/login/hooks/use-preview-channel.ts";
+import { getStory } from "#/features/editor/login/stories/pages";
+import type { AssetKey } from "#/features/editor/shared/model/assets.ts";
+import { assetDefinitions } from "#/features/editor/shared/model/assets.ts";
+import { defaultLoginThemeConfig, themeConfigToProperties } from "#/features/editor/shared/model/theme-config.ts";
 
 /**
  * Isolated preview document, embedded by `PreviewPane` via an iframe.
@@ -18,7 +17,7 @@ export const Route = createFileRoute("/preview")({
     ssr: false,
     component: PreviewRoute,
     pendingComponent: () => (
-        <div className="text-muted-foreground flex h-svh items-center justify-center gap-2 text-sm">
+        <div className="flex h-svh items-center justify-center gap-2 text-sm text-muted-foreground">
             <Spinner className="size-4" />
             <span>Loading preview…</span>
         </div>

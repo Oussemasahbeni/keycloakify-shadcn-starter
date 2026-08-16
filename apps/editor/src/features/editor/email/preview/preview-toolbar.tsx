@@ -1,12 +1,12 @@
-import { Button } from "#/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
-import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
-
-import { LanguageSelect } from "#/features/editor/shared/components/language-select";
-import { useEditor } from "#/features/editor/state/editor-context";
 import type { EmailTemplate } from "@kc-studio/shadcn-theme/email";
 import { emailTemplates } from "@kc-studio/shadcn-theme/email";
 import { Mail, RotateCcw } from "lucide-react";
+
+import { Button } from "#/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
+import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
+import { LanguageSelect } from "#/features/editor/shared/components/language-select";
+import { useEditor } from "#/features/editor/state/editor-context";
 
 function TemplateSelect() {
     const { template, setTemplate } = useEditor().email;
@@ -14,7 +14,7 @@ function TemplateSelect() {
     return (
         <Select value={template} onValueChange={value => setTemplate(value as EmailTemplate)}>
             <SelectTrigger className="w-84">
-                <Mail className="text-muted-foreground size-4" />
+                <Mail className="size-4 text-muted-foreground" />
                 <SelectValue>{(selected: EmailTemplate) => selected.label}</SelectValue>
             </SelectTrigger>
             <SelectContent alignItemWithTrigger={false} className="max-h-100">

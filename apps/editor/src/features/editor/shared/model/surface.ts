@@ -1,6 +1,5 @@
 import { LogIn, Mail } from "lucide-react";
 
-
 /**
  * The two editing surfaces of a single theme. Both are baked into the same
  * exported JAR — this only switches which one the editor is viewing/editing.

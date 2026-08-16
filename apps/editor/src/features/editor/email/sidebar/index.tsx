@@ -1,14 +1,15 @@
+import type { PrimaryPreset } from "@kc-studio/shadcn-theme/theme";
+import { primaryPresetOptions, primaryPresets } from "@kc-studio/shadcn-theme/theme";
+import { Mail } from "lucide-react";
+
 import { ImageAssetField } from "#/components/image-asset-field.tsx";
+import { Swatch } from "#/components/swatch.tsx";
 import { Field, FieldLabel } from "#/components/ui/field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { Separator } from "#/components/ui/separator";
 import { useEditor } from "#/features/editor/state/editor-context.tsx";
-
-import { Swatch } from "#/components/swatch.tsx";
 import { prettify } from "#/lib/utils";
-import type { PrimaryPreset } from "@kc-studio/shadcn-theme/theme";
-import { primaryPresetOptions, primaryPresets } from "@kc-studio/shadcn-theme/theme";
-import { Mail } from "lucide-react";
+
 import { getEmailLogoError } from "../../shared/validation/email-logo";
 
 // Sentinel Select value for "inherit the login primary" (config.primary

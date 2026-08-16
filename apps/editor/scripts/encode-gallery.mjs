@@ -14,6 +14,7 @@
  */
 import { readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+
 import sharp from "sharp";
 
 const DIR = "public/images/gallery";
@@ -44,7 +45,9 @@ for (const file of files) {
     await Promise.all([writeFile(png, pngOut), writeFile(`${base}.webp`, webpOut), writeFile(`${base}.avif`, avifOut)]);
 
     avifAfter += avifOut.length;
-    console.log(`${file.padEnd(28)} png ${kb(input.length)} →${kb(pngOut.length)}   webp ${kb(webpOut.length)}   avif ${kb(avifOut.length)}`);
+    console.log(
+        `${file.padEnd(28)} png ${kb(input.length)} →${kb(pngOut.length)}   webp ${kb(webpOut.length)}   avif ${kb(avifOut.length)}`,
+    );
 }
 
 console.log(`\n${files.length} captures at ${FRAME.width}×${FRAME.height}`);

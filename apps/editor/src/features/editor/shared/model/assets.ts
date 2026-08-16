@@ -1,5 +1,6 @@
 import type { ThemePropertyKey } from "@kc-studio/shadcn-theme/theme";
 import { THEME_PROPERTY_KEYS } from "@kc-studio/shadcn-theme/theme";
+
 import type { LoginThemeConfig } from "./theme-config";
 
 type Assets = {

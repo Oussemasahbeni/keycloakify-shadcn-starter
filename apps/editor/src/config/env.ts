@@ -4,7 +4,7 @@ const envSchema = z.object({
     DATABASE_URL: z.url(),
     OIDC_ISSUER_URI: z.url(),
     OIDC_CLIENT_ID: z.string(),
-    OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE: z.string()
+    OIDC_ACCESS_TOKEN_EXPECTED_AUDIENCE: z.string(),
 });
 
 // Validate server environment

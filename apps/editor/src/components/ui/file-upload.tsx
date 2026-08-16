@@ -1,7 +1,9 @@
-import { Button } from "#/components/ui/button.tsx";
-import { cn } from "#/lib/utils.ts";
 import { Upload, XIcon } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
+
+import { Button } from "#/components/ui/button.tsx";
+import { cn } from "#/lib/utils.ts";
+
 import {
     Attachment,
     AttachmentAction,
@@ -136,38 +138,27 @@ export function FileUpload({
             {input}
             {value ? (
                 <Attachment className="w-full">
-                    <AttachmentMedia>
-                        {previewUrl && <img src={previewUrl} alt={value.name} />}
-                    </AttachmentMedia>
+                    <AttachmentMedia>{previewUrl && <img src={previewUrl} alt={value.name} />}</AttachmentMedia>
                     <AttachmentContent>
                         <AttachmentTitle>{value.name}</AttachmentTitle>
                         <AttachmentDescription>{formatFileSize(value.size)}</AttachmentDescription>
                     </AttachmentContent>
                     {!disabled && (
                         <AttachmentActions>
-                            <AttachmentAction
-                                aria-label="Remove sales-dashboard.pdf"
-                                onClick={clear}
-                            >
+                            <AttachmentAction aria-label="Remove sales-dashboard.pdf" onClick={clear}>
                                 <XIcon />
                             </AttachmentAction>
                         </AttachmentActions>
                     )}
                 </Attachment>
             ) : (
-                <Button
-                    type="button"
-                    variant="outline"
-                    disabled={disabled}
-                    onClick={openDialog}
-                    className="w-full"
-                >
+                <Button type="button" variant="outline" disabled={disabled} onClick={openDialog} className="w-full">
                     <Upload />
                     {label}
                 </Button>
             )}
-            {hint && !error && <p className="text-muted-foreground text-xs">{hint}</p>}
-            {error && <p className="text-destructive text-xs">{error}</p>}
+            {hint && !error && <p className="text-xs text-muted-foreground">{hint}</p>}
+            {error && <p className="text-xs text-destructive">{error}</p>}
         </div>
     );
 }

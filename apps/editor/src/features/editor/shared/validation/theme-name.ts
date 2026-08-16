@@ -9,10 +9,7 @@ export const themeNameSchema = z
     .string()
     .trim()
     .min(1, "Theme name is required.")
-    .regex(
-         /^[a-z0-9][a-z0-9-]*$/,
-        "Use lowercase letters, digits and dashes, starting with a letter or digit.",
-    );
+    .regex(/^[a-z0-9][a-z0-9-]*$/, "Use lowercase letters, digits and dashes, starting with a letter or digit.");
 
 export function getThemeNameError(name: string): string | null {
     const result = themeNameSchema.safeParse(name);

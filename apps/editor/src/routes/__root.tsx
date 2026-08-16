@@ -1,11 +1,13 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
+
 import { DefaultCatchBoundary } from "#/components/DefaultCatchBoundary";
 import { NotFound } from "#/components/not-found";
 import { ThemeProvider } from "#/components/theme-provider";
 import { TooltipProvider } from "#/components/ui/tooltip";
 import { seo } from "#/lib/seo.ts";
 import { Toaster } from "@/components/ui/toast";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
+
 import appCss from "../styles.css?url";
 
 const queryClient = new QueryClient();

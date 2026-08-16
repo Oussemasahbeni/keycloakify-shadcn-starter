@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#/
 import { buttonVariants } from "#/components/ui/button";
 import { DISCORD_INVITE_URL } from "#/config/constants.ts";
 import { cn } from "#/lib/utils";
+
 import { Band } from "./band";
 
 type FaqItem = {
@@ -71,7 +72,7 @@ export function FaqSection() {
                 </Accordion>
 
                 <div className="mt-10 flex flex-col items-center gap-3 text-center">
-                    <p className="text-muted-foreground text-sm">Still have questions?</p>
+                    <p className="text-sm text-muted-foreground">Still have questions?</p>
                     <a
                         href={DISCORD_INVITE_URL}
                         target="_blank"

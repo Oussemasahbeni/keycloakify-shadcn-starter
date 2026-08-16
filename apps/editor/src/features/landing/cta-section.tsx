@@ -1,8 +1,10 @@
+import { SiDiscord } from "@icons-pack/react-simple-icons";
+import { Link } from "@tanstack/react-router";
+
 import { buttonVariants } from "#/components/ui/button";
 import { DISCORD_INVITE_URL } from "#/config/constants.ts";
 import { cn } from "#/lib/utils";
-import { SiDiscord } from "@icons-pack/react-simple-icons";
-import { Link } from "@tanstack/react-router";
+
 import { Band, Eyebrow } from "./band";
 
 export function CtaSection() {
@@ -14,7 +16,7 @@ export function CtaSection() {
                     <h2 className="text-3xl font-medium tracking-tight text-balance sm:text-5xl">
                         Your login page is the first thing users see.
                     </h2>
-                    <p className="text-muted-foreground max-w-md text-balance">
+                    <p className="max-w-md text-balance text-muted-foreground">
                         Start from a theme that already handles every page, then make it yours in a few clicks.
                     </p>
                     <div className="mt-3 flex flex-wrap items-center justify-center gap-4">

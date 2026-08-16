@@ -1,14 +1,15 @@
-import { Button } from "#/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
+import { ExternalLink, RotateCcw } from "lucide-react";
 
+import { Button } from "#/components/ui/button";
 import { ButtonGroup } from "#/components/ui/button-group";
-import { VIEWPORTS } from "#/features/editor/shared/model/viewport.ts";
+import { Tooltip, TooltipContent, TooltipTrigger } from "#/components/ui/tooltip";
 import type { PageId } from "#/features/editor/login/stories/types";
 import { LanguageSelect } from "#/features/editor/shared/components/language-select";
+import { VIEWPORTS } from "#/features/editor/shared/model/viewport.ts";
 import { useEditor } from "#/features/editor/state/editor-context";
-import { ExternalLink, RotateCcw } from "lucide-react";
+
+import { SCHEMES } from "../../shared/model/preview-color-scheme";
 import { PageSelect } from "./page-select";
-import { SCHEMES } from '../../shared/model/preview-color-scheme';
 
 function ViewportToggle() {
     const { viewport, setViewport } = useEditor().login;

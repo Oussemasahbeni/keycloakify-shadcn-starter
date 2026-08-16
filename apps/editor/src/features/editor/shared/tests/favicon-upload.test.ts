@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
+
 import { MAX_FAVICON_BYTES, getFaviconError } from "../validation/favicon";
 
-const file = (name: string, type: string, size = 10) =>
-    new File([new Uint8Array(size)], name, { type });
+const file = (name: string, type: string, size = 10) => new File([new Uint8Array(size)], name, { type });
 
 describe("getFaviconError", () => {
     it("accepts png/svg/ico by extension (even with empty MIME)", () => {
@@ -17,8 +17,6 @@ describe("getFaviconError", () => {
         expect(getFaviconError(file("a.txt", "text/plain"))).toMatch(/PNG, SVG, or ICO/i);
     });
     it("rejects an oversize file", () => {
-        expect(getFaviconError(file("a.png", "image/png", MAX_FAVICON_BYTES + 1))).toMatch(
-            /too large/i,
-        );
+        expect(getFaviconError(file("a.png", "image/png", MAX_FAVICON_BYTES + 1))).toMatch(/too large/i);
     });
 });

@@ -1,11 +1,11 @@
-import * as React from "react";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
+import * as React from "react";
 
-import { cn } from "#/lib/utils.ts";
 import { Button } from "#/components/ui/button.tsx";
 import { Input } from "#/components/ui/input.tsx";
 import { Textarea } from "#/components/ui/textarea.tsx";
+import { cn } from "#/lib/utils.ts";
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
     return (
@@ -26,8 +26,7 @@ const inputGroupAddonVariants = cva(
     {
         variants: {
             align: {
-                "inline-start":
-                    "order-first ps-2 has-[>button]:ms-[-0.3rem] has-[>kbd]:ms-[-0.15rem]",
+                "inline-start": "order-first ps-2 has-[>button]:ms-[-0.3rem] has-[>kbd]:ms-[-0.15rem]",
                 "inline-end": "order-last pe-2 has-[>button]:me-[-0.3rem] has-[>kbd]:me-[-0.15rem]",
                 "block-start":
                     "order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2 [.border-b]:pb-2",
@@ -136,11 +135,4 @@ function InputGroupTextarea({ className, ...props }: React.ComponentProps<"texta
     );
 }
 
-export {
-    InputGroup,
-    InputGroupAddon,
-    InputGroupButton,
-    InputGroupText,
-    InputGroupInput,
-    InputGroupTextarea,
-};
+export { InputGroup, InputGroupAddon, InputGroupButton, InputGroupText, InputGroupInput, InputGroupTextarea };

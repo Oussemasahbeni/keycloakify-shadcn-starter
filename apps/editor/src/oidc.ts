@@ -1,6 +1,7 @@
 import { createKeycloakUtils } from "oidc-spa/keycloak";
 import { oidcSpa } from "oidc-spa/react-tanstack-start";
 import { z } from "zod";
+
 import profileImageUrlFallback from "./profileImageFallback.svg";
 
 export type User = {

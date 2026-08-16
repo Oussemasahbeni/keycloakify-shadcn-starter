@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "#/components/ui/resizable.tsx";
 import { EmailPreviewIframe } from "#/features/editor/email/preview/preview-iframe.tsx";
 import { EmailThemeSidebar } from "#/features/editor/email/sidebar";
@@ -5,7 +7,6 @@ import { LoginPreviewIframe } from "#/features/editor/login/preview/preview-ifra
 import { LoginThemeSidebar } from "#/features/editor/login/sidebar";
 import { EditorHeader } from "#/features/editor/shared/components/editor-header.tsx";
 import { EditorProvider, useEditor } from "#/features/editor/state/editor-context";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/editor")({
     component: EditorPage,

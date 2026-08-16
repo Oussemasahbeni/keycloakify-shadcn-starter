@@ -1,14 +1,15 @@
-import { Button } from "#/components/ui/button.tsx";
-import { Spinner } from "#/components/ui/spinner.tsx";
+import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Download } from "lucide-react";
-import { toast } from "@/components/ui/toast"
-import { assetDefinitions } from "../model/assets";
-import { getThemeNameError } from "../validation/theme-name";
+
+import { Button } from "#/components/ui/button.tsx";
+import { Spinner } from "#/components/ui/spinner.tsx";
+import { toast } from "@/components/ui/toast";
+
 import { generateJar } from "../../server/generate-jar";
 import { useEditor } from "../../state/editor-context";
-
-import { useMutation } from "@tanstack/react-query";
+import { assetDefinitions } from "../model/assets";
+import { getThemeNameError } from "../validation/theme-name";
 
 export function ExportButton() {
     const {
@@ -47,22 +48,24 @@ export function ExportButton() {
             anchor.remove();
             URL.revokeObjectURL(url);
             toast.add({
-                description:`Downloaded ${name}.jar`,
+                description: `Downloaded ${name}.jar`,
                 type: "success",
             });
         },
-        onError: error => toast.add({
-            description: error instanceof Error ? error.message : "Export failed.",
-            type: "error"
-        }),
+        onError: error =>
+            toast.add({
+                description: error instanceof Error ? error.message : "Export failed.",
+                type: "error",
+            }),
     });
 
     function handleExport() {
         const nameError = getThemeNameError(themeName);
-        if (nameError) return toast.add({
-            description: `Invalid theme name: ${nameError}`,
-            type: "error"
-        });
+        if (nameError)
+            return toast.add({
+                description: `Invalid theme name: ${nameError}`,
+                type: "error",
+            });
         exportTheme();
     }
 

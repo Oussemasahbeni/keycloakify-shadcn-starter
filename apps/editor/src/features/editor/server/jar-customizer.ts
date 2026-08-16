@@ -1,6 +1,8 @@
-import { escapeRegExp } from "#/lib/utils.ts";
 import type { Zippable } from "fflate";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
+
+import { escapeRegExp } from "#/lib/utils.ts";
+
 import { BASE_THEME_NAME, MANIFEST_PATH } from "../shared/constants";
 import type { EmailThemeConfig, LoginThemeConfig } from "../shared/model/theme-config";
 import { emailConfigToProperties, themeConfigToProperties } from "../shared/model/theme-config";
