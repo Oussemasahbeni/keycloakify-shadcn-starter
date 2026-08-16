@@ -16,10 +16,11 @@ import { getEmailLogoError } from "../../shared/validation/email-logo";
 // is `undefined` in that case, which a controlled Select can't represent).
 const INHERIT = "__inherit__";
 
+const colorFor = (preset: PrimaryPreset) => primaryPresets[preset].light.primary;
+
 function PrimaryColorField() {
     const { email, login } = useEditor();
     const { config, updateConfig } = email;
-    const colorFor = (preset: PrimaryPreset) => primaryPresets[preset].light.primary;
 
     return (
         <Field>

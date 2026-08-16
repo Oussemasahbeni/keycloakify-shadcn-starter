@@ -1,8 +1,9 @@
-import { useI18n } from "#/login/i18n";
 import type { KcContext } from "@keycloakify/login-ui/core/KcContext/KcContext";
 import { useEffect, useRef } from "react";
 import { base64url } from "rfc4648";
 import { assert } from "tsafe/assert";
+
+import { useI18n } from "#/login/i18n";
 
 // see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/webauthnAuthenticate.js
 
@@ -33,7 +34,7 @@ export type AuthenticateOptions = {
      * User verification requirement (e.g., "required", "preferred", "discouraged").
      * Determines if the user must enter a PIN or use biometrics.
      */
-    userVerification: UserVerificationRequirement | string;
+    userVerification: UserVerificationRequirement | (string & {});
 
     /**
      * Timeout for the interaction in seconds.
@@ -137,7 +138,7 @@ export function useLogic(props: UseLogicProps) {
     useEffect(() => {
         let cancelled = false;
 
-        (async () => {
+        void (async () => {
             if (!window.PublicKeyCredential || !PublicKeyCredential.isConditionalMediationAvailable) return;
 
             const isAvailable = await PublicKeyCredential.isConditionalMediationAvailable();

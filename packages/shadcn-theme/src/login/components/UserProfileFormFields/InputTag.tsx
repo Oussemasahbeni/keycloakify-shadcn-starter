@@ -1,7 +1,9 @@
+import { assert } from "tsafe/assert";
+
 import { Input } from "#/components/ui/input";
 import { InputGroupInput } from "#/components/ui/input-group";
 import { useI18n } from "#/login/i18n";
-import { assert } from "tsafe/assert";
+
 import { AddRemoveButtonsMultiValuedAttribute } from "./AddRemoveButtonsMultiValuedAttribute";
 import { FieldErrors } from "./FieldErrors";
 import type { InputFieldByTypeProps } from "./InputFieldByType";
@@ -28,7 +30,7 @@ export function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | u
                 name={attribute.name}
                 value={(() => {
                     if (fieldIndex !== undefined) {
-                        assert(valueOrValues instanceof Array);
+                        assert(Array.isArray(valueOrValues));
                         return valueOrValues[fieldIndex];
                     }
 
@@ -72,7 +74,7 @@ export function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | u
                         name: attribute.name,
                         valueOrValues: (() => {
                             if (fieldIndex !== undefined) {
-                                assert(valueOrValues instanceof Array);
+                                assert(Array.isArray(valueOrValues));
 
                                 return valueOrValues.map((value, i) => {
                                     if (i === fieldIndex) {
@@ -100,7 +102,7 @@ export function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | u
                     return null;
                 }
 
-                assert(valueOrValues instanceof Array);
+                assert(Array.isArray(valueOrValues));
 
                 const values = valueOrValues;
 

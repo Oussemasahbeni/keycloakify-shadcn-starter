@@ -9,6 +9,7 @@ export function Logo({ size = 24, className, ...props }: LogoProps) {
             height={size}
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
+            // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role -- role="img" on inline <svg> is the recommended a11y pattern; an <img> tag is not an alternative here
             role="img"
             aria-label="themekey"
             className={className}

@@ -1,10 +1,12 @@
-import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
+
+import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+
 import defaultLogo from "../../assets/img/default-logo.svg";
 import { useApplyThemePreset } from "../../theme/useApplyThemePreset";
 import { CenteredCardLayout } from "../layouts/CenteredCardLayout";

@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+
 import { KcPage } from "./kc.gen";
 import { getKcContextMock } from "./login/mocks/getKcContextMock";
 

@@ -27,7 +27,7 @@ pnpm theme:build-storybook       # Build static Storybook
 pnpm theme:build-keycloak-theme  # Full build → outputs .jar in packages/shadcn-theme/dist_keycloak/
 pnpm theme:prepare               # prepare-publish script
 pnpm editor:dev                  # Editor dev server (port 3000)
-pnpm format                      # Prettier (write) across the whole repo
+pnpm fmt                         # oxfmt (write) across the whole repo (fmt:check to verify)
 ```
 
 To run any package-local script directly: `pnpm -F @kc-studio/shadcn-theme <script>` or `pnpm -F @kc-studio/editor <script>`.
@@ -44,7 +44,8 @@ pnpm storybook             # Storybook on port 6006
 pnpm build                 # tsc check + Vite build
 pnpm build-keycloak-theme  # Full build → .jar in dist_keycloak/
 pnpm build-storybook       # Static Storybook → storybook-static/
-pnpm format                # Prettier (write)
+pnpm lint                  # Oxlint (.oxlintrc.json)
+pnpm fmt                   # oxfmt (write)
 pnpm emails:preview        # Preview email templates
 pnpm emails:check          # Validate email templates
 ```
@@ -139,8 +140,8 @@ Package-local scripts:
 pnpm dev          # Vite dev server, port 3000
 pnpm build        # Vite/Nitro build → self-contained Node server in dist/
 pnpm test         # Vitest (run mode)
-pnpm lint         # ESLint (@tanstack/eslint-config)
-pnpm format       # Prettier write + eslint --fix
+pnpm lint         # Oxlint (.oxlintrc.json; @tanstack/eslint-plugin-query via jsPlugins)
+pnpm fmt          # oxfmt (write)
 pnpm db:generate  # drizzle-kit generate (also db:migrate / db:push / db:pull / db:studio)
 ```
 

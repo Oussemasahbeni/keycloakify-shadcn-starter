@@ -1,11 +1,13 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { XCircle } from "lucide-react";
+import { assert } from "tsafe/assert";
+
 import { Alert, AlertDescription } from "#/components/ui/alert";
 import { buttonVariants } from "#/components/ui/button";
 import { cn } from "#/lib/utils";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { XCircle } from "lucide-react";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {

@@ -5,7 +5,7 @@ export function definePage<TId extends PageId>(page: PagePreview<TId>): PagePrev
     return page;
 }
 
-export function simplePage<TId extends PageId>(pageId: TId, label: string, category: PageCategory): PagePreview {
+export function simplePage(pageId: PageId, label: string, category: PageCategory): PagePreview {
     return definePage({
         pageId,
         label,

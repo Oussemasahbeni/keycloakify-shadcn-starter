@@ -1,9 +1,11 @@
-import { Button } from "#/components/ui/button";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
 import { ChevronRight, Fingerprint, Globe, KeyRound, Shield } from "lucide-react";
 import { FaKey } from "react-icons/fa";
 import { assert } from "tsafe/assert";
+
+import { Button } from "#/components/ui/button";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+
 import { Template } from "../../components/Template";
 
 const getAuthenticatorIcon = (authSelection: { displayName: string; iconCssClass?: string }) => {
@@ -54,7 +56,7 @@ export function Page() {
                         <Button
                             key={authenticationSelection.authExecId}
                             variant="outline"
-                            className="hover:bg-accent flex h-auto w-full items-center justify-between p-3 text-start"
+                            className="flex h-auto w-full items-center justify-between p-3 text-start hover:bg-accent"
                             type="submit"
                             name="authenticationExecution"
                             value={authenticationSelection.authExecId}
@@ -66,12 +68,12 @@ export function Page() {
                                     <div className="text-sm font-medium">
                                         {advancedMsg(authenticationSelection.displayName)}
                                     </div>
-                                    <div className="text-muted-foreground mt-1 text-xs whitespace-normal">
+                                    <div className="mt-1 text-xs whitespace-normal text-muted-foreground">
                                         {advancedMsg(authenticationSelection.helpText)}
                                     </div>
                                 </div>
                             </div>
-                            <ChevronRight className="text-muted-foreground size-4 shrink-0 rtl:rotate-180" />
+                            <ChevronRight className="size-4 shrink-0 text-muted-foreground rtl:rotate-180" />
                         </Button>
                     ))}
                 </div>

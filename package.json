@@ -18,8 +18,8 @@
         "editor:build": "pnpm -F @kc-studio/editor build",
         "editor:lint": "pnpm -F @kc-studio/editor lint",
         "editor:test": "pnpm -F @kc-studio/editor test",
-        "fmt": "oxfmt",
-        "fmt:check": "oxfmt --check",
+        "fmt": "pnpm -r fmt",
+        "fmt:check": "pnpm -r fmt:check",
         "doctor": "npx react-doctor@latest --verbose"
     }
 }

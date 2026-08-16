@@ -1,6 +1,8 @@
+import { formatHex, parse } from "culori";
+
 import type { PrimaryPreset } from "#/login/theme";
 import { primaryPresets } from "#/login/theme";
-import { formatHex, parse } from "culori";
+
 import type { EmailTheme } from "./theme";
 
 export function resolveEmailTheme(preset: PrimaryPreset, logoUrl: string | undefined): EmailTheme {

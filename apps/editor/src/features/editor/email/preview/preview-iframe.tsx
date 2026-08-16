@@ -26,7 +26,7 @@ export function EmailPreviewIframe() {
             return;
         }
         const reader = new FileReader();
-        reader.onload = () => setLogoDataUrl(reader.result as string);
+        reader.addEventListener("load", () => setLogoDataUrl(reader.result as string));
         reader.readAsDataURL(logoFile);
         return () => reader.abort();
     }, [logoFile]);
@@ -55,6 +55,7 @@ export function EmailPreviewIframe() {
             <div className="h-full overflow-auto bg-muted/30 p-4">
                 <iframe
                     title="Email preview"
+                    // oxlint-disable-next-line react/iframe-missing-sandbox -- first-party generated email HTML; allow-same-origin is needed for styling and the content is trusted
                     sandbox="allow-same-origin allow-scripts"
                     srcDoc={html}
                     className="mx-auto block h-full w-full rounded-lg border shadow-sm"

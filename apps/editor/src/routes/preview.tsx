@@ -56,7 +56,7 @@ function PreviewRoute() {
     // Apply the editor's color scheme to the iframe document.
     useEffect(() => {
         const root = document.documentElement;
-        colorScheme === "dark" ? root.classList.add("dark") : root.classList.remove("dark");
+        root.classList.toggle("dark", colorScheme === "dark");
 
         localStorage.setItem("isDarkMode", colorScheme);
     }, [colorScheme]);

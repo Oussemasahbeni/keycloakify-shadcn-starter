@@ -1,9 +1,11 @@
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
 import { clsx } from "@keycloakify/login-ui/tools/clsx";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { Fragment } from "react";
 import { assert } from "tsafe/assert";
+
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+
 import { Template } from "../../components/Template";
 import { useScript } from "./useScript";
 
@@ -85,6 +87,7 @@ export function Page() {
                                                 className={clsx(
                                                     (() => {
                                                         const className = kcClsx(
+                                                            // oxlint-disable-next-line typescript/no-explicit-any -- iconClass is a free-form string from Keycloak, not a known kcClsx key
                                                             authenticator.transports.iconClass as any,
                                                         );
                                                         if (className === authenticator.transports.iconClass) {
@@ -110,10 +113,12 @@ export function Page() {
                                                             className={kcClsx("kcSelectAuthListItemDescriptionClass")}
                                                         >
                                                             {authenticator.transports.displayNameProperties.map(
-                                                                (nameProperty, i, arr) => (
+                                                                (nameProperty, propertyIndex, arr) => (
                                                                     <Fragment key={nameProperty}>
                                                                         <span>{advancedMsg(nameProperty)}</span>
-                                                                        {i !== arr.length - 1 && <span>, </span>}
+                                                                        {propertyIndex !== arr.length - 1 && (
+                                                                            <span>, </span>
+                                                                        )}
                                                                     </Fragment>
                                                                 ),
                                                             )}
@@ -146,7 +151,7 @@ export function Page() {
                                 style={{ display: "none" }}
                                 onSubmit={event => {
                                     try {
-                                        const form = event.currentTarget as HTMLFormElement;
+                                        const form = event.currentTarget;
                                         const loginBtn = form.elements.namedItem("login") as HTMLButtonElement | null;
                                         if (loginBtn) loginBtn.disabled = true;
                                     } catch {
@@ -167,6 +172,7 @@ export function Page() {
                                             className={kcClsx("kcInputClass")}
                                             name="username"
                                             defaultValue={login.username ?? ""}
+                                            // oxlint-disable-next-line jsx-a11y/autocomplete-valid -- "webauthn" is the spec-defined token for passkey conditional UI; the lint rule's vocabulary predates it
                                             autoComplete="username webauthn"
                                             type="text"
                                             autoFocus

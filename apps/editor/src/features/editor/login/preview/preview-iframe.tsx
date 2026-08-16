@@ -36,6 +36,7 @@ export function LoginPreviewIframe() {
                 <iframe
                     src="/preview"
                     title="Theme preview"
+                    // oxlint-disable-next-line react/iframe-missing-sandbox -- same-origin first-party /preview route; allow-same-origin is required for the BroadcastChannel preview protocol
                     sandbox="allow-scripts allow-same-origin allow-forms"
                     className="h-full rounded-lg border bg-background shadow-sm transition-[width] duration-250"
                     style={{ width: width ? `${width}px` : "100%" }}

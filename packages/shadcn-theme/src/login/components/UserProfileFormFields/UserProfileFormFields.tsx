@@ -1,11 +1,13 @@
-import { Field, FieldDescription, FieldLabel } from "#/components/ui/field";
-import { useKcContext } from "#/login/KcContext";
-import { useI18n } from "#/login/i18n";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import type { JSX } from "@keycloakify/login-ui/tools/JSX";
 import { useUserProfileForm, type FormAction, type FormFieldError } from "@keycloakify/login-ui/useUserProfileForm";
 import { Fragment, useEffect } from "react";
 import { assert } from "tsafe/assert";
+
+import { Field, FieldDescription, FieldLabel } from "#/components/ui/field";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+
 import { DO_MAKE_USER_CONFIRM_PASSWORD } from "./DO_MAKE_USER_CONFIRM_PASSWORD";
 import { FieldErrors } from "./FieldErrors";
 import { GroupLabel } from "./GroupLabel";

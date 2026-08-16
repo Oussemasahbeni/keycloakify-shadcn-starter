@@ -1,3 +1,5 @@
+import { IoCheckmark, IoLanguage } from "react-icons/io5";
+
 import { Button } from "#/components/ui/button";
 import {
     DropdownMenu,
@@ -6,7 +8,6 @@ import {
     DropdownMenuTrigger,
 } from "#/components/ui/dropdown-menu";
 import { useI18n } from "#/login/i18n";
-import { IoCheckmark, IoLanguage } from "react-icons/io5";
 
 export function Languages() {
     const { msgStr, currentLanguage, enabledLanguages } = useI18n();

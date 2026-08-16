@@ -1,8 +1,10 @@
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { Label } from "#/components/ui/label";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -18,7 +20,7 @@ export function Page() {
             <form id="kc-x509-login-info" className="flex flex-col gap-6" action={url.loginAction} method="post">
                 <div className="flex flex-col gap-2">
                     <Label className="text-sm font-medium">{msg("clientCertificate")}</Label>
-                    <div className="bg-muted/50 rounded-lg p-3">
+                    <div className="rounded-lg bg-muted/50 p-3">
                         <p className="font-mono text-sm break-all">{x509.formData.subjectDN || msg("noCertificate")}</p>
                     </div>
                 </div>
@@ -26,7 +28,7 @@ export function Page() {
                 {x509.formData.isUserEnabled && (
                     <div className="flex flex-col gap-2">
                         <Label className="text-sm font-medium">{msg("doX509Login")}</Label>
-                        <div className="bg-muted/50 rounded-lg p-3">
+                        <div className="rounded-lg bg-muted/50 p-3">
                             <p className="text-sm font-medium">{x509.formData.username}</p>
                         </div>
                     </div>

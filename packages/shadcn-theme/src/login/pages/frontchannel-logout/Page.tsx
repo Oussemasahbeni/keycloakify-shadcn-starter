@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react";
+import { FiCheck, FiExternalLink } from "react-icons/fi";
+import { assert } from "tsafe/assert";
+
 import { buttonVariants } from "#/components/ui/button";
 import { cn } from "#/lib/utils";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { useEffect, useState } from "react";
-import { FiCheck, FiExternalLink } from "react-icons/fi";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -36,10 +38,11 @@ export function Page() {
                         {kcContext.logout.clients.map((client, index) => (
                             <div
                                 key={client.name || index}
-                                className="bg-muted/30 flex items-center gap-3 rounded-lg border p-3"
+                                className="flex items-center gap-3 rounded-lg border bg-muted/30 p-3"
                             >
                                 <FiCheck className="size-4 text-green-600" />
                                 <span className="text-sm font-medium">{client.name || `Application ${index + 1}`}</span>
+                                {/* oxlint-disable-next-line react/iframe-missing-sandbox -- front-channel logout: the client's logout URL must run its own scripts to clear its session */}
                                 <iframe
                                     src={client.frontChannelLogoutUrl}
                                     style={{ display: "none" }}

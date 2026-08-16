@@ -1,4 +1,5 @@
 import { createGetKcContextMock } from "@keycloakify/login-ui/KcContext/getKcContextMock";
+
 import { kcEnvDefaults, themeNames } from "../../kc.gen";
 import type { KcContextExtension, KcContextExtensionPerPage } from "../KcContext";
 

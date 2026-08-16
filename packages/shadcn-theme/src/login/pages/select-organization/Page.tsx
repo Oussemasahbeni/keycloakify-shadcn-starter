@@ -1,10 +1,12 @@
+import { Building2 } from "lucide-react";
+import { type MouseEvent, useRef, useState } from "react";
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { Building2 } from "lucide-react";
-import { type MouseEvent, useRef, useState } from "react";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -69,7 +71,7 @@ export function Page() {
                                     {organizations.map(({ alias, name }) => (
                                         <SelectItem key={alias} value={alias}>
                                             <div className="flex items-center gap-2">
-                                                <Building2 className="text-muted-foreground size-4" />
+                                                <Building2 className="size-4 text-muted-foreground" />
                                                 {name ?? alias}
                                             </div>
                                         </SelectItem>
@@ -95,9 +97,9 @@ export function Page() {
                                         variant="outline"
                                         onClick={onOrganizationClick(alias)}
                                         disabled={isSubmitting}
-                                        className="hover:bg-accent hover:border-primary flex h-auto w-full items-center justify-start gap-3 p-4 transition-colors"
+                                        className="flex h-auto w-full items-center justify-start gap-3 p-4 transition-colors hover:border-primary hover:bg-accent"
                                     >
-                                        <Building2 className="text-muted-foreground size-5 shrink-0" />
+                                        <Building2 className="size-5 shrink-0 text-muted-foreground" />
                                         <span className="text-sm font-medium">{name ?? alias}</span>
                                     </Button>
                                 </li>

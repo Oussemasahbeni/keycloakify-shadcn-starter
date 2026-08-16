@@ -1,12 +1,14 @@
-import { buttonVariants } from "#/components/ui/button";
-import { cn } from "#/lib/utils";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
 import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 import { clsx } from "@keycloakify/login-ui/tools/clsx";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useState } from "react";
 import { assert } from "tsafe/assert";
+
+import { buttonVariants } from "#/components/ui/button";
+import { cn } from "#/lib/utils";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+
 import useProviderLogos from "./useProviderLogos";
 
 const LAST_PROVIDER_KEY = "lastSocialProvider";
@@ -36,7 +38,7 @@ export function SocialProviders() {
                                 id={`social-${p.alias}`}
                                 className={cn(
                                     buttonVariants({ variant: "outline" }),
-                                    "flex items-center justify-center gap-3 w-full hover:text-current",
+                                    "flex w-full items-center justify-center gap-3 hover:text-current",
                                 )}
                                 href={p.loginUrl}
                                 onClick={() => localStorage.setItem(LAST_PROVIDER_KEY, p.alias)}
@@ -75,7 +77,7 @@ export function SocialProviders() {
                                 ></span>
                             </a>
                             {lastProvider === p.alias && (
-                                <span className="bg-primary text-primary-foreground absolute -inset-e-2 -top-2 rounded-full px-2 py-0.5 text-xs">
+                                <span className="absolute -inset-e-2 -top-2 rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">
                                     {msg("identity-provider-login-last-used")}
                                 </span>
                             )}
@@ -85,7 +87,7 @@ export function SocialProviders() {
             </ul>
             <div className="flex items-center py-4 text-sm">
                 <div className="mt-px flex-auto border-t"></div>
-                <div className="text-muted-foreground mx-2">{msg("identity-provider-login-label")}</div>
+                <div className="mx-2 text-muted-foreground">{msg("identity-provider-login-label")}</div>
                 <div className="mt-px flex-auto border-t"></div>
             </div>
         </div>

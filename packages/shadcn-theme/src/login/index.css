@@ -140,7 +140,7 @@
         @apply border-border;
     }
     body {
-        @apply bg-background text-foreground m-0 text-sm;
+        @apply m-0 bg-background text-sm text-foreground;
         font-family: var(--theme-font);
     }
     button:not(:disabled),

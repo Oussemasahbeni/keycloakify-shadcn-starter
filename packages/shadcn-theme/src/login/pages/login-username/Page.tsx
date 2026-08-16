@@ -1,15 +1,16 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { useState } from "react";
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { Checkbox } from "#/components/ui/checkbox";
+import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { Label } from "#/components/ui/label";
-import { useState } from "react";
-
-import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 import { SocialProviders } from "../login/SocialProviders";
 

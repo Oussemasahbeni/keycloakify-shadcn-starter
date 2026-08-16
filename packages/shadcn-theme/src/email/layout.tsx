@@ -1,6 +1,7 @@
 import { Body, Column, Container, Head, Html, Preview, Row, Section, Text } from "jsx-email";
 import { createVariablesHelper } from "keycloakify-emails/variables";
 import type { PropsWithChildren, ReactNode } from "react";
+
 import { EmailLogo } from "./email-logo";
 import i18n from "./i18n";
 import { isRtlLocale } from "./rtl";

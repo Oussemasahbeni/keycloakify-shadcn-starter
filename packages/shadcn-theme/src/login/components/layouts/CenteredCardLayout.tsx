@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+
 import { TemplateTopBar } from "../Template/TemplateTopBar";
 
 export function CenteredCardLayout(props: { content: ReactNode; backgroundUrl?: string }) {
@@ -9,7 +10,7 @@ export function CenteredCardLayout(props: { content: ReactNode; backgroundUrl?: 
             {backgroundUrl && (
                 <>
                     <img src={backgroundUrl} alt="Background" className="absolute inset-0 h-full w-full object-cover" />
-                    <div className="bg-background/50 dark:bg-background/80 absolute inset-0" />
+                    <div className="absolute inset-0 bg-background/50 dark:bg-background/80" />
                 </>
             )}
             <TemplateTopBar />

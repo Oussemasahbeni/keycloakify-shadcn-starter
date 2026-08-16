@@ -1,11 +1,13 @@
-import { Button, buttonVariants } from "#/components/ui/button";
-import { cn } from "#/lib/utils";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
 import { clsx } from "@keycloakify/login-ui/tools/clsx";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { useLayoutEffect, useState } from "react";
 import { assert } from "tsafe/assert";
+
+import { Button, buttonVariants } from "#/components/ui/button";
+import { cn } from "#/lib/utils";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+
 import { UserProfileFormFields } from "../../components/UserProfileFormFields";
 import { TermsAcceptance } from "./TermsAcceptance";
 
@@ -19,13 +21,13 @@ export function Form() {
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
 
     useLayoutEffect(() => {
-        (window as any)["onSubmitRecaptcha"] = () => {
-            // @ts-expect-error
-            document.getElementById("kc-register-form").requestSubmit();
+        const win = window as typeof window & { onSubmitRecaptcha?: () => void };
+        win.onSubmitRecaptcha = () => {
+            (document.getElementById("kc-register-form") as HTMLFormElement | null)?.requestSubmit();
         };
 
         return () => {
-            delete (window as any)["onSubmitRecaptcha"];
+            delete win.onSubmitRecaptcha;
         };
     }, []);
 

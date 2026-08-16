@@ -1,7 +1,9 @@
-import { useI18n } from "#/login/i18n";
 import { assert } from "tsafe/assert";
-import type { InputFieldByTypeProps } from "./InputFieldByType";
+
 import { cn } from "#/lib/utils";
+import { useI18n } from "#/login/i18n";
+
+import type { InputFieldByTypeProps } from "./InputFieldByType";
 
 export function TextareaTag(props: InputFieldByTypeProps) {
     const { attribute, dispatchFormAction, displayableErrors, valueOrValues } = props;
@@ -17,7 +19,7 @@ export function TextareaTag(props: InputFieldByTypeProps) {
             id={attribute.name}
             name={attribute.name}
             className={cn(
-                "flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                "flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
                 displayableErrors.length !== 0 &&
                     "border-destructive ring-destructive/20 focus-visible:ring-destructive",
             )}

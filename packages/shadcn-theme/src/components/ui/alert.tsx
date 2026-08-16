@@ -10,10 +10,10 @@ const alertVariants = cva(
             variant: {
                 info: "bg-card text-card-foreground",
                 success:
-                    "bg-emerald-50/50 border-emerald-200 text-emerald-900 dark:bg-emerald-500/5 dark:border-emerald-500/20 dark:text-emerald-400",
+                    "border-emerald-200 bg-emerald-50/50 text-emerald-900 dark:border-emerald-500/20 dark:bg-emerald-500/5 dark:text-emerald-400",
                 warning:
-                    "bg-amber-50/50 border-amber-200 text-amber-900 dark:bg-amber-500/5 dark:border-amber-500/20 dark:text-amber-400",
-                error: "bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 [&>svg]:text-current border-destructive/20",
+                    "border-amber-200 bg-amber-50/50 text-amber-900 dark:border-amber-500/20 dark:bg-amber-500/5 dark:text-amber-400",
+                error: "border-destructive/20 bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 [&>svg]:text-current",
             },
         },
         defaultVariants: {
@@ -53,7 +53,7 @@ function AlertDescription({ className, ...props }: React.ComponentProps<"div">) 
 }
 
 function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
-    return <div data-slot="alert-action" className={cn("absolute top-2 inset-e-2", className)} {...props} />;
+    return <div data-slot="alert-action" className={cn("absolute inset-e-2 top-2", className)} {...props} />;
 }
 
 export { Alert, AlertAction, AlertDescription, AlertTitle };

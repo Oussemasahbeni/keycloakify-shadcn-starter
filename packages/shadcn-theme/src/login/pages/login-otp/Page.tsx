@@ -1,3 +1,9 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
+import { useState } from "react";
+import { MdOutlineDevices } from "react-icons/md";
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { Field, FieldError } from "#/components/ui/field";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "#/components/ui/input-otp";
@@ -5,11 +11,7 @@ import { Label } from "#/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
-import { useState } from "react";
-import { MdOutlineDevices } from "react-icons/md";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {

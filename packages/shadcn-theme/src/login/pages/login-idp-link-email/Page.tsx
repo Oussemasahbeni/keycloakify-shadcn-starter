@@ -1,6 +1,8 @@
+import { assert } from "tsafe/assert";
+
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -11,7 +13,7 @@ export function Page() {
 
     return (
         <Template headerNode={msg("emailLinkIdpTitle", kcContext.idpAlias)}>
-            <div className="text-muted-foreground flex flex-col gap-2 text-sm">
+            <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                 <p>
                     {msg(
                         "emailLinkIdp1",
@@ -24,7 +26,7 @@ export function Page() {
                     {msg("emailLinkIdp2")}{" "}
                     <a
                         href={kcContext.url.loginAction}
-                        className="text-primary dark:text-foreground inline-flex items-center gap-1 underline underline-offset-2"
+                        className="inline-flex items-center gap-1 text-primary underline underline-offset-2 dark:text-foreground"
                     >
                         {msg("doClickHere")}
                     </a>{" "}
@@ -35,7 +37,7 @@ export function Page() {
                     {msg("emailLinkIdp4")}{" "}
                     <a
                         href={kcContext.url.loginAction}
-                        className="text-primary dark:text-foreground inline-flex items-center gap-1 underline underline-offset-2"
+                        className="inline-flex items-center gap-1 text-primary underline underline-offset-2 dark:text-foreground"
                     >
                         {msg("doClickHere")}
                     </a>{" "}

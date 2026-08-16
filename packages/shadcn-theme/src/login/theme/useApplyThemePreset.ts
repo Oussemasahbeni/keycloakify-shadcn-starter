@@ -1,4 +1,5 @@
 import { useLayoutEffect } from "react";
+
 import { useKcContext } from "../KcContext";
 import { resolveRadiusPreset, resolveThemeFont, resolveThemeTokens } from "./ThemeUtils";
 

@@ -10,21 +10,21 @@ export const redirectUrlOrigin = ((): string => {
             break from_url;
         }
 
-        const redirectUrlOrigin = new URL(value).origin;
+        const origin = new URL(value).origin;
 
-        sessionStorage.setItem(SESSION_STORAGE_KEY, redirectUrlOrigin);
+        sessionStorage.setItem(SESSION_STORAGE_KEY, origin);
 
-        return redirectUrlOrigin;
+        return origin;
     }
 
     from_session_storage: {
-        const redirectUrlOrigin = sessionStorage.getItem(SESSION_STORAGE_KEY);
+        const storedOrigin = sessionStorage.getItem(SESSION_STORAGE_KEY);
 
-        if (redirectUrlOrigin === null) {
+        if (storedOrigin === null) {
             break from_session_storage;
         }
 
-        return redirectUrlOrigin;
+        return storedOrigin;
     }
 
     return "#";

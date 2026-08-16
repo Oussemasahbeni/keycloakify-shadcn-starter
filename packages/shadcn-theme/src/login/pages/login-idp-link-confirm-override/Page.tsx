@@ -1,7 +1,9 @@
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -21,7 +23,7 @@ export function Page() {
                 <span>
                     {msg("pageExpiredMsg1")}{" "}
                     <a
-                        className="text-primary dark:text-foreground underline underline-offset-2"
+                        className="text-primary underline underline-offset-2 dark:text-foreground"
                         id="loginRestartLink"
                         href={kcContext.url.loginRestartFlowUrl}
                     >

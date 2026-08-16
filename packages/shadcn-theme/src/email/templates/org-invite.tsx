@@ -3,6 +3,7 @@ import { Button, Text, render } from "jsx-email";
 import type { GetSubject, GetTemplate, GetTemplateProps } from "keycloakify-emails";
 import * as Fm from "keycloakify-emails/jsx-email";
 import { createVariablesHelper } from "keycloakify-emails/variables";
+
 import { previewLocale } from "../constants";
 import { EmailLayout } from "../layout";
 import { isRtlLocale } from "../rtl";

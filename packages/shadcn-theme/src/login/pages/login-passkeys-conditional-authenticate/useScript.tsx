@@ -52,7 +52,7 @@ export function useScript(params: { webAuthnButtonId: string }) {
             return;
         }
 
-        (async () => {
+        void (async () => {
             await waitForElementMountedOnDom({
                 elementId: webAuthnButtonId,
             });

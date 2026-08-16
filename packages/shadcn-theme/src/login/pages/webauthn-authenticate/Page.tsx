@@ -1,12 +1,14 @@
-import { Input } from "#/components/ui/input";
-import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
 import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
 import { clsx } from "keycloakify/tools/clsx";
 import { Shield } from "lucide-react";
 import { Fragment } from "react";
 import { assert } from "tsafe/assert";
+
+import { Input } from "#/components/ui/input";
+import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -39,7 +41,7 @@ export function Page() {
                         {msg("noAccount")}{" "}
                         <a
                             href={url.registrationUrl}
-                            className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-4"
+                            className="text-primary underline underline-offset-4 hover:text-primary/80 dark:text-foreground"
                         >
                             {msg("doRegister")}
                         </a>
@@ -75,16 +77,17 @@ export function Page() {
                                         <div
                                             key={authenticator.credentialId}
                                             id={`kc-webauthn-authenticator-item-${i}`}
-                                            className="bg-muted/50 flex items-center gap-3 rounded-lg border p-3"
+                                            className="flex items-center gap-3 rounded-lg border bg-muted/50 p-3"
                                         >
                                             <div className="shrink-0">
                                                 {(() => {
+                                                    // oxlint-disable-next-line typescript/no-explicit-any -- iconClass is a free-form string from Keycloak, not a known kcClsx key
                                                     const className = kcClsx(authenticator.transports.iconClass as any);
                                                     const isDefaultIcon =
                                                         className === authenticator.transports.iconClass;
 
                                                     if (isDefaultIcon) {
-                                                        return <Shield className="text-muted-foreground size-5" />;
+                                                        return <Shield className="size-5 text-muted-foreground" />;
                                                     }
 
                                                     return <i className={clsx(className, "text-muted-foreground")} />;
@@ -102,20 +105,22 @@ export function Page() {
                                                 {authenticator.transports.displayNameProperties?.length && (
                                                     <div
                                                         id={`kc-webauthn-authenticator-transport-${i}`}
-                                                        className="text-muted-foreground mt-1 text-xs"
+                                                        className="mt-1 text-xs text-muted-foreground"
                                                     >
                                                         {authenticator.transports.displayNameProperties.map(
-                                                            (displayNameProperty, i, arr) => (
+                                                            (displayNameProperty, propertyIndex, arr) => (
                                                                 <Fragment key={displayNameProperty}>
                                                                     {advancedMsg(displayNameProperty)}
-                                                                    {i !== arr.length - 1 && <span>, </span>}
+                                                                    {propertyIndex !== arr.length - 1 && (
+                                                                        <span>, </span>
+                                                                    )}
                                                                 </Fragment>
                                                             ),
                                                         )}
                                                     </div>
                                                 )}
 
-                                                <div className="text-muted-foreground mt-1 text-xs">
+                                                <div className="mt-1 text-xs text-muted-foreground">
                                                     <span id={`kc-webauthn-authenticator-createdlabel-${i}`}>
                                                         {msg("webauthn-createdAt-label")}
                                                     </span>{" "}

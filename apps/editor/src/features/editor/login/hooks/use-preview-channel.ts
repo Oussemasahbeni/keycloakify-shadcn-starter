@@ -47,10 +47,11 @@ export function useReceivePreview(handlers: {
     const onAssets = useEffectEvent(handlers.onAssets);
     useEffect(() => {
         const channel = new BroadcastChannel(CHANNEL_NAME);
-        channel.onmessage = (e: MessageEvent<ChannelMessage>) => {
+        channel.addEventListener("message", (e: MessageEvent<ChannelMessage>) => {
             if (e.data.type === "state") onState(e.data.state);
             else if (e.data.type === "assets") onAssets(e.data.assets);
-        };
+        });
+        // oxlint-disable-next-line unicorn/require-post-message-target-origin -- BroadcastChannel.postMessage has no targetOrigin parameter; the rule pattern-matches window.postMessage
         channel.postMessage({ type: "request" } satisfies ChannelMessage);
         return () => channel.close();
     }, []);
@@ -79,12 +80,12 @@ export function usePublishPreview(
     useEffect(() => {
         const channel = new BroadcastChannel(CHANNEL_NAME);
         channelRef.current = channel;
-        channel.onmessage = (e: MessageEvent<ChannelMessage>) => {
+        channel.addEventListener("message", (e: MessageEvent<ChannelMessage>) => {
             if (e.data.type === "request") {
                 publishState();
                 publishAssets();
             }
-        };
+        });
         return () => {
             channel.close();
             channelRef.current = null;

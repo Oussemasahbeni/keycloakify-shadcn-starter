@@ -2,6 +2,7 @@ import i18n, { type TFunction } from "i18next";
 import { Button, render, Text } from "jsx-email";
 import type { GetSubject, GetTemplate, GetTemplateProps } from "keycloakify-emails";
 import { createVariablesHelper } from "keycloakify-emails/variables";
+
 import { previewLocale } from "../constants";
 import { EmailLayout } from "../layout";
 import { isRtlLocale } from "../rtl";

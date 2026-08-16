@@ -1,9 +1,11 @@
+import { AlertTriangle } from "lucide-react";
+import { assert } from "tsafe/assert";
+
 import { Alert, AlertDescription } from "#/components/ui/alert";
 import { Button } from "#/components/ui/button";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { AlertTriangle } from "lucide-react";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -26,12 +28,12 @@ export function Page() {
                 <div className="flex flex-col gap-4">
                     <p className="text-foreground">{msg("deletingImplies")}</p>
 
-                    <ul className="text-muted-foreground list-inside list-disc ps-4">
+                    <ul className="list-inside list-disc ps-4 text-muted-foreground">
                         <li>{msg("loggingOutImmediately")}</li>
                         <li>{msg("errasingData")}</li>
                     </ul>
 
-                    <p className="text-foreground font-medium">{msg("finalDeletionConfirmation")}</p>
+                    <p className="font-medium text-foreground">{msg("finalDeletionConfirmation")}</p>
                 </div>
 
                 <div className={["flex flex-col gap-3 sm:flex-row", isRtl ? "sm:flex-row-reverse" : ""].join(" ")}>

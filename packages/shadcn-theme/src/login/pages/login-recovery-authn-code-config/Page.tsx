@@ -1,3 +1,6 @@
+import { AlertTriangle, Copy, Download, Printer } from "lucide-react";
+import { assert } from "tsafe/assert";
+
 import { Alert, AlertDescription } from "#/components/ui/alert";
 import { Button } from "#/components/ui/button";
 import { Checkbox } from "#/components/ui/checkbox";
@@ -5,8 +8,7 @@ import { Label } from "#/components/ui/label";
 import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { AlertTriangle, Copy, Download, Printer } from "lucide-react";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 import { useScript } from "./useScript";
 
@@ -35,11 +37,11 @@ export function Page() {
                     </AlertDescription>
                 </Alert>
 
-                <div className="bg-muted/50 rounded-lg p-4">
+                <div className="rounded-lg bg-muted/50 p-4">
                     <ol id={olRecoveryCodesListId} className="grid grid-cols-1 gap-2 font-mono text-sm sm:grid-cols-2">
                         {recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesList.map((code, index) => (
                             <li key={code} className="flex items-center">
-                                <span className="text-muted-foreground min-w-8">{index + 1}:</span>
+                                <span className="min-w-8 text-muted-foreground">{index + 1}:</span>
                                 <span className="font-medium">
                                     {code.slice(0, 4)}-{code.slice(4, 8)}-{code.slice(8)}
                                 </span>

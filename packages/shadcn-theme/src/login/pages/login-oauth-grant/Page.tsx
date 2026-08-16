@@ -1,7 +1,9 @@
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -36,13 +38,13 @@ export function Page() {
                     <div className="flex flex-col gap-2">
                         {kcContext.oauth.clientScopesRequested.map(clientScope => (
                             <div key={clientScope.consentScreenText} className="flex items-start gap-2">
-                                <div className="bg-primary mt-2 size-2 shrink-0 rounded-full" />
-                                <span className="text-muted-foreground text-sm">
+                                <div className="mt-2 size-2 shrink-0 rounded-full bg-primary" />
+                                <span className="text-sm text-muted-foreground">
                                     {advancedMsg(clientScope.consentScreenText)}
                                     {clientScope.dynamicScopeParameter && (
                                         <>
                                             :{" "}
-                                            <span className="text-foreground font-medium">
+                                            <span className="font-medium text-foreground">
                                                 {clientScope.dynamicScopeParameter}
                                             </span>
                                         </>
@@ -55,7 +57,7 @@ export function Page() {
                     {(kcContext.client.attributes.policyUri || kcContext.client.attributes.tosUri) && (
                         <>
                             <div className="flex flex-col gap-2">
-                                <p className="text-muted-foreground text-xs">
+                                <p className="text-xs text-muted-foreground">
                                     {kcContext.client.name
                                         ? msg("oauthGrantInformation", advancedMsgStr(kcContext.client.name))
                                         : msg("oauthGrantInformation", kcContext.client.clientId)}
@@ -66,7 +68,7 @@ export function Page() {
                                             href={kcContext.client.attributes.tosUri}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-4"
+                                            className="text-primary underline underline-offset-4 hover:text-primary/80 dark:text-foreground"
                                         >
                                             {msg("oauthGrantTos")}
                                         </a>
@@ -76,7 +78,7 @@ export function Page() {
                                             href={kcContext.client.attributes.policyUri}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-primary dark:text-foreground hover:text-primary/80 underline underline-offset-4"
+                                            className="text-primary underline underline-offset-4 hover:text-primary/80 dark:text-foreground"
                                         >
                                             {msg("oauthGrantPolicy")}
                                         </a>

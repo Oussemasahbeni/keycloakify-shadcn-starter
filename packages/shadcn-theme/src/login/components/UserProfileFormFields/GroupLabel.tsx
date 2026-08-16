@@ -1,6 +1,7 @@
-import { useI18n } from "#/login/i18n";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import { assert } from "tsafe/assert";
+
+import { useI18n } from "#/login/i18n";
 
 export function GroupLabel(props: {
     attribute: Attribute;
@@ -20,7 +21,7 @@ export function GroupLabel(props: {
 
             return (
                 <div
-                    className="bg-card flex flex-col gap-4 rounded-lg border p-4"
+                    className="flex flex-col gap-4 rounded-lg border bg-card p-4"
                     {...Object.fromEntries(
                         Object.entries(attribute.group.html5DataAnnotations).map(([key, value]) => [
                             `data-${key}`,
@@ -51,7 +52,7 @@ export function GroupLabel(props: {
                                 <div>
                                     <p
                                         id={`description-${attribute.group.name}`}
-                                        className="text-muted-foreground text-sm"
+                                        className="text-sm text-muted-foreground"
                                     >
                                         {groupDescriptionText}
                                     </p>

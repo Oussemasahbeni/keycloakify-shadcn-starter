@@ -1,3 +1,7 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { CircleAlert, CircleCheck, Info, RotateCcw, TriangleAlert, User } from "lucide-react";
+import { type ReactNode } from "react";
+
 import { Alert, AlertDescription } from "#/components/ui/alert";
 import { buttonVariants } from "#/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card";
@@ -5,9 +9,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "#/comp
 import { cn } from "#/lib/utils";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { CircleAlert, CircleCheck, Info, RotateCcw, TriangleAlert, User } from "lucide-react";
-import { type ReactNode } from "react";
+
 import type { TemplateProps } from "./Template";
 
 const messageIcons = {
@@ -49,10 +51,10 @@ export function TemplateContent(props: TemplateContentProps) {
     ) : (
         <div id="kc-username" className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-4">
-                <User className="text-muted-foreground size-6" />
+                <User className="size-6 text-muted-foreground" />
 
                 <div className="flex flex-col gap-0.5">
-                    <span className="text-muted-foreground text-xs font-normal">
+                    <span className="text-xs font-normal text-muted-foreground">
                         {msgStr("attemptedUsernameLoggingInAs")}
                     </span>
                     <span className="text-lg font-semibold" id="kc-attempted-username">
@@ -161,18 +163,13 @@ export function TemplateContent(props: TemplateContentProps) {
                         <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
                             <div>
                                 <input type="hidden" name="tryAnotherWay" value="on" />
-                                <a
-                                    href="#"
+                                <button
+                                    type="submit"
                                     id="try-another-way"
-                                    onClick={event => {
-                                        document.forms["kc-select-try-another-way-form" as never].submit();
-                                        event.preventDefault();
-                                        return false;
-                                    }}
                                     className={cn(buttonVariants({ variant: "outline" }), "w-full")}
                                 >
                                     {msg("doTryAnotherWay")}
-                                </a>
+                                </button>
                             </div>
                         </form>
                     )}

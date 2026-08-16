@@ -1,5 +1,5 @@
 if (window.kcContext !== undefined) {
-    import("./main-kc");
+    void import("./main-kc");
 } else {
-    import("./main-kc.dev");
+    void import("./main-kc.dev");
 }

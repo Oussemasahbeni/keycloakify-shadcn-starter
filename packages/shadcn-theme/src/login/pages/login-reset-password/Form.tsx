@@ -1,10 +1,11 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { assert } from "tsafe/assert";
+
 import { Button, buttonVariants } from "#/components/ui/button";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { assert } from "tsafe/assert";
 
 export function Form() {
     const { kcContext } = useKcContext();

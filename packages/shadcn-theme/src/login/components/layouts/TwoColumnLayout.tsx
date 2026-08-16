@@ -1,8 +1,10 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import type { ReactNode } from "react";
+
 import { cn } from "#/lib/utils";
 import { useKcContext } from "#/login/KcContext";
 import type { SidePanelPosition } from "#/login/theme";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import type { ReactNode } from "react";
+
 import shape from "../../assets/img/shape.svg";
 import { TemplateTopBar } from "../Template/TemplateTopBar";
 
@@ -62,7 +64,7 @@ export function TwoColumnLayout(props: {
             ) : (
                 <div
                     className={cn(
-                        "bg-side-panel text-side-panel-foreground relative hidden h-full overflow-hidden lg:block",
+                        "relative hidden h-full overflow-hidden bg-side-panel text-side-panel-foreground lg:block",
                         panelOrderClassName,
                     )}
                 >

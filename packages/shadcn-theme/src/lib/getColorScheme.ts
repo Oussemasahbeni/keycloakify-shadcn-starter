@@ -2,7 +2,7 @@ const SESSION_STORAGE_KEY = "kc-color-scheme";
 
 export function getTheme(kcContextDarkMode: boolean | undefined): "dark" | "light" | "system" {
     from_admin_policy: {
-        if (kcContextDarkMode === undefined || kcContextDarkMode === true) {
+        if (kcContextDarkMode !== false) {
             break from_admin_policy;
         }
         return "light";

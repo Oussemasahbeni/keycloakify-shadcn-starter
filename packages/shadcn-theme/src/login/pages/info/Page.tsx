@@ -1,11 +1,13 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { Info } from "lucide-react";
+import { assert } from "tsafe/assert";
+
 import { Alert, AlertDescription } from "#/components/ui/alert";
 import { buttonVariants } from "#/components/ui/button";
 import { cn } from "#/lib/utils";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { Info } from "lucide-react";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -69,7 +71,7 @@ export function Page() {
                                 buttonVariants({
                                     variant: "default",
                                 }),
-                                "flex ms-auto",
+                                "ms-auto flex",
                             )}
                         >
                             {msg("backToApplication")}
@@ -84,7 +86,7 @@ export function Page() {
                                 buttonVariants({
                                     variant: "default",
                                 }),
-                                "flex ms-auto",
+                                "ms-auto flex",
                             )}
                         >
                             {msg("proceedWithAction")}
@@ -100,7 +102,7 @@ export function Page() {
                                 buttonVariants({
                                     variant: "link",
                                 }),
-                                "flex ms-auto",
+                                "ms-auto flex",
                             )}
                         >
                             {msg("backToApplication")}

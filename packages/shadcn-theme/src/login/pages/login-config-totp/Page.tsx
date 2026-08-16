@@ -1,3 +1,6 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { assert } from "tsafe/assert";
+
 import { Button, buttonVariants } from "#/components/ui/button";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
@@ -5,8 +8,7 @@ import { cn } from "#/lib/utils";
 import { LogoutOtherSessions } from "#/login/components/LogoutOtherSessions";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -20,7 +22,7 @@ export function Page() {
             headerNode={msg("loginTotpTitle")}
             displayMessage={!kcContext.messagesPerField.existsError("totp", "userLabel")}
         >
-            <ol id="kc-totp-settings" className="text-foreground flex list-decimal flex-col gap-4 px-4 text-sm">
+            <ol id="kc-totp-settings" className="flex list-decimal flex-col gap-4 px-4 text-sm text-foreground">
                 <li className="flex flex-col gap-2">
                     <p>{msg("loginTotpStep1")}</p>
                     <ul className="ms-4 list-inside list-disc" id="kc-totp-supported-apps">
@@ -36,11 +38,11 @@ export function Page() {
                     <>
                         <li>
                             <p className="mb-3">{msg("loginTotpManualStep2")}</p>
-                            <div className="bg-muted/30 border-border rounded-lg border p-4">
+                            <div className="rounded-lg border border-border bg-muted/30 p-4">
                                 <div>
                                     <span
                                         id="kc-totp-secret-key"
-                                        className="bg-secondary rounded border px-3 py-2 font-mono text-lg break-all"
+                                        className="rounded border bg-secondary px-3 py-2 font-mono text-lg break-all"
                                     >
                                         {kcContext.totp.totpSecretEncoded}
                                     </span>
@@ -62,23 +64,23 @@ export function Page() {
                         </li>
                         <li>
                             <p className="mb-3">{msg("loginTotpManualStep3")}</p>
-                            <div className="bg-muted/30 rounded-lg border p-4">
+                            <div className="rounded-lg border bg-muted/30 p-4">
                                 <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
                                     <div className="flex justify-between">
                                         <span className="text-muted-foreground">{msg("loginTotpType")}:</span>
-                                        <span className="bg-secondary rounded px-2 py-1 font-mono text-xs">
+                                        <span className="rounded bg-secondary px-2 py-1 font-mono text-xs">
                                             {msg(`loginTotp.${kcContext.totp.policy.type}`)}
                                         </span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-muted-foreground">{msg("loginTotpAlgorithm")}:</span>
-                                        <span className="bg-secondary rounded px-2 py-1 font-mono text-xs">
+                                        <span className="rounded bg-secondary px-2 py-1 font-mono text-xs">
                                             {kcContext.totp.policy.getAlgorithmKey()}
                                         </span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-muted-foreground">{msg("loginTotpDigits")}:</span>
-                                        <span className="bg-secondary rounded px-2 py-1 font-mono text-xs">
+                                        <span className="rounded bg-secondary px-2 py-1 font-mono text-xs">
                                             {kcContext.totp.policy.digits}
                                         </span>
                                     </div>
@@ -89,7 +91,7 @@ export function Page() {
                                                 : msg("loginTotpCounter")}
                                             :
                                         </span>
-                                        <span className="bg-secondary rounded px-2 py-1 font-mono text-xs">
+                                        <span className="rounded bg-secondary px-2 py-1 font-mono text-xs">
                                             {kcContext.totp.policy.type === "totp"
                                                 ? kcContext.totp.policy.period
                                                 : kcContext.totp.policy.initialCounter}

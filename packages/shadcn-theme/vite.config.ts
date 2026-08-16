@@ -1,9 +1,10 @@
+import { rm } from "node:fs/promises";
+import path from "node:path";
+
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { buildEmailTheme } from "keycloakify-emails";
 import { keycloakify } from "keycloakify/vite-plugin";
-import { rm } from "node:fs/promises";
-import path from "node:path";
 import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/

@@ -1,10 +1,12 @@
+import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { Field, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {

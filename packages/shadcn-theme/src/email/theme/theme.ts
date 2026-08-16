@@ -1,4 +1,5 @@
 import { DEFAULT_THEME_PRESET } from "#/login/theme";
+
 import { resolveColors } from "./resolve-email-theme";
 
 /**

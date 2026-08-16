@@ -1,8 +1,9 @@
-import { useI18n } from "#/login/i18n";
-import { useKcContext } from "#/login/KcContext";
 import { useRef } from "react";
 import { base64url } from "rfc4648";
 import { assert } from "tsafe/assert";
+
+import { useI18n } from "#/login/i18n";
+import { useKcContext } from "#/login/KcContext";
 
 // see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/webauthnRegister.js
 

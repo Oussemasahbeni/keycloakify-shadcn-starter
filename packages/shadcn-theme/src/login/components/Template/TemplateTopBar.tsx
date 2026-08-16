@@ -1,9 +1,11 @@
+import { FiHome } from "react-icons/fi";
+
 import { buttonVariants } from "#/components/ui/button";
 import { redirectUrlOrigin } from "#/lib/redirectUrlOrigin";
 import { cn } from "#/lib/utils.ts";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { FiHome } from "react-icons/fi";
+
 import { Languages } from "../ui/Langauges";
 import { ModeToggle } from "../ui/ThemeToggle";
 

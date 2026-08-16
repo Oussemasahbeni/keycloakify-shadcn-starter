@@ -1,10 +1,11 @@
-import { Button } from "#/components/ui/button";
-import { useI18n } from "#/login/i18n";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import {
     getButtonToDisplayForMultivaluedAttributeField,
     type FormAction,
 } from "@keycloakify/login-ui/useUserProfileForm";
+
+import { Button } from "#/components/ui/button";
+import { useI18n } from "#/login/i18n";
 
 export function AddRemoveButtonsMultiValuedAttribute(props: {
     attribute: Attribute;

@@ -1,6 +1,8 @@
+import { assert } from "tsafe/assert";
+
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -17,7 +19,7 @@ export function Page() {
                     <a
                         id="loginRestartLink"
                         href={kcContext.url.loginRestartFlowUrl}
-                        className="text-primary dark:text-foreground hover:text-primary/80 font-medium underline underline-offset-2"
+                        className="font-medium text-primary underline underline-offset-2 hover:text-primary/80 dark:text-foreground"
                     >
                         {msg("doClickHere")}
                     </a>
@@ -28,7 +30,7 @@ export function Page() {
                     <a
                         id="loginContinueLink"
                         href={kcContext.url.loginAction}
-                        className="text-primary dark:text-foreground hover:text-primary/80 font-medium underline underline-offset-2"
+                        className="font-medium text-primary underline underline-offset-2 hover:text-primary/80 dark:text-foreground"
                     >
                         {msg("doClickHere")}
                     </a>

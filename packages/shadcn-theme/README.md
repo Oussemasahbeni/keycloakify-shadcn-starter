@@ -216,17 +216,17 @@ The login theme is primarily customized through Keycloakify environment variable
 
 ### Environment Variables
 
-| Variable                      | Default        | Allowed values                                | Description                                                                                       |
+| Variable | Default | Allowed values | Description |
 | ----------------------------- | -------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----- |
-| `SHADCN_THEME_LOGO_URL` | `""`           | Any image URL or `%BASE_URL%/filename`        | Logo used in light mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`.                    |
-| `SHADCN_THEME_LOGO_DARK_URL`  | `""`           | Any image URL or `%BASE_URL%/filename`        | Logo used in dark mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`.                     |
-| `SHADCN_THEME_ASIDE_IMAGE_URL` | `""`           | Any image URL or `%BASE_URL%/filename`        | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`.                 | mode. |
-| `SHADCN_THEME_LAYOUT`         | `"two-column"` | `two-column`, `centered-card`, `image-aside`  | Selects the outer page layout used by `Template.tsx`.                                             |
-| `SHADCN_THEME_PRIMARY`         | `"neutral"`    | See accent preset list below                  | Selects the shadcn-style accent color family used for primary actions.                            |
-| `SHADCN_THEME_BASE`           | `"neutral"`    | See base palette list below                   | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring. |
-| `SHADCN_THEME_RADIUS`         | `"default"`    | `default`, `none`, `small`, `medium`, `large` | Controls the global border radius token.                                                          |
-| `SHADCN_THEME_FONT`           | `"geist"`      | See font preset list below                    | Controls the main theme font family.                                                              |
-| `SHADCN_THEME_SHOW_PLACEHOLDER`    | `"true"`       | `true`, `false`                               | Shows or hides placeholders on supported auth forms.                                              |
+| `SHADCN_THEME_LOGO_URL` | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in light mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
+| `SHADCN_THEME_LOGO_DARK_URL` | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in dark mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
+| `SHADCN_THEME_ASIDE_IMAGE_URL` | `""` | Any image URL or `%BASE_URL%/filename` | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`. | mode. |
+| `SHADCN_THEME_LAYOUT` | `"two-column"` | `two-column`, `centered-card`, `image-aside` | Selects the outer page layout used by `Template.tsx`. |
+| `SHADCN_THEME_PRIMARY` | `"neutral"` | See accent preset list below | Selects the shadcn-style accent color family used for primary actions. |
+| `SHADCN_THEME_BASE` | `"neutral"` | See base palette list below | Selects the neutral surface palette used for backgrounds, cards, borders, muted states, and ring. |
+| `SHADCN_THEME_RADIUS` | `"default"` | `default`, `none`, `small`, `medium`, `large` | Controls the global border radius token. |
+| `SHADCN_THEME_FONT` | `"geist"` | See font preset list below | Controls the main theme font family. |
+| `SHADCN_THEME_SHOW_PLACEHOLDER` | `"true"` | `true`, `false` | Shows or hides placeholders on supported auth forms. |
 
 `SHADCN_THEME_SHOW_PLACEHOLDER` currently applies to the fixed auth forms implemented directly in this theme, such as login, login-username, login-password, reset-password, and update-password.
 

@@ -1,0 +1,149 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "plugins": ["import", "typescript", "react", "oxc", "unicorn", "promise", "jsx-a11y"],
+    "jsPlugins": ["@tanstack/eslint-plugin-query"],
+    "categories": {
+        "correctness": "error",
+        "suspicious": "warn"
+    },
+    "options": {
+        "typeAware": true,
+        "typeCheck": true
+    },
+    "env": {
+        "builtin": true,
+        "es2020": true,
+        "browser": true
+    },
+    "globals": {
+        "AsyncDisposableStack": "readonly",
+        "DisposableStack": "readonly",
+        "SuppressedError": "readonly"
+    },
+    "ignorePatterns": [
+        "**/build/**",
+        "**/coverage/**",
+        "**/dist/**",
+        "**/vite.config.*.timestamp-*.*",
+        ".output/**",
+        ".nitro/**",
+        "src/routeTree.gen.ts"
+    ],
+    "overrides": [
+        {
+            "files": ["src/components/ui/**"],
+            "rules": {
+                "react/only-export-components": "off",
+                "jsx-a11y/prefer-tag-over-role": "off",
+                "jsx-a11y/label-has-associated-control": "off",
+                "jsx-a11y/click-events-have-key-events": "off",
+                "jsx-a11y/no-noninteractive-element-interactions": "off"
+            }
+        },
+        {
+            "files": ["**/*.d.ts"],
+            "rules": {
+                "unicorn/require-module-specifiers": "off"
+            }
+        },
+        {
+            "files": ["scripts/**", "**/*.test.*"],
+            "rules": {
+                "unicorn/no-array-sort": "off",
+                "unicorn/consistent-function-scoping": "off"
+            }
+        }
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "@tanstack/query/exhaustive-deps": "error",
+        "@tanstack/query/no-rest-destructuring": "warn",
+        "@tanstack/query/stable-query-client": "error",
+        "@tanstack/query/no-unstable-deps": "error",
+        "@tanstack/query/infinite-query-property-order": "error",
+        "@tanstack/query/no-void-query-fn": "error",
+        "@tanstack/query/mutation-property-order": "error",
+        "@tanstack/query/prefer-query-options": "error",
+        "for-direction": "error",
+        "no-async-promise-executor": "error",
+        "no-case-declarations": "error",
+        "no-class-assign": "error",
+        "no-compare-neg-zero": "error",
+        "no-cond-assign": "error",
+        "no-constant-binary-expression": "error",
+        "no-constant-condition": "error",
+        "no-control-regex": "error",
+        "no-debugger": "error",
+        "no-delete-var": "error",
+        "no-dupe-else-if": "error",
+        "no-duplicate-case": "error",
+        "no-empty-character-class": "error",
+        "no-empty-pattern": "error",
+        "no-empty-static-block": "error",
+        "no-ex-assign": "error",
+        "no-extra-boolean-cast": "error",
+        "no-fallthrough": "error",
+        "no-global-assign": "error",
+        "no-invalid-regexp": "error",
+        "no-irregular-whitespace": "error",
+        "no-loss-of-precision": "error",
+        "no-misleading-character-class": "error",
+        "no-nonoctal-decimal-escape": "error",
+        "no-regex-spaces": "error",
+        "no-self-assign": "error",
+        "no-shadow": "warn",
+        "no-shadow-restricted-names": "error",
+        "no-sparse-arrays": "error",
+        "no-unsafe-finally": "error",
+        "no-unsafe-optional-chaining": "error",
+        "no-unused-labels": "error",
+        "no-unused-private-class-members": "error",
+        "no-useless-backreference": "error",
+        "no-useless-catch": "error",
+        "no-useless-escape": "error",
+        "no-var": "error",
+        "no-with": "error",
+        "prefer-const": "error",
+        "require-yield": "error",
+        "use-isnan": "error",
+        "valid-typeof": "error",
+        "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-commonjs": "error",
+        "import/no-duplicates": "error",
+        "typescript/ban-ts-comment": [
+            "error",
+            {
+                "ts-expect-error": false,
+                "ts-ignore": "allow-with-description"
+            }
+        ],
+        "typescript/consistent-type-imports": [
+            "error",
+            {
+                "prefer": "type-imports"
+            }
+        ],
+        "typescript/method-signature-style": ["error", "property"],
+        "typescript/no-duplicate-enum-values": "error",
+        "typescript/no-explicit-any": "error",
+        "typescript/no-extra-non-null-assertion": "error",
+        "typescript/no-inferrable-types": [
+            "error",
+            {
+                "ignoreParameters": true
+            }
+        ],
+        "typescript/no-misused-new": "error",
+        "typescript/no-namespace": "error",
+        "typescript/no-non-null-asserted-optional-chain": "error",
+        "typescript/no-unsafe-function-type": "error",
+        "typescript/no-wrapper-object-types": "error",
+        "typescript/prefer-as-const": "error",
+        "typescript/prefer-for-of": "warn",
+        "typescript/triple-slash-reference": "error",
+        "typescript/no-unsafe-type-assertion": "off",
+        "typescript/consistent-return": "off"
+    }
+}

@@ -1,7 +1,8 @@
-import { useI18n } from "#/login/i18n";
 import { useInsertScriptTags } from "@keycloakify/login-ui/tools/useInsertScriptTags";
 import { waitForElementMountedOnDom } from "@keycloakify/login-ui/tools/waitForElementMountedOnDom";
 import { useEffect } from "react";
+
+import { useI18n } from "#/login/i18n";
 
 export function useScript(params: { olRecoveryCodesListId: string }) {
     const { olRecoveryCodesListId } = params;
@@ -134,7 +135,7 @@ export function useScript(params: { olRecoveryCodesListId: string }) {
             return;
         }
 
-        (async () => {
+        void (async () => {
             await waitForElementMountedOnDom({
                 elementId: olRecoveryCodesListId,
             });

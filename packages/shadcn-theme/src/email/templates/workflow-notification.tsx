@@ -1,12 +1,13 @@
+import type { TFunction } from "i18next";
 import { Text, render } from "jsx-email";
 import type { GetSubject, GetTemplate, GetTemplateProps } from "keycloakify-emails";
 import * as Fm from "keycloakify-emails/jsx-email";
-import { EmailLayout } from "../layout";
 import { createVariablesHelper } from "keycloakify-emails/variables";
-import type { TFunction } from "i18next";
-import { defaultEmailTheme, ftlEmailTheme, type EmailTheme } from "../theme/theme";
+
 import { previewLocale } from "../constants";
 import i18n from "../i18n";
+import { EmailLayout } from "../layout";
+import { defaultEmailTheme, ftlEmailTheme, type EmailTheme } from "../theme/theme";
 
 type TemplateProps = Omit<GetTemplateProps, "plainText"> & { t: TFunction; theme: EmailTheme };
 

@@ -1,3 +1,7 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+import { useState } from "react";
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { Checkbox } from "#/components/ui/checkbox";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
@@ -7,9 +11,7 @@ import { Label } from "#/components/ui/label";
 import { WebAuthnConditionalUI } from "#/login/components/WebAuthnConditionalUi";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
-import { useState } from "react";
-import { assert } from "tsafe/assert";
+
 import { PasswordVisibilityButton } from "../../components/PasswordVisibilityButton";
 
 export function Form() {

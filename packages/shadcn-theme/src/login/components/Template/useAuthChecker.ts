@@ -1,5 +1,6 @@
-import { useKcContext } from "#/login/KcContext";
 import { useEffect } from "react";
+
+import { useKcContext } from "#/login/KcContext";
 
 // see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/authChecker.js
 
@@ -8,7 +9,7 @@ const AUTH_SESSION_TIMEOUT_MS = 1000;
 
 function getCookieByName(name: string) {
     for (const cookie of document.cookie.split(";")) {
-        const [key, value] = cookie.split("=").map(value => value.trim());
+        const [key, value] = cookie.split("=").map(part => part.trim());
         if (key === name) {
             return value.startsWith('"') && value.endsWith('"') ? value.slice(1, -1) : value;
         }

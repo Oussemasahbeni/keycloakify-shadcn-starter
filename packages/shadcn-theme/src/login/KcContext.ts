@@ -1,4 +1,5 @@
 import { type ExtendKcContext, createUseKcContext } from "@keycloakify/login-ui/KcContext";
+
 import type { KcEnvName, ThemeName } from "../kc.gen";
 
 export type KcContextExtension = {

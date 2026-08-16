@@ -1,11 +1,13 @@
-import { InputGroup, InputGroupAddon } from "#/components/ui/input-group";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
 import type { FormAction, FormFieldError } from "@keycloakify/login-ui/useUserProfileForm";
+
+import { InputGroup, InputGroupAddon } from "#/components/ui/input-group";
+
+import { PasswordVisibilityButton } from "../PasswordVisibilityButton";
 import { InputTag } from "./InputTag";
 import { InputTagSelects } from "./InputTagSelects";
 import { SelectTag } from "./SelectTag";
 import { TextareaTag } from "./TextareaTag";
-import { PasswordVisibilityButton } from "../PasswordVisibilityButton";
 
 export type InputFieldByTypeProps = {
     attribute: Attribute;
@@ -21,7 +23,7 @@ export function InputFieldByType(props: InputFieldByTypeProps) {
         // NOTE: Unfortunately, keycloak won't let you define input type="hidden" in the Admin Console.
         // sometimes in the future it might.
         case "hidden":
-            return <input type="hidden" id={attribute.name} name={attribute.name} value={valueOrValues as string} />;
+            return <input type="hidden" id={attribute.name} name={attribute.name} value={valueOrValues} />;
         case "textarea":
             return <TextareaTag {...props} />;
         case "select":
@@ -31,7 +33,7 @@ export function InputFieldByType(props: InputFieldByTypeProps) {
         case "multiselect-checkboxes":
             return <InputTagSelects {...props} />;
         default: {
-            if (valueOrValues instanceof Array) {
+            if (Array.isArray(valueOrValues)) {
                 return (
                     <>
                         {valueOrValues.map((...[, i]) => (

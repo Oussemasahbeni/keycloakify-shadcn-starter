@@ -1,5 +1,6 @@
-import { useI18n } from "#/login/i18n";
 import type { Attribute } from "@keycloakify/login-ui/KcContext";
+
+import { useI18n } from "#/login/i18n";
 
 export function InputLabel(props: { attribute: Attribute; option: string }) {
     const { attribute, option } = props;

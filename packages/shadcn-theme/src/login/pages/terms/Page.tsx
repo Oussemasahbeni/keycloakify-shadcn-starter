@@ -1,7 +1,9 @@
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -17,7 +19,7 @@ export function Page() {
             <div className="flex flex-col gap-6">
                 <div
                     id="kc-terms-text"
-                    className="bg-muted/50 max-h-64 overflow-y-auto rounded-lg p-4 text-sm leading-relaxed"
+                    className="max-h-64 overflow-y-auto rounded-lg bg-muted/50 p-4 text-sm leading-relaxed"
                 >
                     {msg("termsText")}
                 </div>

@@ -1,11 +1,13 @@
+import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
+import { Smartphone } from "lucide-react";
+import { assert } from "tsafe/assert";
+
 import { Button } from "#/components/ui/button";
 import { Label } from "#/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
-import { useKcClsx } from "@keycloakify/login-ui/useKcClsx";
-import { Smartphone } from "lucide-react";
-import { assert } from "tsafe/assert";
+
 import { Template } from "../../components/Template";
 
 export function Page() {
@@ -35,7 +37,7 @@ export function Page() {
                                     htmlFor={`kc-otp-credential-${index}`}
                                     className="flex flex-1 cursor-pointer items-center gap-2"
                                 >
-                                    <Smartphone className="text-muted-foreground size-5 shrink-0" />
+                                    <Smartphone className="size-5 shrink-0 text-muted-foreground" />
                                     <span className="text-sm font-medium">{otpCredential.userLabel}</span>
                                 </Label>
                                 <RadioGroupItem value={otpCredential.id} id={`kc-otp-credential-${index}`} />

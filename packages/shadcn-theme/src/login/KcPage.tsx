@@ -2,8 +2,9 @@ import { useExclusiveAppInstanceEffect } from "@keycloakify/login-ui/tools/useEx
 import { KcClsxProvider } from "@keycloakify/login-ui/useKcClsx";
 import type { ReactNode } from "react";
 import { assert } from "tsafe/assert";
-import { type KcContext, KcContextProvider } from "./KcContext";
+
 import { I18nProvider } from "./i18n";
+import { type KcContext, KcContextProvider } from "./KcContext";
 import { PageIndex } from "./pages/PageIndex";
 import { useStyleLevelCustomization } from "./styleLevelCustomization";
 

@@ -10,5 +10,5 @@
         "functions": ["clsx", "cn", "cva"],
         "preserveWhitespace": true
     },
-    "ignorePatterns": []
+    "ignorePatterns": ["src/routeTree.gen.ts"]
 }

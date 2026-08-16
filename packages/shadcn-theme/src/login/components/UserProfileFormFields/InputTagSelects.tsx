@@ -1,8 +1,10 @@
+import { assert } from "tsafe/assert";
+
 import { Checkbox } from "#/components/ui/checkbox";
 import { Label } from "#/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "#/components/ui/radio-group";
 import { cn } from "#/lib/utils";
-import { assert } from "tsafe/assert";
+
 import type { InputFieldByTypeProps } from "./InputFieldByType";
 import { InputLabel } from "./InputLabel";
 
@@ -73,7 +75,7 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                         />
                         <Label
                             htmlFor={`${attribute.name}-${option}`}
-                            className={cn("text-sm font-normal", attribute.readOnly && "opacity-50 cursor-not-allowed")}
+                            className={cn("text-sm font-normal", attribute.readOnly && "cursor-not-allowed opacity-50")}
                         >
                             <InputLabel attribute={attribute} option={option} />
                         </Label>
@@ -90,7 +92,7 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                     <Checkbox
                         id={`${attribute.name}-${option}`}
                         checked={
-                            valueOrValues instanceof Array ? valueOrValues.includes(option) : valueOrValues === option
+                            Array.isArray(valueOrValues) ? valueOrValues.includes(option) : valueOrValues === option
                         }
                         disabled={attribute.readOnly}
                         onCheckedChange={checked =>
@@ -98,9 +100,9 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                                 action: "update",
                                 name: attribute.name,
                                 valueOrValues: (() => {
-                                    const isChecked = checked === true;
+                                    const isChecked = checked;
 
-                                    if (valueOrValues instanceof Array) {
+                                    if (Array.isArray(valueOrValues)) {
                                         const newValues = [...valueOrValues];
 
                                         if (isChecked) {
@@ -126,7 +128,7 @@ export function InputTagSelects(props: InputFieldByTypeProps) {
                     />
                     <Label
                         htmlFor={`${attribute.name}-${option}`}
-                        className={cn("text-sm font-normal", attribute.readOnly && "opacity-50 cursor-not-allowed")}
+                        className={cn("text-sm font-normal", attribute.readOnly && "cursor-not-allowed opacity-50")}
                     >
                         <InputLabel attribute={attribute} option={option} />
                     </Label>

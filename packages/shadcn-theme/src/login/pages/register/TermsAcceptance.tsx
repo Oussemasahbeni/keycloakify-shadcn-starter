@@ -1,9 +1,10 @@
+import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
+
 import { Checkbox } from "#/components/ui/checkbox";
 import { FieldError } from "#/components/ui/field";
 import { Label } from "#/components/ui/label";
 import { useI18n } from "#/login/i18n";
 import type { KcContext } from "#/login/KcContext";
-import { kcSanitize } from "@keycloakify/login-ui/kcSanitize";
 
 export function TermsAcceptance(props: {
     messagesPerField: Pick<KcContext["messagesPerField"], "existsError" | "get">;
@@ -16,9 +17,9 @@ export function TermsAcceptance(props: {
 
     return (
         <div className="flex flex-col gap-4">
-            <div className="bg-muted/50 flex flex-col gap-2 rounded-lg p-4">
+            <div className="flex flex-col gap-2 rounded-lg bg-muted/50 p-4">
                 <h3 className="text-sm font-medium">{msg("termsTitle")}</h3>
-                <div className="text-muted-foreground text-sm">{msg("termsText")}</div>
+                <div className="text-sm text-muted-foreground">{msg("termsText")}</div>
             </div>
 
             <div className="flex flex-col gap-2">
@@ -27,7 +28,7 @@ export function TermsAcceptance(props: {
                         id="termsAccepted"
                         name="termsAccepted"
                         checked={areTermsAccepted}
-                        onCheckedChange={checked => onAreTermsAcceptedValueChange(!!checked)}
+                        onCheckedChange={checked => onAreTermsAcceptedValueChange(checked)}
                         aria-invalid={messagesPerField.existsError("termsAccepted")}
                     />
                     <Label htmlFor="termsAccepted" className="cursor-pointer text-sm font-medium">

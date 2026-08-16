@@ -1,5 +1,3 @@
-import type { Locale } from "#/lib/locales.ts";
-import { LOCALES } from "#/lib/locales.ts";
 import { resolveEmailTheme } from "@kc-studio/shadcn-theme/email";
 import type {
     BasePalette,
@@ -36,6 +34,9 @@ import {
 import type { Equals } from "tsafe";
 import { assert as assertType } from "tsafe";
 import { z } from "zod";
+
+import type { Locale } from "#/lib/locales.ts";
+import { LOCALES } from "#/lib/locales.ts";
 
 export type ThemeConfig = {
     __version: 1;

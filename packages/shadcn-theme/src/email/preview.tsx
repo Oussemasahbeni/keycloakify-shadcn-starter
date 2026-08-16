@@ -1,7 +1,9 @@
-import type { PrimaryPreset } from "#/login/theme";
 import type { TFunction } from "i18next";
 import { render } from "jsx-email";
 import type { ComponentType } from "react";
+
+import type { PrimaryPreset } from "#/login/theme";
+
 import i18n from "./i18n";
 import type { EmailTemplateId } from "./templates-meta";
 import { Template as emailTest } from "./templates/email-test";
@@ -85,7 +87,7 @@ function fillMocks(html: string): string {
 
 type EmailThemeOptions = {
     primaryColor: PrimaryPreset;
-    logoUrl?: string
+    logoUrl?: string;
 };
 
 export async function renderEmailPreview(opts: {

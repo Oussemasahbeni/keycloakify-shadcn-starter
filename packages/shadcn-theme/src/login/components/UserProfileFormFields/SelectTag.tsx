@@ -1,5 +1,7 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
 import { assert } from "tsafe/assert";
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
+
 import type { InputFieldByTypeProps } from "./InputFieldByType";
 import { InputLabel } from "./InputLabel";
 
