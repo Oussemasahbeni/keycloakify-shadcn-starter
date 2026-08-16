@@ -10,6 +10,7 @@ import { LandingFooter } from "#/features/landing/footer";
 import { Header } from "#/features/landing/header";
 import { HeroSection } from "#/features/landing/hero-section";
 import { ProblemSection } from "#/features/landing/problem-section";
+import { MotionProvider } from "#/features/landing/reveal";
 import { StatsSection } from "#/features/landing/stats-section";
 import { TechStrip } from "#/features/landing/tech-strip";
 import { ThemeGallery } from "#/features/landing/theme-gallery";
@@ -26,7 +27,7 @@ export const Route = createFileRoute("/")({
             description: DESCRIPTION,
             keywords:
                 "Keycloak, Keycloak theme, Keycloakify, login theme, theme editor, shadcn/ui, Tailwind CSS, OIDC, SSO",
-            image: "/editor-preview-white.png",
+            image: "/images/editor-preview-white.png",
             url: "/",
         }),
         links: [{ rel: "canonical", href: `${SITE_URL}/` }],
@@ -59,7 +60,7 @@ function structuredData() {
                 url: `${SITE_URL}/`,
                 applicationCategory: "DeveloperApplication",
                 operatingSystem: "Web",
-                image: `${SITE_URL}/editor-preview-white.png`,
+                image: `${SITE_URL}/images/editor-preview-white.png`,
             },
             {
                 "@type": "FAQPage",
@@ -79,45 +80,46 @@ function structuredData() {
 
 function Home() {
     return (
-        <div className="flex min-h-svh flex-col">
-            <Header />
-            <main className="flex-1">
-                <HeroSection />
-                <ProblemSection />
+        <MotionProvider>
+            <div className="flex min-h-svh flex-col">
+                <Header />
+                <main className="flex-1">
+                    <HeroSection />
+                    <TechStrip />
+                    <ProblemSection />
 
-                <SectionHeader
-                    id="gallery"
-                    eyebrow="Made with the editor"
-                    title="One theme, however you want it to look"
-                    lede="Every screen below came out of the editor — different layouts, typefaces and palettes, on the pages your users actually reach."
-                />
-                <ThemeGallery />
+                    <SectionHeader
+                        id="gallery"
+                        eyebrow="Made with the editor"
+                        title="One theme, however you want it to look"
+                        lede="Every screen below came out of the editor — different layouts, typefaces and palettes, on the pages your users actually reach."
+                    />
+                    <ThemeGallery />
 
-                <TechStrip />
+                    <SectionHeader
+                        id="compare"
+                        eyebrow="Before & after"
+                        title="The same login page, minutes apart"
+                        lede="Drag the divider between what Keycloak serves out of the box and the same page after a few minutes in the editor — no FreeMarker, no CSS."
+                    />
+                    <CompareSection />
 
-                <SectionHeader
-                    id="compare"
-                    eyebrow="Before & after"
-                    title="The same login page, minutes apart"
-                    lede="On the left, what Keycloak serves out of the box. On the right, the same page after a few minutes in the editor — no FreeMarker, no CSS."
-                />
-                <CompareSection />
+                    <SectionHeader
+                        id="features"
+                        eyebrow="What you get"
+                        title="From editor to deployed theme"
+                        lede="Design it visually, check it against the real pages, and leave with an artifact your ops team can deploy."
+                    />
+                    <FeaturePanels />
+                    <StatsSection />
 
-                <SectionHeader
-                    id="features"
-                    eyebrow="What you get"
-                    title="From editor to deployed theme"
-                    lede="Design it visually, check it against the real pages, and leave with an artifact your ops team can deploy."
-                />
-                <FeaturePanels />
-                <StatsSection />
+                    <SectionHeader eyebrow="FAQ" title="Questions, answered" />
+                    <FaqSection />
 
-                <SectionHeader eyebrow="FAQ" title="Questions, answered" />
-                <FaqSection />
-
-                <CtaSection />
-            </main>
-            <LandingFooter />
-        </div>
+                    <CtaSection />
+                </main>
+                <LandingFooter />
+            </div>
+        </MotionProvider>
     );
 }

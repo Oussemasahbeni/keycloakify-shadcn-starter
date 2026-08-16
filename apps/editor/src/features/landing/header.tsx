@@ -109,7 +109,7 @@ function MobileMenu() {
 
 export function Header() {
     return (
-        <header className="sticky top-0 z-50 bg-background">
+        <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md">
             <div className="wrapper flex items-center justify-between border-b px-5 py-4 sm:px-6">
                 <Brand />
                 <DesktopNav />
@@ -125,7 +125,7 @@ export function Header() {
                 <MobileMenu />
             </div>
             {/* Draws the corner notches beneath the header's rule. */}
-            <div className="md:tick-left md:tick-right wrapper h-0" aria-hidden />
+            <div className="wrapper h-0 md:tick-right md:tick-left" aria-hidden />
         </header>
     );
 }

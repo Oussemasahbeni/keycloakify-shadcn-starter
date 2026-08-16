@@ -10,20 +10,6 @@
     --font-heading: var(--font-sans);
     --font-sans: "Geist Variable", "Geist", "Inter Variable", sans-serif;
     --font-mono: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
-    --font-serif-display: "Instrument Serif", Georgia, serif;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
     --color-ring: var(--ring);
     --color-input: var(--input);
     --color-border: var(--border);
@@ -75,6 +61,37 @@
     }
 }
 
+/* The corner notches: a small diamond centred on the intersection of a band's
+ * top rule and its side rule. Ticks sit astride the rules, so they only make
+ * sense from `md` up where the side rules exist (callers guard with `md:`). */
+@utility tick-left {
+    &::before {
+        content: "";
+        position: absolute;
+        top: -3.5px;
+        left: -3.5px;
+        z-index: 1;
+        width: 6px;
+        height: 6px;
+        rotate: 45deg;
+        background: var(--color-border);
+    }
+}
+
+@utility tick-right {
+    &::after {
+        content: "";
+        position: absolute;
+        top: -3.5px;
+        right: -3.5px;
+        z-index: 1;
+        width: 6px;
+        height: 6px;
+        rotate: 45deg;
+        background: var(--color-border);
+    }
+}
+
 :root,
 .light {
     --background: oklch(1 0 0);
@@ -95,20 +112,7 @@
     --border: oklch(0.923 0.003 48.717);
     --input: oklch(0.923 0.003 48.717);
     --ring: oklch(0.709 0.01 56.259);
-    --chart-1: oklch(0.869 0.005 56.366);
-    --chart-2: oklch(0.553 0.013 58.071);
-    --chart-3: oklch(0.444 0.011 73.639);
-    --chart-4: oklch(0.374 0.01 67.558);
-    --chart-5: oklch(0.268 0.007 34.298);
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0.001 106.423);
-    --sidebar-foreground: oklch(0.147 0.004 49.25);
-    --sidebar-primary: oklch(0.591 0.293 322.896);
-    --sidebar-primary-foreground: oklch(0.977 0.017 320.058);
-    --sidebar-accent: oklch(0.97 0.001 106.424);
-    --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
-    --sidebar-border: oklch(0.923 0.003 48.717);
-    --sidebar-ring: oklch(0.709 0.01 56.259);
 }
 
 .dark {
@@ -130,19 +134,6 @@
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
     --ring: oklch(0.553 0.013 58.071);
-    --chart-1: oklch(0.869 0.005 56.366);
-    --chart-2: oklch(0.553 0.013 58.071);
-    --chart-3: oklch(0.444 0.011 73.639);
-    --chart-4: oklch(0.374 0.01 67.558);
-    --chart-5: oklch(0.268 0.007 34.298);
-    --sidebar: oklch(0.216 0.006 56.043);
-    --sidebar-foreground: oklch(0.985 0.001 106.423);
-    --sidebar-primary: oklch(0.667 0.295 322.15);
-    --sidebar-primary-foreground: oklch(0.977 0.017 320.058);
-    --sidebar-accent: oklch(0.268 0.007 34.298);
-    --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.553 0.013 58.071);
 }
 @layer base {
     * {
@@ -157,5 +148,10 @@
     }
     html {
         @apply scroll-smooth font-sans;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
     }
 }

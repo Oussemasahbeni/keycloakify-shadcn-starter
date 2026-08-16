@@ -18,10 +18,11 @@ export function CtaSection() {
                     </h2>
                     <p className="max-w-md text-balance text-muted-foreground">
                         Start from a theme that already handles every page, then make it yours in a few clicks.
+                        Designing is free — you only pay to export.
                     </p>
                     <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
                         <Link to="/editor" className={cn(buttonVariants({ variant: "default", size: "hero" }))}>
-                            Open the editor
+                            Start designing free
                         </Link>
                         <a
                             href={DISCORD_INVITE_URL}

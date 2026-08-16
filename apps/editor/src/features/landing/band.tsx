@@ -2,6 +2,8 @@ import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 import { cn } from "#/lib/utils";
 
+import { Reveal } from "./reveal";
+
 /**
  * One ruled band of the landing page.
  *
@@ -29,7 +31,7 @@ export function Band({
 } & ComponentPropsWithoutRef<"section">) {
     return (
         <As
-            className={cn("wrapper", topRule && "border-t", ticks && "md:tick-left md:tick-right", className)}
+            className={cn("wrapper", topRule && "border-t", ticks && "md:tick-right md:tick-left", className)}
             {...rest}
         >
             {children}
@@ -54,13 +56,14 @@ export function SectionHeader({
     lede?: ReactNode;
 } & ComponentPropsWithoutRef<"section">) {
     return (
-        <Band
-            className={cn("flex flex-col items-center gap-3 px-5 py-14 text-center sm:px-10 sm:py-24", className)}
-            {...rest}
-        >
-            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-            <h2 className="max-w-2xl text-3xl font-medium tracking-tight text-balance sm:text-5xl">{title}</h2>
-            {lede && <p className="max-w-md text-balance text-muted-foreground sm:text-pretty">{lede}</p>}
+        <Band className={cn("px-5 py-14 sm:px-10 sm:py-24", className)} {...rest}>
+            {/* The reveal lives on an inner wrapper — animating the Band itself
+                would drag its side rules along. */}
+            <Reveal className="flex flex-col items-center gap-3 text-center">
+                {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+                <h2 className="max-w-2xl text-3xl font-medium tracking-tight text-balance sm:text-5xl">{title}</h2>
+                {lede && <p className="max-w-md text-balance text-muted-foreground sm:text-pretty">{lede}</p>}
+            </Reveal>
         </Band>
     );
 }

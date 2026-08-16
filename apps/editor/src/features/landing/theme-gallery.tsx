@@ -15,9 +15,9 @@ const FRAME = { width: 1991, height: 1271 } as const;
  * the `.png` is `id` — see `public/images/gallery/`.
  */
 const GALLERY = [
+    { id: "side-panel-image", label: "Side panel", caption: "Recovery codes beside a photographic side panel" },
     { id: "sign-in", label: "Sign in", caption: "A sign-in page with social providers" },
     { id: "light-mode", label: "Light mode", caption: "The same sign-in page in light mode" },
-    { id: "side-panel-image", label: "Side panel", caption: "Recovery codes beside a photographic side panel" },
     { id: "monospace", label: "Monospace", caption: "A sign-in page set entirely in a monospace face" },
     {
         id: "select-authenticator",
@@ -51,18 +51,18 @@ export function ThemeGallery() {
         <Band>
             <Carousel
                 setApi={setApi}
+                opts={{ loop: true }}
                 aria-label="Screens built with the editor"
                 className="mx-auto w-full max-w-6xl p-5 sm:p-10"
             >
                 <CarouselContent>
-                    {GALLERY.map((entry, index) => (
+                    {GALLERY.map(entry => (
                         <CarouselItem key={entry.id}>
                             <Screenshot
                                 src={`/images/gallery/${entry.id}.png`}
                                 alt={entry.caption}
                                 width={FRAME.width}
                                 height={FRAME.height}
-                                priority={index === 0}
                                 className="size-full rounded-lg border object-cover"
                             />
                         </CarouselItem>
@@ -72,13 +72,14 @@ export function ThemeGallery() {
                 <CarouselNext />
             </Carousel>
 
-            <div className="flex flex-wrap items-center gap-2 border-t px-4 py-2">
+            <div className="flex items-center gap-2 overflow-x-auto border-t px-4 py-2 max-sm:[scrollbar-width:none]">
                 {GALLERY.map((entry, index) => (
                     <Button
                         onClick={() => api?.scrollTo(index)}
                         aria-current={index === active ? "true" : undefined}
                         key={entry.id}
                         variant={index === active ? "default" : "ghost"}
+                        className="shrink-0"
                     >
                         {entry.label}
                     </Button>

@@ -2,6 +2,7 @@ import { LOCALE_COUNT, LOCALES } from "#/lib/locales";
 import { cn } from "#/lib/utils";
 
 import { Band, Eyebrow } from "./band";
+import { Reveal } from "./reveal";
 import { Screenshot } from "./screenshot";
 
 /**
@@ -23,15 +24,15 @@ export function FeaturePanels() {
                 <Screenshot
                     src="/images/editor-preview-white.png"
                     alt="The editor with its configuration sidebar beside a live login page preview"
-                    width={2559}
-                    height={1273}
+                    width={2560}
+                    height={1271}
                     className="w-full rounded-lg border object-cover shadow-sm dark:hidden"
                 />
                 <Screenshot
                     src="/images/editor-preview-dark.png"
                     alt=""
-                    width={2559}
-                    height={1268}
+                    width={2560}
+                    height={1271}
                     className="hidden w-full rounded-lg border object-cover shadow-sm dark:block"
                 />
             </Panel>
@@ -108,11 +109,11 @@ function Panel({
 }) {
     return (
         <div className={cn("flex flex-col gap-6", className)}>
-            <div className="flex flex-col gap-3 p-5 pb-0 sm:p-10 sm:pb-0">
+            <Reveal className="flex flex-col gap-3 p-5 pb-0 sm:p-10 sm:pb-0">
                 <Eyebrow>{eyebrow}</Eyebrow>
                 <h3 className="text-xl leading-snug font-medium tracking-tight text-balance">{title}</h3>
                 <p className="max-w-120 text-sm text-pretty text-muted-foreground">{body}</p>
-            </div>
+            </Reveal>
             <div className="flex flex-1 items-center justify-center p-5 pt-0 sm:p-10 sm:pt-0">{children}</div>
         </div>
     );
