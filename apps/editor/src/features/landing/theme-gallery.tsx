@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { animate, m, useInView, useMotionValue, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 import { Button } from "#/components/ui/button.tsx";
 import type { CarouselApi } from "#/components/ui/carousel";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "#/components/ui/carousel";
+import { cn } from "#/lib/utils";
 
 import { Band } from "./band";
 import { Screenshot } from "./screenshot";
@@ -29,9 +31,26 @@ const GALLERY = [
     { id: "delete-account", label: "Delete account", caption: "A destructive confirmation, styled with the rest" },
 ] as const;
 
+const AUTOPLAY_INTERVAL_MS = 5000;
+const PILL_SPRING = { type: "spring", stiffness: 500, damping: 40 } as const;
+
 export function ThemeGallery() {
     const [api, setApi] = useState<CarouselApi>();
     const [active, setActive] = useState(0);
+
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const stripRef = useRef<HTMLDivElement>(null);
+    const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+    /** The highlight behind the active label, slid between buttons by measurement. */
+    const pillLeft = useMotionValue(0);
+    const pillWidth = useMotionValue(0);
+
+    const isInView = useInView(carouselRef, { amount: 0.4 });
+    const prefersReducedMotion = useReducedMotion();
+
+    /** True once the user touches the gallery — autoplay ends for good. */
+    const [engaged, setEngaged] = useState(false);
 
     useEffect(() => {
         if (!api) return;
@@ -47,39 +66,89 @@ export function ThemeGallery() {
         };
     }, [api]);
 
-    return (
-        <Band>
-            <Carousel
-                setApi={setApi}
-                opts={{ loop: true }}
-                aria-label="Screens built with the editor"
-                className="mx-auto w-full max-w-6xl p-5 sm:p-10"
-            >
-                <CarouselContent>
-                    {GALLERY.map(entry => (
-                        <CarouselItem key={entry.id}>
-                            <Screenshot
-                                src={`/images/gallery/${entry.id}.png`}
-                                alt={entry.caption}
-                                width={FRAME.width}
-                                height={FRAME.height}
-                                className="size-full rounded-lg border object-cover"
-                            />
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-            </Carousel>
+    /* Gentle auto-advance: only while visible, never after the user has taken
+       over, and not for reduced motion. No pause-on-hover — wheel-scrolling
+       parks the cursor over the carousel, which made autoplay look broken. */
+    useEffect(() => {
+        if (!api || !isInView || engaged || prefersReducedMotion) return;
+        const id = setInterval(() => api.scrollNext(), AUTOPLAY_INTERVAL_MS);
+        return () => clearInterval(id);
+    }, [api, isInView, engaged, prefersReducedMotion]);
 
-            <div className="flex items-center gap-2 overflow-x-auto border-t px-4 py-2 max-sm:[scrollbar-width:none]">
+    /* Slide the pill under the active label and keep it visible in the strip. */
+    useEffect(() => {
+        const button = buttonRefs.current[active];
+        const strip = stripRef.current;
+        if (!button || !strip) return;
+
+        const left = button.offsetLeft;
+        const width = button.offsetWidth;
+        if (pillWidth.get() === 0 || prefersReducedMotion) {
+            pillLeft.jump(left);
+            pillWidth.jump(width);
+        } else {
+            animate(pillLeft, left, PILL_SPRING);
+            animate(pillWidth, width, PILL_SPRING);
+        }
+
+        strip.scrollTo({
+            left: left - (strip.clientWidth - width) / 2,
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+    }, [active, prefersReducedMotion, pillLeft, pillWidth]);
+
+    return (
+        // Any pointer-down or keyboard focus inside the gallery — a drag, an
+        // arrow, a label, a tab stop — hands control to the user permanently.
+        <Band onPointerDownCapture={() => setEngaged(true)} onFocusCapture={() => setEngaged(true)}>
+            <div ref={carouselRef}>
+                <Carousel
+                    setApi={setApi}
+                    opts={{ loop: true }}
+                    aria-label="Screens built with the editor"
+                    className="mx-auto w-full max-w-6xl p-5 sm:p-10"
+                >
+                    <CarouselContent>
+                        {GALLERY.map(entry => (
+                            <CarouselItem key={entry.id}>
+                                <Screenshot
+                                    src={`/images/gallery/${entry.id}.png`}
+                                    alt={entry.caption}
+                                    width={FRAME.width}
+                                    height={FRAME.height}
+                                    className="size-full rounded-lg border object-cover"
+                                />
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
+
+            <div
+                ref={stripRef}
+                className="relative flex items-center gap-2 overflow-x-auto border-t px-4 py-2 max-sm:[scrollbar-width:none]"
+            >
+                <m.span
+                    aria-hidden
+                    className="absolute top-2 h-8 rounded-lg bg-primary"
+                    style={{ left: pillLeft, width: pillWidth }}
+                />
                 {GALLERY.map((entry, index) => (
                     <Button
-                        onClick={() => api?.scrollTo(index)}
+                        onClick={() => api?.scrollTo(index, prefersReducedMotion ?? false)}
                         aria-current={index === active ? "true" : undefined}
                         key={entry.id}
-                        variant={index === active ? "default" : "ghost"}
-                        className="shrink-0"
+                        ref={element => {
+                            buttonRefs.current[index] = element;
+                        }}
+                        variant="ghost"
+                        className={cn(
+                            "relative shrink-0 transition-colors",
+                            index === active &&
+                                "text-primary-foreground hover:bg-transparent hover:text-primary-foreground dark:hover:bg-transparent",
+                        )}
                     >
                         {entry.label}
                     </Button>

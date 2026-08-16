@@ -1,3 +1,6 @@
+import { animate, useInView, useReducedMotion } from "motion/react";
+import { useEffect, useRef } from "react";
+
 import { LOCALE_COUNT, LOCALES } from "#/lib/locales";
 import { cn } from "#/lib/utils";
 
@@ -78,19 +81,88 @@ export function FeaturePanels() {
                 body="Export bundles your login and email themes into a Keycloak provider JAR. Drop it in providers/, restart, pick the theme. Nothing to build, nothing to wire up."
                 className="lg:border-b-0"
             >
-                <div className="w-full max-w-sm space-y-1 rounded-lg border border-border bg-muted/40 p-4 font-mono text-xs">
-                    <div className="text-muted-foreground">
-                        <span className="select-none">$ </span>
-                        cp my-theme.jar keycloak/providers/
-                    </div>
-                    <div className="text-muted-foreground">
-                        <span className="select-none">$ </span>
-                        ./kc.sh start-dev
-                    </div>
-                    <div className="pt-1 text-primary">✓ theme available in the admin console</div>
-                </div>
+                <TerminalDemo />
             </Panel>
         </Band>
+    );
+}
+
+const EXPORT_LINES = ["cp my-theme.jar keycloak/providers/", "./kc.sh start-dev"] as const;
+
+/**
+ * The export panel's fake terminal. Server-renders the finished session (for
+ * crawlers and no-JS), then replays it once on first view: each command types
+ * itself out, then the confirmation line fades in. All writes go straight to
+ * the DOM, and the `$` prompts stay in place so nothing shifts.
+ */
+function TerminalDemo() {
+    const rootRef = useRef<HTMLDivElement>(null);
+    const line1Ref = useRef<HTMLSpanElement>(null);
+    const line2Ref = useRef<HTMLSpanElement>(null);
+    const checkRef = useRef<HTMLDivElement>(null);
+    const lineRefs = [line1Ref, line2Ref];
+    const isInView = useInView(rootRef, { once: true, amount: 0.6 });
+    const prefersReducedMotion = useReducedMotion();
+
+    useEffect(() => {
+        const lines = [line1Ref.current, line2Ref.current];
+        const check = checkRef.current;
+        if (!isInView || prefersReducedMotion || !check || lines.some(line => !line)) return;
+
+        let stopped = false;
+        let controls: ReturnType<typeof animate> | undefined;
+
+        const typeInto = (node: HTMLElement, text: string, delay: number) => {
+            controls = animate(0, text.length, {
+                delay,
+                duration: text.length * 0.035,
+                ease: "linear",
+                onUpdate: latest => {
+                    const count = Math.round(latest);
+                    node.textContent = text.slice(0, count) + (count < text.length ? "▍" : "");
+                },
+            });
+            return controls;
+        };
+
+        const run = async () => {
+            for (const line of lines) line!.textContent = "";
+            check.style.opacity = "0";
+            await typeInto(lines[0]!, EXPORT_LINES[0], 0.2);
+            if (stopped) return;
+            await typeInto(lines[1]!, EXPORT_LINES[1], 0.3);
+            if (stopped) return;
+            controls = animate(0, 1, {
+                delay: 0.25,
+                duration: 0.4,
+                onUpdate: latest => {
+                    check.style.opacity = String(latest);
+                },
+            });
+        };
+        void run();
+
+        return () => {
+            stopped = true;
+            controls?.stop();
+        };
+    }, [isInView, prefersReducedMotion]);
+
+    return (
+        <div
+            ref={rootRef}
+            className="w-full max-w-sm space-y-1 rounded-lg border border-border bg-muted/40 p-4 font-mono text-xs"
+        >
+            {EXPORT_LINES.map((line, index) => (
+                <div key={line} className="text-muted-foreground">
+                    <span className="select-none">$ </span>
+                    <span ref={lineRefs[index]}>{line}</span>
+                </div>
+            ))}
+            <div ref={checkRef} className="pt-1 text-green-600">
+                ✓ theme available in the admin console
+            </div>
+        </div>
     );
 }
 
