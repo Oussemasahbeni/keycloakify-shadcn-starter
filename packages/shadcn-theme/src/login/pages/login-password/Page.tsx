@@ -85,6 +85,8 @@ export function Page() {
                     rpId={kcContext.rpId}
                     userVerification={kcContext.userVerification}
                     createTimeout={kcContext.createTimeout}
+                    mediation={kcContext.mediation}
+                    authenticatorAttachment={kcContext.authenticatorAttachment}
                     authenticators={kcContext.authenticators?.authenticators}
                     loginAction={kcContext.url.loginAction}
                 />

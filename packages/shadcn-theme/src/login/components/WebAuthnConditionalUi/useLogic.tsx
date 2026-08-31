@@ -3,8 +3,6 @@ import { useEffect, useRef } from "react";
 import { base64url } from "rfc4648";
 import { assert } from "tsafe/assert";
 
-import { useI18n } from "#/login/i18n";
-
 // see https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/base/login/resources/js/webauthnAuthenticate.js
 
 /**
@@ -49,13 +47,10 @@ export type AuthenticateOptions = {
     authenticators: { credentialId: string }[] | undefined;
 
     /** * Mediation type for the credential request.
-     * "optional" for standard button click, "conditional" for silent requests.
+     * "optional" for standard button click, "conditional" for silent autofill requests,
+     * "required"/"silent" as configured in the WebAuthn Passwordless Policy.
      */
-    mediation: "optional" | "conditional";
-
-    /** * Optional error message to display if the browser does not support WebAuthn.
-     */
-    errmsg: string | undefined;
+    mediation: CredentialMediationRequirement;
 };
 
 /**
@@ -74,9 +69,29 @@ export type WebAuthnResult =
     | {
           success: false;
           error: string;
+          /** The DOMException name (e.g. "NotAllowedError") when the failure came from the WebAuthn API. */
+          errorName?: string;
       };
 
 let abortController: AbortController | undefined = undefined;
+
+/**
+ * sessionStorage key remembering that the user dismissed the passkey modal
+ * (mediation "optional" | "required") during the current authentication session.
+ * Mirrors Keycloak's passkeysConditionalAuth.js.
+ */
+const PASSKEY_MODAL_DISMISSED_KEY = "kc_passkey_modal_dismissed";
+
+/** Returns the current `KC_AUTH_SESSION_HASH` cookie value, or undefined if absent. */
+function getAuthSessionHash(): string | undefined {
+    for (const cookie of document.cookie.split(";")) {
+        const [key, value] = cookie.trim().split("=");
+        if (key === "KC_AUTH_SESSION_HASH" && value) {
+            return value;
+        }
+    }
+    return undefined;
+}
 
 export type UseLogicProps = {
     isUserIdentified: "true" | "false";
@@ -91,9 +106,16 @@ export type UseLogicProps = {
 };
 
 export function useLogic(props: UseLogicProps) {
-    const { msgStr } = useI18n();
-
-    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators, mediation, authenticatorAttachment } = props;
+    const {
+        isUserIdentified,
+        challenge,
+        rpId,
+        userVerification,
+        createTimeout,
+        authenticators,
+        mediation,
+        authenticatorAttachment,
+    } = props;
 
     const webAuthnFormRef = useRef<HTMLFormElement>(null);
     const submitWebAuthn = (result: WebAuthnResult) => {
@@ -115,7 +137,22 @@ export function useLogic(props: UseLogicProps) {
         } else {
             getInput("error").value = result.error;
         }
-        
+
+        // Forward the "remember me" choice from the login form (when rendered) along with the assertion.
+        const rememberMe = document.getElementById("rememberMe");
+        if (rememberMe !== null) {
+            // Our Checkbox is a Radix button (role="checkbox"), not a native input, so fall back to aria-checked.
+            const isChecked =
+                rememberMe instanceof HTMLInputElement
+                    ? rememberMe.checked
+                    : rememberMe.getAttribute("aria-checked") === "true";
+
+            const rememberMeInput = document.createElement("input");
+            rememberMeInput.type = "hidden";
+            rememberMeInput.name = "rememberMe";
+            rememberMeInput.value = isChecked ? "on" : "off";
+            form.appendChild(rememberMeInput);
+        }
 
         form.submit();
     };
@@ -126,8 +163,6 @@ export function useLogic(props: UseLogicProps) {
         userVerification: userVerification,
         rpId: rpId,
         createTimeout: typeof createTimeout === "string" ? Number(createTimeout) : createTimeout,
-        mediation: mediation,
-        authenticatorAttachment: authenticatorAttachment,
         authenticators: authenticators,
     };
 
@@ -135,28 +170,78 @@ export function useLogic(props: UseLogicProps) {
         const result = await authenticate({
             ...authOptions,
             mediation: "optional",
-            errmsg: msgStr("webauthn-unsupported-browser-text"),
         });
         if (result) submitWebAuthn(result);
     };
 
+    /**
+     * Automatic passkey prompt on page load. Mirrors Keycloak's passkeysConditionalAuth.js.
+     *
+     * Calls navigator.credentials.get() once with the mediation configured in the
+     * WebAuthn Passwordless Policy. For "none", unsupported browsers, or an already
+     * identified user nothing is attempted — the user can always click the button.
+     *
+     * For modal mediations ("optional" | "required") the dialog is shown at most once
+     * per authentication session: if dismissed, it will not reappear on subsequent
+     * page loads (e.g. after a failed password attempt).
+     */
     useEffect(() => {
         let cancelled = false;
 
         void (async () => {
-            if (!window.PublicKeyCredential || !PublicKeyCredential.isConditionalMediationAvailable) return;
+            if (!window.PublicKeyCredential) return;
 
-            const isAvailable = await PublicKeyCredential.isConditionalMediationAvailable();
-            if (!isAvailable) return;
+            const autoMediation = (mediation ?? "conditional") as CredentialMediationRequirement | "none";
+
+            if (isUserIdentified === "true" || autoMediation === "none") return;
+
+            if (
+                authenticatorAttachment === "platform" &&
+                !(await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable())
+            ) {
+                return;
+            }
+
+            // The isConditionalMediationAvailable() check is only relevant for
+            // conditional (autofill) mediation — other modes do not depend on it.
+            if (autoMediation === "conditional") {
+                if (typeof PublicKeyCredential.isConditionalMediationAvailable === "undefined") return;
+                if (!(await PublicKeyCredential.isConditionalMediationAvailable())) return;
+            }
+
+            const isModalMediation = autoMediation === "optional" || autoMediation === "required";
+            const authSessionHash = getAuthSessionHash();
+
+            // Skip the modal if the user already dismissed it in this authentication session.
+            if (
+                isModalMediation &&
+                (authSessionHash === undefined ||
+                    authSessionHash === sessionStorage.getItem(PASSKEY_MODAL_DISMISSED_KEY))
+            ) {
+                return;
+            }
 
             const result = await authenticate({
                 ...authOptions,
-                mediation: "conditional",
-                errmsg: msgStr("passkey-unsupported-browser-text"),
+                mediation: autoMediation,
             });
 
             if (cancelled) return;
-            if (result?.success) submitWebAuthn(result);
+
+            if (result?.success) {
+                submitWebAuthn(result);
+                return;
+            }
+
+            // The user explicitly dismissed the modal (NotAllowedError, or AbortError as null):
+            // remember it so it is not shown again during the same authentication session.
+            if (
+                isModalMediation &&
+                authSessionHash !== undefined &&
+                (result === null || result.errorName === "NotAllowedError")
+            ) {
+                sessionStorage.setItem(PASSKEY_MODAL_DISMISSED_KEY, authSessionHash);
+            }
         })();
 
         return () => {
@@ -171,12 +256,11 @@ export function useLogic(props: UseLogicProps) {
 }
 
 export async function authenticate(options: AuthenticateOptions): Promise<WebAuthnResult | null> {
-    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators, errmsg, mediation } =
-        options;
+    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators, mediation } = options;
 
     //  Browser Support Check
     if (!window.PublicKeyCredential) {
-        return { success: false, error: errmsg || "WebAuthn not supported" };
+        return { success: false, error: "WebAuthnUnsupportedBrowser" };
     }
 
     // Prepare Configuration
@@ -233,7 +317,10 @@ export async function authenticate(options: AuthenticateOptions): Promise<WebAut
         if (error.name === "AbortError") return null;
         return {
             success: false,
-            error: error.message || "Unknown WebAuthn error",
+            // Keep the DOMException name in the posted string ("NotAllowedError: ...") — the server
+            // classifies the error by matching on it (see keycloak/keycloak#50654).
+            error: String(error),
+            errorName: typeof error.name === "string" ? error.name : undefined,
         };
     }
 }

@@ -16,11 +16,11 @@ export type RegisterOptions = {
     signatureAlgorithms: string[];
     attestationConveyancePreference?: string;
     authenticatorAttachment?: string;
-    requireResidentKey: string | undefined; // 'Yes' | 'No' | 'not specified'
+    requireResidentKey?: string; // deprecated: 'Yes' | 'No' | 'not specified'
+    residentKey?: string; // 'required' | 'preferred' | 'discouraged' | 'not specified'
     userVerificationRequirement?: string;
     createTimeout: number;
     excludeCredentialIds: string | undefined; // Comma-separated string
-    errmsg: string | undefined;
 };
 
 export type WebAuthnRegisterResult =
@@ -40,6 +40,9 @@ export function useLogic() {
     const { msgStr } = useI18n();
 
     const registerFormRef = useRef<HTMLFormElement>(null);
+    // Guards against concurrent navigator.credentials.create() calls on double-click
+    // (Keycloak's script registers its click listener with `{ once: true }`).
+    const isRegisteringRef = useRef(false);
 
     const submitRegister = (result: WebAuthnRegisterResult, label?: string) => {
         const form = registerFormRef.current;
@@ -65,6 +68,9 @@ export function useLogic() {
     };
 
     const onRegisterClick = async () => {
+        if (isRegisteringRef.current) return;
+        isRegisteringRef.current = true;
+
         const result = await webAuthnRegister({
             challenge: kcContext.challenge,
             userid: kcContext.userid,
@@ -75,11 +81,11 @@ export function useLogic() {
             attestationConveyancePreference: kcContext.attestationConveyancePreference,
             authenticatorAttachment: kcContext.authenticatorAttachment,
             requireResidentKey: kcContext.requireResidentKey,
+            residentKey: kcContext.residentKey,
             userVerificationRequirement: kcContext.userVerificationRequirement,
             createTimeout:
                 typeof kcContext.createTimeout === "string" ? Number(kcContext.createTimeout) : kcContext.createTimeout,
             excludeCredentialIds: kcContext.excludeCredentialIds,
-            errmsg: msgStr("webauthn-unsupported-browser-text"),
         });
 
         if (result.success) {
@@ -112,14 +118,14 @@ async function webAuthnRegister(options: RegisterOptions): Promise<WebAuthnRegis
         attestationConveyancePreference,
         authenticatorAttachment,
         requireResidentKey,
+        residentKey,
         userVerificationRequirement,
         createTimeout,
         excludeCredentialIds,
-        errmsg,
     } = options;
 
     if (!window.PublicKeyCredential) {
-        return { success: false, error: errmsg || "WebAuthn not supported" };
+        return { success: false, error: "WebAuthnUnsupportedBrowser" };
     }
 
     // Build Public Key Options
@@ -157,8 +163,21 @@ async function webAuthnRegister(options: RegisterOptions): Promise<WebAuthnRegis
         isAuthSelectSpecified = true;
     }
 
-    if (requireResidentKey && requireResidentKey !== "not specified") {
-        authSelect.requireResidentKey = requireResidentKey === "Yes";
+    if (residentKey && residentKey !== "not specified") {
+        // residentKey is the current spec field and the source of truth. requireResidentKey is
+        // deprecated but still set for older clients: it is true iff residentKey is "required".
+        authSelect.residentKey = residentKey as ResidentKeyRequirement;
+        authSelect.requireResidentKey = residentKey === "required";
+        isAuthSelectSpecified = true;
+    } else if (requireResidentKey && requireResidentKey !== "not specified") {
+        // Fall back to the deprecated option when residentKey is not available in older Keycloak contexts.
+        if (requireResidentKey === "Yes") {
+            authSelect.residentKey = "required";
+            authSelect.requireResidentKey = true;
+        } else {
+            authSelect.residentKey = "discouraged";
+            authSelect.requireResidentKey = false;
+        }
         isAuthSelectSpecified = true;
     }
 
@@ -226,6 +245,11 @@ async function webAuthnRegister(options: RegisterOptions): Promise<WebAuthnRegis
         };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-        return { success: false, error: error.message || "Registration failed" };
+        return {
+            success: false,
+            // Keep the DOMException name in the posted string ("InvalidStateError: ...") — the server
+            // classifies the error by matching on it (see keycloak/keycloak#50654).
+            error: String(error),
+        };
     }
 }

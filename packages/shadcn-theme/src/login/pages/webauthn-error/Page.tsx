@@ -10,7 +10,7 @@ export function Page() {
     const { kcContext } = useKcContext();
     assert(kcContext.pageId === "webauthn-error.ftl");
 
-    const { url, isAppInitiatedAction } = kcContext;
+    const { url, isAppInitiatedAction, execution } = kcContext;
 
     const { msg, msgStr } = useI18n();
 
@@ -26,7 +26,7 @@ export function Page() {
                     // @ts-expect-error: Trusted Keycloak's code
                     document.getElementById("isSetRetry").value = "retry";
                     // @ts-expect-error: Trusted Keycloak's code
-                    document.getElementById("executionValue").value = "${execution}";
+                    document.getElementById("executionValue").value = execution;
                     // @ts-expect-error: Trusted Keycloak's code
                     document.getElementById("kc-error-credential-form").submit();
                 }}

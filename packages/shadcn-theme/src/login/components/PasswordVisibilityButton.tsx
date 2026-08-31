@@ -16,8 +16,6 @@ export function PasswordVisibilityButton(props: { passwordInputId: string }) {
     return (
         <Button
             type="button"
-            // oxlint-disable-next-line jsx-a11y/tabindex-no-positive -- mirrors Keycloak's base theme tab order (username=1, password=2, submit=3, toggle=4)
-            tabIndex={4}
             variant="ghost"
             size="icon-sm"
             aria-label={msgStr(isPasswordRevealed ? "hidePassword" : "showPassword")}
