@@ -117,7 +117,13 @@
         "typescript/prefer-namespace-keyword": "error",
         "typescript/triple-slash-reference": "error",
         "typescript/no-unsafe-type-assertion": "off",
-        "typescript/consistent-return": "off"
+        "typescript/consistent-return": "off",
+        "no-underscore-dangle": [
+            "warn",
+            {
+                "allow": ["_id"]
+            }
+        ]
     },
     "overrides": [
         {

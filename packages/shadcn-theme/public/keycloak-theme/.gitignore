@@ -1,9 +1,10 @@
 # This file is managed by Keycloakify, do not edit it manually.
 
 # === Owned files start ===
+# account/early-color-scheme.js
 # === Owned files end =====
 
-# === @keycloakify/login-ui v250004.7.0 ===
+# === @keycloakify/login-ui v250004.8.0 ===
 /login/css/login.css
 /login/img/feedback-error-arrow-down.png
 /login/img/feedback-error-sign.png
@@ -51,3 +52,5 @@
 /login/resources-common/node_modules/@patternfly/patternfly/assets/fonts/overpass-webfont/overpass-bold.woff2
 /login/resources-common/node_modules/@patternfly/patternfly/assets/fonts/RedHatDisplay/RedHatDisplay-Bold.woff
 /login/resources-common/node_modules/@patternfly/patternfly/assets/fonts/RedHatDisplay/RedHatDisplay-Bold.woff2
+
+# === @keycloakify/keycloak-account-ui v260700.0.3 ===

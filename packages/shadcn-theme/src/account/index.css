@@ -1,0 +1,6 @@
+/*
+ * Tailwind entry for the account console (imported by the owned `KcAccountUi.tsx`).
+ * It reuses the login theme's stylesheet (Tailwind, fonts, design tokens) so both
+ * themes share one look. PatternFly is gone: every page is written with shadcn.
+ */
+@import "../login/index.css";

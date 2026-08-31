@@ -84,6 +84,8 @@ export type UseLogicProps = {
     rpId: string;
     userVerification: string;
     createTimeout: string | number;
+    mediation?: string;
+    authenticatorAttachment?: string;
     authenticators: KcContext.WebauthnAuthenticate.WebauthnAuthenticator[] | undefined;
     loginAction: string;
 };
@@ -91,7 +93,7 @@ export type UseLogicProps = {
 export function useLogic(props: UseLogicProps) {
     const { msgStr } = useI18n();
 
-    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators } = props;
+    const { isUserIdentified, challenge, rpId, userVerification, createTimeout, authenticators, mediation, authenticatorAttachment } = props;
 
     const webAuthnFormRef = useRef<HTMLFormElement>(null);
     const submitWebAuthn = (result: WebAuthnResult) => {
@@ -113,6 +115,7 @@ export function useLogic(props: UseLogicProps) {
         } else {
             getInput("error").value = result.error;
         }
+        
 
         form.submit();
     };
@@ -123,6 +126,8 @@ export function useLogic(props: UseLogicProps) {
         userVerification: userVerification,
         rpId: rpId,
         createTimeout: typeof createTimeout === "string" ? Number(createTimeout) : createTimeout,
+        mediation: mediation,
+        authenticatorAttachment: authenticatorAttachment,
         authenticators: authenticators,
     };
 

@@ -14,7 +14,11 @@ export default defineConfig({
         react(),
         tailwindcss(),
         keycloakify({
-            accountThemeImplementation: "none",
+            accountThemeImplementation: "Single-Page",
+            startKeycloakOptions: {
+                // OID4VCI is a preview feature; needed for the account console's Verifiable Credentials page.
+                keycloakExtraArgs: ["--features=oid4vc-vci"],
+            },
             themeName: "shadcn-theme",
             keycloakVersionTargets: {
                 "22-to-25": false,
