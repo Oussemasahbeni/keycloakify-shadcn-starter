@@ -117,17 +117,14 @@ export default defineConfig({
 
 Add the path alias to your `tsconfig.app.json` and `tsconfig.json`:
 
-```json
-//tsconfig.json
-{
-    // ...
-    "compilerOptions": {
-        // ...
-        "paths": {
-            "@/*": ["./src/*"]
-        }
-    }
-}
+```diff
+ //tsconfig.node.json
+ {
+     // ...
+-    "module": "nodenext",
++    "module": "ESNext",
++    "moduleResolution": "Bundler",
+ }
 ```
 
 ```json
