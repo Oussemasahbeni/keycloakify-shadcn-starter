@@ -127,7 +127,7 @@ Add the path alias to your `tsconfig.app.json` and `tsconfig.json`:
  }
 ```
 
-```json
+```jsonc
 // tsconfig.app.json
 {
     "compilerOptions": {
