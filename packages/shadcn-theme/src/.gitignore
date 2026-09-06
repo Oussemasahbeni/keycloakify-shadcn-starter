@@ -4,6 +4,7 @@
 # account/i18next.d.ts
 # account/index.ts
 # account/KcAccountUi.tsx
+# account/KcContext.ts
 # account/KcPage.tsx
 # login/i18n.ts
 # login/KcContext.ts
@@ -225,7 +226,6 @@
 /account/colorScheme.ts
 /account/environment.ts
 /account/i18n-type.ts
-/account/KcContext.ts
 /account/routes.tsx
 /account/api/constants.ts
 /account/api/methods.ts
