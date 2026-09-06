@@ -4,7 +4,7 @@ export const redirectUrlOrigin = ((): string => {
     from_url: {
         const url = new URL(window.location.href);
 
-        const value = url.searchParams.get("redirect_url");
+        const value = url.searchParams.get("redirect_uri");
 
         if (value === null) {
             break from_url;
