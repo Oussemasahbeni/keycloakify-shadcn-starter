@@ -25,6 +25,7 @@
   },
   "scripts": {
     "postinstall": "keycloakify sync-extensions",
+    "sync-extensions": "keycloakify sync-extensions",
     "prepare:publish": "node scripts/prepare-publish.js",
     "dev": "vite",
     "build": "tsc && vite build",
