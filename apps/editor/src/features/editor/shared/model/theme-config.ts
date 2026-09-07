@@ -1,4 +1,4 @@
-import { resolveEmailTheme } from "@kc-studio/shadcn-theme/email";
+import { resolveEmailTheme } from '@kc-studio/shadcn-theme/email';
 import type {
     BasePalette,
     FontFamily,
@@ -6,7 +6,7 @@ import type {
     PrimaryPreset,
     RadiusPreset,
     SidePanelPosition,
-} from "@kc-studio/shadcn-theme/theme";
+} from '@kc-studio/shadcn-theme/theme';
 import {
     basePaletteOptions,
     DEFAULT_FONT,
@@ -30,13 +30,11 @@ import {
     radiusPresetOptions,
     sidePanelPositionOptions,
     THEME_PROPERTY_KEYS,
-} from "@kc-studio/shadcn-theme/theme";
-import type { Equals } from "tsafe";
-import { assert as assertType } from "tsafe";
-import { z } from "zod";
+} from '@kc-studio/shadcn-theme/theme';
+import { z } from 'zod';
 
-import type { Locale } from "#/lib/locales.ts";
-import { LOCALES } from "#/lib/locales.ts";
+import type { Locale } from '#/lib/locales.ts';
+import { LOCALES } from '#/lib/locales.ts';
 
 export type ThemeConfig = {
     __version: 1;
@@ -70,8 +68,8 @@ export type EmailThemeConfig = {
     locale?: Locale;
 };
 
-export const loginThemeConfigSchema = (() => {
-    const schema = z.object({
+export const loginThemeConfigSchema = z.toZod<LoginThemeConfig>()(
+    z.object({
         base: z.enum(basePaletteOptions),
         primary: z.enum(primaryPresetOptions),
         radius: z.enum(radiusPresetOptions),
@@ -88,31 +86,25 @@ export const loginThemeConfigSchema = (() => {
         sidePanelImageDarkUrl: z.string(),
         sidePanelPosition: z.enum(sidePanelPositionOptions),
         welcomeMessage: z.string(),
-    });
-    assertType<Equals<z.infer<typeof schema>, LoginThemeConfig>>();
-    return schema;
-})();
+    }),
+);
 
-export const emailThemeConfigSchema = (() => {
-    const schema = z.object({
+export const emailThemeConfigSchema = z.toZod<EmailThemeConfig>()(
+    z.object({
         primary: z.enum(primaryPresetOptions).optional(),
         logoUrl: z.string().optional(),
         locale: z.enum(LOCALES).optional(),
-    });
-    assertType<Equals<z.infer<typeof schema>, EmailThemeConfig>>();
-    return schema;
-})();
+    }),
+);
 
-export const themeConfigSchema = (() => {
-    const schema = z.object({
+export const themeConfigSchema = z.toZod<ThemeConfig>()(
+    z.object({
         __version: z.literal(1),
         themeName: z.string(),
         login: loginThemeConfigSchema,
         email: emailThemeConfigSchema,
-    });
-    assertType<Equals<z.infer<typeof schema>, ThemeConfig>>();
-    return schema;
-})();
+    }),
+);
 
 export const defaultLoginThemeConfig: LoginThemeConfig = {
     base: DEFAULT_THEME_BASE,
@@ -141,21 +133,26 @@ export const defaultLoginThemeConfig: LoginThemeConfig = {
  * them as `theme.properties` defaults). Keep both consumers reading from here so
  * the preview and the downloaded JAR can never drift apart.
  */
-export function themeConfigToProperties(config: LoginThemeConfig): Record<string, string> {
+export function themeConfigToProperties(
+    config: LoginThemeConfig,
+): Record<string, string> {
     return {
         [THEME_PROPERTY_KEYS.layout]: config.layout,
         [THEME_PROPERTY_KEYS.base]: config.base,
         [THEME_PROPERTY_KEYS.primary]: config.primary,
         [THEME_PROPERTY_KEYS.radius]: config.radius,
         [THEME_PROPERTY_KEYS.font]: config.font,
-        [THEME_PROPERTY_KEYS.showPlaceholder]: config.showPlaceholder ? "true" : "false",
-        [THEME_PROPERTY_KEYS.showRealmName]: config.showRealmName ? "true" : "false",
+        [THEME_PROPERTY_KEYS.showPlaceholder]:
+            config.showPlaceholder ? 'true' : 'false',
+        [THEME_PROPERTY_KEYS.showRealmName]:
+            config.showRealmName ? 'true' : 'false',
         [THEME_PROPERTY_KEYS.logoUrl]: config.logoUrl,
         [THEME_PROPERTY_KEYS.logoDarkUrl]: config.logoDarkUrl,
         [THEME_PROPERTY_KEYS.asideImageUrl]: config.asideImageUrl,
         [THEME_PROPERTY_KEYS.cardImageUrl]: config.cardImageUrl,
         [THEME_PROPERTY_KEYS.sidePanelImageUrl]: config.sidePanelImageUrl,
-        [THEME_PROPERTY_KEYS.sidePanelImageDarkUrl]: config.sidePanelImageDarkUrl,
+        [THEME_PROPERTY_KEYS.sidePanelImageDarkUrl]:
+            config.sidePanelImageDarkUrl,
         [THEME_PROPERTY_KEYS.sidePanelPosition]: config.sidePanelPosition,
         [THEME_PROPERTY_KEYS.welcomeMessage]: config.welcomeMessage,
     };
@@ -183,6 +180,6 @@ export function emailConfigToProperties(
     return {
         [EMAIL_PROPERTY_KEYS.primaryColor]: theme.primaryColor,
         [EMAIL_PROPERTY_KEYS.foregroundColor]: theme.foregroundColor,
-        [EMAIL_PROPERTY_KEYS.logoUrl]: theme.logoUrl ?? "",
+        [EMAIL_PROPERTY_KEYS.logoUrl]: theme.logoUrl ?? '',
     };
 }

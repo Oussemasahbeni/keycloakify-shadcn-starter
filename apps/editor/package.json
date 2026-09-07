@@ -25,7 +25,7 @@
         "db:studio": "drizzle-kit studio"
     },
     "dependencies": {
-        "@base-ui/react": "^1.7.0",
+        "@base-ui/react": "^1.8.0",
         "@fontsource-variable/geist": "^5.2.9",
         "@fontsource-variable/geist-mono": "^5.3.0",
         "@icons-pack/react-simple-icons": "^13.13.0",
@@ -55,9 +55,8 @@
         "react-resizable-panels": "^4.11.2",
         "sharp": "^0.35.2",
         "tailwindcss": "catalog:",
-        "tsafe": "^1.8.12",
         "tw-animate-css": "^1.3.6",
-        "zod": "^4.3.6"
+        "zod": "^4.5.4"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.19",

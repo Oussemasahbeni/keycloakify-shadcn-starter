@@ -30,7 +30,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "build-storybook": "storybook build",
-    "build-keycloak-theme": "npm run build && keycloakify build",
+    "build-keycloak-theme": "pnpm run build && keycloakify build",
     "storybook": "storybook dev -p 6006",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
@@ -40,7 +40,7 @@
     "emails:preview": "email preview ./src/email/templates"
   },
   "dependencies": {
-    "@base-ui/react": "^1.7.0",
+    "@base-ui/react": "^1.8.0",
     "@fontsource-variable/figtree": "^5.2.10",
     "@fontsource-variable/geist": "^5.2.9",
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",

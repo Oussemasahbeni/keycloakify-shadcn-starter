@@ -2,10 +2,10 @@
 
 # === Owned files start ===
 # account/early-color-scheme.js
+# login/css/login.css
 # === Owned files end =====
 
 # === @keycloakify/login-ui v250004.8.0 ===
-/login/css/login.css
 /login/img/feedback-error-arrow-down.png
 /login/img/feedback-error-sign.png
 /login/img/feedback-success-arrow-down.png
