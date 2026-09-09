@@ -1,4 +1,5 @@
-import { DEFAULT_THEME_BASE, DEFAULT_THEME_PRESET, DEFAULT_THEME_RADIUS } from "./Defaults";
+import { KC_ENV_DEFAULTS } from "#/kc-env";
+
 import { basePalettes, radiusPresets, themeFontFamilies, primaryPresets } from "./Presets";
 import {
     type FontFamily,
@@ -26,8 +27,8 @@ function isOption<TOption extends string>(value: string | undefined, options: re
  * @returns A fully resolved light/dark token map ready to be written to CSS variables.
  */
 export function resolveThemeTokens(params: { preset: string; base: string }): ModeTokens<ThemeTokens> {
-    const preset = isOption(params.preset, primaryPresetOptions) ? params.preset : DEFAULT_THEME_PRESET;
-    const base = isOption(params.base, basePaletteOptions) ? params.base : DEFAULT_THEME_BASE;
+    const preset = isOption(params.preset, primaryPresetOptions) ? params.preset : KC_ENV_DEFAULTS.SHADCN_THEME_PRIMARY;
+    const base = isOption(params.base, basePaletteOptions) ? params.base : KC_ENV_DEFAULTS.SHADCN_THEME_BASE;
 
     return {
         light: {
@@ -51,7 +52,7 @@ export function resolveThemeTokens(params: { preset: string; base: string }): Mo
  * @returns The CSS variable value to apply, or `undefined` for the default case.
  */
 export function resolveRadiusPreset(value: string): string | undefined {
-    const radius = isOption(value, radiusPresetOptions) ? value : DEFAULT_THEME_RADIUS;
+    const radius = isOption(value, radiusPresetOptions) ? value : KC_ENV_DEFAULTS.SHADCN_THEME_RADIUS;
     return radiusPresets[radius];
 }
 

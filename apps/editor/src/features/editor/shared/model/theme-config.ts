@@ -9,32 +9,19 @@ import type {
 } from '@kc-studio/shadcn-theme/theme';
 import {
     basePaletteOptions,
-    DEFAULT_FONT,
-    DEFAULT_LOCALE,
-    DEFAULT_THEME_ASIDE_IMAGE_URL,
-    DEFAULT_THEME_BASE,
-    DEFAULT_THEME_CARD_IMAGE_URL,
-    DEFAULT_THEME_LAYOUT,
-    DEFAULT_THEME_LOGO_DARK_URL,
-    DEFAULT_THEME_LOGO_URL,
-    DEFAULT_THEME_PRESET,
-    DEFAULT_THEME_RADIUS,
-    DEFAULT_THEME_SIDE_PANEL_IMAGE_DARK_URL,
-    DEFAULT_THEME_SIDE_PANEL_IMAGE_URL,
-    DEFAULT_THEME_SIDE_PANEL_POSITION,
-    DEFAULT_WELCOME_MESSAGE,
-    EMAIL_PROPERTY_KEYS,
     fontFamilyOptions,
+    KC_ENV_DEFAULTS,
     layoutOptions,
     primaryPresetOptions,
     radiusPresetOptions,
     sidePanelPositionOptions,
-    THEME_PROPERTY_KEYS,
 } from '@kc-studio/shadcn-theme/theme';
 import { z } from 'zod';
 
 import type { Locale } from '#/lib/locales.ts';
-import { LOCALES } from '#/lib/locales.ts';
+import { DEFAULT_LOCALE, LOCALES } from '#/lib/locales.ts';
+
+import { EMAIL_PROPERTY_KEYS, THEME_PROPERTY_KEYS } from './property-keys';
 
 export type ThemeConfig = {
     __version: 1;
@@ -106,23 +93,27 @@ export const themeConfigSchema = z.toZod<ThemeConfig>()(
     }),
 );
 
+/**
+ * The editor's starting config = the theme's own env-var defaults (the values a
+ * raw JAR install renders with), so "untouched" in the editor means "stock theme".
+ */
 export const defaultLoginThemeConfig: LoginThemeConfig = {
-    base: DEFAULT_THEME_BASE,
-    primary: DEFAULT_THEME_PRESET,
-    radius: DEFAULT_THEME_RADIUS,
-    font: DEFAULT_FONT,
-    layout: DEFAULT_THEME_LAYOUT,
+    base: KC_ENV_DEFAULTS.SHADCN_THEME_BASE,
+    primary: KC_ENV_DEFAULTS.SHADCN_THEME_PRIMARY,
+    radius: KC_ENV_DEFAULTS.SHADCN_THEME_RADIUS,
+    font: KC_ENV_DEFAULTS.SHADCN_THEME_FONT,
+    layout: KC_ENV_DEFAULTS.SHADCN_THEME_LAYOUT,
     locale: DEFAULT_LOCALE,
-    showPlaceholder: true,
-    showRealmName: true,
-    logoUrl: DEFAULT_THEME_LOGO_URL,
-    logoDarkUrl: DEFAULT_THEME_LOGO_DARK_URL,
-    asideImageUrl: DEFAULT_THEME_ASIDE_IMAGE_URL,
-    cardImageUrl: DEFAULT_THEME_CARD_IMAGE_URL,
-    sidePanelImageUrl: DEFAULT_THEME_SIDE_PANEL_IMAGE_URL,
-    sidePanelImageDarkUrl: DEFAULT_THEME_SIDE_PANEL_IMAGE_DARK_URL,
-    sidePanelPosition: DEFAULT_THEME_SIDE_PANEL_POSITION,
-    welcomeMessage: DEFAULT_WELCOME_MESSAGE,
+    showPlaceholder: KC_ENV_DEFAULTS.SHADCN_THEME_SHOW_PLACEHOLDER === 'true',
+    showRealmName: KC_ENV_DEFAULTS.SHADCN_THEME_SHOW_REALM_NAME === 'true',
+    logoUrl: KC_ENV_DEFAULTS.SHADCN_THEME_LOGO_URL,
+    logoDarkUrl: KC_ENV_DEFAULTS.SHADCN_THEME_LOGO_DARK_URL,
+    asideImageUrl: KC_ENV_DEFAULTS.SHADCN_THEME_ASIDE_IMAGE_URL,
+    cardImageUrl: KC_ENV_DEFAULTS.SHADCN_THEME_CARD_IMAGE_URL,
+    sidePanelImageUrl: KC_ENV_DEFAULTS.SHADCN_THEME_SIDE_PANEL_IMAGE_URL,
+    sidePanelImageDarkUrl: KC_ENV_DEFAULTS.SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL,
+    sidePanelPosition: KC_ENV_DEFAULTS.SHADCN_THEME_SIDE_PANEL_POSITION,
+    welcomeMessage: KC_ENV_DEFAULTS.SHADCN_THEME_WELCOME_MESSAGE,
 };
 
 /**

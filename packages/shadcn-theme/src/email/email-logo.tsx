@@ -1,7 +1,9 @@
 import { Img, Section } from "jsx-email";
 import { Else, exp, If, Then } from "keycloakify-emails/jsx-email";
 
-import { EMAIL_ENV, type EmailTheme } from "./theme/theme";
+import type { KcEnvName } from "#/kc-env";
+
+import type { EmailTheme } from "./theme/theme";
 
 const logo = { display: "flex", justifyContent: "center", alignItems: "center", padding: 30 };
 const logoImage = {
@@ -27,7 +29,7 @@ function LogoImg({ src }: { src: string }) {
  * `${url.resourcesUrl}`. Empty → no logo (no default ships).
  */
 export function EmailLogo({ theme }: { theme: EmailTheme }) {
-    const LOGO = EMAIL_ENV.logoUrl.name;
+    const LOGO = "SHADCN_EMAIL_LOGO_URL" satisfies KcEnvName;
     const resourcesUrl = "${url.resourcesUrl}";
     const hasLogo = `(properties.${LOGO}!'')?has_content`;
     const isAbsolute = `(properties.${LOGO}!'')?starts_with('http') || (properties.${LOGO}!'')?starts_with('//')`;

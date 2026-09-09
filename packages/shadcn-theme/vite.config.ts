@@ -6,6 +6,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { defineConfig } from 'vite';
 
+import { kcEnvironmentVariables } from './src/kc-env';
+
 // https://vitejs.dev/config/
 export default defineConfig({
     resolve: { tsconfigPaths: true },
@@ -24,50 +26,7 @@ export default defineConfig({
                 'all-other-versions': 'shadcn-theme.jar',
             },
             kcContextExclusionsFtl: `<@addToXKeycloakifyMessagesIfMessageKey str="welcomeMessage" />`,
-            environmentVariables: [
-                {
-                    name: 'SHADCN_THEME_LOGO_URL',
-                    default: '',
-                },
-                {
-                    name: 'SHADCN_THEME_LOGO_DARK_URL',
-                    default: '',
-                },
-                { name: 'SHADCN_THEME_LAYOUT', default: 'two-column' },
-                {
-                    name: 'SHADCN_THEME_ASIDE_IMAGE_URL',
-                    default: '',
-                },
-                {
-                    name: 'SHADCN_THEME_CARD_IMAGE_URL',
-                    default: '',
-                },
-                {
-                    name: 'SHADCN_THEME_SIDE_PANEL_IMAGE_URL',
-                    default: '',
-                },
-                {
-                    name: 'SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL',
-                    default: '',
-                },
-                { name: 'SHADCN_THEME_PRIMARY', default: 'neutral' },
-                { name: 'SHADCN_THEME_BASE', default: 'neutral' },
-                { name: 'SHADCN_THEME_RADIUS', default: 'default' },
-                { name: 'SHADCN_THEME_FONT', default: 'geist' },
-                { name: 'SHADCN_THEME_SHOW_PLACEHOLDER', default: 'true' },
-                { name: 'SHADCN_THEME_SHOW_REALM_NAME', default: 'true' },
-                {
-                    name: 'SHADCN_THEME_SIDE_PANEL_POSITION',
-                    default: 'right',
-                },
-                {
-                    name: 'SHADCN_THEME_WELCOME_MESSAGE',
-                    default: '',
-                },
-                { name: 'SHADCN_EMAIL_PRIMARY_COLOR', default: '#171717' },
-                { name: 'SHADCN_EMAIL_FOREGROUND_COLOR', default: '#fafafa' },
-                { name: 'SHADCN_EMAIL_LOGO_URL', default: '' },
-            ],
+            environmentVariables: kcEnvironmentVariables,
             postBuild: async (buildContext) => {
                 for (const themeName of buildContext.themeNames) {
                     const loginResourcesDir = path.join(

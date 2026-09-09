@@ -7,7 +7,7 @@ import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
 
-import defaultLogo from "../../assets/img/default-logo.svg";
+import defaultLogo from "../../assets/img/logo.svg";
 import { useApplyThemePreset } from "../../theme/useApplyThemePreset";
 import { CenteredCardLayout } from "../layouts/CenteredCardLayout";
 import { ImageAsideLayout } from "../layouts/ImageAsideLayout";

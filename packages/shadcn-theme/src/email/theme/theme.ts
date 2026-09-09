@@ -1,20 +1,6 @@
-import { DEFAULT_THEME_PRESET } from "#/login/theme";
+import { KC_ENV_DEFAULTS, type KcEnvName } from "#/kc-env";
 
 import { resolveColors } from "./resolve-email-theme";
-
-/**
- * Email theme env vars. Values are always **resolved hex colors** (or a URL),
- * never preset names: Keycloak renders emails through FreeMarker, which only
- * substitutes `${...}` as text and cannot run the preset→hex resolution the
- * login theme does in the browser. So the hex must be baked in ahead of time —
- * the editor writes the resolved value into `theme.properties`, and the `default`
- * here is the fallback for a raw install (the neutral preset's hex).
- */
-export const EMAIL_ENV = {
-    primaryColor: { name: "SHADCN_EMAIL_PRIMARY_COLOR", default: "#171717" },
-    foregroundColor: { name: "SHADCN_EMAIL_FOREGROUND_COLOR", default: "#fafafa" },
-    logoUrl: { name: "SHADCN_EMAIL_LOGO_URL", default: "" },
-} as const;
 
 export type EmailTheme = {
     primaryColor: string;
@@ -29,7 +15,7 @@ export type EmailTheme = {
     ftl?: boolean;
 };
 
-const colors = resolveColors(DEFAULT_THEME_PRESET);
+const colors = resolveColors(KC_ENV_DEFAULTS.SHADCN_THEME_PRIMARY);
 
 // Used by emails:preview and the editor default.
 export const defaultEmailTheme: EmailTheme = {
@@ -37,6 +23,20 @@ export const defaultEmailTheme: EmailTheme = {
     foregroundColor: colors.foregroundColor,
     logoUrl: undefined,
 };
+
+/**
+ * `properties.X!'<default>'` for one `SHADCN_EMAIL_*` env var, with the default
+ * taken from `#/kc-env` (the fallback for a raw install).
+ *
+ * Email values are always **resolved hex colors** (or a URL), never preset names:
+ * Keycloak renders emails through FreeMarker, which only substitutes `${...}` as
+ * text and cannot run the preset→hex resolution the login theme does in the
+ * browser. So the hex must be baked in ahead of time — the editor writes the
+ * resolved value into `theme.properties`.
+ */
+function ftlProperty<TName extends KcEnvName>(name: TName) {
+    return `properties.${name}!'${KC_ENV_DEFAULTS[name]}'` as const;
+}
 
 /**
  * FreeMarker TOKENS, used only by `getTemplate`. Each color is emitted directly
@@ -47,8 +47,8 @@ export const defaultEmailTheme: EmailTheme = {
  * `${properties.SHADCN_EMAIL_PRIMARY_COLOR!'#171717'}`.
  */
 export const ftlEmailTheme = (exp: (name: `properties.${string}`) => string): EmailTheme => ({
-    primaryColor: exp(`properties.${EMAIL_ENV.primaryColor.name}!'${EMAIL_ENV.primaryColor.default}'`),
-    foregroundColor: exp(`properties.${EMAIL_ENV.foregroundColor.name}!'${EMAIL_ENV.foregroundColor.default}'`),
-    logoUrl: exp(`properties.${EMAIL_ENV.logoUrl.name}!'${EMAIL_ENV.logoUrl.default}'`),
+    primaryColor: exp(ftlProperty("SHADCN_EMAIL_PRIMARY_COLOR")),
+    foregroundColor: exp(ftlProperty("SHADCN_EMAIL_FOREGROUND_COLOR")),
+    logoUrl: exp(ftlProperty("SHADCN_EMAIL_LOGO_URL")),
     ftl: true,
 });

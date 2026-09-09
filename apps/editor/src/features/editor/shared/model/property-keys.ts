@@ -1,11 +1,10 @@
-import type { KcEnvName } from "#/kc.gen.tsx";
+import type { KcEnvName } from "@kc-studio/shadcn-theme/theme";
 
 /**
- * Field → `SHADCN_THEME_*` property-key map: the single source of truth for these
- * keys, consumed by the editor's `themeConfigToProperties` and `assetDefinitions`.
- * `satisfies …KcEnvName` ties every value to the generated env-var contract, so a
- * renamed/removed env var (after `update-kc-gen`) fails to compile here. Every key
- * aligns with its config field modulo the `SHADCN_THEME_` prefix and SCREAMING_CASE.
+ * Config field → `SHADCN_THEME_*` env-var name. it lets `themeConfigToProperties`,
+ * `assetDefinitions` and the JAR import translate `LoginThemeConfig` fields into
+ * the theme's properties. `satisfies …KcEnvName` ties every value to the theme's
+ * env-var contract (`KC_ENV_DEFAULTS`),
  */
 export const THEME_PROPERTY_KEYS = {
     layout: "SHADCN_THEME_LAYOUT",
