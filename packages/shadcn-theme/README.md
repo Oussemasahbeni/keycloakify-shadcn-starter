@@ -219,7 +219,7 @@ The login theme is primarily customized through Keycloakify environment variable
 | Variable | Default | Allowed values | Description |
 | ----------------------------- | -------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----- |
 | `SHADCN_THEME_LOGO_URL` | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in light mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
-| `SHADCN_THEME_LOGO_DARK_URL` | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in dark mode. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
+| `SHADCN_THEME_LOGO_DARK_URL` | `""` | Any image URL or `%BASE_URL%/filename` | Logo used in dark mode. Optional; falls back to `SHADCN_THEME_LOGO_URL`. Use `%BASE_URL%/logo.svg` to self-host via `public/`. |
 | `SHADCN_THEME_ASIDE_IMAGE_URL` | `""` | Any image URL or `%BASE_URL%/filename` | `image-aside` panel image. Use `%BASE_URL%/image.jpg` to self-host via `public/`. | mode. |
 | `SHADCN_THEME_LAYOUT` | `"two-column"` | `two-column`, `centered-card`, `image-aside` | Selects the outer page layout used by `Template.tsx`. |
 | `SHADCN_THEME_PRIMARY` | `"neutral"` | See accent preset list below | Selects the shadcn-style accent color family used for primary actions. |
@@ -336,7 +336,7 @@ Available controls:
 
 ### Branding Notes
 
-1. **Logo**: Set `SHADCN_THEME_LOGO_URL` and `SHADCN_THEME_LOGO_DARK_URL`, or replace `src/login/assets/img/auth-logo.svg`
+1. **Logo**: Set `SHADCN_THEME_LOGO_URL` (and optionally `SHADCN_THEME_LOGO_DARK_URL` for a dark-mode variant; it falls back to the light logo), or replace `src/login/assets/img/auth-logo.svg`
 2. **Colors**: Use `SHADCN_THEME_PRIMARY`, `SHADCN_THEME_BASE`, and `SHADCN_THEME_RADIUS`
 3. **Fonts**: Use `SHADCN_THEME_FONT`; the project now uses packaged font imports instead of manual asset-only font wiring
 

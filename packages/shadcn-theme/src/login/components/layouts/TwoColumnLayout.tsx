@@ -10,12 +10,11 @@ import { TemplateTopBar } from "../Template/TemplateTopBar";
 
 export function TwoColumnLayout(props: {
     content: ReactNode;
-    logoUrl: string;
+    logoUrl: string | undefined;
     sidePanelImageUrl?: string;
     sidePanelImageDarkUrl?: string;
     sidePanelPosition?: SidePanelPosition;
     showRealmName: boolean;
-    logoAlt: string;
     welcomeMessage: string;
 }) {
     const {
@@ -25,7 +24,6 @@ export function TwoColumnLayout(props: {
         sidePanelImageDarkUrl,
         sidePanelPosition = "right",
         showRealmName,
-        logoAlt,
         welcomeMessage,
     } = props;
 
@@ -37,6 +35,8 @@ export function TwoColumnLayout(props: {
     const panelOrderClassName = isLeft ? "lg:order-first" : undefined;
 
     const { kcContext } = useKcContext();
+
+    const logoAlt = kcContext.realm.displayName || kcContext.realm.name;
 
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
@@ -78,11 +78,8 @@ export function TwoColumnLayout(props: {
 
                         <div className="relative z-10 flex max-w-xs flex-col items-center justify-center text-center">
                             <div className="mb-4 flex items-center gap-3">
-                                <img
-                                    src={logoUrl}
-                                    alt={showRealmName ? "" : logoAlt}
-                                    className="h-12 w-auto object-contain"
-                                />
+                                {logoUrl && <img src={logoUrl} alt={logoAlt} className="h-12 w-auto object-contain" />}
+
                                 {showRealmName &&
                                     (kcContext.realm.displayNameHtml ? (
                                         <span

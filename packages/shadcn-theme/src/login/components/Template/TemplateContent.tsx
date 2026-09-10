@@ -20,8 +20,8 @@ const messageIcons = {
 } as const;
 
 type TemplateContentProps = TemplateProps & {
-    logoUrl: string;
-    logoDarkUrl: string;
+    logoUrl: string | undefined;
+    logoDarkUrl: string | undefined;
     brandingVisibilityClassName?: string;
 };
 
@@ -93,16 +93,17 @@ export function TemplateContent(props: TemplateContentProps) {
             <CardHeader>
                 <div className={cn("flex flex-col items-center justify-center gap-3", brandingVisibilityClassName)}>
                     <div className="mb-4 flex items-center gap-3">
-                        <img
-                            src={logoUrl}
-                            alt={showRealmName ? "" : logoAlt}
-                            className="h-12 w-auto object-contain dark:hidden"
-                        />
-                        <img
-                            src={logoDarkUrl}
-                            alt={showRealmName ? "" : logoAlt}
-                            className="hidden h-12 w-auto object-contain dark:inline-block"
-                        />
+                        {logoUrl && (
+                            <img src={logoUrl} alt={logoAlt} className="h-12 w-auto object-contain dark:hidden" />
+                        )}
+                        {logoDarkUrl && (
+                            <img
+                                src={logoDarkUrl}
+                                alt={logoAlt}
+                                className="hidden h-12 w-auto object-contain dark:inline-block"
+                            />
+                        )}
+
                         {showRealmName &&
                             (realm.displayNameHtml ? (
                                 <span

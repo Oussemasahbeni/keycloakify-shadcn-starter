@@ -108,7 +108,7 @@ Valid values (configured in `vite.config.ts` → `environmentVariables`):
 | `SHADCN_THEME_RADIUS`         | `default` · `none` · `small` · `medium` · `large`                                                                                                                                  |
 | `SHADCN_THEME_FONT`           | `inter` · `geist` (default) · `manrope` · `figtree` · `source-sans-3` · `ibm-plex-sans` · `lora` · `playfair-display` · `jetbrains-mono`                                           |
 | `SHADCN_THEME_LOGO_URL` | URL or `%BASE_URL%/filename` for light-mode logo                                                                                                                                   |
-| `SHADCN_THEME_LOGO_DARK_URL`  | URL or `%BASE_URL%/filename` for dark-mode logo                                                                                                                                    |
+| `SHADCN_THEME_LOGO_DARK_URL`  | URL or `%BASE_URL%/filename` for dark-mode logo (optional; falls back to `SHADCN_THEME_LOGO_URL`)                                                                                  |
 | `SHADCN_THEME_ASIDE_IMAGE_URL` | URL or `%BASE_URL%/filename` for aside image (image-aside layout)                                                                                                                  |
 | `SHADCN_THEME_SHOW_PLACEHOLDER`    | `true` (default) · `false`                                                                                                                                                         |
 

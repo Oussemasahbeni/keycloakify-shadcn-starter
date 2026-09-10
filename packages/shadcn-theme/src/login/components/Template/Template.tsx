@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { resolveAssetUrl } from "#/lib/resolveAssetUrl";
 import { useI18n } from "#/login/i18n";
 import { useKcContext } from "#/login/KcContext";
+import type { SidePanelPosition } from "#/login/theme";
 
-import defaultLogo from "../../assets/img/logo.svg";
 import { useApplyThemePreset } from "../../theme/useApplyThemePreset";
 import { CenteredCardLayout } from "../layouts/CenteredCardLayout";
 import { ImageAsideLayout } from "../layouts/ImageAsideLayout";
@@ -34,24 +34,31 @@ export function Template(props: TemplateProps) {
     const { msgStr } = useI18n();
     const { kcClsx } = useKcClsx();
 
-    const logoUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_URL) || defaultLogo;
+    const {
+        SHADCN_THEME_LOGO_URL,
+        SHADCN_THEME_LOGO_DARK_URL,
+        SHADCN_THEME_ASIDE_IMAGE_URL,
+        SHADCN_THEME_CARD_IMAGE_URL,
+        SHADCN_THEME_SIDE_PANEL_IMAGE_URL,
+        SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL,
+        SHADCN_THEME_SIDE_PANEL_POSITION,
+        SHADCN_THEME_LAYOUT,
+        SHADCN_THEME_SHOW_REALM_NAME,
+        SHADCN_THEME_WELCOME_MESSAGE,
+    } = kcContext.properties;
 
-    const logoDarkUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_LOGO_DARK_URL) || defaultLogo;
-    const asideImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_ASIDE_IMAGE_URL);
-    const cardImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_CARD_IMAGE_URL);
-    const sidePanelImageUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_URL);
-    const sidePanelImageDarkUrl = resolveAssetUrl(kcContext.properties.SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL);
-    const sidePanelPosition = kcContext.properties.SHADCN_THEME_SIDE_PANEL_POSITION === "left" ? "left" : "right";
-    const layout = kcContext.properties.SHADCN_THEME_LAYOUT;
+    const logoUrl = resolveAssetUrl(SHADCN_THEME_LOGO_URL);
+    const logoDarkUrl = resolveAssetUrl(SHADCN_THEME_LOGO_DARK_URL) || logoUrl;
+    const asideImageUrl = resolveAssetUrl(SHADCN_THEME_ASIDE_IMAGE_URL);
+    const cardImageUrl = resolveAssetUrl(SHADCN_THEME_CARD_IMAGE_URL);
+    const sidePanelImageUrl = resolveAssetUrl(SHADCN_THEME_SIDE_PANEL_IMAGE_URL);
+    const sidePanelImageDarkUrl = resolveAssetUrl(SHADCN_THEME_SIDE_PANEL_IMAGE_DARK_URL) || sidePanelImageUrl;
 
-    const showRealmName = kcContext.properties.SHADCN_THEME_SHOW_REALM_NAME !== "false";
-    const logoAlt = kcContext.realm.displayName || kcContext.realm.name || "Logo";
-    const welcomeMessage = kcContext.properties.SHADCN_THEME_WELCOME_MESSAGE.trim() || msgStr("welcomeMessage");
+    const welcomeMessage = SHADCN_THEME_WELCOME_MESSAGE.trim() || msgStr("welcomeMessage");
 
     useEffect(() => {
         document.title = documentTitle ?? msgStr("loginTitle", kcContext.realm.displayName || kcContext.realm.name);
     }, []);
-
     useSetClassName({
         qualifiedName: "html",
         className: kcClsx("kcHtmlClass"),
@@ -61,11 +68,10 @@ export function Template(props: TemplateProps) {
         qualifiedName: "body",
         className: bodyClassName ?? kcClsx("kcBodyClass"),
     });
-
     useInitializeTemplate();
     useApplyThemePreset();
 
-    switch (layout) {
+    switch (SHADCN_THEME_LAYOUT) {
         case "centered-card":
             return (
                 <CenteredCardLayout
@@ -94,10 +100,9 @@ export function Template(props: TemplateProps) {
                     }
                     sidePanelImageUrl={sidePanelImageUrl}
                     sidePanelImageDarkUrl={sidePanelImageDarkUrl}
-                    sidePanelPosition={sidePanelPosition}
-                    showRealmName={showRealmName}
+                    sidePanelPosition={SHADCN_THEME_SIDE_PANEL_POSITION as SidePanelPosition}
+                    showRealmName={SHADCN_THEME_SHOW_REALM_NAME !== "false"}
                     welcomeMessage={welcomeMessage}
-                    logoAlt={logoAlt}
                     // side panel is a dark surface in both modes
                     logoUrl={logoDarkUrl}
                 />
