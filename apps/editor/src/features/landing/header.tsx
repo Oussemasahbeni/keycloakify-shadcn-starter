@@ -98,7 +98,7 @@ function MobileMenu() {
                 </nav>
 
                 <div className="border-t p-4">
-                    <Link to="/editor" className={cn(buttonVariants({ variant: "default", size: "hero" }), "w-full")}>
+                    <Link to="/editor/login" className={cn(buttonVariants({ variant: "default", size: "hero" }), "w-full")}>
                         Open the editor
                     </Link>
                 </div>
@@ -118,7 +118,7 @@ export function Header() {
                     <IconLink href={DISCORD_INVITE_URL} label="Discord server">
                         <SiDiscord />
                     </IconLink>
-                    <Link to="/editor" className={cn(buttonVariants({ variant: "default" }), "ms-2")}>
+                    <Link to="/editor/login" className={cn(buttonVariants({ variant: "default" }), "ms-2")}>
                         Open the editor
                     </Link>
                 </div>

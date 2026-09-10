@@ -21,7 +21,7 @@ export function CtaSection() {
                         Designing is free — you only pay to export.
                     </p>
                     <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
-                        <Link to="/editor" className={cn(buttonVariants({ variant: "default", size: "hero" }))}>
+                        <Link to="/editor/login" className={cn(buttonVariants({ variant: "default", size: "hero" }))}>
                             Start designing free
                         </Link>
                         <a
