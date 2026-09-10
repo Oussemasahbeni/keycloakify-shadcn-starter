@@ -1,18 +1,18 @@
 import { Globe } from "lucide-react";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "#/components/ui/select";
+import { DEFAULT_LOCALE, supportedLocales, type Locale } from "#/lib/locales.ts";
 
-import type { Locale } from "../../../../lib/locales";
-import { DEFAULT_LOCALE, supportedLocales } from "../../../../lib/locales";
 import { useEditor } from "../../state/editor-context";
+import type { Surface } from "../model/surface";
 
 function labelFor(locale: Locale) {
     return supportedLocales.find(entry => entry.value === locale)?.label ?? locale;
 }
 
-export function LanguageSelect() {
-    const { activeSurface, login, email } = useEditor();
-    const { config, updateConfig } = activeSurface === "login" ? login : email;
+export function LanguageSelect({ surface }: { surface: Surface }) {
+    const { login, email } = useEditor();
+    const { config, updateConfig } = surface === "login" ? login : email;
 
     return (
         <Select

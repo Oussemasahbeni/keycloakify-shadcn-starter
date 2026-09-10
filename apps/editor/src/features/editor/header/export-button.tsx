@@ -6,10 +6,10 @@ import { Button } from "#/components/ui/button.tsx";
 import { Spinner } from "#/components/ui/spinner.tsx";
 import { toast } from "@/components/ui/toast";
 
-import { generateJar } from "../../server/generate-jar";
-import { useEditor } from "../../state/editor-context";
-import { assetDefinitions } from "../model/assets";
-import { getThemeNameError } from "../validation/theme-name";
+import { generateJar } from "../server/generate-jar";
+import { assetDefinitions } from "../shared/model/assets";
+import { getThemeNameError } from "../shared/validation/theme-name";
+import { useEditor } from "../state/editor-context";
 
 export function ExportButton() {
     const {
