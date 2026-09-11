@@ -5,7 +5,7 @@ import { useEditor } from "../state/editor-context";
 import { ExportButton } from './export-button';
 import { ImportButton } from "./import-button";
 import { SurfaceSwitch } from "./surface-switch";
-// import { UserMenu } from "./user-menu";
+import { UserMenu } from "./user-menu";
 
 export function EditorHeader() {
     const { themeName } = useEditor();
@@ -23,7 +23,7 @@ export function EditorHeader() {
                 <ImportButton />
                 <ExportButton />
                 <ModeToggle />
-                {/* <UserMenu /> */}
+                <UserMenu />
             </div>
         </header>
     );

@@ -1,15 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Download } from "lucide-react";
+import { useState } from "react";
 
 import { Button } from "#/components/ui/button.tsx";
 import { Spinner } from "#/components/ui/spinner.tsx";
+import { useOidc } from "#/oidc";
 import { toast } from "@/components/ui/toast";
 
 import { generateJar } from "../server/generate-jar";
 import { assetDefinitions } from "../shared/model/assets";
 import { getThemeNameError } from "../shared/validation/theme-name";
 import { useEditor } from "../state/editor-context";
+import { SignInDialog } from "./sign-in-dialog";
 
 export function ExportButton() {
     const {
@@ -17,6 +20,11 @@ export function ExportButton() {
         login: { config, assets },
         email: { config: emailConfig, emailLogoFile },
     } = useEditor();
+
+    const { isUserLoggedIn, login } = useOidc();
+
+    const [openSignInDialog, setOpenSignInDialog] = useState(false);
+
     const exportJar = useServerFn(generateJar);
 
     const { mutate: exportTheme, isPending } = useMutation({
@@ -52,11 +60,16 @@ export function ExportButton() {
                 type: "success",
             });
         },
-        onError: error =>
+        onError: error => {
+            if (!isUserLoggedIn) {
+                setOpenSignInDialog(true);
+                return;
+            }
             toast.add({
                 description: error instanceof Error ? error.message : "Export failed.",
                 type: "error",
-            }),
+            });
+        },
     });
 
     function handleExport() {
@@ -66,13 +79,22 @@ export function ExportButton() {
                 description: `Invalid theme name: ${nameError}`,
                 type: "error",
             });
+
         exportTheme();
     }
 
     return (
-        <Button size="sm" onClick={handleExport} disabled={isPending}>
-            {isPending ? <Spinner /> : <Download />}
-            Export
-        </Button>
+        <>
+            <Button size="sm" onClick={handleExport} disabled={isPending}>
+                {isPending ? <Spinner /> : <Download />}
+                Export
+            </Button>
+
+            <SignInDialog
+                open={openSignInDialog}
+                onOpenChange={() => setOpenSignInDialog(false)}
+                onSignIn={() => login?.()}
+            />
+        </>
     );
 }

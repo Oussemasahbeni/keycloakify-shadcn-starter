@@ -15,9 +15,11 @@ import { getInitials } from "#/lib/utils";
 import { useOidc } from "#/oidc";
 
 export function UserMenu() {
-    const { user, logout } = useOidc({
-        assert: "user logged in",
-    });
+    const { user, logout, isUserLoggedIn } = useOidc();
+
+    if (!isUserLoggedIn || !user) {
+        return null;
+    }
 
     return (
         <DropdownMenu>
