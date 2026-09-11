@@ -4,6 +4,7 @@ import { createContext, use, useEffect, useState } from "react";
 import type { Layout } from "react-resizable-panels";
 
 import { useTheme } from "#/components/theme-provider";
+import { clearDraft, loadDraft } from "#/lib/draft-storage.ts";
 
 import { BASE_THEME_NAME } from "../shared/constants";
 import type { ThemeAssetKey } from "../shared/model/assets";
@@ -64,6 +65,27 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         setPreviewColorScheme(resolvePreviewColorScheme(theme));
     }, [theme]);
+
+    useEffect(() => {
+        let cancelled = false;
+        void (async () => {
+            try {
+                const draft = await loadDraft();
+                if (cancelled || !draft) return;
+                setThemeName(draft.themeName);
+                setLoginThemeConfig(current => ({ ...draft.login, locale: current.locale }));
+                setAssets(draft.assets);
+                setEmailThemeConfig(draft.email);
+                setEmailLogoFile(draft.emailLogoFile);
+                void clearDraft();
+            } catch {
+                // No draft or storage unavailable — start fresh.
+            }
+        })();
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     const value: EditorContextValue = {
         themeName,

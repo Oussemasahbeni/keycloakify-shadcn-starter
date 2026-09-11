@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { Button } from "#/components/ui/button.tsx";
 import { Spinner } from "#/components/ui/spinner.tsx";
+import { clearDraft, saveDraft } from "#/lib/draft-storage.ts";
 import { useOidc } from "#/oidc";
 import { toast } from "@/components/ui/toast";
 
@@ -55,13 +56,19 @@ export function ExportButton() {
             anchor.click();
             anchor.remove();
             URL.revokeObjectURL(url);
+
+            void clearDraft();
             toast.add({
                 description: `Downloaded ${name}.jar`,
                 type: "success",
             });
         },
-        onError: error => {
+        onError: async error => {
             if (!isUserLoggedIn) {
+                try {
+                    await saveDraft({ themeName, login: config, assets, email: emailConfig, emailLogoFile });
+                } catch {}
+
                 setOpenSignInDialog(true);
                 return;
             }
@@ -83,6 +90,11 @@ export function ExportButton() {
         exportTheme();
     }
 
+    function handleSignIn() {
+        setOpenSignInDialog(false);
+        login?.();
+    }
+
     return (
         <>
             <Button size="sm" onClick={handleExport} disabled={isPending}>
@@ -93,7 +105,7 @@ export function ExportButton() {
             <SignInDialog
                 open={openSignInDialog}
                 onOpenChange={() => setOpenSignInDialog(false)}
-                onSignIn={() => login?.()}
+                onSignIn={handleSignIn}
             />
         </>
     );
